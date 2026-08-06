@@ -159,6 +159,8 @@ export function tidyProse(v) {
       .replace(/\s+[—–]\s+/g, ', ')                  // 긴 대시는 쉼표로
       .replace(/(?<=\S)\s-\s(?=\S)/g, ', ')         // 문장 중간의 하이픈 연결
       .replace(/^\s*[-•*]\s+/gm, '')                 // 줄머리 불릿
+      .replace(/^#{1,4}\s*/gm, '')                    // 마크다운 제목 기호
+      .replace(/\*\*([^*]+)\*\*/g, '$1')             // 굵게 표시는 기호 없이
       .replace(/[ \t]{2,}/g, ' ')
       .replace(/\s+([,.])/g, '$1')
       .trim()

@@ -20,7 +20,7 @@ import { Tag, ThemeToggle } from './bits'
 import { ModelViewer } from './ModelViewer'
 import { copyText, shareLink } from '../core/share'
 
-const COL_X = [0, 400, 800, 1180, 1600, 2320, 2740, 3160]
+const COL_X = [0, 440, 880, 1300, 1760, 2520, 2980, 3440]
 const colX = (c: number) => {
   const i = Math.floor(c)
   const base = COL_X[Math.min(i, COL_X.length - 1)]
@@ -138,13 +138,15 @@ function build(st: RunState, onVerdict: any, edits: BoardEdits, ed: NodeEdit): {
   const allColumns = [...model.columns, ...edits.extraColumns]
   allColumns.forEach((c, i) => {
     const rows = Math.max(
+      ...model.nodes.filter(n => n.column === i).map(n => n.row + 2),
       model.nodes.filter(n => n.column === i).length,
       edits.notes.filter(n => n.column === i).length,
-    ) || 1
+      1,
+    )
     nodes.push({
       id: `col-${c.key}`, type: 'column',
       position: { x: colX(i) - 24, y: -86 },
-      data: { title: c.title, note: c.note, h: Math.max(rows * ROW_Y + 150, 360), w: (i === 4 ? 660 : 356) },
+      data: { title: c.title, note: c.note, h: Math.max(rows * ROW_Y + 150, 360), w: (i === 4 ? 700 : 396) },
       selectable: false, draggable: false, zIndex: -1,
     })
   })
@@ -159,9 +161,9 @@ function build(st: RunState, onVerdict: any, edits: BoardEdits, ed: NodeEdit): {
   }))
   ;[...visible, ...noteNodes].forEach(n => {
     const isDesign = n.kind === 'design' && !!n.design
-    const w = isDesign ? 268 : (n as any).isPitch ? 300 : 312
+    const w = isDesign ? 268 : (n as any).isPitch ? 320 : 352
     // 이미지가 붙는 노드는 사진 높이만큼 더 잡아야 연결선이 엉뚱한 데 붙지 않는다
-    const h = isDesign ? 430 : 44 + n.body.length * 20 + (n.imageUrl ? 186 : 0) + (n.modelUrl ? 200 : 0)
+    const h = isDesign ? 430 : 44 + n.body.length * 20 + (n.imageUrl ? 230 : 0) + (n.modelUrl ? 210 : 0)
     nodes.push({
       id: n.id,
       type: isDesign ? 'designFlow' : 'step',

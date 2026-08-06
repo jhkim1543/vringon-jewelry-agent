@@ -41,10 +41,10 @@ const SCOPE_NAME: Record<Stage, string> = {
 const BASE = import.meta.env.BASE_URL || '/'
 const SCOPE_ART: Record<Stage, string | null> = {
   S1: null,
-  S2: `${BASE}samples/7a28342791c4e3faaa6ab809.webp`,
-  S3: `${BASE}samples/780ee2d38cb8913d406ef5ca.webp`,
-  S4: `${BASE}samples/dc69e9e92eda584357e17437.webp`,
-  S5: `${BASE}samples/21ec3965bb8961e7292d8fb6.webp`,
+  S2: `${BASE}samples/574e40e504365aa6469c4ddc.webp`,   // 후프 스케치
+  S3: `${BASE}samples/2a28068aad3e78a6cf206c75.webp`,   // 완성 렌더
+  S4: `${BASE}samples/23a39e716b7de8de1dcf415d.webp`,   // 착용 컷
+  S5: `${BASE}samples/d9bf59452bd8eb8d95ee1b30.webp`,   // 3D용 정사영 뷰
 }
 
 /** 리포트 미리보기 · S1은 이미지가 아니라 문서라서 문서처럼 그린다 */
@@ -131,8 +131,8 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
           {isStatic && (
             <div className="staticnote">
               <div className="sn-body">
-                <b>{t('This is a preview of the full demo.')}</b>
-                <p>{t('Research and image generation run on a local Node server that is not part of this static build, so nothing is called from here. Everything a full run produced is saved: open History in the left rail to walk through the sample run, its board, the season dossier and the PDFs.')}</p>
+                <b>{t('Research and generation, in one coherent flow.')}</b>
+                <p>{t('This hosted page is read-only. Everything a full run produced is saved. Open History in the left rail to walk through a finished analysis, its board, the forecast and the PDFs.')}</p>
                 <a href="https://github.com/jhkim1543/vringon-jewelry-agent#running-it-for-real" target="_blank" rel="noreferrer">
                   {t('Learn how it actually works')} <IcArrow />
                 </a>

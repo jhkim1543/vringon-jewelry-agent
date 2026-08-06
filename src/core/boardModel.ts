@@ -6,7 +6,7 @@ import type { Design, RunState } from './types'
 import { MODE_LABEL, MODE_SCOPE, TIER_LABEL } from './types'
 import { buildLocalPitch } from './pitch'
 import type { SeasonDossier } from './research'
-import { GRADE_LABEL, SOURCE_LABEL, metricText } from './research'
+import { GRADE_LABEL, SOURCE_LABEL, metricText , shotUrl } from './research'
 
 export type BoardNodeKind =
   | 'input' | 'research' | 'signal' | 'direction' | 'design' | 'selection' | 'appendix'
@@ -81,18 +81,30 @@ export function buildBoardModel(st: RunState): BoardModel {
   if (p.mode === 'trend') {
     const inBand = st.competitors.filter(c => c.in_band)
     const out = st.competitors.filter(c => !c.in_band)
+    // 요약 한 장 + 제품별 사진 카드. 조사 레인은 글이 아니라 실물이 보여야 한다.
     nodes.push({
       id: 'r-comp', kind: 'research', column: 1, row: 0,
       title: 'Competitor products',
       body: [
         `${st.competitors.length} collected · ${inBand.length} inside the band`,
         ...(out.length ? [`${out.length} dropped: ${out.map(c => c.brand).join(', ')} (outside the band)`] : []),
-        ...inBand.slice(0, 3).map(c => `${c.brand} ${c.name} · KRW ${(c.price_krw / 10000).toFixed(0)}0k · proxy ${c.sales_proxy_score ?? 'not scored'}`),
       ],
+    })
+    inBand.slice(0, 4).forEach((c, k) => {
+      nodes.push({
+        id: `cp-${k}`, kind: 'research', column: 1, row: 1 + k * 2.2,
+        title: `${c.brand} · ${c.name.slice(0, 26)}`,
+        imageUrl: c.image_urls?.[0] ? shotUrl(c.image_urls[0]) : undefined,
+        body: [
+          `KRW ${(c.price_krw / 1000).toLocaleString()}k${c.competitor_class ? ` · ${c.competitor_class}` : ''}`,
+          ...(c.design_traits?.length ? [c.design_traits.slice(0, 2).join(' · ')] : []),
+        ],
+      })
+      edges.push({ from: 'r-comp', to: `cp-${k}` })
     })
     const noProxy = st.competitors.filter(c => c.observation_count < 2)
     nodes.push({
-      id: 'r-proxy', kind: 'research', column: 1, row: 1,
+      id: 'r-proxy', kind: 'research', column: 1, row: 10,
       title: 'Sales proxy',
       body: [
         'Restock count, days out of stock, colourway spread',
@@ -101,7 +113,7 @@ export function buildBoardModel(st: RunState): BoardModel {
       tone: 'warn',
     })
     nodes.push({
-      id: 'r-trend', kind: 'research', column: 1, row: 2,
+      id: 'r-trend', kind: 'research', column: 1, row: 11,
       title: 'Trend research', body: ['Report search, then dedup and OEM grouping'],
     })
     researchIds = ['r-comp', 'r-proxy', 'r-trend']
@@ -158,7 +170,7 @@ export function buildBoardModel(st: RunState): BoardModel {
   if (dossier?.macrotrends?.length) {
     const pct = metricText
     nodes.push({
-      id: 'dos', kind: 'research', column: 1, row: 3,
+      id: 'dos', kind: 'research', column: 1, row: 12,
       title: `${dossier.season} · ${dossier.season_title}`,
       body: [
         dossier.powershift ? `Powershift: ${dossier.powershift}` : '',
