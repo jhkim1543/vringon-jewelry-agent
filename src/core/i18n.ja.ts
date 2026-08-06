@@ -5,6 +5,12 @@
 
 export const JA: Record<string, string> = {
   // ── 공통 ────────────────────────────────────────────────────────
+  'Connect your Miro': '自分のMiroを接続',
+  'The board is created in your own Miro account, so it needs your token. It is stored only in this browser.': 'ボードはあなたのMiroアカウントに作成されるため、本人のトークンが必要です。トークンはこのブラウザにのみ保存されます。',
+  'and create an app for your team': 'でチーム用アプリを作成',
+  'Tick the boards:write scope, then Install app and get OAuth token': 'boards:write権限にチェックし、Install app and get OAuth tokenを押します',
+  'Paste the token below': '下にトークンを貼り付けます',
+  'Save and export': '保存して書き出す',
   'What line is this?': 'どのラインですか？',
   'Metal and stone are separate axes. The research stays inside this market.': '金属とストーンは別の軸です。調査はこの市場の中で行われます。',
   'Base metal': 'ベースメタル',

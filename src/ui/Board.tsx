@@ -327,13 +327,18 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
     setMiro({ busy: false, msg: ok ? t('Link copied. It opens this board in a browser that has this run.') : url })
   }, [runId])
 
+  const [miroAsk, setMiroAsk] = useState(false)
+  const [miroDraft, setMiroDraft] = useState('')
   const exportMiro = useCallback(async () => {
+    // 사용자마다 자기 계정 토큰이 필요하다. 없으면 먼저 묻는다.
+    if (!localStorage.getItem('vringon.miroToken')) { setMiroDraft(''); setMiroAsk(true); return }
     setMiro({ busy: true, msg: 'Converting board for Miro' })
     try {
       const model = buildBoardModel(st)
       const r = await fetch('/api/miro/export', {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          miroToken: localStorage.getItem('vringon.miroToken') || undefined,
           model,
           meta: {
             name: `VRINGON review · jewelry ${new Date().toISOString().slice(0, 10)}`,
@@ -429,6 +434,30 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
         <div className="board-toast" onClick={() => setMiro(m => ({ ...m, msg: null }))}>{miro.msg}</div>
       )}
 
+      {miroAsk && (
+        <div className="dv-modal" onClick={() => setMiroAsk(false)}>
+          <div className="dv-modal-box" style={{ width: 'min(460px,100%)' }} onClick={e => e.stopPropagation()}>
+            <div className="dv-modal-head"><span>{t('Connect your Miro')}</span>
+              <div className="dv-modal-acts"><button className="dv-x" onClick={() => setMiroAsk(false)}>✕</button></div></div>
+            <div style={{ padding: '4px 18px 18px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <p className="hint" style={{ lineHeight: 1.6 }}>{t('The board is created in your own Miro account, so it needs your token. It is stored only in this browser.')}</p>
+              <ol style={{ fontSize: 12.5, color: 'var(--text-2)', paddingLeft: 18, lineHeight: 1.7 }}>
+                <li><a href="https://miro.com/app/settings/user-profile/apps" target="_blank" rel="noreferrer" style={{ color: 'var(--accent-hi)' }}>miro.com → Your apps</a> {t('and create an app for your team')}</li>
+                <li>{t('Tick the boards:write scope, then Install app and get OAuth token')}</li>
+                <li>{t('Paste the token below')}</li>
+              </ol>
+              <input className="input" type="password" placeholder="oauth token"
+                value={miroDraft} onChange={e => setMiroDraft(e.target.value)} />
+              <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
+                <button className="btn btn-ghost btn-sm" onClick={() => setMiroAsk(false)}>{t('Close')}</button>
+                <button className="btn btn-primary btn-sm" disabled={!miroDraft.trim()}
+                  onClick={() => { localStorage.setItem('vringon.miroToken', miroDraft.trim()); setMiroAsk(false); exportMiro() }}>
+                  {t('Save and export')}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       <ReactFlow
         nodes={nodes}
         edges={showEdges ? initial.edges : []}

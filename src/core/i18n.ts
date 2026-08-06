@@ -74,6 +74,12 @@ export function tf(s: string, vars: Record<string, string | number>): string {
 const KO: Record<string, string> = {
   // ── 공통 ────────────────────────────────────────────────────────
   // ── 위저드 · 질문 세 개로 나눈 화면 ──────────────────────────────
+  'Connect your Miro': '내 Miro 연결',
+  'The board is created in your own Miro account, so it needs your token. It is stored only in this browser.': '보드는 회원님의 Miro 계정에 만들어지므로 본인 토큰이 필요합니다. 토큰은 이 브라우저에만 저장됩니다.',
+  'and create an app for your team': '에서 팀용 앱을 만듭니다',
+  'Tick the boards:write scope, then Install app and get OAuth token': 'boards:write 권한을 체크하고 Install app and get OAuth token을 누릅니다',
+  'Paste the token below': '아래에 토큰을 붙여넣습니다',
+  'Save and export': '저장하고 내보내기',
   'What line is this?': '어떤 라인인가요?',
   'Metal and stone are separate axes. The research stays inside this market.': '금속과 스톤은 서로 다른 축입니다. 조사는 이 시장 안에서만 이뤄집니다.',
   'Base metal': '금속',

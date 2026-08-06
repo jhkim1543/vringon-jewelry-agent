@@ -332,20 +332,24 @@ export async function handleApi(req, res) {
 
   if (path === '/api/miro/export' && req.method === 'POST') {
     try {
-      const { model, meta } = await readBody(req)
+      const b = await readBody(req)
+      const { model, meta } = b
       // 형태가 어긋나면 planMiroBoard 안에서 TypeError 가 나 원인이 안 보인다
       if (!model || !Array.isArray(model.columns) || !Array.isArray(model.nodes)) {
         return json(res, 400, { error: 'board model must have columns[] and nodes[]' })
       }
       const plan = planMiroBoard(model, meta ?? { name: 'VRINGON 품평 보드', description: '' })
-      if (!MIRO_TOKEN) {
+      // 사용자마다 자기 Miro 계정 토큰을 쓴다. 브라우저에만 저장되고 서버는 중계만 한다.
+      const userToken = typeof b.miroToken === 'string' && b.miroToken.trim() ? b.miroToken.trim() : ''
+      const MTOKEN = userToken || MIRO_TOKEN
+      if (!MTOKEN) {
         return json(res, 200, {
           mode: 'plan',
           plan,
           hint: 'MIRO_ACCESS_TOKEN을 .env에 넣으면 보드를 바로 생성합니다. 지금은 생성 계획만 반환했습니다.',
         })
       }
-      const out = await createMiroBoard(MIRO_TOKEN, plan)
+      const out = await createMiroBoard(MTOKEN, plan)
       return json(res, 200, { mode: 'created', ...out })
     } catch (e) {
       return json(res, 500, { error: String(e.message || e) })

@@ -199,7 +199,7 @@ async function ask(apiKey, { input, schema, name }) {
  *  한 요청이 커지면 상류 연결이 먼저 끊기고, 한 브랜드 실패가 전체를 날린다. */
 export async function researchCompetitors(apiKey, root, opts) {
   const { brands = [], categoryKo, typeKo, priceMin, priceMax, langName = 'English' } = opts
-  const key = createHash('sha256').update(JSON.stringify(['comp5', langName, brands, categoryKo, typeKo, priceMin, priceMax, opts.metalProgram ?? '', opts.stoneProgram ?? ''])).digest('hex').slice(0, 24)
+  const key = createHash('sha256').update(JSON.stringify(['comp6', langName, brands, categoryKo, typeKo, priceMin, priceMax, opts.metalProgram ?? '', opts.stoneProgram ?? ''])).digest('hex').slice(0, 24)
   const file = join(cacheDir(root), `${key}.json`)
   if (existsSync(file)) return { ...JSON.parse(readFileSync(file, 'utf8')), cached: true }
 
@@ -250,7 +250,7 @@ async function researchOneBrand(apiKey, root, { brand: rawBrand, categoryKo: raw
   const brand = canonBrand(rawBrand)
   const categoryKo = canonTerm(rawCat)
   const typeKo = canonTerm(rawType)
-  const key = createHash('sha256').update(JSON.stringify(['brand4', langName, brand, categoryKo, typeKo, priceMin, priceMax, metalProgram, stoneProgram])).digest('hex').slice(0, 24)
+  const key = createHash('sha256').update(JSON.stringify(['brand5', langName, brand, categoryKo, typeKo, priceMin, priceMax, metalProgram, stoneProgram])).digest('hex').slice(0, 24)
   const file = join(cacheDir(root), `${key}.json`)
   if (existsSync(file)) return JSON.parse(readFileSync(file, 'utf8'))
 
@@ -265,6 +265,8 @@ competitor_class 를 aspirational(상위 소재·가격 참고) 또는 direction
 자사 가격 밴드: ${priceMin.toLocaleString()}원 ~ ${priceMax.toLocaleString()}원
 
 이 브랜드에서 최근 출시되었거나 현재 잘 팔리는 ${typeKo} 모델을 2~3개만 찾아주세요.
+- price_krw 는 공식몰 정가를 원화로 확인해 반드시 채웁니다. 해외가면 환산합니다.
+- 가격을 어디서도 확인하지 못한 제품은 목록에서 빼고 다른 제품을 찾습니다. 0 금지.
 브랜드 공식몰의 베스트셀러·랭킹 페이지와 리뷰를 함께 확인하세요. 검색은 8회 이내로 끝내세요.
 
 읽기 규칙 (반드시 지킬 것):
