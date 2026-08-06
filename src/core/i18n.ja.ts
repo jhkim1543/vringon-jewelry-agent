@@ -251,7 +251,7 @@ export const JA: Record<string, string> = {
   'Signals': 'シグナル',
   'Directions': 'ディレクション',
   'Input': '入力',
-  'Design Agent': 'デザインエージェント',
+  'Jewelry Agent': 'ジュエリーエージェント',
   'Set the brief, pick how far to go, and run.':
     'ブリーフを決め、どこまで進めるかを選んで分析を始めます。',
   'Agent mode': 'エージェントモード',

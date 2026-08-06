@@ -308,7 +308,7 @@ const KO: Record<string, string> = {
   'Input': '입력',
 
   // ── 실행 설정 ───────────────────────────────────────────────────
-  'Design Agent': '디자인 에이전트',
+  'Jewelry Agent': '주얼리 에이전트',
   'Set the brief, pick how far to go, and run.': '브리프를 정하고, 어디까지 갈지 고른 뒤 분석을 시작합니다.',
   'Agent mode': '에이전트 모드',
   'Trend': '트렌드',

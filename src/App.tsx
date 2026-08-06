@@ -180,7 +180,7 @@ export default function App() {
         <button className="brand" onClick={() => setView('create')} title={t('Back to the start')}>
           <VringonLogo />
           VRINGON
-          <span className="module">{t('Design Agent')}</span>
+          <span className="module">{t('Jewelry Agent')}</span>
         </button>
         <nav className="topnav">
           <button className={view === 'create' ? 'on' : ''} onClick={() => setView('create')}>{t('Create')}</button>
