@@ -67,6 +67,10 @@ export default function RunReport({ st, onOpenBoard, competitorDetail, dossierDe
         shots: items.map(i => i.image_urls?.[0]).filter(Boolean).slice(0, 2) as string[],
         inBand: items.filter(i => i.in_band).length,
         strong: items.filter(i => i.evidence_strength === 'strong').length,
+        // 브랜드의 대표 분류 · 제품별 분류 중 다수결
+        cls: (() => { const c: Record<string, number> = {}
+          for (const i of items) if (i.competitor_class) c[i.competitor_class] = (c[i.competitor_class] ?? 0) + 1
+          return (Object.entries(c).sort((a, b) => b[1] - a[1])[0]?.[0] ?? null) as 'direct' | 'aspirational' | 'directional' | null })(),
       }
     }).sort((a, b) => b.items.length - a.items.length)
   }, [st.competitors])
@@ -212,6 +216,7 @@ export default function RunReport({ st, onOpenBoard, competitorDetail, dossierDe
                   <tr key={b.brand}>
                     <td className="rt-brand">
                       {b.brand}
+                      {b.cls && <em className={`rt-cls ${b.cls}`}>{t(b.cls === 'direct' ? 'Direct' : b.cls === 'aspirational' ? 'Aspirational' : 'Directional')}</em>}
                       <i>{b.inBand}/{b.items.length} {t('in band')}{b.strong ? ` · ${b.strong} ${t('strong')}` : ''}</i>
                     </td>
                     {/* 제품 사진과 이름을 함께 둔다. 사진만으로는 무엇을 본 건지 알 수 없다. */}

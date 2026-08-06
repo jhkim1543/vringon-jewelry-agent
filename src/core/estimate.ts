@@ -86,8 +86,9 @@ export function estimate(p: RunParams): Estimate {
     {
       // 컨셉 촬영은 생성 이미지다. 영상은 로컬 오픈소스라 과금이 붙지 않는다.
       stage: 'S5', label: '3D showroom',
-      minutes: 1.2 + models * 1.6,
-      usd: 0.25 + models * 0.08,
+      // 4면 정사영 뷰(모델당 4장 편집) + Tripo 생성
+      minutes: 1.2 + models * (1.6 + 4 * MIN_PER_IMAGE),
+      usd: 0.25 + models * (0.08 + 4 * USD_PER_IMAGE * RETRY),
       images: 0,
       real: realS5,
     },

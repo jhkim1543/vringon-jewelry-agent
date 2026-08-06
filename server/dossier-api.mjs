@@ -49,8 +49,9 @@ const METRIC = {
 const COLOR = {
   type: 'object',
   additionalProperties: false,
-  required: ['name', 'pantone_tcx', 'hex'],
+  required: ['name', 'pantone_tcx', 'hex', 'layer'],
   properties: {
+    layer: { type: 'string', enum: ['metal', 'stone', 'mood'], description: '금속·도금 톤이면 metal, 스톤·진주 색이면 stone, 연출·패키지·스타일링 색이면 mood' },
     name: { type: 'string', description: '컬러 이름. 예: Peat Moss, Rose Dust' },
     pantone_tcx: { type: 'string', description: 'Pantone TCX 코드. 모르면 빈 문자열' },
     hex: { type: 'string', description: '#RRGGBB' },
@@ -186,8 +187,8 @@ export function nextSeason(s) {
 
 export async function researchDossier(deps, root, opts) {
   const { ask } = deps
-  const { categoryEn, season, priceBand, brands = [], deep = false, onStep, langName = 'English' } = opts
-  const key = createHash('sha256').update(JSON.stringify(['dossier4-forecast', langName, categoryEn, season, priceBand ?? '', brands, deep])).digest('hex').slice(0, 24)
+  const { categoryEn, season, priceBand, brands = [], deep = false, onStep, langName = 'English', metalProgram = '', stoneProgram = '' } = opts
+  const key = createHash('sha256').update(JSON.stringify(['dossier5-line', langName, metalProgram, stoneProgram, categoryEn, season, priceBand ?? '', brands, deep])).digest('hex').slice(0, 24)
   const file = join(dossierDir(root), `${key}.json`)
   if (existsSync(file)) return { ...JSON.parse(readFileSync(file, 'utf8')), cached: true }
 
@@ -199,7 +200,8 @@ export async function researchDossier(deps, root, opts) {
 
 이 문서는 **${FORECAST} 예측서**다. ${season}은 근거이지 주제가 아니다.
 대상 시즌: ${FORECAST} (예측)  ·  근거 시즌: ${season} (관측)
-품목: ${categoryEn}${priceBand ? ` · 가격대 ${priceBand}` : ''}${brands.length ? ` · 참고 브랜드 ${brands.join(', ')}` : ''}
+품목: ${categoryEn}${priceBand ? ` · 가격대 ${priceBand}` : ''}${metalProgram ? `
+라인: 금속 ${metalProgram} · 스톤 ${stoneProgram || 'no stone'} — 예측은 이 라인의 시장을 중심으로 하고, 다른 소재는 참고로만 다룬다.` : ''}${brands.length ? ` · 참고 브랜드 ${brands.join(', ')}` : ''}
 
 예측 방법:
 - ${season}에서 실제로 관측된 것(쇼, 리테일 랭킹, 품절, 검색량, 소재 조달)을 근거로 삼는다.
@@ -270,7 +272,7 @@ ${FORECAST} ${categoryEn}를 이끌 매크로트렌드 4개를 예측하세요.
 채울 것:
 - narrative 3문단
 - drivers 3개: 이 무드를 떠받치는 검색·소셜·쇼 성장 지표
-- palette 8~9개: 실제 시즌 컬러. Pantone TCX 코드를 찾을 수 있으면 넣습니다
+- palette 8~9개: 실제 시즌 컬러. Pantone TCX 코드를 찾을 수 있으면 넣습니다. 각 색의 layer 를 구분합니다 — 금속·도금 톤은 metal, 스톤·진주 색은 stone, 연출·패키지 색만 mood
 - materials 4개: 소재별 전년 대비 성장
 - details 4개: 부자재·봉제·마감 디테일별 성장
 - key_items 9개: 여성 3, 남성 3, 키즈 3. 각각 이름·설명·성장률·등급·스펙 구절

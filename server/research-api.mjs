@@ -25,9 +25,11 @@ const COMPETITOR_SCHEMA = {
         additionalProperties: false,
         required: ['brand', 'model_name', 'price_krw', 'released', 'popularity_evidence', 'evidence_strength',
           'rank_note', 'user_sentiment', 'praise_points', 'complaint_points', 'design_traits',
-          'image_urls', 'product_url', 'source_urls'],
+          'image_urls', 'product_url', 'source_urls', 'competitor_class', 'line_match'],
         properties: {
           brand: { type: 'string' },
+          competitor_class: { type: 'string', enum: ['direct', 'aspirational', 'directional'], description: '같은 금속·스톤·가격이면 direct. 상위 소재·가격 참고면 aspirational. 디자인 방향 참고면 directional.' },
+          line_match: { type: 'boolean', description: '지정된 금속·스톤 프로그램과 일치하는 제품인가' },
           model_name: { type: 'string' },
           price_krw: { type: 'integer', description: '원화 정가. 모르면 0' },
           released: { type: 'string', description: '출시 시점. 모르면 unknown' },
@@ -197,12 +199,12 @@ async function ask(apiKey, { input, schema, name }) {
  *  한 요청이 커지면 상류 연결이 먼저 끊기고, 한 브랜드 실패가 전체를 날린다. */
 export async function researchCompetitors(apiKey, root, opts) {
   const { brands = [], categoryKo, typeKo, priceMin, priceMax, langName = 'English' } = opts
-  const key = createHash('sha256').update(JSON.stringify(['comp4', langName, brands, categoryKo, typeKo, priceMin, priceMax])).digest('hex').slice(0, 24)
+  const key = createHash('sha256').update(JSON.stringify(['comp5', langName, brands, categoryKo, typeKo, priceMin, priceMax, opts.metalProgram ?? '', opts.stoneProgram ?? ''])).digest('hex').slice(0, 24)
   const file = join(cacheDir(root), `${key}.json`)
   if (existsSync(file)) return { ...JSON.parse(readFileSync(file, 'utf8')), cached: true }
 
   const results = await Promise.allSettled(
-    brands.map(b => researchOneBrand(apiKey, root, { ...opts, brand: b , langName })),
+    brands.map(b => researchOneBrand(apiKey, root, { ...opts, brand: b, langName })),
   )
   const products = []
   const notes = []
@@ -243,12 +245,12 @@ const TERM_ALIAS = {
 }
 function canonTerm(t) { return TERM_ALIAS[String(t).trim().toLowerCase()] ?? t }
 
-async function researchOneBrand(apiKey, root, { brand: rawBrand, categoryKo: rawCat, typeKo: rawType, priceMin, priceMax, langName = 'English' }) {
+async function researchOneBrand(apiKey, root, { brand: rawBrand, categoryKo: rawCat, typeKo: rawType, priceMin, priceMax, langName = 'English', metalProgram = '', stoneProgram = '' }) {
   const LANG = langName
   const brand = canonBrand(rawBrand)
   const categoryKo = canonTerm(rawCat)
   const typeKo = canonTerm(rawType)
-  const key = createHash('sha256').update(JSON.stringify(['brand3', langName, brand, categoryKo, typeKo, priceMin, priceMax])).digest('hex').slice(0, 24)
+  const key = createHash('sha256').update(JSON.stringify(['brand4', langName, brand, categoryKo, typeKo, priceMin, priceMax, metalProgram, stoneProgram])).digest('hex').slice(0, 24)
   const file = join(cacheDir(root), `${key}.json`)
   if (existsSync(file)) return JSON.parse(readFileSync(file, 'utf8'))
 
@@ -256,6 +258,10 @@ async function researchOneBrand(apiKey, root, { brand: rawBrand, categoryKo: raw
 
 대상 브랜드: ${brand}
 품목: ${categoryKo} / ${typeKo}
+${metalProgram ? `라인: 금속 ${metalProgram} · 스톤 ${stoneProgram || 'no stone'}
+실버와 골드는 금속 축이고, 다이아몬드·루비·진주는 스톤 축입니다. 서로 다른 시장입니다.
+1차 경쟁군(direct)은 같은 금속·스톤 프로그램 안에서 찾습니다. 소재나 포지션이 다른 브랜드 제품은
+competitor_class 를 aspirational(상위 소재·가격 참고) 또는 directional(디자인 방향 참고)로 표시합니다.` : ''}
 자사 가격 밴드: ${priceMin.toLocaleString()}원 ~ ${priceMax.toLocaleString()}원
 
 이 브랜드에서 최근 출시되었거나 현재 잘 팔리는 ${typeKo} 모델을 2~3개만 찾아주세요.
@@ -291,7 +297,7 @@ async function researchOneBrand(apiKey, root, { brand: rawBrand, categoryKo: raw
 
 export async function researchTrends(apiKey, root, {
   categoryKo: rawCat, typeKo: rawType, brands: rawBrands, season, priceBandKo, deep, deepModel, wantReport = true, depth = 4, onStep,
-  langName = 'English',
+  langName = 'English', metalProgram = '', stoneProgram = '',
 }) {
   const LANG = langName
   const categoryKo = canonTerm(rawCat)
@@ -299,7 +305,7 @@ export async function researchTrends(apiKey, root, {
   const brands = (rawBrands ?? []).map(canonBrand)
   const useDeep = !!deep
   const key = createHash('sha256').update(JSON.stringify([
-    'trend5', LANG, categoryKo, typeKo, brands ?? [], season, priceBandKo ?? '',
+    'trend6', LANG, categoryKo, typeKo, brands ?? [], season, priceBandKo ?? '', metalProgram, stoneProgram,
     useDeep ? 'deep' : wantReport ? `multi${depth}` : 'fast',
   ])).digest('hex').slice(0, 24)
   const file = join(cacheDir(root), `${key}.json`)
@@ -308,6 +314,7 @@ export async function researchTrends(apiKey, root, {
   const input = `당신은 패션 브랜드의 트렌드 리서처입니다. 웹 검색으로 사실만 수집하세요.
 
 품목: ${categoryKo} / ${typeKo}
+${metalProgram ? `라인: 금속 ${metalProgram} · 스톤 ${stoneProgram || 'no stone'} — 신호는 이 라인의 시장 안에서 찾습니다.` : ''}
 시즌: ${season}
 ${brands?.length ? `참고 브랜드: ${brands.join(', ')}` : ''}
 

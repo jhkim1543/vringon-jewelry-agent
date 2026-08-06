@@ -10,7 +10,7 @@ import {
 } from './aiClient'
 import type { TrendClauseInput } from './aiClient'
 import { fetchCompetitors, fetchDossier, fetchTrends, toBias, toCompetitors, toSignals, setRunLang } from './research'
-import { campaignCount, CAT_LABEL, MODE_LABEL, MODE_SCOPE, TYPE_LABEL } from './types'
+import { campaignCount, CAT_LABEL, MODE_LABEL, MODE_SCOPE, TYPE_LABEL, metalProgramOf, stoneProgramOf } from './types'
 import { ENGINES } from './imageEngines'
 
 export type Emit = (e: PipelineEvent) => void
@@ -87,6 +87,9 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
     // 이 분석의 조사 언어를 고정한다. 도중에 화면 언어를 바꿔도 결과는 안 섞인다.
 
     setRunLang(params.researchLang ?? null)
+    // 라인 프로필 · 금속과 스톤을 조사 전 확정해 모든 조사에 싣는다
+    const lineMetal = params.line ? metalProgramOf(params.line) : ''
+    const lineStone = params.line ? stoneProgramOf(params.line) : ''
 
 
     emit({ kind: 'stage-start', stage: 'S1' })
@@ -101,6 +104,7 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
       emit({ kind: 'log', stage: 'S1', text: `1 Competitor products · searching ${brands.join(', ')} for ${typeKo} (1-2 min)` })
       try {
         const r = await fetchCompetitors({
+          metalProgram: lineMetal, stoneProgram: lineStone,
           brands, categoryKo: catKo, typeKo,
           priceMin: params.trend.priceMinKrw, priceMax: params.trend.priceMaxKrw,
         })
@@ -165,6 +169,7 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
       try {
         // 신호는 빠른 경로로 먼저 받는다. 상세 보고서는 S1을 막지 않고 뒤에서 따라온다.
         const tr = await fetchTrends({
+          metalProgram: lineMetal, stoneProgram: lineStone,
           categoryKo: catKo, typeKo, season: '2026 F/W',
           brands: params.mode === 'trend' ? params.trend.competitors : undefined,
           priceBandKo: params.mode === 'trend'
@@ -184,6 +189,7 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
         emit({ kind: 'dossier-pending', on: true })
         emit({ kind: 'log', stage: 'S1', text: 'Building the season dossier: macrotrends, palettes, materials, key items. It attaches when done.' })
         dossierJob = fetchDossier({
+          metalProgram: lineMetal, stoneProgram: lineStone,
           categoryEn: catKo,
           season: 'FW26',
           priceBand: params.mode === 'trend'
@@ -212,6 +218,7 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
           emit({ kind: 'log', stage: 'S1', text: 'The season dossier failed to build. Signals and the report are still usable.' })
         })
         fetchTrends({
+          metalProgram: lineMetal, stoneProgram: lineStone,
           categoryKo: catKo, typeKo, season: '2026 F/W',
           brands: params.mode === 'trend' ? params.trend.competitors : undefined,
           priceBandKo: params.mode === 'trend'
@@ -523,12 +530,36 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
       emit({ kind: 'log', stage: 'S5', text: 'Building the 3D showroom · the multiview renders of each top pick go to Tripo' })
       for (const d of top) {
         if (cancelled) return
-        // 사람이나 배경이 들어간 컷은 빼고, 흰 배경의 제품 컷만 넘긴다
-        const views = d.images
-          .filter(i => !['sketch', 'wear', 'concept', 'variation'].includes(i.view))
-          .slice(0, 4)
+        // 3D 전용 4면 뷰(정면·좌·후면·우)를 기준 렌더에서 편집으로 만든다.
+        // 45도·디테일 컷을 그대로 보내면 Tripo 슬롯 의미와 어긋나 형태가 틀어진다.
+        const base = d.images.find(i => i.origin === 'generated' && !['sketch', 'wear', 'concept', 'variation'].includes(i.view))
+        if (!base) {
+          emit({ kind: 'log', stage: 'S5', text: `${d.spec.design_id} has no clean base render, so 3D is skipped` })
+          continue
+        }
+        emit({ kind: 'log', stage: 'S5', text: `${d.spec.design_id} building 4 orthographic views for 3D` })
+        const ORTHO: { slot: string; prompt: string }[] = [
+          { slot: 'front', prompt: 'Rotate to a straight-on front orthographic view of the exact same piece.' },
+          { slot: 'left', prompt: 'Rotate to a straight-on left side orthographic view of the exact same piece.' },
+          { slot: 'back', prompt: 'Rotate to a straight-on back orthographic view of the exact same piece.' },
+          { slot: 'right', prompt: 'Rotate to a straight-on right side orthographic view of the exact same piece.' },
+        ]
+        const ortho: { hash: string; url: string }[] = []
+        for (const o of ORTHO) {
+          if (cancelled) return
+          try {
+            const p3 = `${o.prompt} Keep every proportion, material, stone and detail identical. Centered, plain pure white background, even studio light, no shadow, no text.`
+            const r3 = await editImage(base.hash, p3, params.imageEngine)
+            ortho.push({ hash: r3.hash, url: r3.url })
+            d.images = [...d.images, { view: `ortho_${o.slot}`, url: r3.url, hash: r3.hash, origin: 'edited_from', editedFrom: base.hash, promptUsed: p3 }]
+          } catch {
+            emit({ kind: 'log', stage: 'S5', text: `${d.spec.design_id} ${o.slot} view failed · continuing with the rest` })
+          }
+        }
+        emit({ kind: 'design-update', design: { ...d } })
+        const views = ortho.length >= 3 ? ortho : [{ hash: base.hash, url: base.url }]
         if (views.length < 2) {
-          emit({ kind: 'log', stage: 'S5', text: `${d.spec.design_id} has only ${views.length} clean view, so 3D is skipped` })
+          emit({ kind: 'log', stage: 'S5', text: `${d.spec.design_id} could not build enough views, so 3D is skipped` })
           continue
         }
         try {

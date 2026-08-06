@@ -85,7 +85,11 @@ export async function tripoMultiview(root, apiKey, { views, onStep }) {
 
   // Tripo 멀티뷰는 [front, left, back, right] 순서를 기대한다.
   // 우리가 가진 각도는 정면·사분·상단이라 뒤쪽이 없다. 없는 자리는 빈 객체로 둔다.
-  const files = [tokens[0] ?? {}, tokens[1] ?? {}, {}, tokens[2] ?? {}]
+  // 슬롯 순서는 Tripo 규격 그대로 [front, left, back, right] 다.
+  // 4장이 오면 그대로, 3장이면 back 을 비운다 (옛 호출 호환).
+  const files = tokens.length >= 4
+    ? [tokens[0], tokens[1], tokens[2], tokens[3]]
+    : [tokens[0] ?? {}, tokens[1] ?? {}, {}, tokens[2] ?? {}]
 
   const create = await fetch(`${BASE}/task`, {
     method: 'POST',

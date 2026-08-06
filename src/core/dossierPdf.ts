@@ -59,12 +59,25 @@ function statBar(m: DossierMetric, color: string) {
 
 function paletteStrip(m: Macrotrend) {
   if (!m.palette?.length) return ''
-  return `<div class="palette">${m.palette.map(c => `
+  const sw = (c: Macrotrend['palette'][number]) => `
     <div class="sw ${isLight(c.hex) ? 'dark' : ''}" style="background:${esc(c.hex)}">
       <div class="n">${esc(c.name)}</div>
       <div class="c">${esc(c.pantone_tcx || '—')}</div>
       <div class="c">${esc(c.hex)}</div>
-    </div>`).join('')}</div>`
+    </div>`
+  // 금속 톤·스톤 색·무드는 서로 다른 사양이다. layer 가 있으면 층을 나눠 그린다.
+  // 옛 도시에에는 layer 가 없으므로 그때는 예전처럼 한 띠로 나간다.
+  if (m.palette.some(c => c.layer)) {
+    return (['metal', 'stone', 'mood'] as const).map(ly => {
+      const cs = m.palette.filter(c => c.layer === ly)
+      if (!cs.length) return ''
+      return `<div style="display:flex;align-items:stretch;margin-top:.6mm">
+        <div style="width:13mm;flex-shrink:0;display:flex;align-items:center;font-size:6pt;font-weight:800;letter-spacing:.12em;color:#8A9099">${ly.toUpperCase()}</div>
+        <div class="palette" style="flex:1">${cs.map(sw).join('')}</div>
+      </div>`
+    }).join('')
+  }
+  return `<div class="palette">${m.palette.map(sw).join('')}</div>`
 }
 
 function keyItemCard(k: Macrotrend['key_items'][number], color: string, pic: string) {

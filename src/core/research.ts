@@ -80,11 +80,13 @@ async function post<T>(url: string, body: unknown): Promise<T> {
 
 export const fetchCompetitors = (b: {
   brands: string[]; categoryKo: string; typeKo: string; priceMin: number; priceMax: number
+  metalProgram?: string; stoneProgram?: string
 }) => post<CompetitorResearch>('/api/research/competitors', b)
 
 export const fetchTrends = (b: {
   categoryKo: string; typeKo: string; brands?: string[]; season: string
   priceBandKo?: string; wantReport?: boolean; depth?: number
+  metalProgram?: string; stoneProgram?: string
 }) => post<TrendResearch>('/api/research/trends', b)
 
 // ── 수집 결과 → 도메인 타입 ─────────────────────────────────────────
@@ -97,6 +99,8 @@ export function toCompetitors(r: CompetitorResearch, priceMin: number, priceMax:
     name: p.model_name,
     price_krw: p.price_krw,
     sales_proxy_score: null,
+    competitor_class: (p as { competitor_class?: 'direct' | 'aspirational' | 'directional' }).competitor_class,
+    line_match: (p as { line_match?: boolean }).line_match,
     proxy_signals: p.popularity_evidence,
     observation_count: 1,
     observation_window: `${r.collected_at}, single pass`,
@@ -156,7 +160,11 @@ export interface DossierMetric {
   source_url: string
   observed_note: string
 }
-export interface DossierColor { name: string; pantone_tcx: string; hex: string }
+export interface DossierColor {
+  /** metal(금속 톤) / stone(스톤 색) / mood(연출) · 옛 데이터에는 없다 */
+  layer?: 'metal' | 'stone' | 'mood'
+  name: string; pantone_tcx: string; hex: string
+}
 export type TrendGrade = 'edgy' | 'early_sign' | 'safe' | 'big' | 'stable' | 'last_call'
 export interface DossierKeyItem {
   segment: 'women' | 'men' | 'kids'
@@ -195,6 +203,7 @@ export interface SeasonDossier {
 
 export const fetchDossier = (b: {
   categoryEn: string; season: string; priceBand?: string; brands?: string[]
+  metalProgram?: string; stoneProgram?: string
 }) => post<SeasonDossier>('/api/research/dossier', b)
 
 export const GRADE_LABEL: Record<TrendGrade, string> = {

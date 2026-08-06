@@ -179,6 +179,14 @@ export function ModelViewer({ url, poster, height = 200, light }: {
             <span className="mv-cta">{t('Open 3D')}</span>
           </button>
         )}
+      {/* 3D 파일은 뷰어 없이도 쓸 수 있어야 한다 · 바로 내려받기 */}
+      <a className="mv-expand mv-dl" href={url} download title={t('Download GLB')}
+        onPointerDown={e => e.stopPropagation()} onClick={e => e.stopPropagation()}>
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor"
+          strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <path d="M12 4v11M7 10.6l5 5 5-5M4.6 19.4h14.8" />
+        </svg>
+      </a>
       {/* 인라인이 떠 있어도 크게 보고 싶을 수 있다 */}
       <button className="mv-expand" title={t('Open full size')}
         onPointerDown={e => e.stopPropagation()}

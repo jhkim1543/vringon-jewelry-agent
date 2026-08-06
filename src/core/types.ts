@@ -99,6 +99,45 @@ export const MODE_SCOPE: Record<Mode, { competitor: boolean; trend: boolean; upl
   moodboard: { competitor: false, trend: false, upload: true, note: 'Uses only the files you upload' },
 }
 
+// ── 주얼리 라인 프로필 ──────────────────────────────────────────────
+// 925실버+무스톤과 925실버+랩다이아는 경쟁 브랜드·가격 구조·소비자 기대가
+// 완전히 다른 시장이다. 조사 전에 이 축들이 확정되어야 한다.
+export type BaseMetal = '925_silver' | '14k_gold' | '18k_gold' | 'gold_filled' | 'plated_brass'
+export type Coating = 'none' | 'rhodium' | 'gold_vermeil' | 'gold_plated' | 'oxidized'
+export type StoneProgram = 'none' | 'cz' | 'lab_diamond' | 'natural_diamond' | 'ruby' | 'sapphire' | 'pearl' | 'crystal'
+export interface LineProfile { preset: string; baseMetal: BaseMetal; coating: Coating; stone: StoneProgram }
+
+/** 조사 프롬프트에 싣는 영문 표현 · 모델이 검색어를 만들 때 그대로 쓴다 */
+export const METAL_EN: Record<BaseMetal, string> = {
+  '925_silver': '925 sterling silver', '14k_gold': '14K solid gold', '18k_gold': '18K solid gold',
+  gold_filled: 'gold-filled', plated_brass: 'plated brass',
+}
+export const COATING_EN: Record<Coating, string> = {
+  none: '', rhodium: 'rhodium plated', gold_vermeil: '18K gold vermeil',
+  gold_plated: 'gold plated', oxidized: 'oxidized',
+}
+export const STONE_EN: Record<StoneProgram, string> = {
+  none: 'no stone', cz: 'cubic zirconia', lab_diamond: 'laboratory-grown diamond',
+  natural_diamond: 'natural diamond', ruby: 'natural ruby', sapphire: 'natural sapphire',
+  pearl: 'cultured pearl', crystal: 'crystal',
+}
+export function metalProgramOf(l: LineProfile): string {
+  const c = COATING_EN[l.coating]
+  return c ? `${METAL_EN[l.baseMetal]}, ${c}` : METAL_EN[l.baseMetal]
+}
+export function stoneProgramOf(l: LineProfile): string { return STONE_EN[l.stone] }
+
+/** 프리셋은 배타 분류가 아니라 입력값을 미리 채우는 번들이다. 고른 뒤에도 축은 바꿀 수 있다. */
+export const LINE_PRESETS: { id: string; label: string; line: Omit<LineProfile, 'preset'> }[] = [
+  { id: 'sterling_core', label: 'Sterling Silver Core', line: { baseMetal: '925_silver', coating: 'rhodium', stone: 'none' } },
+  { id: 'gold_vermeil', label: 'Gold Vermeil', line: { baseMetal: '925_silver', coating: 'gold_vermeil', stone: 'none' } },
+  { id: 'solid_gold', label: 'Solid Gold Fine', line: { baseMetal: '14k_gold', coating: 'none', stone: 'none' } },
+  { id: 'diamond', label: 'Diamond Essentials', line: { baseMetal: '925_silver', coating: 'rhodium', stone: 'lab_diamond' } },
+  { id: 'colored_gem', label: 'Colored Gemstone', line: { baseMetal: '14k_gold', coating: 'none', stone: 'ruby' } },
+  { id: 'pearl', label: 'Pearl', line: { baseMetal: '925_silver', coating: 'rhodium', stone: 'pearl' } },
+  { id: 'fashion_crystal', label: 'Fashion & Crystal', line: { baseMetal: 'plated_brass', coating: 'gold_plated', stone: 'crystal' } },
+]
+
 // ── 실행 파라미터 (지시서 2.1) ──────────────────────────────────────
 export interface RunParams {
   mode: Mode
@@ -130,6 +169,9 @@ export interface RunParams {
   trend: TrendInput
   series: SeriesInput
   moodboard: MoodboardInput
+  /** 주얼리 라인 프로필 · 실버·골드는 금속 축, 다이아·루비·진주는 스톤 축.
+   *  하나의 선택지 그룹으로 합치면 서로 다른 시장이 섞인다. */
+  line?: LineProfile
   /** 조사 결과를 쓸 언어. 화면 언어와 별개로 분석 시작 시 정한다. */
   researchLang?: import('./i18n').Lang
   /** 브랜드 아이덴티티 · 모든 결과물에 공통으로 실린다 */
@@ -148,6 +190,7 @@ export const DEFAULT_PARAMS: RunParams = {
   endStage: 'S3', sketchCount: 12, tierRatio: [1, 1, 1],
   renderRatio: 0.5, viewCount: 3, colorwayCount: 2,
   topN: 3, designsPerSketch: 2, variationCount: 3, campaignShots: 4, make3d: true, approvalGate: true,
+  line: { preset: 'sterling_core', baseMetal: '925_silver', coating: 'rhodium', stone: 'none' },
   imageEngine: 'detail', imageBudget: 12,
   trend: {
     // 기본을 비워둔다. 가상의 브랜드명으로 검색하면 결과가 무의미하고 시간만 든다.
@@ -198,6 +241,9 @@ export interface CompetitorProduct {
   praise_points?: string[]
   complaint_points?: string[]
   design_traits?: string[]
+  /** 라인 대비 경쟁군 분류 · direct(동일 라인) / aspirational(상위 참고) / directional(디자인 참고) */
+  competitor_class?: 'direct' | 'aspirational' | 'directional'
+  line_match?: boolean
   image_urls?: string[]
   product_url?: string
 }

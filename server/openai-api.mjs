@@ -222,7 +222,11 @@ export async function handleApi(req, res) {
     try {
       if (!existsSync(file)) {
         const r = await fetch(src, {
-          headers: { 'User-Agent': 'Mozilla/5.0', Accept: 'image/avif,image/webp,image/*,*/*;q=0.8' },
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36',
+            Accept: 'image/avif,image/webp,image/*,*/*;q=0.8',
+            Referer: new URL(src).origin + '/',
+          },
           redirect: 'follow',
         })
         if (!r.ok) throw new Error(String(r.status))
@@ -238,8 +242,10 @@ export async function handleApi(req, res) {
       res.setHeader('Cache-Control', 'public, max-age=86400')
       return res.end(readFileSync(file))
     } catch {
-      res.statusCode = 404
-      return res.end('shot unavailable')
+      // 핫링크 차단·소멸 링크는 흔하다. 빈 칸 대신 중립 칩을 그려 준다.
+      res.setHeader('Content-Type', 'image/svg+xml')
+      res.setHeader('Cache-Control', 'public, max-age=3600')
+      return res.end('<svg xmlns="http://www.w3.org/2000/svg" width="80" height="80"><rect width="80" height="80" rx="8" fill="#EEF1F5"/><circle cx="40" cy="34" r="12" fill="none" stroke="#B4BAC2" stroke-width="3"/><path d="M28 60c3-8 21-8 24 0" fill="none" stroke="#B4BAC2" stroke-width="3" stroke-linecap="round"/></svg>')
     }
   }
 
@@ -278,6 +284,7 @@ export async function handleApi(req, res) {
       return json(res, 200, await researchSeasonDossier(DEEP_RESEARCH ? DEEP_KEY : API_KEY, ROOT, {
         categoryEn: b.categoryEn, season: b.season, priceBand: b.priceBand,
         brands: b.brands ?? [], deep: DEEP_RESEARCH, langName: b.langName,
+        metalProgram: b.metalProgram, stoneProgram: b.stoneProgram,
       }))
     } catch (e) { return json(res, 500, { error: String(e.message || e) }) }
   }

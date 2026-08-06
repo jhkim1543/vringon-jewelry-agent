@@ -8,7 +8,7 @@ import { getLang, t } from '../core/i18n'
 import { useEffect, useMemo, useState } from 'react'
 import { detectRuntime } from '../core/runtime'
 import type { Runtime } from '../core/runtime'
-import { CAT_LABEL, DEFAULT_PARAMS, firstTypeOf, groupOf, MODE_LABEL, MODE_SCOPE, TAXONOMY, TYPE_LABEL } from '../core/types'
+import { CAT_LABEL, COATING_EN, DEFAULT_PARAMS, firstTypeOf, groupOf, LINE_PRESETS, METAL_EN, MODE_LABEL, MODE_SCOPE, STONE_EN, TAXONOMY, TYPE_LABEL } from '../core/types'
 import type { Mode, Category, RunParams, Stage } from '../core/types'
 import { cumulative, estimate, SCOPE_COPY } from '../core/estimate'
 import { Seg, Tag } from './bits'
@@ -120,6 +120,8 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
   const rsum = p.tierRatio.reduce((a, b) => a + b, 0)
   const perTier = (r: number) => Math.round(p.sketchCount * r / rsum)
   const designCount = Math.max(1, Math.round(p.sketchCount * p.renderRatio))
+  // 라인 프로필 · 옛 저장본에는 없어 기본값으로 채운다
+  const line = p.line ?? { preset: 'sterling_core', baseMetal: '925_silver' as const, coating: 'rhodium' as const, stone: 'none' as const }
   const CatIcon = CAT_ICON[p.category]
 
   return (
@@ -213,6 +215,39 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
           {/* ── 2단계 · 어떻게 조사할지 ──────────────────────────── */}
           {step === 2 && (<>
             {p.mode === 'trend' && (<>
+              {/* 라인 구성 · 경쟁 브랜드보다 먼저다. 925실버+무스톤과 925실버+랩다이아는
+                  경쟁군·가격 구조·소비자 기대가 완전히 다른 시장이라, 라인이 정해져야
+                  경쟁사도 트렌드도 같은 시장 안에서 조사된다. */}
+              <section className="sect">
+                <h2>{t('What line is this?')}</h2>
+                <p className="note top">{t('Metal and stone are separate axes. The research stays inside this market.')}</p>
+                <div className="chiprow">
+                  {LINE_PRESETS.map(pr => (
+                    <button key={pr.id} className={`pick ${line.preset === pr.id ? 'on' : ''}`}
+                      onClick={() => set('line', { preset: pr.id, ...pr.line })}>{pr.label}</button>
+                  ))}
+                </div>
+                <div className="stack">
+                  <span className="lbl">{t('Base metal')}</span>
+                  <Seg options={['925_silver', '14k_gold', '18k_gold', 'gold_filled', 'plated_brass'] as const}
+                    value={line.baseMetal} onChange={v => set('line', { ...line, preset: 'custom', baseMetal: v })}
+                    format={v => t(METAL_EN[v])} />
+                </div>
+                <div className="stack">
+                  <span className="lbl">{t('Coating')}</span>
+                  <Seg options={['none', 'rhodium', 'gold_vermeil', 'gold_plated', 'oxidized'] as const}
+                    value={line.coating} onChange={v => set('line', { ...line, preset: 'custom', coating: v })}
+                    format={v => v === 'none' ? t('None') : t(COATING_EN[v])} />
+                </div>
+                <div className="stack">
+                  <span className="lbl">{t('Stone')}</span>
+                  <Seg options={['none', 'cz', 'lab_diamond', 'natural_diamond', 'ruby', 'sapphire', 'pearl', 'crystal'] as const}
+                    value={line.stone} onChange={v => set('line', { ...line, preset: 'custom', stone: v })}
+                    format={v => v === 'none' ? t('No stone') : t(STONE_EN[v])} />
+                </div>
+                <p className="note">{t('Primary competitors come from this exact program. Other tiers are kept as reference, not mixed in.')}</p>
+              </section>
+
               <section className="sect">
                 <h2>{t('Competitor brands')}</h2>
                 <p className="note top">{t('Their best sellers and the trends around them get searched on the web.')}</p>
