@@ -1,0 +1,216 @@
+/* VRINGON UI 시스템 ver3 · Figma 토큰
+   런타임 테마 전환에서 var() 연쇄가 갱신되지 않아, 의미 이름도 테마별 실제 hex로 둔다. */
+:root, [data-theme="light"] {
+  --primary-primary: #444AE8;
+  --canvas-default: #FFFFFF;
+  --canvas-contrast: #F9FAFB;
+  --canvas-dim: #000000;
+  --canvas-white: #FFFFFF;
+  --surface-01: #FFFFFF;
+  --surface-02: #F9FAFB;
+  --surface-03: #F3F5F8;
+  --surface-04: #C5C9CF;
+  --surface-05: #898F95;
+  --surface-black: #000000;
+  --surface-accent01: #F6F7FF;
+  --surface-accent02: #8793FF;
+  --surface-accent03: #444AE8;
+  --surface-dim70: #FFFFFF;
+  --surface-dim50-gnb: #FFFFFF;
+  --text-primary: #181C20;
+  --text-secondary: #565D63;
+  --text-placeholder: #898F95;
+  --text-disabled-c: #C5C9CF;
+  --text-success: #00AF79;
+  --text-warning: #FA7500;
+  --text-failed: #E32F3F;
+  --text-inverse: #FFFFFF;
+  --text-white: #FFFFFF;
+  --text-black: #181C20;
+  --text-accent: #444AE8;
+  --text-button-secondary: #0E0EA6;
+  --text-button-disabled: #F9FAFB;
+  --border-default: #C5C9CF;
+  --border-selected: #282D32;
+  --border-success: #1CC38A;
+  --border-warning: #FB8200;
+  --border-accent: #444AE8;
+  --border-fail: #FF4550;
+  --border-light: #F3F5F8;
+  --border-dim: #000000;
+  --modal-modal: #FFFFFF;
+  --button-primary-default: #444AE8;
+  --button-primary-hover: #5D6CFA;
+  --button-primary-pressed: #0E0EA6;
+  --button-primary-disabled: #A7B1FF;
+  --button-secondary-default: #F3F5F8;
+  --button-secondary-hover: #F6F7FF;
+  --button-secondary-pressed: #E9EAFF;
+  --button-secondary-disabled: #C5C9CF;
+  --button-alert-default: #E32F3F;
+  --button-alert-hover: #FF4550;
+  --button-alert-pressed: #AD001D;
+  --button-alert-disabled: #FF9492;
+  --button-text-hover: #000000;
+  --button-text-pressed: #000000;
+  --button-text-focused: #444AE8;
+  --icon-primary: #181C20;
+  --icon-secondary: #565D63;
+  --icon-tertiary: #898F95;
+  --icon-disabled: #C5C9CF;
+  --icon-button-disabled: #FFFFFF;
+  --icon-button-secondary: #0E0EA6;
+  --icon-inverse: #FFFFFF;
+  --icon-white: #FFFFFF;
+  --icon-black: #05070E;
+  --icon-accent: #444AE8;
+  --icon-success: #1CC38A;
+  --icon-warning: #FB8200;
+  --icon-failed: #FF4550;
+  --shadow-shadow1: #000000;
+  --shadow-shadow2: #000000;
+  /* 의미 이름 · var() 연쇄를 피해 실제 값을 직접 넣는다 */
+  --bg: #FFFFFF;
+  --bg-2: #F9FAFB;
+  --panel-2: #F3F5F8;
+  --surface-4: #C5C9CF;
+  --text: #181C20;
+  --text-2: #565D63;
+  --text-3: #6B7178;   /* #898F95는 흰 배경에서 3.3:1로 AA 미달이었다 → 4.9:1 */
+  --text-disabled: #C5C9CF;
+  --accent: #444AE8;
+  --accent-hover: #5D6CFA;
+  --accent-pressed: #0E0EA6;
+  --accent-hi: #444AE8;
+  --accent-soft: #F6F7FF;
+  --warn: #B34F00;    /* #FA7500은 흰 배경에서 2.8:1로 AA 미달이었다 → 5.2:1 */
+  --danger: #D42B31;     /* #E32F3F는 흰 배경에서 4.4:1 이었다 → 5.0:1 */
+  --alert: #E32F3F;
+  --alert-hover: #FF4550;
+  --line-2: #C5C9CF;
+  --panel: #FFFFFF;
+  --line: #F3F5F8;
+}
+[data-theme="dark"] {
+  --primary-primary: #444AE8;
+  --canvas-default: #05070E;
+  --canvas-contrast: #181C20;
+  --canvas-dim: #000000;
+  --canvas-white: #FFFFFF;
+  --surface-01: #05070E;
+  --surface-02: #0F1217;
+  --surface-03: #181C20;
+  --surface-04: #282D32;
+  --surface-05: #565D63;
+  --surface-black: #000000;
+  --surface-accent01: #000045;
+  --surface-accent02: #0E0EA6;
+  --surface-accent03: #5D6CFA;
+  --surface-dim70: #000000;
+  --surface-dim50-gnb: #000000;
+  --text-primary: #F3F5F8;
+  --text-secondary: #C5C9CF;
+  --text-placeholder: #898F95;
+  --text-disabled-c: #353D43;
+  --text-success: #2AEEA8;
+  --text-warning: #FFAB5C;
+  --text-failed: #FF7474;
+  --text-inverse: #181C20;
+  --text-white: #FFFFFF;
+  --text-black: #181C20;
+  --text-accent: #5D6CFA;
+  --text-button-secondary: #E9EAFF;
+  --text-button-disabled: #898F95;
+  --border-default: #353D43;
+  --border-selected: #C5C9CF;
+  --border-success: #2AEEA8;
+  --border-warning: #FFAB5C;
+  --border-accent: #5D6CFA;
+  --border-fail: #FF7474;
+  --border-light: #181C20;
+  --border-dim: #FFFFFF;
+  --modal-modal: #181C20;
+  --button-primary-default: #5D6CFA;
+  --button-primary-hover: #444AE8;
+  --button-primary-pressed: #0E0EA6;
+  --button-primary-disabled: #000045;
+  --button-secondary-default: #282D32;
+  --button-secondary-hover: #353D43;
+  --button-secondary-pressed: #565D63;
+  --button-secondary-disabled: #282D32;
+  --button-alert-default: #FF4550;
+  --button-alert-hover: #E32F3F;
+  --button-alert-pressed: #AD001D;
+  --button-alert-disabled: #7A0000;
+  --button-text-hover: #000000;
+  --button-text-pressed: #000000;
+  --button-text-focused: #5D6CFA;
+  --icon-primary: #F9FAFB;
+  --icon-secondary: #C5C9CF;
+  --icon-tertiary: #898F95;
+  --icon-disabled: #353D43;
+  --icon-button-disabled: #898F95;
+  --icon-button-secondary: #E9EAFF;
+  --icon-inverse: #181C20;
+  --icon-white: #FFFFFF;
+  --icon-black: #05070E;
+  --icon-accent: #5D6CFA;
+  --icon-success: #2AEEA8;
+  --icon-warning: #FFAB5C;
+  --icon-failed: #FF7474;
+  --shadow-shadow1: #FFFFFF;
+  --shadow-shadow2: #FFFFFF;
+  /* 의미 이름 · var() 연쇄를 피해 실제 값을 직접 넣는다 */
+  --bg: #05070E;
+  --bg-2: #0F1217;
+  --panel-2: #181C20;
+  --surface-4: #282D32;
+  --text: #F3F5F8;
+  --text-2: #C5C9CF;
+  --text-3: #898F95;
+  --text-disabled: #353D43;
+  --accent: #5D6CFA;
+  --accent-hover: #444AE8;
+  --accent-pressed: #0E0EA6;
+  --accent-hi: #6E7BFF;  /* #5D6CFA는 패널 위 11px에서 4.46:1 이었다 → 5.3:1 */
+  --accent-soft: #000045;
+  --warn: #FFAB5C;
+  --danger: #FF7474;
+  --alert: #FF4550;
+  --alert-hover: #E32F3F;
+  --line-2: #353D43;
+  --panel: #0F1217;
+  --line: #181C20;
+}
+
+/* ── VRINGON UI 시스템 ver3 · 간격·라운드 스케일 ─────────────────────
+   Figma의 Mode 1 토큰을 그대로 옮긴다. 임의 값을 쓰지 않고 이 안에서만 고른다. */
+:root {
+  /* spacing */
+  --sp-2: 2px;   --sp-4: 4px;   --sp-8: 8px;   --sp-12: 12px;
+  --sp-16: 16px; --sp-20: 20px; --sp-24: 24px; --sp-32: 32px;
+  --sp-40: 40px; --sp-48: 48px; --sp-64: 64px; --sp-80: 80px; --sp-96: 96px;
+
+  /* padding · gap · margin · layout */
+  --pad-xs: 4px; --pad-sm: 8px; --pad-md: 12px; --pad-lg: 16px; --pad-xl: 20px;
+  --gap-sm: 2px; --gap-md: 4px; --gap-lg: 8px;  --gap-xl: 12px;
+  --mar-sm: 16px; --mar-md: 24px; --mar-lg: 32px; --mar-xl: 48px;
+  --lay-xs: 12px; --lay-sm: 24px; --lay-md: 32px; --lay-lg: 48px;
+  --lay-xl: 64px; --lay-xxl: 96px;
+
+  /* radius scale */
+  --r-none: 0; --r-4: 4px; --r-6: 6px; --r-8: 8px;
+  --r-12: 12px; --r-16: 16px; --r-24: 24px; --r-full: 999px;
+
+  /* component radius · 컴포넌트마다 정해진 값이 있다 */
+  --r-btn-sm: 4px;  --r-btn-md: 4px;  --r-btn-lg: 6px;  --r-btn-xl: 6px;
+  --r-chip: 4px;
+  --r-input-sm: 4px; --r-input-lg: 6px;
+  --r-dropdown-md: 4px; --r-dropdown-lg: 6px;
+  --r-menu: 4px;
+  --r-toggle: 999px; --r-slider: 999px; --r-tag: 999px; --r-profile: 999px;
+  --r-thumb-sm: 4px; --r-thumb-md: 6px; --r-thumb-lg: 8px; --r-thumb-xl: 12px;
+  --r-toast: 6px; --r-tooltip: 6px;
+  --r-modal: 16px;
+  --r-card: 8px; --r-sheet: 8px; --r-body: 24px;
+}

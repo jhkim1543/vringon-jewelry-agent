@@ -1,0 +1,7 @@
+node_modules
+dist
+# docs 는 GitHub Pages 배포 산출물이라 커밋한다
+.env
+.env.local
+*.local
+.cache

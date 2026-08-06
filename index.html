@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VRINGON · Design Agent</title>
+  <script>
+    // 첫 페인트 전에 테마를 확정한다.
+    // React가 마운트된 뒤에 붙이면 초기 색이 한 번 잘못 칠해지고, 그 값이 남는 경우가 있다.
+    (function () {
+      try {
+        var t = localStorage.getItem('vringon.theme') || 'dark'
+        document.documentElement.setAttribute('data-theme', t)
+      } catch (e) {
+        document.documentElement.setAttribute('data-theme', 'dark')
+      }
+    })()
+  </script>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>
