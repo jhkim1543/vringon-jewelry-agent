@@ -29,3 +29,6 @@ jobs:
           path: docs
       - id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          timeout: 900000   # 기본 10분 폴링이 간헐적으로 끊긴다
+          error_count: 30
