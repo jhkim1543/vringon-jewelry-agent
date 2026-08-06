@@ -4,7 +4,11 @@ import type { RunState } from './types'
 import { listRuns, saveRun } from './store'
 
 /** 주얼리 전용 · 심어 두는 예시 분석 */
-const SAMPLE_IDS = ['sample_jewel_labdiamond', 'sample_jewel_hoop', 'sample_jewel_ring'] as const
+const SAMPLE_IDS = [
+  'sample_jewel_labdiamond', 'sample_jewel_hoop', 'sample_jewel_ring',
+  // 검증 런에서 승격 · 진주 펜던트(전문가 설정+신호 주입 S3), 랩다이아 스터드(S5·3D 포함)
+  'sample_jewel_pearlpendant', 'sample_jewel_studdiamond',
+] as const
 
 export async function ensureSampleRuns() {
   const have = new Set(listRuns().map(r => r.id))

@@ -9,7 +9,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { detectRuntime } from '../core/runtime'
 import type { Runtime } from '../core/runtime'
 import { CAT_LABEL, COATING_EN, DEFAULT_PARAMS, firstTypeOf, groupOf, LINE_PRESETS, METAL_EN, MODE_LABEL, MODE_SCOPE, STONE_EN, TAXONOMY, TYPE_LABEL } from '../core/types'
-import type { Mode, Category, RunParams, Stage } from '../core/types'
+import type { LineProfile, Mode, Category, RunParams, Stage } from '../core/types'
 import { cumulative, estimate, SCOPE_COPY } from '../core/estimate'
 import { Seg, Tag } from './bits'
 import { ENGINES } from '../core/imageEngines'
@@ -78,6 +78,27 @@ const STEPS = [
   { n: 3, tab: 'Results', ask: 'How far should we take it?' },
 ] as const
 
+/** 전문가 설정의 선택 칩 · 한 번 더 누르면 해제된다. 모르는 값은 비워 두는 게 원칙이라
+ *  "선택 안 함"이 언제나 유효한 상태여야 한다. */
+function PickRow<T extends string | number>({ label, options, value, onPick, format }: {
+  label: string; options: readonly T[]; value: T | undefined
+  onPick: (v: T | undefined) => void; format?: (v: T) => string
+}) {
+  return (
+    <div className="stack">
+      <span className="lbl">{label}</span>
+      <div className="chiprow">
+        {options.map(o => (
+          <button key={String(o)} className={`pick ${value === o ? 'on' : ''}`}
+            onClick={() => onPick(value === o ? undefined : o)}>
+            {format ? format(o) : String(o)}
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function Wizard({ onStart }: { onStart: (p: RunParams) => void }) {
   const [p, setP] = useState<RunParams>(DEFAULT_PARAMS)
   const [step, setStep] = useState(1)
@@ -121,7 +142,7 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
   const perTier = (r: number) => Math.round(p.sketchCount * r / rsum)
   const designCount = Math.max(1, Math.round(p.sketchCount * p.renderRatio))
   // 라인 프로필 · 옛 저장본에는 없어 기본값으로 채운다
-  const line = p.line ?? { preset: 'sterling_core', baseMetal: '925_silver' as const, coating: 'rhodium' as const, stone: 'none' as const }
+  const line: LineProfile = p.line ?? { preset: 'sterling_core', baseMetal: '925_silver', coating: 'rhodium', stone: 'none' }
   const CatIcon = CAT_ICON[p.category]
 
   return (
@@ -245,6 +266,85 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                     value={line.stone} onChange={v => set('line', { ...line, preset: 'custom', stone: v })}
                     format={v => v === 'none' ? t('No stone') : t(STONE_EN[v])} />
                 </div>
+
+                {/* 전문가 설정 · 아는 값만 채운다. 프로그램 문자열에 실려 조사 프롬프트와
+                    캐시 키가 함께 갈라지므로, 값을 바꾸면 조사도 다시 돈다. */}
+                {(line.coating !== 'none' || line.stone !== 'none') && (
+                  <details className="expertbox">
+                    <summary>{t('Expert settings')}<span className="hint"> · {t('plating microns, diamond 4Cs, pearl grading, total carat weight')}</span></summary>
+                    {line.coating !== 'none' && (
+                      <PickRow label={t('Plating thickness')} options={[0.5, 1, 2, 2.5, 3] as const}
+                        value={line.coatingMicrons as 0.5 | 1 | 2 | 2.5 | 3 | undefined}
+                        onPick={v => set('line', { ...line, coatingMicrons: v })}
+                        format={v => `${v}μm`} />
+                    )}
+                    {(line.stone === 'lab_diamond' || line.stone === 'natural_diamond') && (<>
+                      <PickRow label={t('Diamond colour')} options={['D-F', 'G-H', 'I-J'] as const}
+                        value={line.stoneGrade?.color as 'D-F' | 'G-H' | 'I-J' | undefined}
+                        onPick={v => set('line', { ...line, stoneGrade: { ...line.stoneGrade, color: v } })} />
+                      <PickRow label={t('Clarity')} options={['VVS', 'VS', 'SI'] as const}
+                        value={line.stoneGrade?.clarity as 'VVS' | 'VS' | 'SI' | undefined}
+                        onPick={v => set('line', { ...line, stoneGrade: { ...line.stoneGrade, clarity: v } })} />
+                      <PickRow label={t('Cut')} options={['excellent', 'very good', 'good'] as const}
+                        value={line.stoneGrade?.cut as 'excellent' | 'very good' | 'good' | undefined}
+                        onPick={v => set('line', { ...line, stoneGrade: { ...line.stoneGrade, cut: v } })} />
+                      <PickRow label={t('Centre stone')} options={[0.1, 0.3, 0.5, 1] as const}
+                        value={line.stoneGrade?.caratCt as 0.1 | 0.3 | 0.5 | 1 | undefined}
+                        onPick={v => set('line', { ...line, stoneGrade: { ...line.stoneGrade, caratCt: v } })}
+                        format={v => `${v}ct`} />
+                    </>)}
+                    {line.stone === 'pearl' && (<>
+                      <PickRow label={t('Pearl type')} options={['freshwater', 'akoya', 'south sea', 'tahitian'] as const}
+                        value={line.pearl?.type as 'freshwater' | 'akoya' | 'south sea' | 'tahitian' | undefined}
+                        onPick={v => set('line', { ...line, pearl: { ...line.pearl, type: v } })} />
+                      <PickRow label={t('Pearl size')} options={[5, 6, 7, 8, 9, 10, 12] as const}
+                        value={line.pearl?.sizeMm as 5 | 6 | 7 | 8 | 9 | 10 | 12 | undefined}
+                        onPick={v => set('line', { ...line, pearl: { ...line.pearl, sizeMm: v } })}
+                        format={v => `${v}mm`} />
+                      <PickRow label={t('Shape')} options={['round', 'near-round', 'oval', 'baroque'] as const}
+                        value={line.pearl?.shape as 'round' | 'near-round' | 'oval' | 'baroque' | undefined}
+                        onPick={v => set('line', { ...line, pearl: { ...line.pearl, shape: v } })} />
+                      <PickRow label={t('Body colour')} options={['white', 'cream', 'golden', 'grey', 'black'] as const}
+                        value={line.pearl?.color as 'white' | 'cream' | 'golden' | 'grey' | 'black' | undefined}
+                        onPick={v => set('line', { ...line, pearl: { ...line.pearl, color: v } })} />
+                      <PickRow label={t('Luster')} options={['excellent', 'good', 'fair'] as const}
+                        value={line.pearl?.luster as 'excellent' | 'good' | 'fair' | undefined}
+                        onPick={v => set('line', { ...line, pearl: { ...line.pearl, luster: v } })} />
+                      <PickRow label={t('Surface')} options={['clean', 'lightly spotted', 'spotted'] as const}
+                        value={line.pearl?.surface as 'clean' | 'lightly spotted' | 'spotted' | undefined}
+                        onPick={v => set('line', { ...line, pearl: { ...line.pearl, surface: v } })} />
+                      <PickRow label={t('Nacre')} options={['thick', 'medium', 'thin'] as const}
+                        value={line.pearl?.nacre as 'thick' | 'medium' | 'thin' | undefined}
+                        onPick={v => set('line', { ...line, pearl: { ...line.pearl, nacre: v } })} />
+                    </>)}
+                    {line.stone !== 'none' && (
+                      <PickRow label={t('Total carat weight, max')} options={[0.25, 0.5, 1, 2] as const}
+                        value={line.tcwMaxCt as 0.25 | 0.5 | 1 | 2 | undefined}
+                        onPick={v => set('line', { ...line, tcwMaxCt: v })}
+                        format={v => `≤ ${v}ct`} />
+                    )}
+                    {/* 컴플라이언스는 다중 선택 · 수출 라인이면 셋 다 켜는 게 보통이다 */}
+                    <div className="stack">
+                      <span className="lbl">{t('Compliance')}</span>
+                      <div className="chiprow">
+                        {(['nickel_free', 'cadmium_free', 'lead_free'] as const).map(c => {
+                          const on = (line.compliance ?? []).includes(c)
+                          return (
+                            <button key={c} className={`pick ${on ? 'on' : ''}`}
+                              onClick={() => set('line', {
+                                ...line,
+                                compliance: on ? (line.compliance ?? []).filter(x => x !== c)
+                                  : [...(line.compliance ?? []), c],
+                              })}>
+                              {t(c === 'nickel_free' ? 'Nickel-safe' : c === 'cadmium_free' ? 'Cadmium-free' : 'Lead-free')}
+                            </button>
+                          )
+                        })}
+                      </div>
+                    </div>
+                    <p className="note">{t('Leave anything you do not know empty. Unknown is a valid answer; a guessed grade poisons the research.')}</p>
+                  </details>
+                )}
                 <p className="note">{t('Primary competitors come from this exact program. Other tiers are kept as reference, not mixed in.')}</p>
               </section>
 

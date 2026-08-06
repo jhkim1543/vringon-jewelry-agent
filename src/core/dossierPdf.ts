@@ -12,7 +12,7 @@ function mdLinks(escaped: string): string {
 }
 
 import type { RunState, Design } from './types'
-import { CAT_LABEL, TYPE_LABEL, MODE_LABEL } from './types'
+import { CAT_LABEL, TYPE_LABEL, MODE_LABEL, metalProgramOf, stoneProgramOf } from './types'
 import type { SeasonDossier, DossierMetric, Macrotrend } from './research'
 import { GRADE_LABEL, SOURCE_LABEL, metricText } from './research'
 import { DECK_CSS, downloadDeck, esc, isLight, printDeck, slide } from './deck'
@@ -107,6 +107,8 @@ function buildDeck(st: RunState): { title: string; html: string } {
     : ''
   // 예측 대상 시즌. 옛 도시에에는 없으므로 season 으로 떨어진다.
   const fc = (d as { forecast_season?: string }).forecast_season ?? d.season
+  // 조사 지문 · 이 도시에가 어느 라인을 보고 쓰였는지 표지에 밝힌다
+  const lineStr = p.line ? `${metalProgramOf(p.line)} · ${stoneProgramOf(p.line)}` : ''
 
   const eyebrow = `${d.season} ${CAT_LABEL[p.category]} trends`
   const out: string[] = []
@@ -126,8 +128,8 @@ function buildDeck(st: RunState): { title: string; html: string } {
         <h1 class="title" style="margin-top:auto;color:#fff">${esc(d.season)}<br>${esc(d.season_title)}</h1>
         ${d.powershift ? `<div style="margin-top:5mm;font-size:11pt;color:#8793FF;font-weight:700;letter-spacing:.04em">${esc(d.powershift)}</div>` : ''}
         <div style="margin-top:auto;font-size:8pt;color:#8A9099;line-height:1.7">
-          ${esc(item)}${band ? `<br>${esc(band)}` : ''}<br>
-          Collected ${esc(d.collected_at)} · ${esc(d.searches)} searches · ${(d.sources ?? []).length} sources
+          ${esc(item)}${lineStr ? `<br>${esc(lineStr)}` : ''}${band ? `<br>${esc(band)}` : ''}<br>
+          ${esc(MODE_LABEL[p.mode])} mode · Collected ${esc(d.collected_at)} · ${esc(d.searches)} searches · ${(d.sources ?? []).length} sources
         </div>
       </div>
     </div>`,
@@ -372,7 +374,7 @@ function buildDeck(st: RunState): { title: string; html: string } {
       body: `<h2 class="stitle">SOURCES <span class="thin">everything above traces here</span></h2>
         <table class="src">
           ${d.sources.map((s, i2) => `<tr>
-            <td class="n">${i2 + 1}</td>
+            <td class="n">ds.e${i2 + 1}</td>
             <td><b>${esc(s.title || s.url)}</b><div style="color:#8A9099">${esc(s.used_for)}</div></td>
             <td class="u">${esc(s.url)}</td>
           </tr>`).join('')}

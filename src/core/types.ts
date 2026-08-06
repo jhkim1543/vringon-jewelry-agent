@@ -105,7 +105,33 @@ export const MODE_SCOPE: Record<Mode, { competitor: boolean; trend: boolean; upl
 export type BaseMetal = '925_silver' | '14k_gold' | '18k_gold' | 'gold_filled' | 'plated_brass'
 export type Coating = 'none' | 'rhodium' | 'gold_vermeil' | 'gold_plated' | 'oxidized'
 export type StoneProgram = 'none' | 'cz' | 'lab_diamond' | 'natural_diamond' | 'ruby' | 'sapphire' | 'pearl' | 'crystal'
-export interface LineProfile { preset: string; baseMetal: BaseMetal; coating: Coating; stone: StoneProgram }
+
+// 전문가 설정 · 같은 랩다이아 라인도 D-F/VS와 I-J/SI는 경쟁군과 원가가 다르다.
+// 모르는 값은 비워 둔다 — 사진에서 등급을 추정해 채우지 않는다.
+export interface StoneGrade { color?: string; clarity?: string; cut?: string; caratCt?: number }
+/** 진주 7요소 (GIA) · 종류·크기·형태·색·광택·표면·진주층 */
+export interface PearlSpec {
+  type?: string; sizeMm?: number; shape?: string; color?: string
+  luster?: string; surface?: string; nacre?: string
+}
+
+export interface LineProfile {
+  preset: string; baseMetal: BaseMetal; coating: Coating; stone: StoneProgram
+  /** 도금 두께 μm · 0.5μm 플래시와 2.5μm 버메일은 내구성·가격이 다른 시장이다 */
+  coatingMicrons?: number
+  /** 다이아 4Cs · lab/natural diamond 라인에서만 의미 */
+  stoneGrade?: StoneGrade
+  pearl?: PearlSpec
+  /** 총캐럿(TCW) 상한 · 멀티스톤 설계의 원가 상한이자 조사 필터 */
+  tcwMaxCt?: number
+  /** 컴플라이언스 · EU REACH 니켈 용출, 카드뮴·납 함량 규제. 수출 라인이면 사실상 필수 */
+  compliance?: ('nickel_free' | 'cadmium_free' | 'lead_free')[]
+}
+
+export const COMPLIANCE_EN: Record<string, string> = {
+  nickel_free: 'nickel-safe (EU REACH nickel release)',
+  cadmium_free: 'cadmium-free', lead_free: 'lead-free',
+}
 
 /** 조사 프롬프트에 싣는 영문 표현 · 모델이 검색어를 만들 때 그대로 쓴다 */
 export const METAL_EN: Record<BaseMetal, string> = {
@@ -122,10 +148,39 @@ export const STONE_EN: Record<StoneProgram, string> = {
   pearl: 'cultured pearl', crystal: 'crystal',
 }
 export function metalProgramOf(l: LineProfile): string {
-  const c = COATING_EN[l.coating]
-  return c ? `${METAL_EN[l.baseMetal]}, ${c}` : METAL_EN[l.baseMetal]
+  let c = COATING_EN[l.coating]
+  if (c && l.coatingMicrons) c += ` ${l.coatingMicrons} micron`
+  let s = c ? `${METAL_EN[l.baseMetal]}, ${c}` : METAL_EN[l.baseMetal]
+  if (l.compliance?.length) s += `, ${l.compliance.map(x => COMPLIANCE_EN[x]).join(', ')}`
+  return s
 }
-export function stoneProgramOf(l: LineProfile): string { return STONE_EN[l.stone] }
+// 전문가 값은 프로그램 문자열에 눌러 담는다. 이 문자열이 조사 프롬프트와 캐시 키의
+// 입력이라, 값이 바뀌면 캐시가 저절로 갈라진다 — 버전 태그를 올릴 필요가 없다.
+export function stoneProgramOf(l: LineProfile): string {
+  let s = STONE_EN[l.stone]
+  if ((l.stone === 'lab_diamond' || l.stone === 'natural_diamond') && l.stoneGrade) {
+    const g = l.stoneGrade
+    const bits = [
+      g.color && `${g.color} colour`, g.clarity, g.cut && `${g.cut} cut`,
+      g.caratCt && `~${g.caratCt}ct centre stone`,
+    ].filter(Boolean)
+    if (bits.length) s += ` (${bits.join(', ')})`
+  }
+  if (l.stone === 'pearl' && l.pearl) {
+    const p = l.pearl
+    const bits = [
+      p.type, p.sizeMm && `${p.sizeMm}mm`, p.shape, p.color,
+      p.luster && `${p.luster} luster`, p.surface && `${p.surface} surface`, p.nacre && `${p.nacre} nacre`,
+    ].filter(Boolean)
+    if (bits.length) s += ` (${bits.join(', ')})`
+  }
+  if (l.stone !== 'none' && l.tcwMaxCt) s += `, total carat weight up to ${l.tcwMaxCt}ct`
+  return s
+}
+
+/** 근거 ID · 소유자 ID + 순번으로 파생시킨다. 저장된 옛 Run을 고치지 않고도
+ *  보드·화면·PDF가 같은 근거를 같은 이름으로 가리킬 수 있다. */
+export function evidenceId(ownerId: string, i: number): string { return `${ownerId}.e${i + 1}` }
 
 /** 프리셋은 배타 분류가 아니라 입력값을 미리 채우는 번들이다. 고른 뒤에도 축은 바꿀 수 있다. */
 export const LINE_PRESETS: { id: string; label: string; line: Omit<LineProfile, 'preset'> }[] = [

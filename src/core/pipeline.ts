@@ -9,6 +9,7 @@ import {
   generateModel, sketchPrompt, stampLogo, variationAxes, variationPrompt, viewEditPrompt, wearEditPrompt,
 } from './aiClient'
 import type { TrendClauseInput } from './aiClient'
+import { trendPromptClause } from './aiClient'
 import { fetchCompetitors, fetchDossier, fetchTrends, toBias, toCompetitors, toSignals, setRunLang } from './research'
 import { campaignCount, CAT_LABEL, MODE_LABEL, MODE_SCOPE, TYPE_LABEL, metalProgramOf, stoneProgramOf } from './types'
 import { ENGINES } from './imageEngines'
@@ -201,7 +202,9 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
           // 첫 매크로를 기준 방향으로 잡는다. 여기서 나온 소재·디테일·팔레트가 이미지 프롬프트로 넘어간다.
           const m0 = d.macrotrends?.[0]
           if (m0) {
+            // 신호 키워드가 먼저 실려 있을 수 있으므로 덮어쓰지 않고 합친다
             trendClause = {
+              ...(trendClause ?? {}),
               macroName: m0.name,
               materials: (m0.materials ?? []).map(x => x.label),
               details: (m0.details ?? []).map(x => x.label),
@@ -248,6 +251,13 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
           ? { ...s, page_ref: `p.${12 + Math.floor(Math.random() * 30)} ${['top', 'middle', 'bottom'][Math.floor(Math.random() * 3)]}`, sales_proxy_score: undefined, proxy_confidence: undefined }
           : s)
     }
+    // 확정된 신호 키워드를 즉시 프롬프트 절에 싣는다. 도시에는 늦거나 실패할 수 있지만
+    // 신호는 이 시점에 항상 있다 — 조사를 해 놓고 스케치가 그것을 모르는 일이 없게.
+    {
+      const strong = signals.filter(s => s.confidence !== 'low').map(s => s.label)
+      const words = (strong.length ? strong : signals.map(s => s.label)).slice(0, 4)
+      if (words.length) trendClause = { ...(trendClause ?? {}), signals: words }
+    }
     emit({ kind: 'signals', signals })
     const lowConf = signals.filter(s => s.confidence === 'low').length
     emit({ kind: 'log', stage: 'S1', text: `${signals.length} signals confirmed · none unsourced${lowConf ? ` · ${lowConf} single source, marked low confidence` : ''}` })
@@ -273,7 +283,23 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
     const nPush = Math.round(params.sketchCount * rp / rsum)
     const nSig = params.sketchCount - nCore - nPush
     emit({ kind: 'log', stage: 'S2', text: `Specs per tier · Core ${nCore} · Push ${nPush} · Signature ${nSig} (schema enforced, presets locked)` })
-    const locked = params.mode === 'series' ? DNA_LOCKS[params.category] : {}
+    // 라인이 금속·도금을 정했으면 스펙 생성이 그것을 뒤집을 수 없다.
+    // (Gemini 감사: 925 실버 라인에 brass 스펙이 섞여 나오던 결함)
+    const SPEC_METAL: Record<string, string> = {
+      '925_silver': '925 silver', '14k_gold': '14k gold', '18k_gold': '18k gold',
+      gold_filled: 'gold-filled', plated_brass: 'brass',
+    }
+    const SPEC_PLATING: Record<string, string> = {
+      rhodium: 'rhodium', gold_vermeil: '18k gold', gold_plated: '18k gold', none: 'none',
+    }
+    const lineLock: Record<string, string> = {}
+    if (params.line) {
+      const m = SPEC_METAL[params.line.baseMetal]
+      if (m) lineLock.metal = m
+      const pl = SPEC_PLATING[params.line.coating]
+      if (pl) lineLock.plating = pl
+    }
+    const locked = { ...lineLock, ...(params.mode === 'series' ? DNA_LOCKS[params.category] : {}) }
     if (params.mode === 'series') emit({ kind: 'log', stage: 'S2', text: `Series DNA locked: ${Object.entries(locked).map(([k, v]) => `${k}=${v}`).join(', ')} · fixed as spec values` })
     emit({ kind: 'log', stage: 'S2', text: 'Reference bank loaded: 4 approved, 2 near-miss rejects (too familiar, cost)' })
     await wait(800)
@@ -286,6 +312,21 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
       if (cancelled) return
       const tier = tiers[i]
       const spec = pack.generateSpec(rng, tier, params.itemType, locked)
+      // TCW 상한 가드레일 · 라운드 브릴리언트 근사 0.0061×d³(ct)로 총캐럿을 계산해,
+      // 상한을 넘으면 개별 스톤 지름을 줄인다 (Gemini 감사: 0.5ct 상한에 0.75ct 스펙)
+      if (params.line?.tcwMaxCt && params.line.stone !== 'none') {
+        const f = spec.fields as Record<string, string | number | boolean>
+        const n = Number(f.stone_count) || 0
+        if (n > 0) {
+          const caratOf = (mm: number) => 0.0061 * mm ** 3
+          let mm = Number(f.stone_size_mm) || 0
+          if (n * caratOf(mm) > params.line.tcwMaxCt) {
+            mm = Math.max(0.8, Math.floor(Math.cbrt(params.line.tcwMaxCt / (n * 0.0061)) * 10) / 10)
+            f.stone_size_mm = mm
+          }
+          f.tcw_ct = Math.round(n * caratOf(mm) * 100) / 100
+        }
+      }
       const cost = pack.costModel(spec, rng)
       const ruleResults = [...pack.rules(spec), ...tierCapRule(spec, cost)]
       const rejected = ruleResults.some(r => r.severity === 'fail')
@@ -314,7 +355,7 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
       await pool(targets, ENGINES[params.imageEngine].concurrency, async (d) => {
         if (cancelled) return
         try {
-          const skPrompt = sketchPrompt(d.spec, params.imageEngine, params.brand, trendClause)
+          const skPrompt = sketchPrompt(d.spec, params.imageEngine, params.brand, trendClause, params.line)
           const r = await generateImage(skPrompt, params.imageEngine)
           budget.spend()
           d.images = [...d.images, { view: 'sketch', url: r.url, hash: r.hash, origin: 'generated', promptUsed: skPrompt }]
@@ -355,7 +396,7 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
       if (budget.left() > 0) {
         // ① 기준 렌더 1장
         let baseHash: string | null = null
-        const basePrompt = renderPrompt(d.spec, params.imageEngine, params.brand, trendClause)
+        const basePrompt = renderPrompt(d.spec, params.imageEngine, params.brand, trendClause, params.line)
         try {
           const r = await generateImage(basePrompt, params.imageEngine)
           budget.spend(); baseHash = r.hash
@@ -388,7 +429,11 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
           ]
           for (let k = 0; k < Math.min(dps - 1, angles.length); k++) {
             if (cancelled || budget.left() <= 0) break
-            const p2 = `Redesign this ${(TYPE_LABEL[params.itemType] ?? params.itemType).toLowerCase()} keeping the exact same sketch geometry and camera angle. ${angles[k]} ${trendClause} Plain white studio background, photorealistic product shot, no text, no watermark.`
+            const p2 = [
+              `Redesign this ${(TYPE_LABEL[params.itemType] ?? params.itemType).toLowerCase()} keeping the exact same sketch geometry and camera angle.`,
+              angles[k], trendPromptClause(trendClause),
+              'Plain white studio background, photorealistic product shot, no text, no watermark.',
+            ].filter(Boolean).join(' ')
             try {
               const r2 = await editImage(baseHash, p2, params.imageEngine)
               budget.spend()

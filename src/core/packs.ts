@@ -82,13 +82,20 @@ export const jewelryPack: CategoryPack = {
     const metalPool = tier === 'core' ? ['925 silver', '925 silver', 'brass']
       : tier === 'push' ? ['925 silver', '925 silver', 'brass', '14k gold']
       : METALS as unknown as string[]
+    let stoneSize = Math.round((0.8 + rng.next() * (itemType === 'tennis' || itemType === 'eternity' ? 1.8 : 4.5)) * 10) / 10
+    // Signature 단석은 존재감이 곧 스펙이다 · 0.2ct 상당(3.8mm)을 하한으로 (Gemini 감사 반영)
+    if (tier === 'signature' && stoneCount > 0 && stoneCount <= 2) stoneSize = Math.max(stoneSize, 3.8)
+    let setting = rng.pick(prof.settings ?? SETTINGS)
+    // 채널은 스톤 열, 파베는 다석이 전제다. 단석에 쓰면 공법 오류 (Gemini 감사 반영)
+    if (stoneCount > 0 && stoneCount <= 2 && (setting === 'channel' || setting === 'pave'))
+      setting = rng.pick(['bezel', 'prong'])
     const f: Record<string, string | number | boolean> = {
       metal: rng.pick(metalPool),
       plating: rng.pick(['rhodium', '18k gold', 'none']),
       target_weight_g: Math.round(weight * 10) / 10,
       stone_count: stoneCount,
-      stone_size_mm: Math.round((0.8 + rng.next() * (itemType === 'tennis' || itemType === 'eternity' ? 1.8 : 4.5)) * 10) / 10,
-      setting_type: rng.pick(prof.settings ?? SETTINGS),
+      stone_size_mm: stoneSize,
+      setting_type: setting,
       prong_count: rng.pick([4, 4, 4, 6, 3]),
       // 주조 하한(0.8mm) 근처를 노리되, 일부는 미달하게 두어 룰이 실제로 걸러내게 한다
       min_wall_thickness_mm: Math.round((0.74 + rng.next() * 0.86) * 100) / 100,
@@ -117,6 +124,11 @@ export const jewelryPack: CategoryPack = {
       r.push({ rule: 'J-05', severity: 'fail', message: `${f.prong_count} prongs on a ${f.stone_size_mm}mm stone. The stone can work loose.` })
     if (f.chain_type === 'snake' && (f.target_weight_g as number) > 8)
       r.push({ rule: 'J-07', severity: 'warn', message: 'Snake chain with a pendant over 8g. Structurally marginal.' })
+    // 멀티스톤에서 보조석이 커지면 밸런스와 원가가 같이 무너진다 (Gemini 감사 반영)
+    if ((f.stone_count as number) >= 6 && (f.stone_size_mm as number) > 3.0)
+      r.push({ rule: 'J-11', severity: 'fail', message: `${f.stone_count} accent stones at ${f.stone_size_mm}mm. Multi-stone accents past 3mm break both the balance and the budget.` })
+    else if ((f.stone_count as number) >= 6 && (f.stone_size_mm as number) > 2.0)
+      r.push({ rule: 'J-11', severity: 'warn', message: `${f.stone_count} accent stones at ${f.stone_size_mm}mm. Accents on a multi-stone piece usually stay at or under 2mm.` })
     // 연속 세팅 유형은 스톤 크기 편차가 크면 라인이 흐트러진다
     if ((spec.itemType === 'tennis' || spec.itemType === 'eternity') && (f.stone_size_mm as number) > 3.0)
       r.push({ rule: 'J-09', severity: 'warn', message: `${f.stone_size_mm}mm stones on a ${spec.itemType}. Both worn thickness and unit cost jump.` })
@@ -127,7 +139,7 @@ export const jewelryPack: CategoryPack = {
   },
   costModel(spec, rng) {
     const f = spec.fields
-    const metalRate = f.metal === '14k gold' ? 21000 : f.metal === '925 silver' ? 6600 : 2400
+    const metalRate = f.metal === '18k gold' ? 31000 : f.metal === '14k gold' ? 21000 : f.metal === '925 silver' ? 6600 : 2400
     const metal = Math.round((f.target_weight_g as number) * metalRate)
     const stone = (f.stone_count as number) * (f.stone_size_mm as number) * 480
     const setting = f.setting_type === 'pave' ? (f.stone_count as number) * 1400 : (f.stone_count as number) * 700

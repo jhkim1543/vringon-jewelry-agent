@@ -2,7 +2,7 @@
 import { t } from '../core/i18n'
 import { useEffect, useRef, useState } from 'react'
 import type { RunState } from '../core/types'
-import { MODE_LABEL, CAT_LABEL, TIER_LABEL, TYPE_LABEL } from '../core/types'
+import { MODE_LABEL, CAT_LABEL, TIER_LABEL, TYPE_LABEL, evidenceId } from '../core/types'
 import RunReport from './RunReport'
 import { DesignCard } from './Card'
 import { ModelViewer } from './ModelViewer'
@@ -109,7 +109,7 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
                     <div className="cc-links">
                       {c.product_url && <a href={c.product_url} target="_blank" rel="noreferrer">{t('Product')}</a>}
                       {(c.source_urls ?? []).slice(0, 2).map((u, i) => (
-                        <a key={i} href={u} target="_blank" rel="noreferrer">Source {i + 1}</a>
+                        <a key={i} href={u} target="_blank" rel="noreferrer" title={u}>{evidenceId(c.product_id, i)}</a>
                       ))}
                     </div>
                   </div>
@@ -415,7 +415,7 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
                     <td>{s.observed_count}x</td>
                     <td>{s.direction === 'rising' ? 'Rising' : s.direction === 'stable' ? 'Holding' : 'Fading'}</td>
                     <td>{s.page_ref ?? (s.sales_proxy_score != null ? `${s.sales_proxy_score} (${s.proxy_confidence})` : 'not scored')}</td>
-                    <td>{s.sources.slice(0, 2).map((u, i) => <a key={i} href={u} target="_blank" rel="noreferrer" style={{ color: 'var(--accent-hi)', marginRight: 4 }}>[{i + 1}]</a>)}</td>
+                    <td>{s.sources.slice(0, 2).map((u, i) => <a key={i} href={u} target="_blank" rel="noreferrer" title={u} style={{ color: 'var(--accent-hi)', marginRight: 4 }}>[{evidenceId(s.signal_id, i)}]</a>)}</td>
                   </tr>
                 ))}
               </tbody>

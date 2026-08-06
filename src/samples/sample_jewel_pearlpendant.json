@@ -1,0 +1,4663 @@
+{
+ "params": {
+  "mode": "trend",
+  "category": "jewelry",
+  "itemType": "pendant",
+  "endStage": "S3",
+  "sketchCount": 12,
+  "tierRatio": [
+   1,
+   1,
+   1
+  ],
+  "renderRatio": 0.5,
+  "viewCount": 3,
+  "colorwayCount": 2,
+  "topN": 3,
+  "designsPerSketch": 2,
+  "variationCount": 3,
+  "campaignShots": 4,
+  "make3d": true,
+  "approvalGate": true,
+  "line": {
+   "preset": "pearl",
+   "baseMetal": "925_silver",
+   "coating": "rhodium",
+   "stone": "pearl",
+   "pearl": {
+    "type": "akoya",
+    "sizeMm": 7,
+    "color": "white"
+   }
+  },
+  "imageEngine": "detail",
+  "imageBudget": 12,
+  "trend": {
+   "competitors": [
+    "Mikimoto",
+    "Tiffany",
+    "Pandora"
+   ],
+   "priceBand": "contemporary",
+   "priceMinKrw": 150000,
+   "priceMaxKrw": 450000
+  },
+  "series": {
+   "seriesName": "",
+   "archiveFiles": [],
+   "valueStatement": "",
+   "trendSearch": true
+  },
+  "moodboard": {
+   "files": [],
+   "notes": ""
+  }
+ },
+ "stageStatus": {
+  "S1": "done",
+  "S2": "done",
+  "S3": "done",
+  "S4": "idle",
+  "S5": "idle"
+ },
+ "logs": [
+  {
+   "stage": "S1",
+   "text": "Trend mode · Jewelry / Pendant · building the brief",
+   "t": 1786030802562
+  },
+  {
+   "stage": "S1",
+   "text": "3 competitors: Mikimoto, Tiffany, Pandora · your band KRW 150k-450k",
+   "t": 1786030802822
+  },
+  {
+   "stage": "S1",
+   "text": "1 Competitor products · searching Mikimoto, Tiffany, Pandora for Pendant (1-2 min)",
+   "t": 1786030802822
+  },
+  {
+   "stage": "S1",
+   "text": "81 web searches, 8 products",
+   "t": 1786031128147
+  },
+  {
+   "stage": "S1",
+   "text": "Dropped 6 outside the band: Mikimoto V Code Akoya Cultured Pearl Pendant in Silver, Mikimoto Akoya Cultured Pearl Single Pearl Pendant with Blue Enamel in Silver, Mikimoto V Code Pendant in Silver (PP 20640 S), Tiffany & Co. 티파니 하드웨어 스털링 실버 담수 진주 링크 펜던트, 40.6cm–45.7cm, 스털링 실버, Tiffany & Co. 팔로마 피카소™ 올리브 리프 펄 펜던트, Tiffany & Co. Tiffany Signature\u0000ae Pearls Pendant",
+   "t": 1786031128148
+  },
+  {
+   "stage": "S1",
+   "text": "2 Checking popularity evidence · 7 strong, the rest single source",
+   "t": 1786031128148
+  },
+  {
+   "stage": "S1",
+   "text": "No sales proxy scored. One pass gives no time series, so restock and sell-out trends need repeat collection.",
+   "t": 1786031128148
+  },
+  {
+   "stage": "S1",
+   "text": "Limits of this pass: Mikimoto: 한국 공식몰의 온라인 가격과 랭킹 표시는 확인하지 못했다. 미국·영국 공식몰 정가를 기준으로 환산했다. 환산에는 2026년 8월 6일 XE 중간환율을 사용했다. USD/KRW는 13:06 UTC 기준 1달러당 1,423.41원이고 GBP/KRW는 10:45 UTC 기준",
+   "t": 1786031128148
+  },
+  {
+   "stage": "S1",
+   "text": "3 Trend research · looking for design signals",
+   "t": 1786031128148
+  },
+  {
+   "stage": "S1",
+   "text": "The full trend report is being written separately. It attaches to the research panel when done.",
+   "t": 1786031475627
+  },
+  {
+   "stage": "S1",
+   "text": "Building the season dossier: macrotrends, palettes, materials, key items. It attaches when done.",
+   "t": 1786031475627
+  },
+  {
+   "stage": "S1",
+   "text": "16 web searches, 7 signals · each linked to a source",
+   "t": 1786031475627
+  },
+  {
+   "stage": "S1",
+   "text": "7 signals confirmed · none unsourced",
+   "t": 1786031475627
+  },
+  {
+   "stage": "S1",
+   "text": "Three directions built, one per tier · every claim traced to a source",
+   "t": 1786031476017
+  },
+  {
+   "stage": "S2",
+   "text": "Sketch prompts carry the season direction from the dossier",
+   "t": 1786031488529
+  },
+  {
+   "stage": "S2",
+   "text": "Specs per tier · Core 4 · Push 4 · Signature 4 (schema enforced, presets locked)",
+   "t": 1786031488529
+  },
+  {
+   "stage": "S2",
+   "text": "Reference bank loaded: 4 approved, 2 near-miss rejects (too familiar, cost)",
+   "t": 1786031488529
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-C01 [core] passed rules, queued for sketch",
+   "t": 1786031489043
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-C02 [core] rule reject · J-02",
+   "t": 1786031489164
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-C03 [core] passed rules, queued for sketch",
+   "t": 1786031489277
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-C04 [core] rule reject · J-02",
+   "t": 1786031489391
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-P05 [push] passed rules, queued for sketch",
+   "t": 1786031489514
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-P06 [push] passed rules, queued for sketch",
+   "t": 1786031489634
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-P07 [push] passed rules, queued for sketch",
+   "t": 1786031489752
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-P08 [push] passed rules, queued for sketch",
+   "t": 1786031489866
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-S09 [signature] passed rules, queued for sketch",
+   "t": 1786031489988
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-S10 [signature] passed rules, queued for sketch",
+   "t": 1786031490111
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-S11 [signature] passed rules, queued for sketch",
+   "t": 1786031490231
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-S12 [signature] passed rules, queued for sketch",
+   "t": 1786031490351
+  },
+  {
+   "stage": "S2",
+   "text": "10 of 12 specs passed · 2 rejected early · rejects are never rendered",
+   "t": 1786031490476
+  },
+  {
+   "stage": "S2",
+   "text": "Sketching 10 · three at a time, anything already made is reused",
+   "t": 1786031490476
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-C01 sketch done",
+   "t": 1786031605454
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-C03 sketch done",
+   "t": 1786031614444
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-P05 sketch done",
+   "t": 1786031726171
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-P06 sketch done",
+   "t": 1786031728885
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-P07 sketch done",
+   "t": 1786031844259
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-P08 sketch done",
+   "t": 1786031845659
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-S09 sketch done",
+   "t": 1786031962119
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-S10 sketch done",
+   "t": 1786031963370
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-S11 sketch done",
+   "t": 1786032073205
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-S12 sketch done",
+   "t": 1786032078110
+  },
+  {
+   "stage": "S2",
+   "text": "Approval gate · review, then continue to S3. This gate is where feedback gets collected.",
+   "t": 1786032078110
+  },
+  {
+   "stage": "S3",
+   "text": "50% move to render · 5 selected",
+   "t": 1786032177257
+  },
+  {
+   "stage": "S3",
+   "text": "JW-26FW-C01 base render, then object mask, then 2 more views as edits rather than new generations",
+   "t": 1786032177257
+  },
+  {
+   "stage": "S3",
+   "text": "JW-26FW-C01 design variant 2 of 2 done",
+   "t": 1786032413878
+  },
+  {
+   "stage": "S3",
+   "text": "JW-26FW-P07 base render, then object mask, then 2 more views as edits rather than new generations",
+   "t": 1786032413878
+  },
+  {
+   "stage": "S3",
+   "text": "JW-26FW-P07 vision QA 3/4 · regenerating the mismatched view, attempt 1 of 2",
+   "t": 1786032414107
+  },
+  {
+   "stage": "S3",
+   "text": "JW-26FW-P07 failed twice, flagged as a view mismatch and kept visible",
+   "t": 1786032414303
+  },
+  {
+   "stage": "S3",
+   "text": "JW-26FW-P05 base render, then object mask, then 2 more views as edits rather than new generations",
+   "t": 1786032414303
+  },
+  {
+   "stage": "S3",
+   "text": "JW-26FW-C03 base render, then object mask, then 2 more views as edits rather than new generations",
+   "t": 1786032414529
+  },
+  {
+   "stage": "S3",
+   "text": "JW-26FW-C03 vision QA 3/4 · regenerating the mismatched view, attempt 1 of 2",
+   "t": 1786032414757
+  },
+  {
+   "stage": "S3",
+   "text": "JW-26FW-C03 QA passed after regeneration",
+   "t": 1786032414956
+  },
+  {
+   "stage": "S3",
+   "text": "JW-26FW-S12 base render, then object mask, then 2 more views as edits rather than new generations",
+   "t": 1786032414956
+  },
+  {
+   "stage": "S1",
+   "text": "Trend report done · 10 implications from 97 searches",
+   "t": 1786032520398
+  },
+  {
+   "stage": "S1",
+   "text": "Design prompts now carry the QUIET PEARL direction: 925 실버 로듐 도금(0.5–1.0μm 권장), 아코야 7mm 화이트 오버톤, 슬림 박스체인 0.9mm 실버",
+   "t": 1786032575950
+  },
+  {
+   "stage": "S1",
+   "text": "Season dossier ready · 4 macrotrends, 25 sources (118 searches)",
+   "t": 1786032575950
+  }
+ ],
+ "signals": [
+  {
+   "signal_id": "sg_001",
+   "attribute": "metal_finish_rhodium_plated_silver_925",
+   "label": "로듐 코팅 실버 925",
+   "axis": "금속 마감",
+   "observed_count": 4,
+   "sources": [
+    "https://www.juwelo.com/akoya-pearl-silver-pendant-monosono-collection-6784ky/",
+    "https://tenseipearl.us/products/sv-7-5-pendant-6",
+    "https://www.bukajewelry.com/p/akoya-pendant",
+    "https://en.pinkoi.com/product/NC83G7EP"
+   ],
+   "price_bands": [],
+   "confidence": "high",
+   "direction": "rising",
+   "first_seen": "2026-08-06",
+   "dedup_group": "dg_1",
+   "oem_group": null,
+   "evidence": [
+    "Juwelo의 7mm 아코야 펜던트가 ‘Sterling Silver, rhodium-plated’로 명시되어 실버+로듐 조합을 기본으로 제시합니다. ([juwelo.com](https://www.juwelo.com/akoya-pearl-silver-pendant-monosono-collection-6784ky/))",
+    "Tensei Pearl의 SV 7.5mm 펜던트는 소재를 ‘Silver (rhodium coating)’으로 표기합니다. ([tenseipearl.us](https://tenseipearl.us/products/sv-7-5-pendant-6))",
+    "Buka Jewelry의 아코야 펜던트는 ‘Rhodium-plated silver (925)’ 옵션을 제공합니다. ([bukajewelry.com](https://www.bukajewelry.com/p/akoya-pendant?utm_source=openai))",
+    "Pinkoi의 Akoya 7–7.5mm 제품 설명에 ‘925 Sterling Silver Rhodium-Plated’가 기재되어 있습니다. ([en.pinkoi.com](https://en.pinkoi.com/product/NC83G7EP?koi2_t_data=%7B%22REFERRER_VIEW_ID%22%3Anull%2C%22IS_PL%22%3Afalse%2C%22PROMOTED_TYPE%22%3A%22%22%2C%22FROM_TID%22%3A%22NC83G7EP%22%2C%22FROM_SCREEN%22%3A%22item%22%2C%22FROM_SECTION%22%3A%22inshop_item%22%2C%22FROM_POSITION%22%3A2%2C%22INFO_DICT%22%3A%7B%7D%2C%22FROM_MODAL%22%3Anull%7D&ref_sec=inshop_item&utm_source=openai))"
+   ]
+  },
+  {
+   "signal_id": "sg_002",
+   "attribute": "chain_length_adjustable_40_45cm",
+   "label": "45cm 슬라이더 조절 체인",
+   "axis": "체인 길이/조절",
+   "observed_count": 4,
+   "sources": [
+    "https://tenseipearl.us/products/sv-7-5-pendant-6",
+    "https://moripearl.jp/en/products/aps-w-0037-hole",
+    "https://en.pinkoi.com/product/mdnHAJVg",
+    "https://www.ayzeze.com/en/products/67a56446a7ebf90179a4ce16?coolbeOrigin=true"
+   ],
+   "price_bands": [],
+   "confidence": "high",
+   "direction": "rising",
+   "first_seen": "2026-08-06",
+   "dedup_group": "dg_2",
+   "oem_group": null,
+   "evidence": [
+    "Tensei Pearl: 40cm+5cm(베네치안 체인) 조절식 체인 명시. ([tenseipearl.us](https://tenseipearl.us/products/sv-7-5-pendant-6))",
+    "Mori Pearl: ‘총길이 45cm (길이 조절 가능)’ 아코야 펜던트. ([moripearl.jp](https://moripearl.jp/en/products/aps-w-0037-hole?utm_source=openai))",
+    "Pinkoi Avery’s Wish 아코야 펜던트: ‘Necklace Length: 45cm (adjustable)’. ([en.pinkoi.com](https://en.pinkoi.com/product/mdnHAJVg?utm_source=openai))",
+    "Ayzeze의 아코야 펜던트: ‘45cm (free adjuster)’ 표기. ([ayzeze.com](https://www.ayzeze.com/en/products/67a56446a7ebf90179a4ce16?coolbeOrigin=true&utm_source=openai))"
+   ]
+  },
+  {
+   "signal_id": "sg_003",
+   "attribute": "chain_type_venetian_box",
+   "label": "베네치안(박스) 체인 채택",
+   "axis": "체인 타입",
+   "observed_count": 2,
+   "sources": [
+    "https://tenseipearl.us/products/sv-7-5-pendant-6",
+    "https://www.etsy.com/listing/1745523977/akoya-pearl-pendants-16-or-18-inch"
+   ],
+   "price_bands": [],
+   "confidence": "medium",
+   "direction": "rising",
+   "first_seen": "2026-08-06",
+   "dedup_group": "dg_3",
+   "oem_group": null,
+   "evidence": [
+    "Tensei Pearl 제품 설명에 ‘Venetian chain(베네치안/박스 체인)’을 사용합니다. ([tenseipearl.us](https://tenseipearl.us/products/sv-7-5-pendant-6))",
+    "Etsy의 7mm Akoya 펜던트가 ‘matching box chain(박스 체인)’과 세트로 판매됩니다. ([etsy.com](https://www.etsy.com/listing/1745523977/akoya-pearl-pendants-16-or-18-inch?utm_source=openai))"
+   ]
+  },
+  {
+   "signal_id": "sg_004",
+   "attribute": "bail_style_hidden_floating",
+   "label": "플로팅 펜던트(숨은 베일/체인 통과)",
+   "axis": "베일/매달림 구조",
+   "observed_count": 2,
+   "sources": [
+    "https://www.pearlfalco.com/pearl-jewellery-shop/floating-akoya-pearl-silver-pendant-p267/",
+    "https://www.etsy.com/listing/129180310/akoya-pearl-pendants-16-or-18-inch"
+   ],
+   "price_bands": [],
+   "confidence": "medium",
+   "direction": "rising",
+   "first_seen": "2026-08-06",
+   "dedup_group": "dg_4",
+   "oem_group": null,
+   "evidence": [
+    "Pearl FALCO의 ‘Floating Akoya Pearl Silver Pendant – P267’는 7.0mm 아코야를 체인에 떠 있는 형태로 제시합니다. ([pearlfalco.com](https://www.pearlfalco.com/pearl-jewellery-shop/floating-akoya-pearl-silver-pendant-p267/?utm_source=openai))",
+    "Etsy의 ‘Floating Silver Akoya Pearl Pendant’는 진주가 체인 위를 ‘slides freely(자유롭게 슬라이드)’하는 구조를 명시합니다. ([etsy.com](https://www.etsy.com/listing/129180310/akoya-pearl-pendants-16-or-18-inch?utm_source=openai))"
+   ]
+  },
+  {
+   "signal_id": "sg_005",
+   "attribute": "setting_type_peg_post",
+   "label": "포스트/페그 세팅(컵+핀)",
+   "axis": "세팅 방식",
+   "observed_count": 3,
+   "sources": [
+    "https://www.juwelo.com/akoya-pearl-silver-pendant-monosono-collection-6784ky/",
+    "https://www.brilliantearth.com/Premium-Akoya-Cultured-Pearl-Pendant-%286mm%29-Silver-BE4PL6/",
+    "https://www.reddit.com/r/SilverSmith/comments/1kpuam8"
+   ],
+   "price_bands": [],
+   "confidence": "high",
+   "direction": "rising",
+   "first_seen": "2026-08-06",
+   "dedup_group": "dg_5",
+   "oem_group": null,
+   "evidence": [
+    "Juwelo 7mm 아코야 펜던트의 세팅을 ‘Setting: Post(포스트/페그)’로 표기합니다. ([juwelo.com](https://www.juwelo.com/akoya-pearl-silver-pendant-monosono-collection-6784ky/))",
+    "Brilliant Earth의 Akoya 실버 펜던트는 ‘peg setting’을 사용한다고 명시되어 있습니다. ([brilliantearth.com](https://www.brilliantearth.com/Premium-Akoya-Cultured-Pearl-Pendant-%286mm%29-Silver-BE4PL6/?utm_source=openai))",
+    "실버스미스 포럼에서 7mm 아코야를 ‘pearl cup & peg(컵+페그)’로 세팅한 사례가 공유됩니다. ([reddit.com](https://www.reddit.com/r/SilverSmith/comments/1kpuam8?utm_source=openai))"
+   ]
+  },
+  {
+   "signal_id": "sg_006",
+   "attribute": "frame_shape_v_bail",
+   "label": "V자 프레임/베일 디테일",
+   "axis": "프레임/베일 형태",
+   "observed_count": 3,
+   "sources": [
+    "https://www.mikimoto.com/jp_en/pp-20696s",
+    "https://www.therightjewel.com/pendant-pp20640s",
+    "https://us.vestiairecollective.com/women-jewellery/necklaces/mikimoto/silver-silver-mikimoto-necklace-63904011.shtml"
+   ],
+   "price_bands": [],
+   "confidence": "high",
+   "direction": "rising",
+   "first_seen": "2026-08-06",
+   "dedup_group": "dg_6",
+   "oem_group": null,
+   "evidence": [
+    "Mikimoto ‘V Code’ 펜던트는 실버에 7.0mm 아코야를 V형 프레임으로 세팅합니다. ([mikimoto.com](https://www.mikimoto.com/jp_en/pp-20696s?utm_source=openai))",
+    "리테일러 The Right Jewel의 ‘Mikimoto V Code – Pendant, Silver, 7.00mm’가 동일한 V자 콘셉트를 판매 중입니다. ([therightjewel.com](https://www.therightjewel.com/pendant-pp20640s?utm_source=openai))",
+    "Vestiaire의 ‘Mikimoto V Code – Silver, Pearl diameter about 7mm’ 제품도 V자 실루엣을 반복 노출합니다. ([us.vestiairecollective.com](https://us.vestiairecollective.com/women-jewellery/necklaces/mikimoto/silver-silver-mikimoto-necklace-63904011.shtml?utm_source=openai))"
+   ]
+  },
+  {
+   "signal_id": "sg_007",
+   "attribute": "accent_stones_small",
+   "label": "미니 스톤 액센트(지르콘/다이아/토파즈)",
+   "axis": "장식 스톤",
+   "observed_count": 3,
+   "sources": [
+    "https://www.juwelo.com/akoya-pearl-silver-pendant-monosono-collection-6784ky/",
+    "https://www.ayzeze.com/en/products/67a56446a7ebf90179a4ce16?coolbeOrigin=true",
+    "https://mattharrisdesigns.com/products/unique-akoya-pearl-pendant-necklace"
+   ],
+   "price_bands": [],
+   "confidence": "high",
+   "direction": "rising",
+   "first_seen": "2026-08-06",
+   "dedup_group": "dg_7",
+   "oem_group": null,
+   "evidence": [
+    "Juwelo 7mm 아코야 실버 펜던트는 ‘five Cambodian zircon stones’로 상단 포인트를 추가합니다. ([juwelo.com](https://www.juwelo.com/akoya-pearl-silver-pendant-monosono-collection-6784ky/))",
+    "Ayzeze의 아코야 펜던트(실버 로듐 도금)는 ‘diamond 0.02ct’ 액센트를 사용합니다. ([ayzeze.com](https://www.ayzeze.com/en/products/67a56446a7ebf90179a4ce16?coolbeOrigin=true&utm_source=openai))",
+    "Matt Harris Designs의 7mm 아코야 펜던트는 925 실버 바에 ‘white topaz’ 포인트를 결합합니다. ([mattharrisdesigns.com](https://mattharrisdesigns.com/products/unique-akoya-pearl-pendant-necklace))"
+   ]
+  }
+ ],
+ "competitors": [
+  {
+   "product_id": "cp_1",
+   "brand": "Mikimoto",
+   "name": "V Code Akoya Cultured Pearl Pendant in Silver",
+   "price_krw": 1494581,
+   "sales_proxy_score": null,
+   "competitor_class": "direct",
+   "line_match": false,
+   "proxy_signals": [
+    "베스트셀러 페이지 노출"
+   ],
+   "observation_count": 1,
+   "observation_window": "2026-08-06, single pass",
+   "confidence": "none",
+   "in_band": false,
+   "evidence_strength": "strong",
+   "source_urls": [
+    "https://www.mikimotoamerica.com/us_en/v-code-akoya-cultured-pearl-pendant-in-silver",
+    "https://www.mikimotoamerica.com/us_en/jewelry/gift-guide/best-sellers",
+    "https://www.xe.com/en-us/currencyconverter/convert/?Amount=1&From=USD&To=KRW"
+   ],
+   "rank_note": "",
+   "user_sentiment": "unknown",
+   "praise_points": [],
+   "complaint_points": [],
+   "design_traits": [
+    "V 모티프 펜던트 프레임",
+    "7mm Akoya 단일 진주",
+    "실버 체인"
+   ],
+   "image_urls": [],
+   "product_url": "https://www.mikimotoamerica.com/us_en/v-code-akoya-cultured-pearl-pendant-in-silver"
+  },
+  {
+   "product_id": "cp_2",
+   "brand": "Mikimoto",
+   "name": "Akoya Cultured Pearl Single Pearl Pendant with Blue Enamel in Silver",
+   "price_krw": 1224133,
+   "sales_proxy_score": null,
+   "competitor_class": "direct",
+   "line_match": false,
+   "proxy_signals": [
+    "베스트셀러 페이지 노출"
+   ],
+   "observation_count": 1,
+   "observation_window": "2026-08-06, single pass",
+   "confidence": "none",
+   "in_band": false,
+   "evidence_strength": "strong",
+   "source_urls": [
+    "https://www.mikimotoamerica.com/us_en/akoya-cultured-pearl-single-pearl-pendant-with-blue-enamel-in-silver",
+    "https://www.mikimotoamerica.com/us_en/jewelry/gift-guide/best-sellers",
+    "https://www.xe.com/en-us/currencyconverter/convert/?Amount=1&From=USD&To=KRW"
+   ],
+   "rank_note": "",
+   "user_sentiment": "unknown",
+   "praise_points": [],
+   "complaint_points": [],
+   "design_traits": [
+    "블루 에나멜 디테일",
+    "7.5mm Akoya 단일 진주",
+    "실버 체인"
+   ],
+   "image_urls": [],
+   "product_url": "https://www.mikimotoamerica.com/us_en/akoya-cultured-pearl-single-pearl-pendant-with-blue-enamel-in-silver"
+  },
+  {
+   "product_id": "cp_3",
+   "brand": "Mikimoto",
+   "name": "V Code Pendant in Silver (PP 20640 S)",
+   "price_krw": 1149618,
+   "sales_proxy_score": null,
+   "competitor_class": "direct",
+   "line_match": false,
+   "proxy_signals": [],
+   "observation_count": 1,
+   "observation_window": "2026-08-06, single pass",
+   "confidence": "none",
+   "in_band": false,
+   "evidence_strength": "moderate",
+   "source_urls": [
+    "https://www.mikimoto.co.uk/uk_en/v-code-silver-pendant",
+    "https://www.xe.com/en-us/currencyconverter/convert/?Amount=1&From=GBP&To=KRW"
+   ],
+   "rank_note": "",
+   "user_sentiment": "unknown",
+   "praise_points": [],
+   "complaint_points": [],
+   "design_traits": [
+    "V 모티프 펜던트 프레임",
+    "7mm Akoya 단일 진주",
+    "니켈 프리 스털링 실버",
+    "조절 가능한 27.5인치 체인"
+   ],
+   "image_urls": [],
+   "product_url": "https://www.mikimoto.co.uk/uk_en/v-code-silver-pendant"
+  },
+  {
+   "product_id": "cp_4",
+   "brand": "Tiffany & Co.",
+   "name": "티파니 하드웨어 스털링 실버 담수 진주 링크 펜던트, 40.6cm–45.7cm, 스털링 실버",
+   "price_krw": 2160000,
+   "sales_proxy_score": null,
+   "competitor_class": "directional",
+   "line_match": false,
+   "proxy_signals": [],
+   "observation_count": 1,
+   "observation_window": "2026-08-06, single pass",
+   "confidence": "none",
+   "in_band": false,
+   "evidence_strength": "strong",
+   "source_urls": [
+    "https://www.tiffany.kr/jewelry/necklaces-pendants/tiffany-hardwear-sterling-silver-freshwater-pearl-necklaces-pendants-1154257588.html"
+   ],
+   "rank_note": "",
+   "user_sentiment": "unknown",
+   "praise_points": [],
+   "complaint_points": [],
+   "design_traits": [
+    "스털링 실버 체인은 40.6~45.7cm로 조절된다.",
+    "펜던트의 진주는 9.5~10mm 담수 양식 진주다.",
+    "심플한 원형 프레임이 진주를 감싸는 미니멀한 형상이다."
+   ],
+   "image_urls": [
+    "https://media.tiffany.com/is/image/tco/64048317_PDT_SIO2X1?fmt=webp&hei=2000&wid=2000",
+    "https://media.tiffany.com/is/image/tco/64048317_PDT_ALT3X1?fmt=webp&hei=2000&wid=2000",
+    "https://media.tiffany.com/is/image/tco/64048317_PDT_ALT3X2?fmt=webp&hei=2000&wid=2000"
+   ],
+   "product_url": "https://www.tiffany.kr/jewelry/necklaces-pendants/tiffany-hardwear-sterling-silver-freshwater-pearl-necklaces-pendants-1154257588.html"
+  },
+  {
+   "product_id": "cp_5",
+   "brand": "Tiffany & Co.",
+   "name": "팔로마 피카소™ 올리브 리프 펄 펜던트",
+   "price_krw": 780000,
+   "sales_proxy_score": null,
+   "competitor_class": "directional",
+   "line_match": false,
+   "proxy_signals": [],
+   "observation_count": 1,
+   "observation_window": "2026-08-06, single pass",
+   "confidence": "none",
+   "in_band": false,
+   "evidence_strength": "strong",
+   "source_urls": [
+    "https://www.tiffany.kr/jewelry/necklaces-pendants/sterling-silver-freshwater-pearl-necklaces-pendants-1914272132.html",
+    "https://nl.tiffany.com/jewelry/necklaces-pendants/palomas-olive-leaf-sterling-silver-natural-freshwater-pearl-necklaces-pendants-1914283606.html"
+   ],
+   "rank_note": "",
+   "user_sentiment": "unknown",
+   "praise_points": [],
+   "complaint_points": [],
+   "design_traits": [
+    "스털링 실버 체인은 40.6cm 길이다.",
+    "펜던트의 진주는 7.8~9mm 담수 양식 진주다.",
+    "올리브 잎 모티프의 프롱이 진주를 감싸는 형태다."
+   ],
+   "image_urls": [
+    "https://media.tiffany.com/is/image/tco/74627161_PDT_MAIN1X1?fmt=webp&hei=2000&wid=2000",
+    "https://media.tiffany.com/is/image/tco/74627161_PDT_SIO2X1?fmt=webp&hei=2000&wid=2000",
+    "https://media.tiffany.com/is/image/tco/74627161_PDT_ALT3X1?fmt=webp&hei=2000&wid=2000"
+   ],
+   "product_url": "https://www.tiffany.kr/jewelry/necklaces-pendants/sterling-silver-freshwater-pearl-necklaces-pendants-1914272132.html"
+  },
+  {
+   "product_id": "cp_6",
+   "brand": "Tiffany & Co.",
+   "name": "Tiffany Signature\u0000ae Pearls Pendant",
+   "price_krw": 2315000,
+   "sales_proxy_score": null,
+   "competitor_class": "aspirational",
+   "line_match": false,
+   "proxy_signals": [],
+   "observation_count": 1,
+   "observation_window": "2026-08-06, single pass",
+   "confidence": "none",
+   "in_band": false,
+   "evidence_strength": "strong",
+   "source_urls": [
+    "https://www.tiffany.com/jewelry/necklaces-pendants/tiffany-signature-pearls-18k-white-gold-cultured-pearl-necklaces-pendants-60008120.html",
+    "https://www.xe.com/en-us/currencyconverter/convert/?Amount=1&From=USD&To=KRW"
+   ],
+   "rank_note": "",
+   "user_sentiment": "unknown",
+   "praise_points": [],
+   "complaint_points": [],
+   "design_traits": [
+    "18K 화이트 골드는 광택 유지를 위해 로듐 도금을 적용한다.",
+    "펜던트의 진주는 7~7.5mm 아코야 양식 진주다.",
+    "라운드 브릴리언트 다이아몬드 0.08캐럿이 포인트로 세팅된다.",
+    "체인 길이는 16인치로 표기된다."
+   ],
+   "image_urls": [
+    "https://media.tiffany.com/is/image/tco/60008120_PDT_ALT3X1?fmt=webp&hei=2000&wid=2000",
+    "https://media.tiffany.com/is/image/tco/60008120_PDT_ALT3X2?fmt=webp&hei=2000&wid=2000",
+    "https://media.tiffany.com/is/image/tco/60008120_PDT_ALT3X3?fmt=webp&hei=2000&wid=2000"
+   ],
+   "product_url": "https://www.tiffany.com/jewelry/necklaces-pendants/tiffany-signature-pearls-18k-white-gold-cultured-pearl-necklaces-pendants-60008120.html"
+  },
+  {
+   "product_id": "cp_7",
+   "brand": "Pandora",
+   "name": "트리티드 프레쉬워터 컬처드 펄 앤 파베 콜리어 네크리스",
+   "price_krw": 238000,
+   "sales_proxy_score": null,
+   "competitor_class": "directional",
+   "line_match": false,
+   "proxy_signals": [
+    "품절",
+    "베스트셀러 선정"
+   ],
+   "observation_count": 1,
+   "observation_window": "2026-08-06, single pass",
+   "confidence": "none",
+   "in_band": true,
+   "evidence_strength": "strong",
+   "source_urls": [
+    "https://kr.pandora.net/product/%ED%8A%B8%EB%A6%AC%ED%8B%B0%EB%93%9C-%ED%94%84%EB%A0%88%EC%89%AC%EC%9B%8C%ED%84%B0-%EC%BB%AC%EC%B2%98%EB%93%9C-%ED%8E%84-%EC%95%A4-%ED%8C%8C%EB%B2%A0-%EC%BD%9C%EB%A6%AC%EC%96%B4-%EB%84%A4%ED%81%AC%EB%A6%AC%EC%8A%A4/3665/",
+    "https://us.pandora.net/en/necklaces/?msockid=00dd31f007396d1d0cd9271d064c6c4f",
+    "https://us.pandora.net/en/necklaces/pendant-necklaces/white/",
+    "https://us.pandora.net/en/necklaces/necklaces/pendant-necklaces/treated-freshwater-cultured-pearl-pave-collier-necklace/393165C01.html"
+   ],
+   "rank_note": "",
+   "user_sentiment": "unknown",
+   "praise_points": [],
+   "complaint_points": [],
+   "design_traits": [
+    "조절 가능한 45cm 케이블 체인이 달렸다.",
+    "담수진주 펜던트가 체인을 따라 미끄러져 움직인다.",
+    "파베 세팅 큐빅 지르코니아가 빛을 더한다.",
+    "스털링 실버 925로 제작되었다."
+   ],
+   "image_urls": [
+    "https://kr.pandora.net/web/product/big/20241227/62fe5ce645b82adf843cb15f6395bf0c.png"
+   ],
+   "product_url": "https://kr.pandora.net/product/%ED%8A%B8%EB%A6%AC%ED%8B%B0%EB%93%9C-%ED%94%84%EB%A0%88%EC%89%AC%EC%9B%8C%ED%84%B0-%EC%BB%AC%EC%B2%98%EB%93%9C-%ED%8E%84-%EC%95%A4-%ED%8C%8C%EB%B2%A0-%EC%BD%9C%EB%A6%AC%EC%96%B4-%EB%84%A4%ED%81%AC%EB%A6%AC%EC%8A%A4/3665/"
+  },
+  {
+   "product_id": "cp_8",
+   "brand": "Pandora",
+   "name": "트리티드 프레쉬워터 컬처드 펄 콜리어 네크리스",
+   "price_krw": 278000,
+   "sales_proxy_score": null,
+   "competitor_class": "directional",
+   "line_match": false,
+   "proxy_signals": [
+    "품절"
+   ],
+   "observation_count": 1,
+   "observation_window": "2026-08-06, single pass",
+   "confidence": "none",
+   "in_band": true,
+   "evidence_strength": "strong",
+   "source_urls": [
+    "https://kr.pandora.net/product/%ED%8A%B8%EB%A6%AC%ED%8B%B0%EB%93%9C-%ED%94%84%EB%A0%88%EC%89%AC%EC%9B%8C%ED%84%B0-%EC%BB%AC%EC%B2%98%EB%93%9C-%ED%8E%84-%EC%BD%9C%EB%A6%AC%EC%96%B4-%EB%84%A4%ED%81%AC%EB%A6%AC%EC%8A%A4/3666/"
+   ],
+   "rank_note": "",
+   "user_sentiment": "unknown",
+   "praise_points": [],
+   "complaint_points": [],
+   "design_traits": [
+    "조절 가능한 케이블 체인이 적용되었다.",
+    "단일 담수진주 펜던트가 중심을 이룬다.",
+    "버클에 클리어 큐빅 지르코니아가 포인트로 쓰였다.",
+    "스털링 실버 925로 제작되었다."
+   ],
+   "image_urls": [
+    "https://kr.pandora.net/web/product/big/20241227/f6ea3e9f20fb3456214a3a65b3773db8.png"
+   ],
+   "product_url": "https://kr.pandora.net/product/%ED%8A%B8%EB%A6%AC%ED%8B%B0%EB%93%9C-%ED%94%84%EB%A0%88%EC%89%AC%EC%9B%8C%ED%84%B0-%EC%BB%AC%EC%B2%98%EB%93%9C-%ED%8E%84-%EC%BD%9C%EB%A6%AC%EC%96%B4-%EB%84%A4%ED%81%AC%EB%A6%AC%EC%8A%A4/3666/"
+  }
+ ],
+ "directions": [
+  {
+   "id": "dir_1",
+   "title": "Bold band with a bezel",
+   "summary": "The top two rising signals together. Start where an existing mould can be modified.",
+   "signal_ids": [
+    "sg_101",
+    "sg_105"
+   ]
+  },
+  {
+   "id": "dir_2",
+   "title": "Matte mixed metal",
+   "summary": "Differentiates on finish contrast. The extra plating step has to be absorbed inside the cap.",
+   "signal_ids": [
+    "sg_109",
+    "sg_113"
+   ]
+  },
+  {
+   "id": "dir_3",
+   "title": "Layering system",
+   "summary": "Built to combine rather than stand alone. Standardising the chain spec keeps SKU count down.",
+   "signal_ids": [
+    "sg_118",
+    "sg_101"
+   ]
+  }
+ ],
+ "seriesDna": null,
+ "dnaConflict": null,
+ "reportBias": {
+  "publisher": "Web, collected 2026-08-06 across 16 searches",
+  "perspective": "일본 아코야 전문 브랜드(미에·우와지마계, Mikimoto 등)와 글로벌 온라인 리테일(미·EU·아시아) 상품 상세 페이지를 교차 검증한 디자이너/바잉 관점. 라인은 925 실버(로듐 코팅) + 아코야 화이트 7mm 펜던트에 집중.",
+  "notes": [
+   "- 참고 브랜드 중 Mikimoto는 실버 기반 아코야 펜던트를 명확히 전개하고 있어(예: V Code) 신호 수집에 유효했습니다. 티파니·판도라는 스털링 실버 진주 제품이 주로 담수 양식으로 전개되어(예: ‘Treated Freshwater Cultured Pearl’) 본 라인(아코야 7mm, 실버)에 해당하지 않아 신호 집계에서 제외했습니다. ([mikimoto.co.uk](https://www.mikimoto.co.uk/uk_en/v-code-necklace?utm_source=openai))\n- 일부 제품은 7.5–8.5mm 옵션을 병행 표기하나, 동일 디자인 사양으로 7.0–7.5mm대가 함께 제공되어(또는 동형식) 7mm 솔리테어 중심의 사양 판단에 포함했습니다. ([pearlfalco.com](https://www.pearlfalco.com/pearl-jewellery-shop/floating-akoya-pearl-silver-pendant-p267/?utm_source=openai))\n- Mikimoto 미국 사이트 일부 상세(실버+에나멜)는 지역 제한으로 페이지 열람에 제약이 있어, 접근 가능한 제품/거울 페이지로 대조했습니다. 다만 ‘블루 에나멜+실버+아코야 7.5mm’ 명시는 공식 사이트 검색 결과에 확인됩니다. ([mikimotoamerica.com](https://www.mikimotoamerica.com/us_en/akoya-cultured-pearl-single-pearl-pendant-with-blue-enamel-in-silver?utm_source=openai))"
+  ]
+ },
+ "trendReport": {
+  "title": "2026 F/W 컨템포러리 펜던트 목걸이 트렌드 리포트 (KRW 150k–450k)",
+  "executive_view": "표본 11SKU(판도라 7, 스와로브스키 4)와 SSENSE FW26 표본 7종, 그리고 Missoma·Pandora·Swarovski의 공개 스펙을 근거로 2026 F/W 동 가격대 펜던트 목걸이를 점검했다. 스와로브스키 사례에서 펜던트 모티프는 7×7 mm(솔리테어)부터 33×17 mm(비정형)까지 확인되며, 체인은 38–45 cm 조절형과 50.8–64.8 cm 롱 체인이 공존한다. 부자재는 로브스터 클라스프가 6/7로 우세하고 길이 조절 표기는 2/7에 그쳤다(SSENSE 표본 기준). 컬러는 11SKU에서 실버톤 45%, 로즈골드톤 27%가 눈에 띄며 로즈골드×블랙, 실버×핑크 조합이 반복적으로 등장했다(표본 기준·각 출처 참조).",
+  "body_markdown": "## 범위와 방법\n본 리포트는 2026-08-06 기준 공개 페이지에서 확인 가능한 사실만을 취합했다. 가격은 KRW 150k–450k 컨템포러리 세그먼트를 대상으로 하며, 한국 공식몰(판도라·스와로브스키) 표본 11SKU와 SSENSE의 ‘FW26 Collection’ 표본 7종, 그리고 Missoma·Pandora·Swarovski의 소재/시즌 안내를 사용했다. 시즌 표기는 제품 상세에 누락되는 경우가 많았고, SSENSE는 브랜드 페이지 타이틀에 ‘FW26’ 표기가 있었다. \n\n데이터 공백도 분명했다. 다수의 공식 제품 페이지는 모티프 가로×세로와 체인 길이만 제공하고, 두께(mm)·부조(레리프) 높이(mm)·오픈워크(네거티브 스페이스) 비율(%)은 기재하지 않았다. 체인 링크 폭/게이지(mm)와 베일 구조 표기도 표본 내에서 확인하지 못했다.\n\n## 실루엣 · 치수(관측)\n스와로브스키의 펜던트 사례로 모티프 치수 범위를 가늠할 수 있다. 솔리테어형 Stilla 7×7 mm, 쿠션컷 Una Angelic 18×12 mm, 비정형 Symbolica 33×17 mm, 인터로킹 Classica 7×21 mm가 확인되었다(체인 38–45 cm). 두께·부조·오픈워크 비율은 모두 미표기다. \n\n체인은 서로 다른 길이 체계가 병존한다. 스와로브스키 사례는 38–45 cm 조절형이 일반적이었고, SSENSE FW26 표본 7종은 20\"(≈50.8 cm) 1/7, 23.5\"(≈59.7 cm) 5/7, 25.5\"(≈64.8 cm) 1/7로 롱 체인 비중이 높게 나타났다. 서로 다른 유통/브랜드 포지셔닝 차이일 가능성이 있으나, 표본이 작아 단정할 수 없다.\n\n## 소재 · 가공(공식 표기 기준)\n925 실버, 황동, 316L 스테인리스가 모두 사용되는 것을 확인했다. Missoma는 925 실버에 18k 골드 버메일(2.5 μm 전해도금), 황동에는 18k 금도금(펜던트 포함 2 μm), 316L 스테인리스에는 18k 골드 또는 플래티넘 PVD를 명시한다. Pandora 펜던트 신상품은 14k gold plating 표기를 사용하며(두께 미표기), 2026년 하반기 플래티넘 플레이트 라인 글로벌 론칭을 발표했다(공정/두께 수치 미공개). 스와로브스키 F/W 페이지에서는 Rhodium plated, Gold‑tone plated 표기가 다수 확인된다.\n\n표면 마감은 ‘고광택(high‑shine)’ 표기가 존재했고, 같은 범위에서 사틴/무광/해머드 표기는 찾지 못했다. 표본이 한정적이어서, 질감 마감 트렌드로 일반화하기에는 이르다.\n\n## 부자재 · 구조(SSENSE FW26 표본 7종)\n체인 타입은 케이블 4/7, 커브 3/7로 관측됐다. 피가로·스네이크·박스 체인은 본 표본에서 미확인이다. 잠금은 로브스터 6/7, 스프링 링 1/7, 토글/자석 0/7로 로브스터 우세가 뚜렷하다. 길이 조절 표기는 2/7에서만 ‘Adjustable’로 확인되었고, 링크 폭/게이지(mm)와 베일 구조는 미기재였다. 남성 카테고리 중심 표본이라 채널 바이어스가 있을 수 있다.\n\n## 컬러 · 인레이(한국 공식몰 표본 11SKU)\n금속 톤 구성비는 실버톤 5/11(≈45%), 로즈골드톤 3/11(≈27%), 옐로골드톤 1/11(≈9%), 건메탈 1/11(≈9%), 바이컬러 1/11(≈9%)로 집계되었다. 인레이 색상 Top 5는 블랙 4, 투명 4, 핑크 2, 블루 1, 그린 1의 순으로 나타났고, 조합 빈도는 로즈골드×블랙 3, 실버×핑크 2, 실버×투명 2, 실버×블루 1, 실버×그린 1, 옐로골드×투명 1, 건메탈×블랙 1, 바이컬러×(인레이 없음) 1로 파악되었다. 에나멜 인레이는 본 펜던트 네크리스 표본에서 확인되지 않았다.\n\n큐빅 지르코니아(CZ)와 담수양식 진주/자개 사용은 판도라 신상품에서 명시되었다. 블랙 크리스털은 스와로브스키의 여러 펜던트에서 반복적으로 보였다.\n\n## 가격대 · 포지셔닝(확인)\n스와로브스키 ‘네크리스 & 펜던트’ 신제품은 169,000–420,000원 구간에서 다수 확인되었고, 판도라 코리아의 펜던트 네크리스 표본은 178,000–398,000원에 분포했다. 요청 세그먼트(KRW 150k–450k)가 실제 신상품 유통 가격대와 맞물려 있음을 재확인했다.\n\n## 상반 신호와 해석 주의\n체인 길이는 38–45 cm 조절형(스와로브스키)과 59.7 cm 중심의 롱 체인(SSENSE 표본)이 동시에 관측된다. 서로 다른 착용 맥락(레이어링 vs 솔리터 스테이트먼트)일 수 있으나, 현재 표본으로는 채널별/성별 차이를 단정하기 어렵다. 마찬가지로 표면 마감에서 고광택 표기는 존재하나, 무광/해머드 부재가 곧 ‘비인기’라고 해석되지는 않는다. 두께·부조·오픈워크·게이지·베일 등 핵심 치수 정보의 공백이 크므로, 해당 요소의 업계 표준이나 분포를 논하기에는 근거가 부족하다.",
+  "design_implications": [
+   {
+    "area": "실루엣",
+    "guidance": "스몰 솔리테어(약 7×7 mm), 세로형 슬림(약 7×21 mm), 미디엄 비정형(약 33×17 mm)로 3축 사이징을 구성하고, 각 축에 맞춘 체인 옵션을 병행한다.",
+    "basis": "스와로브스키 제품 상세에서 모티프 7×7, 7×21, 18×12, 33×17 mm가 확인됨. 두께/부조/오픈워크는 미표기(표준 부재). [Q1 출처들]"
+   },
+   {
+    "area": "체인 길이",
+    "guidance": "38–45 cm 조절형과 60–65 cm대 롱 체인을 병행 제안. 짧은 길이는 데일리 레이어링, 롱은 단독 포인트용으로 구분 전개한다.",
+    "basis": "스와로브스키 체인 38–45 cm 확인, SSENSE FW26 표본 길이 23.5\"≈59.7 cm가 5/7로 우세. [Q1, Q3]"
+   },
+   {
+    "area": "체인 타입",
+    "guidance": "케이블과 커브를 우선 채택하고, 피가로/스네이크/박스는 후순위 테스트로 둔다.",
+    "basis": "SSENSE FW26 표본 7종에서 케이블 4, 커브 3, 기타 0. [Q3]"
+   },
+   {
+    "area": "클라스프",
+    "guidance": "로브스터를 기본으로 채택하고, 일부 라인에서 스프링 링을 보조 옵션으로 운용한다. 길이 조절 기능은 최소 한 라인에 명시 제공한다.",
+    "basis": "잠금장치 로브스터 6/7, 스프링 링 1/7, Adjustable 표기 2/7. [Q3]"
+   },
+   {
+    "area": "소재 설계",
+    "guidance": "925 실버 베이스에는 18k 버메일 2.5 μm 스펙을, 황동 베이스에는 18k 2 μm 전해도금 스펙을 명확히 표기한다. 내구성 니즈가 높은 모델에는 316L+PVD 옵션을 병행한다.",
+    "basis": "Missoma의 2.5 μm(버메일), 2 μm(황동), 316L+PVD 공식 표기. [Q2]"
+   },
+   {
+    "area": "플래티넘 톤",
+    "guidance": "플래티넘 톤 피니시를 소량 테스트하거나 PVD 플래티넘 대안을 검토한다. 민감성·내구성 커뮤니케이션을 병행한다.",
+    "basis": "Pandora가 2026 하반기 플래티넘 플레이트 글로벌 론칭 발표(세부 공정/두께 미공개). [Q2]"
+   },
+   {
+    "area": "컬러 캡슐",
+    "guidance": "로즈골드×블랙, 실버×핑크, 실버×투명 조합을 핵심 캡슐로 우선 출시하고, 실버×블루/그린, 옐로골드×투명, 건메탈×블랙, 바이컬러 무스톤은 보완 SKU로 배치한다.",
+    "basis": "표본 11SKU 조합 빈도: 로즈골드×블랙 3, 실버×핑크 2, 실버×투명 2 등. [Q4]"
+   },
+   {
+    "area": "스톤/인레이",
+    "guidance": "CZ 중심으로 비용 효율을 확보하고, 실버톤 라인에 담수양식 진주나 자개 악센트를 더한 서브라인을 기획한다.",
+    "basis": "판도라 신상품에서 CZ 및 ‘treated freshwater cultured pearl’/자개 사용 명시. [Q2]"
+   },
+   {
+    "area": "표면 마감",
+    "guidance": "하이 폴리시를 기본 마감으로 유지하고, 사틴/해머드 등 질감 마감은 시장 반응 확인 후 단계적 도입한다.",
+    "basis": "본 범위 내 ‘고광택’ 표기 확인, 사틴/무광/해머드 용어는 미확인. [Q2]"
+   },
+   {
+    "area": "상품정보(PDP)",
+    "guidance": "모티프 두께(mm), 부조 높이(mm), 오픈워크 면적, 체인 링크 폭/게이지(mm), 베일 구조를 명시하여 차별화한다.",
+    "basis": "대부분의 공식 페이지에서 해당 치수 항목 미기재. 정보 공백을 메우면 비교우위 가능. [Q1, Q3]"
+   }
+  ],
+  "open_questions": [
+   "형태별(코인/태그/락켓/솔리테어/비정형) 펜던트의 두께·부조 높이·오픈워크 면적 비율의 ‘표준값’은 무엇인가? 본 조사에서는 확인 불가했다.",
+   "체인 링크 폭/게이지(mm)와 베일 구조(고정/이동/히든/통과형)의 실제 시장 분포는 어떻게 되는가?",
+   "38–45 cm 조절형과 60+ cm 롱 체인의 채널/성별/지역별 선호 차이는 유의미한가? 현재 표본으로는 단정 불가하다.",
+   "플래티넘 플레이트/플래티넘 톤 도입 시 알러지·변색·리턴 지표가 어떻게 변하는가? Pandora 발표는 있으나 수치 데이터는 미공개다.",
+   "에나멜 인레이가 펜던트 네크리스 카테고리에서 비가시적인 이유는 무엇인가? 공급 측면 제약인지, 수요 저하인지 추가 확인이 필요하다."
+  ],
+  "sources": [
+   "https://www.swarovski.com/ko-KR/c-0101/%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC/%EC%A3%BC%EC%96%BC%EB%A6%AC/%EB%84%A4%ED%81%AC%EB%A6%AC%EC%8A%A4-%ED%8E%9C%EB%8D%98%ED%8A%B8/?sort=newIn",
+   "https://www.swarovski.com/ko-KR/p-M5754233/Stilla-%ED%8E%9C%EB%8D%98%ED%8A%B8-%EC%8A%A4%ED%80%98%EC%96%B4-%EC%BB%B7-%ED%95%91%ED%81%AC-18K-%EB%A1%9C%EC%A6%88-%EA%B3%A8%EB%93%9C-%ED%94%BC%EB%8B%88%EC%8B%9C/?variantID=5754233",
+   "https://www.swarovski.com/ko-KR/p-M5754340/Una-Angelic-%ED%8E%9C%EB%8D%98%ED%8A%B8-%EC%BF%A0%EC%85%98-%EC%BB%B7-%ED%99%94%EC%9D%B4%ED%8A%B8-18K-%EA%B3%A8%EB%93%9C-%ED%94%BC%EB%8B%88%EC%8B%9C/?variantID=5764761",
+   "https://www.swarovski.com/ko-KR/p-M5754382/Symbolica-%ED%8E%9C%EB%8D%98%ED%8A%B8-%EB%9D%BC%EC%9A%B4%EB%93%9C-%EC%BB%B7-%EB%8B%AC-%ED%99%94%EC%9D%B4%ED%8A%B8-18K-%EA%B3%A8%EB%93%9C-%ED%94%BC%EB%8B%88%EC%8B%9C/?variantID=5754382",
+   "https://www.swarovski.com/ko-KR/p-M5740343/Swarovski-Classica-%ED%8E%9C%EB%8D%98%ED%8A%B8-%EB%9D%BC%EC%9A%B4%EB%93%9C-%EC%BB%B7-%EC%9D%B8%ED%84%B0%EB%A1%9C%ED%82%B9-%ED%99%94%EC%9D%B4%ED%8A%B8-%EC%8A%A4%ED%84%B8%EB%A7%81-%EC%8B%A4%EB%B2%84/?variantID=5740343",
+   "https://us.missoma.com/pages/our-metals",
+   "https://us.pandora.net/en/necklaces/pendant-necklaces/sparkling-heart-collier-necklace/368425C01.html?product_finding_method=plp",
+   "https://us.pandora.net/en/necklaces/pendant-necklaces/organically-shaped-pave-circle-treated-freshwater-cultured-pearl-collier-necklace/363303C01.html?product_finding_method=plp",
+   "https://us.pandora.net/en/necklaces/pearl-necklace/",
+   "https://www.pandoragroup.com/media/press-releases/pandora-enters-exclusive-platinum-plated-jewellery",
+   "https://www.swarovski.ae/fall-winter",
+   "https://www.ssense.com/en-cn/men/designers/emanuele-bicocchi",
+   "https://www.ssense.com/en-us/men/designers/title-of-work",
+   "https://www.ssense.com/en-us/men/designers/in-gold-we-trust",
+   "https://www.ssense.com/en-ph/men/designers/numbering",
+   "https://www.ssense.com/en-cn/men/product/emanuele-bicocchi/pendant-necklace/19154451",
+   "https://www.ssense.com/en-cn/men/product/emanuele-bicocchi/reissue-notre-dame-cross-necklace/19150231",
+   "https://www.ssense.com/en-cn/men/product/emanuele-bicocchi/stella-ventis-dagger-necklace/19149921",
+   "https://www.ssense.com/en-cn/men/product/emanuele-bicocchi/medium-fleury-cross-necklace/19156101",
+   "https://www.ssense.com/en-us/men/product/title-of-work/overlap-pendant-ruby-necklace/19252771",
+   "https://www.ssense.com/en-ph/men/product/numbering/n-7700-necklace/19612181",
+   "https://www.ssense.com/en-us/men/product/in-gold-we-trust/whistle-necklace/19782601",
+   "https://kr.pandora.net/category/necklaces/232",
+   "https://kr.pandora.net/product/%EC%9D%B8%ED%8A%B8%EC%99%80%EC%9D%B8%EB%93%9C-%ED%95%98%ED%8A%B8-%EB%B2%84%ED%84%B0%ED%94%8C%EB%9D%BC%EC%9D%B4-%ED%8E%9C%EB%8D%98%ED%8A%B8-%EB%84%A4%ED%81%AC%EB%A6%AC%EC%8A%A4/4665/category/232/display/1/",
+   "https://kr.pandora.net/product/%ED%97%88%EB%B0%94%EB%A6%AC%EC%9B%80-%EC%8A%A4%ED%8C%8C%ED%81%B4%EB%A7%81-%ED%95%91%ED%81%AC-%ED%94%8C%EB%9D%BC%EC%9B%8C-%ED%8E%9C%EB%8D%98%ED%8A%B8-%EB%84%A4%ED%81%AC%EB%A6%AC%EC%8A%A4/4664/category/232/display/1/",
+   "https://kr.pandora.net/product/%EB%A0%89%ED%83%B1%EA%B7%A4%EB%9F%AC-%EC%8A%A4%ED%8C%8C%ED%81%AC%EB%A7%81-%EA%B7%B8%EB%A6%B0-%ED%97%A4%EC%9D%BC%EB%A1%9C-%ED%8E%9C%EB%8D%98%ED%8A%B8-%EB%84%A4%ED%81%AC%EB%A6%AC%EC%8A%A4/4666/category/232/display/1/",
+   "https://kr.pandora.net/product/%ED%95%91%ED%81%AC-%ED%97%A4%EC%9D%BC%EB%A1%9C-%ED%95%98%ED%8A%B8-%EC%BD%9C%EB%A6%AC%EC%97%90-%EB%84%A4%ED%81%AC%EB%A6%AC%EC%8A%A4/4612/category/232/display/1/",
+   "https://kr.pandora.net/product/%EC%9D%B8%EA%B7%B8%EB%A0%88%EC%9D%B4%EB%B2%84%EB%B8%94-%ED%95%98%ED%8A%B8-%ED%97%A4%EC%9D%BC%EB%A1%9C-%EC%BD%9C%EB%A6%AC%EC%97%90-%EB%84%A4%ED%81%AC%EB%A6%AC%EC%8A%A4/4618/category/232/display/1/",
+   "https://kr.pandora.net/product/%EC%8A%A4%ED%8C%8C%ED%81%B4%EB%A7%81-%EC%8A%A4%ED%80%98%EC%96%B4-%EB%B8%94%EB%A3%A8-%ED%95%A0%EB%A1%9C-%ED%8E%9C%EB%8D%98%ED%8A%B8-%EB%84%A4%ED%81%AC%EB%A6%AC%EC%8A%A4/3840",
+   "https://kr.pandora.net/product/%ED%88%AC%ED%86%A4-%EB%8D%94%EB%B8%94-%ED%8E%9C%EB%8D%98%ED%8A%B8-%EB%84%A4%ED%81%AC%EB%A6%AC%EC%8A%A4/5431/",
+   "https://www.swarovski.com/en-KR/p-M5678045/Swan-pendant-Swan-Black-18K-rose-gold-finish/?variantID=5678045",
+   "https://www.swarovski.com/en-KR/p-M5647555/Swan-pendant-Swan-Small-Black-18K-rose-gold-finish/?variantID=5678046",
+   "https://www.swarovski.com/en-KR/p-M5642976/Teddy-pendant-Teddy-Black-18K-rose-gold-finish/?variantID=5693623",
+   "https://www.swarovski.com/en-KR/p-M5724595/Dextera-pendant-Octagon-shape-Round-cut-Black-Ruthenium-plated/?variantID=5724595",
+   "https://www.swarovski.com/en-KR/c-0102/Categories/Jewelry/Pendants/f/consumer_color/color-black/"
+  ]
+ },
+ "reportPending": false,
+ "dossier": {
+  "season": "FW26",
+  "forecast_season": "SS27",
+  "evidence_season": "FW26",
+  "season_title": "SS27 예측서 · 주얼리 컨템퍼러리 (15만~45만원)",
+  "powershift": "FW26의 과장된 층위가 SS27에 정제와 구조로 양분된다. 실버 볼륨은 키 아이템이 되고 펄은 베이직화된다. 모듈과 리메이크가 접근성을 높여 입문 수요가 확장된다. ([vogue.co.jp](https://www.vogue.co.jp/article/necklace-2026-summer-trend?utm_source=openai))",
+  "season_narrative": "FW26에서 실버의 조각적 볼륨과 위트 있는 진주가 확산되었다. SS27은 이 축을 정제해 일상 착용에 맞춘다. 런웨이에서 진주와 실버가 주연이 되었고, 시장은 원자재 변동과 메이저의 소재 전환에 반응한다. shows, market, consumer 신호가 합쳐진다. ([vogue.com](https://www.vogue.com/article/the-best-fall-2026-accessory-trends?utm_source=openai))\nSS27에서 SCULPT SILVER는 상업 단계로 옮겨간다. SS26에 보인 토크와 두꺼운 링크가 가벼운 착용감으로 재해석된다. 실버가 시즌 금속으로 꼽힌 흐름이 유지되며, 구조적 형태가 여름 룩의 포인트가 된다. shows, market 신호가 일치한다. ([vogue.co.uk](https://www.vogue.co.uk/article/ss26-catwalk-jewellery-trends?utm_source=openai))\nQUIET PEARL은 7mm 아코야 단일 포인트로 수렴한다. FW26의 장난기에서 벗어나 광택과 균형에 초점이 맞춰진다. 일본발 아코야 공급 타이트가 직경 선택을 보수화한다. 리테일은 짧은 스테이션과 스터드로 재고를 최적화한다. shows, market, consumer가 뒷받침한다. ([vogue.com](https://www.vogue.com/article/the-best-fall-2026-accessory-trends?utm_source=openai))\nCHARM MODULAR는 SS27에서 가시적 성장을 보인다. 크루즈의 미니 파우치 네크리스와 참 연출이 전개를 예고했다. Pandora의 합금 기반 플래티넘 도금 롤아웃은 925 선호층을 분리해 대체 수요를 만든다. shows, market 신호가 선행한다. ([marieclaire.co.uk](https://www.marieclaire.co.uk/fashion/spring-summer-2026-accessories-trend-report?utm_source=openai))\nPEARL REMAKE는 서비스형 제안으로 유효하다. 빈티지 아코야의 감정과 재스트링 수요가 이어진다. 하이주얼리 주간의 자산 담론과 리세일 기록이 그 배경을 보강한다. market, consumer의 중기 신호다. ([wmagazine.com](https://www.wmagazine.com/fashion/jewelry-trends-haute-couture-fall-2026-photos?utm_source=openai))\n마지막으로 매크로 네 가지를 제안한다. QUIET PEARL은 safe다. 7mm 아코야 단일, 짧은 체인이 확대된다. SCULPT SILVER는 big이다. 토크, 커프, 유기 곡면이 확장된다. CHARM MODULAR는 early_sign에서 safe로 이동한다. 925 체인에 진주 참이 결합된다. PEARL REMAKE는 early_sign이다. 리메이크와 신형 실버 클라스프가 결합된다.",
+  "macrotrends": [
+   {
+    "name": "QUIET PEARL",
+    "statement": "FW26의 펄 열기는 SS27에 7mm 아코야 기본형으로 정제된다. 균형 잡힌 광택과 간결한 실루엣이 상업 영역을 넓힌다.",
+    "narrative": "FW26의 런던 쇼에서는 펄이 주연으로 복귀했다. SS27에는 그 존재감이 과장 대신 절제에 기댄다. 얼굴을 맑게 비추는 7mm 아코야가 기본 크기로 굳어지고, 세팅은 작고 단단해진다.\nSS27의 상업 무드는 표면을 비우는 선택으로 이어진다. 미니 후프에 한 알 드롭이 달리고, 슬림 박스체인에 솔리테어 펜던트가 놓인다. 로듐 도금 실버는 광택을 정리하며 일상 착용을 견딘다.\n선행 지표는 이 흐름을 지지한다. 쇼 피처와 리테일 노출이 동시에 늘고, 틱톡샵과 마켓 랭킹에서 소형 펄 아이템이 잦다. SS27에는 스터드·펜던트·미니 후프의 삼각 축이 대세가 된다.",
+    "sub_trends": [
+     "7mm 아코야 스터드",
+     "슬림 박스체인 펜던트",
+     "베젤 솔리테어",
+     "미니 후프 펄 드롭"
+    ],
+    "drivers": [
+     {
+      "label": "쇼 존재감 증가",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "shows",
+      "source_url": "https://www.vogue.co.uk/article/london-fashion-week-jewellery-trends-aw26",
+      "observed_note": "AW26 런던 패션위크 기사에서 ‘Cool-Girl Pearls’가 명시되며 펄이 핵심 트렌드로 다뤄졌다."
+     },
+     {
+      "label": "소셜·소셜커머스 진입",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "social",
+      "source_url": "https://shop.tiktok.com/us/k/akoya-pearl-necklace",
+      "observed_note": "틱톡샵에서 ‘Akoya’ 관련 주얼리 노출과 판매 페이지가 SS26~FW26에 확대되었다."
+     },
+     {
+      "label": "검색·수요 신호",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "consumer",
+      "source_url": "https://www.asinsight.com/report/US/pearl-hoop-earrings",
+      "observed_note": "2026년 4월 ‘pearl hoop earrings’ 주간 검색량과 판매 순위 리포트가 공개되었다."
+     }
+    ],
+    "palette": [
+     {
+      "layer": "metal",
+      "name": "Cool Rhodium",
+      "pantone_tcx": "",
+      "hex": "#D9DDE2"
+     },
+     {
+      "layer": "metal",
+      "name": "Sterling Bright",
+      "pantone_tcx": "",
+      "hex": "#C9CCD1"
+     },
+     {
+      "layer": "stone",
+      "name": "Akoya White",
+      "pantone_tcx": "",
+      "hex": "#F7F6F2"
+     },
+     {
+      "layer": "stone",
+      "name": "Silver Pink Overtone",
+      "pantone_tcx": "",
+      "hex": "#F2E9E9"
+     },
+     {
+      "layer": "stone",
+      "name": "Ivory Cream",
+      "pantone_tcx": "",
+      "hex": "#F0E7D8"
+     },
+     {
+      "layer": "stone",
+      "name": "Soft Rose Luster",
+      "pantone_tcx": "",
+      "hex": "#F8EBE5"
+     },
+     {
+      "layer": "mood",
+      "name": "Deep Ocean Navy",
+      "pantone_tcx": "",
+      "hex": "#0B1E3E"
+     },
+     {
+      "layer": "mood",
+      "name": "Seafoam Mint",
+      "pantone_tcx": "",
+      "hex": "#81D8D0"
+     },
+     {
+      "layer": "mood",
+      "name": "Dusty Blush",
+      "pantone_tcx": "",
+      "hex": "#E8C6CD"
+     }
+    ],
+    "materials": [
+     {
+      "label": "925 실버 로듐 도금(0.5–1.0μm 권장)",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.chingying-jewelry.com/news/whats-the-thickest-plating-of-925-sterling-silver-jewelry-at-jingying",
+      "observed_note": "B2B 공급사 가이드에 두꺼운 로듐 도금 스펙 제안이 늘었다."
+     },
+     {
+      "label": "아코야 7mm 화이트 오버톤",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.mikimotoamerica.com/us_en/v-code-akoya-cultured-pearl-pendant-in-silver",
+      "observed_note": "미키모토 실버 펜던트에 7mm 아코야가 표준 규격으로 제시되었다."
+     },
+     {
+      "label": "슬림 박스체인 0.9mm 실버",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.zales.com/necklaces/chain-necklaces/box-chain/c/0111020631",
+      "observed_note": "0.9mm 박스체인이 단품으로 상시 판매되며 펜던트 베이스로 쓰였다."
+     },
+     {
+      "label": "화이트 토파즈·CZ 포인트 스톤",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.macys.com/shop/product/cultured-freshwater-pearl-7mm-white-topaz-1-6-ct.-t.w.-stud-earrings-in-14k-gold-plated-sterling-silver?ID=13737892",
+      "observed_note": "합리적 가격대에서 펄과 투명 스톤 조합이 다수 노출되었다."
+     }
+    ],
+    "details": [
+     {
+      "label": "실리콘 컴포트 클러치 백",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://stagandharp.com/products/comfort-earring-backs",
+      "observed_note": "실리콘 디스크 일체형 백이 편의성과 고정력을 이유로 채택되었다."
+     },
+     {
+      "label": "스크류백 포스트(아동 안전)",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.inseasonjewelry.com/products/sophisticated-pearl-7mm-baby-toddler-kids-earrings-screw-back-sterling-silver",
+      "observed_note": "CPSIA 표기와 함께 나사식 백이 안정적 디테일로 확산되었다."
+     },
+     {
+      "label": "컵&페그 펄 마운트",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.riogrande.com/product/sterling-silver-pearl-component-mountings/693924GP/",
+      "observed_note": "하프 드릴 펄을 위한 컵&페그 파츠가 드롭 제작에 표준처럼 쓰였다."
+     },
+     {
+      "label": "박스체인 스프링링 클라스프",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.reeds.com/sterling-silver-0-9mm-box-chain-necklace-pluqbx019r.html",
+      "observed_note": "슬림 체인과 소형 클라스프 조합이 경량 펜던트에 적합했다."
+     }
+    ],
+    "key_items": [
+     {
+      "segment": "women",
+      "name": "THE 7MM AKOYA STUD",
+      "description": "SS27에는 얼굴을 맑게 비추는 7mm 스터드가 기본이 된다. 광택 중심의 라운드가 귀 가까이에서 존재감을 만든다. 로듐 도금 실버 포스트가 일상 착용을 돕는다. 셋업이 간결해서 세컨 피어싱과의 조합도 쉽다.",
+      "metric": {
+       "label": "아코야 7mm 스터드 상시 판매",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.deblancas.com/products/7-0-7-5mm-white-akoya-pearl-stud-earrings",
+       "observed_note": "7.0–7.5mm 아코야 스터드에 실버 옵션이 제공된다."
+      },
+      "grade": "big",
+      "silhouette_spec": "토 플랫 클러치·포스트 0.8mm·925 실버 로듐·아코야 7mm·나사식 옵션"
+     },
+     {
+      "segment": "women",
+      "name": "SLIM BOXCHAIN PENDANT",
+      "description": "SS27에는 슬림 박스체인에 한 알 펜던트가 놓인다. 목선 위에 선을 만들고, 레이어링에 간섭이 적다. 0.9mm 두께가 펄 무게를 안정적으로 받는다. 광택을 살린 폴리시가 베스트다.",
+      "metric": {
+       "label": "0.9mm 박스체인 수요",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.zales.com/necklaces/chain-necklaces/box-chain/c/0111020631",
+       "observed_note": "0.9mm 실버 박스체인이 다양한 길이로 판매된다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "체인 0.9mm 박스·클라스프 스프링링·펜던트 베일 3mm·925 실버 로듐"
+     },
+     {
+      "segment": "women",
+      "name": "BEZEL SOLITAIRE",
+      "description": "SS27에는 베젤 림이 솔리테어를 정리한다. 금속 에지가 펄을 보호하며 표면을 매끈하게 보인다. 작은 투명 스톤과의 콤비가 은은한 광을 더한다. 캐주얼 셔츠에도 이질감이 없다.",
+      "metric": {
+       "label": "베젤+펄 조합 노출",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.angara.com/ca-en/p/akoya-pearl-pendant-with-bezel-diamond-sp1715akprd?metalType=18k+white+gold&quality=best&stoneSizes=7mm",
+       "observed_note": "7mm 아코야와 베젤 다이아 조합 펜던트가 제안되었다."
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "베젤 림 폐쇄형·펜던트 지름 8.5–9mm·체인 0.9mm·925 실버 로듐·포인트 스톤 1.0–1.5mm"
+     },
+     {
+      "segment": "men",
+      "name": "THE SOLO AKOYA STUD",
+      "description": "SS27 남성 시장에서는 단짝 스터드가 기본이 된다. 7mm 크기가 과장되지 않고 귀 라인에 맞춘다. 로듐 도금 실버와 마찰 백이 사용성을 높인다. 유니섹스 제안이 매장 노출을 넓힌다.",
+      "metric": {
+       "label": "남성용 7mm 펄 스터드 상시화",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://hattonlabs.com/products/white-pearl-stud-earrings",
+       "observed_note": "7mm 화이트 펄 스터드가.925 실버와 로듐 마감으로 판매된다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "싱글 착용·포스트 0.8mm·925 실버 로듐·아코야 7mm·클러치 마찰형"
+     },
+     {
+      "segment": "men",
+      "name": "MINI HOOP PEARL DROP",
+      "description": "SS27에는 작은 링에 한 알 드롭이 더해진다. 움직임이 생기면서도 과하지 않다. 실버 후프와 화이트 펄 대비가 남성 룩에 담백함을 준다. 단독 또는 비대칭으로 제안한다.",
+      "metric": {
+       "label": "미니 후프 드롭 노출",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://us.missoma.com/products/pearl-twisted-small-drop-hoop-earrings-sterling-silver-pearl",
+       "observed_note": "실버 미니 후프에 펄 드롭 조합이 상시 노출된다."
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "후프 외경 12–14mm·와이어 1.5mm·드롭 6.5–7mm 펄·925 실버 로듐"
+     },
+     {
+      "segment": "men",
+      "name": "BOXCHAIN PEARL CHARM",
+      "description": "SS27 남성 펜던트는 박스체인에 단일 펄 참을 건다. 티셔츠 네크라인에 닿는 짧은 길이가 경쾌하다. 매끈한 베일이 후디와도 마찰을 줄인다. 데일리 기프트 아이템으로 적합하다.",
+      "metric": {
+       "label": "바록 펄 참 유니섹스 제안",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.harrods.com/en-us/p/monica-vinader-sterling-silver-and-baroque-pearl-pendant-000000000007898203",
+       "observed_note": "실버 바록 펄 펜던트가 남녀 공용으로 기획·판매된다."
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "체인 0.9–1.2mm 박스·베일 3mm·펄 바록 7–8mm·925 실버 로듐"
+     },
+     {
+      "segment": "kids",
+      "name": "SAFE SCREW-BACK PEARL STUD",
+      "description": "SS27 키즈 라인은 안전이 우선이다. 스크류백 구조가 분실과 찌름을 줄인다. 작은 펄로 시작해 기념일에 크기를 키운다. 로듐 마감은 관리 부담을 낮춘다.",
+      "metric": {
+       "label": "아동용 펄 스크류백 확산",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://business.walmart.com/ip/Sophisticated-Pearl-7mm-Baby-Kids-Earrings-Screw-Back-Sterling-Silver/251664015",
+       "observed_note": "CPSIA 표기와 함께 7mm 스크류백 제품이 유통된다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "포스트 0.8mm·스크류백·펄 5–7mm 선택·925 실버 로듐·플랫 백 옵션"
+     },
+     {
+      "segment": "kids",
+      "name": "PETITE BOXCHAIN PENDANT",
+      "description": "SS27 키즈 펜던트는 가벼운 박스체인과 작은 펄이 어울린다. 길이 조절로 성장에 대응한다. 생일·입학의 기념 선물로 반복 구매가 쉽다. 안정적인 스프링링이 적합하다.",
+      "metric": {
+       "label": "슬림 체인 키즈 적용",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.reeds.com/sterling-silver-0-9mm-box-chain-necklace-pluqbx019r.html",
+       "observed_note": "0.9mm 박스체인이 경량 펜던트 조합에 적합하다는 설명이 있다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "체인 0.9mm·길이 14–16in 조절·베일 2.5–3mm·925 실버 로듐·하프 드릴 펄 5–6mm"
+     },
+     {
+      "segment": "kids",
+      "name": "TINY HOOP PEARL DROP",
+      "description": "SS27에는 작은 후프에 비중이 낮은 펄 한 알이 달린다. 드레스업과 데일리를 모두 커버한다. 나사식 또는 실리콘 백으로 안정성을 확보한다. 선물용 포장 컬러는 파스텔이 어울린다.",
+      "metric": {
+       "label": "미니 후프 펄 키즈 수요",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.target.com/p/-/A-88544343",
+       "observed_note": "미니 후프에 펄 장식 아이템이 2026년 구매 리뷰와 함께 노출되었다."
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "후프 외경 10–12mm·펄 4–5mm·포스트 0.8mm·실리콘 컴포트 백·925 실버 로듐"
+     }
+    ],
+    "grade": "safe",
+    "next_season_call": "SS27에는 7mm 아코야의 기본 아이템이 주력으로 확대된다. FW26 대비 체인과 베젤의 미세화가 커지고, 과한 장식의 드라마틱 드롭은 비중이 줄어든다. 공급사는 로듐 도금 사양을 강화하며 납기 예측을 앞당긴다.",
+    "confidence": "medium"
+   },
+   {
+    "name": "SCULPT SILVER",
+    "statement": "SS27에 실버의 조각적 볼륨이 목과 귀를 주연으로 끌어올린다.",
+    "narrative": "FW26에서 금속 칼라와 이어커프가 뚜렷이 늘었다. 여름 전환기에는 큰 목걸이가 핵심 소품이 되었다. SS27에는 실버 볼륨이 룩의 초점을 장악한다. ([jckonline.com](https://www.jckonline.com/editorial-article/ss-2026-jewelry-trends/))\n검색과 소셜의 관심이 FW26 이후 가속했다. 메트 갈라 이후 이어커프가 대중에 각인됐다. SS27은 귀와 목 주변의 조형 효과를 극대화한다. ([trends.google.com](https://trends.google.com/explore?utm_source=openai))\n공급은 925 실버와 로듐 광택으로 안정된다. 재활용 은 전환이 규모화를 뒷받침한다. 돔 링과 토크 칼라, 물결 표면이 SS27의 실루엣을 확장한다. ([pandoragroup.com](https://www.pandoragroup.com/sustainability/circularity?utm_source=openai))",
+    "sub_trends": [
+     "돔 링",
+     "토크 칼라",
+     "이어커프",
+     "물결 표면"
+    ],
+    "drivers": [
+     {
+      "label": "검색 관심 ‘ear cuff·torque necklace·dome ring’",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "consumer",
+      "source_url": "https://trends.google.com/explore",
+      "observed_note": "Google Trends Explore에서 US 기준 위 키워드의 2026 상반기 검색 고점이 2025 대비 높게 형성됨을 확인했다."
+     },
+     {
+      "label": "소셜 확산 ‘ear cuff’",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "social",
+      "source_url": "https://www.forbes.com/sites/poojashah/2026/05/04/the-met-gala-made-us-fall-in-love-with-ear-cuffs-shop-the-trend-here/",
+      "observed_note": "Met Gala 2026 직후 이어커프가 기사와 SNS 착용 컷으로 급부상했다."
+     },
+     {
+      "label": "쇼 등장 확대 ‘메탈 칼라’",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "shows",
+      "source_url": "https://www.jckonline.com/editorial-article/ss-2026-jewelry-trends/",
+      "observed_note": "SS26 런웨이 리뷰에서 금속 칼라와 조형적 금속 볼륨의 전면 등장이 보고됐다."
+     }
+    ],
+    "palette": [
+     {
+      "layer": "metal",
+      "name": "Rhodium Mist",
+      "pantone_tcx": "14-4202 TCX",
+      "hex": ""
+     },
+     {
+      "layer": "metal",
+      "name": "Gunmetal Shadow",
+      "pantone_tcx": "18-0306 TCX",
+      "hex": "#5C5D5B"
+     },
+     {
+      "layer": "metal",
+      "name": "High-Rise Grey",
+      "pantone_tcx": "15-4101 TCX",
+      "hex": "#AEB2B5"
+     },
+     {
+      "layer": "stone",
+      "name": "Cloud Dancer White",
+      "pantone_tcx": "11-4201 TCX",
+      "hex": "#F0EEE9"
+     },
+     {
+      "layer": "stone",
+      "name": "Brilliant White",
+      "pantone_tcx": "11-4001 TCX",
+      "hex": ""
+     },
+     {
+      "layer": "mood",
+      "name": "Illusion Blue",
+      "pantone_tcx": "13-4103 TCX",
+      "hex": "#C9D3DC"
+     },
+     {
+      "layer": "mood",
+      "name": "Harbor Mist",
+      "pantone_tcx": "14-4202 TCX",
+      "hex": ""
+     },
+     {
+      "layer": "mood",
+      "name": "Anthracite",
+      "pantone_tcx": "19-4007 TCX",
+      "hex": ""
+     },
+     {
+      "layer": "mood",
+      "name": "Oyster Mushroom",
+      "pantone_tcx": "13-4201 TCX",
+      "hex": "#C4C6C8"
+     }
+    ],
+    "materials": [
+     {
+      "label": "925 Sterling Silver, Rhodium Plated",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.ssense.com/en-pr/women/product/marshall-columbia/ssense-exclusive-double-knot-single-ear-cuff/10121241",
+      "observed_note": "제품 설명에 rhodium‑plated sterling silver 이어커프가 다수 보인다."
+     },
+     {
+      "label": "Recycled Sterling Silver",
+      "yoy_percent": null,
+      "magnitude": "surging",
+      "source_kind": "market",
+      "source_url": "https://www.pandoragroup.com/sustainability/circularity",
+      "observed_note": "Pandora가 2025년부터 모든 신제품에 100% 재활용 은·금을 사용한다고 명시했다."
+     },
+     {
+      "label": "Cultured Akoya Pearl 7mm, White",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.mikimotoamerica.com/us_en/akoya-cultured-pearl-earrings-in-18k-white-gold",
+      "observed_note": "7mm Akoya 스터드가 화이트 계열로 상시 편성되어 있다."
+     },
+     {
+      "label": "Molten/Wave Textured Silver",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://us.missoma.com/products/molten-stacking-ring-set-sterling-silver",
+      "observed_note": "‘Molten’ 명칭의 물결 표면 실버 라인이 확장 전개된다."
+     }
+    ],
+    "details": [
+     {
+      "label": "힌지 토크 칼라 클로저",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.neimanmarcus.com/p/alexis-bittar-hinged-metal-collar-necklace-prod249370118",
+      "observed_note": "힌지 구조로 개폐되는 칼라가 상품 설명에 명시된다."
+     },
+     {
+      "label": "마그네틱 클라스프 보강",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.earrs.com/products/silver-magnetic-clasp-with-safety-catch",
+      "observed_note": "자석식 잠금장치에 세이프티 캣치 추가 구성이 보인다."
+     },
+     {
+      "label": "이어커프 내경 표기와 사이징",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.sophiebuhai.com/products/discus-cuff",
+      "observed_note": "내경 수치가 표기되어 피팅 표준화가 진행된다."
+     },
+     {
+      "label": "하이폴리시 ‘몰튼’ 표면 마감",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.selfridges.com/US/en/product/missoma-molten-snow-rhodium-plated-sterling-silver-and-zirconia-stacking-ring_R04545232/",
+      "observed_note": "흐르는 금속 같은 표면을 제품명이 직접 지칭한다."
+     }
+    ],
+    "key_items": [
+     {
+      "segment": "women",
+      "name": "THE SCULPT TORQUE COLLAR",
+      "description": "짧은 길이의 오픈 칼라가 쇄골선을 조각한다. 로듐 광택이 여름 톤에 차가운 깊이를 준다. SS27에는 두께 5mm 전후가 상업적으로 안전하다. 마지막 한 점 재고 신호가 반복된다.",
+      "metric": {
+       "label": "토크 칼라 재고 희소 신호",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.farfetch.com/mn/shopping/women/eddie-borgo-torque-collar-item-27178309.aspx",
+       "observed_note": "Farfetch 페이지에 Last 1 left 표기가 확인됐다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "바디 토크칼라·로듐 도금 925·클로저 힌지·팁 라운드"
+     },
+     {
+      "segment": "women",
+      "name": "THE DOME BAND",
+      "description": "볼록한 돔이 손가락 위를 반구로 덮는다. 미러 폴리시가 실버의 체적감을 키운다. SS27에는 중량 6~10g 구간이 수요가 안정적이다. FW26 대비 컬러 스톤 없는 하이폴리시가 선호된다.",
+      "metric": {
+       "label": "돔 링 트렌드 컨펌",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "social",
+       "source_url": "https://fashionista.com/2026/02/jewelry-accessories-trends-2026",
+       "observed_note": "패션 미디어에서 ‘Bombé + Dome Rings’가 2026 핵심으로 제시됐다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "바디 돔밴드·로듐 도금 925·노스톤·내경 표준 사이징"
+     },
+     {
+      "segment": "women",
+      "name": "THE AKOYA PEARL EAR CUFF",
+      "description": "7mm 화이트 아코야가 귓볼 안쪽에 떠 있는 듯 보인다. 무피어싱 구조가 일상 착용을 쉽게 한다. SS27에는 실버 베이스와 펄의 대비가 신선하다. 펑크한 룩에도 우아한 균형을 만든다.",
+      "metric": {
+       "label": "펄 귀 주얼리 노출 증가",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "shows",
+       "source_url": "https://www.vogue.co.uk/article/london-fashion-week-jewellery-trends-aw26",
+       "observed_note": "AW26 스트리트·쇼 리포트에 ‘cool‑girl pearls’가 다수 등장했다."
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "바디 이어커프·로듐 도금 925·아코야 7mm·클립 텐션"
+     },
+     {
+      "segment": "men",
+      "name": "THE OPEN TORC NECK RING",
+      "description": "남성 목선에 밀착하는 오픈 토크가 부상한다. 두툼한 실버 라인이 티셔츠 위에서 존재감을 준다. SS27에는 매트와 광택의 혼용이 제안된다. 캐릭터 네크 피스로 주말 수요가 강하다.",
+      "metric": {
+       "label": "토크 네크 트렌드 레퍼런스",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "consumer",
+       "source_url": "https://www.wallpaper.com/watches-jewellery/torque-necklaces",
+       "observed_note": "편집 매체가 토크 네크의 부상을 SS 시즌부터 짚었다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "바디 토크목걸이·로듐 도금 925·팁 라운드·무클래스프"
+     },
+     {
+      "segment": "men",
+      "name": "THE SINGLE SCULPT EAR CUFF",
+      "description": "한쪽 귀를 강조하는 싱글 커프가 일상화된다. 구조적 실루엣이 헤어라인을 깔끔히 자른다. SS27에는 폭 3~5mm가 가장 실용적이다. 솔리드 실버가 가격 대비 효과가 높다.",
+      "metric": {
+       "label": "이어커프 솔드아웃 신호",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.ssense.com/en-sa/men/product/marco-panconesi/silver-three-point-ear-cuff/12309121",
+       "observed_note": "SSENSE에 ‘Sold Out’ 커프 사례가 다수 보인다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "바디 이어커프·로듐 도금 925·내경 9mm권·무피어싱"
+     },
+     {
+      "segment": "men",
+      "name": "THE WAVE SIGNET",
+      "description": "봉인 대신 표면의 물결이 메시지를 전한다. 몰튼 텍스처가 빛을 흐르게 만든다. SS27에는 데일리 링의 업그레이드 대안이 된다. 스택링과의 조합으로 체적감을 키운다.",
+      "metric": {
+       "label": "Molten/Wave 실버 확장",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://us.missoma.com/products/molten-stacking-ring-set-sterling-silver",
+       "observed_note": "‘Molten’ 네이밍의 물결 표면 실버가 연속 출시된다."
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "바디 시그넷·로듐 도금 925·물결 표면·하이폴리시"
+     },
+     {
+      "segment": "kids",
+      "name": "THE MINI TORQUE CHOKER",
+      "description": "가벼운 두께의 미니 칼라가 안전하게 맞는다. 둥근 팁이 피부 마찰을 줄인다. SS27에는 파티용 소형 사이즈 수요가 생긴다. 힌지 타입이 착탈을 돕는다.",
+      "metric": {
+       "label": "힌지 칼라 채택 확산",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.asos.com/us/asos-design/asos-design-torque-choker-with-wrap-around-design-in-silver-tone-and-gold-tone/prd/209894787",
+       "observed_note": "토크 초커의 힌지 구조가 메인룸에 노출된다."
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "바디 토크초커·로듐 도금 925·힌지·팁 라운드 세이프"
+     },
+     {
+      "segment": "kids",
+      "name": "THE PEARL DROP CUFF",
+      "description": "작은 드롭 펄이 귓바퀴에 살짝 걸린다. 무피어싱 구조가 보호자 선호에 맞는다. SS27에는 화이트 펄과 실버가 사진발이 좋다. 기념일 선물로 적합하다.",
+      "metric": {
+       "label": "이어커프 카테고리 인기",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.yesstyle.com/fr/femmes-ear-cuffs/list.html/bcc.14794_bpt.46",
+       "observed_note": "이어커프 베스트셀러가 상단에 다수 랭크된다."
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "바디 이어커프·로듐 도금 925·펄 5~6mm·클립 텐션"
+     },
+     {
+      "segment": "kids",
+      "name": "THE MINI DOME RING",
+      "description": "낮은 프로파일의 돔이 손에 포인트를 준다. 스크래치에 강한 광택 마감이 유지감을 높인다. SS27에는 선물용 세트 구성이 유효하다. 크기 조절형 실루엣이 반품을 줄인다.",
+      "metric": {
+       "label": "돔 링 트렌드 레퍼런스",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "social",
+       "source_url": "https://fashionista.com/2026/02/jewelry-accessories-trends-2026",
+       "observed_note": "돔 링이 2026 핵심 트렌드로 재확인됐다."
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "바디 로우돔·로듐 도금 925·조절 밴드·하이폴리시"
+     }
+    ],
+    "grade": "safe",
+    "next_season_call": "FW26 대비 SS27에는 실버 칼라와 이어커프가 커진다. 골드 볼륨은 완만해지고 펄의 믹스가 늘어난다. 재활용 은 전환이 지속되며 몰튼 표면은 더 넓어진다.",
+    "confidence": "medium"
+   },
+   {
+    "name": "CHARM MODULAR",
+    "statement": "SS27에 모듈식 챰과 후프가 일상적 개인화를 이끈다.",
+    "narrative": "FW26에 이어 귀걸이와 네클리스가 부품처럼 분해된다. 오픈 링크와 클릭커 후프가 표준이 되며 교체식 펜던트가 늘어난다. SS27에는 이 조합이 가벼운 은 소재로 더 넓게 퍼진다.\nFW26의 쇼와 주얼리 페어에서 작은 후프와 챰이 주역이 되었다. 진주가 다시 과감해지며 레이어드 Y 형태가 늘었다. SS27에는 후프에 끼우는 미니 펜던트가 데일리 룩을 바꾼다.\n리테일은 ‘빌드 유어 오운’ 카피로 구매 흐름을 바꾼다. 은색 로듐 톤이 기본이 되고 화이트 펄이 포인트가 된다. SS27에는 투톤 포장색과 아쿠아 계열 연출색이 늘어난다.",
+    "sub_trends": [
+     "챰 후프",
+     "클립 커넥터",
+     "Y 체인 세트",
+     "펜던트 교체"
+    ],
+    "drivers": [
+     {
+      "label": "Etsy 검색에서 ‘Whimsical jewelry’ 급증",
+      "yoy_percent": 84,
+      "magnitude": "rising",
+      "source_kind": "consumer",
+      "source_url": "https://www.etsy.com/seller-handbook/article/1473931456647",
+      "observed_note": "보고서에 ‘Whimsical jewelry +84%’가 표기되었다. 최근 3개월 대비 전년 동기 기준이다."
+     },
+     {
+      "label": "소셜에서 귀 스태킹과 챰 개조 사례 확산",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "social",
+      "source_url": "https://www.reddit.com/r/PandoraCollectors/comments/1v0c14g/advice_chunky_dangle_charms_on_pandora_me_link/",
+      "observed_note": "Pandora ME 개조·확장 글이 연달아 올라와 사용 메서드가 공유되었다."
+     },
+     {
+      "label": "쇼·페어에서 ‘작은 후프+챰’ 다발 관측",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "shows",
+      "source_url": "https://www.jckonline.com/editorial-article/marion-fasel-trends-vegas-2026/",
+      "observed_note": "라스베이거스 2026 주얼리 위크에서 작은 후프와 챰 조합이 많이 보였다고 보도되었다."
+     }
+    ],
+    "palette": [
+     {
+      "layer": "metal",
+      "name": "Rhodium Silver",
+      "pantone_tcx": "",
+      "hex": "#C7C9CB"
+     },
+     {
+      "layer": "metal",
+      "name": "Oxidized Graphite",
+      "pantone_tcx": "",
+      "hex": "#3C3C3C"
+     },
+     {
+      "layer": "metal",
+      "name": "Soft Steel",
+      "pantone_tcx": "",
+      "hex": "#AEB4B9"
+     },
+     {
+      "layer": "stone",
+      "name": "Akoya White",
+      "pantone_tcx": "",
+      "hex": "#F8F7F4"
+     },
+     {
+      "layer": "stone",
+      "name": "Pearl Cream",
+      "pantone_tcx": "",
+      "hex": "#EFEADE"
+     },
+     {
+      "layer": "stone",
+      "name": "Silver Grey Pearl",
+      "pantone_tcx": "",
+      "hex": "#E2E4E7"
+     },
+     {
+      "layer": "mood",
+      "name": "Aqua Mist",
+      "pantone_tcx": "",
+      "hex": "#8FD3E8"
+     },
+     {
+      "layer": "mood",
+      "name": "Rose Dust",
+      "pantone_tcx": "",
+      "hex": "#D8B4B6"
+     },
+     {
+      "layer": "mood",
+      "name": "Ink Navy",
+      "pantone_tcx": "",
+      "hex": "#1A2334"
+     }
+    ],
+    "materials": [
+     {
+      "label": "925 스털링 실버, 로듐 도금",
+      "yoy_percent": null,
+      "magnitude": "softening",
+      "source_kind": "market",
+      "source_url": "https://silverinstitute.org/elevated-lease-rates-regional-liquidity-tightness-and-robust-investor-interest-resulted-in-record-silver-prices-in-2025/",
+      "observed_note": "World Silver Survey 2026에 2025년 은 보석 수요 하락과 2026년 약세 전망이 기재되었다."
+     },
+     {
+      "label": "아코야 컬처드 펄 7mm, 화이트",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "shows",
+      "source_url": "https://www.vogue.co.uk/article/how-to-wear-pearls-in-2026",
+      "observed_note": "2026 시즌에 펄이 다시 트렌드로 부상했다는 보도가 계속되었다."
+     },
+     {
+      "label": "큐빅 지르코니아 마이크로 파베",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://us.pandora.net/en/charms/pandora-me-styling-pave-double-link/799660C02.html",
+      "observed_note": "ME 스타일링 더블 링크에 파베 장식이 적용되어 후프·네크에 겸용된다."
+     },
+     {
+      "label": "실리콘 라이너 스토퍼",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.halsteadbead.com/articles/stopper-beads",
+      "observed_note": "실리콘 내장 스토퍼 비드가 확산되며 챰 위치 고정 수요가 늘었다."
+     }
+    ],
+    "details": [
+     {
+      "label": "힌지 ‘클릭커’ 후프 클로저",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://carathea.co.uk/products/10mm-clicker-hoop-earrings-in-silver",
+      "observed_note": "스털링 실버 클릭커 후프가 손쉬운 착탈과 견고성을 강조한다."
+     },
+     {
+      "label": "오픈형 링크 ‘클립 커넥터’",
+      "yoy_percent": null,
+      "magnitude": "surging",
+      "source_kind": "market",
+      "source_url": "https://us.pandora.net/en/charms-bracelets/pandora-me-styling-accents/styling-connectors/pandora-me-round-openable-link/799671C00.html",
+      "observed_note": "ME 라인의 오픈 가능한 링크가 네크·후프·브레이슬릿을 연결한다."
+     },
+     {
+      "label": "실리콘 라운드 슬라이더(Y 길이조절)",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.riogrande.com/product/sterling-silver-eight-sided-seamed-snake-chain-necklace-with-round-slider-adjustable/615564GP/",
+      "observed_note": "슬라이더 비드로 길이를 미세 조절하는 Y 연출이 쉬워졌다."
+     },
+     {
+      "label": "클립온 펜던트 베일",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.beadalon.com/images/Findings%2031%20New%20.pdf",
+      "observed_note": "클립 베일로 펜던트를 즉시 교체하는 방식이 소개되었다."
+     }
+    ],
+    "key_items": [
+     {
+      "segment": "women",
+      "name": "더 챰 후프 듀오",
+      "description": "15mm 클릭커 후프에 작은 아이렛을 둔다. 미니 펜던트를 자유롭게 걸 수 있다. SS27에는 한쪽 비대칭 조합이 베스트로 뜬다. 로듐 톤이 진주 화이트와 잘 맞는다.",
+      "metric": {
+       "label": "챰 후프 빌드",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://ca.pandora.net/en/earrings/charm-earrings",
+       "observed_note": "‘나만의 챰 귀걸이 만들기’ 가이드와 ‘Most Loved’ 배지가 보인다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "후프 지름 15mm·링 폭 2mm·클릭커·챰 아이렛 2개·S925 로듐"
+     },
+     {
+      "segment": "women",
+      "name": "컨버터블 Y 펄 세트",
+      "description": "슬림 체인과 오픈 링크, 7mm 펄 드롭을 묶는다. 링크 위치로 길이를 바꾸어 Y 실루엣을 만든다. SS27에는 셋업 패키지로 묶은 번들이 효율적이다. 여름 원피스에 데일리로 맞춘다.",
+      "metric": {
+       "label": "Y 네클리스 카테고리",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.macys.com/shop/jewelry-watches/trends/Necklace_style/Lariat%20%26%20Y-Neck?id=340196",
+       "observed_note": "라리에트·Y-넥 카테고리가 트렌드 섹션에 분리 표기된다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "체인 45cm·슬라이더 1개·오픈 링크 1개·펄 7mm·S925 로듐"
+     },
+     {
+      "segment": "women",
+      "name": "클립 링크 펜던트 네크",
+      "description": "작은 카라비너형 링크를 전면에 둔다. 메달과 이니셜 챰을 번갈아 건다. SS27에는 출근용 미니 세트가 회전율을 높인다. 혼합 금속보다 실버 모노톤이 반응이 좋다.",
+      "metric": {
+       "label": "오픈 링크 신제품",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://us.pandora.net/en/necklaces-pendants/necklaces-pendants/chain-necklaces/pandora-me-link-chain-necklace/399685C00.html",
+       "observed_note": "전면에 오픈 가능한 링크 두 개를 배치한 제품이 상시 노출된다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "링크 체인 3.5mm·오픈 링크 2개·카라비너 클로저·S925 로듐"
+     },
+     {
+      "segment": "men",
+      "name": "모듈러 후프 싱글",
+      "description": "13mm 클릭커 후프를 한쪽에 단독 착용한다. 얇은 오닉스 또는 펄 드롭을 번갈아 단다. SS27에는 최소 장식과 교체식 드롭이 어울린다. 검은 셔츠에 차갑게 매치한다.",
+      "metric": {
+       "label": "클릭커 후프",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://carathea.co.uk/products/10mm-clicker-hoop-earrings-in-silver",
+       "observed_note": "힌지 클릭 구조와 로듐 도금의 내식성을 강조한다."
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "후프 지름 13mm·링 폭 1.8mm·클릭커·드롭 고리·S925 로듐"
+     },
+     {
+      "segment": "men",
+      "name": "아이디 Y 라리에트",
+      "description": "슬림 아이디 바에 직사각 오픈 링크를 건다. 펜던트를 바꿔 정장과 캐주얼을 잇는다. SS27에는 세로선이 긴 Y 구성이 신뢰감을 준다. 셔츠 카라 밖으로 가볍게 떨어진다.",
+      "metric": {
+       "label": "오픈 링크 커넥터",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://us.pandora.net/en/charms-bracelets/pandora-me-styling-accents/styling-connectors/pandora-me-round-openable-link/799671C00.html",
+       "observed_note": "오픈 가능한 링크가 다목적 커넥터로 안내된다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "체인 50cm·아이디 바 25mm·오픈 링크 1개·S925 로듐"
+     },
+     {
+      "segment": "men",
+      "name": "옥시다이즈드 펜던트 스왑 체인",
+      "description": "어둡게 산화한 체인에 클립 베일을 쓴다. 스포츠 메달과 모노그램을 번갈아 단다. SS27에는 캐주얼 셋업에 맞춘 스왑 수요가 늘어난다. 낮은 광택이 남성복과 조화롭다.",
+      "metric": {
+       "label": "클립온 베일",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.beadalon.com/images/Findings%2031%20New%20.pdf",
+       "observed_note": "클립 베일 제품이 신속 부착을 내세운다."
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "체인 55cm·산화 코팅·클립 베일 1개·S925 로듐"
+     },
+     {
+      "segment": "kids",
+      "name": "미니 펄 챰 후프",
+      "description": "10mm 허기 후프에 4mm 펄을 단다. 아기 귀에 맞춘 힌지 클로저가 안전하다. SS27에는 선물 패키지와 카드 구성이 잘 팔린다. 민감 피부 대응 문구를 강화한다.",
+      "metric": {
+       "label": "키즈 925 후프",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.target.com/p/-/A-90474286",
+       "observed_note": "키즈용 925 실버 허기 후프가 안전성과 소재를 강조한다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "후프 지름 10mm·힌지 허기·펄 4mm·S925 로듐"
+     },
+     {
+      "segment": "kids",
+      "name": "빌드 유어 오운 스타터",
+      "description": "작은 후프 한 쌍과 컬러 챰을 묶는다. 주중에는 심플로 두고 주말에 꾸민다. SS27에는 교체 놀이형 구성이 반응이 좋다. 보관 파우치와 세척 천을 함께 둔다.",
+      "metric": {
+       "label": "교체형 챰 세트",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.designlifekids.com/products/totally-charming-pierced-earring-set",
+       "observed_note": "후프 두 개에 교체형 젬 챰 10개 세트가 판매된다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "후프 지름 8mm·교체 챰 10개·스프링 링·S925·아크릴 챰 혼합"
+     },
+     {
+      "segment": "kids",
+      "name": "버스톤 클립 댕글",
+      "description": "탄생석 색 드롭을 클립으로 번갈아 단다. 생일과 학교 행사에 맞춘다. SS27에는 세트 구성으로 반복 구매를 유도한다. 포스트카드형 패키지가 효과적이다.",
+      "metric": {
+       "label": "키즈 후프 세트",
+       "yoy_percent": null,
+       "magnitude": "steady",
+       "source_kind": "market",
+       "source_url": "https://www.claires.com/us/silver-tone-graduated-embellished-huggie-hoop-earring-stackables-set---3-pack-237566.html",
+       "observed_note": "키즈·틴을 겨냥한 허기·후프 세트가 상시 노출된다."
+      },
+      "grade": "stable",
+      "silhouette_spec": "후프 지름 9mm·클립 베일 1개·유색 큐빅 드롭·S925·니켈 프리"
+     }
+    ],
+    "grade": "safe",
+    "next_season_call": "FW26 대비 SS27에는 챰 후프와 클립 커넥터가 커진다. 청키 체인 단품 비중은 줄고 펜던트 교체·Y 연출이 일상화된다.",
+    "confidence": "medium"
+   },
+   {
+    "name": "PEARL REMAKE",
+    "statement": "SS27에 진주 재구성이 서비스화되어 표준 옵션이 된다.",
+    "narrative": "FW26에서 런웨이와 리테일은 진주의 변주를 넓혔다. 전통 스트랜드가 재매듭과 길이 조정으로 일상에 맞춰졌다. SS27에는 수선과 커스터마이즈가 구매 여정에 결합된다.\nFW26에 모듈식 락과 오픈 링크가 확산했다. 잠금이 전면 장식이 되며 펜던트 교체가 쉬워졌다. SS27에는 체인과 펜던트를 한 시스템으로 판매한다.\nFW26에 혼합 금속과 업사이클 메시지가 강화되었다. 재생 실버와 스테인리스 파츠가 가격대를 지켰다. SS27에는 믹스드 메탈과 펄의 조합이 주력으로 부상한다.",
+    "sub_trends": [
+     "리스트링·길이 리셋",
+     "모듈식 잠금 교체",
+     "단일 펜던트 전환",
+     "믹스드 메탈 업사이클"
+    ],
+    "drivers": [
+     {
+      "label": "Google 검색 관심도의 계절 피크 재확인",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "consumer",
+      "source_url": "https://ranking.alibaba.com/pearl-necklace-dubai.html",
+      "observed_note": "2025년 12월과 2026년 2월 피크 설명이 제시되었다."
+     },
+     {
+      "label": "소셜·에디토리얼에서 ‘바로크 펄’ 급부상",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "social",
+      "source_url": "https://www.vogue.co.uk/article/how-to-wear-pearls-in-2026",
+      "observed_note": "2026년 6월 보그 UK가 ‘진주 트렌드’ 기사를 노출했다."
+     },
+     {
+      "label": "AW26 액세서리 리포트에 ‘펄’ 항목 명시",
+      "yoy_percent": null,
+      "magnitude": "surging",
+      "source_kind": "shows",
+      "source_url": "https://www.vogue.com/article/the-best-fall-2026-accessory-trends",
+      "observed_note": "샤넬과 미우미우 등에서 과장된 펄이 반복 등장했다."
+     }
+    ],
+    "palette": [
+     {
+      "layer": "metal",
+      "name": "Rhodium Shine",
+      "pantone_tcx": "",
+      "hex": "#D8D8D8"
+     },
+     {
+      "layer": "metal",
+      "name": "Cold Silver",
+      "pantone_tcx": "",
+      "hex": "#C0C0C0"
+     },
+     {
+      "layer": "metal",
+      "name": "Graphite Tint",
+      "pantone_tcx": "",
+      "hex": "#A9ABB2"
+     },
+     {
+      "layer": "stone",
+      "name": "Akoya White",
+      "pantone_tcx": "11-0601 TCX",
+      "hex": "#F4F5F0"
+     },
+     {
+      "layer": "stone",
+      "name": "Snow White",
+      "pantone_tcx": "11-0602 TCX",
+      "hex": "#F2F0EB"
+     },
+     {
+      "layer": "stone",
+      "name": "Turtledove",
+      "pantone_tcx": "12-5202 TCX",
+      "hex": "#DED7C8"
+     },
+     {
+      "layer": "stone",
+      "name": "Gray Morn",
+      "pantone_tcx": "13-0403 TCX",
+      "hex": "#D5D3C8"
+     },
+     {
+      "layer": "mood",
+      "name": "Seafoam Mist",
+      "pantone_tcx": "",
+      "hex": "#CFE8E3"
+     },
+     {
+      "layer": "mood",
+      "name": "Shell Pink Veil",
+      "pantone_tcx": "",
+      "hex": "#F6E4DE"
+     }
+    ],
+    "materials": [
+     {
+      "label": "925 스털링 실버 로듐 도금",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.brilliantearth.com/news/rhodium-plating/",
+      "observed_note": "화이트 톤과 내구성 설명이 PDP와 가이드에 늘었다."
+     },
+     {
+      "label": "아코야 7mm 화이트 컬처드 펄",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.mikimotoamerica.com/us_en/v-code-akoya-cultured-pearl-pendant-in-silver",
+      "observed_note": "7mm 단일 펜던트가 지속 입고되어 선택지가 늘었다."
+     },
+     {
+      "label": "재생 실버·골드 전환 소재",
+      "yoy_percent": null,
+      "magnitude": "surging",
+      "source_kind": "market",
+      "source_url": "https://www.pandoragroup.com/media/press-releases/pandora-now-crafts-its-jewellery-with-100-percent-recycled-silver-and-gold",
+      "observed_note": "브랜드가 2024~25년 전면 전환을 공식화했다."
+     },
+     {
+      "label": "PVD 스테인리스 모듈 커넥터",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.alibaba.com/product-introduction/Custom-Jewelry-18K-PVD-Gold-Stainless_1601211246156.html",
+      "observed_note": "푸시 잠금 커넥터가 커스터마이즈 용도로 노출되었다."
+     }
+    ],
+    "details": [
+     {
+      "label": "오픈 가능한 링크 커넥터",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://us.pandora.net/en/necklaces/chain-necklaces/pandora-me-medium-link-chain-necklace/399590C00.html",
+      "observed_note": "링크 분할과 길이 조정 기능을 상세에 명기했다."
+     },
+     {
+      "label": "인터체인지어블 락 시스템",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.clasped.ie/about",
+      "observed_note": "바요닛 타입 교체 락으로 전면 장식 전환을 제시했다."
+     },
+     {
+      "label": "슬라이더 비드 길이 조절",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.kendrascott.com/shop/adjustable-slider-necklaces.html",
+      "observed_note": "초커에서 롱으로 한 제품 내 길이 가변을 안내했다."
+     },
+     {
+      "label": "엔핸서 베일·클립 온",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.noblehousejewelry.com/products/14k-yellow-gold-mabe-pearl-enhancer-pendant",
+      "observed_note": "진주 스트랜드에 직접 클립하는 사용법을 설명했다."
+     }
+    ],
+    "key_items": [
+     {
+      "segment": "women",
+      "name": "리셋 펄 초커 38",
+      "description": "목에 밀착되는 38~40cm 초커다. 7mm 아코야를 중앙에 둔다. 로듐 도금 실버 체인이 피부 톤을 깨끗이 받친다. 셔츠 칼라 위로 현대적 임팩트를 만든다.",
+      "metric": {
+       "label": "쇼에서 초커 길이 재부상",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "shows",
+       "source_url": "https://www.vogue.de/artikel/bunte-perlenketten-mit-70ies-vibes-sind-im-sommer-2026-in",
+       "observed_note": "SS26·SS27 전이 구간에 초커 길이 언급이 늘었다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "체인 38–40cm, 펄 7mm, 오링+슬라이더, 로듐 실버, 미세 익스텐더"
+     },
+     {
+      "segment": "women",
+      "name": "ME 모듈 체인+아코야 드롭",
+      "description": "오픈 링크 체인에 드롭 펜던트를 번갈아 건다. 전면 락이 장식이 되며 길이도 조절된다. 캐주얼에 얹어도 과하지 않다. 출퇴근과 위켄드를 하나로 묶는다.",
+      "metric": {
+       "label": "모듈 체인 품절 빈도",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://us.pandora.net/en/necklaces/chain-necklaces/pandora-me/",
+       "observed_note": "동 라인의 일부 넥리스가 온라인 품절 표기를 보였다."
+      },
+      "grade": "big",
+      "silhouette_spec": "오픈 링크 45cm 조절, 펄 7mm 드롭, 카라비너 락, 로듐 실버"
+     },
+     {
+      "segment": "women",
+      "name": "싱글 펜던트 7",
+      "description": "7mm 아코야 하나로 미니멀을 만든다. 슬림 체인과의 대비가 깨끗하다. 재킷 라펠과 티셔츠 모두에서 빛을 준다. 세컨드 네크로 레이어링이 쉽다.",
+      "metric": {
+       "label": "단일 펜던트 지속 노출",
+       "yoy_percent": null,
+       "magnitude": "steady",
+       "source_kind": "market",
+       "source_url": "https://www.mikimotoamerica.com/us_en/v-code-akoya-cultured-pearl-pendant-in-silver",
+       "observed_note": "7mm 펜던트가 상시 SKU로 유지되며 재입고가 이어졌다."
+      },
+      "grade": "stable",
+      "silhouette_spec": "체인 40–45cm, 펄 7mm, 점프링 고정, 로듐 실버, 스프링링"
+     },
+     {
+      "segment": "men",
+      "name": "실버 펄 스테이션 45",
+      "description": "라운드 펄을 등간격으로 배치했다. 셔츠 칼라 안쪽에 유연히 들어간다. 로듐 실버가 남성 룩에 차가운 광을 준다. 단독과 겹침 모두 성숙하다.",
+      "metric": {
+       "label": "남성 복식에서 진주 채택",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "shows",
+       "source_url": "https://www.vogue.co.uk/article/ss26-catwalk-jewellery-trends",
+       "observed_note": "SS26 주얼리 트렌드에서 펄과 실버가 함께 언급되었다."
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "체인 45cm, 펄 7mm 스테이션, 로듐 실버, 로브스터락"
+     },
+     {
+      "segment": "men",
+      "name": "믹스드 메탈 펄 체인",
+      "description": "실버 체인에 옐로 골드 파츠를 섞는다. 7mm 화이트 펄로 톤 밸런스를 맞춘다. 캐시미어와 데님에 모두 적합하다. 계절을 타지 않는다.",
+      "metric": {
+       "label": "혼합 금속 확산",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "social",
+       "source_url": "https://www.whowhatwear.com/fashion/trends/mixed-metals-jewelry-trend-2026",
+       "observed_note": "혼합 금속 착용 가이드를 에디토리얼이 반복 노출했다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "체인 50cm, 펄 7mm, 바이컬러 커넥터, 로듐 실버+옐로 톤"
+     },
+     {
+      "segment": "men",
+      "name": "프런트 토글+펄 포인트",
+      "description": "토글을 전면에 두어 장식성과 편의성을 결합한다. 작은 펄 참이 자연스레 시선을 모은다. 모크넥 위에서도 매끈하다. 사진 컷에 강하다.",
+      "metric": {
+       "label": "토글 체인 상용화",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://us.missoma.com/products/chunky-t-bar-chain-necklace-silver-plated",
+       "observed_note": "전면 토글 디자인이 다수 리테일에서 상시 판매된다."
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "체인 45–50cm, 토글 전면, 펄 7mm 참, 로듐 실버, T바"
+     },
+     {
+      "segment": "kids",
+      "name": "퍼스트 펄 14",
+      "description": "14인치 길이로 안전하게 맞춘다. 5~6mm급 소형 펄이 부드럽다. 스털링 실버 클라스프가 견고하다. 기념 선물로 반복 구매가 가능하다.",
+      "metric": {
+       "label": "키즈 전용 진주 카테고리",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://thepearlgirls.com/collections/bestsellers/products/little-pearl-girls-pearl-necklace-small-pearls",
+       "observed_note": "14인치 키즈용 진주 넥리스가 베스트셀러에 노출되었다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "체인 35–36cm, 펄 5–6mm, 실크 매듭, 스털링 실버, 필리그리 락"
+     },
+     {
+      "segment": "kids",
+      "name": "슬라이더 펜던트 35~40",
+      "description": "슬라이더 비드로 길이를 자유롭게 맞춘다. 작고 둥근 펄이 착용감을 높인다. 로듐 실버 체인이 변색을 억제한다. 성장에 따라 조절이 쉽다.",
+      "metric": {
+       "label": "슬라이더 체인 채택",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://ellajoli.com/products/adjustable-sliding-snake-chain-24-sterling-silver-jewelry",
+       "observed_note": "실리콘 슬라이더 구조가 제품 설명에 강조되었다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "체인 35–40cm, 펄 5mm, 슬라이더 비드, 로듐 실버, 스프링링"
+     },
+     {
+      "segment": "kids",
+      "name": "이니셜 참+미니 스테이션",
+      "description": "작은 펄과 이니셜을 스테이션으로 엮는다. 익스텐더로 2cm를 여유 있게 준다. 선물 후 조정이 수월하다. 사진 촬영에 표정이 산다.",
+      "metric": {
+       "label": "연령대 익스텐더 수요",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.cherishedmomentsshop.com/products/_bn-zoey-sterling-silver-pearl-necklace",
+       "observed_note": "아동용 익스텐더 체인이 제품 사양에 기본 표기되었다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "체인 35–37cm, 펄 4–5mm, 2cm 익스텐더, 로듐 실버, 스프링링"
+     }
+    ],
+    "grade": "big",
+    "next_season_call": "FW27에는 락·커넥터의 파인화가 진행된다. 단일 펜던트는 다이아 세팅과 믹스드 메탈로 고급화되고, 과장된 바록 사이즈는 속도를 늦춘다.",
+    "confidence": "high"
+   }
+  ],
+  "yearly_context": [
+   {
+    "season": "SS25",
+    "headline": "공예적 질감과 해머드 실버가 돌아왔다.",
+    "what_changed": "전 시즌 대비 비즈·쉘과 은색 표면감이 커졌다.",
+    "source_url": "https://www.vogue.com/article/the-spring-2025-jewelry-trend-report"
+   },
+   {
+    "season": "FW25",
+    "headline": "드레스업 무드와 금 톤이 강화되었다.",
+    "what_changed": "전 시즌 대비 실버 비중이 줄고 진주가 과장됐다.",
+    "source_url": "https://compute.vogue.com/article/fall-2025-jewelry-trend-report"
+   },
+   {
+    "season": "SS26",
+    "headline": "은색과 조각적 볼륨이 주류가 되었다.",
+    "what_changed": "전 시즌 대비 토크와 링크, 의상 위 레이어링이 늘었다.",
+    "source_url": "https://www.vogue.co.uk/article/ss26-catwalk-jewellery-trends"
+   },
+   {
+    "season": "FW26",
+    "headline": "장난기 있는 진주와 헤어 주얼, 브로치가 부상했다.",
+    "what_changed": "전 시즌 대비 장식성과 극성이 커졌다.",
+    "source_url": "https://www.vogue.com/article/the-best-fall-2026-accessory-trends"
+   },
+   {
+    "season": "Cruise 2027",
+    "headline": "참과 미니 파우치 네크리스가 부각됐다.",
+    "what_changed": "전 시즌 대비 모듈러 연출이 뚜렷해졌다.",
+    "source_url": "https://www.vogue.co.uk/article/cruise-2027-trends"
+   }
+  ],
+  "method_note": "방법은 다음과 같다. 첫째, shows에서 FW26과 SS26의 주얼리 키워드를 집계했다. 둘째, market에서 베스트셀러, 재고 품절, 출고 지연을 확인했다. 셋째, consumer에서 트렌드 기사와 리세일 감정 기록으로 관심도를 추적했다. 넷째, 선행 지표로 크루즈, 소재 가격 리포트, 브랜드의 신소재 발표, 상표 출원을 검토했다. 퍼센트 수치가 공개되지 않은 지표는 yoy_percent를 생략하고, 관측량과 순위를 바탕으로 magnitude를 판단했다. 품목 초점은 925 sterling silver rhodium plated와 아코야 7mm white로 유지했다.",
+  "open_questions": [
+   "H1 2027의 로듐 가격 변동이 도금 두께와 원가에 어떤 영향을 주는가.",
+   "Pandora의 플래티넘 도금 확장이 SS27 925 수요를 얼마나 자극하는가.",
+   "일본 아코야 7mm A등급의 26년산 출고가가 SS27 리테일가에 주는 압력은 얼마인가.",
+   "크루즈 2027의 참 네크리스가 메인 리테일로 전이되는 속도는 어느 정도인가.",
+   "Tiffany의 실버 카테고리 비중 축소가 중가대 실버 선택에 어떤 파급을 주는가."
+  ],
+  "sources": [
+   {
+    "title": "Opulent, Humble, High-and-Low: 10 Jewelry Trends From the Spring 2026 Collections | Vogue",
+    "url": "https://www.vogue.com/article/opulent-humble-and-high-low-10-jewelry-trends-from-the-spring-2026-collections",
+    "used_for": "SS26 런웨이 키워드 확인. 실버·진주 병행 트렌드 파악."
+   },
+   {
+    "title": "6 Catwalk Jewellery Trends For SS26 | British Vogue",
+    "url": "https://www.vogue.co.uk/article/ss26-catwalk-jewellery-trends",
+    "used_for": "SS26에서 실버, 토크, 레이어링 관측. shows 근거."
+   },
+   {
+    "title": "Top Spring-Summer 2026 Jewelry Trends, According to Runways, JCK",
+    "url": "https://www.jckonline.com/editorial-article/ss-2026-jewelry-trends/",
+    "used_for": "조각적 실루엣과 금속 토크의 상업화 가능성. shows 근거."
+   },
+   {
+    "title": "From Kooky Pearls to Fuzzy Purses, These Are the Standout Fall 2026 Accessory Trends | Vogue",
+    "url": "https://www.vogue.com/article/the-best-fall-2026-accessory-trends",
+    "used_for": "FW26 진주 연출 톤 변화 확인. shows 근거."
+   },
+   {
+    "title": "5 Jewellery Trends From London Fashion Week Autumn/Winter 2026 | British Vogue",
+    "url": "https://www.vogue.co.uk/article/london-fashion-week-jewellery-trends-aw26",
+    "used_for": "FW26 브로치, 헤어 주얼 트렌드. shows 근거."
+   },
+   {
+    "title": "Summer Jewelry Trends 2026 | Harper's Bazaar",
+    "url": "https://www.harpersbazaar.com/fashion/trends/a72862343/summer-jewelry-trends-2026/",
+    "used_for": "2026년 여름 실버 우세 확인. consumer 근거."
+   },
+   {
+    "title": "Pandora enters exclusive platinum-plated jewellery | Pandora Group",
+    "url": "https://www.pandoragroup.com/media/press-releases/pandora-enters-exclusive-platinum-plated-jewellery",
+    "used_for": "플래티넘 도금, EVERSHINE 합금 기반 전환 계획. market 선행 신호."
+   },
+   {
+    "title": "As silver prices soar, jeweler Pandora turns to platinum | CBS News",
+    "url": "https://www.cbsnews.com/amp/news/silver-price-pandora-jewelry-platinum/",
+    "used_for": "H2 2026 글로벌 롤아웃 계획과 배경. market, consumer 맥락."
+   },
+   {
+    "title": "Pandora to Begin Selling Platinum-Plated Jewelry | National Jeweler",
+    "url": "https://nationaljeweler.com/articles/14675-pandora-to-begin-selling-platinum-plated-jewelry",
+    "used_for": "플래티넘 도금 제품군 확대 일정. market 선행 신호."
+   },
+   {
+    "title": "Edelmetallprognose 2026 | Heraeus Precious Metals",
+    "url": "https://www.heraeus-precious-metals.com/de/company/press-and-news/heraeus-precious-metals-forecast-2026/",
+    "used_for": "로듐 등 PGM 가격 전망. 소재 원가 리스크 판단."
+   },
+   {
+    "title": "Age of Asset: The State of Jewelry in 2026 | Vogue",
+    "url": "https://www.vogue.com/article/age-of-asset-the-state-of-jewelry-in-2026",
+    "used_for": "2026년 은값 급등 맥락과 자산 담론. consumer 배경."
+   },
+   {
+    "title": "Most Popular Jewelry—Best Sellers | Tiffany & Co. US",
+    "url": "https://www.tiffany.com/jewelry/shop/most-popular-jewelry/1000/",
+    "used_for": "실버 포함 베스트 목록 노출 확인. market 관측."
+   },
+   {
+    "title": "Sterling silver Best Sellers | Pandora US",
+    "url": "https://us.pandora.net/en/jewelry/best-sellers/sterling-silver/nature-and-celestial/",
+    "used_for": "실버 베스트셀러 노출과 카테고리 유지 확인. market 관측."
+   },
+   {
+    "title": "Mikimoto Jewelry Categories | Mikimoto America",
+    "url": "https://www.mikimotoamerica.com/us_en/jewelry/categories",
+    "used_for": "품절 건수 노출로 수요 강도 간접 확인. market 관측."
+   },
+   {
+    "title": "MIKIMOTO 7-7.5mm Akoya Cultured Pearl Strand | REEDS Jewelers",
+    "url": "https://www.reeds.com/mikimoto-7-7-5mm-akoya-cultured-pearl-white-gold-strand-necklace-plu19919570.html",
+    "used_for": "출고 예정일 표기로 리드타임 관측. market 선행."
+   },
+   {
+    "title": "Pearl Standard 2025/26 | Japan Pearl Promotion Society",
+    "url": "https://jp-pearl.com/wp-content/uploads/2026/04/%E7%9C%9F%E7%8F%A0%E6%8C%87%E9%87%9D2025_%E8%8B%B1%E8%AA%9E%E7%89%88_v14_260402_%E5%8D%B0%E5%88%B7%E7%94%A8.pdf",
+    "used_for": "국내 아코야 공급 감소와 가격 상승 서술. consumer·공급 근거."
+   },
+   {
+    "title": "The Top 5 High Jewelry Trends From Paris Couture Week Fall 2026 | W Magazine",
+    "url": "https://www.wmagazine.com/fashion/jewelry-trends-haute-couture-fall-2026-photos",
+    "used_for": "하이주얼리의 투자·유산 화두 확인. consumer 배경."
+   },
+   {
+    "title": "The Cord Pendant Necklace Revival | Vogue",
+    "url": "https://www.vogue.com/article/pendant-cord-necklace-trend",
+    "used_for": "펜던트·참형 네크리스 회귀. social·consumer 신호."
+   },
+   {
+    "title": "The Marie Claire SS26 Accessories Trend Report",
+    "url": "https://www.marieclaire.co.uk/fashion/spring-summer-2026-accessories-trend-report",
+    "used_for": "미니 파우치 네크리스와 참 연출 확산. shows 선행."
+   },
+   {
+    "title": "5 Key Trends From The Cruise 2027 Shows | British Vogue",
+    "url": "https://www.vogue.co.uk/article/cruise-2027-trends",
+    "used_for": "크루즈 2027에서의 모듈러 연출 확인. shows 선행."
+   },
+   {
+    "title": "The Spring 2025 Jewelry Trend Report | Vogue",
+    "url": "https://www.vogue.com/article/the-spring-2025-jewelry-trend-report",
+    "used_for": "SS25 요약과 SS26로의 변화 대비. shows 흐름 정리."
+   },
+   {
+    "title": "The Jewelry at the Fall 2025 Collections | Vogue",
+    "url": "https://compute.vogue.com/article/fall-2025-jewelry-trend-report",
+    "used_for": "FW25 드레스업·골드 강화 확인. shows 흐름 정리."
+   },
+   {
+    "title": "Press: Tiffany Lock | Tiffany & Co.",
+    "url": "https://press.tiffany.com/the-collections/tiffany-lock/?pdf=43627",
+    "used_for": "클래스프 혁신 서사와 실버·하이엔드 교차 인사이트."
+   },
+   {
+    "title": "Pandora Q1 2026 Interim Update",
+    "url": "https://attachment.news.eu.nasdaq.com/a620efe73e6c089c13ae7ec6a6c74ba9f",
+    "used_for": "실버 비용 압력 코멘트와 2026 재가속 전략. market 배경."
+   },
+   {
+    "title": "PANDORA EVERSHINE EUIPO Filing",
+    "url": "https://tmdb.eu/marke/EU-019310705%3A%3Apandora-evershine.html",
+    "used_for": "신소재 관련 상표 출원 확인. 선행 지표."
+   }
+  ],
+  "searches": 118,
+  "collected_at": "2026-08-06",
+  "cached": false
+ },
+ "dossierPending": false,
+ "designs": [
+  {
+   "spec": {
+    "design_id": "JW-26FW-C01",
+    "tier": "core",
+    "category": "jewelry",
+    "itemType": "pendant",
+    "fields": {
+     "metal": "brass",
+     "plating": "rhodium",
+     "target_weight_g": 4.8,
+     "stone_count": 3,
+     "stone_size_mm": 1.7,
+     "setting_type": "bezel",
+     "prong_count": 3,
+     "min_wall_thickness_mm": 1.14,
+     "chain_type": "snake",
+     "finish": "hammered",
+     "is_pair": false,
+     "is_new_mold": false,
+     "existing_mold_id": "MLD-2024-14"
+    },
+    "fieldsLocked": []
+   },
+   "ruleResults": [],
+   "rejected": false,
+   "cost": {
+    "lines": [
+     {
+      "label": "Metal",
+      "krw": 11520
+     },
+     {
+      "label": "Stones",
+      "krw": 2448
+     },
+     {
+      "label": "Findings",
+      "krw": 3000
+     },
+     {
+      "label": "Chain",
+      "krw": 8000
+     },
+     {
+      "label": "Casting",
+      "krw": 5000
+     },
+     {
+      "label": "Setting labour",
+      "krw": 2100
+     },
+     {
+      "label": "Plating",
+      "krw": 4000
+     },
+     {
+      "label": "Finishing",
+      "krw": 3500
+     },
+     {
+      "label": "Tooling, amortised",
+      "krw": 0
+     }
+    ],
+    "tooling": {
+     "total_tooling_krw": 0,
+     "mold_count_required": 0,
+     "amortization_volume": 500,
+     "tooling_per_unit_krw": 0
+    },
+    "estimated_total_krw": 44316,
+    "estimated_band_krw": [
+     37669,
+     54098
+    ],
+    "cap_ratio": 0.54,
+    "confidence": "low",
+    "assumptions": [
+     "MOQ 300",
+     "Silver and gold priced at 2026-08-01",
+     "Standard setting labour rate",
+     "Amortised over 500 units"
+    ],
+    "excluded_costs": [
+     "Packaging",
+     "Freight",
+     "Vendor margin",
+     "Defect rate",
+     "Sampling"
+    ]
+   },
+   "rationale": {
+    "agent_mode": "trend",
+    "driving_signals": [
+     {
+      "signal_id": "sg_005",
+      "weight": 0.4
+     },
+     {
+      "signal_id": "sg_003",
+      "weight": 0.25
+     }
+    ],
+    "reference_images": [
+     {
+      "ref_id": "rf_112",
+      "source_type": "competitor",
+      "source_url": "https://competitor.example/product/8812",
+      "collected_at": "2026-05-14",
+      "borrowed_attributes": [
+       "setting_type_peg_post",
+       "chain_type_venetian_box"
+      ],
+      "usage": "attribute_only"
+     },
+     {
+      "ref_id": "rf_317",
+      "source_type": "archive",
+      "source_url": "supabase://uploads/archive_112.jpg",
+      "collected_at": "2026-04-02",
+      "borrowed_attributes": [
+       "proportion"
+      ],
+      "usage": "visual_reference"
+     }
+    ],
+    "reference_prompts": [],
+    "series_dna_inherited": [],
+    "type_placement_reason": "No new tooling, existing parts reused, inside the cost cap. That is what Core is for.",
+    "narrative": [
+     "포스트/페그 세팅(컵+핀) showed up 3 times in this price band.",
+     "베네치안(박스) 체인 채택, observed 2 times, came in as the second axis.",
+     "No new tooling, existing parts reused, inside the cost cap. That is what Core is for..",
+     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+    ]
+   },
+   "qa": [
+    {
+     "check": "Stone count matches",
+     "target": "3",
+     "observed": "3",
+     "pass": true
+    },
+    {
+     "check": "Setting reads correctly",
+     "target": "bezel",
+     "observed": "bezel",
+     "pass": true
+    },
+    {
+     "check": "Prong count",
+     "target": "3",
+     "observed": "3",
+     "pass": true
+    },
+    {
+     "check": "Same object across three views",
+     "target": ">=0.80",
+     "observed": "0.86",
+     "pass": true
+    }
+   ],
+   "viewMismatch": false,
+   "metrics": [
+    {
+     "label": "Against cost cap",
+     "value": "46% under"
+    },
+    {
+     "label": "New moulds",
+     "value": "0"
+    },
+    {
+     "label": "Signals observed",
+     "value": "5"
+    }
+   ],
+   "modelEval": [
+    {
+     "label": "Brand fit",
+     "value": "High",
+     "basis": "How much of the existing last and mould is reused, and silhouette distance from the archive"
+    },
+    {
+     "label": "Distinctiveness",
+     "value": "High",
+     "basis": "Attribute distance from competitor products in the same band"
+    },
+    {
+     "label": "Trend backing",
+     "value": "Medium",
+     "basis": "Observation count and proxy confidence of the linked signals"
+    }
+   ],
+   "colorways": [
+    "gold",
+    "black"
+   ],
+   "images": [
+    {
+     "view": "sketch",
+     "url": "/samples/d4325471d67085a3f7f95d73.webp",
+     "hash": "d4325471d67085a3f7f95d73",
+     "origin": "generated",
+     "promptUsed": "A single pendant necklace, shown in straight front view. Construction: bezel setting holding exactly 3 round stones of 1.7mm, brass metal with hammered finish, snake chain. Drawn as a designer's technical sketch: black ink outline on white paper, single consistent line weight, no colour at all, no shading, no material texture, orthographic projection, the kind of drawing that goes on a spec sheet. It should read as part of the season direction: observed market signals to answer: 로듐 코팅 실버 925, 45cm 슬라이더 조절 체인, 베네치안(박스) 체인 채택, 플로팅 펜던트(숨은 베일/체인 통과). Material programme of this line: 925 sterling silver, rhodium plated; stones: cultured pearl (akoya, 7mm, white). No logo, no text, no lettering anywhere on the product. No text, no lettering, no watermark, no human, no props."
+    },
+    {
+     "view": "front",
+     "url": "/samples/ef17104d55c0cc0076977ac9.webp",
+     "hash": "ef17104d55c0cc0076977ac9",
+     "origin": "generated",
+     "promptUsed": "A single pendant necklace, shown in straight front view. Construction: bezel setting holding exactly 3 round stones of 1.7mm, brass metal with hammered finish, snake chain. Photorealistic studio product photography: seamless white background, soft even key light with a subtle fill, gentle contact shadow, sharp focus across the whole product, real material texture with visible grain and stitching, full colour, centered composition. It should read as part of the season direction: observed market signals to answer: 로듐 코팅 실버 925, 45cm 슬라이더 조절 체인, 베네치안(박스) 체인 채택, 플로팅 펜던트(숨은 베일/체인 통과). Material programme of this line: 925 sterling silver, rhodium plated; stones: cultured pearl (akoya, 7mm, white). No logo, no text, no lettering anywhere on the product. No text, no lettering, no watermark, no human, no props."
+    },
+    {
+     "view": "design",
+     "url": "/samples/6cdf7c1892c9de514ca27a02.webp",
+     "hash": "6cdf7c1892c9de514ca27a02",
+     "origin": "edited_from",
+     "editedFrom": "ef17104d55c0cc0076977ac9",
+     "promptUsed": "Redesign this pendant keeping the exact same sketch geometry and camera angle. Push the dominant season material further and make the hardware the focal point. It should read as part of the season direction: observed market signals to answer: 로듐 코팅 실버 925, 45cm 슬라이더 조절 체인, 베네치안(박스) 체인 채택, 플로팅 펜던트(숨은 베일/체인 통과). Plain white studio background, photorealistic product shot, no text, no watermark."
+    }
+   ],
+   "isTop": false
+  },
+  {
+   "spec": {
+    "design_id": "JW-26FW-C02",
+    "tier": "core",
+    "category": "jewelry",
+    "itemType": "pendant",
+    "fields": {
+     "metal": "brass",
+     "plating": "18k gold",
+     "target_weight_g": 4.7,
+     "stone_count": 2,
+     "stone_size_mm": 4.4,
+     "setting_type": "prong",
+     "prong_count": 3,
+     "min_wall_thickness_mm": 0.84,
+     "chain_type": "snake",
+     "finish": "hammered",
+     "is_pair": false,
+     "is_new_mold": true,
+     "existing_mold_id": "MLD-2024-18"
+    },
+    "fieldsLocked": []
+   },
+   "ruleResults": [
+    {
+     "rule": "J-02",
+     "severity": "fail",
+     "message": "New mould on a Core piece. Core has to reuse an existing mould."
+    }
+   ],
+   "rejected": true,
+   "cost": {
+    "lines": [
+     {
+      "label": "Metal",
+      "krw": 11280
+     },
+     {
+      "label": "Stones",
+      "krw": 4224
+     },
+     {
+      "label": "Findings",
+      "krw": 3000
+     },
+     {
+      "label": "Chain",
+      "krw": 8000
+     },
+     {
+      "label": "Casting",
+      "krw": 5000
+     },
+     {
+      "label": "Setting labour",
+      "krw": 1400
+     },
+     {
+      "label": "Plating",
+      "krw": 4000
+     },
+     {
+      "label": "Finishing",
+      "krw": 3500
+     },
+     {
+      "label": "Tooling, amortised",
+      "krw": 960
+     }
+    ],
+    "tooling": {
+     "total_tooling_krw": 480000,
+     "mold_count_required": 1,
+     "amortization_volume": 500,
+     "tooling_per_unit_krw": 960
+    },
+    "estimated_total_krw": 46328,
+    "estimated_band_krw": [
+     39379,
+     56026
+    ],
+    "cap_ratio": 0.56,
+    "confidence": "low",
+    "assumptions": [
+     "MOQ 300",
+     "Silver and gold priced at 2026-08-01",
+     "Standard setting labour rate",
+     "Amortised over 500 units"
+    ],
+    "excluded_costs": [
+     "Packaging",
+     "Freight",
+     "Vendor margin",
+     "Defect rate",
+     "Sampling"
+    ]
+   },
+   "rationale": {
+    "agent_mode": "trend",
+    "driving_signals": [
+     {
+      "signal_id": "sg_005",
+      "weight": 0.4
+     },
+     {
+      "signal_id": "sg_002",
+      "weight": 0.25
+     }
+    ],
+    "reference_images": [
+     {
+      "ref_id": "rf_869",
+      "source_type": "competitor",
+      "source_url": "https://competitor.example/product/8812",
+      "collected_at": "2026-05-14",
+      "borrowed_attributes": [
+       "setting_type_peg_post",
+       "chain_length_adjustable_40_45cm"
+      ],
+      "usage": "attribute_only"
+     },
+     {
+      "ref_id": "rf_368",
+      "source_type": "archive",
+      "source_url": "supabase://uploads/archive_112.jpg",
+      "collected_at": "2026-04-02",
+      "borrowed_attributes": [
+       "proportion"
+      ],
+      "usage": "visual_reference"
+     }
+    ],
+    "reference_prompts": [],
+    "series_dna_inherited": [],
+    "type_placement_reason": "No new tooling, existing parts reused, inside the cost cap. That is what Core is for.",
+    "narrative": [
+     "포스트/페그 세팅(컵+핀) showed up 3 times in this price band.",
+     "45cm 슬라이더 조절 체인, observed 4 times, came in as the second axis.",
+     "No new tooling, existing parts reused, inside the cost cap. That is what Core is for..",
+     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+    ]
+   },
+   "qa": [],
+   "viewMismatch": false,
+   "metrics": [
+    {
+     "label": "Against cost cap",
+     "value": "44% under"
+    },
+    {
+     "label": "New moulds",
+     "value": "1"
+    },
+    {
+     "label": "Signals observed",
+     "value": "7"
+    }
+   ],
+   "modelEval": [
+    {
+     "label": "Brand fit",
+     "value": "High",
+     "basis": "How much of the existing last and mould is reused, and silhouette distance from the archive"
+    },
+    {
+     "label": "Distinctiveness",
+     "value": "Low",
+     "basis": "Attribute distance from competitor products in the same band"
+    },
+    {
+     "label": "Trend backing",
+     "value": "Medium",
+     "basis": "Observation count and proxy confidence of the linked signals"
+    }
+   ],
+   "colorways": [],
+   "images": [],
+   "isTop": false
+  },
+  {
+   "spec": {
+    "design_id": "JW-26FW-C03",
+    "tier": "core",
+    "category": "jewelry",
+    "itemType": "pendant",
+    "fields": {
+     "metal": "925 silver",
+     "plating": "none",
+     "target_weight_g": 5,
+     "stone_count": 2,
+     "stone_size_mm": 4.7,
+     "setting_type": "channel",
+     "prong_count": 4,
+     "min_wall_thickness_mm": 1.23,
+     "chain_type": "cable",
+     "finish": "polished",
+     "is_pair": false,
+     "is_new_mold": false,
+     "existing_mold_id": "MLD-2024-5"
+    },
+    "fieldsLocked": []
+   },
+   "ruleResults": [
+    {
+     "rule": "J-04",
+     "severity": "warn",
+     "message": "Unplated polished silver will tarnish."
+    }
+   ],
+   "rejected": false,
+   "cost": {
+    "lines": [
+     {
+      "label": "Metal",
+      "krw": 33000
+     },
+     {
+      "label": "Stones",
+      "krw": 4512
+     },
+     {
+      "label": "Findings",
+      "krw": 3000
+     },
+     {
+      "label": "Chain",
+      "krw": 8000
+     },
+     {
+      "label": "Casting",
+      "krw": 5000
+     },
+     {
+      "label": "Setting labour",
+      "krw": 1400
+     },
+     {
+      "label": "Plating",
+      "krw": 0
+     },
+     {
+      "label": "Finishing",
+      "krw": 3500
+     },
+     {
+      "label": "Tooling, amortised",
+      "krw": 0
+     }
+    ],
+    "tooling": {
+     "total_tooling_krw": 0,
+     "mold_count_required": 0,
+     "amortization_volume": 500,
+     "tooling_per_unit_krw": 0
+    },
+    "estimated_total_krw": 65421,
+    "estimated_band_krw": [
+     55608,
+     77863
+    ],
+    "cap_ratio": 0.8,
+    "confidence": "low",
+    "assumptions": [
+     "MOQ 300",
+     "Silver and gold priced at 2026-08-01",
+     "Standard setting labour rate",
+     "Amortised over 500 units"
+    ],
+    "excluded_costs": [
+     "Packaging",
+     "Freight",
+     "Vendor margin",
+     "Defect rate",
+     "Sampling"
+    ]
+   },
+   "rationale": {
+    "agent_mode": "trend",
+    "driving_signals": [
+     {
+      "signal_id": "sg_007",
+      "weight": 0.4
+     },
+     {
+      "signal_id": "sg_004",
+      "weight": 0.25
+     }
+    ],
+    "reference_images": [
+     {
+      "ref_id": "rf_196",
+      "source_type": "competitor",
+      "source_url": "https://competitor.example/product/8812",
+      "collected_at": "2026-05-14",
+      "borrowed_attributes": [
+       "accent_stones_small",
+       "bail_style_hidden_floating"
+      ],
+      "usage": "attribute_only"
+     },
+     {
+      "ref_id": "rf_518",
+      "source_type": "archive",
+      "source_url": "supabase://uploads/archive_112.jpg",
+      "collected_at": "2026-04-02",
+      "borrowed_attributes": [
+       "proportion"
+      ],
+      "usage": "visual_reference"
+     }
+    ],
+    "reference_prompts": [],
+    "series_dna_inherited": [],
+    "type_placement_reason": "No new tooling, existing parts reused, inside the cost cap. That is what Core is for.",
+    "narrative": [
+     "미니 스톤 액센트(지르콘/다이아/토파즈) showed up 3 times in this price band.",
+     "플로팅 펜던트(숨은 베일/체인 통과), observed 2 times, came in as the second axis.",
+     "No new tooling, existing parts reused, inside the cost cap. That is what Core is for..",
+     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+    ]
+   },
+   "qa": [
+    {
+     "check": "Stone count matches",
+     "target": "2",
+     "observed": "3",
+     "pass": true
+    },
+    {
+     "check": "Setting reads correctly",
+     "target": "channel",
+     "observed": "channel",
+     "pass": true
+    },
+    {
+     "check": "Prong count",
+     "target": "4",
+     "observed": "4",
+     "pass": true
+    },
+    {
+     "check": "Same object across three views",
+     "target": ">=0.80",
+     "observed": "0.86",
+     "pass": true
+    }
+   ],
+   "viewMismatch": false,
+   "metrics": [
+    {
+     "label": "Against cost cap",
+     "value": "20% under"
+    },
+    {
+     "label": "New moulds",
+     "value": "0"
+    },
+    {
+     "label": "Signals observed",
+     "value": "5"
+    }
+   ],
+   "modelEval": [
+    {
+     "label": "Brand fit",
+     "value": "High",
+     "basis": "How much of the existing last and mould is reused, and silhouette distance from the archive"
+    },
+    {
+     "label": "Distinctiveness",
+     "value": "Medium",
+     "basis": "Attribute distance from competitor products in the same band"
+    },
+    {
+     "label": "Trend backing",
+     "value": "Medium",
+     "basis": "Observation count and proxy confidence of the linked signals"
+    }
+   ],
+   "colorways": [
+    "gold",
+    "black"
+   ],
+   "images": [
+    {
+     "view": "sketch",
+     "url": "/samples/4896a3ce38440ae308534fa9.webp",
+     "hash": "4896a3ce38440ae308534fa9",
+     "origin": "generated",
+     "promptUsed": "A single pendant necklace, shown in straight front view. Construction: channel setting holding exactly 2 round stones of 4.7mm, 925 silver metal with polished finish, cable chain. Drawn as a designer's technical sketch: black ink outline on white paper, single consistent line weight, no colour at all, no shading, no material texture, orthographic projection, the kind of drawing that goes on a spec sheet. It should read as part of the season direction: observed market signals to answer: 로듐 코팅 실버 925, 45cm 슬라이더 조절 체인, 베네치안(박스) 체인 채택, 플로팅 펜던트(숨은 베일/체인 통과). Material programme of this line: 925 sterling silver, rhodium plated; stones: cultured pearl (akoya, 7mm, white). No logo, no text, no lettering anywhere on the product. No text, no lettering, no watermark, no human, no props."
+    }
+   ],
+   "isTop": false
+  },
+  {
+   "spec": {
+    "design_id": "JW-26FW-C04",
+    "tier": "core",
+    "category": "jewelry",
+    "itemType": "pendant",
+    "fields": {
+     "metal": "925 silver",
+     "plating": "18k gold",
+     "target_weight_g": 2.9,
+     "stone_count": 4,
+     "stone_size_mm": 4,
+     "setting_type": "bezel",
+     "prong_count": 6,
+     "min_wall_thickness_mm": 1.18,
+     "chain_type": "box",
+     "finish": "hammered",
+     "is_pair": false,
+     "is_new_mold": true,
+     "existing_mold_id": "MLD-2024-8"
+    },
+    "fieldsLocked": []
+   },
+   "ruleResults": [
+    {
+     "rule": "J-02",
+     "severity": "fail",
+     "message": "New mould on a Core piece. Core has to reuse an existing mould."
+    }
+   ],
+   "rejected": true,
+   "cost": {
+    "lines": [
+     {
+      "label": "Metal",
+      "krw": 19140
+     },
+     {
+      "label": "Stones",
+      "krw": 7680
+     },
+     {
+      "label": "Findings",
+      "krw": 3000
+     },
+     {
+      "label": "Chain",
+      "krw": 8000
+     },
+     {
+      "label": "Casting",
+      "krw": 5000
+     },
+     {
+      "label": "Setting labour",
+      "krw": 2800
+     },
+     {
+      "label": "Plating",
+      "krw": 4000
+     },
+     {
+      "label": "Finishing",
+      "krw": 3500
+     },
+     {
+      "label": "Tooling, amortised",
+      "krw": 960
+     }
+    ],
+    "tooling": {
+     "total_tooling_krw": 480000,
+     "mold_count_required": 1,
+     "amortization_volume": 500,
+     "tooling_per_unit_krw": 960
+    },
+    "estimated_total_krw": 60570,
+    "estimated_band_krw": [
+     51485,
+     71751
+    ],
+    "cap_ratio": 0.74,
+    "confidence": "low",
+    "assumptions": [
+     "MOQ 300",
+     "Silver and gold priced at 2026-08-01",
+     "Standard setting labour rate",
+     "Amortised over 500 units"
+    ],
+    "excluded_costs": [
+     "Packaging",
+     "Freight",
+     "Vendor margin",
+     "Defect rate",
+     "Sampling"
+    ]
+   },
+   "rationale": {
+    "agent_mode": "trend",
+    "driving_signals": [
+     {
+      "signal_id": "sg_006",
+      "weight": 0.4
+     },
+     {
+      "signal_id": "sg_001",
+      "weight": 0.25
+     }
+    ],
+    "reference_images": [
+     {
+      "ref_id": "rf_901",
+      "source_type": "competitor",
+      "source_url": "https://competitor.example/product/8812",
+      "collected_at": "2026-05-14",
+      "borrowed_attributes": [
+       "frame_shape_v_bail",
+       "metal_finish_rhodium_plated_silver_925"
+      ],
+      "usage": "attribute_only"
+     },
+     {
+      "ref_id": "rf_100",
+      "source_type": "archive",
+      "source_url": "supabase://uploads/archive_112.jpg",
+      "collected_at": "2026-04-02",
+      "borrowed_attributes": [
+       "proportion"
+      ],
+      "usage": "visual_reference"
+     }
+    ],
+    "reference_prompts": [],
+    "series_dna_inherited": [],
+    "type_placement_reason": "No new tooling, existing parts reused, inside the cost cap. That is what Core is for.",
+    "narrative": [
+     "V자 프레임/베일 디테일 showed up 3 times in this price band.",
+     "로듐 코팅 실버 925, observed 4 times, came in as the second axis.",
+     "No new tooling, existing parts reused, inside the cost cap. That is what Core is for..",
+     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+    ]
+   },
+   "qa": [],
+   "viewMismatch": false,
+   "metrics": [
+    {
+     "label": "Against cost cap",
+     "value": "26% under"
+    },
+    {
+     "label": "New moulds",
+     "value": "1"
+    },
+    {
+     "label": "Signals observed",
+     "value": "7"
+    }
+   ],
+   "modelEval": [
+    {
+     "label": "Brand fit",
+     "value": "Medium",
+     "basis": "How much of the existing last and mould is reused, and silhouette distance from the archive"
+    },
+    {
+     "label": "Distinctiveness",
+     "value": "High",
+     "basis": "Attribute distance from competitor products in the same band"
+    },
+    {
+     "label": "Trend backing",
+     "value": "Medium",
+     "basis": "Observation count and proxy confidence of the linked signals"
+    }
+   ],
+   "colorways": [],
+   "images": [],
+   "isTop": false
+  },
+  {
+   "spec": {
+    "design_id": "JW-26FW-P05",
+    "tier": "push",
+    "category": "jewelry",
+    "itemType": "pendant",
+    "fields": {
+     "metal": "925 silver",
+     "plating": "none",
+     "target_weight_g": 2.8,
+     "stone_count": 8,
+     "stone_size_mm": 3.1,
+     "setting_type": "bezel",
+     "prong_count": 3,
+     "min_wall_thickness_mm": 1.2,
+     "chain_type": "box",
+     "finish": "matte",
+     "is_pair": false,
+     "is_new_mold": false,
+     "existing_mold_id": "MLD-2024-17"
+    },
+    "fieldsLocked": []
+   },
+   "ruleResults": [],
+   "rejected": false,
+   "cost": {
+    "lines": [
+     {
+      "label": "Metal",
+      "krw": 18480
+     },
+     {
+      "label": "Stones",
+      "krw": 11904
+     },
+     {
+      "label": "Findings",
+      "krw": 3000
+     },
+     {
+      "label": "Chain",
+      "krw": 8000
+     },
+     {
+      "label": "Casting",
+      "krw": 5000
+     },
+     {
+      "label": "Setting labour",
+      "krw": 5600
+     },
+     {
+      "label": "Plating",
+      "krw": 0
+     },
+     {
+      "label": "Finishing",
+      "krw": 3500
+     },
+     {
+      "label": "Tooling, amortised",
+      "krw": 0
+     }
+    ],
+    "tooling": {
+     "total_tooling_krw": 0,
+     "mold_count_required": 0,
+     "amortization_volume": 500,
+     "tooling_per_unit_krw": 0
+    },
+    "estimated_total_krw": 62142,
+    "estimated_band_krw": [
+     52821,
+     74715
+    ],
+    "cap_ratio": 0.76,
+    "confidence": "low",
+    "assumptions": [
+     "MOQ 300",
+     "Silver and gold priced at 2026-08-01",
+     "Standard setting labour rate",
+     "Amortised over 500 units"
+    ],
+    "excluded_costs": [
+     "Packaging",
+     "Freight",
+     "Vendor margin",
+     "Defect rate",
+     "Sampling"
+    ]
+   },
+   "rationale": {
+    "agent_mode": "trend",
+    "driving_signals": [
+     {
+      "signal_id": "sg_002",
+      "weight": 0.4
+     },
+     {
+      "signal_id": "sg_007",
+      "weight": 0.25
+     }
+    ],
+    "reference_images": [
+     {
+      "ref_id": "rf_792",
+      "source_type": "competitor",
+      "source_url": "https://competitor.example/product/8812",
+      "collected_at": "2026-05-14",
+      "borrowed_attributes": [
+       "chain_length_adjustable_40_45cm",
+       "accent_stones_small"
+      ],
+      "usage": "attribute_only"
+     },
+     {
+      "ref_id": "rf_831",
+      "source_type": "archive",
+      "source_url": "supabase://uploads/archive_112.jpg",
+      "collected_at": "2026-04-02",
+      "borrowed_attributes": [
+       "proportion"
+      ],
+      "usage": "visual_reference"
+     }
+    ],
+    "reference_prompts": [],
+    "series_dna_inherited": [],
+    "type_placement_reason": "Same last and mould, one new element, cost within 30% more. That is Push.",
+    "narrative": [
+     "45cm 슬라이더 조절 체인 showed up 4 times in this price band.",
+     "미니 스톤 액센트(지르콘/다이아/토파즈), observed 3 times, came in as the second axis.",
+     "Same last and mould, one new element, cost within 30% more. That is Push..",
+     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+    ]
+   },
+   "qa": [
+    {
+     "check": "Stone count matches",
+     "target": "8",
+     "observed": "8",
+     "pass": true
+    },
+    {
+     "check": "Setting reads correctly",
+     "target": "bezel",
+     "observed": "bezel",
+     "pass": true
+    },
+    {
+     "check": "Prong count",
+     "target": "3",
+     "observed": "3",
+     "pass": true
+    },
+    {
+     "check": "Same object across three views",
+     "target": ">=0.80",
+     "observed": "0.91",
+     "pass": true
+    }
+   ],
+   "viewMismatch": false,
+   "metrics": [
+    {
+     "label": "Against cost cap",
+     "value": "24% under"
+    },
+    {
+     "label": "New moulds",
+     "value": "0"
+    },
+    {
+     "label": "Signals observed",
+     "value": "7"
+    }
+   ],
+   "modelEval": [
+    {
+     "label": "Brand fit",
+     "value": "High",
+     "basis": "How much of the existing last and mould is reused, and silhouette distance from the archive"
+    },
+    {
+     "label": "Distinctiveness",
+     "value": "High",
+     "basis": "Attribute distance from competitor products in the same band"
+    },
+    {
+     "label": "Trend backing",
+     "value": "Medium",
+     "basis": "Observation count and proxy confidence of the linked signals"
+    }
+   ],
+   "colorways": [
+    "gold",
+    "black"
+   ],
+   "images": [
+    {
+     "view": "sketch",
+     "url": "/samples/a4bf9d0750371b7b046d3212.webp",
+     "hash": "a4bf9d0750371b7b046d3212",
+     "origin": "generated",
+     "promptUsed": "A single pendant necklace, shown in straight front view. Construction: bezel setting holding exactly 8 round stones of 3.1mm, 925 silver metal with matte finish, box chain. Drawn as a designer's technical sketch: black ink outline on white paper, single consistent line weight, no colour at all, no shading, no material texture, orthographic projection, the kind of drawing that goes on a spec sheet. It should read as part of the season direction: observed market signals to answer: 로듐 코팅 실버 925, 45cm 슬라이더 조절 체인, 베네치안(박스) 체인 채택, 플로팅 펜던트(숨은 베일/체인 통과). Material programme of this line: 925 sterling silver, rhodium plated; stones: cultured pearl (akoya, 7mm, white). No logo, no text, no lettering anywhere on the product. No text, no lettering, no watermark, no human, no props."
+    }
+   ],
+   "isTop": false
+  },
+  {
+   "spec": {
+    "design_id": "JW-26FW-P06",
+    "tier": "push",
+    "category": "jewelry",
+    "itemType": "pendant",
+    "fields": {
+     "metal": "14k gold",
+     "plating": "rhodium",
+     "target_weight_g": 3.8,
+     "stone_count": 7,
+     "stone_size_mm": 1.7,
+     "setting_type": "channel",
+     "prong_count": 3,
+     "min_wall_thickness_mm": 1.59,
+     "chain_type": "box",
+     "finish": "hammered",
+     "is_pair": false,
+     "is_new_mold": true,
+     "existing_mold_id": "MLD-2024-16"
+    },
+    "fieldsLocked": []
+   },
+   "ruleResults": [
+    {
+     "rule": "J-CAP",
+     "severity": "warn",
+     "message": "Cost sits at 157% against a 130% cap"
+    }
+   ],
+   "rejected": false,
+   "cost": {
+    "lines": [
+     {
+      "label": "Metal",
+      "krw": 79800
+     },
+     {
+      "label": "Stones",
+      "krw": 5712
+     },
+     {
+      "label": "Findings",
+      "krw": 3000
+     },
+     {
+      "label": "Chain",
+      "krw": 8000
+     },
+     {
+      "label": "Casting",
+      "krw": 5000
+     },
+     {
+      "label": "Setting labour",
+      "krw": 4900
+     },
+     {
+      "label": "Plating",
+      "krw": 4000
+     },
+     {
+      "label": "Finishing",
+      "krw": 3500
+     },
+     {
+      "label": "Tooling, amortised",
+      "krw": 960
+     }
+    ],
+    "tooling": {
+     "total_tooling_krw": 480000,
+     "mold_count_required": 1,
+     "amortization_volume": 500,
+     "tooling_per_unit_krw": 960
+    },
+    "estimated_total_krw": 128657,
+    "estimated_band_krw": [
+     109358,
+     158028
+    ],
+    "cap_ratio": 1.57,
+    "confidence": "low",
+    "assumptions": [
+     "MOQ 300",
+     "Silver and gold priced at 2026-08-01",
+     "Standard setting labour rate",
+     "Amortised over 500 units"
+    ],
+    "excluded_costs": [
+     "Packaging",
+     "Freight",
+     "Vendor margin",
+     "Defect rate",
+     "Sampling"
+    ]
+   },
+   "rationale": {
+    "agent_mode": "trend",
+    "driving_signals": [
+     {
+      "signal_id": "sg_005",
+      "weight": 0.4
+     },
+     {
+      "signal_id": "sg_002",
+      "weight": 0.25
+     }
+    ],
+    "reference_images": [
+     {
+      "ref_id": "rf_432",
+      "source_type": "competitor",
+      "source_url": "https://competitor.example/product/8812",
+      "collected_at": "2026-05-14",
+      "borrowed_attributes": [
+       "setting_type_peg_post",
+       "chain_length_adjustable_40_45cm"
+      ],
+      "usage": "attribute_only"
+     },
+     {
+      "ref_id": "rf_189",
+      "source_type": "archive",
+      "source_url": "supabase://uploads/archive_112.jpg",
+      "collected_at": "2026-04-02",
+      "borrowed_attributes": [
+       "proportion"
+      ],
+      "usage": "visual_reference"
+     }
+    ],
+    "reference_prompts": [],
+    "series_dna_inherited": [],
+    "type_placement_reason": "Same last and mould, one new element, cost within 30% more. That is Push.",
+    "narrative": [
+     "포스트/페그 세팅(컵+핀) showed up 3 times in this price band.",
+     "45cm 슬라이더 조절 체인, observed 4 times, came in as the second axis.",
+     "Same last and mould, one new element, cost within 30% more. That is Push..",
+     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+    ]
+   },
+   "qa": [],
+   "viewMismatch": false,
+   "metrics": [
+    {
+     "label": "Against cost cap",
+     "value": "57% over"
+    },
+    {
+     "label": "New moulds",
+     "value": "1"
+    },
+    {
+     "label": "Signals observed",
+     "value": "7"
+    }
+   ],
+   "modelEval": [
+    {
+     "label": "Brand fit",
+     "value": "Medium",
+     "basis": "How much of the existing last and mould is reused, and silhouette distance from the archive"
+    },
+    {
+     "label": "Distinctiveness",
+     "value": "High",
+     "basis": "Attribute distance from competitor products in the same band"
+    },
+    {
+     "label": "Trend backing",
+     "value": "Medium",
+     "basis": "Observation count and proxy confidence of the linked signals"
+    }
+   ],
+   "colorways": [],
+   "images": [
+    {
+     "view": "sketch",
+     "url": "/samples/661d156abf4f3188c4f0dfdd.webp",
+     "hash": "661d156abf4f3188c4f0dfdd",
+     "origin": "generated",
+     "promptUsed": "A single pendant necklace, shown in straight front view. Construction: channel setting holding exactly 7 round stones of 1.7mm, 14k gold metal with hammered finish, box chain. Drawn as a designer's technical sketch: black ink outline on white paper, single consistent line weight, no colour at all, no shading, no material texture, orthographic projection, the kind of drawing that goes on a spec sheet. It should read as part of the season direction: observed market signals to answer: 로듐 코팅 실버 925, 45cm 슬라이더 조절 체인, 베네치안(박스) 체인 채택, 플로팅 펜던트(숨은 베일/체인 통과). Material programme of this line: 925 sterling silver, rhodium plated; stones: cultured pearl (akoya, 7mm, white). No logo, no text, no lettering anywhere on the product. No text, no lettering, no watermark, no human, no props."
+    }
+   ],
+   "isTop": false
+  },
+  {
+   "spec": {
+    "design_id": "JW-26FW-P07",
+    "tier": "push",
+    "category": "jewelry",
+    "itemType": "pendant",
+    "fields": {
+     "metal": "brass",
+     "plating": "18k gold",
+     "target_weight_g": 5.4,
+     "stone_count": 8,
+     "stone_size_mm": 3.2,
+     "setting_type": "bezel",
+     "prong_count": 4,
+     "min_wall_thickness_mm": 1.11,
+     "chain_type": "cable",
+     "finish": "hammered",
+     "is_pair": false,
+     "is_new_mold": false,
+     "existing_mold_id": "MLD-2024-5"
+    },
+    "fieldsLocked": []
+   },
+   "ruleResults": [],
+   "rejected": false,
+   "cost": {
+    "lines": [
+     {
+      "label": "Metal",
+      "krw": 12960
+     },
+     {
+      "label": "Stones",
+      "krw": 12288
+     },
+     {
+      "label": "Findings",
+      "krw": 3000
+     },
+     {
+      "label": "Chain",
+      "krw": 8000
+     },
+     {
+      "label": "Casting",
+      "krw": 5000
+     },
+     {
+      "label": "Setting labour",
+      "krw": 5600
+     },
+     {
+      "label": "Plating",
+      "krw": 4000
+     },
+     {
+      "label": "Finishing",
+      "krw": 3500
+     },
+     {
+      "label": "Tooling, amortised",
+      "krw": 0
+     }
+    ],
+    "tooling": {
+     "total_tooling_krw": 0,
+     "mold_count_required": 0,
+     "amortization_volume": 500,
+     "tooling_per_unit_krw": 0
+    },
+    "estimated_total_krw": 60870,
+    "estimated_band_krw": [
+     51740,
+     73070
+    ],
+    "cap_ratio": 0.74,
+    "confidence": "low",
+    "assumptions": [
+     "MOQ 300",
+     "Silver and gold priced at 2026-08-01",
+     "Standard setting labour rate",
+     "Amortised over 500 units"
+    ],
+    "excluded_costs": [
+     "Packaging",
+     "Freight",
+     "Vendor margin",
+     "Defect rate",
+     "Sampling"
+    ]
+   },
+   "rationale": {
+    "agent_mode": "trend",
+    "driving_signals": [
+     {
+      "signal_id": "sg_005",
+      "weight": 0.4
+     },
+     {
+      "signal_id": "sg_004",
+      "weight": 0.25
+     }
+    ],
+    "reference_images": [
+     {
+      "ref_id": "rf_569",
+      "source_type": "competitor",
+      "source_url": "https://competitor.example/product/8812",
+      "collected_at": "2026-05-14",
+      "borrowed_attributes": [
+       "setting_type_peg_post",
+       "bail_style_hidden_floating"
+      ],
+      "usage": "attribute_only"
+     },
+     {
+      "ref_id": "rf_426",
+      "source_type": "archive",
+      "source_url": "supabase://uploads/archive_112.jpg",
+      "collected_at": "2026-04-02",
+      "borrowed_attributes": [
+       "proportion"
+      ],
+      "usage": "visual_reference"
+     }
+    ],
+    "reference_prompts": [],
+    "series_dna_inherited": [],
+    "type_placement_reason": "Same last and mould, one new element, cost within 30% more. That is Push.",
+    "narrative": [
+     "포스트/페그 세팅(컵+핀) showed up 3 times in this price band.",
+     "플로팅 펜던트(숨은 베일/체인 통과), observed 2 times, came in as the second axis.",
+     "Same last and mould, one new element, cost within 30% more. That is Push..",
+     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+    ]
+   },
+   "qa": [
+    {
+     "check": "Stone count matches",
+     "target": "8",
+     "observed": "6",
+     "pass": false
+    },
+    {
+     "check": "Setting reads correctly",
+     "target": "bezel",
+     "observed": "bezel",
+     "pass": true
+    },
+    {
+     "check": "Prong count",
+     "target": "4",
+     "observed": "4",
+     "pass": true
+    },
+    {
+     "check": "Same object across three views",
+     "target": ">=0.80",
+     "observed": "0.79",
+     "pass": true
+    }
+   ],
+   "viewMismatch": true,
+   "metrics": [
+    {
+     "label": "Against cost cap",
+     "value": "26% under"
+    },
+    {
+     "label": "New moulds",
+     "value": "0"
+    },
+    {
+     "label": "Signals observed",
+     "value": "5"
+    }
+   ],
+   "modelEval": [
+    {
+     "label": "Brand fit",
+     "value": "Medium",
+     "basis": "How much of the existing last and mould is reused, and silhouette distance from the archive"
+    },
+    {
+     "label": "Distinctiveness",
+     "value": "Medium",
+     "basis": "Attribute distance from competitor products in the same band"
+    },
+    {
+     "label": "Trend backing",
+     "value": "High",
+     "basis": "Observation count and proxy confidence of the linked signals"
+    }
+   ],
+   "colorways": [
+    "gold",
+    "black"
+   ],
+   "images": [
+    {
+     "view": "sketch",
+     "url": "/samples/d2d56b5748114ab6464b89c4.webp",
+     "hash": "d2d56b5748114ab6464b89c4",
+     "origin": "generated",
+     "promptUsed": "A single pendant necklace, shown in straight front view. Construction: bezel setting holding exactly 8 round stones of 3.2mm, brass metal with hammered finish, cable chain. Drawn as a designer's technical sketch: black ink outline on white paper, single consistent line weight, no colour at all, no shading, no material texture, orthographic projection, the kind of drawing that goes on a spec sheet. It should read as part of the season direction: observed market signals to answer: 로듐 코팅 실버 925, 45cm 슬라이더 조절 체인, 베네치안(박스) 체인 채택, 플로팅 펜던트(숨은 베일/체인 통과). Material programme of this line: 925 sterling silver, rhodium plated; stones: cultured pearl (akoya, 7mm, white). No logo, no text, no lettering anywhere on the product. No text, no lettering, no watermark, no human, no props."
+    }
+   ],
+   "isTop": false
+  },
+  {
+   "spec": {
+    "design_id": "JW-26FW-P08",
+    "tier": "push",
+    "category": "jewelry",
+    "itemType": "pendant",
+    "fields": {
+     "metal": "14k gold",
+     "plating": "18k gold",
+     "target_weight_g": 2.5,
+     "stone_count": 5,
+     "stone_size_mm": 3.1,
+     "setting_type": "pave",
+     "prong_count": 4,
+     "min_wall_thickness_mm": 1.55,
+     "chain_type": "box",
+     "finish": "polished",
+     "is_pair": false,
+     "is_new_mold": false,
+     "existing_mold_id": "MLD-2024-11"
+    },
+    "fieldsLocked": []
+   },
+   "ruleResults": [],
+   "rejected": false,
+   "cost": {
+    "lines": [
+     {
+      "label": "Metal",
+      "krw": 52500
+     },
+     {
+      "label": "Stones",
+      "krw": 7440
+     },
+     {
+      "label": "Findings",
+      "krw": 3000
+     },
+     {
+      "label": "Chain",
+      "krw": 8000
+     },
+     {
+      "label": "Casting",
+      "krw": 5000
+     },
+     {
+      "label": "Setting labour",
+      "krw": 7000
+     },
+     {
+      "label": "Plating",
+      "krw": 4000
+     },
+     {
+      "label": "Finishing",
+      "krw": 3500
+     },
+     {
+      "label": "Tooling, amortised",
+      "krw": 0
+     }
+    ],
+    "tooling": {
+     "total_tooling_krw": 0,
+     "mold_count_required": 0,
+     "amortization_volume": 500,
+     "tooling_per_unit_krw": 0
+    },
+    "estimated_total_krw": 101293,
+    "estimated_band_krw": [
+     86099,
+     123938
+    ],
+    "cap_ratio": 1.24,
+    "confidence": "low",
+    "assumptions": [
+     "MOQ 300",
+     "Silver and gold priced at 2026-08-01",
+     "Standard setting labour rate",
+     "Amortised over 500 units"
+    ],
+    "excluded_costs": [
+     "Packaging",
+     "Freight",
+     "Vendor margin",
+     "Defect rate",
+     "Sampling"
+    ]
+   },
+   "rationale": {
+    "agent_mode": "trend",
+    "driving_signals": [
+     {
+      "signal_id": "sg_005",
+      "weight": 0.4
+     },
+     {
+      "signal_id": "sg_007",
+      "weight": 0.25
+     }
+    ],
+    "reference_images": [
+     {
+      "ref_id": "rf_626",
+      "source_type": "competitor",
+      "source_url": "https://competitor.example/product/8812",
+      "collected_at": "2026-05-14",
+      "borrowed_attributes": [
+       "setting_type_peg_post",
+       "accent_stones_small"
+      ],
+      "usage": "attribute_only"
+     },
+     {
+      "ref_id": "rf_204",
+      "source_type": "archive",
+      "source_url": "supabase://uploads/archive_112.jpg",
+      "collected_at": "2026-04-02",
+      "borrowed_attributes": [
+       "proportion"
+      ],
+      "usage": "visual_reference"
+     }
+    ],
+    "reference_prompts": [],
+    "series_dna_inherited": [],
+    "type_placement_reason": "Same last and mould, one new element, cost within 30% more. That is Push.",
+    "narrative": [
+     "포스트/페그 세팅(컵+핀) showed up 3 times in this price band.",
+     "미니 스톤 액센트(지르콘/다이아/토파즈), observed 3 times, came in as the second axis.",
+     "Same last and mould, one new element, cost within 30% more. That is Push..",
+     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+    ]
+   },
+   "qa": [],
+   "viewMismatch": false,
+   "metrics": [
+    {
+     "label": "Against cost cap",
+     "value": "24% over"
+    },
+    {
+     "label": "New moulds",
+     "value": "0"
+    },
+    {
+     "label": "Signals observed",
+     "value": "6"
+    }
+   ],
+   "modelEval": [
+    {
+     "label": "Brand fit",
+     "value": "Medium",
+     "basis": "How much of the existing last and mould is reused, and silhouette distance from the archive"
+    },
+    {
+     "label": "Distinctiveness",
+     "value": "High",
+     "basis": "Attribute distance from competitor products in the same band"
+    },
+    {
+     "label": "Trend backing",
+     "value": "High",
+     "basis": "Observation count and proxy confidence of the linked signals"
+    }
+   ],
+   "colorways": [],
+   "images": [
+    {
+     "view": "sketch",
+     "url": "/samples/bfdd9cababc17676d4f0e776.webp",
+     "hash": "bfdd9cababc17676d4f0e776",
+     "origin": "generated",
+     "promptUsed": "A single pendant necklace, shown in straight front view. Construction: pave setting holding exactly 5 round stones of 3.1mm, 14k gold metal with polished finish, box chain. Drawn as a designer's technical sketch: black ink outline on white paper, single consistent line weight, no colour at all, no shading, no material texture, orthographic projection, the kind of drawing that goes on a spec sheet. It should read as part of the season direction: observed market signals to answer: 로듐 코팅 실버 925, 45cm 슬라이더 조절 체인, 베네치안(박스) 체인 채택, 플로팅 펜던트(숨은 베일/체인 통과). Material programme of this line: 925 sterling silver, rhodium plated; stones: cultured pearl (akoya, 7mm, white). No logo, no text, no lettering anywhere on the product. No text, no lettering, no watermark, no human, no props."
+    }
+   ],
+   "isTop": false
+  },
+  {
+   "spec": {
+    "design_id": "JW-26FW-S09",
+    "tier": "signature",
+    "category": "jewelry",
+    "itemType": "pendant",
+    "fields": {
+     "metal": "925 silver",
+     "plating": "rhodium",
+     "target_weight_g": 6.2,
+     "stone_count": 10,
+     "stone_size_mm": 4.5,
+     "setting_type": "channel",
+     "prong_count": 4,
+     "min_wall_thickness_mm": 1.17,
+     "chain_type": "box",
+     "finish": "polished",
+     "is_pair": false,
+     "is_new_mold": false,
+     "existing_mold_id": "MLD-2024-18"
+    },
+    "fieldsLocked": []
+   },
+   "ruleResults": [],
+   "rejected": false,
+   "cost": {
+    "lines": [
+     {
+      "label": "Metal",
+      "krw": 40920
+     },
+     {
+      "label": "Stones",
+      "krw": 21600
+     },
+     {
+      "label": "Findings",
+      "krw": 3000
+     },
+     {
+      "label": "Chain",
+      "krw": 8000
+     },
+     {
+      "label": "Casting",
+      "krw": 5000
+     },
+     {
+      "label": "Setting labour",
+      "krw": 7000
+     },
+     {
+      "label": "Plating",
+      "krw": 4000
+     },
+     {
+      "label": "Finishing",
+      "krw": 3500
+     },
+     {
+      "label": "Tooling, amortised",
+      "krw": 0
+     }
+    ],
+    "tooling": {
+     "total_tooling_krw": 0,
+     "mold_count_required": 0,
+     "amortization_volume": 500,
+     "tooling_per_unit_krw": 0
+    },
+    "estimated_total_krw": 104182,
+    "estimated_band_krw": [
+     88555,
+     124865
+    ],
+    "cap_ratio": 1.27,
+    "confidence": "low",
+    "assumptions": [
+     "MOQ 300",
+     "Silver and gold priced at 2026-08-01",
+     "Standard setting labour rate",
+     "Amortised over 500 units"
+    ],
+    "excluded_costs": [
+     "Packaging",
+     "Freight",
+     "Vendor margin",
+     "Defect rate",
+     "Sampling"
+    ]
+   },
+   "rationale": {
+    "agent_mode": "trend",
+    "driving_signals": [
+     {
+      "signal_id": "sg_005",
+      "weight": 0.4
+     },
+     {
+      "signal_id": "sg_007",
+      "weight": 0.25
+     }
+    ],
+    "reference_images": [
+     {
+      "ref_id": "rf_836",
+      "source_type": "competitor",
+      "source_url": "https://competitor.example/product/8812",
+      "collected_at": "2026-05-14",
+      "borrowed_attributes": [
+       "setting_type_peg_post",
+       "accent_stones_small"
+      ],
+      "usage": "attribute_only"
+     },
+     {
+      "ref_id": "rf_880",
+      "source_type": "archive",
+      "source_url": "supabase://uploads/archive_112.jpg",
+      "collected_at": "2026-04-02",
+      "borrowed_attributes": [
+       "proportion"
+      ],
+      "usage": "visual_reference"
+     }
+    ],
+    "reference_prompts": [],
+    "series_dna_inherited": [],
+    "type_placement_reason": "New tooling allowed with amortisation stated. Experimental, so Signature.",
+    "narrative": [
+     "포스트/페그 세팅(컵+핀) showed up 3 times in this price band.",
+     "미니 스톤 액센트(지르콘/다이아/토파즈), observed 3 times, came in as the second axis.",
+     "New tooling allowed with amortisation stated. Experimental, so Signature..",
+     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+    ]
+   },
+   "qa": [],
+   "viewMismatch": false,
+   "metrics": [
+    {
+     "label": "Against cost cap",
+     "value": "27% over"
+    },
+    {
+     "label": "New moulds",
+     "value": "0"
+    },
+    {
+     "label": "Signals observed",
+     "value": "6"
+    }
+   ],
+   "modelEval": [
+    {
+     "label": "Brand fit",
+     "value": "Medium",
+     "basis": "How much of the existing last and mould is reused, and silhouette distance from the archive"
+    },
+    {
+     "label": "Distinctiveness",
+     "value": "Medium",
+     "basis": "Attribute distance from competitor products in the same band"
+    },
+    {
+     "label": "Trend backing",
+     "value": "High",
+     "basis": "Observation count and proxy confidence of the linked signals"
+    }
+   ],
+   "colorways": [],
+   "images": [
+    {
+     "view": "sketch",
+     "url": "/samples/a512ce03f0c61c7f5d22cdd8.webp",
+     "hash": "a512ce03f0c61c7f5d22cdd8",
+     "origin": "generated",
+     "promptUsed": "A single pendant necklace, shown in straight front view. Construction: channel setting holding exactly 10 round stones of 4.5mm, 925 silver metal with polished finish, box chain. Drawn as a designer's technical sketch: black ink outline on white paper, single consistent line weight, no colour at all, no shading, no material texture, orthographic projection, the kind of drawing that goes on a spec sheet. It should read as part of the season direction: observed market signals to answer: 로듐 코팅 실버 925, 45cm 슬라이더 조절 체인, 베네치안(박스) 체인 채택, 플로팅 펜던트(숨은 베일/체인 통과). Material programme of this line: 925 sterling silver, rhodium plated; stones: cultured pearl (akoya, 7mm, white). No logo, no text, no lettering anywhere on the product. No text, no lettering, no watermark, no human, no props."
+    }
+   ],
+   "isTop": false
+  },
+  {
+   "spec": {
+    "design_id": "JW-26FW-S10",
+    "tier": "signature",
+    "category": "jewelry",
+    "itemType": "pendant",
+    "fields": {
+     "metal": "14k gold",
+     "plating": "rhodium",
+     "target_weight_g": 5.7,
+     "stone_count": 8,
+     "stone_size_mm": 1.2,
+     "setting_type": "pave",
+     "prong_count": 3,
+     "min_wall_thickness_mm": 0.87,
+     "chain_type": "box",
+     "finish": "polished",
+     "is_pair": false,
+     "is_new_mold": true,
+     "existing_mold_id": "MLD-2024-4"
+    },
+    "fieldsLocked": []
+   },
+   "ruleResults": [
+    {
+     "rule": "J-CAP",
+     "severity": "warn",
+     "message": "Cost sits at 218% against a 200% cap"
+    }
+   ],
+   "rejected": false,
+   "cost": {
+    "lines": [
+     {
+      "label": "Metal",
+      "krw": 119700
+     },
+     {
+      "label": "Stones",
+      "krw": 4608
+     },
+     {
+      "label": "Findings",
+      "krw": 3000
+     },
+     {
+      "label": "Chain",
+      "krw": 8000
+     },
+     {
+      "label": "Casting",
+      "krw": 5000
+     },
+     {
+      "label": "Setting labour",
+      "krw": 11200
+     },
+     {
+      "label": "Plating",
+      "krw": 4000
+     },
+     {
+      "label": "Finishing",
+      "krw": 3500
+     },
+     {
+      "label": "Tooling, amortised",
+      "krw": 960
+     }
+    ],
+    "tooling": {
+     "total_tooling_krw": 480000,
+     "mold_count_required": 1,
+     "amortization_volume": 500,
+     "tooling_per_unit_krw": 960
+    },
+    "estimated_total_krw": 179164,
+    "estimated_band_krw": [
+     152289,
+     218890
+    ],
+    "cap_ratio": 2.18,
+    "confidence": "low",
+    "assumptions": [
+     "MOQ 300",
+     "Silver and gold priced at 2026-08-01",
+     "Standard setting labour rate",
+     "Amortised over 500 units"
+    ],
+    "excluded_costs": [
+     "Packaging",
+     "Freight",
+     "Vendor margin",
+     "Defect rate",
+     "Sampling"
+    ]
+   },
+   "rationale": {
+    "agent_mode": "trend",
+    "driving_signals": [
+     {
+      "signal_id": "sg_002",
+      "weight": 0.4
+     },
+     {
+      "signal_id": "sg_006",
+      "weight": 0.25
+     }
+    ],
+    "reference_images": [
+     {
+      "ref_id": "rf_962",
+      "source_type": "competitor",
+      "source_url": "https://competitor.example/product/8812",
+      "collected_at": "2026-05-14",
+      "borrowed_attributes": [
+       "chain_length_adjustable_40_45cm",
+       "frame_shape_v_bail"
+      ],
+      "usage": "attribute_only"
+     },
+     {
+      "ref_id": "rf_279",
+      "source_type": "archive",
+      "source_url": "supabase://uploads/archive_112.jpg",
+      "collected_at": "2026-04-02",
+      "borrowed_attributes": [
+       "proportion"
+      ],
+      "usage": "visual_reference"
+     }
+    ],
+    "reference_prompts": [],
+    "series_dna_inherited": [],
+    "type_placement_reason": "New tooling allowed with amortisation stated. Experimental, so Signature.",
+    "narrative": [
+     "45cm 슬라이더 조절 체인 showed up 4 times in this price band.",
+     "V자 프레임/베일 디테일, observed 3 times, came in as the second axis.",
+     "New tooling allowed with amortisation stated. Experimental, so Signature..",
+     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+    ]
+   },
+   "qa": [],
+   "viewMismatch": false,
+   "metrics": [
+    {
+     "label": "Against cost cap",
+     "value": "118% over"
+    },
+    {
+     "label": "New moulds",
+     "value": "1"
+    },
+    {
+     "label": "Signals observed",
+     "value": "7"
+    }
+   ],
+   "modelEval": [
+    {
+     "label": "Brand fit",
+     "value": "Medium",
+     "basis": "How much of the existing last and mould is reused, and silhouette distance from the archive"
+    },
+    {
+     "label": "Distinctiveness",
+     "value": "Low",
+     "basis": "Attribute distance from competitor products in the same band"
+    },
+    {
+     "label": "Trend backing",
+     "value": "High",
+     "basis": "Observation count and proxy confidence of the linked signals"
+    }
+   ],
+   "colorways": [],
+   "images": [
+    {
+     "view": "sketch",
+     "url": "/samples/0d09af5a5dcf3a3476aafdda.webp",
+     "hash": "0d09af5a5dcf3a3476aafdda",
+     "origin": "generated",
+     "promptUsed": "A single pendant necklace, shown in straight front view. Construction: pave setting holding exactly 8 round stones of 1.2mm, 14k gold metal with polished finish, box chain. Drawn as a designer's technical sketch: black ink outline on white paper, single consistent line weight, no colour at all, no shading, no material texture, orthographic projection, the kind of drawing that goes on a spec sheet. It should read as part of the season direction: observed market signals to answer: 로듐 코팅 실버 925, 45cm 슬라이더 조절 체인, 베네치안(박스) 체인 채택, 플로팅 펜던트(숨은 베일/체인 통과). Material programme of this line: 925 sterling silver, rhodium plated; stones: cultured pearl (akoya, 7mm, white). No logo, no text, no lettering anywhere on the product. No text, no lettering, no watermark, no human, no props."
+    }
+   ],
+   "isTop": false
+  },
+  {
+   "spec": {
+    "design_id": "JW-26FW-S11",
+    "tier": "signature",
+    "category": "jewelry",
+    "itemType": "pendant",
+    "fields": {
+     "metal": "14k gold",
+     "plating": "18k gold",
+     "target_weight_g": 6.9,
+     "stone_count": 2,
+     "stone_size_mm": 4.5,
+     "setting_type": "channel",
+     "prong_count": 6,
+     "min_wall_thickness_mm": 1.57,
+     "chain_type": "cable",
+     "finish": "hammered",
+     "is_pair": false,
+     "is_new_mold": false,
+     "existing_mold_id": "MLD-2024-18"
+    },
+    "fieldsLocked": []
+   },
+   "ruleResults": [
+    {
+     "rule": "J-CAP",
+     "severity": "warn",
+     "message": "Cost sits at 238% against a 200% cap"
+    }
+   ],
+   "rejected": false,
+   "cost": {
+    "lines": [
+     {
+      "label": "Metal",
+      "krw": 144900
+     },
+     {
+      "label": "Stones",
+      "krw": 4320
+     },
+     {
+      "label": "Findings",
+      "krw": 3000
+     },
+     {
+      "label": "Chain",
+      "krw": 8000
+     },
+     {
+      "label": "Casting",
+      "krw": 5000
+     },
+     {
+      "label": "Setting labour",
+      "krw": 1400
+     },
+     {
+      "label": "Plating",
+      "krw": 4000
+     },
+     {
+      "label": "Finishing",
+      "krw": 3500
+     },
+     {
+      "label": "Tooling, amortised",
+      "krw": 0
+     }
+    ],
+    "tooling": {
+     "total_tooling_krw": 0,
+     "mold_count_required": 0,
+     "amortization_volume": 500,
+     "tooling_per_unit_krw": 0
+    },
+    "estimated_total_krw": 195014,
+    "estimated_band_krw": [
+     165762,
+     230998
+    ],
+    "cap_ratio": 2.38,
+    "confidence": "low",
+    "assumptions": [
+     "MOQ 300",
+     "Silver and gold priced at 2026-08-01",
+     "Standard setting labour rate",
+     "Amortised over 500 units"
+    ],
+    "excluded_costs": [
+     "Packaging",
+     "Freight",
+     "Vendor margin",
+     "Defect rate",
+     "Sampling"
+    ]
+   },
+   "rationale": {
+    "agent_mode": "trend",
+    "driving_signals": [
+     {
+      "signal_id": "sg_002",
+      "weight": 0.4
+     },
+     {
+      "signal_id": "sg_005",
+      "weight": 0.25
+     }
+    ],
+    "reference_images": [
+     {
+      "ref_id": "rf_446",
+      "source_type": "competitor",
+      "source_url": "https://competitor.example/product/8812",
+      "collected_at": "2026-05-14",
+      "borrowed_attributes": [
+       "chain_length_adjustable_40_45cm",
+       "setting_type_peg_post"
+      ],
+      "usage": "attribute_only"
+     },
+     {
+      "ref_id": "rf_137",
+      "source_type": "archive",
+      "source_url": "supabase://uploads/archive_112.jpg",
+      "collected_at": "2026-04-02",
+      "borrowed_attributes": [
+       "proportion"
+      ],
+      "usage": "visual_reference"
+     }
+    ],
+    "reference_prompts": [],
+    "series_dna_inherited": [],
+    "type_placement_reason": "New tooling allowed with amortisation stated. Experimental, so Signature.",
+    "narrative": [
+     "45cm 슬라이더 조절 체인 showed up 4 times in this price band.",
+     "포스트/페그 세팅(컵+핀), observed 3 times, came in as the second axis.",
+     "New tooling allowed with amortisation stated. Experimental, so Signature..",
+     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+    ]
+   },
+   "qa": [],
+   "viewMismatch": false,
+   "metrics": [
+    {
+     "label": "Against cost cap",
+     "value": "138% over"
+    },
+    {
+     "label": "New moulds",
+     "value": "0"
+    },
+    {
+     "label": "Signals observed",
+     "value": "7"
+    }
+   ],
+   "modelEval": [
+    {
+     "label": "Brand fit",
+     "value": "High",
+     "basis": "How much of the existing last and mould is reused, and silhouette distance from the archive"
+    },
+    {
+     "label": "Distinctiveness",
+     "value": "Low",
+     "basis": "Attribute distance from competitor products in the same band"
+    },
+    {
+     "label": "Trend backing",
+     "value": "Medium",
+     "basis": "Observation count and proxy confidence of the linked signals"
+    }
+   ],
+   "colorways": [],
+   "images": [
+    {
+     "view": "sketch",
+     "url": "/samples/73d55ef058ab11ff5beabd79.webp",
+     "hash": "73d55ef058ab11ff5beabd79",
+     "origin": "generated",
+     "promptUsed": "A single pendant necklace, shown in straight front view. Construction: channel setting holding exactly 2 round stones of 4.5mm, 14k gold metal with hammered finish, cable chain. Drawn as a designer's technical sketch: black ink outline on white paper, single consistent line weight, no colour at all, no shading, no material texture, orthographic projection, the kind of drawing that goes on a spec sheet. It should read as part of the season direction: observed market signals to answer: 로듐 코팅 실버 925, 45cm 슬라이더 조절 체인, 베네치안(박스) 체인 채택, 플로팅 펜던트(숨은 베일/체인 통과). Material programme of this line: 925 sterling silver, rhodium plated; stones: cultured pearl (akoya, 7mm, white). No logo, no text, no lettering anywhere on the product. No text, no lettering, no watermark, no human, no props."
+    }
+   ],
+   "isTop": false
+  },
+  {
+   "spec": {
+    "design_id": "JW-26FW-S12",
+    "tier": "signature",
+    "category": "jewelry",
+    "itemType": "pendant",
+    "fields": {
+     "metal": "925 silver",
+     "plating": "18k gold",
+     "target_weight_g": 6.1,
+     "stone_count": 10,
+     "stone_size_mm": 1.4,
+     "setting_type": "bezel",
+     "prong_count": 4,
+     "min_wall_thickness_mm": 1.32,
+     "chain_type": "box",
+     "finish": "polished",
+     "is_pair": false,
+     "is_new_mold": true,
+     "existing_mold_id": "MLD-2024-14"
+    },
+    "fieldsLocked": []
+   },
+   "ruleResults": [],
+   "rejected": false,
+   "cost": {
+    "lines": [
+     {
+      "label": "Metal",
+      "krw": 40260
+     },
+     {
+      "label": "Stones",
+      "krw": 6720
+     },
+     {
+      "label": "Findings",
+      "krw": 3000
+     },
+     {
+      "label": "Chain",
+      "krw": 8000
+     },
+     {
+      "label": "Casting",
+      "krw": 5000
+     },
+     {
+      "label": "Setting labour",
+      "krw": 7000
+     },
+     {
+      "label": "Plating",
+      "krw": 4000
+     },
+     {
+      "label": "Finishing",
+      "krw": 3500
+     },
+     {
+      "label": "Tooling, amortised",
+      "krw": 960
+     }
+    ],
+    "tooling": {
+     "total_tooling_krw": 480000,
+     "mold_count_required": 1,
+     "amortization_volume": 500,
+     "tooling_per_unit_krw": 960
+    },
+    "estimated_total_krw": 87853,
+    "estimated_band_krw": [
+     74675,
+     105173
+    ],
+    "cap_ratio": 1.07,
+    "confidence": "low",
+    "assumptions": [
+     "MOQ 300",
+     "Silver and gold priced at 2026-08-01",
+     "Standard setting labour rate",
+     "Amortised over 500 units"
+    ],
+    "excluded_costs": [
+     "Packaging",
+     "Freight",
+     "Vendor margin",
+     "Defect rate",
+     "Sampling"
+    ]
+   },
+   "rationale": {
+    "agent_mode": "trend",
+    "driving_signals": [
+     {
+      "signal_id": "sg_005",
+      "weight": 0.4
+     },
+     {
+      "signal_id": "sg_006",
+      "weight": 0.25
+     }
+    ],
+    "reference_images": [
+     {
+      "ref_id": "rf_570",
+      "source_type": "competitor",
+      "source_url": "https://competitor.example/product/8812",
+      "collected_at": "2026-05-14",
+      "borrowed_attributes": [
+       "setting_type_peg_post",
+       "frame_shape_v_bail"
+      ],
+      "usage": "attribute_only"
+     },
+     {
+      "ref_id": "rf_495",
+      "source_type": "archive",
+      "source_url": "supabase://uploads/archive_112.jpg",
+      "collected_at": "2026-04-02",
+      "borrowed_attributes": [
+       "proportion"
+      ],
+      "usage": "visual_reference"
+     }
+    ],
+    "reference_prompts": [],
+    "series_dna_inherited": [],
+    "type_placement_reason": "New tooling allowed with amortisation stated. Experimental, so Signature.",
+    "narrative": [
+     "포스트/페그 세팅(컵+핀) showed up 3 times in this price band.",
+     "V자 프레임/베일 디테일, observed 3 times, came in as the second axis.",
+     "New tooling allowed with amortisation stated. Experimental, so Signature..",
+     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+    ]
+   },
+   "qa": [
+    {
+     "check": "Stone count matches",
+     "target": "10",
+     "observed": "10",
+     "pass": true
+    },
+    {
+     "check": "Setting reads correctly",
+     "target": "bezel",
+     "observed": "bezel",
+     "pass": true
+    },
+    {
+     "check": "Prong count",
+     "target": "4",
+     "observed": "4",
+     "pass": true
+    },
+    {
+     "check": "Same object across three views",
+     "target": ">=0.80",
+     "observed": "0.90",
+     "pass": true
+    }
+   ],
+   "viewMismatch": false,
+   "metrics": [
+    {
+     "label": "Against cost cap",
+     "value": "7% over"
+    },
+    {
+     "label": "New moulds",
+     "value": "1"
+    },
+    {
+     "label": "Signals observed",
+     "value": "6"
+    }
+   ],
+   "modelEval": [
+    {
+     "label": "Brand fit",
+     "value": "High",
+     "basis": "How much of the existing last and mould is reused, and silhouette distance from the archive"
+    },
+    {
+     "label": "Distinctiveness",
+     "value": "Medium",
+     "basis": "Attribute distance from competitor products in the same band"
+    },
+    {
+     "label": "Trend backing",
+     "value": "High",
+     "basis": "Observation count and proxy confidence of the linked signals"
+    }
+   ],
+   "colorways": [
+    "gold",
+    "black"
+   ],
+   "images": [
+    {
+     "view": "sketch",
+     "url": "/samples/cb293c8fe1a2753579db468a.webp",
+     "hash": "cb293c8fe1a2753579db468a",
+     "origin": "generated",
+     "promptUsed": "A single pendant necklace, shown in straight front view. Construction: bezel setting holding exactly 10 round stones of 1.4mm, 925 silver metal with polished finish, box chain. Drawn as a designer's technical sketch: black ink outline on white paper, single consistent line weight, no colour at all, no shading, no material texture, orthographic projection, the kind of drawing that goes on a spec sheet. It should read as part of the season direction: observed market signals to answer: 로듐 코팅 실버 925, 45cm 슬라이더 조절 체인, 베네치안(박스) 체인 채택, 플로팅 펜던트(숨은 베일/체인 통과). Material programme of this line: 925 sterling silver, rhodium plated; stones: cultured pearl (akoya, 7mm, white). No logo, no text, no lettering anywhere on the product. No text, no lettering, no watermark, no human, no props."
+    }
+   ],
+   "isTop": false
+  }
+ ],
+ "checkpoints": [
+  "S1 done · signals.json · directions[3] saved",
+  "S2 done · specs, sketches and rationale saved. You can resume at S3 days later.",
+  "S3 done · renders, colourways and QA results saved"
+ ],
+ "finished": true,
+ "sampleTitle": "Akoya pearl pendant - trend, through S3",
+ "savedAtISO": "2026-08-06T17:24:20.229Z"
+}

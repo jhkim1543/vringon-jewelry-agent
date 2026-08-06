@@ -2,7 +2,7 @@
 // 도시에와 같은 뼈대를 쓴다. 이쪽은 서술형 리포트라 장수가 적다.
 // 화면(Run)에서는 텍스트로 읽고, 여기서는 발표에 그대로 쓸 수 있는 형태로 나간다.
 import type { RunState, Design } from './types'
-import { CAT_LABEL, MODE_LABEL, TYPE_LABEL } from './types'
+import { CAT_LABEL, MODE_LABEL, TYPE_LABEL, metalProgramOf, stoneProgramOf } from './types'
 import type { TrendReport } from './research'
 import { downloadDeck, esc, printDeck, slide } from './deck'
 
@@ -27,6 +27,9 @@ function build(st: RunState): { title: string; html: string } {
   const band = p.mode === 'trend'
     ? `KRW ${(p.trend.priceMinKrw / 10000).toFixed(0)}0k–${(p.trend.priceMaxKrw / 10000).toFixed(0)}0k · ${p.trend.priceBand}`
     : ''
+  // 조사 지문 · 표지가 "무엇을 보고 쓴 리포트인지"를 먼저 밝힌다
+  const lineStr = p.line ? `${metalProgramOf(p.line)} · ${stoneProgramOf(p.line)}` : ''
+  const captured = (st.dossier as { collected_at?: string } | null)?.collected_at ?? ''
   const eyebrow = `${item} trend report`
   const out: string[] = []
   let page = 0
@@ -41,8 +44,8 @@ function build(st: RunState): { title: string; html: string } {
         <div style="font-size:7pt;letter-spacing:.24em;opacity:.75;margin-top:1mm">TREND REPORT</div>
         <h1 class="title" style="margin-top:auto;color:#fff;font-size:26pt">${esc(rep.title)}</h1>
         <div style="margin-top:auto;font-size:8pt;opacity:.85;line-height:1.7">
-          ${esc(item)}${band ? `<br>${esc(band)}` : ''}<br>
-          ${esc(MODE_LABEL[p.mode])} mode · ${st.signals.length} signals
+          ${esc(item)}${lineStr ? `<br>${esc(lineStr)}` : ''}${band ? `<br>${esc(band)}` : ''}<br>
+          ${esc(MODE_LABEL[p.mode])} mode · ${st.signals.length} signals${captured ? ` · collected ${esc(captured)}` : ''}
         </div>
       </div>
       <div style="flex:1.15">${img(at(pool.concept, 0) || at(pool.any, 0))}</div>
@@ -78,6 +81,29 @@ function build(st: RunState): { title: string; html: string } {
       </div>
     </div>`,
   }))
+
+  // 관찰한 경쟁 제품 · 신호의 원천이 된 실제 제품 사진. 링크가 죽은 사진은 칸째로 숨긴다.
+  const compShots = (st.competitors ?? [])
+    .map(c => ({ c, u: (c.image_urls ?? [])[0] ?? '' }))
+    .filter(x => x.u)
+    .slice(0, 8)
+  if (compShots.length) {
+    out.push(slide({
+      eyebrow, tag: 'OBSERVED', page: P(),
+      body: `<h2 class="stitle">What was actually seen <span class="thin">competitor products behind the signals</span></h2>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5mm;margin-top:4mm">
+          ${compShots.map(({ c, u }) => `<div class="frame" style="display:flex;flex-direction:column">
+            <img class="ph" src="${esc(u)}" alt="" style="height:34mm;object-fit:cover"
+              onerror="this.closest('.frame').style.display='none'">
+            <div style="font-size:7pt;padding:1.5mm 0;line-height:1.45">
+              <b>${esc(c.brand)}</b> ${esc(c.name)}<br>
+              <span style="color:#8A9099">${c.price_krw ? `KRW ${(c.price_krw / 10000).toFixed(1)}만` : ''}${c.competitor_class ? ` · ${esc(c.competitor_class)}` : ''} · ${esc(c.product_id)}</span>
+            </div>
+          </div>`).join('')}
+        </div>
+        <div class="note" style="margin-top:4mm">Photographs are the retailers' own product imagery, referenced for research. Each card carries the product id used across this report.</div>`,
+    }))
+  }
 
   // 디자인 시사점
   if (rep.design_implications?.length) {
@@ -118,6 +144,24 @@ function build(st: RunState): { title: string; html: string } {
     }))
   }
 
+  // 이 조사가 만든 디자인 · 리포트가 시사점에서 끝나지 않고 결과물까지 이어졌음을 보인다
+  const gallery = st.designs
+    .flatMap(d => d.images.filter(i => i.url && i.view !== 'sketch').slice(0, 1).map(i => ({ id: d.spec.design_id, tier: d.spec.tier, url: i.url })))
+    .slice(0, 8)
+  if (gallery.length) {
+    out.push(slide({
+      eyebrow, tag: 'ANSWERED', page: P(),
+      body: `<h2 class="stitle">What the research produced <span class="thin">designs that answer the signals</span></h2>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5mm;margin-top:4mm">
+          ${gallery.map(g => `<div class="frame" style="display:flex;flex-direction:column">
+            <img class="ph" src="${esc(g.url)}" alt="" style="height:38mm;object-fit:cover">
+            <div style="font-size:7pt;padding:1.5mm 0"><b>${esc(g.id)}</b> <span style="color:#8A9099">${esc(g.tier)}</span></div>
+          </div>`).join('')}
+        </div>
+        <div class="note" style="margin-top:4mm">Generated imagery. Prompts carried the observed signals, the season direction and the line's material programme.</div>`,
+    }))
+  }
+
   // 미확인 + 출처
   out.push(slide({
     eyebrow, tag: 'SOURCES', page: P(),
@@ -126,7 +170,7 @@ function build(st: RunState): { title: string; html: string } {
         <div>
           <h3 class="sub">Every claim traces here</h3>
           <table class="src">
-            ${(rep.sources ?? []).map((s, i) => `<tr><td class="n">${i + 1}</td><td class="u">${esc(s)}</td></tr>`).join('')}
+            ${(rep.sources ?? []).map((s, i) => `<tr><td class="n">rp.e${i + 1}</td><td class="u">${esc(s)}</td></tr>`).join('')}
           </table>
         </div>
         <div>

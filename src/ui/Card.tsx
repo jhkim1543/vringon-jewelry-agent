@@ -2,7 +2,7 @@
 import { t } from '../core/i18n'
 import { useState } from 'react'
 import type { Design, Signal } from '../core/types'
-import { TIER_LABEL, TYPE_LABEL, CAT_LABEL, VERDICT_TAGS } from '../core/types'
+import { TIER_LABEL, TYPE_LABEL, CAT_LABEL, VERDICT_TAGS, evidenceId } from '../core/types'
 import { PACKS } from '../core/packs'
 import { designSVG, svgDataUri } from '../core/sketch'
 import { Tag } from './bits'
@@ -155,7 +155,7 @@ export function RationalePanel({ d, signals }: { d: Design; signals: Signal[] })
               <span>{s.label} · seen {s.observed_count}x · w={ds.weight}
                 {s.sales_proxy_score != null && ` · proxy ${s.sales_proxy_score} (${s.proxy_confidence})`}
                 {s.page_ref && ` · ${s.page_ref}`}
-                {' '}{s.sources.slice(0, 2).map((u, i) => <a key={i} href={u} target="_blank" rel="noreferrer">[{i + 1}]</a>)}
+                {' '}{s.sources.slice(0, 2).map((u, i) => <a key={i} href={u} target="_blank" rel="noreferrer" title={u}>[{evidenceId(s.signal_id, i)}]</a>)}
               </span>
             </div>
           )

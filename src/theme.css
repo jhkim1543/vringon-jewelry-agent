@@ -414,6 +414,23 @@ button { cursor: pointer; background: none; border: none; }
 .pick.on { background: var(--accent-soft); color: var(--accent-hi); border-color: var(--accent); }
 .pick .pk-n { font-size: 11.5px; font-weight: 500; color: var(--text-3); }
 
+/* 전문가 설정 · 기본은 접혀 있다. 채우지 않는 게 정상인 값들이라 시야에서 비켜 둔다 */
+.expertbox {
+  margin-top: 18px; border: 1px solid var(--line-2); border-radius: var(--r-8);
+  padding: 0 14px; background: var(--bg-2);
+}
+.expertbox[open] { padding-bottom: 14px; }
+.expertbox > summary {
+  cursor: pointer; padding: 11px 0; font-size: 13px; font-weight: 600; color: var(--text-2);
+  list-style: none; display: flex; align-items: baseline; gap: 4px;
+}
+.expertbox > summary::-webkit-details-marker { display: none; }
+.expertbox > summary::before { content: '▸'; font-size: 11px; color: var(--text-3); margin-right: 6px; transition: transform .15s; display: inline-block; }
+.expertbox[open] > summary::before { transform: rotate(90deg); }
+.expertbox > summary .hint { font-weight: 500; color: var(--text-3); font-size: 12px; }
+.expertbox .stack { margin-top: 12px; }
+.expertbox .note { font-size: 12.5px; line-height: 1.6; color: var(--text-3); margin-top: 12px; }
+
 .chiplist { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
 .chip-in {
   display: inline-flex; align-items: center; gap: 8px; padding: 4px 5px 4px 11px;

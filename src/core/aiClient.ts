@@ -1,8 +1,8 @@
 // ── 이미지 생성 클라이언트 · OpenAI gpt-image-1 (서버 프록시 경유) ────
 // 키는 서버(Vite dev 미들웨어 / server/openai-api.mjs)에만 존재한다.
 // 브라우저 번들에는 키가 들어가지 않는다 (VITE_ prefix 사용 금지).
-import type { Category, DesignSpec } from './types'
-import { TYPE_EN } from './types'
+import type { Category, DesignSpec, LineProfile } from './types'
+import { TYPE_EN, metalProgramOf, stoneProgramOf } from './types'
 import type { EngineId } from './imageEngines'
 import { shapePrompt } from './imageEngines'
 import type { BrandIdentity } from './brand'
@@ -88,24 +88,35 @@ function jewelSpecPhrase(spec: DesignSpec): string {
   return parts.join(', ')
 }
 
-export function sketchPrompt(spec: DesignSpec, engine: EngineId = 'detail', brand?: BrandIdentity, trend?: TrendClauseInput | null): string {
+/** 라인 프로필을 프롬프트 구절로 · 스펙의 metal/finish 와 별개로, 라인이 정한
+ *  소재 프로그램(도금 두께·4Cs·진주 등급·TCW 상한)을 모든 컷에 고정한다 */
+export function linePromptClause(l?: LineProfile | null): string {
+  if (!l) return ''
+  const metal = metalProgramOf(l)
+  const stone = l.stone === 'none' ? '' : stoneProgramOf(l)
+  return stone
+    ? `Material programme of this line: ${metal}; stones: ${stone}.`
+    : `Material programme of this line: ${metal}.`
+}
+
+export function sketchPrompt(spec: DesignSpec, engine: EngineId = 'detail', brand?: BrandIdentity, trend?: TrendClauseInput | null, line?: LineProfile | null): string {
   const subject = en(spec.itemType, 'jewelry piece')
   const view = JEWEL_VIEW.front
   const specStr = jewelSpecPhrase(spec)
   return shapePrompt(engine, {
     subject, spec: specStr, view,
-    brand: [trendPromptClause(trend ?? null), brand ? brandPromptClause(brand) : ''].filter(Boolean).join(' '),
+    brand: [trendPromptClause(trend ?? null), linePromptClause(line), brand ? brandPromptClause(brand) : ''].filter(Boolean).join(' '),
     mode: 'sketch',
   })
 }
 
-export function renderPrompt(spec: DesignSpec, engine: EngineId = 'detail', brand?: BrandIdentity, trend?: TrendClauseInput | null): string {
+export function renderPrompt(spec: DesignSpec, engine: EngineId = 'detail', brand?: BrandIdentity, trend?: TrendClauseInput | null, line?: LineProfile | null): string {
   const subject = en(spec.itemType, 'jewelry piece')
   const view = JEWEL_VIEW.front
   const specStr = jewelSpecPhrase(spec)
   return shapePrompt(engine, {
     subject, spec: specStr, view,
-    brand: [trendPromptClause(trend ?? null), brand ? brandPromptClause(brand) : ''].filter(Boolean).join(' '),
+    brand: [trendPromptClause(trend ?? null), linePromptClause(line), brand ? brandPromptClause(brand) : ''].filter(Boolean).join(' '),
     mode: 'render',
   })
 }
@@ -322,12 +333,15 @@ export interface TrendClauseInput {
   details?: string[]
   colors?: { name: string; hex: string }[]
   keySpec?: string
+  /** 조사에서 확정된 신호 키워드 · 도시에가 늦거나 실패해도 이것만은 프롬프트에 실린다 */
+  signals?: string[]
 }
 
 export function trendPromptClause(t: TrendClauseInput | null): string {
   if (!t) return ''
   const bits: string[] = []
   if (t.keySpec) bits.push(t.keySpec)
+  if (t.signals?.length) bits.push(`observed market signals to answer: ${t.signals.slice(0, 4).join(', ')}`)
   if (t.materials?.length) bits.push(`season materials: ${t.materials.slice(0, 3).join(', ')}`)
   if (t.details?.length) bits.push(`season details: ${t.details.slice(0, 3).join(', ')}`)
   if (t.colors?.length) bits.push(`season palette: ${t.colors.slice(0, 3).map(c => `${c.name} ${c.hex}`).join(', ')}`)
