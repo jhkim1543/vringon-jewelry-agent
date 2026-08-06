@@ -25,8 +25,10 @@
 3. 푸시 전에 스테이징된 파일을 반드시 스캔하고 결과가 0이어야 합니다.
 
 ```bash
-git add -A && git diff --cached --name-only -z | xargs -0 -I{} sh -c 'grep -IlE "sk-proj-|sk-ant-|gho_|ghp_|github_pat_|AIza[0-9A-Za-z_-]{30}|tsk_[0-9a-f]{16}" "{}" 2>/dev/null' | wc -l
+git add -A && git diff --cached --name-only -z | xargs -0 -I{} sh -c 'grep -IlE "sk[-]proj-|sk[-]ant-|gho[_]|ghp[_]|github[_]pat_|AIza[0-9A-Za-z_-]{30}|tsk[_][0-9a-f]{16}" "{}" 2>/dev/null' | wc -l
 ```
+
+패턴의 일부를 `sk[-]proj-` 처럼 문자 클래스로 쪼개 둔 이유가 있습니다. 정규식으로는 동일하게 동작하지만, 이 문서 자체가 스캔에 걸리지 않게 하려는 것입니다. 그냥 적으면 이 저장소의 스캔 결과가 영원히 1이 되어 진짜 유출을 구분하지 못하게 됩니다.
 
 `.env` 에 들어 있는 키 이름: OPENAI_API_KEY, OPENAI_DEEP_RESEARCH_KEY, OPENAI_DEEP_RESEARCH, OPENAI_DEEP_RESEARCH_MODEL, OPENAI_REASONING_MODEL, MIRO_ACCESS_TOKEN, GEMINI_API_KEY, TRIPO_API_KEY.
 
