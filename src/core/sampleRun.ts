@@ -4,7 +4,7 @@ import type { RunState } from './types'
 import { listRuns, saveRun } from './store'
 
 /** 주얼리 전용 · 심어 두는 예시 분석 */
-const SAMPLE_IDS = ['sample_jewel_hoop', 'sample_jewel_ring'] as const
+const SAMPLE_IDS = ['sample_jewel_labdiamond', 'sample_jewel_hoop', 'sample_jewel_ring'] as const
 
 export async function ensureSampleRuns() {
   const have = new Set(listRuns().map(r => r.id))

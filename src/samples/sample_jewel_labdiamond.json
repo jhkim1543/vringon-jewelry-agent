@@ -1,0 +1,3462 @@
+{
+ "params": {
+  "mode": "trend",
+  "category": "jewelry",
+  "itemType": "hoop",
+  "endStage": "S5",
+  "sketchCount": 6,
+  "tierRatio": [
+   1,
+   1,
+   1
+  ],
+  "renderRatio": 0.5,
+  "viewCount": 1,
+  "colorwayCount": 0,
+  "topN": 1,
+  "designsPerSketch": 2,
+  "variationCount": 0,
+  "campaignShots": 2,
+  "make3d": true,
+  "approvalGate": false,
+  "line": {
+   "preset": "diamond",
+   "baseMetal": "925_silver",
+   "coating": "rhodium",
+   "stone": "lab_diamond"
+  },
+  "imageEngine": "fast",
+  "imageBudget": 24,
+  "trend": {
+   "competitors": [
+    "Pandora",
+    "Monica Vinader"
+   ],
+   "priceBand": "contemporary",
+   "priceMinKrw": 150000,
+   "priceMaxKrw": 450000
+  },
+  "series": {
+   "seriesName": "",
+   "archiveFiles": [],
+   "valueStatement": "",
+   "trendSearch": true
+  },
+  "moodboard": {
+   "files": [],
+   "notes": ""
+  },
+  "researchLang": "ko"
+ },
+ "stageStatus": {
+  "S1": "done",
+  "S2": "done",
+  "S3": "done",
+  "S4": "done",
+  "S5": "done"
+ },
+ "logs": [
+  {
+   "stage": "S1",
+   "text": "Trend mode · Jewelry / Hoop · building the brief",
+   "t": 1786024823348
+  },
+  {
+   "stage": "S1",
+   "text": "2 competitors: Pandora, Monica Vinader · your band KRW 150k-450k",
+   "t": 1786024823669
+  },
+  {
+   "stage": "S1",
+   "text": "1 Competitor products · searching Pandora, Monica Vinader for Hoop (1-2 min)",
+   "t": 1786024823669
+  },
+  {
+   "stage": "S1",
+   "text": "50 web searches, 6 products",
+   "t": 1786025137694
+  },
+  {
+   "stage": "S1",
+   "text": "2 Checking popularity evidence · 2 strong, the rest single source",
+   "t": 1786025137694
+  },
+  {
+   "stage": "S1",
+   "text": "No sales proxy scored. One pass gives no time series, so restock and sell-out trends need repeat collection.",
+   "t": 1786025137694
+  },
+  {
+   "stage": "S1",
+   "text": "Limits of this pass: Pandora: 공식몰에서 스털링 실버 랩그로운 다이아 후프는 292412C01만 확인했다. 해당 상품은 최종세일과 품절 상태가 반복되며 페이지 접근이 불안정하다. 한국 공식몰에서 동일 라인의 귀걸이 가격을 찾지 못했다. 모든 price_krw는 0으로 두었다. 각 상품의 정확한 출시 ",
+   "t": 1786025137694
+  },
+  {
+   "stage": "S1",
+   "text": "3 Trend research · looking for design signals",
+   "t": 1786025137694
+  },
+  {
+   "stage": "S1",
+   "text": "The full trend report is being written separately. It attaches to the research panel when done.",
+   "t": 1786025716292
+  },
+  {
+   "stage": "S1",
+   "text": "Building the season dossier: macrotrends, palettes, materials, key items. It attaches when done.",
+   "t": 1786025716292
+  },
+  {
+   "stage": "S1",
+   "text": "25 web searches, 7 signals · each linked to a source",
+   "t": 1786025716292
+  },
+  {
+   "stage": "S1",
+   "text": "7 signals confirmed · none unsourced",
+   "t": 1786025716292
+  },
+  {
+   "stage": "S1",
+   "text": "Three directions built, one per tier · every claim traced to a source",
+   "t": 1786025716673
+  },
+  {
+   "stage": "S2",
+   "text": "Dossier still building, so sketches go ahead on signals alone. Renders pick it up when it lands.",
+   "t": 1786025729186
+  },
+  {
+   "stage": "S2",
+   "text": "Specs per tier · Core 2 · Push 2 · Signature 2 (schema enforced, presets locked)",
+   "t": 1786025729186
+  },
+  {
+   "stage": "S2",
+   "text": "Reference bank loaded: 4 approved, 2 near-miss rejects (too familiar, cost)",
+   "t": 1786025729186
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-C01 [core] passed rules, queued for sketch",
+   "t": 1786025729689
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-C02 [core] passed rules, queued for sketch",
+   "t": 1786025729808
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-P03 [push] passed rules, queued for sketch",
+   "t": 1786025729927
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-P04 [push] passed rules, queued for sketch",
+   "t": 1786025730041
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-S05 [signature] passed rules, queued for sketch",
+   "t": 1786025730155
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-S06 [signature] passed rules, queued for sketch",
+   "t": 1786025730270
+  },
+  {
+   "stage": "S2",
+   "text": "6 of 6 specs passed · 0 rejected early · rejects are never rendered",
+   "t": 1786025730387
+  },
+  {
+   "stage": "S2",
+   "text": "Sketching 6 · three at a time, anything already made is reused",
+   "t": 1786025730387
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-P03 sketch done",
+   "t": 1786025761747
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-C02 sketch done",
+   "t": 1786025763698
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-P04 sketch done",
+   "t": 1786025781786
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-S06 sketch done",
+   "t": 1786025789624
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-S05 sketch done",
+   "t": 1786025811810
+  },
+  {
+   "stage": "S2",
+   "text": "JW-26FW-C01 sketch done",
+   "t": 1786025890613
+  },
+  {
+   "stage": "S3",
+   "text": "50% move to render · 3 selected",
+   "t": 1786025890613
+  },
+  {
+   "stage": "S3",
+   "text": "JW-26FW-P03 base render, then object mask, then 0 more views as edits rather than new generations",
+   "t": 1786025890613
+  },
+  {
+   "stage": "S3",
+   "text": "JW-26FW-P03 design variant 2 of 2 done",
+   "t": 1786025953225
+  },
+  {
+   "stage": "S3",
+   "text": "JW-26FW-C01 base render, then object mask, then 0 more views as edits rather than new generations",
+   "t": 1786025953225
+  },
+  {
+   "stage": "S3",
+   "text": "JW-26FW-C01 design variant 2 of 2 done",
+   "t": 1786026069754
+  },
+  {
+   "stage": "S3",
+   "text": "JW-26FW-S05 base render, then object mask, then 0 more views as edits rather than new generations",
+   "t": 1786026069754
+  },
+  {
+   "stage": "S3",
+   "text": "JW-26FW-S05 design variant 2 of 2 done",
+   "t": 1786026207965
+  },
+  {
+   "stage": "S4",
+   "text": "Scoring metrics. Deterministic numbers and model judgement stay separate and are never summed.",
+   "t": 1786026207965
+  },
+  {
+   "stage": "S4",
+   "text": "Top 1: JW-26FW-C01 [core] · spec distance 0.81",
+   "t": 1786026208343
+  },
+  {
+   "stage": "S4",
+   "text": "Worn pipeline: BiRefNet cutout, MediaPipe Hand and Face for joints and earlobe, scale normalise, depth occlusion",
+   "t": 1786026208783
+  },
+  {
+   "stage": "S4",
+   "text": "2 campaign cuts per top pick · 1 worn, 1 staged · caption forced: simulated wear, the real fit may differ",
+   "t": 1786026209287
+  },
+  {
+   "stage": "S4",
+   "text": "JW-26FW-C01 Virtual fitting done",
+   "t": 1786026249960
+  },
+  {
+   "stage": "S4",
+   "text": "JW-26FW-C01 worn cut 1 done",
+   "t": 1786026253021
+  },
+  {
+   "stage": "S5",
+   "text": "Building the 3D showroom · the multiview renders of each top pick go to Tripo",
+   "t": 1786026253021
+  },
+  {
+   "stage": "S5",
+   "text": "JW-26FW-C01 building 4 orthographic views for 3D",
+   "t": 1786026253021
+  },
+  {
+   "stage": "S5",
+   "text": "JW-26FW-C01 3D ready from 4 views",
+   "t": 1786026511837
+  },
+  {
+   "stage": "S5",
+   "text": "Assembling the board · five lanes: brief, Core, Push, Signature, appendix",
+   "t": 1786026511837
+  },
+  {
+   "stage": "S5",
+   "text": "Writing the talk track from rationale: trend evidence, brand fit, objections, sources",
+   "t": 1786026512219
+  },
+  {
+   "stage": "S1",
+   "text": "Trend report done · 10 implications from 45 searches",
+   "t": 1786026534877
+  },
+  {
+   "stage": "S1",
+   "text": "Design prompts now carry the SCULPT SILVER direction: 925 실버 로듐 도금, 925 실버 하이샤인 폴리시, Lab-grown diamond 세팅(925 베이스)",
+   "t": 1786026731553
+  },
+  {
+   "stage": "S1",
+   "text": "Season dossier ready · 4 macrotrends, 19 sources (125 searches)",
+   "t": 1786026731554
+  }
+ ],
+ "signals": [
+  {
+   "signal_id": "sg_001",
+   "attribute": "micro_huggie_9_13mm_id",
+   "label": "마이크로 허기 9–13mm",
+   "axis": "지름/피트",
+   "observed_count": 4,
+   "sources": [
+    "https://www.monicavinader.com/us/lab-grown-diamond-heart-drop-huggie-earrings/sterling-silver-heart-diamond-huggie-earrings-lab-grown-diamond",
+    "https://www.dracodiamond.com/products/inside-out-diamond-hoops",
+    "https://www.ross-simons.com/jewelry/earrings/222752.html",
+    "https://www.macys.com/shop/product/forever-grown-diamonds-lab-grown-diamond-huggie-hoop-earrings-1-3-ct.-t.w.-in-sterling-silver-0.56?ID=17076489"
+   ],
+   "price_bands": [],
+   "confidence": "high",
+   "direction": "rising",
+   "first_seen": "2026-08-06",
+   "dedup_group": "dg_1",
+   "oem_group": null,
+   "evidence": [
+    "Monica Vinader ‘Heart Diamond Huggie’의 내경 0.9cm(9mm)로 귀에 밀착되는 소형 규격을 명시(‘Charm not removable’). ([monicavinader.com](https://www.monicavinader.com/us/lab-grown-diamond-heart-drop-huggie-earrings/sterling-silver-heart-diamond-huggie-earrings-lab-grown-diamond))",
+    "Draco Diamond 인사이드‑아웃 후프: 지름 0.5in(≈13mm), 폭 1.6mm로 미니 허기 스펙 제시. ([dracodiamond.com](https://www.dracodiamond.com/products/inside-out-diamond-hoops?utm_source=openai))",
+    "Ross‑Simons ‘Two‑Row Huggie’ 제품명이 1/2in 크기를 표기(소형 허기). ([ross-simons.com](https://www.ross-simons.com/jewelry/earrings/222752.html?utm_source=openai))",
+    "Macy’s Forever Grown Diamonds 허기: 길이 0.56in로 스몰 사이징을 강조. ([macys.com](https://www.macys.com/shop/product/forever-grown-diamonds-lab-grown-diamond-huggie-hoop-earrings-1-3-ct.-t.w.-in-sterling-silver-0.56?ID=17076489&utm_source=openai))"
+   ]
+  },
+  {
+   "signal_id": "sg_002",
+   "attribute": "inside_out_pave",
+   "label": "인사이드‑아웃 파베 세팅",
+   "axis": "스톤 배치/셋팅",
+   "observed_count": 5,
+   "sources": [
+    "https://www.jedora.com/product/classic-lab-grown-diamond-inside-out-hoop-earrings-3ctw-in-sterling-silver/LGA316A",
+    "https://www.jtv.com/product/white-lab-grown-diamond-h-si-rhodium-over-sterling-silver-inside-out-hoop-earrings-3-00ctw/LGA316A",
+    "https://www.shoplc.com/luxuriant-lab-grown-diamond-si-1.00-ctw-inside-out-hoop-earrings-in-rhodium-over-sterling-silver/p/8018064.html",
+    "https://www.virjewels.com/products/3-ct-tw-lab-diamond-inside-out-hoop-silver-earrings",
+    "https://www.target.com/p/-/A-1003482428"
+   ],
+   "price_bands": [],
+   "confidence": "high",
+   "direction": "rising",
+   "first_seen": "2026-08-06",
+   "dedup_group": "dg_2",
+   "oem_group": null,
+   "evidence": [
+    "Jedora: 3ctw 라보 다이아를 ‘rhodium‑plated sterling silver’ 인사이드‑아웃 후프에 세팅. ([jedora.com](https://www.jedora.com/product/classic-lab-grown-diamond-inside-out-hoop-earrings-3ctw-in-sterling-silver/LGA316A?utm_source=openai))",
+    "JTV: ‘Rhodium over sterling silver’ 인사이드‑아웃 3.00ctw 표기. ([jtv.com](https://www.jtv.com/product/white-lab-grown-diamond-h-si-rhodium-over-sterling-silver-inside-out-hoop-earrings-3-00ctw/LGA316A?utm_source=openai))",
+    "ShopLC: ‘Rhodium over sterling silver’ 인사이드‑아웃 후프(≈1.10ctw). ([shoplc.com](https://www.shoplc.com/luxuriant-lab-grown-diamond-si-1.00-ctw-inside-out-hoop-earrings-in-rhodium-over-sterling-silver/p/8018064.html?utm_source=openai))",
+    "Vir Jewels: .925 실버 인사이드‑아웃, ‘Rhodium Plated | Yes’ 명시. ([virjewels.com](https://www.virjewels.com/products/3-ct-tw-lab-diamond-inside-out-hoop-silver-earrings?utm_source=openai))",
+    "Target( Ross‑Simons 납품): ‘lab‑grown diamond inside‑outside… 3/4in 길이, hinged post’ 명시. ([target.com](https://www.target.com/p/-/A-1003482428))"
+   ]
+  },
+  {
+   "signal_id": "sg_003",
+   "attribute": "oval_elongated_profile",
+   "label": "타원/롱 오벌 후프 실루엣",
+   "axis": "형상",
+   "observed_count": 3,
+   "sources": [
+    "https://www.kay.com/kay-labgrown-diamonds-oval-hoop-earrings-1-ct-tw-sterling-silver/p/V-555748805",
+    "https://www.zales.com/1-ct-tw-certified-labcreated-diamond-oval-hoop-earrings-sterling-silver-fvs2/p/V-20603258",
+    "https://www.walmart.com/ip/8368758184"
+   ],
+   "price_bands": [],
+   "confidence": "high",
+   "direction": "rising",
+   "first_seen": "2026-08-06",
+   "dedup_group": "dg_3",
+   "oem_group": null,
+   "evidence": [
+    "Kay: Sterling silver 오벌 후프(1ct tw), ‘electroplated with rhodium or e‑coating’ 명시. ([kay.com](https://www.kay.com/kay-labgrown-diamonds-oval-hoop-earrings-1-ct-tw-sterling-silver/p/V-555748805?utm_source=openai))",
+    "Zales: 1ct tw 오벌 후프(sterling silver), ‘electroplated with rhodium…’ 표기. ([zales.com](https://www.zales.com/1-ct-tw-certified-labcreated-diamond-oval-hoop-earrings-sterling-silver-fvs2/p/V-20603258?utm_source=openai))",
+    "Walmart(Brilliance Fine Jewelry): 1cttw 라보 다이아 오벌 후프 in sterling silver 판매. ([walmart.com](https://www.walmart.com/ip/8368758184?utm_source=openai))"
+   ]
+  },
+  {
+   "signal_id": "sg_004",
+   "attribute": "double_or_triple_row_pave",
+   "label": "더블/트리플 로우 파베 전면",
+   "axis": "스톤 배열/폭",
+   "observed_count": 3,
+   "sources": [
+    "https://www.kay.com/kay-labgrown-diamonds-tworow-huggie-hoop-earrings-14-ct-tw-sterling-silver/p/V-950535601",
+    "https://www.zalesoutlet.com/1-ct-tw-labgrown-diamond-triple-row-huggie-hoop-earrings-sterling-silver-isi2/p/V-20595730",
+    "https://www.ross-simons.com/jewelry/earrings/222752.html"
+   ],
+   "price_bands": [],
+   "confidence": "high",
+   "direction": "rising",
+   "first_seen": "2026-08-06",
+   "dedup_group": "dg_4",
+   "oem_group": null,
+   "evidence": [
+    "Kay: Sterling silver 라보 다이아 ‘Two‑Row Huggie’(rhodium 또는 e‑coating 처리)로 전면 커버리지 확대. ([kay.com](https://www.kay.com/kay-labgrown-diamonds-tworow-huggie-hoop-earrings-14-ct-tw-sterling-silver/p/V-950535601?utm_source=openai))",
+    "Zales Outlet: 1ct tw ‘Triple Row’ 허기(sterling silver), rhodium plated 표기. ([zalesoutlet.com](https://www.zalesoutlet.com/1-ct-tw-labgrown-diamond-triple-row-huggie-hoop-earrings-sterling-silver-isi2/p/V-20595730?utm_source=openai))",
+    "Ross‑Simons: ‘Two‑Row Huggie’ 1/2in 크기 제품 전개. ([ross-simons.com](https://www.ross-simons.com/jewelry/earrings/222752.html?utm_source=openai))"
+   ]
+  },
+  {
+   "signal_id": "sg_005",
+   "attribute": "channel_set_row",
+   "label": "채널 세팅 라인",
+   "axis": "셋팅 타입",
+   "observed_count": 3,
+   "sources": [
+    "https://www.target.com/p/-/A-1006146246",
+    "https://www.bevilles.com.au/products/channel-hoop-earrings-with-1-2ct-of-laboratory-grown-diamonds-in-rhodium-plated-sterling-silver",
+    "https://www.walmart.com/ip/291368659"
+   ],
+   "price_bands": [],
+   "confidence": "high",
+   "direction": "rising",
+   "first_seen": "2026-08-06",
+   "dedup_group": "dg_5",
+   "oem_group": null,
+   "evidence": [
+    "Target(Haus of Brilliance): .925 실버 + rhodium plating, 라보 다이아 ‘Channel‑Set Huggie’(0.5ctw). ([target.com](https://www.target.com/p/-/A-1006146246?utm_source=openai))",
+    "Bevilles: ‘Channel Hoop Earrings with… Lab Grown Diamonds in Rhodium Plated Sterling Silver’. ([bevilles.com.au](https://www.bevilles.com.au/products/channel-hoop-earrings-with-1-2ct-of-laboratory-grown-diamonds-in-rhodium-plated-sterling-silver?utm_source=openai))",
+    "Walmart: ‘.925 Sterling Silver Channel Set… Lab Grown Diamond… Huggy Hoop Earrings’. ([walmart.com](https://www.walmart.com/ip/291368659?utm_source=openai))"
+   ]
+  },
+  {
+   "signal_id": "sg_006",
+   "attribute": "hinged_clicker_snap_post",
+   "label": "힌지드 클릭(스냅‑포스트) 클로저",
+   "axis": "클로저",
+   "observed_count": 3,
+   "sources": [
+    "https://www.nordstrom.com/s/riva-pav-lab-grown-diamond-huggie-hoop-earrings/8579118",
+    "https://www.kay.com/rocksbox-the-everyday-labgrown-diamond-huggie-hoop-earrings-18-ct-tw-sterling-silver/p/V-656113204",
+    "https://www.belk.com/p/belk-co.-1-2-ct.-t.w.-lab-grown-diamond-huggie-earrings-in-sterling-silver/5400453DA8573LDS2SZ0.html"
+   ],
+   "price_bands": [],
+   "confidence": "high",
+   "direction": "rising",
+   "first_seen": "2026-08-06",
+   "dedup_group": "dg_6",
+   "oem_group": null,
+   "evidence": [
+    "Nordstrom x Monica Vinader ‘Riva Pavé Huggie’: ‘Hinge with snap‑post closure’ 명시. ([nordstrom.com](https://www.nordstrom.com/s/riva-pav-lab-grown-diamond-huggie-hoop-earrings/8579118))",
+    "Kay(‘Rocksbox The Everyday Huggie’): ‘Earring Back Type: Hinged’. ([kay.com](https://www.kay.com/rocksbox-the-everyday-labgrown-diamond-huggie-hoop-earrings-18-ct-tw-sterling-silver/p/V-656113204?utm_source=openai))",
+    "Belk: Sterling silver 라보 다이아 허기 ‘hinge post earring closure’ 표기. ([belk.com](https://www.belk.com/p/belk-co.-1-2-ct.-t.w.-lab-grown-diamond-huggie-earrings-in-sterling-silver/5400453DA8573LDS2SZ0.html?utm_source=openai))"
+   ]
+  },
+  {
+   "signal_id": "sg_007",
+   "attribute": "fixed_drop_huggie",
+   "label": "고정형 드롭 모티프 허기(하트/솔리테어)",
+   "axis": "모티프/드롭",
+   "observed_count": 3,
+   "sources": [
+    "https://www.monicavinader.com/us/lab-grown-diamond-heart-drop-huggie-earrings/sterling-silver-heart-diamond-huggie-earrings-lab-grown-diamond",
+    "https://www.ross-simons.com/jewelry/earrings/240821.html",
+    "https://www.target.com/p/-/A-1003920419"
+   ],
+   "price_bands": [],
+   "confidence": "high",
+   "direction": "rising",
+   "first_seen": "2026-08-06",
+   "dedup_group": "dg_7",
+   "oem_group": null,
+   "evidence": [
+    "Monica Vinader ‘Heart Diamond Huggie’: 하트 드롭이 ‘Charm not removable’(일체형)로 설계. ([monicavinader.com](https://www.monicavinader.com/us/lab-grown-diamond-heart-drop-huggie-earrings/sterling-silver-heart-diamond-huggie-earrings-lab-grown-diamond))",
+    "Ross‑Simons: ‘Lab‑Grown Diamond Huggie Hoop Drop Earrings in Sterling Silver’로 허기+드롭 일체형 전개. ([ross-simons.com](https://www.ross-simons.com/jewelry/earrings/240821.html?utm_source=openai))",
+    "Target(Diamonds D’Argento): ‘Heart Charm Diamond Huggies’, 플레이트 ‘Rhodium’ 명시. ([target.com](https://www.target.com/p/-/A-1003920419?utm_source=openai))"
+   ]
+  }
+ ],
+ "competitors": [
+  {
+   "product_id": "cp_1",
+   "brand": "Pandora",
+   "name": "Pandora Infinite Sterling Silver Lab-grown Diamond Hoop Earrings",
+   "price_krw": 0,
+   "sales_proxy_score": null,
+   "competitor_class": "direct",
+   "line_match": true,
+   "proxy_signals": [
+    "온라인 품절 표기가 보인다.",
+    "재입고 알림 버튼이 노출된다."
+   ],
+   "observation_count": 1,
+   "observation_window": "2026-08-06, single pass",
+   "confidence": "none",
+   "in_band": true,
+   "evidence_strength": "strong",
+   "source_urls": [
+    "https://au.pandora.net/en/earrings/lab-grown-diamond-earrings/pandora-infinite-sterling-silver-lab-grown-diamond-hoop-earrings/292412C01.html",
+    "https://us.pandora.net/en/earrings/lab-grown-diamond-earrings/pandora-infinite-sterling-silver-lab-grown-diamond-hoop-earrings/292412C01.html"
+   ],
+   "rank_note": "",
+   "user_sentiment": "unknown",
+   "praise_points": [],
+   "complaint_points": [],
+   "design_traits": [
+    "인피니티 모티프가 후프와 일체로 보인다.",
+    "각 귀걸이에 0.10캐럿 랩그로운 다이아몬드가 있다.",
+    "스털링 실버 바디가 광택을 준다."
+   ],
+   "image_urls": [],
+   "product_url": "https://us.pandora.net/en/earrings/lab-grown-diamond-earrings/pandora-infinite-sterling-silver-lab-grown-diamond-hoop-earrings/292412C01.html"
+  },
+  {
+   "product_id": "cp_2",
+   "brand": "Pandora",
+   "name": "Pandora Era Lab-Grown Diamond Station Hoop Earrings",
+   "price_krw": 0,
+   "sales_proxy_score": null,
+   "competitor_class": "aspirational",
+   "line_match": false,
+   "proxy_signals": [],
+   "observation_count": 1,
+   "observation_window": "2026-08-06, single pass",
+   "confidence": "none",
+   "in_band": true,
+   "evidence_strength": "none",
+   "source_urls": [
+    "https://us.pandora.net/en/pandora-lab-grown-diamonds/pandora-era-lab-grown-diamond-station-hoop-earrings/253718C01.html",
+    "https://us.pandora.net/en/earrings/pandora-lab-grown-diamonds/"
+   ],
+   "rank_note": "",
+   "user_sentiment": "unknown",
+   "praise_points": [],
+   "complaint_points": [],
+   "design_traits": [
+    "프롱 세팅의 라운드 브릴리언트 다이아몬드가 보인다.",
+    "다이아몬드가 안쪽과 바깥쪽에 균등히 놓인다.",
+    "높이 약 21.4mm의 14k 골드 후프다."
+   ],
+   "image_urls": [],
+   "product_url": "https://us.pandora.net/en/pandora-lab-grown-diamonds/pandora-era-lab-grown-diamond-station-hoop-earrings/253718C01.html"
+  },
+  {
+   "product_id": "cp_3",
+   "brand": "Pandora",
+   "name": "Pandora Era Lab-grown Diamond Hoop Earrings 14K Gold",
+   "price_krw": 0,
+   "sales_proxy_score": null,
+   "competitor_class": "aspirational",
+   "line_match": false,
+   "proxy_signals": [
+    "온라인 품절 표기가 보인다."
+   ],
+   "observation_count": 1,
+   "observation_window": "2026-08-06, single pass",
+   "confidence": "none",
+   "in_band": true,
+   "evidence_strength": "strong",
+   "source_urls": [
+    "https://us.pandora.net/en/earrings/lab-grown-diamond-earrings/pandora-era-lab-grown-diamond-hoop-earrings-14k-gold/B802539.html",
+    "https://us.pandora.net/en/earrings/pandora-lab-grown-diamonds/"
+   ],
+   "rank_note": "",
+   "user_sentiment": "unknown",
+   "praise_points": [],
+   "complaint_points": [],
+   "design_traits": [
+    "전면 절반을 감싸는 프롱 파베가 보인다.",
+    "각 후프에 8개의 라운드 브릴리언트 다이아몬드가 있다.",
+    "14k 골드 바디가 따뜻한 색을 낸다."
+   ],
+   "image_urls": [],
+   "product_url": "https://us.pandora.net/en/earrings/lab-grown-diamond-earrings/pandora-era-lab-grown-diamond-hoop-earrings-14k-gold/B802539.html"
+  },
+  {
+   "product_id": "cp_4",
+   "brand": "Monica Vinader",
+   "name": "Essential Diamond Huggie Earrings",
+   "price_krw": 0,
+   "sales_proxy_score": null,
+   "competitor_class": "direct",
+   "line_match": true,
+   "proxy_signals": [
+    "Selfridges에서 해당 모델이 품절로 표시되었다. ([selfridges.com](https://www.selfridges.com/US/en/product/monica-vinader-essential-sterling-silver-and-014ct-lab-grown-diamond-huggie-earrings_R04635405//))"
+   ],
+   "observation_count": 1,
+   "observation_window": "2026-08-06, single pass",
+   "confidence": "none",
+   "in_band": true,
+   "evidence_strength": "moderate",
+   "source_urls": [
+    "https://www.monicavinader.com/us/essential-diamond-huggie-earrings/sterling-silver-essential-diamond-huggie-earrings-lab-grown-diamond",
+    "https://www.monicavinader.com/us/shop/best-sellers",
+    "https://www.selfridges.com/US/en/product/monica-vinader-essential-sterling-silver-and-014ct-lab-grown-diamond-huggie-earrings_R04635405//"
+   ],
+   "rank_note": "",
+   "user_sentiment": "unknown",
+   "praise_points": [],
+   "complaint_points": [],
+   "design_traits": [
+    "본체는 925 스털링 실버로 제작되었다.",
+    "라운드 브릴리언트 랩 그로운 다이아 12개를 썼다.",
+    "전면에 파베 라인이 자리한다.",
+    "후프 외경은 1.1cm로 작다.",
+    "너비는 2.4mm로 슬림하다.",
+    "개폐부 폭은 6~8mm로 여유가 있다."
+   ],
+   "image_urls": [
+    "https://cfs3.monicavinader.com/images/pdp-full-large/25235552-ss-ea-essh-lgd-d1.jpg",
+    "https://cfs3.monicavinader.com/images/pdp-small-large/25235531-mv-2026-spring-s12-gp-essential-diamond-huggie-earrings-lab-grown-diamond-027-ss.jpg"
+   ],
+   "product_url": "https://www.monicavinader.com/us/essential-diamond-huggie-earrings/sterling-silver-essential-diamond-huggie-earrings-lab-grown-diamond"
+  },
+  {
+   "product_id": "cp_5",
+   "brand": "Monica Vinader",
+   "name": "Heart Diamond Huggie Earrings",
+   "price_krw": 0,
+   "sales_proxy_score": null,
+   "competitor_class": "direct",
+   "line_match": true,
+   "proxy_signals": [
+    "Nordstrom에서 리뷰 7개와 평점 4.4가 확인되었다. ([nordstrom.com](https://www.nordstrom.com/s/monica-vinader-lab-created-diamond-heart-huggie-hoop-earrings/7629627?breadcrumb=Home%2FAccessories%2FWomen%27s+Fine+Jewelry%2FEarrings&color=715&origin=category-personalizedsort))"
+   ],
+   "observation_count": 1,
+   "observation_window": "2026-08-06, single pass",
+   "confidence": "none",
+   "in_band": true,
+   "evidence_strength": "moderate",
+   "source_urls": [
+    "https://www.monicavinader.com/us/lab-grown-diamond-heart-drop-huggie-earrings/sterling-silver-heart-diamond-huggie-earrings-lab-grown-diamond",
+    "https://www.monicavinader.com/us/shop/best-sellers",
+    "https://www.nordstrom.com/s/monica-vinader-lab-created-diamond-heart-huggie-hoop-earrings/7629627?breadcrumb=Home%2FAccessories%2FWomen%27s+Fine+Jewelry%2FEarrings&color=715&origin=category-personalizedsort"
+   ],
+   "rank_note": "",
+   "user_sentiment": "unknown",
+   "praise_points": [],
+   "complaint_points": [],
+   "design_traits": [
+    "본체는 925 스털링 실버로 제작되었다.",
+    "하트 참은 분리되지 않도록 고정되었다.",
+    "각 허기에 랩 그로운 다이아 15개가 세팅되었다.",
+    "후프 내경은 0.9cm로 컴팩트하다.",
+    "표면은 파베 세팅으로 반짝인다.",
+    "좌우가 거울처럼 짝을 이룬다."
+   ],
+   "image_urls": [
+    "https://cfs3.monicavinader.com/images/pdp-small-large/19373473-ss-ea-harh-dia-f1.jpg"
+   ],
+   "product_url": "https://www.monicavinader.com/us/lab-grown-diamond-heart-drop-huggie-earrings/sterling-silver-heart-diamond-huggie-earrings-lab-grown-diamond"
+  },
+  {
+   "product_id": "cp_6",
+   "brand": "Monica Vinader",
+   "name": "Riva Pavé Diamond Huggie Earrings",
+   "price_krw": 0,
+   "sales_proxy_score": null,
+   "competitor_class": "direct",
+   "line_match": true,
+   "proxy_signals": [
+    "Nordstrom에서 리뷰 17개와 평점 4.2가 확인되었다. ([nordstrom.com](https://www.nordstrom.com/s/riva-pav-lab-grown-diamond-huggie-hoop-earrings/8579118))"
+   ],
+   "observation_count": 1,
+   "observation_window": "2026-08-06, single pass",
+   "confidence": "none",
+   "in_band": true,
+   "evidence_strength": "moderate",
+   "source_urls": [
+    "https://www.monicavinader.com/us/nura-pave-diamond-huggies/sterling-silver-riva-pave-diamond-huggie-earrings-lab-grown-diamond",
+    "https://www.monicavinader.com/us/shop/best-sellers",
+    "https://www.nordstrom.com/s/riva-pav-lab-grown-diamond-huggie-hoop-earrings/8579118"
+   ],
+   "rank_note": "",
+   "user_sentiment": "unknown",
+   "praise_points": [],
+   "complaint_points": [],
+   "design_traits": [
+    "본체는 925 스털링 실버로 제작되었다.",
+    "파베 다이아는 크기가 점차 줄어든다.",
+    "후프 외경은 1cm로 작다.",
+    "곡선 라인이 은은한 물결을 만든다.",
+    "전면에 촘촘한 파베가 이어진다."
+   ],
+   "image_urls": [
+    "https://cfs3.monicavinader.com/images/pdp-small-large/23821083-ss-ea-rpvh-lgd-f1.jpg"
+   ],
+   "product_url": "https://www.monicavinader.com/us/nura-pave-diamond-huggies/sterling-silver-riva-pave-diamond-huggie-earrings-lab-grown-diamond"
+  }
+ ],
+ "directions": [
+  {
+   "id": "dir_1",
+   "title": "Bold band with a bezel",
+   "summary": "The top two rising signals together. Start where an existing mould can be modified.",
+   "signal_ids": [
+    "sg_101",
+    "sg_105"
+   ]
+  },
+  {
+   "id": "dir_2",
+   "title": "Matte mixed metal",
+   "summary": "Differentiates on finish contrast. The extra plating step has to be absorbed inside the cap.",
+   "signal_ids": [
+    "sg_109",
+    "sg_113"
+   ]
+  },
+  {
+   "id": "dir_3",
+   "title": "Layering system",
+   "summary": "Built to combine rather than stand alone. Standardising the chain spec keeps SKU count down.",
+   "signal_ids": [
+    "sg_118",
+    "sg_101"
+   ]
+  }
+ ],
+ "seriesDna": null,
+ "dnaConflict": null,
+ "reportBias": {
+  "publisher": "Web, collected 2026-08-06 across 25 searches",
+  "perspective": "북미 중심(미국/캐나다) 백화점·주얼리 체인·DTC 유통의 ‘데미‑파인(925 실버, 로듐 도금, 랩‑다이아)’ 후프 귀걸이 세그먼트 관점. 참고 브랜드로 제시된 Monica Vinader·판도라와 동일/유사 가격대의 일상 착용형 제품군에서 관측된 디자인 변화를 중점 반영.",
+  "notes": [
+   "수집 기준일: 2026‑08‑06(현지). 모든 증거는 판매 페이지·리테일러 상품설명에서 확인했습니다. Pandora의 실버 랩‑다이아 후프는 현재 일부 지역에서 단종/세일 전환으로 상세 스펙 노출이 제한적이라 본 리포트의 주된 증거군은 MV 및 주요 리테일러(북미) 판매 페이지를 사용했습니다. 치수(인치/밀리미터)와 마감(rhodium/e‑coating) 표기는 각 페이지의 기재값을 따랐습니다."
+  ]
+ },
+ "trendReport": {
+  "title": "2026 F/W 컨템포러리 후프 귀걸이 트렌드 리포트 (KRW 150k–450k)",
+  "executive_view": "이번 시즌 런웨이 레퍼런스만으로 ‘후프’가 주얼리의 주류라는 근거는 확인되지 않았고, 브로치가 가장 크게 부상했습니다. 다만 SSENSE 등 리테일의 FW26 신상 범주에서 후프 신작 노출은 계속되고 있어, 후프는 ‘에버그린 아이템’로 보완적 운영이 합리적입니다. 하드웨어는 힌지+스냅포스트(클릭커)가 표본에서 다수를 차지했고(예: 4/5, 13/16), 포스트 게이지·길이는 페이지에 거의 미기재라 내부 스펙 관리는 브랜드 표준으로 잡을 필요가 있습니다. 베이스 금속은 925 실버와 브라스가 주류(표본 14종: 9, 4, 1)였고, 도금 표시는 FTC ‘버메일’ 요건(≥2.5μm, ≥10K 금, 925 베이스)과 Missoma의 실제 두께 사례(버메일 2.5μm, 귀걸이 일반 도금 1μm)를 준거로 투명하게 표기하는 것이 안전합니다.",
+  "body_markdown": "## 시장 맥락과 시즌 포지셔닝\n2026 A/W 캣워크 주얼리 보도에서는 브로치가 최상위 트렌드로 지목되었고, 후프가 런웨이의 중심 키워드라는 확인은 없었습니다(브리티시 보그 AW26). 반면 리테일 신상 레벨에서는 SSENSE의 FW26 카테고리(Parts of Four)에서 후프형 귀걸이 노출이 확인되어, 시즌 ‘주류’는 아니더라도 상시 수요가 유지되는 것으로 해석됩니다. 주얼리의 시즌 표기 자체가 드문 탓에, ‘AW26 한정 분포’ 같은 정량은 현재 공개 자료로 산출 불가합니다. 따라서 본 리포트는 판매 중 컨템포러리 표본과 리테일 상품 상세에 근거한 실무적 관찰을 제공합니다.\n\n## 실루엣·스케일 관찰(Q1)\n후프 직경·두께에 대한 시장 분포 수치(직경 구간별 점유율, 평균 두께, 두께/직경 비)는 공개 자료에서 집계 불가로 확인되었습니다. 다만 개별 SKU에서는 직경 표기가 다수 존재합니다: 12.7mm(Hatton Labs, SSENSE), 19.05mm(Numbering, SSENSE), 25.4mm(Tom Wood, SSENSE), 38.1mm(Jean Paul Gaultier, SSENSE) 등. Maison Margiela의 타원형 후프는 1 in × 0.75 in처럼 H×W 치수로 표기된 예가 있어 원형 외 변형 실루엣도 일부 보입니다(SSENSE). 드물게 외·내경이 동시에 표기된 케이스에서는 두께 추정이 가능합니다. Monica Vinader ‘Kate Young Gemstone Small Hoop’는 외경 20mm, 내경 9.5mm, 폭 5mm로 기재되어 밴드 두께를 (20−9.5)/2≈5.25mm로 계산할 수 있고, 두께/직경 비는 약 0.26입니다. 표본이 적어 ‘시장 평균’으로 일반화하기에는 무리가 있습니다.\n\n## 베이스 금속·구조·중량(Q2)\n컨템포러리·인접 가격대 표본 14종의 베이스 금속 분포는 925 실버 9, 브라스 4, 스테인리스 스틸 1(티타늄 0)로 확인되었습니다(각 제품 상세 근거). 구조가 페이지에 명시된 경우만 집계했을 때 ‘hollow/hollowformed’ 표기는 3/14로 확인(Jenny Bird 2, Maria Black 1)되었고, ‘solid’ 명시는 표본에서 찾지 못했습니다. 1개 기준 중량은 ‘단품 무게’가 명확한 11종으로 평균 6.11 g/개였으며, 같은 표본에서 브라스 평균은 10.10 g/개(n=4), 925 실버 평균은 3.83 g/개(n=7)였습니다. 일부 브랜드는 “single earring including backing”처럼 백킹 포함 문구를 쓰므로 교차 비교 시 주의가 필요합니다(Jenny Bird). 시즌 표기가 누락된 DTC가 많아, 본 표본은 2026-08-06 기준 판매 중인 동급대 제품으로 구성되었습니다.\n\n## 하드웨어 스펙과 운영 기준(Q3)\n잠금·힌지 유형은 힌지+스냅포스트(클릭커) 중심이라는 관찰이 일관됩니다. 잠금이 명시된 표본 1(USD 120–295)에서는 4/5가 힌지+스냅포스트, 1/5가 레버백이었고, 보다 넓힌 표본 2에서는 명시 16개 중 13개가 힌지/스냅포스트, 2개가 레버백, 1개가 래치백, 1개가 포스트백이었습니다(각 Nordstrom·Macy’s 상품 상세). ‘Endless’로 네이밍된 제품도 실제 상세에는 스냅포스트로 표기된 예가 있어 네이밍과 구조가 불일치할 수 있습니다(Nordstrom Medium/Small Endless Hoops). 포스트(침)의 직경·길이(mm)는 표본의 제품 상세에서 수치 기재를 찾지 못했고, 소재는 ‘surgical steel/steel post’, ‘sterling silver(vermeil 포함)’, ‘14K gold’로 혼재함이 확인됩니다. 별도 클러치 표기는 드물고(포스트백 일부 예외), 일체형 메커니즘이 주류였습니다. ‘nickel‑free/hypoallergenic’ 문구는 표본 범위에서 명시 사례가 확인되지 않았습니다.\n\n## 컬러·피니시·도금(Q4)\n금속 톤 비중, 표면 처리 분포, 장식 사용 비율 및 포인트 컬러 팔레트는 ‘AW26·후프·해당 가격대’로 제한해 정량을 제시할 수 있는 공개 자료가 현재 확인되지 않았습니다. 다만 도금 스펙에 대해서는 객관적 기준과 실사용 사례가 존재합니다. 미국 FTC 가이드는 ‘버메일(vermeil)’을 925 실버 베이스 위에 최소 10K 금을 주요 표면에 최소 2.5μm 두께(파인 골드 환산)로 도금한 경우로 정의합니다. Missoma는 18K 골드 버메일을 2.5μm로, ‘골드 플레이트’(버메일 아님)는 귀걸이 기준 1μm로 운용한다고 자사 페이지에 명시합니다. 투톤·믹스드는 Macy’s의 투톤 인터로킹 후프 등 개별 사례가 확인되지만, 비중은 샘플이 적어 판단 불가입니다.\n\n## 머천다이징 관점 요약\n후프는 런웨이 드라이브보다는 리테일 수요 기반으로 운영하는 것이 합리적입니다. 직경 라더는 리테일 노출 빈도가 확인되는 12.7/19.05/25.4/38.1mm를 기본으로 가져가고, 타원형 한 SKU로 변주를 두는 구성이 안전합니다(각 SSENSE 표기 근거). 중량은 1개 기준 6g 전후를 상한선으로 삼고, 브라스 ‘청키’ 라인은 8–12g대가 체감상 유사하지만 평균값(10.10g) 출처가 제한적이므로 과체중 설계는 피하는 편이 낫습니다. 구조 표기는 ‘hollow/hollow‑formed’ 여부를 명확히 하여 착용감과 내구도 기대치를 조정하고, 도금은 FTC·Missoma 기준에 맞춰 두께값을 투명하게 공개하는 것이 바람직합니다. 하드웨어는 힌지+스냅포스트를 표준으로, ‘Endless’ 네이밍 사용 시 실제 구조를 일치·명기하는 운영 정합성이 필요합니다.",
+  "design_implications": [
+   {
+    "area": "하드웨어/메커니즘",
+    "guidance": "표준 잠금은 힌지+스냅포스트(클릭커)로 통일하고, 예외형은 레버백·래치백을 제한적 보조 SKU로만 운영.",
+    "basis": "잠금 명시 표본에서 4/5 및 13/16이 힌지/스냅포스트로 확인(Nordstrom, Macy’s 링크)."
+   },
+   {
+    "area": "규격/스케일",
+    "guidance": "직경 라더를 12.7mm–19.05mm–25.4mm–38.1mm의 XS/S/M/L로 구성. 타원형 1종을 추가해 시각 변주 확보.",
+    "basis": "SSENSE 상품 상세에서 해당 직경 표기 다수 확인(Hatton Labs 12.7mm, Numbering 19.05mm, Tom Wood 25.4mm, Jean Paul Gaultier 38.1mm, Margiela 타원 치수)."
+   },
+   {
+    "area": "두께/프로파일",
+    "guidance": "소형(≈20mm) 라인에서 밴드 두께/직경 비 0.26 전후의 레퍼런스 한 종을 테스트. 나머지는 과도한 일반화 없이 디자인별로 설정.",
+    "basis": "Monica Vinader 외·내경 표기에서 산출된 케이스: (20−9.5)/2≈5.25mm, 두께/직경≈0.26(단일 사례)."
+   },
+   {
+    "area": "중량/착용감",
+    "guidance": "제품 카드에 ‘1개 기준 중량’ 표기 표준화(백킹 포함 여부 병기). 실버는 3–5g 중심, 브라스 청키 라인은 8–12g 범위에서 설계 검토.",
+    "basis": "표본 평균 6.11 g/개, 925 실버 평균 3.83 g/개(n=7), 브라스 평균 10.10 g/개(n=4). ‘including backing’ 표기 사례 존재(Jenny Bird)."
+   },
+   {
+    "area": "금속 선택",
+    "guidance": "핵심 라인은 925 실버·브라스 중심으로 구성, 스테인리스는 보조, 티타늄은 본 표본에서 근거 미확인으로 보류.",
+    "basis": "베이스 금속 분포: 925 실버 9, 브라스 4, 스테인리스 1, 티타늄 0(표본 14종)."
+   },
+   {
+    "area": "도금/커뮤니케이션",
+    "guidance": "‘버메일’ 사용 시 925 베이스·≥10K·≥2.5μm(파인 골드 환산) 충족 근거를 제품 상세에 기재. ‘골드 플레이트’는 귀걸이 1μm 사례처럼 두께값을 명시.",
+    "basis": "FTC 버메일 정의 문서 및 Missoma 도금 두께 가이드(버메일 2.5μm, 귀걸이 일반 도금 1μm)."
+   },
+   {
+    "area": "명명/정합성",
+    "guidance": "‘Endless’ 네이밍은 실제 구조가 스냅포스트일 경우 사용을 피하거나, 상세에 구조를 명확히 병기.",
+    "basis": "‘Endless’ 명칭 제품의 상세가 스냅포스트로 표기된 사례 확인(Nordstrom Medium/Small Endless Hoops)."
+   },
+   {
+    "area": "구조 표기",
+    "guidance": "밴드 구조를 ‘hollow(중공)/solid’로 명확히 표기하여 경량 설계 이점을 커뮤니케이션.",
+    "basis": "‘hollow/hollowformed’ 명시 3/14, ‘solid’ 명시는 미확인(구조 표기 관행의 공백)."
+   },
+   {
+    "area": "포스트 스펙 관리",
+    "guidance": "내부 스펙(게이지·길이)을 설계표준으로 고정하고, 대외 표기는 최소한 소재(예: surgical steel/925/14K)를 일관되게 노출.",
+    "basis": "제품 상세에 포스트 직경·길이 수치 미기재가 일반적이었고, 소재 표기만 산발적으로 확인됨."
+   },
+   {
+    "area": "색 구성/투톤",
+    "guidance": "옐로·실버 중심 운영하되 투톤·믹스드 1종을 보조로 편성하고 반응 확인.",
+    "basis": "Macy’s의 투톤 인터로킹 후프 사례 존재. 시즌 전체 비중은 표본이 작아 판단 불가."
+   }
+  ],
+  "open_questions": [
+   "AW26 신작 후프만을 대상으로 한 금속 톤·표면 처리·장식 비중의 정량 분포(%)는 아직 확보되지 않았습니다. 리테일러 신상 페이지를 표본 150–300 SKU로 확대 크롤링해 산출이 필요합니다.",
+   "포스트(침) 직경/길이(mm)와 소재의 구조화된 표준 표기 체계를 주요 리테일러가 제공하지 않습니다. 내부 스펙 표준안 도출과 함께, 대외 표기 템플릿도 개발해야 합니다.",
+   "니켈 프리/저자극 커뮤니케이션은 표본에서 명시 빈도가 낮았습니다. 실 테스트 결과를 전제로 한 문구 가이드라인 수립이 필요합니다.",
+   "중량 표기 기준(백킹 포함/제외)이 브랜드마다 상이합니다. 업계 표준 또는 자사 표준 정의가 요구됩니다.",
+   "‘Endless’ 네이밍과 실제 구조의 불일치가 일부 리테일에서 관찰됩니다. 네이밍 사전과 구조 용어집을 정리해 혼선을 줄여야 합니다.",
+   "런웨이 기반(브로치 강세)과 리테일 기반(후프 상시 수요)의 시그널이 엇갈립니다. 시즌 스토리텔링에서 후프의 포지션을 ‘에센셜’로 정의할지 여부에 대한 합의가 필요합니다."
+  ],
+  "sources": [
+   "https://www.vogue.co.uk/gallery/jewellery-trend-brooches-aw26",
+   "https://www.ssense.com/en-us/men/designers/parts-of-four",
+   "https://www.ssense.com/en-us/men/product/tom-wood/gold-classic-medium-hoop-earrings/11449821",
+   "https://www.ssense.com/en-us/men/product/jean-paul-gaultier/the-logo-earrings/18139271",
+   "https://www.ssense.com/en-us/men/product/numbering/5116-earrings/18220281",
+   "https://www.ssense.com/en-pr/men/product/maison-margiela/silver-hoop-earrings/16204631",
+   "https://www.ssense.com/en-us/men/product/hatton-labs/classic-hoop-earrings/63907977",
+   "https://www.monicavinader.com/us/small-reversible-hoop-earrings/gold-vermeil-kate-young-gemstone-small-hoop-earrings-black-onyx",
+   "https://www.swarovski.com/en_GB-CA/s-swarovski-lookbook/",
+   "https://jenny-bird.com/products/gemma-hoop-earrings-silver",
+   "https://jenny-bird.ca/products/gigi-hoop-earrings-silver",
+   "https://jenny-bird.com/products/slim-nelle-hoop-earrings-silver?variant=48528272883867",
+   "https://jenny-bird.com/products/lennon-hoop-earrings-silver?variant=46946172633243",
+   "https://www.allblues.se/product/disc-earrings-small-silver",
+   "https://www.allblues.se/product/balloon-earrings-silver",
+   "https://www.allblues.se/product/round-earrings-small-polished-silver",
+   "https://www.allblues.se/product/square-earrings-extra-small-silver",
+   "https://www.allblues.se/product/straw-earrings-small-silver",
+   "https://www.tomwoodproject.com/ja-jp/products/classic-hoops-small",
+   "https://www.tomwoodproject.com/en-se/products/classic-hoops-large",
+   "https://www.maria-black.com/us/forma-hoops-101144yg-s-2",
+   "https://us.missoma.com/products/chubby-oval-medium-hoop-earrings-platinum-plated",
+   "https://www.pdpaola.com/products/tempo-hoops",
+   "https://www.nordstrom.com/s/monica-vinader-essential-tube-huggie-hoop-earrings/7755954",
+   "https://www.nordstrom.com/s/heirloom-freshwater-pearl-drop-huggie-hoop-earrings/8481216",
+   "https://www.nordstrom.com/s/essential-lab-grown-diamond-huggie-hoop-earrings/8893562",
+   "https://www.nordstrom.com/s/14k-gold-beveled-edge-huggie-hoop-earrings/9138975",
+   "https://www.nordstrom.com/s/set-of-3-medium-essential-hoop-earrings/8841637",
+   "https://www.nordstrom.com/s/mini-icon-hoop-earrings/8878681",
+   "https://www.nordstrom.com/s/medium-endless-hoops/4622883",
+   "https://www.nordstrom.com/s/nordstrom-small-endless-hoop-earrings/4622882",
+   "https://www.nordstrom.com/s/swarovski-matrix-tennis-hoop-earrings/7298219",
+   "https://www.macys.com/shop/product/macys-two-tone-interlocking-hoop-earrings?ID=24339157",
+   "https://www.macys.com/shop/product/now-this-clear-crystal-drop-hoop-earrings?ID=20398813",
+   "https://www.macys.com/shop/product/now-this-hinge-hoop-earrings?ID=22704004",
+   "https://www.macys.com/shop/product/vince-camuto-silver-tone-textured-hoop-earrings?ID=23111170",
+   "https://www.macys.com/shop/product/lab-grown-white-sapphire-heart-leverback-hoop-earrings-2-2-5-ct.-t.w.-in-yellow-plated-sterling-silver?ID=14207709",
+   "https://www.macys.com/shop/product/now-this-18k-gold-plated-or-silver-plated-bead-hoop-earring?ID=18150313",
+   "https://www.macys.com/shop/product/now-this-crystal-bypass-hinged-hoop-earrings?ID=25355736",
+   "https://www.macys.com/shop/product/now-this-clear-crystal-stone-hoop-earring-set?ID=16547767",
+   "https://www.govinfo.gov/content/pkg/GOVPUB-FT-PURL-gpo152057/pdf/GOVPUB-FT-PURL-gpo152057.pdf",
+   "https://us.missoma.com/pages/our-metals",
+   "https://us.missoma.com/pages/product-journey"
+  ]
+ },
+ "reportPending": false,
+ "dossier": {
+  "season": "FW26",
+  "forecast_season": "SS27",
+  "evidence_season": "FW26",
+  "season_title": "SS27 예측서 · Jewelry · 925 Silver rhodium plated × Lab‑Grown Diamond",
+  "powershift": "FW26에서 화이트 메탈과 조각적 실루엣이 부상했다. SS27은 실버와 랩 다이아의 일상화로 볼륨과 접근성이 동시에 커진다. ([vogue.co.uk](https://www.vogue.co.uk/article/london-fashion-week-jewellery-trends-aw26))",
+  "season_narrative": "FW26에서 헤어 주얼과 티아라가 두드러졌다. SS27에는 시선이 귀와 목으로 다시 내려온다. 조형적 실버 볼륨이 데이룩에 안착한다. 과장보다 구조와 착용성을 함께 잡는다. ([vogue.co.uk](https://www.vogue.co.uk/article/london-fashion-week-jewellery-trends-aw26?utm_source=openai))\n\n리테일에서 실버 세팅 랩그로운 다이아가 힘을 보였다. SS27에는 0.15~0.25캐럿 데일리 반지가 커진다. Pandora 실버 다이아 반지는 베스트셀러로 노출되었다. 일부 실버 다이아 귀걸이는 온라인 품절을 기록했다. MV 역시 실버 다이아를 합리가로 제시했다. SS27에는 15만~45만 원대 구색이 촘촘해진다. ([us.pandora.net](https://us.pandora.net/en/rings/lab-grown-diamond-rings/pandora-infinite-sterling-silver-lab-grown-diamond-ring/199441C01-53.html?bvstate=pg%3A3%2Fct%3Ar))\n\n소비자 관심은 귀 라인 스태킹에 모였다. 이어커프 키워드가 전년 대비 우상향했다. SS27에는 귓바퀴를 따라 올라가는 아치형 구성이 늘어난다. 크루즈 2027의 청키 이어링이 신호를 강화했다. ([rankhero.com](https://www.rankhero.com/keywords/ear-cuff?utm_source=openai))\n\n소재와 조달의 선행 지표가 명확하다. Pandora는 2026년 다이아 탄소발자국 표기를 도입했다. SS27에는 투명성이 구매 결정을 밀어준다. 브랜드는 실버와 골드에 다이아 세팅을 넓혔다. 마이크로 다이아 전환이 예고되었다. SS27에는 마이크로 파베가 표준화된다. ([pandoragroup.com](https://www.pandoragroup.com/media/press-releases/pandora-adds-carbon-footprint-label-for-lab-grown-diamonds?utm_source=openai))\n\nSS27을 위해 네 가지 맥로를 제안한다. SCULPT SILVER는 유기적 실루엣의 실버를 키로 삼는다. DIAMOND DAILY는 0.10~0.25캐럿 랩그로운 다이아를 일상화한다. EAR ARCH는 이어커프와 클라이머를 하나의 아치로 묶는다. CHROMA GROWN은 컬러 랩그로운 스톤을 포인트로 확장한다. ([swarovski.com](https://www.swarovski.com/en-US/c-0103/Categories/Jewelry/Earrings/f/flags/fl-created-diamonds/?utm_source=openai))",
+  "macrotrends": [
+   {
+    "name": "SCULPT SILVER",
+    "statement": "SS27에는 로듐 실버의 조각적 볼륨이 주얼리 메인으로 확대된다.",
+    "narrative": "FW26에서 초커와 볼륨 커프가 런웨이와 스트리트 모두에서 존재감을 키웠다. SS27에는 토크형 칼라와 청키 칼라가 상업 영역으로 이동해 입구 상품이 된다. ‘실버가 금을 앞지른다’는 보도와 함께 실버 톤이 주연으로 올라선다. ([vogue.co.uk](https://www.vogue.co.uk/article/ss26-catwalk-jewellery-trends))\nSS27에서는 목선과 팔 라인을 구조적으로 재단하는 형태가 팔린다. 상박까지 올라오는 암 커프와 소매 위 착용이 보편화되며 하이샤인 표면이 무드를 완성한다. 런웨이와 제품군에서 이를 확인했고, 로듐 도금 925 커프의 신상품 비중이 늘어난다. ([vogue.it](https://www.vogue.it/article/bracciali-bangles-modelli-tendenza-estate-2026))\n팔레트는 금속의 차갑고 선명한 광택을 중심에 둔다. 패키지·연출 색은 Pandora의 핑크와 Monica Vinader의 그린이 동행하며, 2026년 ‘Cool Blue’ 무드가 사진·디스플레이에 포인트로 남는다. SS27 매대는 차분한 아이보리와 슬레이트를 바닥색으로 쓴다. ([us.pandora.net](https://us.pandora.net/en/premium-jewelry-gift-packaging/pandora-pink-premium-gift-packaging/A050.html?emphasized=true&product_finding_method=plp&utm_source=openai))",
+    "sub_trends": [
+     "실버 토크 초커",
+     "볼륨 암 커프",
+     "싱글 이어링",
+     "조각적 실버 링"
+    ],
+    "drivers": [
+     {
+      "label": "FW26/SS26 쇼에서 칼라·토크·커프 노출 증가",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "shows",
+      "source_url": "https://www.vogue.co.uk/article/ss26-catwalk-jewellery-trends",
+      "observed_note": "SS26에서 실버와 토크가 주목받았고 FW26에는 초커·청키 칼라가 다시 등장했다."
+     },
+     {
+      "label": "메트 갈라 이후 이어커프·싱글 귀 아이템 화제",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "social",
+      "source_url": "https://www.forbes.com/sites/poojashah/2026/05/04/the-met-gala-made-us-fall-in-love-with-ear-cuffs-shop-the-trend-here/",
+      "observed_note": "메트 갈라 2026 보도와 SNS 확산으로 이어커프 관심이 커졌다는 기사 노출이 급증했다."
+     },
+     {
+      "label": "소비자 관심의 실버 선호 전환",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "consumer",
+      "source_url": "https://www.vogue.co.uk/article/ss26-catwalk-jewellery-trends",
+      "observed_note": "SS26 기사에서 실버가 금보다 투자 우선 금속으로 언급되며 검색·콘텐츠 생산이 늘었다."
+     }
+    ],
+    "palette": [
+     {
+      "layer": "metal",
+      "name": "Bright Rhodium",
+      "pantone_tcx": "",
+      "hex": "#D9D9D9"
+     },
+     {
+      "layer": "metal",
+      "name": "Platinum Glow",
+      "pantone_tcx": "",
+      "hex": "#E5E4E2"
+     },
+     {
+      "layer": "metal",
+      "name": "Black Rhodium",
+      "pantone_tcx": "",
+      "hex": "#6F6F73"
+     },
+     {
+      "layer": "stone",
+      "name": "Lab Diamond Ice",
+      "pantone_tcx": "",
+      "hex": "#F8F9FA"
+     },
+     {
+      "layer": "stone",
+      "name": "Grey Diamond Mist",
+      "pantone_tcx": "",
+      "hex": "#B8BFC9"
+     },
+     {
+      "layer": "mood",
+      "name": "Pandora Pink",
+      "pantone_tcx": "",
+      "hex": "#F4C6D4"
+     },
+     {
+      "layer": "mood",
+      "name": "MV Olive",
+      "pantone_tcx": "",
+      "hex": "#6E7F67"
+     },
+     {
+      "layer": "mood",
+      "name": "Cool Blue",
+      "pantone_tcx": "",
+      "hex": "#5FA8FF"
+     },
+     {
+      "layer": "mood",
+      "name": "Slate Stage",
+      "pantone_tcx": "",
+      "hex": "#2E3138"
+     }
+    ],
+    "materials": [
+     {
+      "label": "925 실버 로듐 도금",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://us.pandora.net/en/blog/what-is-sterling-silver/",
+      "observed_note": "브랜드 공식 가이드가 로듐 도금 925를 일반적 유형으로 안내한다."
+     },
+     {
+      "label": "925 실버 하이샤인 폴리시",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "shows",
+      "source_url": "https://www.igi.org/wp-content/uploads/2026/01/Dorigin_Oct-Nov-2025_low-res_compressed.pdf",
+      "observed_note": "SS26 리포트에서 미러 피니시·폴리시드 실버 구조가 강조되었다."
+     },
+     {
+      "label": "Lab-grown diamond 세팅(925 베이스)",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.monicavinader.com/us/lab-grown-diamond-solitaire-ring/sterling-silver-solitaire-diamond-ring-lab-grown-diamond",
+      "observed_note": "MV가 925 실버에 랩그로운 다이아몬드 세팅 제품을 상시 판매한다."
+     },
+     {
+      "label": "Argentium 935 실버(저탄화·내변색)",
+      "yoy_percent": null,
+      "magnitude": "steady",
+      "source_kind": "market",
+      "source_url": "https://www.argentiumsilver.com/faqs",
+      "observed_note": "공식 사이트가 내변색·친환경 공정을 강조하고 유통이 지속된다."
+     }
+    ],
+    "details": [
+     {
+      "label": "토크 오픈 칼라 구조",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://adina-stone.com/products/torque-choker-necklace-open-collar-necklace-minimalist-thin-wire-choker",
+      "observed_note": "오픈엔드 칼라형 초커가 여러 소규모 브랜드에서 상시 재고로 보인다."
+     },
+     {
+      "label": "히든 힌지 커프",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.qualitygem.com/jewelry-details/silver-bracelets/sterling-silver-18k-vermeil-venice-hinged-cuff-bangle-bracelet/42457",
+      "observed_note": "힌지 내장 커프가 신상품 설명에 반복 등장한다."
+     },
+     {
+      "label": "미러 폴리시 피니시",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "shows",
+      "source_url": "https://www.igi.org/wp-content/uploads/2026/01/Dorigin_Oct-Nov-2025_low-res_compressed.pdf",
+      "observed_note": "하이샤인 금속 표면이 SS26 쇼 이미지 캡션에 다수 언급되었다."
+     },
+     {
+      "label": "세이프티 체인 결합",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "consumer",
+      "source_url": "https://us.pandora.net/en/new-featured/featured/charms-offer/linked-hearts-safety-chain/792274C00-05.html",
+      "observed_note": "브레이슬릿 레이어링과 분리 방지를 위한 체인 구매 후기가 늘었다."
+     }
+    ],
+    "key_items": [
+     {
+      "segment": "women",
+      "name": "THE TORQUE CHOKER",
+      "description": "SS27에는 토크형 실버 초커가 캐주얼과 포멀 모두를 묶어낸다. 칼라뼈 라인을 가르는 간격과 두께를 키워 단품 임팩트를 준다. 로듐 도금 하이샤인이 여름 톤에 선명한 대비를 만든다. FW26의 칼라 트렌드를 상업적으로 수용한다.",
+      "metric": {
+       "label": "토크·칼라 노출 증가",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "shows",
+       "source_url": "https://www.whowhatwear.com/fashion/fall-winter-jewelry-trends-2026",
+       "observed_note": "FW26 리포트가 청키 칼라·초커 회귀를 명시했다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "토 셰이프: 오픈 토크 칼라. 힌지 없음. 소재: 925 로듐. 클로저: 텐션 핏. 부자재: 엔드캡 무광 가능."
+     },
+     {
+      "segment": "women",
+      "name": "THE VOLUME ARM CUFF",
+      "description": "SS27에는 전완과 상박을 감싸는 볼륨 커프가 룩의 구조가 된다. 소매 위 착용이 보편화되어 반팔과 민소매 모두에 적용된다. 로듐 도금 925와 경량 단면 설계가 착용 지속 시간을 늘린다.",
+      "metric": {
+       "label": "암 커프 채택",
+       "yoy_percent": null,
+       "magnitude": "surging",
+       "source_kind": "shows",
+       "source_url": "https://www.vogue.it/article/bracciali-bangles-modelli-tendenza-estate-2026",
+       "observed_note": "SS26 기사에서 뱅글이 상박 커프로 확장되었다고 분석했다."
+      },
+      "grade": "big",
+      "silhouette_spec": "토 셰이프: 상박 커프 30~45mm. 힌지: 히든 스프링 선택. 소재: 925 로듐. 클로저: 오프닝 25~35mm."
+     },
+     {
+      "segment": "women",
+      "name": "THE SCULPT RING",
+      "description": "SS27에는 면을 둥글게 깎은 조각적 실버 링이 스택 대신 단독으로 팔린다. 더블·브리지 구조가 손가락 사이 라인을 강조한다. 랩그로운 다이아의 미세 파베가 대면적 금속을 부드럽게 한다.",
+      "metric": {
+       "label": "더블 링·조각적 실루엣",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "social",
+       "source_url": "https://www.vogue.co.uk/article/double-ring-trend-2026",
+       "observed_note": "더블 링·사인넷형이 2026 트렌드 기사에서 증가로 언급되었다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "토 셰이프: 더블/브리지. 힌지 없음. 소재: 925 로듐+랩다이아. 클로저: 슬립온."
+     },
+     {
+      "segment": "men",
+      "name": "THE SINGLE EAR CUFF",
+      "description": "SS27에는 한쪽 귓바퀴를 감싸는 싱글 이어커프가 남성 입문 아이템이 된다. 체인·펜던트보다 가벼워 데일리 채택이 쉽다. 로듐 실버의 차가운 광택이 블랙 티셔츠와 강하게 어울린다.",
+      "metric": {
+       "label": "이어커프 화제성",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "social",
+       "source_url": "https://www.forbes.com/sites/poojashah/2026/05/04/the-met-gala-made-us-fall-in-love-with-ear-cuffs-shop-the-trend-here/",
+       "observed_note": "대형 이벤트 이후 이어커프 착장이 집중 조명되었다."
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "토 셰이프: 싱글 커프 3~5mm. 힌지 없음. 소재: 925 로듐. 클로저: 텐션."
+     },
+     {
+      "segment": "men",
+      "name": "THE SLIM TORQUE COLLAR",
+      "description": "SS27에는 남성용 슬림 토크 칼라가 미니멀 룩의 하드웨어가 된다. 셔츠 칼라 안쪽에 맞춰 3~4mm 슬림 규격이 채택된다. 체인 대비 광택이 크고 셋업 수트에도 이질감이 낮다.",
+      "metric": {
+       "label": "남성 초커·칼라 노출",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "social",
+       "source_url": "https://www.scmp.com/magazines/style/luxury/jewellery/article/3357145/mens-chokers-jewellery-trend-timothee-chalamet-and-connor-storrie-are-reviving",
+       "observed_note": "남성 초커 착용 사례와 보도가 2026년에 다수 소개되었다."
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "토 셰이프: 3~4mm 토크 칼라. 힌지 없음. 소재: 925 로듐. 클로저: 텐션 핏."
+     },
+     {
+      "segment": "men",
+      "name": "THE SIGNET-SCULPT",
+      "description": "SS27에는 평면판 대신 둥근 엣지의 사인넷-스컬프트가 확산된다. 유광 실버 면이 크고 각은 부드럽다. 한 손가락 단독 착용으로 절제된 존재감을 만든다.",
+      "metric": {
+       "label": "사인넷 확장",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "consumer",
+       "source_url": "https://www.gq.com/gallery/best-signet-rings-to-buy-now",
+       "observed_note": "남성 사인넷 구매 가이드·추천이 2026년 업데이트되었다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "토 셰이프: 라운드 코너 플랫 탑. 힌지 없음. 소재: 925 로듐. 클로저: 슬립온."
+     },
+     {
+      "segment": "kids",
+      "name": "THE SAFE CUFF-LITE",
+      "description": "SS27에는 얇은 개방형 커프-라이트가 주니어 선물 아이템으로 쓰인다. 둥근 모서리와 경량 단면이 안전 체감을 높인다. 팔찌에는 세이프티 체인을 결합해 분실과 충격을 줄인다.",
+      "metric": {
+       "label": "세이프티 체인 수요",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "consumer",
+       "source_url": "https://us.pandora.net/en/new-featured/featured/charms-offer/linked-hearts-safety-chain/792274C00-05.html",
+       "observed_note": "안전 체인 관련 문의·구매 후기가 이어지고 있다."
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "토 셰이프: 슬림 커프 2~3mm. 힌지 없음. 소재: 925 로듐. 클로저: 오픈 엔드+세이프티."
+     },
+     {
+      "segment": "kids",
+      "name": "THE TEEN EAR CUFF",
+      "description": "SS27에는 피어싱 없이 착용하는 실버 이어커프가 틴 타깃에 적합하다. 통학·동아리 드레스코드에 걸리지 않는 작은 폭이 채택된다. 광택은 로우샤인으로 자극을 낮춘다.",
+      "metric": {
+       "label": "틴 이어커프 판매",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.market.unicefusa.org/earrings/gifts-for-teens/ear-cuffs/sterling-silver/",
+       "observed_note": "틴 귀걸이·이어커프 카테고리 노출과 라인업이 유지된다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "토 셰이프: 2~3mm 커프. 힌지 없음. 소재: 925 로듐. 클로저: 텐션."
+     },
+     {
+      "segment": "kids",
+      "name": "THE ME STACK RING",
+      "description": "SS27에는 모듈식 실버 링이 첫 반지 수요를 흡수한다. 작은 폭과 경량 구조가 장시간 착용에 유리하다. 컬러 참은 배제하고 클리어 스톤만 써 내구 이슈를 줄인다.",
+      "metric": {
+       "label": "모듈·커스텀 선호",
+       "yoy_percent": null,
+       "magnitude": "steady",
+       "source_kind": "market",
+       "source_url": "https://us.pandora.net/en/rings/pandora-me/",
+       "observed_note": "Pandora ME 링 카테고리가 상시 노출되며 베스트 상품이 유지된다."
+      },
+      "grade": "stable",
+      "silhouette_spec": "토 셰이프: 1.5~2.0mm 밴드. 힌지 없음. 소재: 925 로듐. 클로저: 슬립온."
+     }
+    ],
+    "grade": "big",
+    "next_season_call": "FW27에는 칼라형 목걸이가 더 두꺼워지고 상박 커프가 니트 위로 이동한다. 반면 과장 펜던트는 속도가 둔화되고 블랙 로듐 악센트가 테스트 확장된다.",
+    "confidence": "medium"
+   },
+   {
+    "name": "DIAMOND DAILY",
+    "statement": "SS27에 랩 다이아가 얹힌 925 실버가 일상 카테고리를 장악하며 솔리테어와 미니 테니스가 주력군으로 커진다.",
+    "narrative": "FW26의 런웨이와 리테일은 반짝임의 매너를 가볍게 바꾸었다. 과장 대신 선명한 선과 작은 광점이 남았다. SS27에는 이 미니멀한 광이 데일리 기준으로 재정의된다.\nMV와 Pandora가 925 실버×랩 다이아를 실생활 가격대로 고정했다. SS27의 핵심은 솔리테어의 적층과 미니 테니스의 한 손 착용이다. 베젤 펜던트와 체인·테니스 혼합형이 레이어링의 중심을 잡는다.\n팔레트는 로듐 광택의 차가운 은색이 바탕이 된다. 스톤은 니어 컬러리스의 깨끗한 흰빛으로 통일된다. 테니스코어 무드로 코트 그린과 블러시가 연출 색으로 남는다.",
+    "sub_trends": [
+     "실버 솔리테어 링",
+     "미니 테니스 브레이슬릿",
+     "베젤 펜던트",
+     "체인·테니스 하이브리드"
+    ],
+    "drivers": [
+     {
+      "label": "검색 ‘tennis bracelet’ 계절 급증",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "consumer",
+      "source_url": "https://www.professionaljeweller.com/wimbledon-26-demand-tennis-bracelets/",
+      "observed_note": "2026 윔블던 기간에 ‘silver tennis bracelet’ 20% 상승과 ‘diamond tennis bracelet’ 10% 상승이 보고되었다."
+     },
+     {
+      "label": "소셜 ‘tenniscore’ 파급 확장",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "social",
+      "source_url": "https://www.inc.com/annabel-burba/tiktok-is-turning-tennis-into-a-gen-z-spectator-sport/91358346",
+      "observed_note": "TikTok의 테니스 해시태그 게시물이 2025년에 25% 이상 증가했다는 자료가 공개되었다."
+     },
+     {
+      "label": "AW26 런던에서 칼라·초커 재등장",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "shows",
+      "source_url": "https://www.vogue.co.uk/article/london-fashion-week-jewellery-trends-aw26",
+      "observed_note": "AW26 LFW에서 단정한 네크리스와 칼라형 연출이 다수 보였다. SS27에 테니스 초커로 전이될 가능성이 높다."
+     }
+    ],
+    "palette": [
+     {
+      "layer": "metal",
+      "name": "Polished Rhodium",
+      "pantone_tcx": "",
+      "hex": "#D7DDE2"
+     },
+     {
+      "layer": "metal",
+      "name": "Oxidized Silver",
+      "pantone_tcx": "",
+      "hex": "#70757A"
+     },
+     {
+      "layer": "stone",
+      "name": "Near‑Colorless Diamond",
+      "pantone_tcx": "",
+      "hex": "#F8F9FA"
+     },
+     {
+      "layer": "stone",
+      "name": "Brilliant Ice",
+      "pantone_tcx": "",
+      "hex": "#EAF3FF"
+     },
+     {
+      "layer": "mood",
+      "name": "Pandora Blush",
+      "pantone_tcx": "",
+      "hex": "#F6D2DB"
+     },
+     {
+      "layer": "mood",
+      "name": "Optic White",
+      "pantone_tcx": "",
+      "hex": "#FFFFFF"
+     },
+     {
+      "layer": "mood",
+      "name": "Wimbledon Green",
+      "pantone_tcx": "",
+      "hex": "#006945"
+     },
+     {
+      "layer": "mood",
+      "name": "Navy Night",
+      "pantone_tcx": "",
+      "hex": "#0B1F3B"
+     },
+     {
+      "layer": "mood",
+      "name": "Clay Court",
+      "pantone_tcx": "",
+      "hex": "#C86F3F"
+     }
+    ],
+    "materials": [
+     {
+      "label": "Recycled 925 Sterling Silver",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.pandoragroup.com/assetcontent?url=https%3A%2F%2Fclientapi.gcs-web.com%2Fdata%2F549db3ad-76fd-4588-a083-03d65705209f%2Fassets%2F26591",
+      "observed_note": "Pandora의 랩 다이아 라인은 100% 재활용 은과 금을 명시한다."
+     },
+     {
+      "label": "Rhodium‑plated Sterling Silver",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://us.pandora.net/en/jewelry/silver-jewelry/sterling-silver-bracelets/sparkling-slider-tennis-bracelet/599375C01.html",
+      "observed_note": "테니스형 실버 브레이슬릿에서 로듐 도금 표기가 확대되었다."
+     },
+     {
+      "label": "SCS‑007 Lab‑Grown Diamond",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.monicavinader.com/us/lab-grown-diamond-solitaire-ring/sterling-silver-solitaire-diamond-ring-lab-grown-diamond?size=m",
+      "observed_note": "MV가 SCS‑007 인증 랩 다이아 사용을 제품 상세에 명시했다."
+     },
+     {
+      "label": "Two‑tone Silver × 14k Gold Plating",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://us.pandora.net/en/new-featured/featured/charms-offer/engravable-north-star-lab-grown-diamond-dangle-charm/763588C01.html",
+      "observed_note": "실버 바디에 14k 도금과 랩 다이아 조합이 스테디로 확장된다."
+     }
+    ],
+    "details": [
+     {
+      "label": "베젤 세팅",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://us.pandora.net/en/necklaces/lab-grown-diamond-necklaces/pandora-era-bezel-sterling-silver-lab-grown-diamond-pendant-necklace/392876C01.html",
+      "observed_note": "실버×랩 다이아 펜던트에서 베젤 프레임 노출이 증가한다."
+     },
+     {
+      "label": "마이크로 프롱 테니스 링크 1.6–1.8mm",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.shopdorsey.com/products/14k-white-gold-kate-1-8mm-round-cut-lab-grown-diamond-riviere-bracelet",
+      "observed_note": "1.8mm 소구경 프롱 세팅이 데일리 착용감으로 호응을 얻는다."
+     },
+     {
+      "label": "슬라이더 조절 클라스프",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://us.pandora.net/en/bracelets/adjustable-bracelets/sparkling-slider-tennis-bracelet/599375C01.html?bvstate=pg%3A9%2Fct%3Ar&cgid=jewellery-non-charm-compatible-bracelet",
+      "observed_note": "길이 미세 조절이 되는 슬라이더가 테니스형에 적용된다."
+     },
+     {
+      "label": "박스 클라스프 + 8자 세이프티",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.shopdorsey.com/products/14k-white-gold-kate-1-8mm-round-cut-lab-grown-diamond-riviere-bracelet",
+      "observed_note": "데일리 착용을 위한 이중 잠금 구조가 표준화된다."
+     }
+    ],
+    "key_items": [
+     {
+      "segment": "women",
+      "name": "THE DAILY SOLITAIRE RING",
+      "description": "슬림 밴드에 0.06캐럿이 선명히 뜬다. 실버 광택이 손등의 톤을 깨끗이 정리한다. 단독도 좋고 적층에 유연하게 맞는다. SS27에는 사이즈 풀과 색상 옵션이 넓어진다.",
+      "metric": {
+       "label": "실버 솔리테어 링",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.monicavinader.com/us/lab-grown-diamond-solitaire-ring/sterling-silver-solitaire-diamond-ring-lab-grown-diamond?size=m",
+       "observed_note": "MV 솔리테어 실버 링이 상시 판매되며 가격 접근성이 유지된다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "밴드 1.3mm·라운드 5.3mm·VS 컷·폴리시 실버"
+     },
+     {
+      "segment": "women",
+      "name": "THE MINI TENNIS BRACELET 1.8MM",
+      "description": "작은 스톤을 촘촘히 이어 손목이 가벼워진다. 1.6~1.8mm 폭이 티셔츠에도 어울린다. 박스와 세이프티가 일상 착용을 뒷받침한다. SS27에는 길이와 캐럿 옵션이 세분화된다.",
+      "metric": {
+       "label": "미니 테니스 브레이슬릿",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.monicavinader.com/us/lab-grown-diamond-essential-tennis-bracelet/sterling-silver-round-diamond-tennis-bracelet-lab-grown-diamond",
+       "observed_note": "실버×랩 다이아 테니스가 주요 리테일러에 노출된다."
+      },
+      "grade": "big",
+      "silhouette_spec": "스톤 1.6–1.8mm·4프롱·박스클라스프·피겨8 세이프티"
+     },
+     {
+      "segment": "women",
+      "name": "THE BEZEL PENDANT 0.15CT",
+      "description": "얇은 체인에 베젤 스톤이 단정히 떠 있다. 목선에 딱 붙는 길이가 레이어링을 돕는다. 낮에는 단독, 밤에는 초커와 겹쳐 쓴다. SS27에는 실버 버전 재고가 안정화된다.",
+      "metric": {
+       "label": "베젤 펜던트",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://us.pandora.net/en/necklaces/lab-grown-diamond-necklaces/pandora-era-bezel-sterling-silver-lab-grown-diamond-pendant-necklace/392876C01.html",
+       "observed_note": "Pandora의 실버 베젤 펜던트가 가격대 $200선에 자리한다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "0.15ct·베젤·다이아컷 케이블·15–18인치 어저스터"
+     },
+     {
+      "segment": "men",
+      "name": "THE QUIET TENNIS BRACELET 3MM",
+      "description": "3mm 라인이 셔츠 커프 아래서 은근히 보인다. 실버 베이스가 캐주얼과 포멀 모두 소화한다. 남성 사이즈가 길이로 구분된다. SS27에는 경량화된 미니 캐럿 구성이 늘어난다.",
+      "metric": {
+       "label": "남성 테니스 브레이슬릿",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.macys.com/shop/product/mens-diamond-tennis-bracelet-1-ct.-t.w.-in-sterling-silver?ID=14743674",
+       "observed_note": "메이저 리테일에서 남성 실버×다이아 테니스가 상시 판매된다."
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "체인 3.0mm·프롱·박스클라스프·남성 7.5–8.5인치"
+     },
+     {
+      "segment": "men",
+      "name": "THE BEZEL SIGNET",
+      "description": "평평한 면에 작은 다이아가 한 점 박힌다. 손등을 과장하지 않고 존재감을 남긴다. 실버 바디가 데일리 착용을 쉽게 만든다. SS27에는 각진 면과 원형이 병행된다.",
+      "metric": {
+       "label": "실버 솔리테어 링",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.zales.com/12-ct-tw-labgrown-diamond-hexagon-signet-ring-sterling-silver-fvs2/p/V-20624688",
+       "observed_note": "실버×랩 다이아 시그넷이 합리 단가로 다수 노출된다."
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "플랫 탑 9~11mm·미니 베젤·실버 바디·내경 라운드"
+     },
+     {
+      "segment": "men",
+      "name": "THE CHAIN–TENNIS HYBRID",
+      "description": "페이퍼클립 체인에 소형 스톤이 점상으로 놓인다. 한 팔에 체인과 테니스의 리듬을 합친다. 정장에도 부담이 적다. SS27에는 실버 버전 출시가 빨라진다.",
+      "metric": {
+       "label": "체인·테니스 하이브리드",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.peoplesjewellers.com/025-ct-tw-certified-labgrown-diamond-solitaire-paper-clip-chain-bracelet-sterling-silver-fsi2-75-/p/V-20610533",
+       "observed_note": "실버×랩 다이아 페이퍼클립 브레이슬릿이 확산된다."
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "페이퍼클립 3.5mm·솔리테어 스테이션 0.25ct·스프링클래스프"
+     },
+     {
+      "segment": "kids",
+      "name": "THE TINY DOT STUDS",
+      "description": "작은 점처럼 보이는 스터드가 얼굴선을 밝힌다. 알레르기 대응에 실버가 안전하다. 졸업과 생일 선물 수요가 높다. SS27에는 0.10~0.20ct 단계가 세분된다.",
+      "metric": {
+       "label": "미니 스터드",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://us.pandora.net/en/collections/pandora-lab-grown-diamonds/pandora-infinite-lab-grown-diamond-stud-earrings-0.20-ct-tw-sterling-silver/299452C01.html?bvstate=pg%3A2%2Fct%3Ar",
+       "observed_note": "실버×랩 다이아 0.20cttw 스터드가 상시 구성으로 유지된다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "각 0.10ct·버터플라이백·폴리시 실버·라운드 컷"
+     },
+     {
+      "segment": "kids",
+      "name": "THE MINI INITIAL PENDANT",
+      "description": "이니셜 옆에 작은 다이아가 반짝인다. 개인화와 안전한 소재가 함께 간다. 가벼운 크기로 움직임이 편하다. SS27에는 글리프 옵션이 더해진다.",
+      "metric": {
+       "label": "베젤 펜던트",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.nordstrom.com/s/lab-grown-diamond-initial-pendant/8850899",
+       "observed_note": "MV의 실버×랩 다이아 이니셜 펜던트가 메이저몰에 입점된다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "미니 펜던트 8–10mm·싱글 스톤·케이블 체인 16인치"
+     },
+     {
+      "segment": "kids",
+      "name": "THE PETITE BEZEL NECKLACE 0.25CT",
+      "description": "작은 베젤이 교복과 일상에 자연스럽다. 목걸이 길이 조절이 쉬워 성장에 맞춘다. 드레시한 날에도 겸용이 가능하다. SS27에는 화이트 톤 포장 제안이 따른다.",
+      "metric": {
+       "label": "베젤 펜던트",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://us.pandora.net/en/necklaces/necklaces/lab-grown-diamond-necklaces/pandora-nova-sterling-silver-lab-grown-diamond-pendant-necklace/392904C01.html",
+       "observed_note": "Pandora Nova 실버×0.25ct 펜던트가 스테디로 자리한다."
+      },
+      "grade": "safe",
+      "silhouette_spec": "0.25ct·베젤·15–17인치 어저스터·다이아컷 케이블"
+     }
+    ],
+    "grade": "big",
+    "next_season_call": "FW27에는 칼라 길이의 테니스 네크리스가 늘고 체인·테니스 혼합형이 남성 카테고리로 더 확장된다. 반면 과장된 굵기의 골드 테니스는 완만해진다.",
+    "confidence": "medium"
+   },
+   {
+    "name": "EAR ARCH",
+    "statement": "SS27에 비대칭 이어 스택이 실버와 랩 다이아로 대중화된다.",
+    "narrative": "FW26에 레드카펫과 런웨이에서 이어커프 노출이 늘었다.\nSS27에는 이 무드가 일상 착장으로 번져 스택이 표준이 된다.\n실버와 랩 다이아가 엔트리 가격대에서 신뢰를 만든다.\n\n비대칭 싱글 피어싱이 자연스러워지며 좌우가 달라진다.\n이어 클라이머와 커프의 조합이 세그먼트형으로 정리된다.\n컨버터블 이어챰이 하루에 여러 룩을 가능하게 한다.\n\n남성과 키즈로 파생되며 단품 구매가 늘어난다.\n실버는 로듐과 건메탈로 선택지가 넓어진다.\n랩 다이아는 0.10캐럿에서 0.30캐럿대로 접근이 쉬워진다.",
+    "sub_trends": [
+     "세그먼트 이어커프",
+     "이어 클라이머 믹스",
+     "컨버터블 이어챰",
+     "비대칭 싱글 피어싱"
+    ],
+    "drivers": [
+     {
+      "label": "‘ear cuff’ 검색량 증가",
+      "yoy_percent": 22,
+      "magnitude": "rising",
+      "source_kind": "consumer",
+      "source_url": "https://www.rankhero.com/keywords/ear-cuff",
+      "observed_note": "2025년 6월 대비 2026년 5월 검색량이 22% 증가로 표기"
+     },
+     {
+      "label": "메트 갈라 이후 소셜 노출 급증",
+      "yoy_percent": null,
+      "magnitude": "surging",
+      "source_kind": "social",
+      "source_url": "https://www.forbes.com/sites/poojashah/2026/05/04/the-met-gala-made-us-fall-in-love-with-ear-cuffs-shop-the-trend-here/",
+      "observed_note": "메트 갈라에서 이어커프가 화제로 보도되어 확산"
+     },
+     {
+      "label": "FW26 쇼에서 이어커프 비중 확대",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "shows",
+      "source_url": "https://www.vogue.it/article/gioielli-fashion-week-autunno-inverno-2026-2027",
+      "observed_note": "Vogue Italia가 반원형 이어커프 등장을 구체적으로 언급"
+     }
+    ],
+    "palette": [
+     {
+      "layer": "metal",
+      "name": "Silver",
+      "pantone_tcx": "14-5002 TCX",
+      "hex": "#A2A2A1"
+     },
+     {
+      "layer": "metal",
+      "name": "Gunmetal",
+      "pantone_tcx": "18-0306 TCX",
+      "hex": "#5C5D5B"
+     },
+     {
+      "layer": "stone",
+      "name": "Brilliant White",
+      "pantone_tcx": "11-4001 TCX",
+      "hex": "#EDF1FF"
+     },
+     {
+      "layer": "mood",
+      "name": "Cloud Dancer",
+      "pantone_tcx": "11-4201 TCX",
+      "hex": "#F2F0EB"
+     },
+     {
+      "layer": "mood",
+      "name": "Skyway",
+      "pantone_tcx": "14-4112 TCX",
+      "hex": "#ADBED3"
+     },
+     {
+      "layer": "mood",
+      "name": "Pale Dogwood",
+      "pantone_tcx": "13-1404 TCX",
+      "hex": "#EDCDC2"
+     },
+     {
+      "layer": "mood",
+      "name": "Gray Lilac",
+      "pantone_tcx": "13-3804 TCX",
+      "hex": "#D4CACD"
+     },
+     {
+      "layer": "mood",
+      "name": "Silver Cloud",
+      "pantone_tcx": "15-4502 TCX",
+      "hex": "#BEB7B0"
+     },
+     {
+      "layer": "mood",
+      "name": "Lime Punch",
+      "pantone_tcx": "13-0550 TCX",
+      "hex": "#C0D725"
+     }
+    ],
+    "materials": [
+     {
+      "label": "925 스털링 실버 로듐 도금",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.itsmiel.com/en/home/2543-alita-silver-ear-cuff-925.html",
+      "observed_note": "제품 설명에 로듐 도금 925 표기가 기본으로 보인다"
+     },
+     {
+      "label": "랩 그로운 다이아 0.10–0.30ct 설정",
+      "yoy_percent": null,
+      "magnitude": "surging",
+      "source_kind": "market",
+      "source_url": "https://us.pandora.net/en/earrings/lab-grown-diamond-earrings/pandora-infinite-sterling-silver-lab-grown-diamond-earrings/299452C01.html?product_finding_method=plp",
+      "observed_note": "실버 세팅에 0.10ct 단위 랩 다이아 귀걸이 판매"
+     },
+     {
+      "label": "락 크리스털·클리어 석 믹스",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.monicavinader.com/us/baguette-ear-charm/sterling-silver-baguette-gemstone-hoop-charm-rock-crystal",
+      "observed_note": "이어링 참으로 투명 석 선택지가 늘어났다"
+     },
+     {
+      "label": "재활용 실버 소싱 고도화",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.pandoragroup.com/media/press-releases/pandora-now-crafts-its-jewellery-with-100-percent-recycled-silver-and-gold",
+      "observed_note": "브랜드가 100% 재활용 은 사용을 공식화했다"
+     }
+    ],
+    "details": [
+     {
+      "label": "힌지형 세그먼트 커프 구조",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://galleria-armadoro.com/products/tasha-marquise-sterling-silver-ear-cuff",
+      "observed_note": "힌지 개폐와 착용 가이드가 상세히 표기된다"
+     },
+     {
+      "label": "이어 클라이머와 커프 동시 제안",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.nordstrom.com/browse/women/jewelry/earrings?filterByStyle=ear-crawler",
+      "observed_note": "리테일 내 ‘Ear Crawler’ 카테고리가 활성이다"
+     },
+     {
+      "label": "컨버터블 이어챰 시스템",
+      "yoy_percent": null,
+      "magnitude": "surging",
+      "source_kind": "market",
+      "source_url": "https://www.monicavinader.com/us/shop/earring-charms",
+      "observed_note": "후프에 참을 걸어 연출 변환을 안내한다"
+     },
+     {
+      "label": "체인 커넥터 커프",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://amyojewelry.com/products/ear-cuff-chain-sterling-silver",
+      "observed_note": "커프와 스터드를 체인으로 연결한 상품이 확대"
+     }
+    ],
+    "key_items": [
+     {
+      "segment": "women",
+      "name": "비대칭 실버 이어 스택",
+      "description": "싱글 커프와 클라이머, 소형 스터드를 한쪽에 쌓는다. 좌우가 다른 밸런스가 얼굴선을 살린다. 실버 광택과 파베 광이 현대적 인상을 준다. 출근과 이브닝에 모두 작동한다.",
+      "metric": {
+       "label": "비대칭 싱글 피어싱",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "social",
+       "source_url": "https://www.forbes.com/sites/poojashah/2026/05/04/the-met-gala-made-us-fall-in-love-with-ear-cuffs-shop-the-trend-here/",
+       "observed_note": "메트 갈라 이후 비대칭 이어 연출 소개가 집중 노출"
+      },
+      "grade": "big",
+      "silhouette_spec": "이어커프 1·클라이머 1·스터드 1. 925 실버 로듐. F–G VS 랩 다이아 마이크로파베."
+     },
+     {
+      "segment": "women",
+      "name": "컨버터블 이어챰 후프",
+      "description": "후프에 참을 걸고 빼며 룩을 바꾼다. 낮에는 민무늬, 밤에는 드롭으로 확장한다. 챰을 색상별로 더해 계절감을 만든다.",
+      "metric": {
+       "label": "컨버터블 이어챰",
+       "yoy_percent": null,
+       "magnitude": "surging",
+       "source_kind": "market",
+       "source_url": "https://www.monicavinader.com/us/shop/earring-charms",
+       "observed_note": "후프 전용 이어챰이 상시 카테고리로 운영된다"
+      },
+      "grade": "safe",
+      "silhouette_spec": "직경 12–18mm 후프. 참 고리 내경 3mm. 925 실버 로듐. 클릭 클로저."
+     },
+     {
+      "segment": "women",
+      "name": "세그먼트 힌지 이어커프",
+      "description": "두세 줄로 보이는 세그먼트를 한 몸체로 만든다. 힌지와 텐션으로 위치가 안정적이다. 레이어드에 한 피스로 볼륨을 준다.",
+      "metric": {
+       "label": "세그먼트 이어커프",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://galleria-armadoro.com/products/tasha-marquise-sterling-silver-ear-cuff",
+       "observed_note": "힌지형 커프가 스택 제안과 함께 진열된다"
+      },
+      "grade": "safe",
+      "silhouette_spec": "폭 3–6mm 멀티밴드 일체형. 힌지 잠금. 925 실버 로듐."
+     },
+     {
+      "segment": "men",
+      "name": "레프트 싱글 이어커프",
+      "description": "좌측 전용 커프가 룩의 포인트가 된다. 귀를 관통하지 않아 부담이 적다. 셔츠 칼라와 잘 맞아 미니멀 룩에 유효하다.",
+      "metric": {
+       "label": "비대칭 싱글 피어싱",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.hermes.com/us/en/product/point-sellier-left-single-ear-cuff-H126528Bv00TU/",
+       "observed_note": "Left 전용 싱글 커프가 럭셔리 범주에 상시화"
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "좌측 전용 커프. 내경 10–12mm. 925 실버. 폴리싱 마감."
+     },
+     {
+      "segment": "men",
+      "name": "랩 다이아 싱글 허기",
+      "description": "미세 파베의 싱글 허기가 남성 룩에 자연스럽다. 한쪽만 착용해 비대칭 인상을 만든다. 로듐 실버가 워치와 조화된다.",
+      "metric": {
+       "label": "비대칭 싱글 피어싱",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.kohls.com/product/prd-7394546/gemminded-sterling-silver-lab-grown-diamond-accent-single-huggie-earring.jsp",
+       "observed_note": "실버 랩 다이아 싱글 허기가 별도 판매로 확인"
+      },
+      "grade": "safe",
+      "silhouette_spec": "직경 10–12mm 허기. 925 실버 로듐. 랩 다이아 0.03–0.10ct."
+     },
+     {
+      "segment": "men",
+      "name": "체인 커프 투 스터드",
+      "description": "커프와 스터드를 체인으로 잇는다. 재킷 칼라와 겹쳐 착시를 만든다. 모노톤 실버로 남성 착장에 이질감이 적다.",
+      "metric": {
+       "label": "컨버터블 이어챰",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://amyojewelry.com/products/ear-cuff-chain-sterling-silver",
+       "observed_note": "커프와 스터드 세트형 체인 제품 판매 지속"
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "커프 Ø10mm·스튜드 3mm. 체인 40–60mm. 925 실버 로듐."
+     },
+     {
+      "segment": "kids",
+      "name": "키즈 미니 클라이머 스크류백",
+      "description": "작은 라운드 스톤이 귓불을 따라 올라간다. 나사형 뒷마개가 분실을 줄인다. 졸업식과 생일 선물 수요가 뚜렷하다.",
+      "metric": {
+       "label": "이어 클라이머 믹스",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.inseasonjewelry.com/products/bezel-climber-kids-childrens-girls-earrings-screw-back-sterling-silver",
+       "observed_note": "아동용 클라이머가 스크류백 구조로 상시 판매"
+      },
+      "grade": "safe",
+      "silhouette_spec": "길이 9–12mm 클라이머. 925 실버 로듐. 스크류백."
+     },
+     {
+      "segment": "kids",
+      "name": "주니어 로프 커프 팩",
+      "description": "얇은 로프 커프를 두세 개 세트로 제안한다. 무피어싱 구조로 첫 주얼리에 적합하다. 가격 접근성이 높다.",
+      "metric": {
+       "label": "세그먼트 이어커프",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.etsy.com/listing/1469444917/three-rope-line-ear-cuff-925-sterling",
+       "observed_note": "키즈·틴 적합 표기가 있는 925 커프 판매"
+      },
+      "grade": "safe",
+      "silhouette_spec": "폭 1.5–2mm 로프 커프 2–3피스. 925 실버. 수동 텐션."
+     },
+     {
+      "segment": "kids",
+      "name": "스타 모티프 싱글 커프",
+      "description": "작은 별 장식을 올린 싱글 커프다. 행사 사진에서 반짝임이 또렷하다. 선물 포장에서 완성도가 높다.",
+      "metric": {
+       "label": "비대칭 싱글 피어싱",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://roserypoetry.com/products/ear-cuff-no-piercing-with-a-star-in-sterling-silver",
+       "observed_note": "별 장식 925 싱글 커프가 단품으로 판매된다"
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "스타 토핑 Ø4–5mm. 커프 내경 9–11mm. 925 실버. 폴리싱."
+     }
+    ],
+    "grade": "big",
+    "next_season_call": "FW27에는 건메탈과 블랙 피니시가 늘어난다. 싱글 판매옵션이 리테일 표준으로 고정되며 세그먼트 커프가 더 두꺼워진다.",
+    "confidence": "medium"
+   },
+   {
+    "name": "CHROMA GROWN",
+    "statement": "SS27에는 실버 셋팅의 핑크·옐로 랩 다이아가 소형 포인트로 상업 진입을 완성한다. ([nationaljeweler.com](https://nationaljeweler.com/articles/11826-igi-education-are-lab-grown-diamond-color-treatments-permanent?utm_source=openai))",
+    "narrative": "FW26에 컬러 처리의 영구성에 대한 교육과 인증이 확산되었다. SS27에는 컬러 채택 리스크가 줄며 엔트리 포인트가 커진다. ([nationaljeweler.com](https://nationaljeweler.com/articles/11826-igi-education-are-lab-grown-diamond-color-treatments-permanent?utm_source=openai))\nFW26 쇼는 은색 메탈과 파스텔 스톤의 병치를 늘렸다. SS27에는 같은 어휘가 실버 베젤과 미니 솔리테어로 번역된다. ([vogue.com](https://www.vogue.com/article/the-best-fall-2026-accessory-trends?utm_source=openai))\n리테일은 실버 베젤과 조절 체인을 표준 옵션으로 제시했다. SS27에는 0.10~0.25ct 포인트가 스터드와 펜던트에 확산된다. ([us.pandora.net](https://us.pandora.net/en/necklaces/lab-grown-diamond-necklaces/pandora-era-bezel-sterling-silver-lab-grown-diamond-pendant-necklace/392876C01.html?utm_source=openai))",
+    "sub_trends": [
+     "핑크 포인트 스터드",
+     "옐로 미니 솔리테어",
+     "실버 베젤 펜던트",
+     "투톤 믹스 세팅"
+    ],
+    "drivers": [
+     {
+      "label": "Pinterest 검색에서 ‘Pink diamond wedding rings’ 급증",
+      "yoy_percent": 349,
+      "magnitude": "surging",
+      "source_kind": "consumer",
+      "source_url": "https://newsroom.pinterest.com/en-au/news/the-annual-pinterest-wedding-trends-report/?change_language=true",
+      "observed_note": "웨딩 검색에서 핑크 다이아 반지가 전년 대비 349% 뛰었다. ([newsroom.pinterest.com](https://newsroom.pinterest.com/en-au/news/the-annual-pinterest-wedding-trends-report/?change_language=true))"
+     },
+     {
+      "label": "TikTok 해시태그 #labgrowndiamond 노출 유지 상승",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "social",
+      "source_url": "https://ads.tiktok.com/business/creativecenter/hashtag/labgrowndiamond/pc/en?countryCode=UA&period=7",
+      "observed_note": "해시태그 분석 페이지에서 누적 노출과 콘텐츠가 증가세다. ([ads.tiktok.com](https://ads.tiktok.com/business/creativecenter/hashtag/labgrowndiamond/pc/en?countryCode=UA&period=7&utm_source=openai))"
+     },
+     {
+      "label": "FW26 액세서리 리포트에서 은색·컬러 주얼리 다수",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "shows",
+      "source_url": "https://www.vogue.com/article/the-best-fall-2026-accessory-trends",
+      "observed_note": "Vogue와 British Vogue에 컬러 스톤과 로듐톤이 반복 등장했다. ([vogue.com](https://www.vogue.com/article/the-best-fall-2026-accessory-trends?utm_source=openai))"
+     }
+    ],
+    "palette": [
+     {
+      "layer": "metal",
+      "name": "Ultimate Gray",
+      "pantone_tcx": "17-5104 TCX",
+      "hex": ""
+     },
+     {
+      "layer": "metal",
+      "name": "Harbor Mist",
+      "pantone_tcx": "14-4202 TCX",
+      "hex": ""
+     },
+     {
+      "layer": "metal",
+      "name": "Mercury",
+      "pantone_tcx": "14-4502 TCX",
+      "hex": ""
+     },
+     {
+      "layer": "metal",
+      "name": "Star White",
+      "pantone_tcx": "11-4202 TCX",
+      "hex": ""
+     },
+     {
+      "layer": "stone",
+      "name": "Pink Lady",
+      "pantone_tcx": "13-2806 TCX",
+      "hex": ""
+     },
+     {
+      "layer": "stone",
+      "name": "Rose Quartz",
+      "pantone_tcx": "13-1520 TCX",
+      "hex": ""
+     },
+     {
+      "layer": "stone",
+      "name": "Popcorn",
+      "pantone_tcx": "12-0825 TCX",
+      "hex": ""
+     },
+     {
+      "layer": "stone",
+      "name": "Limelight",
+      "pantone_tcx": "12-0740 TCX",
+      "hex": ""
+     },
+     {
+      "layer": "mood",
+      "name": "Peach Fuzz",
+      "pantone_tcx": "13-1023 TCX",
+      "hex": ""
+     }
+    ],
+    "materials": [
+     {
+      "label": "925 실버 로듐 도금 채택 확대",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://us.pandora.net/en/blog/what-is-sterling-silver/",
+      "observed_note": "로듐 도금 실버의 내식·광택 장점이 명시되어 채택이 늘었다. ([us.pandora.net](https://us.pandora.net/en/blog/what-is-sterling-silver/?msockid=2638b0666549647d1444a6eb642365bd&utm_source=openai))"
+     },
+     {
+      "label": "HPHT·어닐링 기반 팬시 컬러 LGD 상업 공급",
+      "yoy_percent": null,
+      "magnitude": "surging",
+      "source_kind": "market",
+      "source_url": "https://www.igi.org/reports/colored-diamonds",
+      "observed_note": "HPHT 처리로 핑크와 옐로 등 영구 색 구현이 가능하다. ([igi.org](https://www.igi.org/reports/colored-diamonds?utm_source=openai))"
+     },
+     {
+      "label": "재활용 실버 사용 라인업 확대",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://pandoragroup.com/media/press-releases/pandora-launches-collection-with-lab-created-diamonds-and-100-percent-recycled-silver-and-gold",
+      "observed_note": "랩 다이아 컬렉션에 100% 재활용 실버·골드 사용을 발표했다. ([pandoragroup.com](https://pandoragroup.com/media/press-releases/pandora-launches-collection-with-lab-created-diamonds-and-100-percent-recycled-silver-and-gold?utm_source=openai))"
+     },
+     {
+      "label": "실버 기반의 투톤(실버×옐로 골드) 구조 보편화",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.walmart.com/ip/5053699120",
+      "observed_note": "실버 본체에 옐로 골드 파츠를 혼용한 상용 제품이 보였다. ([walmart.com](https://www.walmart.com/ip/5053699120?utm_source=openai))"
+     }
+    ],
+    "details": [
+     {
+      "label": "로우월 마이크로 베젤 세팅",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://us.pandora.net/en/necklaces/lab-grown-diamond-necklaces/pandora-era-bezel-sterling-silver-lab-grown-diamond-pendant-necklace/392876C01.html",
+      "observed_note": "FW26 신상품에서 실버 베젤 소형 포인트가 상시화되었다. ([us.pandora.net](https://us.pandora.net/en/necklaces/lab-grown-diamond-necklaces/pandora-era-bezel-sterling-silver-lab-grown-diamond-pendant-necklace/392876C01.html?utm_source=openai))"
+     },
+     {
+      "label": "플러시·스타 모티프 포인트 세팅",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://ae.pandora.net/en/new-featured/category/new/new-jewellery/all-new-jewellery/engravable-lab-grown-diamond-tag-pendant/394012C01.html",
+      "observed_note": "실버 디스크에 별 모양 포인트 세팅이 등장했다. ([ae.pandora.net](https://ae.pandora.net/en/new-featured/category/new/new-jewellery/all-new-jewellery/engravable-lab-grown-diamond-tag-pendant/394012C01.html?utm_source=openai))"
+     },
+     {
+      "label": "믹스 메탈 프롱·캡 디테일",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://www.walmart.com/ip/11622857503",
+      "observed_note": "실버 본체에 옐로 프롱을 얹는 투톤 디테일이 보였다. ([walmart.com](https://www.walmart.com/ip/11622857503?utm_source=openai))"
+     },
+     {
+      "label": "슬라이더 어저스터블 체인",
+      "yoy_percent": null,
+      "magnitude": "rising",
+      "source_kind": "market",
+      "source_url": "https://us.pandora.net/en/necklaces/lab-grown-diamond-necklaces/pandora-era-bezel-sterling-silver-lab-grown-diamond-pendant-necklace/392885C01-45.html",
+      "observed_note": "펜던트 체인이 이중 길이 조절로 번들 제공되었다. ([us.pandora.net](https://us.pandora.net/en/necklaces/lab-grown-diamond-necklaces/pandora-era-bezel-sterling-silver-lab-grown-diamond-pendant-necklace/392885C01-45.html?utm_source=openai))"
+     }
+    ],
+    "key_items": [
+     {
+      "segment": "women",
+      "name": "핑크 포인트 스터드 3mm",
+      "description": "소형 라운드 핑크 스톤을 프롱에 단 싱글 스터드다. SS27에는 3mm급이 일상귀걸이로 안착한다. 실버 베이스가 가격 진입을 받쳐 준다. 핑크의 뉴트럴한 피부 톤 매칭이 강점이다. ([macys.com](https://www.macys.com/shop/product/forever-grown-diamonds-lab-created-pink-diamond-stud-earrings-1-4-ct.-t.w.-in-sterling-silver?ID=13268988&utm_source=openai))",
+      "metric": {
+       "label": "핑크 스터드 상시 판매",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.macys.com/shop/product/forever-grown-diamonds-lab-created-pink-diamond-stud-earrings-1-4-ct.-t.w.-in-sterling-silver?ID=13268988",
+       "observed_note": "대형 리테일의 실버 핑크 스터드가 상시 노출된다. ([macys.com](https://www.macys.com/shop/product/forever-grown-diamonds-lab-created-pink-diamond-stud-earrings-1-4-ct.-t.w.-in-sterling-silver?ID=13268988&utm_source=openai))"
+      },
+      "grade": "safe",
+      "silhouette_spec": "925 실버·프롱 세팅·핀 두께 0.8mm·스톤 3mm·버터플라이 백"
+     },
+     {
+      "segment": "women",
+      "name": "실버 베젤 펜던트 0.25ct",
+      "description": "라운드 0.25ct를 낮은 벽의 베젤로 감싼다. SS27에는 레이어드 체인과 함께 셋으로 판매된다. 조절 체인이 목선 맞춤을 돕는다. 실버 광택이 컬러를 맑게 보인다. ([us.pandora.net](https://us.pandora.net/en/necklaces/lab-grown-diamond-necklaces/pandora-era-bezel-sterling-silver-lab-grown-diamond-pendant-necklace/392876C01.html?utm_source=openai))",
+      "metric": {
+       "label": "베젤 펜던트 재입고 순환",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://us.pandora.net/en/necklaces/lab-grown-diamond-necklaces/pandora-era-bezel-sterling-silver-lab-grown-diamond-pendant-necklace/392876C01.html",
+       "observed_note": "FW26 시즌에 베젤 펜던트가 연속 노출됐다. ([us.pandora.net](https://us.pandora.net/en/necklaces/lab-grown-diamond-necklaces/pandora-era-bezel-sterling-silver-lab-grown-diamond-pendant-necklace/392876C01.html?utm_source=openai))"
+      },
+      "grade": "safe",
+      "silhouette_spec": "925 실버·베젤 컵 0.7mm·스톤 0.25ct·체인 42/45cm·스프링링"
+     },
+     {
+      "segment": "women",
+      "name": "옐로 미니 솔리테어",
+      "description": "밝은 옐로 톤 포인트를 0.10~0.20ct로 제안한다. SS27에는 실버 혹은 옐로 도금 실버 체인이 선택된다. 컬러는 HPHT 처리로 안정 생산이 가능하다. 엔트리 가격이 선물 수요를 키운다. ([lightboxjewelry.com](https://lightboxjewelry.com/products/earrings-2-carat-finest-solitaire-studs-pink?utm_source=openai))",
+      "metric": {
+       "label": "옐로 LGD 신규 노출",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://lightboxjewelry.com/products/earrings-2-carat-finest-solitaire-studs-pink",
+       "observed_note": "브랜드가 컬러 LGD 확장을 예고해 채택 여지가 커졌다. ([lightboxjewelry.com](https://lightboxjewelry.com/products/earrings-2-carat-finest-solitaire-studs-pink?utm_source=openai))"
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "925 실버 또는 옐로 도금·프롱·스톤 3~3.8mm·체인 42cm"
+     },
+     {
+      "segment": "men",
+      "name": "싱글 스터드 0.10ct 실버",
+      "description": "작은 화이트 포인트로 첫 피어싱을 제안한다. SS27에는 0.10ct 급이 심플 드레스업 역할을 한다. 실버 베이스가 남성 귀걸이 접근을 낮춘다. 스크루 백 옵션이 안정감을 준다. ([us.pandora.net](https://us.pandora.net/en/collections/pandora-lab-grown-diamonds/pandora-infinite-lab-grown-diamond-stud-earrings-0.20-ct-tw-sterling-silver/299452C01.html?bvstate=pg%3A2%2Fct%3Ar&utm_source=openai))",
+      "metric": {
+       "label": "남성 수요 진입",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://us.pandora.net/en/collections/pandora-lab-grown-diamonds/pandora-infinite-lab-grown-diamond-stud-earrings-0.20-ct-tw-sterling-silver/299452C01.html?bvstate=pg%3A2%2Fct%3Ar",
+       "observed_note": "실버 0.20cttw 스터드가 엔트리로 노출된다. ([us.pandora.net](https://us.pandora.net/en/collections/pandora-lab-grown-diamonds/pandora-infinite-lab-grown-diamond-stud-earrings-0.20-ct-tw-sterling-silver/299452C01.html?bvstate=pg%3A2%2Fct%3Ar&utm_source=openai))"
+      },
+      "grade": "safe",
+      "silhouette_spec": "925 실버·프롱 4개·스톤 0.10ct·포스트 10mm·스크루 백"
+     },
+     {
+      "segment": "men",
+      "name": "투톤 스테이션 체인 브레이슬릿",
+      "description": "실버 체인에 옐로 캡 포인트를 얹는다. SS27에는 미니 베젤 스테이션으로 무게를 줄인다. 혼합 금속이 시계와의 매치를 높인다. 사이즈 조절이 중요 과제로 남는다. ([rakuten.com](https://www.rakuten.com/products/pandora-era-bezel-sterling-silver-lab/05700303071374_upc?utm_source=openai))",
+      "metric": {
+       "label": "투톤 체인 확산",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.rakuten.com/products/pandora-era-bezel-sterling-silver-lab/05700303071374_upc",
+       "observed_note": "실버 베이스에 옐로 포인트를 섞은 라인이 보였다. ([rakuten.com](https://www.rakuten.com/products/pandora-era-bezel-sterling-silver-lab/05700303071374_upc?utm_source=openai))"
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "925 실버 체인 3mm·미니 베젤 0.05ct×3·캡 컬러 옐로·도그클래스프"
+     },
+     {
+      "segment": "men",
+      "name": "스타 디스크 펜던트 0.03ct",
+      "description": "평평한 실버 디스크에 스타 컷아웃 포인트다. SS27에는 도그태그 감성으로 일상 포인트가 된다. 얇은 두께가 겹치기 레이어드에 맞다. 각인 옵션이 선물성을 높인다. ([ae.pandora.net](https://ae.pandora.net/en/new-featured/category/new/new-jewellery/all-new-jewellery/engravable-lab-grown-diamond-tag-pendant/394012C01.html?utm_source=openai))",
+      "metric": {
+       "label": "남성·유니섹스 전개",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://ae.pandora.net/en/new-featured/category/new/new-jewellery/all-new-jewellery/engravable-lab-grown-diamond-tag-pendant/394012C01.html",
+       "observed_note": "스타 세팅 디스크가 유니섹스 아이템으로 보였다. ([ae.pandora.net](https://ae.pandora.net/en/new-featured/category/new/new-jewellery/all-new-jewellery/engravable-lab-grown-diamond-tag-pendant/394012C01.html?utm_source=openai))"
+      },
+      "grade": "safe",
+      "silhouette_spec": "925 실버·플러시 스타·스톤 0.03ct·체인 50cm·슬라이더"
+     },
+     {
+      "segment": "kids",
+      "name": "미니 싱글 스터드 스크루 백",
+      "description": "작은 포인트에 스크루 백으로 안정성을 높인다. SS27에는 4~4.5mm 규격이 세컨드 피어싱을 이끈다. 저자극 실버가 데일리 착용을 돕는다. 선물 포장 색은 파스텔이 맞다. ([walmart.com](https://www.walmart.com/ip/20234161057?utm_source=openai))",
+      "metric": {
+       "label": "키즈용 규격 제안",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.walmart.com/ip/20234161057",
+       "observed_note": "스크루 백 실버 스터드 라인이 다수 제시되었다. ([walmart.com](https://www.walmart.com/ip/20234161057?utm_source=openai))"
+      },
+      "grade": "safe",
+      "silhouette_spec": "925 실버·프롱·스톤 0.05~0.10ct·포스트 짧게·스크루 백"
+     },
+     {
+      "segment": "kids",
+      "name": "틴즈 베젤 펜던트 0.10ct",
+      "description": "얇은 베젤과 가벼운 체인으로 부담을 낮춘다. SS27에는 16–18인치 조절 체인이 기본이 된다. 교복 위 레이어드가 쉬워진다. 미세 흠집에 강한 베젤이 유리하다. ([us.pandora.net](https://us.pandora.net/en/necklaces/lab-grown-diamond-necklaces/pandora-era-bezel-sterling-silver-lab-grown-diamond-pendant-necklace/392885C01-45.html?utm_source=openai))",
+      "metric": {
+       "label": "조절 체인 수요",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://us.pandora.net/en/necklaces/lab-grown-diamond-necklaces/pandora-era-bezel-sterling-silver-lab-grown-diamond-pendant-necklace/392885C01-45.html",
+       "observed_note": "두 단계 길이 조절 체인이 번들로 제공된다. ([us.pandora.net](https://us.pandora.net/en/necklaces/lab-grown-diamond-necklaces/pandora-era-bezel-sterling-silver-lab-grown-diamond-pendant-necklace/392885C01-45.html?utm_source=openai))"
+      },
+      "grade": "safe",
+      "silhouette_spec": "925 실버·베젤·스톤 0.10ct·체인 40/45cm·스프링링"
+     },
+     {
+      "segment": "kids",
+      "name": "키즈 하트 펜던트 실버×옐로",
+      "description": "하트 쉐입에 옐로 포인트를 살짝 얹는다. SS27에는 옐로 도금 실버 체인이 선호된다. 경량 설계가 착용 편의를 높인다. 각인 옵션이 선물 목적에 맞다. ([peoplesjewellers.com](https://www.peoplesjewellers.com/050-ct-tw-certified-labgrown-diamond-fashion-necklace-yellow-sterling-silver-14k-gold-plate/p/V-20608947?utm_source=openai))",
+      "metric": {
+       "label": "키즈·틴즈 라인업 존재",
+       "yoy_percent": null,
+       "magnitude": "rising",
+       "source_kind": "market",
+       "source_url": "https://www.peoplesjewellers.com/050-ct-tw-certified-labgrown-diamond-fashion-necklace-yellow-sterling-silver-14k-gold-plate/p/V-20608947",
+       "observed_note": "옐로 플레이트 실버에 랩 다이아 펜던트가 판매 중이다. ([peoplesjewellers.com](https://www.peoplesjewellers.com/050-ct-tw-certified-labgrown-diamond-fashion-necklace-yellow-sterling-silver-14k-gold-plate/p/V-20608947?utm_source=openai))"
+      },
+      "grade": "early_sign",
+      "silhouette_spec": "925 실버·옐로 도금·하트 7mm·스톤 0.05ct·체인 38/41cm"
+     }
+    ],
+    "grade": "safe",
+    "next_season_call": "FW27에는 핑크·옐로에 더해 라임·그린의 소형 포인트가 시도된다. IGI가 다색 HPHT 구현을 확인해 공급 확장이 가능하다. ([igi.org](https://www.igi.org/reports/colored-diamonds?utm_source=openai))",
+    "confidence": "medium"
+   }
+  ],
+  "yearly_context": [
+   {
+    "season": "SS25",
+    "headline": "청키 커프와 조각적 실루엣이 전면화되었다.",
+    "what_changed": "SS24보다 볼륨과 존재감이 커졌다. ([vogue.co.uk](https://www.vogue.co.uk/article/bracelet-trends-ss25?utm_source=openai))",
+    "source_url": "https://www.vogue.co.uk/article/bracelet-trends-ss25"
+   },
+   {
+    "season": "FW25",
+    "headline": "여성성 재해석과 데일리형 주얼리가 확장되었다.",
+    "what_changed": "SS25의 과장보다 활용성에 무게가 실렸다. ([vogue.com](https://www.vogue.com/article/fall-2025-jewelry-trend-report?utm_source=openai))",
+    "source_url": "https://www.vogue.com/article/fall-2025-jewelry-trend-report"
+   },
+   {
+    "season": "SS26",
+    "headline": "스케일이 커지고 오브제성이 강화되었다.",
+    "what_changed": "FW25 대비 목과 귀의 사이즈가 커졌다. ([vogue.co.uk](https://www.vogue.co.uk/article/catwalk-jewellery-trend-ss26?utm_source=openai))",
+    "source_url": "https://www.vogue.co.uk/article/catwalk-jewellery-trend-ss26"
+   },
+   {
+    "season": "FW26",
+    "headline": "헤어 주얼과 티아라가 시선을 위로 끌어올렸다.",
+    "what_changed": "SS26의 과장을 머리와 귀로 분산했다. ([vogue.co.uk](https://www.vogue.co.uk/article/london-fashion-week-jewellery-trends-aw26?utm_source=openai))",
+    "source_url": "https://www.vogue.co.uk/article/london-fashion-week-jewellery-trends-aw26"
+   }
+  ],
+  "method_note": "관측은 FW26 쇼 리포트와 리테일 페이지의 베스트셀러·품절 표기, 소비자 검색 지표, 소재·지속가능 공시를 교차해 확보했다. 예측은 SS27 시점에 확대될 사용성, 조형성, 가격대, 조달 리드타임을 반영했다. 라인은 925 스털링 실버 기반과 랩그로운 다이아 세팅을 중심으로 보았다. Pandora와 Monica Vinader의 실버 다이아 제품 존재와 가격을 검증해 동급 시장성을 확인했다.",
+  "open_questions": [
+   "SS27 딜리버리 기준 마이크로 다이아 칩의 리드타임이 안정되는가",
+   "실버 표면 처리 두께와 코팅 공정이 반품율에 미치는가",
+   "크루즈 2027의 청키 이어링이 메인 시즌까지 유지되는가",
+   "탄소발자국 표기 확산이 20만~40만 원대에서도 구매 전환을 만드는가",
+   "실버 알레르기 대응 코팅이 귀 파츠 전개에 제약을 주지는 않는가"
+  ],
+  "sources": [
+   {
+    "title": "5 Jewellery Trends From London Fashion Week Autumn/Winter 2026 | British Vogue",
+    "url": "https://www.vogue.co.uk/article/london-fashion-week-jewellery-trends-aw26",
+    "used_for": "FW26 쇼 관측 정리"
+   },
+   {
+    "title": "From Kooky Pearls to Fuzzy Purses, These Are the Standout Fall 2026 Accessory Trends | Vogue",
+    "url": "https://www.vogue.com/article/the-best-fall-2026-accessory-trends",
+    "used_for": "FW26 액세서리 전반 맥락"
+   },
+   {
+    "title": "The Story Behind The Biggest And Boldest Jewellery On The SS26 Catwalks | British Vogue",
+    "url": "https://www.vogue.co.uk/article/catwalk-jewellery-trend-ss26",
+    "used_for": "SS26 스케일 확대 근거"
+   },
+   {
+    "title": "Opulent, Humble, High-and-Low: 10 Jewelry Trends From the Spring 2026 Collections | Vogue",
+    "url": "https://www.vogue.com/article/opulent-humble-and-high-low-10-jewelry-trends-from-the-spring-2026-collections",
+    "used_for": "SS26 트렌드 보강"
+   },
+   {
+    "title": "The 7 Bracelet Styles That Are Trending This Spring/Summer 2025 | British Vogue",
+    "url": "https://www.vogue.co.uk/article/bracelet-trends-ss25",
+    "used_for": "SS25 조형 커프 관측"
+   },
+   {
+    "title": "The Jewelry at the Fall 2025 Collections Considered Femininity From Every Perspective | Vogue",
+    "url": "https://www.vogue.com/article/fall-2025-jewelry-trend-report",
+    "used_for": "FW25 여성성 재해석 관측"
+   },
+   {
+    "title": "15 Fall Jewelry & Accessory Trends to Know From the 2025 Collections | Vogue",
+    "url": "https://www.vogue.com/article/small-accessories-trends-fall-2025",
+    "used_for": "FW25 데일리형 주얼리 확장 맥락"
+   },
+   {
+    "title": "Post-Vegas Jewelry Trend Report: Big Beads, Western Flair, White Metals | National Jeweler",
+    "url": "https://nationaljeweler.com/articles/15052-post-vegas-jewelry-trend-report-big-beads-western-flair-white-metals",
+    "used_for": "화이트 메탈 수요 회복 관측"
+   },
+   {
+    "title": "Pandora Infinite Sterling Silver Lab-grown Diamond Ring | Pandora US",
+    "url": "https://us.pandora.net/en/rings/lab-grown-diamond-rings/pandora-infinite-sterling-silver-lab-grown-diamond-ring/199441C01-53.html",
+    "used_for": "실버 다이아 반지 가격·베스트셀러 확인"
+   },
+   {
+    "title": "Sterling silver Lab-grown diamond earrings for women | Pandora US",
+    "url": "https://us.pandora.net/en/earrings/lab-grown-diamond-earrings/sterling-silver/",
+    "used_for": "실버 다이아 귀걸이 온라인 품절 표기 확인"
+   },
+   {
+    "title": "Lab Grown Diamond Solitaire Ring in Sterling Silver | Monica Vinader",
+    "url": "https://www.monicavinader.com/us/lab-grown-diamond-solitaire-ring/sterling-silver-solitaire-diamond-ring-lab-grown-diamond?size=m",
+    "used_for": "동급 가격대 실버 다이아 제품 존재 확인"
+   },
+   {
+    "title": "Pandora adds carbon footprint label for lab-grown diamonds",
+    "url": "https://www.pandoragroup.com/media/press-releases/pandora-adds-carbon-footprint-label-for-lab-grown-diamonds",
+    "used_for": "탄소발자국 표기 도입 선행 지표"
+   },
+   {
+    "title": "Pandora continues its mission to democratise diamonds",
+    "url": "https://www.pandoragroup.com/media/press-releases/pandora-continues-its-mission-to-democratise-diamonds",
+    "used_for": "실버 또는 14K 세팅 병행 확인"
+   },
+   {
+    "title": "Pandora introduces lab-grown diamond collections in Spain and Italy",
+    "url": "https://www.pandoragroup.com/media/press-releases/pandora-introduces-lab-grown-diamonds-in-spain-and-italy",
+    "used_for": "FW26 기간 중 시장 확장 신호"
+   },
+   {
+    "title": "Pandora Reports Lower 1Q and a \"5th C\" for Its Lab-Grown Diamonds | JCK",
+    "url": "https://www.jckonline.com/editorial-article/pandora-reports-1q-revenue/",
+    "used_for": "마이크로 다이아 전환 코멘트"
+   },
+   {
+    "title": "Ear Cuff, Etsy Keyword Data & Market Analysis | RankHero",
+    "url": "https://www.rankhero.com/keywords/ear-cuff",
+    "used_for": "이어커프 검색량 전년 대비 증가"
+   },
+   {
+    "title": "Are You Ready For the Return of the Chunky Earring? | Vogue Arabia",
+    "url": "https://www.voguearabia.com/article/return-of-the-chunky-earring",
+    "used_for": "크루즈 2027 이어링 리드 신호"
+   },
+   {
+    "title": "Laboratory-Grown Diamond Earrings | Swarovski Created Diamonds",
+    "url": "https://www.swarovski.com/en-US/c-0103/Categories/Jewelry/Earrings/f/flags/fl-created-diamonds/",
+    "used_for": "실버·로듐 도금 기반 다이아 이어링 벤치마크"
+   },
+   {
+    "title": "Lab‑grown diamonds | Sustainability | Pandora Group",
+    "url": "https://www.pandoragroup.com/sustainability/circularity/lab-grown-diamonds",
+    "used_for": "재활용 실버·골드 세팅 정책 확인"
+   }
+  ],
+  "searches": 125,
+  "collected_at": "2026-08-06",
+  "cached": false
+ },
+ "dossierPending": false,
+ "designs": [
+  {
+   "spec": {
+    "design_id": "JW-26FW-C01",
+    "tier": "core",
+    "category": "jewelry",
+    "itemType": "hoop",
+    "fields": {
+     "metal": "925 silver",
+     "plating": "rhodium",
+     "target_weight_g": 1.8,
+     "stone_count": 4,
+     "stone_size_mm": 4.1,
+     "setting_type": "channel",
+     "prong_count": 6,
+     "min_wall_thickness_mm": 1.06,
+     "chain_type": "none",
+     "finish": "matte",
+     "is_pair": true,
+     "is_new_mold": false,
+     "existing_mold_id": "MLD-2024-17"
+    },
+    "fieldsLocked": []
+   },
+   "ruleResults": [],
+   "rejected": false,
+   "cost": {
+    "lines": [
+     {
+      "label": "Metal",
+      "krw": 11880
+     },
+     {
+      "label": "Stones",
+      "krw": 7872
+     },
+     {
+      "label": "Findings",
+      "krw": 3000
+     },
+     {
+      "label": "Chain",
+      "krw": 0
+     },
+     {
+      "label": "Casting",
+      "krw": 5000
+     },
+     {
+      "label": "Setting labour",
+      "krw": 2800
+     },
+     {
+      "label": "Plating",
+      "krw": 4000
+     },
+     {
+      "label": "Finishing",
+      "krw": 3500
+     },
+     {
+      "label": "Tooling, amortised",
+      "krw": 0
+     }
+    ],
+    "tooling": {
+     "total_tooling_krw": 0,
+     "mold_count_required": 0,
+     "amortization_volume": 500,
+     "tooling_per_unit_krw": 0
+    },
+    "estimated_total_krw": 42618,
+    "estimated_band_krw": [
+     36225,
+     51650
+    ],
+    "cap_ratio": 0.71,
+    "confidence": "low",
+    "assumptions": [
+     "MOQ 300",
+     "Silver and gold priced at 2026-08-01",
+     "Standard setting labour rate",
+     "Amortised over 500 units"
+    ],
+    "excluded_costs": [
+     "Packaging",
+     "Freight",
+     "Vendor margin",
+     "Defect rate",
+     "Sampling"
+    ]
+   },
+   "rationale": {
+    "agent_mode": "trend",
+    "driving_signals": [
+     {
+      "signal_id": "sg_001",
+      "weight": 0.4
+     },
+     {
+      "signal_id": "sg_002",
+      "weight": 0.25
+     }
+    ],
+    "reference_images": [
+     {
+      "ref_id": "rf_672",
+      "source_type": "competitor",
+      "source_url": "https://competitor.example/product/8812",
+      "collected_at": "2026-05-14",
+      "borrowed_attributes": [
+       "micro_huggie_9_13mm_id",
+       "inside_out_pave"
+      ],
+      "usage": "attribute_only"
+     },
+     {
+      "ref_id": "rf_968",
+      "source_type": "archive",
+      "source_url": "supabase://uploads/archive_112.jpg",
+      "collected_at": "2026-04-02",
+      "borrowed_attributes": [
+       "proportion"
+      ],
+      "usage": "visual_reference"
+     }
+    ],
+    "reference_prompts": [],
+    "series_dna_inherited": [],
+    "type_placement_reason": "No new tooling, existing parts reused, inside the cost cap. That is what Core is for.",
+    "narrative": [
+     "마이크로 허기 9–13mm showed up 4 times in this price band.",
+     "인사이드‑아웃 파베 세팅, observed 5 times, came in as the second axis.",
+     "No new tooling, existing parts reused, inside the cost cap. That is what Core is for..",
+     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+    ]
+   },
+   "qa": [
+    {
+     "check": "Stone count matches",
+     "target": "4",
+     "observed": "4",
+     "pass": true
+    },
+    {
+     "check": "Setting reads correctly",
+     "target": "channel",
+     "observed": "channel",
+     "pass": true
+    },
+    {
+     "check": "Prong count",
+     "target": "6",
+     "observed": "6",
+     "pass": true
+    },
+    {
+     "check": "Same object across three views",
+     "target": ">=0.80",
+     "observed": "0.88",
+     "pass": true
+    }
+   ],
+   "viewMismatch": false,
+   "metrics": [
+    {
+     "label": "Against cost cap",
+     "value": "29% under"
+    },
+    {
+     "label": "New moulds",
+     "value": "0"
+    },
+    {
+     "label": "Signals observed",
+     "value": "9"
+    }
+   ],
+   "modelEval": [
+    {
+     "label": "Brand fit",
+     "value": "High",
+     "basis": "How much of the existing last and mould is reused, and silhouette distance from the archive"
+    },
+    {
+     "label": "Distinctiveness",
+     "value": "High",
+     "basis": "Attribute distance from competitor products in the same band"
+    },
+    {
+     "label": "Trend backing",
+     "value": "High",
+     "basis": "Observation count and proxy confidence of the linked signals"
+    }
+   ],
+   "colorways": [],
+   "images": [
+    {
+     "view": "sketch",
+     "url": "/samples/574e40e504365aa6469c4ddc.webp",
+     "hash": "574e40e504365aa6469c4ddc",
+     "origin": "generated",
+     "promptUsed": "hoop earrings. straight front view. channel setting holding exactly 4 round stones of 4.1mm, 925 silver metal with matte finish, shown as a matched pair. black and white technical line drawing, pen outline only, no color, no shading, no gradient, no photographic texture, flat white paper, hand-drawn designer sketch. No logo, no text, no lettering anywhere on the product.. Absolutely no text, no numbers, no measurement lines, no dimension callouts, no arrows, no labels, no logo, no watermark, no human"
+    },
+    {
+     "view": "front",
+     "url": "/samples/2a28068aad3e78a6cf206c75.webp",
+     "hash": "2a28068aad3e78a6cf206c75",
+     "origin": "generated",
+     "promptUsed": "hoop earrings. straight front view. channel setting holding exactly 4 round stones of 4.1mm, 925 silver metal with matte finish, shown as a matched pair. photorealistic studio product photograph, full color, real leather and rubber texture, soft light, white background. No logo, no text, no lettering anywhere on the product.. Absolutely no text, no numbers, no measurement lines, no dimension callouts, no arrows, no labels, no logo, no watermark, no human"
+    },
+    {
+     "view": "design",
+     "url": "/samples/216c4f2e317759ac1378bebb.webp",
+     "hash": "216c4f2e317759ac1378bebb",
+     "origin": "edited_from",
+     "editedFrom": "2a28068aad3e78a6cf206c75",
+     "promptUsed": "Redesign this hoop keeping the exact same sketch geometry and camera angle. Push the dominant season material further and make the hardware the focal point. null Plain white studio background, photorealistic product shot, no text, no watermark."
+    },
+    {
+     "view": "concept",
+     "url": "/samples/9a5ce1c0f3d804859dfabb2e.webp",
+     "hash": "9a5ce1c0f3d804859dfabb2e",
+     "origin": "edited_from",
+     "editedFrom": "2a28068aad3e78a6cf206c75"
+    },
+    {
+     "view": "wear",
+     "url": "/samples/23a39e716b7de8de1dcf415d.webp",
+     "hash": "23a39e716b7de8de1dcf415d",
+     "origin": "edited_from",
+     "editedFrom": "2a28068aad3e78a6cf206c75"
+    },
+    {
+     "view": "ortho_front",
+     "url": "/samples/d9bf59452bd8eb8d95ee1b30.webp",
+     "hash": "d9bf59452bd8eb8d95ee1b30",
+     "origin": "edited_from",
+     "editedFrom": "2a28068aad3e78a6cf206c75",
+     "promptUsed": "Rotate to a straight-on front orthographic view of the exact same piece. Keep every proportion, material, stone and detail identical. Centered, plain pure white background, even studio light, no shadow, no text."
+    },
+    {
+     "view": "ortho_left",
+     "url": "/samples/1e573e5ec785eba196ef6a10.webp",
+     "hash": "1e573e5ec785eba196ef6a10",
+     "origin": "edited_from",
+     "editedFrom": "2a28068aad3e78a6cf206c75",
+     "promptUsed": "Rotate to a straight-on left side orthographic view of the exact same piece. Keep every proportion, material, stone and detail identical. Centered, plain pure white background, even studio light, no shadow, no text."
+    },
+    {
+     "view": "ortho_back",
+     "url": "/samples/e21d056f814ad3e82e7ff78a.webp",
+     "hash": "e21d056f814ad3e82e7ff78a",
+     "origin": "edited_from",
+     "editedFrom": "2a28068aad3e78a6cf206c75",
+     "promptUsed": "Rotate to a straight-on back orthographic view of the exact same piece. Keep every proportion, material, stone and detail identical. Centered, plain pure white background, even studio light, no shadow, no text."
+    },
+    {
+     "view": "ortho_right",
+     "url": "/samples/141e3519a33922383f489463.webp",
+     "hash": "141e3519a33922383f489463",
+     "origin": "edited_from",
+     "editedFrom": "2a28068aad3e78a6cf206c75",
+     "promptUsed": "Rotate to a straight-on right side orthographic view of the exact same piece. Keep every proportion, material, stone and detail identical. Centered, plain pure white background, even studio light, no shadow, no text."
+    }
+   ],
+   "isTop": true,
+   "topDistance": 0.81,
+   "model": {
+    "url": "/samples/f9aaa1b99575077957e92a2d.glb",
+    "hash": "f9aaa1b99575077957e92a2d",
+    "format": "glb",
+    "views": 4
+   }
+  },
+  {
+   "spec": {
+    "design_id": "JW-26FW-C02",
+    "tier": "core",
+    "category": "jewelry",
+    "itemType": "hoop",
+    "fields": {
+     "metal": "925 silver",
+     "plating": "rhodium",
+     "target_weight_g": 3.5,
+     "stone_count": 1,
+     "stone_size_mm": 2.4,
+     "setting_type": "channel",
+     "prong_count": 3,
+     "min_wall_thickness_mm": 1.2,
+     "chain_type": "none",
+     "finish": "polished",
+     "is_pair": true,
+     "is_new_mold": false,
+     "existing_mold_id": "MLD-2024-15"
+    },
+    "fieldsLocked": []
+   },
+   "ruleResults": [],
+   "rejected": false,
+   "cost": {
+    "lines": [
+     {
+      "label": "Metal",
+      "krw": 23100
+     },
+     {
+      "label": "Stones",
+      "krw": 1152
+     },
+     {
+      "label": "Findings",
+      "krw": 3000
+     },
+     {
+      "label": "Chain",
+      "krw": 0
+     },
+     {
+      "label": "Casting",
+      "krw": 5000
+     },
+     {
+      "label": "Setting labour",
+      "krw": 700
+     },
+     {
+      "label": "Plating",
+      "krw": 4000
+     },
+     {
+      "label": "Finishing",
+      "krw": 3500
+     },
+     {
+      "label": "Tooling, amortised",
+      "krw": 0
+     }
+    ],
+    "tooling": {
+     "total_tooling_krw": 0,
+     "mold_count_required": 0,
+     "amortization_volume": 500,
+     "tooling_per_unit_krw": 0
+    },
+    "estimated_total_krw": 45306,
+    "estimated_band_krw": [
+     38510,
+     55420
+    ],
+    "cap_ratio": 0.76,
+    "confidence": "low",
+    "assumptions": [
+     "MOQ 300",
+     "Silver and gold priced at 2026-08-01",
+     "Standard setting labour rate",
+     "Amortised over 500 units"
+    ],
+    "excluded_costs": [
+     "Packaging",
+     "Freight",
+     "Vendor margin",
+     "Defect rate",
+     "Sampling"
+    ]
+   },
+   "rationale": {
+    "agent_mode": "trend",
+    "driving_signals": [
+     {
+      "signal_id": "sg_004",
+      "weight": 0.4
+     },
+     {
+      "signal_id": "sg_005",
+      "weight": 0.25
+     }
+    ],
+    "reference_images": [
+     {
+      "ref_id": "rf_601",
+      "source_type": "competitor",
+      "source_url": "https://competitor.example/product/8812",
+      "collected_at": "2026-05-14",
+      "borrowed_attributes": [
+       "double_or_triple_row_pave",
+       "channel_set_row"
+      ],
+      "usage": "attribute_only"
+     },
+     {
+      "ref_id": "rf_451",
+      "source_type": "archive",
+      "source_url": "supabase://uploads/archive_112.jpg",
+      "collected_at": "2026-04-02",
+      "borrowed_attributes": [
+       "proportion"
+      ],
+      "usage": "visual_reference"
+     }
+    ],
+    "reference_prompts": [],
+    "series_dna_inherited": [],
+    "type_placement_reason": "No new tooling, existing parts reused, inside the cost cap. That is what Core is for.",
+    "narrative": [
+     "더블/트리플 로우 파베 전면 showed up 3 times in this price band.",
+     "채널 세팅 라인, observed 3 times, came in as the second axis.",
+     "No new tooling, existing parts reused, inside the cost cap. That is what Core is for..",
+     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+    ]
+   },
+   "qa": [],
+   "viewMismatch": false,
+   "metrics": [
+    {
+     "label": "Against cost cap",
+     "value": "24% under"
+    },
+    {
+     "label": "New moulds",
+     "value": "0"
+    },
+    {
+     "label": "Signals observed",
+     "value": "6"
+    }
+   ],
+   "modelEval": [
+    {
+     "label": "Brand fit",
+     "value": "High",
+     "basis": "How much of the existing last and mould is reused, and silhouette distance from the archive"
+    },
+    {
+     "label": "Distinctiveness",
+     "value": "High",
+     "basis": "Attribute distance from competitor products in the same band"
+    },
+    {
+     "label": "Trend backing",
+     "value": "Medium",
+     "basis": "Observation count and proxy confidence of the linked signals"
+    }
+   ],
+   "colorways": [],
+   "images": [
+    {
+     "view": "sketch",
+     "url": "/samples/552d836a1f4dd44471ddf26a.webp",
+     "hash": "552d836a1f4dd44471ddf26a",
+     "origin": "generated",
+     "promptUsed": "hoop earrings. straight front view. channel setting holding exactly 1 round stone of 2.4mm, 925 silver metal with polished finish, shown as a matched pair. black and white technical line drawing, pen outline only, no color, no shading, no gradient, no photographic texture, flat white paper, hand-drawn designer sketch. No logo, no text, no lettering anywhere on the product.. Absolutely no text, no numbers, no measurement lines, no dimension callouts, no arrows, no labels, no logo, no watermark, no human"
+    }
+   ],
+   "isTop": false
+  },
+  {
+   "spec": {
+    "design_id": "JW-26FW-P03",
+    "tier": "push",
+    "category": "jewelry",
+    "itemType": "hoop",
+    "fields": {
+     "metal": "925 silver",
+     "plating": "rhodium",
+     "target_weight_g": 1.9,
+     "stone_count": 1,
+     "stone_size_mm": 1.6,
+     "setting_type": "channel",
+     "prong_count": 6,
+     "min_wall_thickness_mm": 0.91,
+     "chain_type": "none",
+     "finish": "hammered",
+     "is_pair": true,
+     "is_new_mold": false,
+     "existing_mold_id": "MLD-2024-10"
+    },
+    "fieldsLocked": []
+   },
+   "ruleResults": [],
+   "rejected": false,
+   "cost": {
+    "lines": [
+     {
+      "label": "Metal",
+      "krw": 12540
+     },
+     {
+      "label": "Stones",
+      "krw": 768
+     },
+     {
+      "label": "Findings",
+      "krw": 3000
+     },
+     {
+      "label": "Chain",
+      "krw": 0
+     },
+     {
+      "label": "Casting",
+      "krw": 5000
+     },
+     {
+      "label": "Setting labour",
+      "krw": 700
+     },
+     {
+      "label": "Plating",
+      "krw": 4000
+     },
+     {
+      "label": "Finishing",
+      "krw": 3500
+     },
+     {
+      "label": "Tooling, amortised",
+      "krw": 0
+     }
+    ],
+    "tooling": {
+     "total_tooling_krw": 0,
+     "mold_count_required": 0,
+     "amortization_volume": 500,
+     "tooling_per_unit_krw": 0
+    },
+    "estimated_total_krw": 33049,
+    "estimated_band_krw": [
+     28092,
+     39131
+    ],
+    "cap_ratio": 0.55,
+    "confidence": "low",
+    "assumptions": [
+     "MOQ 300",
+     "Silver and gold priced at 2026-08-01",
+     "Standard setting labour rate",
+     "Amortised over 500 units"
+    ],
+    "excluded_costs": [
+     "Packaging",
+     "Freight",
+     "Vendor margin",
+     "Defect rate",
+     "Sampling"
+    ]
+   },
+   "rationale": {
+    "agent_mode": "trend",
+    "driving_signals": [
+     {
+      "signal_id": "sg_007",
+      "weight": 0.4
+     },
+     {
+      "signal_id": "sg_003",
+      "weight": 0.25
+     }
+    ],
+    "reference_images": [
+     {
+      "ref_id": "rf_629",
+      "source_type": "competitor",
+      "source_url": "https://competitor.example/product/8812",
+      "collected_at": "2026-05-14",
+      "borrowed_attributes": [
+       "fixed_drop_huggie",
+       "oval_elongated_profile"
+      ],
+      "usage": "attribute_only"
+     },
+     {
+      "ref_id": "rf_264",
+      "source_type": "archive",
+      "source_url": "supabase://uploads/archive_112.jpg",
+      "collected_at": "2026-04-02",
+      "borrowed_attributes": [
+       "proportion"
+      ],
+      "usage": "visual_reference"
+     }
+    ],
+    "reference_prompts": [],
+    "series_dna_inherited": [],
+    "type_placement_reason": "Same last and mould, one new element, cost within 30% more. That is Push.",
+    "narrative": [
+     "고정형 드롭 모티프 허기(하트/솔리테어) showed up 3 times in this price band.",
+     "타원/롱 오벌 후프 실루엣, observed 3 times, came in as the second axis.",
+     "Same last and mould, one new element, cost within 30% more. That is Push..",
+     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+    ]
+   },
+   "qa": [
+    {
+     "check": "Stone count matches",
+     "target": "1",
+     "observed": "1",
+     "pass": true
+    },
+    {
+     "check": "Setting reads correctly",
+     "target": "channel",
+     "observed": "channel",
+     "pass": true
+    },
+    {
+     "check": "Prong count",
+     "target": "6",
+     "observed": "6",
+     "pass": true
+    },
+    {
+     "check": "Same object across three views",
+     "target": ">=0.80",
+     "observed": "0.74",
+     "pass": true
+    }
+   ],
+   "viewMismatch": false,
+   "metrics": [
+    {
+     "label": "Against cost cap",
+     "value": "45% under"
+    },
+    {
+     "label": "New moulds",
+     "value": "0"
+    },
+    {
+     "label": "Signals observed",
+     "value": "6"
+    }
+   ],
+   "modelEval": [
+    {
+     "label": "Brand fit",
+     "value": "High",
+     "basis": "How much of the existing last and mould is reused, and silhouette distance from the archive"
+    },
+    {
+     "label": "Distinctiveness",
+     "value": "Low",
+     "basis": "Attribute distance from competitor products in the same band"
+    },
+    {
+     "label": "Trend backing",
+     "value": "High",
+     "basis": "Observation count and proxy confidence of the linked signals"
+    }
+   ],
+   "colorways": [],
+   "images": [
+    {
+     "view": "sketch",
+     "url": "/samples/479ad9d6a512ee443b55e41f.webp",
+     "hash": "479ad9d6a512ee443b55e41f",
+     "origin": "generated",
+     "promptUsed": "hoop earrings. straight front view. channel setting holding exactly 1 round stone of 1.6mm, 925 silver metal with hammered finish, shown as a matched pair. black and white technical line drawing, pen outline only, no color, no shading, no gradient, no photographic texture, flat white paper, hand-drawn designer sketch. No logo, no text, no lettering anywhere on the product.. Absolutely no text, no numbers, no measurement lines, no dimension callouts, no arrows, no labels, no logo, no watermark, no human"
+    },
+    {
+     "view": "front",
+     "url": "/samples/744f9caaa292df2088b46661.webp",
+     "hash": "744f9caaa292df2088b46661",
+     "origin": "generated",
+     "promptUsed": "hoop earrings. straight front view. channel setting holding exactly 1 round stone of 1.6mm, 925 silver metal with hammered finish, shown as a matched pair. photorealistic studio product photograph, full color, real leather and rubber texture, soft light, white background. No logo, no text, no lettering anywhere on the product.. Absolutely no text, no numbers, no measurement lines, no dimension callouts, no arrows, no labels, no logo, no watermark, no human"
+    },
+    {
+     "view": "design",
+     "url": "/samples/2bc36353261370023c0abd29.webp",
+     "hash": "2bc36353261370023c0abd29",
+     "origin": "edited_from",
+     "editedFrom": "744f9caaa292df2088b46661",
+     "promptUsed": "Redesign this hoop keeping the exact same sketch geometry and camera angle. Push the dominant season material further and make the hardware the focal point. null Plain white studio background, photorealistic product shot, no text, no watermark."
+    }
+   ],
+   "isTop": false
+  },
+  {
+   "spec": {
+    "design_id": "JW-26FW-P04",
+    "tier": "push",
+    "category": "jewelry",
+    "itemType": "hoop",
+    "fields": {
+     "metal": "925 silver",
+     "plating": "rhodium",
+     "target_weight_g": 2.8,
+     "stone_count": 6,
+     "stone_size_mm": 3,
+     "setting_type": "prong",
+     "prong_count": 4,
+     "min_wall_thickness_mm": 1.21,
+     "chain_type": "none",
+     "finish": "matte",
+     "is_pair": true,
+     "is_new_mold": false,
+     "existing_mold_id": "MLD-2024-10"
+    },
+    "fieldsLocked": []
+   },
+   "ruleResults": [],
+   "rejected": false,
+   "cost": {
+    "lines": [
+     {
+      "label": "Metal",
+      "krw": 18480
+     },
+     {
+      "label": "Stones",
+      "krw": 8640
+     },
+     {
+      "label": "Findings",
+      "krw": 3000
+     },
+     {
+      "label": "Chain",
+      "krw": 0
+     },
+     {
+      "label": "Casting",
+      "krw": 5000
+     },
+     {
+      "label": "Setting labour",
+      "krw": 4200
+     },
+     {
+      "label": "Plating",
+      "krw": 4000
+     },
+     {
+      "label": "Finishing",
+      "krw": 3500
+     },
+     {
+      "label": "Tooling, amortised",
+      "krw": 0
+     }
+    ],
+    "tooling": {
+     "total_tooling_krw": 0,
+     "mold_count_required": 0,
+     "amortization_volume": 500,
+     "tooling_per_unit_krw": 0
+    },
+    "estimated_total_krw": 52438,
+    "estimated_band_krw": [
+     44572,
+     63596
+    ],
+    "cap_ratio": 0.87,
+    "confidence": "low",
+    "assumptions": [
+     "MOQ 300",
+     "Silver and gold priced at 2026-08-01",
+     "Standard setting labour rate",
+     "Amortised over 500 units"
+    ],
+    "excluded_costs": [
+     "Packaging",
+     "Freight",
+     "Vendor margin",
+     "Defect rate",
+     "Sampling"
+    ]
+   },
+   "rationale": {
+    "agent_mode": "trend",
+    "driving_signals": [
+     {
+      "signal_id": "sg_004",
+      "weight": 0.4
+     },
+     {
+      "signal_id": "sg_006",
+      "weight": 0.25
+     }
+    ],
+    "reference_images": [
+     {
+      "ref_id": "rf_420",
+      "source_type": "competitor",
+      "source_url": "https://competitor.example/product/8812",
+      "collected_at": "2026-05-14",
+      "borrowed_attributes": [
+       "double_or_triple_row_pave",
+       "hinged_clicker_snap_post"
+      ],
+      "usage": "attribute_only"
+     },
+     {
+      "ref_id": "rf_379",
+      "source_type": "archive",
+      "source_url": "supabase://uploads/archive_112.jpg",
+      "collected_at": "2026-04-02",
+      "borrowed_attributes": [
+       "proportion"
+      ],
+      "usage": "visual_reference"
+     }
+    ],
+    "reference_prompts": [],
+    "series_dna_inherited": [],
+    "type_placement_reason": "Same last and mould, one new element, cost within 30% more. That is Push.",
+    "narrative": [
+     "더블/트리플 로우 파베 전면 showed up 3 times in this price band.",
+     "힌지드 클릭(스냅‑포스트) 클로저, observed 3 times, came in as the second axis.",
+     "Same last and mould, one new element, cost within 30% more. That is Push..",
+     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+    ]
+   },
+   "qa": [],
+   "viewMismatch": false,
+   "metrics": [
+    {
+     "label": "Against cost cap",
+     "value": "13% under"
+    },
+    {
+     "label": "New moulds",
+     "value": "0"
+    },
+    {
+     "label": "Signals observed",
+     "value": "6"
+    }
+   ],
+   "modelEval": [
+    {
+     "label": "Brand fit",
+     "value": "Medium",
+     "basis": "How much of the existing last and mould is reused, and silhouette distance from the archive"
+    },
+    {
+     "label": "Distinctiveness",
+     "value": "Medium",
+     "basis": "Attribute distance from competitor products in the same band"
+    },
+    {
+     "label": "Trend backing",
+     "value": "Medium",
+     "basis": "Observation count and proxy confidence of the linked signals"
+    }
+   ],
+   "colorways": [],
+   "images": [
+    {
+     "view": "sketch",
+     "url": "/samples/0603896a23967176f256a857.webp",
+     "hash": "0603896a23967176f256a857",
+     "origin": "generated",
+     "promptUsed": "hoop earrings. straight front view. prong setting holding exactly 6 round stones of 3mm, 925 silver metal with matte finish, shown as a matched pair. black and white technical line drawing, pen outline only, no color, no shading, no gradient, no photographic texture, flat white paper, hand-drawn designer sketch. No logo, no text, no lettering anywhere on the product.. Absolutely no text, no numbers, no measurement lines, no dimension callouts, no arrows, no labels, no logo, no watermark, no human"
+    }
+   ],
+   "isTop": false
+  },
+  {
+   "spec": {
+    "design_id": "JW-26FW-S05",
+    "tier": "signature",
+    "category": "jewelry",
+    "itemType": "hoop",
+    "fields": {
+     "metal": "925 silver",
+     "plating": "none",
+     "target_weight_g": 3.3,
+     "stone_count": 5,
+     "stone_size_mm": 1.1,
+     "setting_type": "channel",
+     "prong_count": 6,
+     "min_wall_thickness_mm": 1.11,
+     "chain_type": "none",
+     "finish": "matte",
+     "is_pair": true,
+     "is_new_mold": true,
+     "existing_mold_id": "MLD-2024-6"
+    },
+    "fieldsLocked": []
+   },
+   "ruleResults": [],
+   "rejected": false,
+   "cost": {
+    "lines": [
+     {
+      "label": "Metal",
+      "krw": 21780
+     },
+     {
+      "label": "Stones",
+      "krw": 2640
+     },
+     {
+      "label": "Findings",
+      "krw": 3000
+     },
+     {
+      "label": "Chain",
+      "krw": 0
+     },
+     {
+      "label": "Casting",
+      "krw": 5000
+     },
+     {
+      "label": "Setting labour",
+      "krw": 3500
+     },
+     {
+      "label": "Plating",
+      "krw": 0
+     },
+     {
+      "label": "Finishing",
+      "krw": 3500
+     },
+     {
+      "label": "Tooling, amortised",
+      "krw": 960
+     }
+    ],
+    "tooling": {
+     "total_tooling_krw": 480000,
+     "mold_count_required": 1,
+     "amortization_volume": 500,
+     "tooling_per_unit_krw": 960
+    },
+    "estimated_total_krw": 45226,
+    "estimated_band_krw": [
+     38442,
+     54535
+    ],
+    "cap_ratio": 0.75,
+    "confidence": "low",
+    "assumptions": [
+     "MOQ 300",
+     "Silver and gold priced at 2026-08-01",
+     "Standard setting labour rate",
+     "Amortised over 500 units"
+    ],
+    "excluded_costs": [
+     "Packaging",
+     "Freight",
+     "Vendor margin",
+     "Defect rate",
+     "Sampling"
+    ]
+   },
+   "rationale": {
+    "agent_mode": "trend",
+    "driving_signals": [
+     {
+      "signal_id": "sg_007",
+      "weight": 0.4
+     },
+     {
+      "signal_id": "sg_005",
+      "weight": 0.25
+     }
+    ],
+    "reference_images": [
+     {
+      "ref_id": "rf_479",
+      "source_type": "competitor",
+      "source_url": "https://competitor.example/product/8812",
+      "collected_at": "2026-05-14",
+      "borrowed_attributes": [
+       "fixed_drop_huggie",
+       "channel_set_row"
+      ],
+      "usage": "attribute_only"
+     },
+     {
+      "ref_id": "rf_299",
+      "source_type": "archive",
+      "source_url": "supabase://uploads/archive_112.jpg",
+      "collected_at": "2026-04-02",
+      "borrowed_attributes": [
+       "proportion"
+      ],
+      "usage": "visual_reference"
+     }
+    ],
+    "reference_prompts": [],
+    "series_dna_inherited": [],
+    "type_placement_reason": "New tooling allowed with amortisation stated. Experimental, so Signature.",
+    "narrative": [
+     "고정형 드롭 모티프 허기(하트/솔리테어) showed up 3 times in this price band.",
+     "채널 세팅 라인, observed 3 times, came in as the second axis.",
+     "New tooling allowed with amortisation stated. Experimental, so Signature..",
+     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+    ]
+   },
+   "qa": [
+    {
+     "check": "Stone count matches",
+     "target": "5",
+     "observed": "5",
+     "pass": true
+    },
+    {
+     "check": "Setting reads correctly",
+     "target": "channel",
+     "observed": "channel",
+     "pass": true
+    },
+    {
+     "check": "Prong count",
+     "target": "6",
+     "observed": "6",
+     "pass": true
+    },
+    {
+     "check": "Same object across three views",
+     "target": ">=0.80",
+     "observed": "0.91",
+     "pass": true
+    }
+   ],
+   "viewMismatch": false,
+   "metrics": [
+    {
+     "label": "Against cost cap",
+     "value": "25% under"
+    },
+    {
+     "label": "New moulds",
+     "value": "1"
+    },
+    {
+     "label": "Signals observed",
+     "value": "6"
+    }
+   ],
+   "modelEval": [
+    {
+     "label": "Brand fit",
+     "value": "Medium",
+     "basis": "How much of the existing last and mould is reused, and silhouette distance from the archive"
+    },
+    {
+     "label": "Distinctiveness",
+     "value": "Low",
+     "basis": "Attribute distance from competitor products in the same band"
+    },
+    {
+     "label": "Trend backing",
+     "value": "Medium",
+     "basis": "Observation count and proxy confidence of the linked signals"
+    }
+   ],
+   "colorways": [],
+   "images": [
+    {
+     "view": "sketch",
+     "url": "/samples/acbffb4b3b1da8baad99face.webp",
+     "hash": "acbffb4b3b1da8baad99face",
+     "origin": "generated",
+     "promptUsed": "hoop earrings. straight front view. channel setting holding exactly 5 round stones of 1.1mm, 925 silver metal with matte finish, shown as a matched pair. black and white technical line drawing, pen outline only, no color, no shading, no gradient, no photographic texture, flat white paper, hand-drawn designer sketch. No logo, no text, no lettering anywhere on the product.. Absolutely no text, no numbers, no measurement lines, no dimension callouts, no arrows, no labels, no logo, no watermark, no human"
+    },
+    {
+     "view": "front",
+     "url": "/samples/31c58ac3db91539ed1aebae1.webp",
+     "hash": "31c58ac3db91539ed1aebae1",
+     "origin": "generated",
+     "promptUsed": "hoop earrings. straight front view. channel setting holding exactly 5 round stones of 1.1mm, 925 silver metal with matte finish, shown as a matched pair. photorealistic studio product photograph, full color, real leather and rubber texture, soft light, white background. No logo, no text, no lettering anywhere on the product.. Absolutely no text, no numbers, no measurement lines, no dimension callouts, no arrows, no labels, no logo, no watermark, no human"
+    },
+    {
+     "view": "design",
+     "url": "/samples/904c9af9fe253da007e9d502.webp",
+     "hash": "904c9af9fe253da007e9d502",
+     "origin": "edited_from",
+     "editedFrom": "31c58ac3db91539ed1aebae1",
+     "promptUsed": "Redesign this hoop keeping the exact same sketch geometry and camera angle. Push the dominant season material further and make the hardware the focal point. null Plain white studio background, photorealistic product shot, no text, no watermark."
+    }
+   ],
+   "isTop": false
+  },
+  {
+   "spec": {
+    "design_id": "JW-26FW-S06",
+    "tier": "signature",
+    "category": "jewelry",
+    "itemType": "hoop",
+    "fields": {
+     "metal": "925 silver",
+     "plating": "rhodium",
+     "target_weight_g": 4.6,
+     "stone_count": 9,
+     "stone_size_mm": 3.9,
+     "setting_type": "pave",
+     "prong_count": 6,
+     "min_wall_thickness_mm": 0.92,
+     "chain_type": "none",
+     "finish": "polished",
+     "is_pair": true,
+     "is_new_mold": false,
+     "existing_mold_id": "MLD-2024-8"
+    },
+    "fieldsLocked": []
+   },
+   "ruleResults": [],
+   "rejected": false,
+   "cost": {
+    "lines": [
+     {
+      "label": "Metal",
+      "krw": 30360
+     },
+     {
+      "label": "Stones",
+      "krw": 16848
+     },
+     {
+      "label": "Findings",
+      "krw": 3000
+     },
+     {
+      "label": "Chain",
+      "krw": 0
+     },
+     {
+      "label": "Casting",
+      "krw": 5000
+     },
+     {
+      "label": "Setting labour",
+      "krw": 12600
+     },
+     {
+      "label": "Plating",
+      "krw": 4000
+     },
+     {
+      "label": "Finishing",
+      "krw": 3500
+     },
+     {
+      "label": "Tooling, amortised",
+      "krw": 0
+     }
+    ],
+    "tooling": {
+     "total_tooling_krw": 0,
+     "mold_count_required": 0,
+     "amortization_volume": 500,
+     "tooling_per_unit_krw": 0
+    },
+    "estimated_total_krw": 84345,
+    "estimated_band_krw": [
+     71693,
+     103352
+    ],
+    "cap_ratio": 1.41,
+    "confidence": "low",
+    "assumptions": [
+     "MOQ 300",
+     "Silver and gold priced at 2026-08-01",
+     "Standard setting labour rate",
+     "Amortised over 500 units"
+    ],
+    "excluded_costs": [
+     "Packaging",
+     "Freight",
+     "Vendor margin",
+     "Defect rate",
+     "Sampling"
+    ]
+   },
+   "rationale": {
+    "agent_mode": "trend",
+    "driving_signals": [
+     {
+      "signal_id": "sg_002",
+      "weight": 0.4
+     },
+     {
+      "signal_id": "sg_007",
+      "weight": 0.25
+     }
+    ],
+    "reference_images": [
+     {
+      "ref_id": "rf_473",
+      "source_type": "competitor",
+      "source_url": "https://competitor.example/product/8812",
+      "collected_at": "2026-05-14",
+      "borrowed_attributes": [
+       "inside_out_pave",
+       "fixed_drop_huggie"
+      ],
+      "usage": "attribute_only"
+     },
+     {
+      "ref_id": "rf_986",
+      "source_type": "archive",
+      "source_url": "supabase://uploads/archive_112.jpg",
+      "collected_at": "2026-04-02",
+      "borrowed_attributes": [
+       "proportion"
+      ],
+      "usage": "visual_reference"
+     }
+    ],
+    "reference_prompts": [],
+    "series_dna_inherited": [],
+    "type_placement_reason": "New tooling allowed with amortisation stated. Experimental, so Signature.",
+    "narrative": [
+     "인사이드‑아웃 파베 세팅 showed up 5 times in this price band.",
+     "고정형 드롭 모티프 허기(하트/솔리테어), observed 3 times, came in as the second axis.",
+     "New tooling allowed with amortisation stated. Experimental, so Signature..",
+     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+    ]
+   },
+   "qa": [],
+   "viewMismatch": false,
+   "metrics": [
+    {
+     "label": "Against cost cap",
+     "value": "41% over"
+    },
+    {
+     "label": "New moulds",
+     "value": "0"
+    },
+    {
+     "label": "Signals observed",
+     "value": "8"
+    }
+   ],
+   "modelEval": [
+    {
+     "label": "Brand fit",
+     "value": "High",
+     "basis": "How much of the existing last and mould is reused, and silhouette distance from the archive"
+    },
+    {
+     "label": "Distinctiveness",
+     "value": "Low",
+     "basis": "Attribute distance from competitor products in the same band"
+    },
+    {
+     "label": "Trend backing",
+     "value": "Medium",
+     "basis": "Observation count and proxy confidence of the linked signals"
+    }
+   ],
+   "colorways": [],
+   "images": [
+    {
+     "view": "sketch",
+     "url": "/samples/0976744a01258a6230c7a0a3.webp",
+     "hash": "0976744a01258a6230c7a0a3",
+     "origin": "generated",
+     "promptUsed": "hoop earrings. straight front view. pave setting holding exactly 9 round stones of 3.9mm, 925 silver metal with polished finish, shown as a matched pair. black and white technical line drawing, pen outline only, no color, no shading, no gradient, no photographic texture, flat white paper, hand-drawn designer sketch. No logo, no text, no lettering anywhere on the product.. Absolutely no text, no numbers, no measurement lines, no dimension callouts, no arrows, no labels, no logo, no watermark, no human"
+    }
+   ],
+   "isTop": false
+  }
+ ],
+ "checkpoints": [
+  "S1 done · signals.json · directions[3] saved",
+  "S2 done · specs, sketches and rationale saved. You can resume at S3 days later.",
+  "S3 done · renders, colourways and QA results saved",
+  "S4 done · Top N and campaign shots saved",
+  "S5 done · 3D showroom, board and PDF export ready"
+ ],
+ "finished": true
+}

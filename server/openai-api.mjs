@@ -370,7 +370,7 @@ export async function handleApi(req, res) {
         copied++
       }
       // 3D 모델도 함께 옮긴다. 캐시를 지워도 샘플이 살아 있어야 한다.
-      const vidRe = new RegExp('/api/video/file/([a-f0-9]{8,64})\\.(webp|gif|mp4|webm)', 'g')
+      const vidRe = new RegExp('/api/model/file/([a-f0-9]{8,64})\\.(glb|gltf)', 'g')
       const vidHashes = [...new Set([...text.matchAll(vidRe)].map(m => m[1] + '.' + m[2]))]
       for (const name of vidHashes) {
         const src = join(ROOT, '.cache', 'models', name)

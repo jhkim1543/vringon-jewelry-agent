@@ -277,7 +277,7 @@ export default function App() {
             <div className="modal-foot">
               <button className="btn btn-ghost btn-sm"
                 onClick={() => { const p = brandGate; setBrandGate(null); if (p) start(p) }}>
-                Run without it
+                {t('Run without it')}
               </button>
               <button className="btn btn-primary" style={{ marginLeft: 'auto' }}
                 onClick={() => { setBrandGate(null); setBrandOpen(true) }}>
