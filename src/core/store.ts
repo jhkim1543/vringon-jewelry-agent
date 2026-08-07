@@ -30,7 +30,12 @@ function write(k: string, v: unknown) {
 }
 
 export function listRuns(): RunRecord[] {
-  return read<RunRecord[]>(KEY, []).sort((a, b) => b.savedAt - a.savedAt)
+  // 같은 도메인의 신발 데모와 저장소 키를 공유한다. 주얼리가 아닌 Run이 섞이면
+  // 화면이 낯선 스펙을 읽다 죽으므로, 읽을 때 걸러내고 저장소에서도 지운다.
+  const all = read<RunRecord[]>(KEY, [])
+  const mine = all.filter(r => (r.state?.params?.category ?? 'jewelry') === 'jewelry')
+  if (mine.length !== all.length) write(KEY, mine)
+  return mine.sort((a, b) => b.savedAt - a.savedAt)
 }
 
 export function getRun(id: string): RunRecord | undefined {
@@ -64,7 +69,9 @@ export function saveCurrent(id: string, st: RunState) {
   write(CURRENT, { id, savedAt: Date.now(), state: st })
 }
 export function loadCurrent(): { id: string; savedAt: number; state: RunState } | null {
-  return read<{ id: string; savedAt: number; state: RunState } | null>(CURRENT, null)
+  const cur = read<{ id: string; savedAt: number; state: RunState } | null>(CURRENT, null)
+  if (cur && (cur.state?.params?.category ?? 'jewelry') !== 'jewelry') return null
+  return cur
 }
 export function clearCurrent() {
   try { localStorage.removeItem(CURRENT) } catch { /* 무시 */ }
