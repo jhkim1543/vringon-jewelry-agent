@@ -53,6 +53,39 @@ const COMPETITOR_SCHEMA = {
   },
 }
 
+// 백화점·명품몰 베스트셀러 · 브랜드 경쟁 조사와 별개로, "지금 실제로 잘 팔린다고
+// 표기된 것"을 수집한다. 순위 의미론을 지킨다 — 페이지 노출 위치를 판매 순위로 적지 않는다.
+const BESTSELLER_SCHEMA = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['items', 'notes'],
+  properties: {
+    items: {
+      type: 'array',
+      items: {
+        type: 'object',
+        additionalProperties: false,
+        required: ['retailer', 'retailer_scope', 'brand', 'model_name', 'price_krw',
+          'rank_note', 'popularity_basis', 'design_traits', 'image_urls', 'product_url', 'source_urls'],
+        properties: {
+          retailer: { type: 'string', description: '롯데백화점, 신세계, Harrods, Selfridges, Net-a-Porter 등 확인한 유통사 이름 그대로' },
+          retailer_scope: { type: 'string', enum: ['domestic_dept', 'global_dept', 'luxury_etail'], description: '국내 백화점 / 해외 명품 백화점 / 명품 이커머스' },
+          brand: { type: 'string' },
+          model_name: { type: 'string' },
+          price_krw: { type: 'integer', description: '해당 몰 표기 가격의 원화 환산. 확인 못 하면 0' },
+          rank_note: { type: 'string', description: '사이트에 표기된 순위·베스트 표기를 그대로 인용 (예: "주얼리 베스트 2위", "Bestseller 배지"). 노출 위치 추정 금지' },
+          popularity_basis: { type: 'array', items: { type: 'string' }, description: '베스트 랭킹 등재·품절·리뷰 수 등 표기로 확인된 근거만' },
+          design_traits: { type: 'array', items: { type: 'string' } },
+          image_urls: { type: 'array', items: { type: 'string' }, description: '제품 사진 직링크. 확보 못 했으면 빈 배열 (사진은 product_url 페이지에서 자동 추출된다)' },
+          product_url: { type: 'string' },
+          source_urls: { type: 'array', items: { type: 'string' } },
+        },
+      },
+    },
+    notes: { type: 'string' },
+  },
+}
+
 const TREND_SCHEMA = {
   type: 'object',
   additionalProperties: false,
@@ -199,13 +232,16 @@ async function ask(apiKey, { input, schema, name }) {
  *  한 요청이 커지면 상류 연결이 먼저 끊기고, 한 브랜드 실패가 전체를 날린다. */
 export async function researchCompetitors(apiKey, root, opts) {
   const { brands = [], categoryKo, typeKo, priceMin, priceMax, langName = 'English' } = opts
-  const key = createHash('sha256').update(JSON.stringify(['comp6', langName, brands, categoryKo, typeKo, priceMin, priceMax, opts.metalProgram ?? '', opts.stoneProgram ?? ''])).digest('hex').slice(0, 24)
+  const key = createHash('sha256').update(JSON.stringify(['comp8', langName, brands, categoryKo, typeKo, priceMin, priceMax, opts.metalProgram ?? '', opts.stoneProgram ?? ''])).digest('hex').slice(0, 24)
   const file = join(cacheDir(root), `${key}.json`)
   if (existsSync(file)) return { ...JSON.parse(readFileSync(file, 'utf8')), cached: true }
 
-  const results = await Promise.allSettled(
-    brands.map(b => researchOneBrand(apiKey, root, { ...opts, brand: b, langName })),
-  )
+  // 브랜드별 경쟁 조사와 백화점 베스트셀러 조사를 병렬로 돈다.
+  // 베스트셀러 실패는 경쟁 조사를 막지 않는다 — 없으면 빈 배열로 내려간다.
+  const [results, bestSettled] = await Promise.all([
+    Promise.allSettled(brands.map(b => researchOneBrand(apiKey, root, { ...opts, brand: b, langName }))),
+    researchBestsellers(apiKey, root, opts).then(v => ({ ok: true, v })).catch(e => ({ ok: false, e })),
+  ])
   const products = []
   const notes = []
   let searches = 0
@@ -218,9 +254,57 @@ export async function researchCompetitors(apiKey, root, opts) {
       notes.push(`${brands[i]}: 수집 실패 (${String(r.reason?.message || r.reason).slice(0, 80)})`)
     }
   })
-  const out = { products, notes: notes.join(' / '), searches, collected_at: new Date().toISOString().slice(0, 10) }
+  let bestsellers = []
+  if (bestSettled.ok) {
+    bestsellers = bestSettled.v.items ?? []
+    searches += bestSettled.v.searches || 0
+    if (bestSettled.v.notes) notes.push(`Bestsellers: ${bestSettled.v.notes}`)
+  } else {
+    notes.push(`Bestsellers: 수집 실패 (${String(bestSettled.e?.message || bestSettled.e).slice(0, 80)})`)
+  }
+  const out = { products, bestsellers, notes: notes.join(' / '), searches, collected_at: new Date().toISOString().slice(0, 10) }
   writeFileSync(file, JSON.stringify(out))
   return { ...out, cached: false }
+}
+
+/** 백화점·명품몰 베스트셀러 · 유저가 고른 품목 기준으로, 조사 시점에 "잘 팔린다고
+ *  표기된" 제품을 모은다. 국내 백화점몰과 해외 명품 백화점·이커머스를 함께 본다. */
+async function researchBestsellers(apiKey, root, { categoryKo: rawCat, typeKo: rawType, priceMin, priceMax, langName = 'English', metalProgram = '', stoneProgram = '' }) {
+  const LANG = langName
+  const categoryKo = canonTerm(rawCat)
+  const typeKo = canonTerm(rawType)
+  const key = createHash('sha256').update(JSON.stringify(['best2', langName, categoryKo, typeKo, priceMin, priceMax, metalProgram, stoneProgram])).digest('hex').slice(0, 24)
+  const file = join(cacheDir(root), `${key}.json`)
+  if (existsSync(file)) return JSON.parse(readFileSync(file, 'utf8'))
+
+  const input = `당신은 패션 브랜드의 상품기획 리서처입니다. 웹 검색으로 사실만 수집하세요.
+
+품목: ${categoryKo} / ${typeKo}
+${metalProgram ? `참고 라인: 금속 ${metalProgram} · 스톤 ${stoneProgram || 'no stone'} (베스트셀러는 라인과 달라도 수집하되 design_traits에 소재를 적습니다)` : ''}
+참고 가격 밴드: ${priceMin.toLocaleString()}원 ~ ${priceMax.toLocaleString()}원 (밴드 밖이어도 수집합니다)
+
+지금 이 품목에서 "실제로 잘 팔린다고 표기된" 제품을 4~8개 찾아주세요. 다음 유통사들의
+베스트셀러·랭킹·인기 페이지를 확인합니다:
+- 국내 백화점몰: 롯데백화점(엘롯데/롯데온), 신세계백화점(SSG), 현대백화점(더현대닷컴)
+- 해외 명품 백화점: Harrods, Selfridges, Saks Fifth Avenue, Galeries Lafayette, Isetan/Mitsukoshi
+- 명품 이커머스(베스트셀러 정렬이 실제로 있는 곳): Net-a-Porter, Mytheresa, Farfetch
+
+규칙:
+- rank_note에는 사이트에 표기된 순위·배지를 그대로 인용합니다 (예: "주얼리 위클리 베스트 3위", "Bestseller 배지").
+  페이지 앞쪽에 노출됐다는 이유로 순위를 매기지 마세요. 표기가 없으면 빈 문자열로 두고 popularity_basis에 근거를 적습니다.
+- product_url(제품 상세 페이지 주소)은 반드시 넣습니다. product_url이 없는 제품은 목록에서 제외합니다.
+  이 조사의 목적이 "실제 팔리는 제품의 생김새"라서, 사진은 이 페이지에서 자동으로 추출됩니다.
+- image_urls에 제품 사진 직링크(.jpg/.png/.webp)를 확보했으면 넣고, 못 했으면 빈 배열로 둡니다.
+  직링크를 못 찾았다는 이유로 제품을 빼지 마세요.
+- price_krw는 해당 몰 표기 가격을 원화로 환산합니다. 확인 못 하면 0.
+- 같은 브랜드 제품이 세 개를 넘지 않게 유통사를 섞으세요.
+- 검색은 10회 이내로 끝내세요.
+- In notes, list which retailers you could and could not check. Write every output string in ${LANG}. Keep brand and model names as officially written.`
+
+  const { data, searches } = await ask(apiKey, { input, schema: BESTSELLER_SCHEMA, name: 'bestseller_research' })
+  const out = { ...data, searches }
+  writeFileSync(file, JSON.stringify(out))
+  return out
 }
 
 // 화면에는 영문으로 노출하지만, 국내 검색은 한글 브랜드명이 훨씬 잘 걸린다.

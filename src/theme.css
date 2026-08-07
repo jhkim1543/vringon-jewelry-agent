@@ -545,6 +545,8 @@ button { cursor: pointer; background: none; border: none; }
   width: 312px; background: var(--panel); border: 1px solid var(--line-2);
   border-radius: var(--r-card); padding: 12px 12px; font-size: 12px;
   border-left: 3px solid var(--line-2);
+  /* 크기를 줄였을 때 내용이 튀어나오지 않게 · 넘치면 카드 안에서 스크롤 */
+  overflow: auto; box-sizing: border-box;
 }
 .bnode .bn-t { font-weight: 700; font-size: 13px; color: var(--text); margin-bottom: 4px; line-height: 1.4; }
 .bnode .bn-b { color: var(--text-2); line-height: 1.6; }

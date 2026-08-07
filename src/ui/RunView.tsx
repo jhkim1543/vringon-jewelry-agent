@@ -56,6 +56,57 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
   const topSig = [...st.signals].sort((a, b) => b.observed_count - a.observed_count)[0]
   const sigSummary = st.signals.length ? `${st.signals.length} signals · ${rising} rising` : ''
 
+  // 백화점·명품몰 베스트셀러 · 조사 시점에 "잘 팔린다고 표기된 것"의 실물 사진과 근거.
+  // 경쟁 브랜드 조사와 축이 다르다 — 이쪽은 유통사 랭킹이 기준이다.
+  const SCOPE_LABEL: Record<string, string> = {
+    domestic_dept: 'Korean dept store', global_dept: 'Global dept store', luxury_etail: 'Luxury e-tail',
+  }
+  const bestsellers = st.bestsellers ?? []
+  const bestsellerDetail = bestsellers.length > 0 && (
+          <Collapse title={t('Department store bestsellers')}
+            summary={`${bestsellers.length} · ${[...new Set(bestsellers.map(b => b.retailer))].slice(0, 3).join(', ')}`}
+            defaultOpen>
+            <div style={{ padding: '8px 14px 0' }}>
+              <div className="notice info" style={{ fontSize: 12 }}>
+                {t('Ranked or badged as selling well at department stores and luxury retailers at collection time. Ranks are quoted as displayed, never inferred from page position.')}
+              </div>
+            </div>
+            <div className="compgrid">
+              {bestsellers.map(b => (
+                <div className="compcard" key={b.product_id}>
+                  <div className="cc-shot">
+                    <img src={shotUrl(b.image_urls[0] ?? '', b.product_url)} alt={b.name}
+                      onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
+                  </div>
+                  <div className="cc-main">
+                    <div className="cc-head">
+                      <b>{b.brand}</b> {b.name}
+                      <Tag kind="accent">{b.retailer}</Tag>
+                    </div>
+                    <div className="cc-meta">
+                      {b.price_krw > 0 ? `₩${(b.price_krw / 10000).toFixed(1)}0,000` : t('Price unknown')}
+                      {' · '}{t(SCOPE_LABEL[b.retailer_scope] ?? b.retailer_scope)}
+                      {b.rank_note && <> · <span className="cc-rank">{b.rank_note}</span></>}
+                    </div>
+                    {b.popularity_basis[0] && <div className="cc-ev">{b.popularity_basis[0]}</div>}
+                    {b.design_traits?.length ? (
+                      <div className="cc-traits">
+                        {b.design_traits.slice(0, 3).map((x, i) => <Tag key={i}>{x}</Tag>)}
+                      </div>
+                    ) : null}
+                    <div className="cc-links">
+                      {b.product_url && <a href={b.product_url} target="_blank" rel="noreferrer">{t('Product')}</a>}
+                      {(b.source_urls ?? []).slice(0, 2).map((u, i) => (
+                        <a key={i} href={u} target="_blank" rel="noreferrer" title={u}>{evidenceId(b.product_id, i)}</a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Collapse>
+  )
+
   // 아래 세 블록은 리포트 섹션 안으로 들어간다 (예전에는 화면 맨 밑에 따로 있었다)
   const competitorDetail = st.competitors.length > 0 && (
           <Collapse title={t('Collected products')} summary={compSummary}>
@@ -74,8 +125,8 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
               {st.competitors.map(c => (
                 <div className={`compcard ${c.in_band ? '' : 'out'}`} key={c.product_id}>
                   <div className="cc-shot">
-                    {c.image_urls?.length
-                      ? <img src={shotUrl(c.image_urls[0])} alt={c.name}
+                    {(c.image_urls?.length || c.product_url)
+                      ? <img src={shotUrl(c.image_urls?.[0] ?? '', c.product_url)} alt={c.name}
                           onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
                       : <span className="cc-noshot">No photo</span>}
                   </div>
@@ -338,7 +389,7 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
         {/* 리포트가 맨 위 · 무엇이 나왔는지부터 보이고, 근거는 아래 접힘 패널에 그대로 남는다 */}
         {(st.dossier || st.trendReport || st.designs.length > 0) && (
           <RunReport st={st} onOpenBoard={onOpenBoard}
-            competitorDetail={competitorDetail} dossierDetail={dossierDetail} reportDetail={reportDetail} />
+            competitorDetail={competitorDetail} bestsellerDetail={bestsellerDetail} dossierDetail={dossierDetail} reportDetail={reportDetail} />
         )}
         {gated && (
           <div className="gatebar">
@@ -446,8 +497,10 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
               <span className="hint">{st.designs.length} {t('sketches')} · {st.designs.filter(d => !d.rejected).length} {t('passed')}</span>
             </div>
             {st.designs.map(d => {
-              const sketch = d.images.find(i => i.view === 'sketch')
-              // 기준 렌더 + 트렌드 프롬프트 변주가 이 스케치에서 나온 디자인들이다
+              // 외형은 스케치 단계에서 확정된다 · 기준 스케치 + 같은 외형의 흑백 변형들
+              const sketches = d.images.filter(i => i.view === 'sketch' || i.view === 'sketch_var')
+              const sketch = sketches[0]
+              // 각 스케치를 컬러화한 것이 디자인이다
               const outs = d.images.filter(i =>
                 (i.origin === 'generated' && i.view !== 'sketch') || i.view === 'design')
               // 이 스케치를 만든 근거 · 가중치 큰 신호부터
@@ -461,6 +514,11 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
                 <article className={`skrow ${d.rejected ? 'rejected' : ''}`} key={d.spec.design_id}>
                   <div className="sk-src">
                     <span className="sk-shot">{sketch ? <img src={sketch.url} alt="" loading="lazy" /> : <span className="sk-none">{t('Diagram')}</span>}</span>
+                    {sketches.slice(1).map(s => (
+                      <span className="sk-shot" key={s.hash} title={t('Same form, varied detailing')}>
+                        <img src={s.url} alt="" loading="lazy" />
+                      </span>
+                    ))}
                     <b>{d.spec.design_id}</b>
                     <span className="sk-tier">{t(TIER_LABEL[d.spec.tier] ?? d.spec.tier)}</span>
                     {evidence.length > 0 && (

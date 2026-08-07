@@ -214,28 +214,56 @@ export async function handleApi(req, res) {
 
   // 수집한 제품 사진을 서버가 받아 캐시한다. 핫링크·CORS·만료 링크를 피한다.
   if (path === '/api/shot') {
+    // u = 이미지 직링크, p = 상품 페이지. 직링크가 없거나 죽었으면 페이지의
+    // og:image / twitter:image / JSON-LD image로 폴백한다. 직링크는 자주 썩는다.
     const src = url.searchParams.get('u') || ''
-    if (!/^https:\/\//.test(src)) { res.statusCode = 400; return res.end('bad url') }
+    // p는 여러 개 줄 수 있다 · 상품 페이지가 봇을 막으면 다음 후보 페이지로 넘어간다
+    const pages = url.searchParams.getAll('p').filter(x => /^https:\/\//.test(x))
+    if (!/^https:\/\//.test(src) && !pages.length) { res.statusCode = 400; return res.end('bad url') }
     ensureShotCache()
-    const name = `${keyOf(['shot', src])}.img`
+    const name = `${keyOf(['shot2', src, ...pages])}.img`
     const file = join(SHOT_DIR, name)
+    const uaHeaders = (referer) => ({
+      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36',
+      Accept: 'image/avif,image/webp,image/*,*/*;q=0.8',
+      'Accept-Language': 'en-GB,en;q=0.9,ko;q=0.8',
+      Referer: referer,
+    })
+    const fetchImage = async (imgUrl) => {
+      const r = await fetch(imgUrl, { headers: uaHeaders(new URL(imgUrl).origin + '/'), redirect: 'follow' })
+      if (!r.ok) throw new Error(String(r.status))
+      const type = r.headers.get('content-type') || ''
+      if (!type.startsWith('image/')) throw new Error('not image')
+      const buf = Buffer.from(await r.arrayBuffer())
+      if (buf.length > 8e6) throw new Error('too large')
+      return { buf, type }
+    }
+    const pageImage = async (pageUrl) => {
+      const r = await fetch(pageUrl, {
+        headers: { ...uaHeaders(new URL(pageUrl).origin + '/'), Accept: 'text/html,*/*;q=0.8' },
+        redirect: 'follow',
+      })
+      if (!r.ok) throw new Error(String(r.status))
+      const html = (await r.text()).slice(0, 800_000)
+      const m = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)/i)
+        ?? html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i)
+        ?? html.match(/<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)/i)
+        ?? html.match(/"image"\s*:\s*"(https:[^"]+)"/)
+        ?? html.match(/"image"\s*:\s*\[\s*"(https:[^"]+)"/)
+      if (!m) throw new Error('no og:image')
+      return m[1].replace(/&amp;/g, '&')
+    }
     try {
       if (!existsSync(file)) {
-        const r = await fetch(src, {
-          headers: {
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36',
-            Accept: 'image/avif,image/webp,image/*,*/*;q=0.8',
-            Referer: new URL(src).origin + '/',
-          },
-          redirect: 'follow',
-        })
-        if (!r.ok) throw new Error(String(r.status))
-        const type = r.headers.get('content-type') || ''
-        if (!type.startsWith('image/')) throw new Error('not image')
-        const buf = Buffer.from(await r.arrayBuffer())
-        if (buf.length > 8e6) throw new Error('too large')
-        writeFileSync(file, buf)
-        writeFileSync(file + '.type', type)
+        let got = null
+        if (/^https:\/\//.test(src)) { try { got = await fetchImage(src) } catch { /* 페이지 폴백으로 */ } }
+        for (const pg of pages) {
+          if (got) break
+          try { got = await fetchImage(await pageImage(pg)) } catch { /* 다음 후보로 */ }
+        }
+        if (!got) throw new Error('no image')
+        writeFileSync(file, got.buf)
+        writeFileSync(file + '.type', got.type)
       }
       const type = existsSync(file + '.type') ? readFileSync(file + '.type', 'utf8') : 'image/jpeg'
       res.setHeader('Content-Type', type)

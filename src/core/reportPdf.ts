@@ -4,6 +4,7 @@
 import type { RunState, Design } from './types'
 import { CAT_LABEL, MODE_LABEL, TYPE_LABEL, metalProgramOf, stoneProgramOf } from './types'
 import type { TrendReport } from './research'
+import { shotUrl } from './research'
 import { downloadDeck, esc, printDeck, slide } from './deck'
 
 const ACCENT = '#3B45C8'
@@ -83,8 +84,9 @@ function build(st: RunState): { title: string; html: string } {
   }))
 
   // 관찰한 경쟁 제품 · 신호의 원천이 된 실제 제품 사진. 링크가 죽은 사진은 칸째로 숨긴다.
+  // 라이브에서는 상품 페이지 og:image 폴백(shotUrl)이 붙고, 정적 배포에서는 직링크만 시도된다.
   const compShots = (st.competitors ?? [])
-    .map(c => ({ c, u: (c.image_urls ?? [])[0] ?? '' }))
+    .map(c => ({ c, u: (c.image_urls ?? [])[0] ?? (c.product_url ? shotUrl('', c.product_url) : '') }))
     .filter(x => x.u)
     .slice(0, 8)
   if (compShots.length) {
@@ -102,6 +104,29 @@ function build(st: RunState): { title: string; html: string } {
           </div>`).join('')}
         </div>
         <div class="note" style="margin-top:4mm">Photographs are the retailers' own product imagery, referenced for research. Each card carries the product id used across this report.</div>`,
+    }))
+  }
+
+  // 백화점·명품몰 베스트셀러 · "지금 실제로 팔린다고 표기된 것"의 사진과 순위 표기
+  const bestShots = (st.bestsellers ?? [])
+    .map(b => ({ b, u: (b.image_urls ?? [])[0] ?? (b.product_url ? shotUrl('', b.product_url) : '') }))
+    .filter(x => x.u)
+    .slice(0, 8)
+  if (bestShots.length) {
+    out.push(slide({
+      eyebrow, tag: 'SELLING NOW', page: P(),
+      body: `<h2 class="stitle">What actually sells <span class="thin">department store and luxury retail bestsellers</span></h2>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5mm;margin-top:4mm">
+          ${bestShots.map(({ b, u }) => `<div class="frame" style="display:flex;flex-direction:column">
+            <img class="ph" src="${esc(u)}" alt="" style="height:34mm;object-fit:cover"
+              onerror="this.closest('.frame').style.display='none'">
+            <div style="font-size:7pt;padding:1.5mm 0;line-height:1.45">
+              <b>${esc(b.brand)}</b> ${esc(b.name)}<br>
+              <span style="color:#8A9099">${esc(b.retailer)}${b.rank_note ? ` · ${esc(b.rank_note)}` : ''}${b.price_krw ? ` · KRW ${(b.price_krw / 10000).toFixed(1)}만` : ''} · ${esc(b.product_id)}</span>
+            </div>
+          </div>`).join('')}
+        </div>
+        <div class="note" style="margin-top:4mm">Captured at research time from bestseller listings. Ranks are quoted as displayed on each site, never inferred from page position.</div>`,
     }))
   }
 

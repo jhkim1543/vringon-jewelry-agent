@@ -94,7 +94,7 @@ export function buildBoardModel(st: RunState): BoardModel {
       nodes.push({
         id: `cp-${k}`, kind: 'research', column: 1, row: 1 + k * 2.2,
         title: `${c.brand} · ${c.name.slice(0, 26)}`,
-        imageUrl: c.image_urls?.[0] ? shotUrl(c.image_urls[0]) : undefined,
+        imageUrl: (c.image_urls?.[0] || c.product_url) ? shotUrl(c.image_urls?.[0] ?? '', c.product_url) : undefined,
         body: [
           `KRW ${(c.price_krw / 1000).toLocaleString()}k${c.competitor_class ? ` · ${c.competitor_class}` : ''}`,
           ...(c.design_traits?.length ? [c.design_traits.slice(0, 2).join(' · ')] : []),
@@ -102,6 +102,33 @@ export function buildBoardModel(st: RunState): BoardModel {
       })
       edges.push({ from: 'r-comp', to: `cp-${k}` })
     })
+    // 백화점·명품몰 베스트셀러 · "지금 실제로 팔리는 것"의 사진이 경쟁 구도의 기준점이다
+    const best = st.bestsellers ?? []
+    if (best.length) {
+      nodes.push({
+        id: 'r-best', kind: 'research', column: 1, row: 13,
+        title: 'Department store bestsellers',
+        body: [
+          `${best.length} ranked or badged products · ${[...new Set(best.map(b => b.retailer))].slice(0, 3).join(', ')}`,
+          'Ranks quoted as displayed, never inferred from page position',
+        ],
+        tone: 'accent',
+      })
+      edges.push({ from: 'in', to: 'r-best', label: 'category' })
+      best.slice(0, 4).forEach((b, k) => {
+        nodes.push({
+          id: `bs-${k}`, kind: 'research', column: 1, row: 14 + k * 2.2,
+          title: `${b.brand} · ${b.name.slice(0, 24)}`,
+          imageUrl: (b.image_urls?.[0] || b.product_url) ? shotUrl(b.image_urls?.[0] ?? '', b.product_url) : undefined,
+          body: [
+            `${b.retailer}${b.rank_note ? ` · ${b.rank_note}` : ''}`,
+            b.price_krw > 0 ? `KRW ${(b.price_krw / 1000).toLocaleString()}k` : '',
+            ...(b.design_traits?.length ? [b.design_traits.slice(0, 2).join(' · ')] : []),
+          ].filter(Boolean),
+        })
+        edges.push({ from: 'r-best', to: `bs-${k}` })
+      })
+    }
     const noProxy = st.competitors.filter(c => c.observation_count < 2)
     nodes.push({
       id: 'r-proxy', kind: 'research', column: 1, row: 10,

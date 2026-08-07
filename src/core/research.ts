@@ -24,8 +24,24 @@ export interface CompetitorProductRaw {
   source_urls: string[]
 }
 
+export interface BestsellerRaw {
+  retailer: string
+  retailer_scope: 'domestic_dept' | 'global_dept' | 'luxury_etail'
+  brand: string
+  model_name: string
+  price_krw: number
+  rank_note: string
+  popularity_basis: string[]
+  design_traits: string[]
+  image_urls: string[]
+  product_url: string
+  source_urls: string[]
+}
+
 export interface CompetitorResearch {
   products: CompetitorProductRaw[]
+  /** 백화점·명품몰 베스트셀러 · 옛 캐시에는 없다 */
+  bestsellers?: BestsellerRaw[]
   notes: string
   searches: number
   collected_at: string
@@ -41,8 +57,10 @@ export interface TrendReport {
   sources: string[]
 }
 
-/** 수집한 원격 이미지는 서버 캐시를 거쳐 불러온다 */
-export const shotUrl = (u: string) => `/api/shot?u=${encodeURIComponent(u)}`
+/** 수집한 원격 이미지는 서버 캐시를 거쳐 불러온다.
+ *  페이지를 주면 직링크가 죽었을 때 각 페이지의 og:image로 차례로 폴백한다. */
+export const shotUrl = (u: string, ...pages: (string | undefined)[]) =>
+  `/api/shot?u=${encodeURIComponent(u)}${pages.filter(Boolean).map(p => `&p=${encodeURIComponent(p!)}`).join('')}`
 
 export interface TrendResearch {
   signals: {
@@ -116,6 +134,28 @@ export function toCompetitors(r: CompetitorResearch, priceMin: number, priceMax:
     image_urls: p.image_urls,
     product_url: p.product_url,
   }))
+}
+
+/** 베스트셀러 → 도메인 타입 · id는 bs_N. 이미지 없는 항목은 서버가 이미 걸렀지만 한 번 더 거른다 */
+export function toBestsellers(r: CompetitorResearch): import('./types').BestsellerProduct[] {
+  // 직링크가 없어도 product_url이 있으면 사진은 페이지에서 추출된다
+  return (r.bestsellers ?? [])
+    .filter(b => (b.image_urls ?? []).length > 0 || b.product_url)
+    .map((b, i) => ({
+      product_id: `bs_${i + 1}`,
+      retailer: b.retailer,
+      retailer_scope: b.retailer_scope,
+      brand: b.brand,
+      name: b.model_name,
+      price_krw: b.price_krw,
+      rank_note: b.rank_note,
+      popularity_basis: b.popularity_basis,
+      design_traits: b.design_traits,
+      image_urls: b.image_urls,
+      product_url: b.product_url,
+      source_urls: b.source_urls,
+      collected_at: r.collected_at,
+    }))
 }
 
 // 모델이 가끔 "확인하지 못했다"를 신호로 올린다. 그건 신호가 아니라 조사의 한계라

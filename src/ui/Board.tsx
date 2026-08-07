@@ -4,7 +4,7 @@ import { t } from '../core/i18n'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   ReactFlow, ReactFlowProvider, Background, Controls, MiniMap,
-  useReactFlow, applyNodeChanges, Handle, Position, MarkerType,
+  useReactFlow, applyNodeChanges, Handle, Position, MarkerType, NodeResizer,
 } from '@xyflow/react'
 import type { Node, Edge, NodeChange } from '@xyflow/react'
 import type { RunState } from '../core/types'
@@ -70,13 +70,16 @@ function EditableText({ value, onSave, className, multiline, editing }: {
   )
 }
 
-function StepNode({ data }: { data: { n: BoardNode; ed?: NodeEdit } }) {
+function StepNode({ data, selected }: { data: { n: BoardNode; ed?: NodeEdit }; selected?: boolean }) {
   const { n, ed } = data
   const editing = !!ed?.editing
   // 내가 붙인 메모는 편집 모드를 켜지 않아도 바로 지울 수 있어야 한다.
   const isNote = n.tone === ('note' as typeof n.tone)
   return (
-    <div className={`bnode tone-${n.tone ?? 'neutral'}${editing ? ' editing' : ''}${isNote ? ' is-note' : ''}`}>
+    <div className={`bnode tone-${n.tone ?? 'neutral'}${editing ? ' editing' : ''}${isNote ? ' is-note' : ''}`}
+      style={{ width: '100%', height: '100%' }}>
+      {/* 카드를 고르면 모서리를 끌어 크기를 바꿀 수 있다 · 크기는 보드 편집에 저장된다 */}
+      <NodeResizer isVisible={!!selected} minWidth={220} minHeight={90} keepAspectRatio={false} />
       <Handle type="target" position={Position.Left} />
       {(editing || isNote) && (
         <button className="bn-x" title={t(isNote ? 'Delete this note' : 'Hide this card')}
@@ -97,11 +100,12 @@ function StepNode({ data }: { data: { n: BoardNode; ed?: NodeEdit } }) {
   )
 }
 
-function DesignFlowNode({ data }: { data: { n: BoardNode; st: RunState; onVerdict: any } }) {
+function DesignFlowNode({ data, selected }: { data: { n: BoardNode; st: RunState; onVerdict: any }; selected?: boolean }) {
   const { n, st, onVerdict } = data
   if (!n.design) return null
   return (
-    <div style={{ width: 268 }}>
+    <div style={{ width: '100%', height: '100%', minWidth: 268 }}>
+      <NodeResizer isVisible={!!selected} minWidth={268} minHeight={320} keepAspectRatio={false} />
       <Handle type="target" position={Position.Left} />
       <DesignCard d={n.design} signals={st.signals} stagePassed={{ s3: true, s4: true }} onVerdict={onVerdict} />
       <Handle type="source" position={Position.Right} />
@@ -109,9 +113,11 @@ function DesignFlowNode({ data }: { data: { n: BoardNode; st: RunState; onVerdic
   )
 }
 
-function ColumnNode({ data }: { data: { title: string; note: string; h: number; w?: number } }) {
+function ColumnNode({ data, selected }: { data: { title: string; note: string; h: number; w?: number }; selected?: boolean }) {
   return (
-    <div className="bcol" style={{ height: data.h, width: data.w ?? 356 }}>
+    <div className="bcol" style={{ height: '100%', width: '100%', minHeight: data.h, minWidth: 0 }}>
+      {/* 칸(레인)도 늘리고 줄일 수 있다 */}
+      <NodeResizer isVisible={!!selected} minWidth={240} minHeight={240} keepAspectRatio={false} />
       <div className="bcol-h">
         <span className="bcol-t">{t(data.title)}</span>
         <span className="bcol-n">{t(data.note)}</span>
@@ -143,11 +149,15 @@ function build(st: RunState, onVerdict: any, edits: BoardEdits, ed: NodeEdit): {
       edits.notes.filter(n => n.column === i).length,
       1,
     )
+    const colH = Math.max(rows * ROW_Y + 150, 360)
+    const colW = i === 4 ? 700 : 396
+    const savedCol = edits.sizes?.[`col-${c.key}`]
     nodes.push({
       id: `col-${c.key}`, type: 'column',
       position: { x: colX(i) - 24, y: -86 },
-      data: { title: c.title, note: c.note, h: Math.max(rows * ROW_Y + 150, 360), w: (i === 4 ? 700 : 396) },
-      selectable: false, draggable: false, zIndex: -1,
+      width: savedCol?.w ?? colW, height: savedCol?.h ?? colH,
+      data: { title: c.title, note: c.note, h: colH, w: colW },
+      selectable: true, draggable: false, zIndex: -1,
     })
   })
 
@@ -161,9 +171,11 @@ function build(st: RunState, onVerdict: any, edits: BoardEdits, ed: NodeEdit): {
   }))
   ;[...visible, ...noteNodes].forEach(n => {
     const isDesign = n.kind === 'design' && !!n.design
-    const w = isDesign ? 268 : (n as any).isPitch ? 320 : 352
+    // 사용자가 크기를 바꿨으면 그 크기를 쓴다 · 연결선 핸들도 그 크기를 따라간다
+    const saved = edits.sizes?.[n.id]
+    const w = saved?.w ?? (isDesign ? 268 : (n as any).isPitch ? 320 : 352)
     // 이미지가 붙는 노드는 사진 높이만큼 더 잡아야 연결선이 엉뚱한 데 붙지 않는다
-    const h = isDesign ? 430 : 44 + n.body.length * 20 + (n.imageUrl ? 230 : 0) + (n.modelUrl ? 210 : 0)
+    const h = saved?.h ?? (isDesign ? 430 : 44 + n.body.length * 20 + (n.imageUrl ? 230 : 0) + (n.modelUrl ? 210 : 0))
     nodes.push({
       id: n.id,
       type: isDesign ? 'designFlow' : 'step',
@@ -263,6 +275,12 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
   const onNodesChange = useCallback((changes: NodeChange[]) => {
     setNodes(ns => applyNodeChanges(changes, ns))
     for (const c of changes) {
+      // 크기 조절 · 손을 뗐을 때만 저장한다. 저장되면 rebuild가 핸들 위치까지 맞춘다.
+      if (c.type === 'dimensions' && c.resizing === false && c.dimensions) {
+        const d = c.dimensions
+        setEdits(e => ({ ...e, sizes: { ...(e.sizes ?? {}), [c.id]: { w: d.width, h: d.height } } }))
+        continue
+      }
       if (c.type !== 'position' || !c.position) continue
       positionsRef.current[c.id] = c.position
       // 드래그가 끝났을 때만 저장한다. 이동 중에 매번 쓰면 스토리지가 요동친다.
@@ -412,7 +430,7 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
               onClick={() => setShowEdges(v => !v)} title={t('Show the lines between nodes')}>{t('Links')}</button>
             <button className={`chipbtn ${editing ? 'on' : ''}`}
               onClick={() => setEditing(v => !v)} title={t('Double-click any card to rewrite it')}>{t('Edit text')}</button>
-            {(edits.notes.length > 0 || edits.hidden.length > 0 || Object.keys(edits.titles).length > 0) && (
+            {(edits.notes.length > 0 || edits.hidden.length > 0 || Object.keys(edits.titles).length > 0 || Object.keys(edits.sizes ?? {}).length > 0) && (
               <button className="chipbtn" onClick={resetEdits} title={t('Back to the generated board')}>{t('Reset edits')}</button>
             )}
             <span className="bb-gap" />

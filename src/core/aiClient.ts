@@ -121,6 +121,36 @@ export function renderPrompt(spec: DesignSpec, engine: EngineId = 'detail', bran
   })
 }
 
+/** 흑백 스케치 변형 · 하나의 외형(실루엣·구조)을 고정한 채 디테일만 다르게 그린다.
+ *  스케치 단계에서 외형을 확정하고, 디자인은 그 스케치에서 나온다는 순서를 지키기 위한 것. */
+export function sketchVariantPrompt(k: number): string {
+  const angles = [
+    'Vary the setting and stone arrangement while keeping the same body.',
+    'Vary the surface treatment and edge profile while keeping the same body.',
+    'Vary the hardware and closure detailing while keeping the same body.',
+  ]
+  return [
+    'Redraw this jewellery design as another black-ink technical sketch on white paper.',
+    'Keep the exact same overall silhouette, proportions and construction — this is the same form.',
+    angles[k % angles.length],
+    'Single consistent line weight, no colour at all, no shading, orthographic projection, no text, no labels.',
+  ].join(' ')
+}
+
+/** 스케치 → 컬러 디자인 · 스케치의 기하를 그대로 살려 실사 렌더로 옮긴다.
+ *  디자인이 스케치와 다른 물건이 되면 스케치 단계의 의미가 없다. */
+export function colorizePrompt(spec: DesignSpec, brand?: BrandIdentity, trend?: TrendClauseInput | null, line?: LineProfile | null): string {
+  return [
+    'Turn this black-ink technical sketch into a photorealistic studio product photograph of the exact same design.',
+    'Keep the geometry, proportions, stone count and construction precisely as drawn.',
+    `Materialise it as: ${jewelSpecPhrase(spec)}.`,
+    trendPromptClause(trend ?? null),
+    linePromptClause(line),
+    brand ? brandPromptClause(brand) : '',
+    'Seamless white background, soft even key light, gentle contact shadow, sharp focus, full colour, real material texture. No text, no watermark, no human, no props.',
+  ].filter(Boolean).join(' ')
+}
+
 /** 추가 뷰 · 동일 객체를 유지한 채 시점만 바꾸는 편집 지시 */
 export function viewEditPrompt(category: Category, viewKey: string): string {
   const v = JEWEL_VIEW[viewKey]

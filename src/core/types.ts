@@ -310,6 +310,25 @@ export interface Direction {
   signal_ids: string[]
 }
 
+/** 백화점·명품몰 베스트셀러 · "조사 시점에 잘 팔린다고 표기된 것"의 스냅샷.
+ *  경쟁 브랜드 조사와 축이 다르다 — 이쪽은 유통사 랭킹이 기준이다. */
+export interface BestsellerProduct {
+  product_id: string                 // bs_1 …
+  retailer: string
+  retailer_scope: 'domestic_dept' | 'global_dept' | 'luxury_etail'
+  brand: string
+  name: string
+  price_krw: number
+  /** 사이트에 표기된 순위·배지 그대로. 노출 위치 추정 금지 */
+  rank_note: string
+  popularity_basis: string[]
+  design_traits: string[]
+  image_urls: string[]
+  product_url: string
+  source_urls: string[]
+  collected_at: string
+}
+
 export interface SeriesDnaElement {
   element: string
   label: string
@@ -446,6 +465,7 @@ export type PipelineEvent =
   | { kind: 'progress'; stage: Stage; pct: number }
   | { kind: 'signals'; signals: Signal[] }
   | { kind: 'competitors'; items: CompetitorProduct[] }
+  | { kind: 'bestsellers'; items: BestsellerProduct[] }
   | { kind: 'directions'; items: Direction[] }
   | { kind: 'series-dna'; dna: SeriesDna }
   | { kind: 'dna-conflict'; brandClaim: string; observed: string }
@@ -466,6 +486,8 @@ export interface RunState {
   logs: { stage: string; text: string; t: number }[]
   signals: Signal[]
   competitors: CompetitorProduct[]
+  /** 백화점·명품몰 베스트셀러 · 옛 저장본에는 없다 */
+  bestsellers?: BestsellerProduct[]
   directions: Direction[]
   seriesDna: SeriesDna | null
   dnaConflict: { brandClaim: string; observed: string; resolved?: string } | null

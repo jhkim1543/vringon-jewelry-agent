@@ -9,8 +9,8 @@ import {
   generateModel, sketchPrompt, stampLogo, variationAxes, variationPrompt, viewEditPrompt, wearEditPrompt,
 } from './aiClient'
 import type { TrendClauseInput } from './aiClient'
-import { trendPromptClause } from './aiClient'
-import { fetchCompetitors, fetchDossier, fetchTrends, toBias, toCompetitors, toSignals, setRunLang } from './research'
+import { colorizePrompt, sketchVariantPrompt } from './aiClient'
+import { fetchCompetitors, fetchDossier, fetchTrends, toBestsellers, toBias, toCompetitors, toSignals, setRunLang } from './research'
 import { campaignCount, CAT_LABEL, MODE_LABEL, MODE_SCOPE, TYPE_LABEL, metalProgramOf, stoneProgramOf } from './types'
 import { ENGINES } from './imageEngines'
 
@@ -119,6 +119,12 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
         emit({ kind: 'log', stage: 'S1', text: 'No sales proxy scored. One pass gives no time series, so restock and sell-out trends need repeat collection.' })
         if (r.notes) emit({ kind: 'log', stage: 'S1', text: `Limits of this pass: ${r.notes.slice(0, 160)}` })
         emit({ kind: 'competitors', items: comps })
+        // 백화점·명품몰 베스트셀러 · 유저 카테고리에서 "잘 팔린다고 표기된 것"의 사진과 근거
+        const best = toBestsellers(r)
+        if (best.length) {
+          emit({ kind: 'bestsellers', items: best })
+          emit({ kind: 'log', stage: 'S1', text: `Department store bestsellers: ${best.length} products with photos, across ${[...new Set(best.map(b => b.retailer))].join(', ')}` })
+        }
       } catch (e) {
         emit({ kind: 'log', stage: 'S1', text: `Competitor research failed · ${String((e as Error).message).slice(0, 120)} · falling back to sample data` })
         emit({ kind: 'competitors', items: COMPETITORS[params.category] })
@@ -360,6 +366,23 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
           budget.spend()
           d.images = [...d.images, { view: 'sketch', url: r.url, hash: r.hash, origin: 'generated', promptUsed: skPrompt }]
           emit({ kind: 'log', stage: 'S2', text: `${d.spec.design_id} sketch done${r.cached ? ' (reused)' : ''}` })
+          // 같은 외형의 흑백 변형 스케치 · 외형은 여기서 확정되고, S3의 컬러 디자인은
+          // 이 스케치들에서 나온다. 스케치가 곧 디자인의 기준이다.
+          // 예산이 빠듯하면 변형보다 S3 기준 디자인이 먼저다 — S3 몫을 남겨 두고 만든다.
+          const reserveS3 = Math.max(1, Math.round(alive.length * params.renderRatio)) + 2
+          const nVar = Math.max(0, (params.designsPerSketch ?? 1) - 1)
+          for (let k = 0; k < nVar; k++) {
+            if (cancelled || budget.left() <= reserveS3) break
+            try {
+              const vp = sketchVariantPrompt(k)
+              const rv = await editImage(r.hash, vp, params.imageEngine)
+              budget.spend()
+              d.images = [...d.images, { view: 'sketch_var', url: rv.url, hash: rv.hash, origin: 'edited_from', editedFrom: r.hash, promptUsed: vp }]
+              emit({ kind: 'log', stage: 'S2', text: `${d.spec.design_id} sketch variant ${k + 2} of ${nVar + 1}, same form` })
+            } catch {
+              emit({ kind: 'log', stage: 'S2', text: `${d.spec.design_id} sketch variant ${k + 2} failed, skipping` })
+            }
+          }
         } catch (e) {
           d.imageError = String((e as Error).message || e)
           emit({ kind: 'log', stage: 'S2', text: `${d.spec.design_id} sketch failed · ${d.imageError} · falling back to a diagram` })
@@ -394,11 +417,16 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
       d.colorways = COLORWAY_NAMES.slice(0, params.colorwayCount)
 
       if (budget.left() > 0) {
-        // ① 기준 렌더 1장
+        // ① 기준 디자인 · 스케치가 있으면 그 스케치를 컬러 렌더로 옮긴다(기하 유지).
+        //    스케치가 없을 때만(예산 소진·실패) 예전처럼 프롬프트로 직접 그린다.
         let baseHash: string | null = null
-        const basePrompt = renderPrompt(d.spec, params.imageEngine, params.brand, trendClause, params.line)
+        const sketchImgs = d.images.filter(i => i.view === 'sketch' || i.view === 'sketch_var')
+        const colPrompt = colorizePrompt(d.spec, params.brand, trendClause, params.line)
+        const basePrompt = sketchImgs.length ? colPrompt : renderPrompt(d.spec, params.imageEngine, params.brand, trendClause, params.line)
         try {
-          const r = await generateImage(basePrompt, params.imageEngine)
+          const r = sketchImgs.length
+            ? await editImage(sketchImgs[0].hash, colPrompt, params.imageEngine)
+            : await generateImage(basePrompt, params.imageEngine)
           budget.spend(); baseHash = r.hash
           let baseUrl = r.url
           // 브랜드 로고는 프롬프트가 아니라 실제 파일로 얹는다. 형태가 어긋나지 않는다.
@@ -413,36 +441,26 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
               emit({ kind: 'log', stage: 'S3', text: `${d.spec.design_id} logo composite failed · ${String((e as Error).message).slice(0, 80)}` })
             }
           }
-          d.images = [...d.images, { view: pack.viewSet[0].key, url: baseUrl, hash: baseHash, origin: 'generated', promptUsed: basePrompt }]
+          d.images = [...d.images, { view: pack.viewSet[0].key, url: baseUrl, hash: baseHash, origin: 'generated', editedFrom: sketchImgs[0]?.hash, promptUsed: basePrompt }]
           emit({ kind: 'design-update', design: { ...d } })
+          emit({ kind: 'log', stage: 'S3', text: sketchImgs.length
+            ? `${d.spec.design_id} base design colourised from its sketch, geometry kept`
+            : `${d.spec.design_id} base design generated directly (no sketch available)` })
         } catch (e) {
           d.imageError = String((e as Error).message || e)
           emit({ kind: 'log', stage: 'S3', text: `${d.spec.design_id} base render failed · ${d.imageError}` })
         }
-        // ② 스케치당 추가 디자인 · 트렌드에서 뽑은 방향을 하나씩 바꿔 프롬프트를 만든다
-        const dps = params.designsPerSketch ?? 1
-        if (baseHash && dps > 1) {
-          const angles = [
-            macroName ? `Push it further into the ${macroName} direction: exaggerate its defining material and hardware.` : 'Push the dominant season material further and make the hardware the focal point.',
-            'A quieter commercial take: same last and proportions, minimal hardware, tonal palette.',
-            'A bolder statement take: amplify the strongest observed trend signal into the main design feature.',
-          ]
-          for (let k = 0; k < Math.min(dps - 1, angles.length); k++) {
-            if (cancelled || budget.left() <= 0) break
-            const p2 = [
-              `Redesign this ${(TYPE_LABEL[params.itemType] ?? params.itemType).toLowerCase()} keeping the exact same sketch geometry and camera angle.`,
-              angles[k], trendPromptClause(trendClause),
-              'Plain white studio background, photorealistic product shot, no text, no watermark.',
-            ].filter(Boolean).join(' ')
-            try {
-              const r2 = await editImage(baseHash, p2, params.imageEngine)
-              budget.spend()
-              d.images = [...d.images, { view: 'design', url: r2.url, hash: r2.hash, origin: 'edited_from', editedFrom: baseHash, promptUsed: p2 }]
-              emit({ kind: 'design-update', design: { ...d } })
-              emit({ kind: 'log', stage: 'S3', text: `${d.spec.design_id} design variant ${k + 2} of ${dps} done` })
-            } catch {
-              emit({ kind: 'log', stage: 'S3', text: `${d.spec.design_id} design variant ${k + 2} failed · skipping` })
-            }
+        // ② 변형 스케치들도 각각 컬러 디자인으로 · 디자인은 언제나 스케치에서 나온다
+        for (let k = 1; k < sketchImgs.length; k++) {
+          if (cancelled || budget.left() <= 0) break
+          try {
+            const r2 = await editImage(sketchImgs[k].hash, colPrompt, params.imageEngine)
+            budget.spend()
+            d.images = [...d.images, { view: 'design', url: r2.url, hash: r2.hash, origin: 'edited_from', editedFrom: sketchImgs[k].hash, promptUsed: colPrompt }]
+            emit({ kind: 'design-update', design: { ...d } })
+            emit({ kind: 'log', stage: 'S3', text: `${d.spec.design_id} design ${k + 1} of ${sketchImgs.length}, from sketch variant ${k + 1}` })
+          } catch {
+            emit({ kind: 'log', stage: 'S3', text: `${d.spec.design_id} design from sketch variant ${k + 1} failed · skipping` })
           }
         }
 

@@ -14,7 +14,7 @@ function mdLinks(escaped: string): string {
 import type { RunState, Design } from './types'
 import { CAT_LABEL, TYPE_LABEL, MODE_LABEL, metalProgramOf, stoneProgramOf } from './types'
 import type { SeasonDossier, DossierMetric, Macrotrend } from './research'
-import { GRADE_LABEL, SOURCE_LABEL, metricText } from './research'
+import { GRADE_LABEL, SOURCE_LABEL, metricText, shotUrl } from './research'
 import { DECK_CSS, downloadDeck, esc, isLight, printDeck, slide } from './deck'
 
 // 매크로마다 색을 하나씩 준다. MICAM이 트렌드별로 색을 정해 쓰는 방식과 같다.
@@ -198,6 +198,35 @@ function buildDeck(st: RunState): { title: string; html: string } {
         </div>
       </div>`,
   }))
+
+  // ── 3.5 관측된 시장 · 예측은 실물에서 출발한다. 조사에서 사진으로 확인된
+  //     경쟁 제품과 백화점 베스트셀러를 예측 앞에 먼저 보여준다.
+  const marketShots = [
+    ...(st.bestsellers ?? []).map(b => ({
+      u: (b.image_urls ?? [])[0] ?? (b.product_url ? shotUrl('', b.product_url) : ''),
+      cap: `<b>${esc(b.brand)}</b> ${esc(b.name)}`,
+      sub: `${esc(b.retailer)}${b.rank_note ? ` · ${esc(b.rank_note)}` : ''}`,
+    })),
+    ...(st.competitors ?? []).map(c => ({
+      u: (c.image_urls ?? [])[0] ?? (c.product_url ? shotUrl('', c.product_url) : ''),
+      cap: `<b>${esc(c.brand)}</b> ${esc(c.name)}`,
+      sub: `${c.price_krw ? `KRW ${(c.price_krw / 10000).toFixed(1)}만` : ''}${c.competitor_class ? ` · ${esc(c.competitor_class)}` : ''}`,
+    })),
+  ].filter(x => x.u).slice(0, 8)
+  if (marketShots.length) {
+    out.push(slide({
+      eyebrow, tag: 'OBSERVED MARKET', page: P(),
+      body: `<h2 class="stitle">OBSERVED <span class="thin">what is actually selling, before any forecast</span></h2>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:5mm;margin-top:4mm">
+          ${marketShots.map(x => `<div class="frame" style="display:flex;flex-direction:column">
+            <img class="ph" src="${esc(x.u)}" alt="" style="height:34mm;object-fit:cover"
+              onerror="this.closest('.frame').style.display='none'">
+            <div style="font-size:7pt;padding:1.5mm 0;line-height:1.45">${x.cap}<br><span style="color:#8A9099">${x.sub}</span></div>
+          </div>`).join('')}
+        </div>
+        <div class="note" style="margin-top:4mm">Bestseller listings and competitor products photographed by their retailers, captured at research time. The forecast that follows is read against these.</div>`,
+    }))
+  }
 
   // ── 4 시즌 서사 ───────────────────────────────────────────────
   const paras = (d.season_narrative ?? '').split(/\n{2,}/).filter(Boolean)

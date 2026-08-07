@@ -24,11 +24,12 @@ function macroShot(m: Macrotrend): string | null {
   return null
 }
 
-export default function RunReport({ st, onOpenBoard, competitorDetail, dossierDetail, reportDetail }: {
+export default function RunReport({ st, onOpenBoard, competitorDetail, bestsellerDetail, dossierDetail, reportDetail }: {
   st: RunState
   onOpenBoard: () => void
   /** 조사 상세 · 예전에는 화면 맨 밑에 따로 있던 패널들이 각 섹션 안으로 들어온다 */
   competitorDetail?: ReactNode
+  bestsellerDetail?: ReactNode
   dossierDetail?: ReactNode
   reportDetail?: ReactNode
 }) {
@@ -257,6 +258,16 @@ export default function RunReport({ st, onOpenBoard, competitorDetail, dossierDe
         <section className="rep-sect">
           <div className="rep-head"><h2>{t('Competitors')}</h2></div>
           <div className="rep-detail">{competitorDetail}</div>
+        </section>
+      )}
+
+      {/* ── 백화점 베스트셀러 · 실제 팔리는 것의 사진이 경쟁 구도의 기준점이다 ── */}
+      {bestsellerDetail && (
+        <section className="rep-sect" id="sec-bestsellers">
+          <div className="rep-head"><h2>{t('What actually sells')}</h2>
+            <p>{t('Bestseller listings at department stores and luxury retailers, captured with photos at research time.')}</p>
+          </div>
+          <div className="rep-detail">{bestsellerDetail}</div>
         </section>
       )}
 
