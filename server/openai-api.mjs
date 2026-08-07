@@ -10,6 +10,7 @@ import { DEEP_MODEL_DEFAULT, researchCompetitors, researchTrends, researchSeason
 import { geminiEdit, geminiGenerate, geminiProbe, geminiShotPlan } from './gemini-api.mjs'
 import { compositeLogo, logoAvailable } from './logo-api.mjs'
 import { tripoMultiview, tripoProbe, readModel } from './tripo-api.mjs'
+import { configureUnlocker, unlockedFetch, unlockerStatus, unlockerUsage } from './unlock.mjs'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(HERE, '..')
@@ -48,6 +49,7 @@ function loadEnv() {
 }
 
 const env = { ...loadEnv(), ...process.env }
+configureUnlocker(env)          // 유료 언블로커도 .env 에서 키를 읽는다
 const API_KEY = env.OPENAI_API_KEY || ''
 const MIRO_TOKEN = env.MIRO_ACCESS_TOKEN || ''
 // Gemini 키가 있으면 "빠른 모델"이 그쪽으로 간다. 없으면 OpenAI 경로를 유지한다.
@@ -174,6 +176,8 @@ export async function handleApi(req, res) {
       deepResearch: DEEP_RESEARCH, deepModel: DEEP_MODEL,
       geminiConnected: !!GEMINI_KEY,
       tripoConnected: !!TRIPO_KEY,
+      // 유료 언블로커 · 켜져 있으면 오늘 쓴 건수를 함께 준다 (요금 감시용)
+      unlocker: { ...unlockerStatus(), usage: unlockerUsage(ROOT) },
       engines: { fast: ENGINE.fast.model, detail: ENGINE.detail.model },
     })
   }
@@ -238,13 +242,7 @@ export async function handleApi(req, res) {
       if (buf.length > 8e6) throw new Error('too large')
       return { buf, type }
     }
-    const pageImage = async (pageUrl) => {
-      const r = await fetch(pageUrl, {
-        headers: { ...uaHeaders(new URL(pageUrl).origin + '/'), Accept: 'text/html,*/*;q=0.8' },
-        redirect: 'follow',
-      })
-      if (!r.ok) throw new Error(String(r.status))
-      const html = (await r.text()).slice(0, 800_000)
+    const ogFrom = (html) => {
       const m = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)/i)
         ?? html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i)
         ?? html.match(/<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)/i)
@@ -253,6 +251,25 @@ export async function handleApi(req, res) {
       if (!m) throw new Error('no og:image')
       return m[1].replace(/&amp;/g, '&')
     }
+    const pageImage = async (pageUrl) => {
+      const r = await fetch(pageUrl, {
+        headers: { ...uaHeaders(new URL(pageUrl).origin + '/'), Accept: 'text/html,*/*;q=0.8' },
+        redirect: 'follow',
+      })
+      if (!r.ok) throw new Error(String(r.status))
+      return ogFrom((await r.text()).slice(0, 800_000))
+    }
+    // 유료 언블로커 · 무료 경로가 전부 실패했을 때만 쓴다 (성공당 과금)
+    const paidImage = async (pageUrl) => {
+      const page = await unlockedFetch(pageUrl, { root: ROOT })
+      if (!page) return null
+      // 페이지가 아니라 이미지가 바로 오는 경우도 있다
+      if (page.type) return { buf: page.buf, type: page.type }
+      const imgUrl = ogFrom(page.buf.toString('utf8').slice(0, 800_000))
+      try { return await fetchImage(imgUrl) } catch { /* 이미지도 막히면 유료로 한 번 더 */ }
+      const img = await unlockedFetch(imgUrl, { root: ROOT })
+      return img?.type ? { buf: img.buf, type: img.type } : null
+    }
     try {
       if (!existsSync(file)) {
         let got = null
@@ -260,6 +277,10 @@ export async function handleApi(req, res) {
         for (const pg of pages) {
           if (got) break
           try { got = await fetchImage(await pageImage(pg)) } catch { /* 다음 후보로 */ }
+        }
+        for (const pg of pages) {
+          if (got) break
+          try { got = await paidImage(pg) } catch { /* 유료 경로도 실패하면 칩으로 */ }
         }
         if (!got) throw new Error('no image')
         writeFileSync(file, got.buf)

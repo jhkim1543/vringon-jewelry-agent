@@ -8,9 +8,19 @@ import { join, resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createHash } from 'node:crypto'
 import sharp from 'sharp'
+import { configureUnlocker, unlockedFetch, unlockerStatus, unlockerUsage } from '../server/unlock.mjs'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const OUT = join(ROOT, 'public', 'samples')
+
+// .env 를 직접 읽는다 (서버를 거치지 않는 스크립트라서)
+try {
+  const envText = readFileSync(join(ROOT, '.env'), 'utf8')
+  const envObj = Object.fromEntries(envText.split(/\r?\n/)
+    .map(l => l.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/)).filter(Boolean)
+    .map(m => [m[1], m[2].replace(/^["']|["']$/g, '')]))
+  configureUnlocker(envObj)
+} catch { /* .env 가 없어도 무료 경로로 돈다 */ }
 
 const UA = {
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36',
@@ -26,10 +36,7 @@ const fetchImage = async (u) => {
   if (buf.length > 12e6) throw new Error('too large')
   return buf
 }
-const pageImage = async (u) => {
-  const r = await fetch(u, { headers: { ...UA, Accept: 'text/html,*/*;q=0.8' }, redirect: 'follow' })
-  if (!r.ok) throw new Error(String(r.status))
-  const html = (await r.text()).slice(0, 800_000)
+const ogFromHtml = (html) => {
   const m = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)/i)
     ?? html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i)
     ?? html.match(/<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)/i)
@@ -37,6 +44,11 @@ const pageImage = async (u) => {
     ?? html.match(/"image"\s*:\s*\[\s*"(https:[^"]+)"/)
   if (!m) throw new Error('no og:image')
   return m[1].replace(/&amp;/g, '&')
+}
+const pageImage = async (u) => {
+  const r = await fetch(u, { headers: { ...UA, Accept: 'text/html,*/*;q=0.8' }, redirect: 'follow' })
+  if (!r.ok) throw new Error(String(r.status))
+  return ogFromHtml((await r.text()).slice(0, 800_000))
 }
 
 /** 후보를 차례로 시도한다: 직링크들 → 상품 페이지 og:image → 출처 페이지 og:image */
@@ -52,6 +64,20 @@ async function resolveShot(p) {
       const buf = c.kind === 'direct' ? await fetchImage(c.u) : await fetchImage(await pageImage(c.u))
       return { buf, via: c.kind }
     } catch (e) { tried.push(`${c.kind}:${String(e.message).slice(0, 24)}`) }
+  }
+  // 무료 경로가 전부 막혔을 때만 유료 언블로커로 한 번 더 (성공당 과금)
+  if (unlockerStatus().on) {
+    for (const c of candidates.filter(x => x.kind === 'page')) {
+      const got = await unlockedFetch(c.u, { root: ROOT })
+      if (!got) continue
+      try {
+        if (got.type) return { buf: got.buf, via: 'paid-direct' }
+        const imgUrl = ogFromHtml(got.buf.toString('utf8').slice(0, 800_000))
+        try { return { buf: await fetchImage(imgUrl), via: 'paid-page' } } catch { /* 이미지도 막히면 */ }
+        const img = await unlockedFetch(imgUrl, { root: ROOT })
+        if (img?.type) return { buf: img.buf, via: 'paid-both' }
+      } catch (e) { tried.push(`paid:${String(e.message).slice(0, 20)}`) }
+    }
   }
   return { buf: null, tried }
 }
@@ -84,4 +110,8 @@ for (const f of files) {
   console.log(`${f} · ${items.length} items`)
   report.forEach(l => console.log(l))
 }
+const un = unlockerStatus()
 console.log(`\nbaked ${ok} · miss ${fail} · already ${already}`)
+console.log(un.on
+  ? `unlocker on (${un.provider}) · billed today ${unlockerUsage(ROOT).billed}`
+  : `unlocker off (${un.reason}) · misses above are bot-blocked sites`)

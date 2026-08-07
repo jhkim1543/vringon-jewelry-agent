@@ -133,6 +133,28 @@ H100 서버에 `server.mjs` 배포. 이게 있어야 기기 간 보드 공유, �
 - **보드 카드·칸 리사이즈**: 카드를 선택하면 모서리 8핸들로 늘리고 줄인다(NodeResizer). 크기는 BoardEdits.sizes에
   런별 저장되고 연결선 핸들도 저장된 크기를 따라간다. Reset edits가 크기도 되돌린다.
 
+### 제품 사진 · 굽기와 유료 언블로커
+
+무료 경로(직링크 → 상품 페이지 og:image)의 실측 성공률은 **41개 중 36개(88%)**다.
+실패 5건은 전부 서버급 봇 차단(Pandora 랩그로운, Net-a-Porter, Selfridges)이라 일반 요청으로는 못 뚫는다.
+
+**굽기**: `scripts/bake-shots.mjs`가 샘플의 제품 사진을 지금 내려받아 `/samples/shot_*.webp`로 저장하고
+image_urls[0]을 로컬 경로로 바꾼다. 배포본은 정적이라 `/api/shot` 프록시가 없다 — **굽지 않으면 배포 데모에
+조사 사진이 하나도 안 뜬다.** 샘플을 새로 뜰 때마다 반드시 다시 돌릴 것.
+
+**유료 언블로커** (`server/unlock.mjs`, 선택): 설계 원칙 세 가지.
+1. **무료가 실패한 건에만** 유료 경로를 태운다. 잘 되던 사이트는 계속 공짜다.
+2. 성공당 과금 서비스를 기본으로 잡아, 막힌 요청은 돈이 안 나간다.
+3. `UNLOCKER_DAILY_CAP`(기본 300)으로 하루 상한. 사용량은 `.cache/unlocker-usage.json`과
+   `/api/status`의 `unlocker.usage`에서 본다.
+
+켜는 법은 `.env.example`의 UNLOCKER 블록 참고. 두 방식을 지원한다.
+- `UNLOCKER_PROVIDER=brightdata` + `UNLOCKER_KEY` + `UNLOCKER_ZONE` (건당 과금, 소량이면 가장 싸다)
+- `UNLOCKER_URL=…?api_key=<키>&url={url}` (ScrapingBee·ScraperAPI·ZenRows 등 월 구독형이 전부 이 모양)
+
+**주의**: `.env` 값은 `process.env`로 올라가지 않는다(키를 브라우저 번들에서 떼어 놓는 구조).
+그래서 `configureUnlocker(env)`를 반드시 호출해야 한다 — openai-api.mjs와 bake-shots.mjs가 각각 부른다.
+
 이미 한 번씩 크게 시간을 잃은 것들입니다.
 
 **실행 중에 `server/*.mjs` 를 수정하지 마세요.** Vite가 재시작하면서 진행 중인 조사 요청이 통째로 죽습니다. 예측 리포트 생성을 두 번 날렸습니다. 파이프라인이 도는 동안 서버 파일은 동결하세요.
