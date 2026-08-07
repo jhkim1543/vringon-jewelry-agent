@@ -754,7 +754,7 @@ table.mini td b { color: var(--text); font-weight: 600; }
 
 /* 보드 노드 안 이미지 · 착용 컷 등 */
 .bnode .bn-img {
-  display: block; width: 100%; height: 172px; object-fit: cover;
+  display: block; width: 100%; height: 210px; object-fit: cover;
   border-radius: var(--r-8); margin: 4px 0 8px; background: #0E0E12;
 }
 .board-light .bnode .bn-img { background: #F0F2F5; }

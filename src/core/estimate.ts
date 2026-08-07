@@ -123,5 +123,5 @@ export const SCOPE_COPY: Record<Stage, { title: string; gets: string }> = {
   S2: { title: 'Sketches', gets: 'Everything above, plus specs, rule checks and hand-drawn sketches.' },
   S3: { title: 'Designs', gets: 'Sketches turned into finished renders, extra views and product variations.' },
   S4: { title: 'Campaign shots', gets: 'Top picks scored, then worn on a virtual model and staged in studio and on location.' },
-  S5: { title: '3D showroom', gets: 'Multiview renders go to Tripo. You get a 3D model you can turn on the board.' },
+  S5: { title: '3D showroom', gets: 'The final designs become 3D models you can turn and download on the board.' },
 }

@@ -6,7 +6,7 @@ import type { Design, RunState } from './types'
 import { MODE_LABEL, MODE_SCOPE, TIER_LABEL } from './types'
 import { buildLocalPitch } from './pitch'
 import type { SeasonDossier } from './research'
-import { GRADE_LABEL, SOURCE_LABEL, metricText , shotUrl } from './research'
+import { GRADE_LABEL, metricText , shotUrl } from './research'
 
 export type BoardNodeKind =
   | 'input' | 'research' | 'signal' | 'direction' | 'design' | 'selection' | 'appendix'
@@ -90,14 +90,14 @@ export function buildBoardModel(st: RunState): BoardModel {
         ...(out.length ? [`${out.length} dropped: ${out.map(c => c.brand).join(', ')} (outside the band)`] : []),
       ],
     })
-    inBand.slice(0, 4).forEach((c, k) => {
+    // 조사 레인은 글이 아니라 실물이 말한다 · 사진 크게, 캡션은 한 줄
+    inBand.slice(0, 6).forEach((c, k) => {
       nodes.push({
         id: `cp-${k}`, kind: 'research', column: 1, row: 1 + k * 2.2,
         title: `${c.brand} · ${c.name.slice(0, 26)}`,
         imageUrl: (c.image_urls?.[0] || c.product_url) ? shotUrl(c.image_urls?.[0] ?? '', c.product_url) : undefined,
         body: [
-          `KRW ${(c.price_krw / 1000).toLocaleString()}k${c.competitor_class ? ` · ${c.competitor_class}` : ''}`,
-          ...(c.design_traits?.length ? [c.design_traits.slice(0, 2).join(' · ')] : []),
+          `KRW ${(c.price_krw / 1000).toLocaleString()}k${c.competitor_class ? ` · ${c.competitor_class}` : ''}${c.design_traits?.[0] ? ` · ${c.design_traits[0]}` : ''}`,
         ],
       })
       edges.push({ from: 'r-comp', to: `cp-${k}` })
@@ -108,23 +108,18 @@ export function buildBoardModel(st: RunState): BoardModel {
       nodes.push({
         id: 'r-best', kind: 'research', column: 1, row: 13,
         title: 'Department store bestsellers',
-        body: [
-          `${best.length} ranked or badged products · ${[...new Set(best.map(b => b.retailer))].slice(0, 3).join(', ')}`,
-          'Ranks quoted as displayed, never inferred from page position',
-        ],
+        body: [`${best.length} products · ${[...new Set(best.map(b => b.retailer))].slice(0, 3).join(', ')}`],
         tone: 'accent',
       })
       edges.push({ from: 'in', to: 'r-best', label: 'category' })
-      best.slice(0, 4).forEach((b, k) => {
+      best.slice(0, 6).forEach((b, k) => {
         nodes.push({
           id: `bs-${k}`, kind: 'research', column: 1, row: 14 + k * 2.2,
           title: `${b.brand} · ${b.name.slice(0, 24)}`,
           imageUrl: (b.image_urls?.[0] || b.product_url) ? shotUrl(b.image_urls?.[0] ?? '', b.product_url) : undefined,
           body: [
-            `${b.retailer}${b.rank_note ? ` · ${b.rank_note}` : ''}`,
-            b.price_krw > 0 ? `KRW ${(b.price_krw / 1000).toLocaleString()}k` : '',
-            ...(b.design_traits?.length ? [b.design_traits.slice(0, 2).join(' · ')] : []),
-          ].filter(Boolean),
+            `${b.retailer}${b.rank_note ? ` · ${b.rank_note}` : ''}${b.price_krw > 0 ? ` · KRW ${(b.price_krw / 1000).toLocaleString()}k` : ''}`,
+          ],
         })
         edges.push({ from: 'r-best', to: `bs-${k}` })
       })
@@ -133,15 +128,12 @@ export function buildBoardModel(st: RunState): BoardModel {
     nodes.push({
       id: 'r-proxy', kind: 'research', column: 1, row: 10,
       title: 'Sales proxy',
-      body: [
-        'Restock count, days out of stock, colourway spread',
-        noProxy.length ? `${noProxy.length} seen only once, no time series, so no score` : 'All seen at least twice',
-      ],
+      body: [noProxy.length ? `${noProxy.length} seen only once · no score without a time series` : 'All seen at least twice'],
       tone: 'warn',
     })
     nodes.push({
       id: 'r-trend', kind: 'research', column: 1, row: 11,
-      title: 'Trend research', body: ['Report search, then dedup and OEM grouping'],
+      title: 'Trend research', body: [`${st.signals.length} signals, each tied to a source`],
     })
     researchIds = ['r-comp', 'r-proxy', 'r-trend']
     edges.push({ from: 'in', to: 'r-comp', label: 'competitor list' })
@@ -200,9 +192,8 @@ export function buildBoardModel(st: RunState): BoardModel {
       id: 'dos', kind: 'research', column: 1, row: 12,
       title: `${dossier.season} · ${dossier.season_title}`,
       body: [
-        dossier.powershift ? `Powershift: ${dossier.powershift}` : '',
-        `${dossier.macrotrends.length} macrotrends · ${dossier.sources?.length ?? 0} sources · ${dossier.searches} searches`,
-        ...(dossier.yearly_context ?? []).slice(0, 3).map(y => `${y.season}: ${y.headline}`),
+        dossier.powershift ? dossier.powershift : '',
+        `${dossier.macrotrends.length} macrotrends · ${dossier.sources?.length ?? 0} sources`,
       ].filter(Boolean),
       tone: 'accent',
     })
@@ -210,16 +201,13 @@ export function buildBoardModel(st: RunState): BoardModel {
 
     dossier.macrotrends.forEach((m, i) => {
       const id = `macro-${i}`
+      // 매크로 카드는 결론 한 문장 + 팔레트 한 줄만 · 상세는 도시에 PDF가 담당한다
       nodes.push({
         id, kind: 'research', column: 1, row: 4 + i * 2,
         title: `${m.name} · ${GRADE_LABEL[m.grade] ?? m.grade}`,
         body: [
           m.statement,
-          (m.sub_trends ?? []).join(' · '),
-          ...(m.drivers ?? []).slice(0, 3).map(d => `${d.label} ${pct(d)} · ${SOURCE_LABEL[d.source_kind] ?? d.source_kind}`),
-          (m.palette ?? []).length ? `Palette: ${m.palette.slice(0, 5).map(c => c.name).join(', ')}` : '',
-          (m.materials ?? []).length ? `Materials: ${m.materials.map(x => `${x.label} ${pct(x)}`).join(', ')}` : '',
-          (m.details ?? []).length ? `Details: ${m.details.map(x => `${x.label} ${pct(x)}`).join(', ')}` : '',
+          (m.palette ?? []).length ? `Palette: ${m.palette.slice(0, 4).map(c => c.name).join(', ')}` : '',
         ].filter(Boolean),
       })
       edges.push({ from: 'dos', to: id, label: 'macrotrend' })
@@ -282,14 +270,15 @@ export function buildBoardModel(st: RunState): BoardModel {
     const pit = pitchOf(d.spec.design_id)
     if (pit) {
       // 카드 옆에 "왜 이 안인가"를 붙여, 발표할 때 카드만 보고도 말이 되게 한다
+      // 발표 카드도 핵심만 · 근거 한 줄, 실현성 한 줄, 예상 반론 한 줄
       nodes.push({
         id: `pitch-${d.spec.design_id}`, kind: 'selection', column: 4.5, row: i,
         title: 'Why this one',
         body: [
-          ...pit.why,
-          ...pit.feasibility,
-          ...(pit.objections.length ? [`Likely objection: ${pit.objections[0].q} - ${pit.objections[0].a}`] : []),
-        ],
+          pit.why[0],
+          pit.feasibility[0],
+          ...(pit.objections.length ? [`Objection: ${pit.objections[0].q} - ${pit.objections[0].a}`] : []),
+        ].filter(Boolean),
         tone: 'muted',
         isPitch: true,
       })

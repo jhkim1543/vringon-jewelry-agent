@@ -545,7 +545,7 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
       emit({ kind: 'log', stage: 'S4', text: `Top ${i + 1}: ${d.spec.design_id} [${d.spec.tier}] · spec distance ${d.topDistance}` })
     })
     await wait(700)
-    emit({ kind: 'log', stage: 'S4', text: 'Worn pipeline: BiRefNet cutout, MediaPipe Hand and Face for joints and earlobe, scale normalise, depth occlusion' })
+    emit({ kind: 'log', stage: 'S4', text: 'Placing each pick on a model · natural position, scale and lighting' })
     await wait(800)
     // 캠페인 컷 · 착용컷과 연출컷을 한 단계에서 같이 뽑는다.
     // 둘 다 기준 렌더의 편집이다. 새로 그리면 같은 제품이 아니게 된다.
@@ -590,7 +590,7 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
     // 멀티뷰 → 3D · S3에서 이미 만든 각도 컷을 그대로 Tripo에 넘긴다.
     // 한 장으로 추론시키는 것보다 여러 각도를 주는 쪽이 형태가 훨씬 정확하다.
     if (params.make3d) {
-      emit({ kind: 'log', stage: 'S5', text: 'Building the 3D showroom · the multiview renders of each top pick go to Tripo' })
+      emit({ kind: 'log', stage: 'S5', text: 'Building the 3D showroom · each top pick becomes a model you can turn' })
       for (const d of top) {
         if (cancelled) return
         // 3D 전용 4면 뷰(정면·좌·후면·우)를 기준 렌더에서 편집으로 만든다.

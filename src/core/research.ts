@@ -250,7 +250,7 @@ export const GRADE_LABEL: Record<TrendGrade, string> = {
   edgy: 'Edgy', early_sign: 'Early sign', safe: 'Safe',
   big: 'Big trend', stable: 'Stable', last_call: 'Last call',
 }
-export const SOURCE_LABEL: Record<DossierMetric['source_kind'], string> = {
+export const SOURCE_LABEL: Record<DossierMetric['source_kind'], string> = {  // dossierPdf가 쓴다
   market: 'E-commerce', social: 'Instagram', shows: 'Runway', consumer: 'Search',
 }
 
