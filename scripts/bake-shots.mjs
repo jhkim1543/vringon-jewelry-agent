@@ -8,7 +8,7 @@ import { join, resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createHash } from 'node:crypto'
 import sharp from 'sharp'
-import { configureUnlocker, unlockedFetch, unlockerStatus, unlockerUsage } from '../server/unlock.mjs'
+import { configureUnlocker, findProductImage, unlockedFetch, unlockerStatus, unlockerUsage } from '../server/unlock.mjs'
 
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const OUT = join(ROOT, 'public', 'samples')
@@ -36,19 +36,10 @@ const fetchImage = async (u) => {
   if (buf.length > 12e6) throw new Error('too large')
   return buf
 }
-const ogFromHtml = (html) => {
-  const m = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)/i)
-    ?? html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i)
-    ?? html.match(/<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)/i)
-    ?? html.match(/"image"\s*:\s*"(https:[^"]+)"/)
-    ?? html.match(/"image"\s*:\s*\[\s*"(https:[^"]+)"/)
-  if (!m) throw new Error('no og:image')
-  return m[1].replace(/&amp;/g, '&')
-}
 const pageImage = async (u) => {
   const r = await fetch(u, { headers: { ...UA, Accept: 'text/html,*/*;q=0.8' }, redirect: 'follow' })
   if (!r.ok) throw new Error(String(r.status))
-  return ogFromHtml((await r.text()).slice(0, 800_000))
+  return findProductImage((await r.text()).slice(0, 800_000), u)
 }
 
 /** 후보를 차례로 시도한다: 직링크들 → 상품 페이지 og:image → 출처 페이지 og:image */
@@ -72,7 +63,7 @@ async function resolveShot(p) {
       if (!got) continue
       try {
         if (got.type) return { buf: got.buf, via: 'paid-direct' }
-        const imgUrl = ogFromHtml(got.buf.toString('utf8').slice(0, 800_000))
+        const imgUrl = findProductImage(got.buf.toString('utf8').slice(0, 800_000), c.u)
         try { return { buf: await fetchImage(imgUrl), via: 'paid-page' } } catch { /* 이미지도 막히면 */ }
         const img = await unlockedFetch(imgUrl, { root: ROOT })
         if (img?.type) return { buf: img.buf, via: 'paid-both' }

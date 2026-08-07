@@ -10,7 +10,7 @@ import { DEEP_MODEL_DEFAULT, researchCompetitors, researchTrends, researchSeason
 import { geminiEdit, geminiGenerate, geminiProbe, geminiShotPlan } from './gemini-api.mjs'
 import { compositeLogo, logoAvailable } from './logo-api.mjs'
 import { tripoMultiview, tripoProbe, readModel } from './tripo-api.mjs'
-import { configureUnlocker, unlockedFetch, unlockerStatus, unlockerUsage } from './unlock.mjs'
+import { configureUnlocker, findProductImage, unlockedFetch, unlockerStatus, unlockerUsage } from './unlock.mjs'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(HERE, '..')
@@ -242,22 +242,13 @@ export async function handleApi(req, res) {
       if (buf.length > 8e6) throw new Error('too large')
       return { buf, type }
     }
-    const ogFrom = (html) => {
-      const m = html.match(/<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)/i)
-        ?? html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/i)
-        ?? html.match(/<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)/i)
-        ?? html.match(/"image"\s*:\s*"(https:[^"]+)"/)
-        ?? html.match(/"image"\s*:\s*\[\s*"(https:[^"]+)"/)
-      if (!m) throw new Error('no og:image')
-      return m[1].replace(/&amp;/g, '&')
-    }
     const pageImage = async (pageUrl) => {
       const r = await fetch(pageUrl, {
         headers: { ...uaHeaders(new URL(pageUrl).origin + '/'), Accept: 'text/html,*/*;q=0.8' },
         redirect: 'follow',
       })
       if (!r.ok) throw new Error(String(r.status))
-      return ogFrom((await r.text()).slice(0, 800_000))
+      return findProductImage((await r.text()).slice(0, 800_000), pageUrl)
     }
     // 유료 언블로커 · 무료 경로가 전부 실패했을 때만 쓴다 (성공당 과금)
     const paidImage = async (pageUrl) => {
@@ -265,7 +256,7 @@ export async function handleApi(req, res) {
       if (!page) return null
       // 페이지가 아니라 이미지가 바로 오는 경우도 있다
       if (page.type) return { buf: page.buf, type: page.type }
-      const imgUrl = ogFrom(page.buf.toString('utf8').slice(0, 800_000))
+      const imgUrl = findProductImage(page.buf.toString('utf8').slice(0, 800_000), pageUrl)
       try { return await fetchImage(imgUrl) } catch { /* 이미지도 막히면 유료로 한 번 더 */ }
       const img = await unlockedFetch(imgUrl, { root: ROOT })
       return img?.type ? { buf: img.buf, type: img.type } : null

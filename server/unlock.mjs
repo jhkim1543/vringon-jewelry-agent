@@ -64,6 +64,42 @@ export function sniffImage(buf) {
   return null
 }
 
+/** HTML에서 대표 제품 사진을 찾는다.
+ *  og:image가 정석이지만 없는 쇼핑몰이 많다. srcset·preload·JSON 필드까지 훑는다.
+ *  주소는 `//host/…`(프로토콜 생략)나 `/path`(상대)로 오는 경우가 흔해 정규화한다. */
+export function findProductImage(html, pageUrl = '') {
+  const abs = (u) => {
+    if (!u) return null
+    let s = u.replace(/&amp;/g, '&').trim()
+    if (s.startsWith('//')) return 'https:' + s
+    if (s.startsWith('http')) return s
+    if (s.startsWith('/') && pageUrl) { try { return new URL(s, pageUrl).href } catch { return null } }
+    return null
+  }
+  // 신뢰도 높은 순서. 각 패턴은 후보를 여러 개 낼 수 있으므로 전부 훑는다
+  // (첫 후보가 로고라고 그 패턴을 통째로 버리면 진짜 사진을 놓친다).
+  const patterns = [
+    /<meta[^>]+property=["']og:image["'][^>]+content=["']([^"']+)/gi,
+    /<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:image["']/gi,
+    /<meta[^>]+name=["']twitter:image["'][^>]+content=["']([^"']+)/gi,
+    /"(?:image|imageUrl|mainImage|primaryImage)"\s*:\s*"([^"]+)"/gi,
+    /"image"\s*:\s*\[\s*"([^"]+)"/gi,
+    /<link[^>]+as=["']image["'][^>]+href=["']([^"']+)/gi,
+    /srcset=["']\s*([^"'\s,]+)/gi,
+    /<img[^>]+src=["']([^"']+\.(?:jpg|jpeg|png|webp)[^"']*)/gi,
+    /((?:https?:)?\/\/[^"'\s<>]+\.(?:jpg|jpeg|png|webp)(?:\?[^"'\s<>]*)?)/gi,
+  ]
+  // 로고·아이콘·픽셀은 제품 사진이 아니다
+  const junk = /logo|sprite|icon|favicon|placeholder|1x1|pixel|badge|flag|banner/i
+  for (const re of patterns) {
+    for (const m of html.matchAll(re)) {
+      const u = abs(m[1])
+      if (u && !junk.test(u)) return u
+    }
+  }
+  throw new Error('no product image')
+}
+
 /**
  * 유료 경로로 한 번 가져온다. 꺼져 있거나 상한을 넘으면 null을 준다.
  * @returns {Promise<{buf: Buffer, type: string|null} | null>}
