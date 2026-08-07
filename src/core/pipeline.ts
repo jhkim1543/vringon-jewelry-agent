@@ -124,6 +124,9 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
         if (best.length) {
           emit({ kind: 'bestsellers', items: best })
           emit({ kind: 'log', stage: 'S1', text: `Department store bestsellers: ${best.length} products with photos, across ${[...new Set(best.map(b => b.retailer))].join(', ')}` })
+        } else {
+          // 빈손도 결과다. 아무 말 없이 섹션만 사라지면 조사를 안 한 것처럼 보인다.
+          emit({ kind: 'log', stage: 'S1', text: 'Department store bestsellers: none carried a rank or bestseller badge for this item, so nothing is claimed' })
         }
       } catch (e) {
         emit({ kind: 'log', stage: 'S1', text: `Competitor research failed · ${String((e as Error).message).slice(0, 120)} · falling back to sample data` })

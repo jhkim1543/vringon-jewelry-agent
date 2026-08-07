@@ -206,26 +206,46 @@ try {
   longFetch = (url, init = {}) => undiciFetch(url, { ...init, dispatcher: agent })
 } catch { /* undici가 없으면 내장 fetch로 진행한다 */ }
 
-async function ask(apiKey, { input, schema, name }) {
-  const r = await longFetch('https://api.openai.com/v1/responses', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
-    body: JSON.stringify({
-      model: RESEARCH_MODEL,
-      tools: [{ type: 'web_search' }],
-      // 비용보다 결과를 우선한다 · 추론 강도를 최고로 둔다
-      reasoning: { effort: 'high' },
-      input,
-      text: { format: { type: 'json_schema', name, schema, strict: true } },
-    }),
-  })
-  if (!r.ok) throw new Error(`OpenAI research ${r.status}: ${(await r.text()).slice(0, 400)}`)
-  const j = await r.json()
-  const msg = j.output?.find(o => o.type === 'message')
-  const text = msg?.content?.[0]?.text
-  if (!text) throw new Error('리서치 응답이 비어 있습니다')
-  const searches = (j.output ?? []).filter(o => o.type === 'web_search_call').length
-  return { data: JSON.parse(text), searches }
+// 상류가 502/503/429를 던지는 일이 실제로 있다. 한 번 튕겼다고 브랜드 하나의
+// 조사를 통째로 버리면, 사용자는 이유도 모른 채 경쟁 목록이 반쪽인 결과를 받는다.
+// 일시적 오류만 물러났다가 다시 시도한다 (4xx 입력 오류는 재시도해도 같다).
+const RETRY_STATUS = new Set([408, 429, 500, 502, 503, 504])
+async function ask(apiKey, { input, schema, name, tries = 3 }) {
+  let lastErr
+  for (let attempt = 1; attempt <= tries; attempt++) {
+    try {
+      const r = await longFetch('https://api.openai.com/v1/responses', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
+        body: JSON.stringify({
+          model: RESEARCH_MODEL,
+          tools: [{ type: 'web_search' }],
+          // 비용보다 결과를 우선한다 · 추론 강도를 최고로 둔다
+          reasoning: { effort: 'high' },
+          input,
+          text: { format: { type: 'json_schema', name, schema, strict: true } },
+        }),
+      })
+      if (!r.ok) {
+        const body = (await r.text()).slice(0, 400)
+        const err = new Error(`OpenAI research ${r.status}: ${body}`)
+        err.status = r.status
+        throw err
+      }
+      const j = await r.json()
+      const msg = j.output?.find(o => o.type === 'message')
+      const text = msg?.content?.[0]?.text
+      if (!text) throw new Error('리서치 응답이 비어 있습니다')
+      const searches = (j.output ?? []).filter(o => o.type === 'web_search_call').length
+      return { data: JSON.parse(text), searches }
+    } catch (e) {
+      lastErr = e
+      const retryable = e.status == null || RETRY_STATUS.has(e.status)
+      if (!retryable || attempt === tries) break
+      await new Promise(res => setTimeout(res, attempt * 8000))
+    }
+  }
+  throw lastErr
 }
 
 /** 브랜드가 여러 곳이면 한 번에 묶지 않고 브랜드별로 나눠 병렬로 돈다.

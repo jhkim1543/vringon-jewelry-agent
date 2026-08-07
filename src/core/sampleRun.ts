@@ -4,10 +4,12 @@ import type { RunState } from './types'
 import { listRuns, saveRun } from './store'
 
 /** 주얼리 전용 · 심어 두는 예시 분석 */
+// 앞쪽이 최신 파이프라인이다. 뒤의 셋은 옛 버전 산물이라 신호·라인이 프롬프트에
+// 실리기 전에 만들어졌다 — 비교용으로 남겨 두되 먼저 보이지는 않게 한다.
 const SAMPLE_IDS = [
+  'sample_jewel_vermeilcuff', 'sample_jewel_silversignet',   // 스케치→디자인 추적 100%
+  'sample_jewel_studdiamond', 'sample_jewel_pearlpendant',   // 전문가 설정·베스트셀러
   'sample_jewel_labdiamond', 'sample_jewel_hoop', 'sample_jewel_ring',
-  // 검증 런에서 승격 · 진주 펜던트(전문가 설정+신호 주입 S3), 랩다이아 스터드(S5·3D 포함)
-  'sample_jewel_pearlpendant', 'sample_jewel_studdiamond',
 ] as const
 
 export async function ensureSampleRuns() {

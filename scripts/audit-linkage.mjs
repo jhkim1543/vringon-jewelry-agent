@@ -40,9 +40,20 @@ for (const rel of files) {
   }
 
   // 3) 디자인이 자기 스케치에서 나왔나 (단계 분리가 실제로 작동했나)
+  // 추가 뷰·컬러웨이는 기준 렌더를 편집해 만든다. 그 기준 렌더가 스케치에서 나왔다면
+  // 그 뷰도 스케치에 닿아 있다 — 한 칸만 보지 말고 사슬을 끝까지 따라가야 한다.
   const sketchHashes = new Set(designs.flatMap(d => d.images.filter(i => /^sketch/.test(i.view)).map(i => i.hash)))
-  const colorFromSketch = designs.flatMap(d => d.images.filter(i => !/^sketch/.test(i.view) && i.editedFrom && sketchHashes.has(i.editedFrom)))
-  const colorTotal = designs.flatMap(d => d.images.filter(i => !/^sketch/.test(i.view) && !i.colorway && i.view !== 'wear' && i.view !== 'concept'))
+  const byHash = new Map(designs.flatMap(d => d.images).map(i => [i.hash, i]))
+  const tracesToSketch = (img) => {
+    let cur = img, hops = 0
+    while (cur?.editedFrom && hops++ < 8) {
+      if (sketchHashes.has(cur.editedFrom)) return true
+      cur = byHash.get(cur.editedFrom)
+    }
+    return false
+  }
+  const colorTotal = designs.flatMap(d => d.images.filter(i => !/^sketch/.test(i.view) && i.view !== 'wear' && i.view !== 'concept'))
+  const colorFromSketch = colorTotal.filter(tracesToSketch)
 
   // 4) 근거 체인 · driving_signals가 실존 신호를 가리키나
   const sigIds = new Set(signals.map(s => s.signal_id))
