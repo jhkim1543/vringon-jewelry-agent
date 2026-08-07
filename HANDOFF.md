@@ -135,8 +135,10 @@ H100 서버에 `server.mjs` 배포. 이게 있어야 기기 간 보드 공유, �
 
 ### 제품 사진 · 굽기와 유료 언블로커
 
-무료 경로(직링크 → 상품 페이지 og:image)의 실측 성공률은 **41개 중 36개(88%)**다.
-실패 5건은 전부 서버급 봇 차단(Pandora 랩그로운, Net-a-Porter, Selfridges)이라 일반 요청으로는 못 뚫는다.
+**현재 커버리지: 46개 중 45개(97.8%)** — Bright Data Web Unlocker(존 `web_unlocker1`) 연결 후 실측.
+유료 연결 전에는 88%였고, 막히던 사이트(Pandora 랩그로운, Net-a-Porter, Selfridges)가 전부 뚫렸다.
+남은 1건은 Pandora 상품 URL이 PAGE NOT FOUND인 경우다 — 죽은 링크라 프록시로 해결되지 않는다.
+사진을 못 구한 카드는 남의 사진을 빌리지 않고 텍스트 카드로 둔다.
 
 **굽기**: `scripts/bake-shots.mjs`가 샘플의 제품 사진을 지금 내려받아 `/samples/shot_*.webp`로 저장하고
 image_urls[0]을 로컬 경로로 바꾼다. 배포본은 정적이라 `/api/shot` 프록시가 없다 — **굽지 않으면 배포 데모에
@@ -152,8 +154,19 @@ image_urls[0]을 로컬 경로로 바꾼다. 배포본은 정적이라 `/api/sho
 - `UNLOCKER_PROVIDER=brightdata` + `UNLOCKER_KEY` + `UNLOCKER_ZONE` (건당 과금, 소량이면 가장 싸다)
 - `UNLOCKER_URL=…?api_key=<키>&url={url}` (ScrapingBee·ScraperAPI·ZenRows 등 월 구독형이 전부 이 모양)
 
-**주의**: `.env` 값은 `process.env`로 올라가지 않는다(키를 브라우저 번들에서 떼어 놓는 구조).
+**주의 1**: `.env` 값은 `process.env`로 올라가지 않는다(키를 브라우저 번들에서 떼어 놓는 구조).
 그래서 `configureUnlocker(env)`를 반드시 호출해야 한다 — openai-api.mjs와 bake-shots.mjs가 각각 부른다.
+
+**주의 2 · Bright Data 설정 함정** (실제로 세 번 헤맸다):
+- 존은 **Web Access API → Create API → Web Unlocker**에서 만든다. `Proxy Infrastructure`의 Residential/Datacenter/ISP는
+  IP만 주는 다른 제품이라 봇 차단을 못 뚫는다.
+- 존 생성에는 **Admin 권한 API 키**가 필요하다. 기본 발급 키는 `User` 권한이라 `POST /zone`이 403이다.
+  키는 `.env`에 상주하므로 권한을 올리지 말고 대시보드에서 존을 만드는 편이 안전하다(요청 실행만 되면 충분하다).
+- `/status`가 `can_make_requests:false, zone_not_found`라고 해도 무시해도 된다. 실제 `/request` 호출은 정상 동작한다.
+
+**이미지 추출기** `findProductImage(html, pageUrl)`(unlock.mjs): og:image만 보면 안 된다.
+Net-a-Porter는 `srcset`에 `//host/...`(프로토콜 생략)로 준다. 패턴별로 **모든 매치를 순회**해야 한다 —
+첫 매치가 로고라고 그 패턴을 통째로 버리면 진짜 사진을 놓친다(실제로 그 버그가 있었다).
 
 이미 한 번씩 크게 시간을 잃은 것들입니다.
 
