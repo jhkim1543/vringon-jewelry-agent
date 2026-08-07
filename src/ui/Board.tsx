@@ -28,6 +28,30 @@ const colX = (c: number) => {
   return base + (c - i) * (next - base)
 }
 const ROW_Y = 150
+const CARD_GAP = 28
+
+// 카드 높이는 내용에 따라 크게 달라진다(사진 한 장이 200px을 먹는다).
+// 고정 간격으로 쌓으면 반드시 겹치므로, 글이 몇 줄로 접히는지까지 재서 높이를 낸다.
+// 한글은 라틴 문자보다 두 배 넓다 — 글자 수가 아니라 폭으로 세야 맞는다.
+function visualWidth(s: string): number {
+  let n = 0
+  for (const ch of s) n += /[ᄀ-ᇿ぀-ヿ㄰-㆏一-鿿가-힯]/.test(ch) ? 2 : 1
+  return n
+}
+function wrapCount(s: string, unitsPerLine: number): number {
+  return Math.max(1, Math.ceil(visualWidth(s) / Math.max(8, unitsPerLine)))
+}
+const LINE_H = 19
+function measureCard(n: BoardNode, w: number, isDesign: boolean): number {
+  if (isDesign) return 430
+  const units = Math.floor((w - 26) / 6.6)          // 내부 폭 ÷ 글자 폭
+  let h = 34                                         // 위아래 패딩 + 제목 여백
+  h += wrapCount(n.title, Math.floor(units * 0.9)) * LINE_H + 6
+  if (n.modelUrl) h += 198
+  else if (n.imageUrl) h += 222
+  for (const line of n.body) h += wrapCount(line, units) * LINE_H
+  return Math.max(h, 76)
+}
 
 // ── 노드 렌더러 ──────────────────────────────────────────────────────
 // 편집 모드에서는 제목과 본문을 그 자리에서 고칠 수 있다.
@@ -140,16 +164,49 @@ function build(st: RunState, onVerdict: any, edits: BoardEdits, ed: NodeEdit): {
     body: edits.bodies[n.id] ?? n.body,
   })
 
+  // 치수와 핸들 위치를 명시한다 · DOM 측정을 기다리지 않고 연결선이 즉시 계산된다
+  const visible = model.nodes.filter(n => !hidden.has(n.id)).map(apply)
+  const noteNodes: BoardNode[] = edits.notes.filter(n => !hidden.has(n.id)).map(n => ({
+    id: n.id, kind: 'selection', column: n.column, row: n.row,
+    title: edits.titles[n.id] ?? n.title,
+    body: edits.bodies[n.id] ?? n.body,
+    tone: 'note' as any,
+  }))
+  const cards = [...visible, ...noteNodes].map(n => {
+    const isDesign = n.kind === 'design' && !!n.design
+    // 사용자가 크기를 바꿨으면 그 크기를 쓴다 · 연결선 핸들도 그 크기를 따라간다
+    const saved = edits.sizes?.[n.id]
+    const w = saved?.w ?? (isDesign ? 268 : (n as { isPitch?: boolean }).isPitch ? 320 : 352)
+    const h = saved?.h ?? measureCard(n, w, isDesign)
+    return { n, isDesign, w, h }
+  })
+
+  // 컬럼별로 실제 높이를 쌓아 내린다. 모델의 row 값은 순서만 정하고, 좌표는 여기서 만든다.
+  // (row × 고정간격으로 두면 사진이 붙은 카드가 아래 카드를 덮는다.)
+  const laid = new Map<string, { x: number; y: number }>()
+  const colBottom = new Map<number, number>()
+  const byColumn = new Map<number, typeof cards>()
+  for (const c of cards) {
+    const arr = byColumn.get(c.n.column) ?? []
+    arr.push(c)
+    byColumn.set(c.n.column, arr)
+  }
+  for (const [col, arr] of byColumn) {
+    arr.sort((a, b) => a.n.row - b.n.row)
+    let y = 0
+    for (const c of arr) {
+      laid.set(c.n.id, { x: colX(col), y })
+      y += c.h + CARD_GAP
+    }
+    // 정수 컬럼 배경 높이는 그 컬럼과 곁가지 레인(4.5 등) 중 큰 쪽을 따른다
+    const key = Math.floor(col)
+    colBottom.set(key, Math.max(colBottom.get(key) ?? 0, y))
+  }
+
   // 컬럼 배경 · 단계 구분
   const allColumns = [...model.columns, ...edits.extraColumns]
   allColumns.forEach((c, i) => {
-    const rows = Math.max(
-      ...model.nodes.filter(n => n.column === i).map(n => n.row + 2),
-      model.nodes.filter(n => n.column === i).length,
-      edits.notes.filter(n => n.column === i).length,
-      1,
-    )
-    const colH = Math.max(rows * ROW_Y + 150, 360)
+    const colH = Math.max((colBottom.get(i) ?? 0) + 120, 360)
     const colW = i === 4 ? 700 : 396
     const savedCol = edits.sizes?.[`col-${c.key}`]
     nodes.push({
@@ -161,21 +218,7 @@ function build(st: RunState, onVerdict: any, edits: BoardEdits, ed: NodeEdit): {
     })
   })
 
-  // 치수와 핸들 위치를 명시한다 · DOM 측정을 기다리지 않고 연결선이 즉시 계산된다
-  const visible = model.nodes.filter(n => !hidden.has(n.id)).map(apply)
-  const noteNodes: BoardNode[] = edits.notes.filter(n => !hidden.has(n.id)).map(n => ({
-    id: n.id, kind: 'selection', column: n.column, row: n.row,
-    title: edits.titles[n.id] ?? n.title,
-    body: edits.bodies[n.id] ?? n.body,
-    tone: 'note' as any,
-  }))
-  ;[...visible, ...noteNodes].forEach(n => {
-    const isDesign = n.kind === 'design' && !!n.design
-    // 사용자가 크기를 바꿨으면 그 크기를 쓴다 · 연결선 핸들도 그 크기를 따라간다
-    const saved = edits.sizes?.[n.id]
-    const w = saved?.w ?? (isDesign ? 268 : (n as any).isPitch ? 320 : 352)
-    // 이미지가 붙는 노드는 사진 높이만큼 더 잡아야 연결선이 엉뚱한 데 붙지 않는다
-    const h = saved?.h ?? (isDesign ? 430 : 44 + n.body.length * 20 + (n.imageUrl ? 230 : 0) + (n.modelUrl ? 210 : 0))
+  cards.forEach(({ n, isDesign, w, h }) => {
     nodes.push({
       id: n.id,
       type: isDesign ? 'designFlow' : 'step',
@@ -185,7 +228,8 @@ function build(st: RunState, onVerdict: any, edits: BoardEdits, ed: NodeEdit): {
         { type: 'source', position: Position.Right, x: w, y: h / 2, width: 1, height: 1 },
       ],
       data: isDesign ? { n, st, onVerdict } : { n, ed },
-      position: edits.positions[n.id] ?? { x: colX(n.column), y: n.row * ROW_Y },
+      // 사용자가 옮긴 카드는 그 자리를 지킨다
+      position: edits.positions[n.id] ?? laid.get(n.id) ?? { x: colX(n.column), y: n.row * ROW_Y },
     })
   })
 
