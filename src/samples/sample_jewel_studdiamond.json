@@ -473,7 +473,9 @@
     "크로스 스티치에서 영감을 받은 패턴을 쓴다",
     "총 0.27캐럿 다이아몬드로 은은한 광채를 낸다"
    ],
-   "image_urls": [],
+   "image_urls": [
+    "/samples/shot_1776144b4a41a066.webp"
+   ],
    "product_url": "https://www.tiffany.kr/jewelry/earrings/schlumberger-lynn-18k-rose-gold-and-platinum-diamond-earrings-1881163418.html"
   },
   {
@@ -507,6 +509,7 @@
     "스튜드 포스트 구조로 단정한 착용감을 준다"
    ],
    "image_urls": [
+    "/samples/shot_672dce4341b15562.webp",
     "https://media.tiffany.com/is/image/tco/75533357_ER_SIO2X1?fmt=webp&hei=2000&wid=2000",
     "https://media.tiffany.com/is/image/tco/75533357_ER_ALT3X1?fmt=webp&hei=2000&wid=2000",
     "https://media.tiffany.com/is/image/tco/75533357_ER_ALT3X2?fmt=webp&hei=2000&wid=2000"
@@ -542,6 +545,7 @@
     "컨버터블 구조로 골드 스터드로도 연출된다"
    ],
    "image_urls": [
+    "/samples/shot_d60a1b6f6aadef70.webp",
     "https://media.tiffany.com/is/image/tco/75131984_ER_SIO2X1?fmt=webp&hei=2000&wid=2000",
     "https://media.tiffany.com/is/image/tco/75131984_ER_SIO2X2?fmt=webp&hei=2000&wid=2000",
     "https://media.tiffany.com/is/image/tco/75131984_ER_ALT3X1?fmt=webp&hei=2000&wid=2000",
@@ -582,6 +586,7 @@
     "지름 약 4.2mm로 미니멀 사이즈"
    ],
    "image_urls": [
+    "/samples/shot_25704113757b9ab8.webp",
     "https://cfs3.monicavinader.com/images/pdp-small-large/20084048-ss-ea-esds-lgd-f1-.jpg",
     "https://cfs3.monicavinader.com/images/pdp-small-large/20084078-mv-2023-q1-diamond-solitaire-small-stud-lgd-update-ss.jpg"
    ],
@@ -617,6 +622,7 @@
     "지름 약 5.3mm로 일상 착용 크기"
    ],
    "image_urls": [
+    "/samples/shot_fbff8d07c6181a1c.webp",
     "https://cfs3.monicavinader.com/images/pdp-small-large/20084071-ss-ea-esda-lgd-f1.jpg",
     "https://cfs3.monicavinader.com/images/pdp-small-large/20084339-ss-ea-esda-lgd-d1.jpg"
    ],
@@ -651,6 +657,7 @@
     "플러시한 표면과 미세한 엣지로 미니멀 무드"
    ],
    "image_urls": [
+    "/samples/shot_22f43eef9bc4b291.webp",
     "https://cfs3.monicavinader.com/images/pdp-small-large/22687657-ss-ea-ashr-lgd-f1.jpg",
     "https://cfs3.monicavinader.com/images/pdp-small-large/22830838-mv-2025-q1-lab-grown-asscher-studs-pdp-single-078-ss.jpg"
    ],
@@ -3468,5 +3475,5 @@
  ],
  "finished": true,
  "sampleTitle": "Lab diamond stud - trend, through S5 with 3D",
- "savedAtISO": "2026-08-06T17:24:20.234Z"
+ "savedAtISO": "2026-08-07T07:23:54.118Z"
 }

@@ -563,6 +563,7 @@
     "Comes with a Tiffany Diamond Certificate"
    ],
    "image_urls": [
+    "/samples/shot_e743da51480f9e7d.webp",
     "https://media.tiffany.com/is/image/tco/40301174_PDT_MAIN1X1?fmt=webp&hei=628&wid=628"
    ],
    "product_url": "https://www.tiffany.com/jewelry/necklaces-pendants/no-designer-platinum-diamond-necklaces-pendants-40301174.html"
@@ -596,6 +597,7 @@
     "Comes with Tiffany Diamond Certificate"
    ],
    "image_urls": [
+    "/samples/shot_fef8ebd303f6175b.webp",
     "https://media.tiffany.com/is/image/tco/40305132_ER_MAIN1X1?fmt=webp&hei=628&wid=628"
    ],
    "product_url": "https://www.tiffany.com/jewelry/earrings/prong-set-rd-studs-platinum-diamond-earrings-43512153.html"
@@ -628,7 +630,9 @@
     "Paved band with brilliant‑cut diamonds",
     "Platinum 950/1000 setting"
    ],
-   "image_urls": [],
+   "image_urls": [
+    "/samples/shot_c01aab2a08b4b56b.webp"
+   ],
    "product_url": "https://www.cartier.com/fr-fr/jewellery/engagement-rings/1895/solitaire-1895-diamant-taille-coussin-pave--CRN4797200"
   },
   {
@@ -659,7 +663,9 @@
     "Paved band with brilliant‑cut diamonds",
     "Platinum 950/1000 setting"
    ],
-   "image_urls": [],
+   "image_urls": [
+    "/samples/shot_46690a52fb02ce0c.webp"
+   ],
    "product_url": "https://www.cartier.com/fr-fr/jewellery/engagement-rings/ballerine/solitaire-ballerine-diamant-taille-brillant-pave--CRN4196900"
   },
   {
@@ -692,7 +698,9 @@
     "Paved band with brilliant‑cut diamonds",
     "Platinum 950/1000 and gold variants available"
    ],
-   "image_urls": [],
+   "image_urls": [
+    "/samples/shot_c82f3ce04d062d27.webp"
+   ],
    "product_url": "https://www.cartier.com/en-us/jewelry/engagement-rings/cartier-destinee/cartier-destinee-solitaire-brilliant-cut-diamond-paved--CRN4246800.html"
   },
   {
@@ -725,6 +733,7 @@
     "Solitaire setting"
    ],
    "image_urls": [
+    "/samples/shot_005201bce4b8e8dc.webp",
     "https://media2.bulgari.com/f_auto%2Cq_auto%2Cc_thumb%2Ch_160%2Cw_160/production/dw91fca043/images/images/1254055.png",
     "https://media2.bulgari.com/f_auto%2Cq_auto%2Cc_thumb%2Ch_160%2Cw_160/production/dw2c7208c8/images/images/1254058.png"
    ],
@@ -760,6 +769,7 @@
     "Solitaire setting"
    ],
    "image_urls": [
+    "/samples/shot_0144fcf58be7d677.webp",
     "https://media2.bulgari.com/f_auto%2Cq_auto%2Cc_thumb%2Ch_160%2Cw_160/production/dwe4bbc4f7/images/images/477950.png",
     "https://media2.bulgari.com/f_auto%2Cq_auto%2Cc_thumb%2Ch_160%2Cw_160/production/dw5eb7f12c/images/images/477951.png"
    ],
@@ -795,6 +805,7 @@
     "Solitaire setting"
    ],
    "image_urls": [
+    "/samples/shot_46b3e8a7a8a5759e.webp",
     "https://media2.bulgari.com/f_auto%2Cq_auto%2Cc_thumb%2Ch_160%2Cw_160/production/dw051fa5c1/images/images/472455.png",
     "https://media2.bulgari.com/f_auto%2Cq_auto%2Cc_thumb%2Ch_160%2Cw_160/production/dwdc8dd922/images/images/472454.png"
    ],
@@ -3623,5 +3634,5 @@
  "finished": true,
  "sample": true,
  "sampleTitle": "Sample · FW26 solitaire ring, luxury houses",
- "savedAtISO": "2026-08-05T03:14:25.112Z"
+ "savedAtISO": "2026-08-07T07:23:54.099Z"
 }

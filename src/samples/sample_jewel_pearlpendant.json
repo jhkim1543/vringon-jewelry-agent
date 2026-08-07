@@ -536,7 +536,9 @@
     "7mm Akoya 단일 진주",
     "실버 체인"
    ],
-   "image_urls": [],
+   "image_urls": [
+    "/samples/shot_a285b16da5f56de5.webp"
+   ],
    "product_url": "https://www.mikimotoamerica.com/us_en/v-code-akoya-cultured-pearl-pendant-in-silver"
   },
   {
@@ -569,7 +571,9 @@
     "7.5mm Akoya 단일 진주",
     "실버 체인"
    ],
-   "image_urls": [],
+   "image_urls": [
+    "/samples/shot_b647deada461d96e.webp"
+   ],
    "product_url": "https://www.mikimotoamerica.com/us_en/akoya-cultured-pearl-single-pearl-pendant-with-blue-enamel-in-silver"
   },
   {
@@ -600,7 +604,9 @@
     "니켈 프리 스털링 실버",
     "조절 가능한 27.5인치 체인"
    ],
-   "image_urls": [],
+   "image_urls": [
+    "/samples/shot_a285b16da5f56de5.webp"
+   ],
    "product_url": "https://www.mikimoto.co.uk/uk_en/v-code-silver-pendant"
   },
   {
@@ -630,6 +636,7 @@
     "심플한 원형 프레임이 진주를 감싸는 미니멀한 형상이다."
    ],
    "image_urls": [
+    "/samples/shot_e0c8c0b284379e7a.webp",
     "https://media.tiffany.com/is/image/tco/64048317_PDT_SIO2X1?fmt=webp&hei=2000&wid=2000",
     "https://media.tiffany.com/is/image/tco/64048317_PDT_ALT3X1?fmt=webp&hei=2000&wid=2000",
     "https://media.tiffany.com/is/image/tco/64048317_PDT_ALT3X2?fmt=webp&hei=2000&wid=2000"
@@ -664,6 +671,7 @@
     "올리브 잎 모티프의 프롱이 진주를 감싸는 형태다."
    ],
    "image_urls": [
+    "/samples/shot_106d72043f337a98.webp",
     "https://media.tiffany.com/is/image/tco/74627161_PDT_MAIN1X1?fmt=webp&hei=2000&wid=2000",
     "https://media.tiffany.com/is/image/tco/74627161_PDT_SIO2X1?fmt=webp&hei=2000&wid=2000",
     "https://media.tiffany.com/is/image/tco/74627161_PDT_ALT3X1?fmt=webp&hei=2000&wid=2000"
@@ -699,6 +707,7 @@
     "체인 길이는 16인치로 표기된다."
    ],
    "image_urls": [
+    "/samples/shot_3740153124205d0c.webp",
     "https://media.tiffany.com/is/image/tco/60008120_PDT_ALT3X1?fmt=webp&hei=2000&wid=2000",
     "https://media.tiffany.com/is/image/tco/60008120_PDT_ALT3X2?fmt=webp&hei=2000&wid=2000",
     "https://media.tiffany.com/is/image/tco/60008120_PDT_ALT3X3?fmt=webp&hei=2000&wid=2000"
@@ -739,6 +748,7 @@
     "스털링 실버 925로 제작되었다."
    ],
    "image_urls": [
+    "/samples/shot_559a031bdbc9928a.webp",
     "https://kr.pandora.net/web/product/big/20241227/62fe5ce645b82adf843cb15f6395bf0c.png"
    ],
    "product_url": "https://kr.pandora.net/product/%ED%8A%B8%EB%A6%AC%ED%8B%B0%EB%93%9C-%ED%94%84%EB%A0%88%EC%89%AC%EC%9B%8C%ED%84%B0-%EC%BB%AC%EC%B2%98%EB%93%9C-%ED%8E%84-%EC%95%A4-%ED%8C%8C%EB%B2%A0-%EC%BD%9C%EB%A6%AC%EC%96%B4-%EB%84%A4%ED%81%AC%EB%A6%AC%EC%8A%A4/3665/"
@@ -773,6 +783,7 @@
     "스털링 실버 925로 제작되었다."
    ],
    "image_urls": [
+    "/samples/shot_3aa052ba02a9f1ef.webp",
     "https://kr.pandora.net/web/product/big/20241227/f6ea3e9f20fb3456214a3a65b3773db8.png"
    ],
    "product_url": "https://kr.pandora.net/product/%ED%8A%B8%EB%A6%AC%ED%8B%B0%EB%93%9C-%ED%94%84%EB%A0%88%EC%89%AC%EC%9B%8C%ED%84%B0-%EC%BB%AC%EC%B2%98%EB%93%9C-%ED%8E%84-%EC%BD%9C%EB%A6%AC%EC%96%B4-%EB%84%A4%ED%81%AC%EB%A6%AC%EC%8A%A4/3666/"
@@ -4659,5 +4670,141 @@
  ],
  "finished": true,
  "sampleTitle": "Akoya pearl pendant - trend, through S3",
- "savedAtISO": "2026-08-06T17:24:20.229Z"
+ "savedAtISO": "2026-08-07T07:23:53.902Z",
+ "bestsellers": [
+  {
+   "product_id": "bs_1",
+   "retailer": "Net-a-Porter",
+   "retailer_scope": "luxury_etail",
+   "brand": "YVONNE LÉON",
+   "name": "Belle de Nuit 9-karat gold, diamond, pearl and enamel necklace",
+   "price_krw": 5565000,
+   "rank_note": "BESTSELLER",
+   "popularity_basis": [
+    "상품 상세페이지에 'BESTSELLER' 배지 표기 확인",
+    "Pendant Necklaces 카테고리 내 베스트셀러 노출"
+   ],
+   "design_traits": [
+    "9K gold",
+    "freshwater pearl 펜던트",
+    "diamond 세팅(화이트/블랙)",
+    "black enamel",
+    "lobster clasp",
+    "펜던트 약 3.5cm x 2.5cm"
+   ],
+   "image_urls": [],
+   "product_url": "https://www.net-a-porter.com/en-us/shop/product/yvonne-leon/jewelry-and-watches/pendant-necklaces/belle-de-nuit-9-karat-gold-diamond-pearl-and-enamel-necklace/46376663163126098",
+   "source_urls": [
+    "https://www.net-a-porter.com/en-us/shop/product/yvonne-leon/jewelry-and-watches/pendant-necklaces/belle-de-nuit-9-karat-gold-diamond-pearl-and-enamel-necklace/46376663163126098",
+    "https://www.net-a-porter.com/en-us/shop/edit/bestsellers/jewelry-and-watches/necklaces"
+   ],
+   "collected_at": "2026-08-06"
+  },
+  {
+   "product_id": "bs_2",
+   "retailer": "Selfridges",
+   "retailer_scope": "global_dept",
+   "brand": "MONICA VINADER",
+   "name": "Heart-Charm 18ct Yellow Gold-Plated Vermeil Sterling-Silver Pendant Necklace",
+   "price_krw": 180000,
+   "rank_note": "Bestseller",
+   "popularity_basis": [
+    "상품 상세페이지에 'Bestseller' 배지 표기 확인",
+    "브랜드/카테고리 리스트에서도 Bestseller 라벨 노출"
+   ],
+   "design_traits": [
+    "925 sterling silver 베이스",
+    "18ct yellow-gold vermeil(도금)",
+    "heart charm 펜던트",
+    "체인 포함"
+   ],
+   "image_urls": [],
+   "product_url": "https://www.selfridges.com/US/en/cat/monica-vinaderheart-charm-18ct-yellow-gold-plated-vermeil-recycled-sterling-silver-pendant-necklace_R04124662/",
+   "source_urls": [
+    "https://www.selfridges.com/US/en/cat/monica-vinaderheart-charm-18ct-yellow-gold-plated-vermeil-recycled-sterling-silver-pendant-necklace_R04124662/",
+    "https://www.selfridges.com/US/en/cat/monica-vinader/jewellery-watches/fashion-jewellery/necklaces/"
+   ],
+   "collected_at": "2026-08-06"
+  },
+  {
+   "product_id": "bs_3",
+   "retailer": "Harrods",
+   "retailer_scope": "global_dept",
+   "brand": "Vivienne Westwood",
+   "name": "Mini Bas Relief Pendant Necklace",
+   "price_krw": 225000,
+   "rank_note": "Bestseller",
+   "popularity_basis": [
+    "패션 주얼리 Necklace 카테고리 리스트에 'Bestseller' 라벨 노출 확인"
+   ],
+   "design_traits": [
+    "brass 베이스",
+    "platinum/silver-tone plating",
+    "crystal 장식",
+    "아이코닉 orb 모티프 펜던트",
+    "lobster clasp"
+   ],
+   "image_urls": [
+    "/samples/shot_5f5cd05952fa4ca8.webp"
+   ],
+   "product_url": "https://www.harrods.com/en-us/p/vivienne-westwood-mini-bas-relief-pendant-necklace-000000000007591137",
+   "source_urls": [
+    "https://www.harrods.com/en-us/p/vivienne-westwood-mini-bas-relief-pendant-necklace-000000000007591137",
+    "https://www.harrods.com/en-us/fashion-jewellery/necklaces"
+   ],
+   "collected_at": "2026-08-06"
+  },
+  {
+   "product_id": "bs_4",
+   "retailer": "Net-a-Porter",
+   "retailer_scope": "luxury_etail",
+   "brand": "STONE AND STRAND",
+   "name": "Initial Sparkle gold diamond necklace",
+   "price_krw": 795000,
+   "rank_note": "BESTSELLER",
+   "popularity_basis": [
+    "브랜드/카테고리 리스트에 'BESTSELLER' 라벨 노출 확인"
+   ],
+   "design_traits": [
+    "gold(정확 카럿 표기는 PDP 참조)",
+    "diamond 세팅 이니셜 펜던트",
+    "파인 체인",
+    "멀티 레터 옵션"
+   ],
+   "image_urls": [],
+   "product_url": "https://www.net-a-porter.com/en-us/shop/product/stone-and-strand/jewelry-and-watches/pendant-necklaces/initial-sparkle-gold-diamond-necklace/10163292707087156",
+   "source_urls": [
+    "https://www.net-a-porter.com/en-us/shop/designer/stone-and-strand/jewelry-and-watches/necklaces",
+    "https://www.net-a-porter.com/en-us/shop/designer/stone-and-strand"
+   ],
+   "collected_at": "2026-08-06"
+  },
+  {
+   "product_id": "bs_5",
+   "retailer": "Harrods",
+   "retailer_scope": "global_dept",
+   "brand": "Vivienne Westwood",
+   "name": "London Orb Necklace",
+   "price_krw": 210000,
+   "rank_note": "Bestseller",
+   "popularity_basis": [
+    "패션 주얼리 Necklace 카테고리 리스트에 'Bestseller' 라벨 노출 확인"
+   ],
+   "design_traits": [
+    "brass 베이스",
+    "platinum/white 톤 피니시",
+    "orb 모티프 펜던트",
+    "lobster clasp"
+   ],
+   "image_urls": [
+    "/samples/shot_69e24fe26468bb6a.webp"
+   ],
+   "product_url": "https://www.harrods.com/en-us/p/vivienne-westwood-london-orb-necklace-000000000007591128",
+   "source_urls": [
+    "https://www.harrods.com/en-us/p/vivienne-westwood-london-orb-necklace-000000000007591128",
+    "https://www.harrods.com/en-us/fashion-jewellery/necklaces"
+   ],
+   "collected_at": "2026-08-06"
+  }
+ ]
 }

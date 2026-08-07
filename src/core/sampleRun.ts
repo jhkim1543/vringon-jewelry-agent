@@ -11,9 +11,10 @@ const SAMPLE_IDS = [
 ] as const
 
 export async function ensureSampleRuns() {
-  const have = new Set(listRuns().map(r => r.id))
+  // 파일이 더 새로우면 덮어쓴다 · id만 보고 건너뛰면 샘플을 다시 구워도
+  // 예전 방문자 화면은 옛 데이터(끊긴 사진 포함)에 머문다.
+  const haveAt = new Map(listRuns().map(r => [r.id, r.savedAt]))
   for (const id of SAMPLE_IDS) {
-    if (have.has(id)) continue
     try {
       const mod = await import(`../samples/${id}.json`)
       // 배포 경로가 하위 폴더면(예: GitHub Pages) 절대경로 /samples/ 가 어긋난다.
@@ -22,9 +23,13 @@ export async function ensureSampleRuns() {
       const raw = JSON.stringify(mod.default ?? mod).replaceAll('"/samples/', `"${base}samples/`)
       const st = JSON.parse(raw) as RunState
       st.sample = true
+      const fileAt = Date.parse(st.savedAtISO ?? '') || 0
+      const knownAt = haveAt.get(id)
+      // 이미 있고 파일이 더 새롭지도 않으면 그대로 둔다 (사용자 편집 보존)
+      if (knownAt != null && fileAt <= knownAt) continue
       saveRun({
         id,
-        savedAt: Date.parse(st.savedAtISO ?? '') || Date.now(),
+        savedAt: fileAt || Date.now(),
         favorite: false,
         title: st.sampleTitle ?? 'Sample run',
         thumb: firstThumb(st),

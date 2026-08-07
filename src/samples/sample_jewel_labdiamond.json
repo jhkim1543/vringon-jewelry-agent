@@ -611,6 +611,7 @@
     "개폐부 폭은 6~8mm로 여유가 있다."
    ],
    "image_urls": [
+    "/samples/shot_445b58b92281f944.webp",
     "https://cfs3.monicavinader.com/images/pdp-full-large/25235552-ss-ea-essh-lgd-d1.jpg",
     "https://cfs3.monicavinader.com/images/pdp-small-large/25235531-mv-2026-spring-s12-gp-essential-diamond-huggie-earrings-lab-grown-diamond-027-ss.jpg"
    ],
@@ -650,6 +651,7 @@
     "좌우가 거울처럼 짝을 이룬다."
    ],
    "image_urls": [
+    "/samples/shot_3334f03c80a13afe.webp",
     "https://cfs3.monicavinader.com/images/pdp-small-large/19373473-ss-ea-harh-dia-f1.jpg"
    ],
    "product_url": "https://www.monicavinader.com/us/lab-grown-diamond-heart-drop-huggie-earrings/sterling-silver-heart-diamond-huggie-earrings-lab-grown-diamond"
@@ -687,6 +689,7 @@
     "전면에 촘촘한 파베가 이어진다."
    ],
    "image_urls": [
+    "/samples/shot_4336304fb631cf90.webp",
     "https://cfs3.monicavinader.com/images/pdp-small-large/23821083-ss-ea-rpvh-lgd-f1.jpg"
    ],
    "product_url": "https://www.monicavinader.com/us/nura-pave-diamond-huggies/sterling-silver-riva-pave-diamond-huggie-earrings-lab-grown-diamond"
@@ -3458,5 +3461,6 @@
   "S4 done · Top N and campaign shots saved",
   "S5 done · 3D showroom, board and PDF export ready"
  ],
- "finished": true
+ "finished": true,
+ "savedAtISO": "2026-08-07T07:23:54.109Z"
 }

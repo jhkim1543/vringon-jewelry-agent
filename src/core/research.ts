@@ -58,9 +58,12 @@ export interface TrendReport {
 }
 
 /** 수집한 원격 이미지는 서버 캐시를 거쳐 불러온다.
- *  페이지를 주면 직링크가 죽었을 때 각 페이지의 og:image로 차례로 폴백한다. */
-export const shotUrl = (u: string, ...pages: (string | undefined)[]) =>
-  `/api/shot?u=${encodeURIComponent(u)}${pages.filter(Boolean).map(p => `&p=${encodeURIComponent(p!)}`).join('')}`
+ *  페이지를 주면 직링크가 죽었을 때 각 페이지의 og:image로 차례로 폴백한다.
+ *  이미 구워 둔 로컬 사진(/samples/…, 정적 배포 포함)은 프록시 없이 그대로 쓴다. */
+export const shotUrl = (u: string, ...pages: (string | undefined)[]) => {
+  if (u && !/^https?:/i.test(u)) return u
+  return `/api/shot?u=${encodeURIComponent(u)}${pages.filter(Boolean).map(p => `&p=${encodeURIComponent(p!)}`).join('')}`
+}
 
 export interface TrendResearch {
   signals: {
