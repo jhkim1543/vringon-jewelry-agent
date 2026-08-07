@@ -119,7 +119,19 @@ H100 서버에 `server.mjs` 배포. 이게 있어야 기기 간 보드 공유, �
 
 ---
 
-## 3. 반드시 알아야 할 함정
+### 2차 개편 (2026-08-07 사용자 피드백 반영)
+
+- **백화점 베스트셀러 조사**: `researchBestsellers`(research-api.mjs, best2 키)가 롯데·SSG·더현대 + Harrods·Selfridges·Saks·
+  Net-a-Porter 등에서 "베스트셀러로 표기된" 제품을 순위 인용과 함께 수집한다. comp8 키의 경쟁 조사와 병렬로 돌고,
+  실패해도 경쟁 조사를 막지 않는다. 사진은 `/api/shot`이 직링크 실패 시 상품 페이지(여러 개 가능, p 반복 파라미터)의
+  og:image로 폴백해 가져온다 — Harrods는 뚫리고 NAP·Selfridges는 봇 차단이라 칩 플레이스홀더가 나온다.
+  노출: 보드 research 레인 사진 카드(r-best, bs-N) · 분석 화면 "백화점 베스트셀러" 패널(defaultOpen) ·
+  리포트 PDF "SELLING NOW" 슬라이드 · 도시에 PDF "OBSERVED MARKET" 슬라이드(예측 앞).
+- **스케치→디자인 단계 분리**: S2 = 기준 잉크 스케치 + 같은 외형의 흑백 변형(`sketchVariantPrompt`, view `sketch_var`),
+  S3 = 각 스케치를 `colorizePrompt`로 editImage 컬러화(기하 유지). 모든 디자인이 자기 스케치로 추적된다(editedFrom).
+  예산이 빠듯하면 변형이 S3 몫(reserveS3)에 양보한다 — 스케치 6장×2변형이면 예산 12를 다 먹어 S3가 통째로 굶는 사고가 실제로 났다.
+- **보드 카드·칸 리사이즈**: 카드를 선택하면 모서리 8핸들로 늘리고 줄인다(NodeResizer). 크기는 BoardEdits.sizes에
+  런별 저장되고 연결선 핸들도 저장된 크기를 따라간다. Reset edits가 크기도 되돌린다.
 
 이미 한 번씩 크게 시간을 잃은 것들입니다.
 
