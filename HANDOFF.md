@@ -146,6 +146,13 @@ H100 서버에 `server.mjs` 배포. 이게 있어야 기기 간 보드 공유, �
   못 답하는 범위(`coverage_note`)를 함께 낸다. 문서 속 지시문은 데이터로만 취급한다.
 - 옛 저장본 호환: `archiveFiles`/`files` 는 `(string | UploadRef)[]`. 문자열만 있던 시절 것은 내용이 없어
   읽을 수 없고, 그 경우 "sample data" 라고 로그에 밝힌다. `uploadRefs()` / `uploadName()` 로 접근할 것.
+- **올린 것을 되돌려 보여준다**: `/api/upload/file/<hash>` 가 원본을 서빙하고, 보드 조사 레인이
+  사진 카드로 건다(`uploadImages()`). save-sample 이 `/samples/up_<hash>.<ext>` 로 굳혀 데모에서도 남는다.
+- **PDF 페이지 그림**: 업로드 시 브라우저에서 pdf.js 로 앞 8쪽을 webp 로 떠 함께 올린다.
+  판독은 원본 PDF(`input_file`)로 인용하고, 페이지 그림(`input_image`)은 도판을 보게 한다.
+  **함정**: JPEG2000 을 품은 PDF 는 wasm 이 없으면 *실패가 아니라 멈춘다* — 업로드가 통째로 막혔다.
+  그래서 `public/pdfjs/` 로 wasm·cmaps 를 서빙하고, 전체 45초·페이지당 12초로 시간을 끊는다.
+  페이지 그림은 덤이라 실패해도 업로드와 판독은 그대로 간다.
 
 실측(2026-08-08): 실제 커프 사진 11장 + "무광 실버, 스톤 없음" 주장 → `agrees:false`,
 "9/11 골드, 스톤 6장, 업로드에 반지·체인 팔찌가 섞임". 실제 트렌드 PDF → 신호 8개 전부 p.1~p.3 근거,
