@@ -4,7 +4,7 @@
 import type { RunState, Design } from './types'
 import { CAT_LABEL, MODE_LABEL, TYPE_LABEL, metalProgramOf, stoneProgramOf } from './types'
 import type { TrendReport } from './research'
-import { shotUrl } from './research'
+import { reportPhoto } from './research'
 import { downloadDeck, esc, printDeck, slide } from './deck'
 
 const ACCENT = '#3B45C8'
@@ -16,9 +16,11 @@ function pics(st: RunState) {
   return { concept: of('concept'), wear: of('wear'), any: all.filter(i => i.view !== 'sketch').map(i => i.url) }
 }
 const at = (l: string[], i: number) => (l.length ? l[i % l.length] : '')
+// 사진이 없으면 아무것도 그리지 않는다 · 빈 프레임이 곧 여백이다
 const img = (url: string, cls = '') => url
-  ? `<div class="frame ${cls}"><img class="ph" src="${esc(url)}" alt=""></div>`
-  : `<div class="frame ${cls}"><div class="ph"></div></div>`
+  ? `<div class="frame ${cls}"><img class="ph" src="${esc(url)}" alt=""
+      onerror="this.closest('.frame').remove()"></div>`
+  : ''
 
 function build(st: RunState): { title: string; html: string } {
   const rep = st.trendReport as TrendReport
@@ -86,7 +88,7 @@ function build(st: RunState): { title: string; html: string } {
   // 관찰한 경쟁 제품 · 신호의 원천이 된 실제 제품 사진. 링크가 죽은 사진은 칸째로 숨긴다.
   // 라이브에서는 상품 페이지 og:image 폴백(shotUrl)이 붙고, 정적 배포에서는 직링크만 시도된다.
   const compShots = (st.competitors ?? [])
-    .map(c => ({ c, u: (c.image_urls ?? [])[0] ?? (c.product_url ? shotUrl('', c.product_url) : '') }))
+    .map(c => ({ c, u: reportPhoto(c) }))
     .filter(x => x.u)
     .slice(0, 8)
   if (compShots.length) {
@@ -109,7 +111,7 @@ function build(st: RunState): { title: string; html: string } {
 
   // 백화점·명품몰 베스트셀러 · "지금 실제로 팔린다고 표기된 것"의 사진과 순위 표기
   const bestShots = (st.bestsellers ?? [])
-    .map(b => ({ b, u: (b.image_urls ?? [])[0] ?? (b.product_url ? shotUrl('', b.product_url) : '') }))
+    .map(b => ({ b, u: reportPhoto(b) }))
     .filter(x => x.u)
     .slice(0, 8)
   if (bestShots.length) {

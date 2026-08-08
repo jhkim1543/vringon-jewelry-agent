@@ -137,6 +137,43 @@ export function slide(opts: {
   </section>`
 }
 
+/** 못 뜬 사진과 그 때문에 비어 버린 칸을 접는다.
+ *  깨진 아이콘도 보기 싫지만, 더 나쁜 건 사진이 있어야 할 자리가 통째로 흰 여백으로 남는 것이다.
+ *  링크가 죽는 일은 흔하므로(핫링크 차단·소멸) 인쇄 직전에 한 번 훑어 정리한다. */
+function tidyDeck(doc: Document) {
+  for (const im of Array.from(doc.images)) {
+    if (!im.complete || im.naturalWidth === 0) (im.closest('.frame') ?? im).remove()
+  }
+  // 안이 빈 칸은 자리를 차지하지 않게 접는다. 여러 겹으로 감싼 경우가 있어 몇 번 돈다.
+  for (let pass = 0; pass < 4; pass++) {
+    let removed = 0
+    for (const el of Array.from(doc.querySelectorAll('.sbody div, .sbody span'))) {
+      if (el.children.length === 0 && !el.textContent?.trim() && !el.querySelector('img')) {
+        el.remove(); removed++
+      }
+    }
+    if (!removed) break
+  }
+}
+
+const TIDY_SCRIPT = `<script>
+addEventListener('load', function () {
+  var run = function () {
+    Array.prototype.forEach.call(document.images, function (im) {
+      if (!im.complete || im.naturalWidth === 0) { var f = im.closest('.frame') || im; f.remove() }
+    })
+    for (var p = 0; p < 4; p++) {
+      var gone = 0
+      Array.prototype.forEach.call(document.querySelectorAll('.sbody div, .sbody span'), function (el) {
+        if (!el.children.length && !(el.textContent || '').trim() && !el.querySelector('img')) { el.remove(); gone++ }
+      })
+      if (!gone) break
+    }
+  }
+  setTimeout(run, 1200)
+})
+<\/script>`
+
 /** 문서를 만들어 숨은 iframe에서 인쇄한다. 팝업 차단에 걸리지 않는다. */
 export function printDeck(title: string, inner: string) {
   const html = `<!doctype html><html><head><meta charset="utf-8"><title>${esc(title)}</title>
@@ -164,6 +201,7 @@ export function printDeck(title: string, inner: string) {
     : new Promise<void>(res => { img.onload = () => res(); img.onerror = () => res() })))
 
   Promise.race([ready, new Promise(res => setTimeout(res, 6000))]).then(() => {
+    tidyDeck(doc)                       // 못 뜬 사진과 빈 칸을 걷어낸 뒤에 인쇄한다
     frame.contentWindow?.focus()
     frame.contentWindow?.print()
   })
@@ -171,8 +209,9 @@ export function printDeck(title: string, inner: string) {
 
 /** 인쇄 대신 파일로 받고 싶을 때. 브라우저 인쇄가 막힌 환경을 위한 대비책. */
 export function downloadDeck(filename: string, title: string, inner: string) {
+  // 내려받은 파일은 나중에 열린다. 그때 링크가 죽어 있을 수 있으므로 정리 스크립트를 함께 넣는다.
   const html = `<!doctype html><html><head><meta charset="utf-8"><title>${esc(title)}</title>
-<style>${DECK_CSS}</style></head><body>${inner}</body></html>`
+<style>${DECK_CSS}</style></head><body>${inner}${TIDY_SCRIPT}</body></html>`
   const blob = new Blob([html], { type: 'text/html;charset=utf-8' })
   const a = document.createElement('a')
   a.href = URL.createObjectURL(blob)

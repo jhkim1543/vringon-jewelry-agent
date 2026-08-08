@@ -14,7 +14,7 @@ function mdLinks(escaped: string): string {
 import type { RunState, Design } from './types'
 import { CAT_LABEL, TYPE_LABEL, MODE_LABEL, metalProgramOf, stoneProgramOf } from './types'
 import type { SeasonDossier, DossierMetric, Macrotrend } from './research'
-import { GRADE_LABEL, SOURCE_LABEL, metricText, shotUrl } from './research'
+import { GRADE_LABEL, SOURCE_LABEL, metricText, reportPhoto } from './research'
 import { DECK_CSS, downloadDeck, esc, isLight, printDeck, slide } from './deck'
 
 // 매크로마다 색을 하나씩 준다. MICAM이 트렌드별로 색을 정해 쓰는 방식과 같다.
@@ -44,9 +44,12 @@ function imagePool(st: RunState) {
 
 const at = (list: string[], i: number) => (list.length ? list[i % list.length] : '')
 
+// 사진이 없으면 아무것도 그리지 않는다. 빈 프레임을 두면 그 자리가 통째로 여백이 된다.
+// 링크가 죽었을 때도 깨진 아이콘 대신 칸째로 사라지게 한다.
 function img(url: string, cls = '') {
-  if (!url) return `<div class="frame ${cls}"><div class="ph"></div></div>`
-  return `<div class="frame ${cls}"><img class="ph" src="${esc(url)}" alt=""></div>`
+  if (!url) return ''
+  return `<div class="frame ${cls}"><img class="ph" src="${esc(url)}" alt=""
+    onerror="this.closest('.frame').remove()"></div>`
 }
 
 function statBar(m: DossierMetric, color: string) {
@@ -86,7 +89,7 @@ function keyItemCard(k: Macrotrend['key_items'][number], color: string, pic: str
   // 없으면 이번 분석이 만든 렌더를 쓰고, 그것도 없으면 사진 칸 자체를 접는다.
   // (빈 프레임을 그리면 카드의 절반이 흰 여백으로 남는다.)
   const ref = k as { reference_image_url?: string; reference_page_url?: string; reference_note?: string }
-  const refPic = ref.reference_image_url || (ref.reference_page_url ? shotUrl('', ref.reference_page_url) : '')
+  const refPic = reportPhoto({ image_urls: ref.reference_image_url ? [ref.reference_image_url] : [] })
   const shown = refPic || pic
   const m = k.metric
   return `<div class="kitem">
@@ -216,12 +219,12 @@ function buildDeck(st: RunState): { title: string; html: string } {
   //     경쟁 제품과 백화점 베스트셀러를 예측 앞에 먼저 보여준다.
   const marketShots = [
     ...(st.bestsellers ?? []).map(b => ({
-      u: (b.image_urls ?? [])[0] ?? (b.product_url ? shotUrl('', b.product_url) : ''),
+      u: reportPhoto(b),
       cap: `<b>${esc(b.brand)}</b> ${esc(b.name)}`,
       sub: `${esc(b.retailer)}${b.rank_note ? ` · ${esc(b.rank_note)}` : ''}`,
     })),
     ...(st.competitors ?? []).map(c => ({
-      u: (c.image_urls ?? [])[0] ?? (c.product_url ? shotUrl('', c.product_url) : ''),
+      u: reportPhoto(c),
       cap: `<b>${esc(c.brand)}</b> ${esc(c.name)}`,
       sub: `${c.price_krw ? `KRW ${(c.price_krw / 10000).toFixed(1)}만` : ''}${c.competitor_class ? ` · ${esc(c.competitor_class)}` : ''}`,
     })),

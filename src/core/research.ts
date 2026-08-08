@@ -57,6 +57,17 @@ export interface TrendReport {
   sources: string[]
 }
 
+/** 리포트에 실을 사진 하나 고르기.
+ *  ① 구워 둔 로컬 파일 → ② 원본 직링크 → ③ 없음.
+ *  `/api/shot` 프록시는 여기서 쓰지 않는다 — 정적 배포에는 그 API 가 없어
+ *  전부 404 가 되고, PDF 에 깨진 이미지만 남는다. */
+export function reportPhoto(p: { image_urls?: string[] }): string {
+  const list = p.image_urls ?? []
+  return list.find(u => u.startsWith('/samples/') || u.includes('/samples/'))
+    ?? list.find(u => /^https?:/i.test(u))
+    ?? ''
+}
+
 /** 수집한 원격 이미지는 서버 캐시를 거쳐 불러온다.
  *  페이지를 주면 직링크가 죽었을 때 각 페이지의 og:image로 차례로 폴백한다.
  *  이미 구워 둔 로컬 사진(/samples/…, 정적 배포 포함)은 프록시 없이 그대로 쓴다. */
