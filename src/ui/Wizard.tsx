@@ -121,6 +121,45 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
   // 업로드 · 파일 내용을 서버에 두고 해시만 받아 온다. 이름만 들고 있으면 나중에 읽을 것이 없다.
   const [uploading, setUploading] = useState(false)
   const [uploadError, setUploadError] = useState('')
+
+  /** PDF 는 페이지를 그림으로도 떠 둔다. 신호에 "p.14" 라고만 적혀 있으면
+   *  그 페이지를 직접 열어 봐야 하는데, 옆에 그림이 있으면 그럴 필요가 없다. */
+  const pdfPageShots = async (file: File): Promise<{ name: string; dataUrl: string }[]> => {
+    try {
+      const pdfjs = await import('pdfjs-dist')
+      // 워커는 같은 번들에서 끌어온다 (CDN 을 쓰면 오프라인·CSP 에서 깨진다)
+      const worker = new Worker(new URL('pdfjs-dist/build/pdf.worker.min.mjs', import.meta.url), { type: 'module' })
+      pdfjs.GlobalWorkerOptions.workerPort = worker
+      const buf = await file.arrayBuffer()
+      // JPEG2000·JBIG2 이미지를 품은 PDF 는 wasm 이 있어야 페이지를 그린다.
+      // 경로를 주지 않으면 폴백을 찾다가 페이지 하나에서 한참 붙잡힌다.
+      const assets = `${import.meta.env.BASE_URL || '/'}pdfjs/`
+      const doc = await pdfjs.getDocument({
+        data: buf, wasmUrl: assets, cMapUrl: `${assets}cmaps/`, cMapPacked: true,
+      }).promise
+      const out: { name: string; dataUrl: string }[] = []
+      for (let n = 1; n <= Math.min(doc.numPages, 8); n++) {
+        const page = await doc.getPage(n)
+        const base = page.getViewport({ scale: 1 })
+        const scale = Math.min(900 / base.width, 1.6)
+        const viewport = page.getViewport({ scale })
+        const canvas = document.createElement('canvas')
+        canvas.width = viewport.width; canvas.height = viewport.height
+        const ctx = canvas.getContext('2d')!
+        ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, canvas.width, canvas.height)
+        // 한 페이지가 붙잡히면 거기서 멈추고 그때까지 그린 것만 쓴다
+        const task = page.render({ canvas, canvasContext: ctx, viewport })
+        const done = await Promise.race([
+          task.promise.then(() => true),
+          new Promise<boolean>(res => setTimeout(() => res(false), 12_000)),
+        ])
+        if (!done) { try { task.cancel() } catch { /* 이미 끝났으면 무시 */ } break }
+        out.push({ name: `${file.name.replace(/\.pdf$/i, '')} p.${n}.webp`, dataUrl: canvas.toDataURL('image/webp', 0.72) })
+      }
+      return out
+    } catch { return [] }   // 페이지 그림은 덤이다. 실패해도 판독은 그대로 간다.
+  }
+
   const sendUploads = async (list: File[]): Promise<UploadRef[]> => {
     if (!list.length) return []
     setUploading(true); setUploadError('')
@@ -131,6 +170,14 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
         r.onerror = () => rej(new Error(f.name))
         r.readAsDataURL(f)
       })))
+      // 페이지 그림은 있으면 좋은 것이다. 렌더가 멈추더라도 업로드까지 붙잡지 못하게 시간을 끊는다.
+      for (const f of list.filter(x => x.type === 'application/pdf')) {
+        const shots = await Promise.race([
+          pdfPageShots(f),
+          new Promise<{ name: string; dataUrl: string }[]>(res => setTimeout(() => res([]), 45_000)),
+        ])
+        files.push(...shots)
+      }
       const r = await fetch('/api/upload', {
         method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ files }),
       })

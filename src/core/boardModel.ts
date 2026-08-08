@@ -3,7 +3,7 @@
 // 연결(edge)은 장식이 아니라 실제 데이터다. 디자인이 어떤 신호에서 나왔는지는
 // rationale.driving_signals에, 디렉션이 어떤 신호를 묶었는지는 signal_ids에 있다.
 import type { Design, RunState } from './types'
-import { MODE_LABEL, MODE_SCOPE, TIER_LABEL } from './types'
+import { MODE_LABEL, MODE_SCOPE, TIER_LABEL, uploadImages, uploadName } from './types'
 import { buildLocalPitch } from './pitch'
 import type { SeasonDossier } from './research'
 import { GRADE_LABEL, metricText , shotUrl } from './research'
@@ -68,7 +68,7 @@ export function buildBoardModel(st: RunState): BoardModel {
     if (p.series.valueStatement) inputBody.push(`Value: ${p.series.valueStatement.slice(0, 90)}`)
     inputBody.push(p.series.trendSearch ? 'Trend research on, no competitor research' : 'No outside research')
   } else {
-    inputBody.push(`${p.moodboard.files.length} uploads: ${p.moodboard.files.join(', ') || 'none'}`)
+    inputBody.push(`${p.moodboard.files.length} uploads: ${p.moodboard.files.map(uploadName).join(', ') || 'none'}`)
     inputBody.push('Nothing outside these files')
   }
   nodes.push({
@@ -158,6 +158,16 @@ export function buildBoardModel(st: RunState): BoardModel {
         : ['No conflict'],
       tone: 'warn',
     })
+    // 올린 디자인을 그대로 보여준다 · DNA 판정을 눈으로 대조할 수 있어야 한다
+    uploadImages(p.series.archiveFiles).slice(0, 8).forEach((u, k) => {
+      nodes.push({
+        id: `up-${k}`, kind: 'research', column: 1, row: 3 + k * 2.2,
+        title: u.name.replace(/\.[a-z0-9]+$/i, '').slice(0, 26),
+        imageUrl: u.url,
+        body: ['You uploaded this'],
+      })
+      edges.push({ from: 'r-dna', to: `up-${k}` })
+    })
     researchIds = ['r-dna', 'r-check']
     edges.push({ from: 'in', to: 'r-dna', label: 'uploaded designs' })
     edges.push({ from: 'in', to: 'r-check', label: 'value statement' })
@@ -170,8 +180,18 @@ export function buildBoardModel(st: RunState): BoardModel {
     nodes.push({
       id: 'r-pdf', kind: 'research', column: 1, row: 0,
       title: 'Uploads, read',
-      body: ['Sections, images, captions and colour chips', 'Tagged untrusted so any instruction inside stays data'],
+      body: [`${p.moodboard.files.map(uploadName).join(', ') || 'none'} · every signal below carries the page it came from`],
       tone: 'accent',
+    })
+    // 문서에서 뽑아 둔 페이지 이미지 · 신호 옆에서 근거를 눈으로 확인한다
+    uploadImages(p.moodboard.files).slice(0, 6).forEach((u, k) => {
+      nodes.push({
+        id: `pg-${k}`, kind: 'research', column: 1, row: 3 + k * 2.2,
+        title: u.name.replace(/\.(png|webp|jpg)$/i, ''),
+        imageUrl: u.url,
+        body: ['From your document'],
+      })
+      edges.push({ from: 'r-pdf', to: `pg-${k}` })
     })
     nodes.push({
       id: 'r-bias', kind: 'research', column: 1, row: 1,

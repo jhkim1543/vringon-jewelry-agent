@@ -11,7 +11,7 @@ import { geminiEdit, geminiGenerate, geminiProbe, geminiShotPlan } from './gemin
 import { compositeLogo, logoAvailable } from './logo-api.mjs'
 import { tripoMultiview, tripoProbe, readModel } from './tripo-api.mjs'
 import { configureUnlocker, findProductImage, unlockedFetch, unlockerStatus, unlockerUsage } from './unlock.mjs'
-import { readMoodboard, readSeries, storeUpload } from './uploads-api.mjs'
+import { readMoodboard, readSeries, readUpload, storeUpload } from './uploads-api.mjs'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(HERE, '..')
@@ -410,6 +410,17 @@ export async function handleApi(req, res) {
     } catch (e) { return json(res, 400, { error: String(e.message || e) }) }
   }
 
+  // 올린 파일 되돌려주기 · 사용자가 올린 것을 화면에서 그대로 봐야 비교가 된다
+  if (path.startsWith('/api/upload/file/')) {
+    const hash = path.split('/').pop().replace(/\.[a-z0-9]+$/i, '')
+    try {
+      const f = readUpload(ROOT, hash)
+      res.setHeader('Content-Type', f.mime || 'application/octet-stream')
+      res.setHeader('Cache-Control', 'public, max-age=86400')
+      return res.end(f.buf)
+    } catch { res.statusCode = 404; return res.end('not found') }
+  }
+
   // 시리즈 · 올린 디자인 이미지에서 불변/변수를 실제로 가른다
   if (path === '/api/series/dna' && req.method === 'POST') {
     if (!API_KEY) return json(res, 400, { error: 'OPENAI_API_KEY 미설정' })
@@ -437,6 +448,15 @@ export async function handleApi(req, res) {
       const outDir = join(ROOT, 'public', 'samples')
       mkdirSync(outDir, { recursive: true })
       let text = JSON.stringify(state)
+      // 사용자가 올린 파일도 샘플에 함께 굳힌다 · 캐시를 비워도 데모가 살아 있어야 한다
+      for (const h of [...new Set([...text.matchAll(/\/api\/upload\/file\/([a-f0-9]{8,64})/g)].map(m => m[1]))]) {
+        try {
+          const f = readUpload(ROOT, h)
+          const ext = (f.mime || '').includes('png') ? 'png' : (f.mime || '').includes('pdf') ? 'pdf' : 'webp'
+          writeFileSync(join(outDir, `up_${h}.${ext}`), f.buf)
+          text = text.replaceAll(`/api/upload/file/${h}`, `/samples/up_${h}.${ext}`)
+        } catch { /* 캐시에서 사라진 업로드는 건너뛴다 */ }
+      }
       const hashes = [...new Set([...text.matchAll(/\/api\/image\/file\/([a-f0-9]{8,64})\.png/g)].map(m => m[1]))]
       let copied = 0
       for (const h of hashes) {

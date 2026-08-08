@@ -29,7 +29,8 @@ export function storeUpload(root, { name, dataUrl }) {
     writeFileSync(file, buf)
     writeFileSync(file + '.meta', JSON.stringify({ name, mime: m[1], size: buf.length }))
   }
-  return { name, hash, mime: m[1], size: buf.length }
+  // url 을 함께 준다 · 화면이 올린 것을 그대로 보여줄 수 있어야 한다
+  return { name, hash, mime: m[1], size: buf.length, url: `/api/upload/file/${hash}` }
 }
 
 export function readUpload(root, hash) {
@@ -85,7 +86,11 @@ const DNA_SCHEMA = {
         claim: { type: 'string', description: '사용자가 쓴 가치 문장에서 검증 가능한 주장' },
         observed: { type: 'string', description: '이미지에서 실제로 관측된 것' },
         agrees: { type: 'boolean', description: '주장과 관측이 일치하는가' },
-        note: { type: 'string', description: '어긋난다면 어디가 어떻게 어긋나는지' },
+        note: {
+          type: 'string',
+          description: '주장의 어느 부분이 관측의 무엇과 어긋나는지 한 문장. 반드시 대조 결과를 쓴다. '
+            + '조사 방법이나 한계를 적는 자리가 아니다. 예: "무광이라 했으나 11장 중 9장이 유광이다."',
+        },
       },
     },
   },
@@ -112,7 +117,9 @@ export async function readSeries(apiKey, root, { uploads = [], valueStatement = 
 
 ${valueStatement ? `브랜드가 쓴 가치 문장: "${valueStatement}"
 brand_claim_check 에서 이 문장의 검증 가능한 주장과 이미지 관측을 대조하세요.
-어긋나면 어긋난다고 쓰세요. 브랜드 편을 들지 마세요.`
+어긋나면 어긋난다고 쓰세요. 브랜드 편을 들지 마세요.
+note 에는 **어느 주장이 무엇과 어긋나는지**를 씁니다. "이미지 관찰만으로 판단했다" 같은
+방법론 주석은 note 에 넣지 마세요 — 그건 대조 결과가 아닙니다.`
   : 'brand_claim_check 는 claim 을 빈 문자열로 두고 agrees 를 true 로 두세요.'}
 
 모든 출력 문자열은 ${langName} 로 씁니다.` },
@@ -160,10 +167,21 @@ const MOODBOARD_SCHEMA = {
 
 export async function readMoodboard(apiKey, root, { uploads = [], notes = '', categoryKo, typeKo, langName = 'English' }) {
   if (!uploads.length) throw new Error('업로드가 없다')
-  const files = uploads.slice(0, 4).map(u => {
-    const f = readUpload(root, u.hash)
-    return { type: 'input_file', filename: f.name, file_data: `data:${f.mime};base64,${f.buf.toString('base64')}` }
-  })
+  // 원본 PDF 는 문서로, 함께 올라온 페이지 그림은 이미지로 넘긴다.
+  // (PDF 를 그대로 읽는 쪽이 본문 인용에 강하고, 페이지 그림은 도판을 보게 해 준다.)
+  const docs = uploads.filter(u => (u.mime ?? '').includes('pdf')).slice(0, 3)
+  const shots = uploads.filter(u => (u.mime ?? '').startsWith('image/')).slice(0, 8)
+  const files = [
+    ...docs.map(u => {
+      const f = readUpload(root, u.hash)
+      return { type: 'input_file', filename: f.name, file_data: `data:${f.mime};base64,${f.buf.toString('base64')}` }
+    }),
+    ...shots.map(u => {
+      const f = readUpload(root, u.hash)
+      return { type: 'input_image', image_url: `data:${f.mime};base64,${f.buf.toString('base64')}` }
+    }),
+  ]
+  if (!files.length) throw new Error('읽을 수 있는 파일이 없다')
   const input = [{
     role: 'user',
     content: [

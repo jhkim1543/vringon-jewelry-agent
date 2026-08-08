@@ -84,7 +84,13 @@ export interface TrendInput {
 }
 /** 업로드된 파일 한 건 · 실제 내용은 서버 `.cache/uploads` 에 있고 해시로 가리킨다.
  *  (base64 를 그대로 들고 있으면 localStorage 용량이 즉시 터진다.) */
-export interface UploadRef { name: string; hash: string; mime?: string; size?: number }
+export interface UploadRef { name: string; hash: string; mime?: string; size?: number; url?: string }
+
+/** 올린 것 중 화면에 그릴 수 있는 이미지만 · PDF 는 여기서 빠진다 */
+export function uploadImages(list: (string | UploadRef)[]): UploadRef[] {
+  return list.filter((x): x is UploadRef =>
+    typeof x === 'object' && !!x?.url && (x.mime ?? '').startsWith('image/'))
+}
 
 export interface SeriesInput {
   seriesName: string
