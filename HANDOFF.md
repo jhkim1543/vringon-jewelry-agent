@@ -133,6 +133,30 @@ H100 서버에 `server.mjs` 배포. 이게 있어야 기기 간 보드 공유, �
 - **보드 카드·칸 리사이즈**: 카드를 선택하면 모서리 8핸들로 늘리고 줄인다(NodeResizer). 크기는 BoardEdits.sizes에
   런별 저장되고 연결선 핸들도 저장된 크기를 따라간다. Reset edits가 크기도 되돌린다.
 
+### 세 모드 모두 업로드를 실제로 읽는다 (2026-08-08)
+
+시리즈·무드보드는 **껍데기였다.** 위저드가 `e.target.files[].name` 만 남기고 File 을 버려서,
+파이프라인은 "Reading your series" 를 찍으면서 고정 샘플을 내보냈다. 브랜드가 무엇을 올려도 결과가 같았다.
+
+- 업로드는 `.cache/uploads` 에 두고 **해시로만** 오간다 (`server/uploads-api.mjs`).
+  base64 를 localStorage 에 넣으면 PDF 한 개에 바로 용량이 터진다. `readBody` 는 업로드 경로만 60MB 로 연다.
+- 시리즈: 이미지를 비전으로 읽어 invariant/variable/**ambiguous** 를 `observed_in / of` 로 센다.
+  브랜드 가치 문장은 `brand_claim_check` 로 대조하고 **브랜드 편을 들지 않는다**.
+- 무드보드: PDF 를 직접 읽고 **page_ref 없는 신호는 버린다**. 문서의 편향(`source_perspective`)과
+  못 답하는 범위(`coverage_note`)를 함께 낸다. 문서 속 지시문은 데이터로만 취급한다.
+- 옛 저장본 호환: `archiveFiles`/`files` 는 `(string | UploadRef)[]`. 문자열만 있던 시절 것은 내용이 없어
+  읽을 수 없고, 그 경우 "sample data" 라고 로그에 밝힌다. `uploadRefs()` / `uploadName()` 로 접근할 것.
+
+실측(2026-08-08): 실제 커프 사진 11장 + "무광 실버, 스톤 없음" 주장 → `agrees:false`,
+"9/11 골드, 스톤 6장, 업로드에 반지·체인 팔찌가 섞임". 실제 트렌드 PDF → 신호 8개 전부 p.1~p.3 근거,
+팔레트 6색, 발행처의 감정평가 이해관계 지적, "후프 언급 없음" 고지.
+
+### 데모 샘플은 모드당 한 건
+
+`SAMPLE_IDS` = vermeilhoop(트렌드 풀사이클+3D+예측근거이미지) / mode_series / mode_moodboard.
+`node scripts/prune-samples.mjs <남길것...> --go` 가 나머지 JSON 과 **고아 미디어까지** 지운다
+(정리 때 69MB 회수). 샘플을 새로 뜨면 bake-shots → prune 순서로 돌릴 것.
+
 ### 보드 레이아웃 · 좌표는 계산해서 만든다
 
 카드 높이는 76px부터 430px까지 벌어진다(사진 한 장이 220px). `row × 고정간격`으로 두면
