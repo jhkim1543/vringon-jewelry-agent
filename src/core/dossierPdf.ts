@@ -82,17 +82,30 @@ function paletteStrip(m: Macrotrend) {
 
 function keyItemCard(k: Macrotrend['key_items'][number], color: string, pic: string) {
   const [bg, fg] = GRADE_TINT[k.grade] ?? ['#EEF1F5', '#40474F']
+  // 사진은 조사에서 찾은 참고 이미지가 우선이다 — 예측을 눈으로 확인시키는 자리라서.
+  // 없으면 이번 분석이 만든 렌더를 쓰고, 그것도 없으면 사진 칸 자체를 접는다.
+  // (빈 프레임을 그리면 카드의 절반이 흰 여백으로 남는다.)
+  const ref = k as { reference_image_url?: string; reference_page_url?: string; reference_note?: string }
+  const refPic = ref.reference_image_url || (ref.reference_page_url ? shotUrl('', ref.reference_page_url) : '')
+  const shown = refPic || pic
+  const m = k.metric
   return `<div class="kitem">
     <div class="side" style="background:${color}">${esc(k.name)}</div>
     <div class="body">
       <div class="top">
-        <span class="pct">${esc(k.metric ? metricText(k.metric) : '—')}</span>
+        <span class="pct">${esc(m ? metricText(m) : '—')}</span>
         <span class="yoy">YoY</span>
         <span class="grade" style="background:${bg};color:${fg}">${esc(GRADE_LABEL[k.grade] ?? k.grade)}</span>
       </div>
-      ${img(pic, 'pic')}
+      ${shown ? img(shown, 'pic') : ''}
       <p>${esc(k.description)}</p>
       <div class="spec">${esc(k.silhouette_spec)}</div>
+      ${refPic && ref.reference_note
+        ? `<div class="kref">Seen at: ${esc(ref.reference_note)}</div>`
+        : ''}
+      ${m?.observed_note
+        ? `<div class="kref">${esc(SOURCE_LABEL[m.source_kind] ?? m.source_kind)} · ${esc(m.observed_note)}</div>`
+        : ''}
     </div>
   </div>`
 }

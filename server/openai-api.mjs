@@ -11,6 +11,7 @@ import { geminiEdit, geminiGenerate, geminiProbe, geminiShotPlan } from './gemin
 import { compositeLogo, logoAvailable } from './logo-api.mjs'
 import { tripoMultiview, tripoProbe, readModel } from './tripo-api.mjs'
 import { configureUnlocker, findProductImage, unlockedFetch, unlockerStatus, unlockerUsage } from './unlock.mjs'
+import { readMoodboard, readSeries, storeUpload } from './uploads-api.mjs'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(HERE, '..')
@@ -76,10 +77,12 @@ function keyOf(parts) {
   return createHash('sha256').update(JSON.stringify(parts)).digest('hex').slice(0, 24)
 }
 
-function readBody(req) {
+// 업로드는 base64 라 원본의 약 1.35배가 된다. 11MB PDF 하나가 15MB 로 오므로
+// 기본 한도로는 막힌다 — 업로드 경로만 넉넉히 열어 준다.
+function readBody(req, limit = 8e6) {
   return new Promise((resolve, reject) => {
     let raw = ''
-    req.on('data', c => { raw += c; if (raw.length > 8e6) reject(new Error('body too large')) })
+    req.on('data', c => { raw += c; if (raw.length > limit) reject(new Error('body too large')) })
     req.on('end', () => { try { resolve(raw ? JSON.parse(raw) : {}) } catch (e) { reject(e) } })
     req.on('error', reject)
   })
@@ -398,6 +401,35 @@ export async function handleApi(req, res) {
 
   // 개발용 · 지금 실행한 Run을 예시 샘플로 굳힌다.
   // 참조된 이미지는 캐시에서 public/samples 로 복사해, 캐시를 지워도 샘플이 살아 있게 한다.
+  // ── 업로드 · 파일은 서버에 두고 해시만 돌려준다 (localStorage 용량 보호) ──
+  if (path === '/api/upload' && req.method === 'POST') {
+    try {
+      const { files } = await readBody(req, 60e6)
+      const out = (files ?? []).map(f => storeUpload(ROOT, f))
+      return json(res, 200, { files: out })
+    } catch (e) { return json(res, 400, { error: String(e.message || e) }) }
+  }
+
+  // 시리즈 · 올린 디자인 이미지에서 불변/변수를 실제로 가른다
+  if (path === '/api/series/dna' && req.method === 'POST') {
+    if (!API_KEY) return json(res, 400, { error: 'OPENAI_API_KEY 미설정' })
+    try {
+      const b = await readBody(req)
+      const r = await readSeries(API_KEY, ROOT, b)
+      return json(res, 200, { ...r.data, searches: r.searches })
+    } catch (e) { return json(res, 500, { error: String(e.message || e) }) }
+  }
+
+  // 무드보드 · 올린 PDF 를 실제로 읽어 신호를 뽑는다
+  if (path === '/api/moodboard/read' && req.method === 'POST') {
+    if (!API_KEY) return json(res, 400, { error: 'OPENAI_API_KEY 미설정' })
+    try {
+      const b = await readBody(req)
+      const r = await readMoodboard(API_KEY, ROOT, b)
+      return json(res, 200, { ...r.data, searches: r.searches })
+    } catch (e) { return json(res, 500, { error: String(e.message || e) }) }
+  }
+
   if (path === '/api/dev/save-sample' && req.method === 'POST') {
     try {
       const { name, state } = await readBody(req)

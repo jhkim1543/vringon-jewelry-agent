@@ -82,15 +82,28 @@ export interface TrendInput {
   priceMinKrw: number
   priceMaxKrw: number
 }
+/** 업로드된 파일 한 건 · 실제 내용은 서버 `.cache/uploads` 에 있고 해시로 가리킨다.
+ *  (base64 를 그대로 들고 있으면 localStorage 용량이 즉시 터진다.) */
+export interface UploadRef { name: string; hash: string; mime?: string; size?: number }
+
 export interface SeriesInput {
   seriesName: string
-  archiveFiles: string[]        // 업로드한 시리즈 디자인 파일명
+  /** 업로드한 시리즈 디자인. 옛 저장본은 파일명 문자열 배열이라 둘 다 받는다. */
+  archiveFiles: (string | UploadRef)[]
   valueStatement: string        // 시리즈 가치·철학 기입
   trendSearch: boolean          // 트렌드 조사 ON/OFF (시리즈가 하는 유일한 외부 조사)
 }
 export interface MoodboardInput {
-  files: string[]               // 트렌드 리포트·무드보드 PDF
+  files: (string | UploadRef)[] // 트렌드 리포트·무드보드 PDF
   notes: string
+}
+
+/** 옛 저장본 호환 · 문자열만 있던 시절 것은 내용이 없으므로 읽을 수 없다 */
+export function uploadRefs(list: (string | UploadRef)[]): UploadRef[] {
+  return list.filter((x): x is UploadRef => typeof x === 'object' && !!x?.hash)
+}
+export function uploadName(x: string | UploadRef): string {
+  return typeof x === 'string' ? x : x.name
 }
 
 export const MODE_SCOPE: Record<Mode, { competitor: boolean; trend: boolean; upload: boolean; note: string }> = {

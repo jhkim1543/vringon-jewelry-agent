@@ -9,7 +9,8 @@ import { useEffect, useMemo, useState } from 'react'
 import { detectRuntime } from '../core/runtime'
 import type { Runtime } from '../core/runtime'
 import { CAT_LABEL, COATING_EN, DEFAULT_PARAMS, firstTypeOf, groupOf, LINE_PRESETS, METAL_EN, MODE_LABEL, MODE_SCOPE, STONE_EN, TAXONOMY, TYPE_LABEL } from '../core/types'
-import type { LineProfile, Mode, Category, RunParams, Stage } from '../core/types'
+import type { LineProfile, Mode, Category, RunParams, Stage, UploadRef } from '../core/types'
+import { uploadName } from '../core/types'
 import { cumulative, estimate, SCOPE_COPY } from '../core/estimate'
 import { Seg, Tag } from './bits'
 import { ENGINES } from '../core/imageEngines'
@@ -116,6 +117,31 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
   const setTrend = (patch: Partial<RunParams['trend']>) => setP(v => ({ ...v, trend: { ...v.trend, ...patch } }))
   const setSeries = (patch: Partial<RunParams['series']>) => setP(v => ({ ...v, series: { ...v.series, ...patch } }))
   const setMood = (patch: Partial<RunParams['moodboard']>) => setP(v => ({ ...v, moodboard: { ...v.moodboard, ...patch } }))
+
+  // 업로드 · 파일 내용을 서버에 두고 해시만 받아 온다. 이름만 들고 있으면 나중에 읽을 것이 없다.
+  const [uploading, setUploading] = useState(false)
+  const [uploadError, setUploadError] = useState('')
+  const sendUploads = async (list: File[]): Promise<UploadRef[]> => {
+    if (!list.length) return []
+    setUploading(true); setUploadError('')
+    try {
+      const files = await Promise.all(list.map(f => new Promise<{ name: string; dataUrl: string }>((res, rej) => {
+        const r = new FileReader()
+        r.onload = () => res({ name: f.name, dataUrl: String(r.result) })
+        r.onerror = () => rej(new Error(f.name))
+        r.readAsDataURL(f)
+      })))
+      const r = await fetch('/api/upload', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ files }),
+      })
+      const j = await r.json()
+      if (!r.ok || j.error) throw new Error(j.error ?? `upload ${r.status}`)
+      return j.files as UploadRef[]
+    } catch (e) {
+      setUploadError(t('Could not read that file') + ' · ' + String((e as Error).message).slice(0, 80))
+      return []
+    } finally { setUploading(false) }
+  }
   const addCompetitor = (name?: string) => {
     const n = (name ?? draft).trim()
     if (!n) return
@@ -405,14 +431,18 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                     value={p.series.seriesName} onChange={e => setSeries({ seriesName: e.target.value })} />
                 </div>
                 <label className="dropzone">
-                  <input type="file" multiple accept="image/*" hidden
-                    onChange={e => setSeries({ archiveFiles: [...p.series.archiveFiles, ...Array.from(e.target.files ?? []).map(f => f.name)] })} />
-                  {t('Upload past designs from this series')}
+                  <input type="file" multiple accept="image/*" hidden disabled={uploading}
+                    onChange={async e => {
+                      const picked = await sendUploads(Array.from(e.target.files ?? []))
+                      if (picked.length) setSeries({ archiveFiles: [...p.series.archiveFiles, ...picked] })
+                    }} />
+                  {uploading ? t('Uploading') : t('Upload past designs from this series')}
                   <span className="dz-sub">{t('8 or more, so the constants can be told apart')}</span>
                 </label>
+                {uploadError && <p className="note" style={{ color: 'var(--warn)' }}>{uploadError}</p>}
                 {p.series.archiveFiles.length > 0 && (
                   <div className="chiplist quick">
-                    {p.series.archiveFiles.slice(0, 6).map((f, i) => <span className="chip-in" key={i}>{f}</span>)}
+                    {p.series.archiveFiles.slice(0, 6).map((f, i) => <span className="chip-in" key={i}>{uploadName(f)}</span>)}
                     {p.series.archiveFiles.length > 6 && <span className="hint">+{p.series.archiveFiles.length - 6} more</span>}
                   </div>
                 )}
@@ -440,15 +470,19 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
               <section className="sect">
                 <h2>{t('Your file')}</h2>
                 <label className="dropzone">
-                  <input type="file" multiple accept="application/pdf" hidden
-                    onChange={e => setMood({ files: [...p.moodboard.files, ...Array.from(e.target.files ?? []).map(f => f.name)] })} />
-                  {t('Upload your trend report or moodboard PDF')}
+                  <input type="file" multiple accept="application/pdf" hidden disabled={uploading}
+                    onChange={async e => {
+                      const picked = await sendUploads(Array.from(e.target.files ?? []))
+                      if (picked.length) setMood({ files: [...p.moodboard.files, ...picked] })
+                    }} />
+                  {uploading ? t('Uploading') : t('Upload your trend report or moodboard PDF')}
                   <span className="dz-sub">{t('Nothing outside these files is used')}</span>
                 </label>
+                {uploadError && <p className="note" style={{ color: 'var(--warn)' }}>{uploadError}</p>}
                 {p.moodboard.files.length > 0 && (
                   <div className="chiplist quick">
                     {p.moodboard.files.map((f, i) => (
-                      <span className="chip-in" key={i}>{f}
+                      <span className="chip-in" key={i}>{uploadName(f)}
                         <button onClick={() => setMood({ files: p.moodboard.files.filter((_, j) => j !== i) })} aria-label={t('Remove')}>{t('Remove')}</button>
                       </span>
                     ))}

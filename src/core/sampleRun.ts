@@ -4,12 +4,14 @@ import type { RunState } from './types'
 import { listRuns, saveRun } from './store'
 
 /** 주얼리 전용 · 심어 두는 예시 분석 */
-// 앞쪽이 최신 파이프라인이다. 뒤의 셋은 옛 버전 산물이라 신호·라인이 프롬프트에
-// 실리기 전에 만들어졌다 — 비교용으로 남겨 두되 먼저 보이지는 않게 한다.
+// 모드마다 한 건씩. 전부 현재 파이프라인으로 실제로 돌린 결과다.
+//   trend     · 풀사이클(3D 포함) + 예측 근거 참고 이미지
+//   series    · 업로드한 디자인 11장을 실제로 읽어 DNA 분리
+//   moodboard · 실제 트렌드 PDF 를 읽어 페이지 근거가 붙은 신호
 const SAMPLE_IDS = [
-  'sample_jewel_vermeilcuff', 'sample_jewel_silversignet',   // 스케치→디자인 추적 100%
-  'sample_jewel_studdiamond', 'sample_jewel_pearlpendant',   // 전문가 설정·베스트셀러
-  'sample_jewel_labdiamond', 'sample_jewel_hoop', 'sample_jewel_ring',
+  'sample_jewel_vermeilhoop',
+  'sample_mode_series',
+  'sample_mode_moodboard',
 ] as const
 
 export async function ensureSampleRuns() {

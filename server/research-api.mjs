@@ -210,7 +210,7 @@ try {
 // 조사를 통째로 버리면, 사용자는 이유도 모른 채 경쟁 목록이 반쪽인 결과를 받는다.
 // 일시적 오류만 물러났다가 다시 시도한다 (4xx 입력 오류는 재시도해도 같다).
 const RETRY_STATUS = new Set([408, 429, 500, 502, 503, 504])
-async function ask(apiKey, { input, schema, name, tries = 3 }) {
+export async function ask(apiKey, { input, schema, name, tries = 3 }) {
   let lastErr
   for (let attempt = 1; attempt <= tries; attempt++) {
     try {

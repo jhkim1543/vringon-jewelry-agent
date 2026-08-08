@@ -62,7 +62,8 @@ for (const rel of files) {
 
   // 5) 조사 데이터 자체의 실속
   const pricedComps = comps.filter(c => c.price_krw > 0)
-  const sourcedSignals = signals.filter(s => (s.sources ?? []).length > 0)
+  // 무드보드 신호의 출처는 URL 이 아니라 문서의 페이지다. 둘 다 근거로 센다.
+  const sourcedSignals = signals.filter(s => (s.sources ?? []).length > 0 || s.page_ref)
   const photo = [...comps, ...best].filter(p => (p.image_urls?.[0] ?? '').startsWith('/samples/'))
 
   rows.push({

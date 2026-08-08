@@ -81,7 +81,19 @@ let ok = 0, fail = 0, already = 0
 for (const f of files) {
   const path = resolve(ROOT, f)
   const st = JSON.parse(readFileSync(path, 'utf8'))
-  const items = [...(st.competitors ?? []), ...(st.bestsellers ?? [])]
+  // 예측 근거의 참고 이미지도 함께 굽는다 · 도시에 키아이템은 형태를 눈으로 확인시키는 자리다.
+  // 필드 이름이 다르므로 같은 모양으로 감싸 돌리고, 끝나면 원본에 되돌려 쓴다.
+  const keyRefs = (st.dossier?.macrotrends ?? []).flatMap(m => (m.key_items ?? [])
+    .filter(k => k.reference_page_url || k.reference_image_url)
+    .map(k => ({
+      item: k,
+      shim: {
+        brand: k.name, name: k.reference_note ?? '',
+        image_urls: k.reference_image_url ? [k.reference_image_url] : [],
+        product_url: k.reference_page_url, source_urls: [],
+      },
+    })))
+  const items = [...(st.competitors ?? []), ...(st.bestsellers ?? []), ...keyRefs.map(x => x.shim)]
   const report = []
   for (const p of items) {
     const cur = p.image_urls?.[0] ?? ''
@@ -96,6 +108,10 @@ for (const f of files) {
     p.image_urls = [rel, ...(p.image_urls ?? []).filter(u => u !== rel)]
     ok++
     report.push(`  ok(${via}) ${who}`)
+  }
+  // 감싸서 돌린 키아이템 참고는 원본 필드로 되돌려 쓴다
+  for (const { item, shim } of keyRefs) {
+    if (shim.image_urls?.[0]) item.reference_image_url = shim.image_urls[0]
   }
   writeFileSync(path, JSON.stringify(st, null, 1))
   console.log(`${f} · ${items.length} items`)

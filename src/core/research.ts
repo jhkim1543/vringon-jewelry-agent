@@ -216,6 +216,10 @@ export interface DossierKeyItem {
   metric: DossierMetric
   grade: TrendGrade
   silhouette_spec: string
+  /** 예측을 눈으로 확인할 수 있게 하는 참고 · 옛 도시에에는 없다 */
+  reference_page_url?: string
+  reference_image_url?: string
+  reference_note?: string
 }
 export interface Macrotrend {
   name: string
@@ -242,6 +246,46 @@ export interface SeasonDossier {
   searches: number
   collected_at: string
   cached?: boolean
+}
+
+// ── 업로드 판독 · 시리즈 이미지와 무드보드 PDF를 서버가 실제로 연다 ──
+export interface SeriesDnaRead {
+  invariant: { label: string; observed_in: number; of: number; evidence: string }[]
+  variable: { label: string; observed_in: number; of: number; evidence: string }[]
+  ambiguous: { label: string; why: string }[]
+  observed_summary: string
+  brand_claim_check: { claim: string; observed: string; agrees: boolean; note: string }
+}
+export const fetchSeriesDna = (b: {
+  uploads: import('./types').UploadRef[]; valueStatement: string; categoryKo: string; typeKo: string
+}) => post<SeriesDnaRead>('/api/series/dna', b)
+
+export interface MoodboardRead {
+  signals: {
+    label: string; axis: string; attribute: string
+    direction: 'rising' | 'stable' | 'declining'
+    observed_count: number; evidence: string[]; page_ref: string
+    confidence: 'high' | 'medium' | 'low'
+  }[]
+  palette: { name: string; hex: string; page_ref: string }[]
+  source_perspective: string
+  coverage_note: string
+}
+export const fetchMoodboard = (b: {
+  uploads: import('./types').UploadRef[]; notes: string; categoryKo: string; typeKo: string
+}) => post<MoodboardRead>('/api/moodboard/read', b)
+
+/** 무드보드 판독 결과를 신호로 · 페이지 근거를 그대로 들고 온다 */
+export function moodboardSignals(r: MoodboardRead): Signal[] {
+  return (r.signals ?? []).map((s, i) => ({
+    signal_id: `sg_${String(i + 1).padStart(3, '0')}`,
+    attribute: s.attribute, label: s.label, axis: s.axis,
+    observed_count: s.observed_count, sources: [], price_bands: [],
+    confidence: s.confidence, direction: s.direction,
+    first_seen: new Date().toISOString().slice(0, 10),
+    dedup_group: `dg_${i + 1}`, oem_group: null,
+    page_ref: s.page_ref, evidence: s.evidence,
+  }))
 }
 
 export const fetchDossier = (b: {

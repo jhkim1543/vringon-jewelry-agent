@@ -79,9 +79,13 @@ export const DECK_CSS = `
   .kitem .yoy { font-size: 6pt; color: #8A9099; letter-spacing: .1em; }
   .kitem .grade { margin-left: auto; font-size: 6pt; font-weight: 800; letter-spacing: .08em;
                   text-transform: uppercase; padding: .8mm 2mm; border-radius: 4mm; }
-  .kitem .pic { height: 28mm; margin-bottom: 2.5mm; }
+  /* 사진이 있으면 크게 쓰고, 없으면 칸 자체가 사라져 글이 그 자리를 채운다 */
+  .kitem .pic { height: 34mm; margin-bottom: 2.5mm; }
   .kitem p { font-size: 7.6pt; line-height: 1.5; color: #40474F; margin: 0 0 2mm; }
-  .kitem .spec { margin-top: auto; font-size: 6.8pt; color: #565D63; border-top: .3mm solid #DDE1E7; padding-top: 1.5mm; }
+  .kitem .spec { font-size: 6.8pt; color: #565D63; border-top: .3mm solid #DDE1E7; padding-top: 1.5mm; }
+  /* 근거 한 줄 · 어디서 봤는지, 어떻게 셌는지. 카드 아래를 채우는 내용이기도 하다 */
+  .kitem .kref { margin-top: 1.5mm; font-size: 6.2pt; line-height: 1.45; color: #8A9099; }
+  .kitem .kref:last-child { margin-top: auto; padding-top: 1.5mm; }
 
   .chip { display: inline-block; font-size: 7.5pt; font-weight: 700; letter-spacing: .06em;
           text-transform: uppercase; padding: 1.4mm 3.4mm; border-radius: 1mm; margin: 0 1.5mm 1.5mm 0; color: #fff; }

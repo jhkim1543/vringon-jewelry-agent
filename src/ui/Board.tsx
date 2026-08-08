@@ -103,7 +103,8 @@ function StepNode({ data, selected }: { data: { n: BoardNode; ed?: NodeEdit }; s
     <div className={`bnode tone-${n.tone ?? 'neutral'}${editing ? ' editing' : ''}${isNote ? ' is-note' : ''}`}
       style={{ width: '100%', height: '100%' }}>
       {/* 카드를 고르면 모서리를 끌어 크기를 바꿀 수 있다 · 크기는 보드 편집에 저장된다 */}
-      <NodeResizer isVisible={!!selected} minWidth={220} minHeight={90} keepAspectRatio={false} />
+      <NodeResizer isVisible={!!selected} minWidth={220} minHeight={90} keepAspectRatio={false}
+        handleClassName="handle" lineClassName="line" />
       <Handle type="target" position={Position.Left} />
       {(editing || isNote) && (
         <button className="bn-x" title={t(isNote ? 'Delete this note' : 'Hide this card')}
@@ -129,7 +130,8 @@ function DesignFlowNode({ data, selected }: { data: { n: BoardNode; st: RunState
   if (!n.design) return null
   return (
     <div style={{ width: '100%', height: '100%', minWidth: 268 }}>
-      <NodeResizer isVisible={!!selected} minWidth={268} minHeight={320} keepAspectRatio={false} />
+      <NodeResizer isVisible={!!selected} minWidth={268} minHeight={320} keepAspectRatio={false}
+        handleClassName="handle" lineClassName="line" />
       <Handle type="target" position={Position.Left} />
       <DesignCard d={n.design} signals={st.signals} stagePassed={{ s3: true, s4: true }} onVerdict={onVerdict} />
       <Handle type="source" position={Position.Right} />
@@ -141,7 +143,8 @@ function ColumnNode({ data, selected }: { data: { title: string; note: string; h
   return (
     <div className="bcol" style={{ height: '100%', width: '100%', minHeight: data.h, minWidth: 0 }}>
       {/* 칸(레인)도 늘리고 줄일 수 있다 */}
-      <NodeResizer isVisible={!!selected} minWidth={240} minHeight={240} keepAspectRatio={false} />
+      <NodeResizer isVisible={!!selected} minWidth={240} minHeight={240} keepAspectRatio={false}
+        handleClassName="handle" lineClassName="line" />
       <div className="bcol-h">
         <span className="bcol-t">{t(data.title)}</span>
         <span className="bcol-n">{t(data.note)}</span>

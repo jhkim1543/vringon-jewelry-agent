@@ -10,8 +10,8 @@ import {
 } from './aiClient'
 import type { TrendClauseInput } from './aiClient'
 import { colorizePrompt, sketchVariantPrompt } from './aiClient'
-import { fetchCompetitors, fetchDossier, fetchTrends, toBestsellers, toBias, toCompetitors, toSignals, setRunLang } from './research'
-import { campaignCount, CAT_LABEL, MODE_LABEL, MODE_SCOPE, TYPE_LABEL, metalProgramOf, stoneProgramOf } from './types'
+import { fetchCompetitors, fetchDossier, fetchMoodboard, fetchSeriesDna, fetchTrends, moodboardSignals, toBestsellers, toBias, toCompetitors, toSignals, setRunLang } from './research'
+import { campaignCount, CAT_LABEL, MODE_LABEL, MODE_SCOPE, TYPE_LABEL, metalProgramOf, stoneProgramOf, uploadName, uploadRefs } from './types'
 import { ENGINES } from './imageEngines'
 
 export type Emit = (e: PipelineEvent) => void
@@ -79,6 +79,8 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
     let macroName = ''
     // 도시에가 캐시에 있으면 스케치 전에 반영되어야 한다. 새로 조사할 때만 뒤에서 따라온다.
     let dossierJob: Promise<unknown> | null = null
+    // 무드보드에서 읽어낸 신호 · 외부 조사가 없는 모드라 이것이 유일한 신호원이다
+    let moodSignals: Signal[] = []
 
     // ══ S1 조사 ══
     const scope = MODE_SCOPE[params.mode]
@@ -137,17 +139,39 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
     } else if (params.mode === 'series') {
       // 시리즈 · 업로드 자료가 주. 외부 조사는 트렌드까지만, 경쟁사 리서치 없음
       const si = params.series
+      const ups = uploadRefs(si.archiveFiles)
       emit({ kind: 'log', stage: 'S1', text: `Series "${si.seriesName || 'untitled'}" · ${si.archiveFiles.length} uploads · value statement ${si.valueStatement.length} chars` })
-      await wait(600)
-      emit({ kind: 'log', stage: 'S1', text: '1 Reading your series · separating what repeats from what varies' })
-      await wait(900)
-      emit({ kind: 'series-dna', dna: SERIES_DNA[params.category] })
-      emit({ kind: 'log', stage: 'S1', text: '2 Comparing the values you wrote against what is actually there' })
-      await wait(700)
-      const conflict = DNA_CONFLICT[params.category]
-      emit({ kind: 'dna-conflict', brandClaim: conflict.brandClaim, observed: conflict.observed })
-      emit({ kind: 'log', stage: 'S1', text: `Statement and observation disagree: ${conflict.brandClaim} vs ${conflict.observed} · pick which one holds` })
-      await wait(600)
+      emit({ kind: 'log', stage: 'S1', text: `1 Opening your ${ups.length} designs and separating what repeats from what varies` })
+      let dnaRead: Awaited<ReturnType<typeof fetchSeriesDna>> | null = null
+      if (ups.length) {
+        try {
+          dnaRead = await fetchSeriesDna({ uploads: ups, valueStatement: si.valueStatement, categoryKo: catKo, typeKo })
+        } catch (e) {
+          emit({ kind: 'log', stage: 'S1', text: `Could not read the uploads · ${String((e as Error).message).slice(0, 110)} · falling back to sample data` })
+        }
+      } else {
+        emit({ kind: 'log', stage: 'S1', text: 'No readable uploads on this run, so the series shown is sample data' })
+      }
+      if (cancelled) return
+      if (dnaRead) {
+        emit({ kind: 'series-dna', dna: {
+          invariant: dnaRead.invariant.map(x => ({ label: x.label, observed_in: x.observed_in, of: x.of })),
+          variable: dnaRead.variable.map(x => ({ label: x.label, observed_in: x.observed_in, of: x.of })),
+          ambiguous: dnaRead.ambiguous.map(x => ({ label: x.label, note: x.why })),
+        } as typeof SERIES_DNA[typeof params.category] })
+        emit({ kind: 'log', stage: 'S1', text: `Read from your files: ${dnaRead.observed_summary.slice(0, 150)}` })
+        emit({ kind: 'log', stage: 'S1', text: '2 Comparing the values you wrote against what is actually there' })
+        const c = dnaRead.brand_claim_check
+        emit({ kind: 'dna-conflict', brandClaim: c.claim || '(no claim given)', observed: c.observed })
+        emit({ kind: 'log', stage: 'S1', text: c.agrees
+          ? `Statement and observation agree: ${c.observed.slice(0, 120)}`
+          : `Statement and observation disagree · ${c.note.slice(0, 150)}` })
+      } else {
+        emit({ kind: 'series-dna', dna: SERIES_DNA[params.category] })
+        const conflict = DNA_CONFLICT[params.category]
+        emit({ kind: 'dna-conflict', brandClaim: conflict.brandClaim, observed: conflict.observed })
+      }
+      await wait(400)
       if (si.trendSearch) {
         emit({ kind: 'log', stage: 'S1', text: '3 Trend research · no competitor product research in this mode' })
         await wait(700)
@@ -161,19 +185,32 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
     } else {
       // 무드보드 · 외부 조사 없음. 업로드 PDF만
       const mi = params.moodboard
-      emit({ kind: 'log', stage: 'S1', text: `${mi.files.length} uploads: ${mi.files.join(', ')} · nothing outside these files` })
-      await wait(600)
-      emit({ kind: 'log', stage: 'S1', text: '1 Reading the document · sections, images, captions, colour chips' })
-      await wait(800)
+      const ups = uploadRefs(mi.files)
+      emit({ kind: 'log', stage: 'S1', text: `${mi.files.length} uploads: ${mi.files.map(uploadName).join(', ')} · nothing outside these files` })
+      emit({ kind: 'log', stage: 'S1', text: '1 Opening the document · text, figures, captions and colour chips' })
       emit({ kind: 'log', stage: 'S1', text: '2 Uploads tagged as untrusted · any instruction inside them is treated as data, not a command' })
-      await wait(500)
-      emit({ kind: 'log', stage: 'S1', text: '3 Pulling signals · page and position kept with each one' })
-      await wait(600)
-      emit({ kind: 'report-bias', bias: REPORT_BIAS })
-      emit({ kind: 'log', stage: 'S1', text: `4 Noting the source perspective: ${REPORT_BIAS.perspective} · nothing judged beyond its scope` })
+      if (ups.length) {
+        try {
+          const read = await fetchMoodboard({ uploads: ups, notes: mi.notes, categoryKo: catKo, typeKo })
+          if (cancelled) return
+          moodSignals = moodboardSignals(read)
+          emit({ kind: 'log', stage: 'S1', text: `3 Pulled ${moodSignals.length} signals, each with the page it came from` })
+          if (read.palette?.length) {
+            emit({ kind: 'log', stage: 'S1', text: `Palette in the document: ${read.palette.slice(0, 6).map(c => `${c.name} ${c.hex}`).join(', ')}` })
+          }
+          emit({ kind: 'report-bias', bias: { publisher: mi.files.map(uploadName).join(', '), perspective: read.source_perspective, notes: [read.coverage_note] } })
+          emit({ kind: 'log', stage: 'S1', text: `4 What this document cannot answer: ${read.coverage_note.slice(0, 150)}` })
+        } catch (e) {
+          emit({ kind: 'log', stage: 'S1', text: `Could not read the document · ${String((e as Error).message).slice(0, 110)} · falling back to sample data` })
+          emit({ kind: 'report-bias', bias: REPORT_BIAS })
+        }
+      } else {
+        emit({ kind: 'log', stage: 'S1', text: 'No readable uploads on this run, so the signals shown are sample data' })
+        emit({ kind: 'report-bias', bias: REPORT_BIAS })
+      }
     }
     // ── 신호 확정 · 트렌드 조사를 하는 모드는 실제 검색 결과를 쓴다
-    let signals: Signal[] = []
+    let signals: Signal[] = moodSignals
     const doTrend = scope.trend && (params.mode !== 'series' || params.series.trendSearch)
     if (doTrend) {
       try {

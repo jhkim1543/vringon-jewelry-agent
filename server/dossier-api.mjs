@@ -61,7 +61,8 @@ const COLOR = {
 const KEY_ITEM = {
   type: 'object',
   additionalProperties: false,
-  required: ['segment', 'name', 'description', 'metric', 'grade', 'silhouette_spec'],
+  required: ['segment', 'name', 'description', 'metric', 'grade', 'silhouette_spec',
+    'reference_image_url', 'reference_page_url', 'reference_note'],
   properties: {
     segment: { type: 'string', enum: ['women', 'men', 'kids'] },
     name: { type: 'string', description: '아이템 이름. 예: THE STRAPPY STILETTO' },
@@ -69,6 +70,10 @@ const KEY_ITEM = {
     metric: METRIC,
     grade: { type: 'string', enum: TREND_GRADES },
     silhouette_spec: { type: 'string', description: '디자인 스펙으로 바로 옮길 수 있는 구절. 토 셰이프·힐·소재·클로저·부자재' },
+    // 예측은 말로만 하면 검증할 수 없다. 이 형태를 실제로 보여 주는 제품·룩 페이지를 남긴다.
+    reference_page_url: { type: 'string', description: '이 형태를 실제로 볼 수 있는 제품 상세·컬렉션 페이지 주소. 없으면 빈 문자열' },
+    reference_image_url: { type: 'string', description: '그 페이지의 사진 직링크. 확보 못 했으면 빈 문자열 (페이지에서 자동 추출된다)' },
+    reference_note: { type: 'string', description: '그 참고가 무엇인지 한 줄. 예: "Monica Vinader 2026 리조트 라인의 동일 실루엣"' },
   },
 }
 
@@ -190,7 +195,7 @@ export function nextSeason(s) {
 export async function researchDossier(deps, root, opts) {
   const { ask } = deps
   const { categoryEn, season, priceBand, brands = [], deep = false, onStep, langName = 'English', metalProgram = '', stoneProgram = '' } = opts
-  const key = createHash('sha256').update(JSON.stringify(['dossier5-line', langName, metalProgram, stoneProgram, categoryEn, season, priceBand ?? '', brands, deep])).digest('hex').slice(0, 24)
+  const key = createHash('sha256').update(JSON.stringify(['dossier6-refimg', langName, metalProgram, stoneProgram, categoryEn, season, priceBand ?? '', brands, deep])).digest('hex').slice(0, 24)
   const file = join(dossierDir(root), `${key}.json`)
   if (existsSync(file)) return { ...JSON.parse(readFileSync(file, 'utf8')), cached: true }
 
@@ -278,7 +283,16 @@ ${FORECAST} ${categoryEn}를 이끌 매크로트렌드 4개를 예측하세요.
 - materials 4개: 소재별 전년 대비 성장
 - details 4개: 부자재·봉제·마감 디테일별 성장
 - key_items 9개: 여성 3, 남성 3, 키즈 3. 각각 이름·설명·성장률·등급·스펙 구절
-- grade: 이 매크로 전체의 등급`,
+- grade: 이 매크로 전체의 등급
+
+키아이템 참고 이미지 (중요):
+이 문서를 읽는 사람은 디자이너입니다. 예측을 글로만 적으면 확인할 방법이 없습니다.
+각 키아이템마다 그 형태를 **실제로 볼 수 있는 페이지**를 웹 검색으로 찾아 reference_page_url 에 넣으세요.
+- 브랜드 공식몰 제품 상세 페이지, 컬렉션·룩북 페이지, 매체의 시즌 리뷰 기사 중 사진이 있는 것.
+- reference_image_url 에는 그 페이지의 사진 직링크를 넣습니다. 못 찾으면 빈 문자열로 두세요
+  (페이지 주소만 있으면 사진은 자동으로 추출됩니다).
+- reference_note 에는 그 참고가 무엇인지 한 줄로 적습니다.
+- 찾지 못한 항목은 세 필드를 모두 빈 문자열로 둡니다. 없는 주소를 지어내지 마세요.`,
       schema: MACRO, name: 'macrotrend',
     })
     searches += r.searches
