@@ -425,22 +425,29 @@ button { cursor: pointer; background: none; border: none; }
 .board-empty b { font-size: 14px; color: var(--text); }
 .board-empty span { font-size: 12.5px; color: var(--text-2); line-height: 1.6; }
 
-/* 카드 크기 조절 · React Flow 기본 핸들은 6px이라 사실상 잡히지 않는다.
-   모서리는 넉넉히 키우고, 변은 눈에 안 보여도 손에는 걸리도록 두껍게 둔다. */
-.react-flow__resize-control.handle {
+/* 카드 크기 조절 · React Flow 기본 핸들은 5px이라 사실상 잡히지 않는다.
+   모서리는 넉넉히 키우고, 변은 눈에 안 보여도 손에는 걸리도록 두껍게 둔다.
+   **`.board` 로 한 단계 더 좁혀야 한다.** 같은 선택자로 쓰면 React Flow 의
+   스타일시트가 이 파일보다 나중에 실려서 5px 가 그대로 이긴다 — 손잡이를
+   키운 줄 알았는데 화면에서는 계속 5px 이었다. */
+.board .react-flow__resize-control.handle {
   width: 14px; height: 14px; border-radius: 4px;
   background: var(--accent); border: 2px solid #fff;
   box-shadow: 0 1px 4px rgba(0, 0, 0, .35);
 }
 .board-light .react-flow__resize-control.handle { border-color: #fff; }
-.react-flow__resize-control.handle.top.left,
-.react-flow__resize-control.handle.bottom.right { cursor: nwse-resize; }
-.react-flow__resize-control.handle.top.right,
-.react-flow__resize-control.handle.bottom.left { cursor: nesw-resize; }
-/* 변(line) 핸들 · 투명하지만 집을 수 있는 폭을 준다 */
-.react-flow__resize-control.line {
-  border-color: transparent; border-width: 7px;
-}
+.board .react-flow__resize-control.handle.top.left,
+.board .react-flow__resize-control.handle.bottom.right { cursor: nwse-resize; }
+.board .react-flow__resize-control.handle.top.right,
+.board .react-flow__resize-control.handle.bottom.left { cursor: nesw-resize; }
+/* 변(line) 핸들 · 투명하지만 집을 수 있는 폭을 준다.
+   React Flow 가 변마다 border-top-width 같은 낱개 속성을 같은 우선순위로 다시 쓰므로,
+   묶음(border-width)만 바꾸면 덮이지 않는다. 변별로 하나씩 눌러 준다. */
+.board .react-flow__resize-control.line { border-color: transparent; }
+.board .react-flow__resize-control.line.top { border-top-width: 7px; }
+.board .react-flow__resize-control.line.bottom { border-bottom-width: 7px; }
+.board .react-flow__resize-control.line.left { border-left-width: 7px; }
+.board .react-flow__resize-control.line.right { border-right-width: 7px; }
 .react-flow__resize-control.line.top, .react-flow__resize-control.line.bottom { cursor: ns-resize; }
 .react-flow__resize-control.line.left, .react-flow__resize-control.line.right { cursor: ew-resize; }
 /* 고른 카드는 테두리로 "지금 이걸 조절한다"를 알린다 */

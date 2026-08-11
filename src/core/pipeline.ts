@@ -691,6 +691,28 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
         const picks = r.reviews.filter(x => x.verdict === 'pick').length
         const drops = r.reviews.filter(x => x.verdict === 'drop').length
         emit({ kind: 'log', stage: 'S4', text: `MD verdicts in: ${picks} pick, ${r.reviews.length - picks - drops} hold, ${drops} drop${r.cached ? ' (reused an earlier review)' : ''}` })
+
+        // MD 판정이 실제 선정을 바꾼다. 판정만 카드에 붙이고 목록은 그대로 두면
+        // "MD 탈락"이라고 적힌 디자인이 Top 으로 발표되는 모순이 생긴다.
+        // 점수를 합산하지는 않는다 — 같은 티어 안에서 자리만 바꾼다(티어별 최소 1건 유지).
+        const rank = (d: Design) => d.mdReview?.verdict === 'pick' ? 0 : d.mdReview?.verdict === 'drop' ? 2 : 1
+        let swaps = 0
+        for (const t of top.filter(d => rank(d) === 2)) {
+          const better = topCandidates
+            .filter(c => !c.isTop && c.spec.tier === t.spec.tier && rank(c) < 2)
+            .sort((a, b) => rank(a) - rank(b) || a.cost.cap_ratio - b.cost.cap_ratio)[0]
+          if (!better) continue
+          t.isTop = false; better.isTop = true
+          better.topDistance = t.topDistance
+          top[top.indexOf(t)] = better
+          swaps++
+          emit({ kind: 'design-update', design: { ...t } })
+          emit({ kind: 'design-update', design: { ...better } })
+          emit({ kind: 'log', stage: 'S4', text: `MD dropped ${t.spec.design_id}, so ${better.spec.design_id} [${better.spec.tier}] takes that slot` })
+        }
+        if (!swaps && top.some(d => rank(d) === 2)) {
+          emit({ kind: 'log', stage: 'S4', text: 'MD dropped some of the picks but no same-tier replacement was left. They stay on the list carrying the drop verdict, so the objection travels with them.' })
+        }
       } catch (e) {
         emit({ kind: 'log', stage: 'S4', text: `MD review unavailable · ${String((e as Error).message).slice(0, 100)} · selection continues on metrics alone` })
       }
