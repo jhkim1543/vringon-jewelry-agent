@@ -137,6 +137,9 @@ function StepNode({ data, selected }: { data: { n: BoardNode; ed?: NodeEdit }; s
     <div className={`bnode tone-${n.tone ?? 'neutral'}${editing ? ' editing' : ''}${isNote ? ' is-note' : ''}`}
       style={{ width: '100%', height: '100%' }}>
       {/* 카드를 고르면 모서리를 끌어 크기를 바꿀 수 있다 · 크기는 보드 편집에 저장된다 */}
+      {/* 크기 조절 손잡이는 **스크롤되는 안쪽 상자 밖**에 둔다. 안에 넣으면 손잡이가
+          글 영역에 붙어 버려서, 카드가 아니라 글 상자를 잡는 것처럼 보이고
+          손잡이 자체가 스크롤을 따라 움직인다. 카드 테두리에 붙어 있어야 한다. */}
       <NodeResizer isVisible={!!selected} minWidth={220} minHeight={90} keepAspectRatio={false}
         handleClassName="handle" lineClassName="line" />
       <Handle type="target" position={Position.Left} />
@@ -145,15 +148,21 @@ function StepNode({ data, selected }: { data: { n: BoardNode; ed?: NodeEdit }; s
           onPointerDown={e => e.stopPropagation()}
           onClick={() => ed?.onHide(n.id)}>✕</button>
       )}
-      <EditableText className="bn-t" value={n.title} editing={editing}
-        onSave={v => ed?.onTitle(n.id, v)} />
-      {/* 착용 컷처럼 이미지가 붙는 노드는 사진이 먼저 보여야 한다 */}
-      {n.imageUrl && !n.modelUrl && <img className="bn-img" src={n.imageUrl} alt="" loading="lazy" />}
-      {/* 3D는 카드 안에서 바로 돌려 본다 */}
-      {n.modelUrl && <ModelViewer url={n.modelUrl} poster={n.imageUrl} height={186} light={ed?.light} />}
-      <EditableText className="bn-body" multiline editing={editing}
-        value={n.body.join('\n')}
-        onSave={v => ed?.onBody(n.id, v.split('\n').filter(x => x.trim()))} />
+      <div className="bn-scroll">
+        <EditableText className="bn-t" value={n.title} editing={editing}
+          onSave={v => ed?.onTitle(n.id, v)} />
+        {/* 착용 컷처럼 이미지가 붙는 노드는 사진이 먼저 보여야 한다.
+            **loading="lazy" 를 쓰면 안 된다.** 보드는 스크롤 컨테이너가 아니라 transform 으로
+            움직이는 캔버스다. 브라우저의 지연 로딩은 스크롤을 기준으로 다시 판단하는데
+            React Flow 는 스크롤을 일으키지 않아서, 화면 안에 들어와 있어도 요청 자체가
+            끝내 나가지 않는다. 조사 사진 카드가 통째로 빈 칸으로 남아 있었다. */}
+        {n.imageUrl && !n.modelUrl && <img className="bn-img" src={n.imageUrl} alt="" />}
+        {/* 3D는 카드 안에서 바로 돌려 본다 */}
+        {n.modelUrl && <ModelViewer url={n.modelUrl} poster={n.imageUrl} height={186} light={ed?.light} />}
+        <EditableText className="bn-body" multiline editing={editing}
+          value={n.body.join('\n')}
+          onSave={v => ed?.onBody(n.id, v.split('\n').filter(x => x.trim()))} />
+      </div>
       <Handle type="source" position={Position.Right} />
     </div>
   )
@@ -431,21 +440,40 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
     positionsRef.current = {}
   }, [])
 
-  // 발표 순서 = 보드의 논리 순서 그대로
-  const focusOrder = useMemo(() => buildBoardModel(st).nodes.map(n => n.id), [st])
+  // 발표 순서 = 보드의 논리 순서 그대로.
+  // 화면에 실제로 있는 카드만 넣는다. 걸러낸 카드까지 순서에 두면 "다음"을 눌러도
+  // 아무 일이 안 일어나는 빈 자리가 생긴다.
+  const focusOrder = useMemo(() => {
+    const live = new Set(nodes.map(n => n.id))
+    return buildBoardModel(st).nodes.map(n => n.id).filter(id => live.has(id))
+  }, [st, nodes])
+
+  const goTo = useCallback((i: number) => {
+    setPresentIdx(Math.max(0, Math.min(focusOrder.length - 1, i)))
+  }, [focusOrder.length])
+
+  const exitPresent = useCallback(() => {
+    setPresent(false)
+    // 끄면 다시 전체가 보이는 자리로 물러난다
+    rf.fitView({ duration: 520, padding: 0.12 })
+  }, [rf])
 
   useEffect(() => {
     if (!present) return
     const n = rf.getNodes().find(x => x.id === focusOrder[presentIdx])
-    if (n) rf.fitView({ nodes: [n], duration: 480, padding: 0.34 })
+    // 카드 한 장을 화면에 꽉 채운다. maxZoom 을 열어 두지 않으면 작은 카드는
+    // 기본 배율에 걸려 멀찍이 놓인 채로 남는다 — 확대가 안 되는 것처럼 보였다.
+    if (n) rf.fitView({ nodes: [n], duration: 520, padding: 0.14, maxZoom: 1.9, minZoom: 0.2 })
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') { setPresent(false); rf.fitView({ duration: 480 }) }
-      if (e.key === 'ArrowRight') setPresentIdx(i => Math.min(focusOrder.length - 1, i + 1))
-      if (e.key === 'ArrowLeft') setPresentIdx(i => Math.max(0, i - 1))
+      if (e.key === 'Escape') exitPresent()
+      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); goTo(presentIdx + 1) }
+      if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); goTo(presentIdx - 1) }
+      if (e.key === 'Home') goTo(0)
+      if (e.key === 'End') goTo(focusOrder.length - 1)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [present, presentIdx, focusOrder, rf])
+  }, [present, presentIdx, focusOrder, rf, goTo, exitPresent])
 
   // 공유 · 이 보드를 가리키는 주소를 복사한다.
   // 다른 기기에서는 그 분석이 없어 열리지 않으므로, 그때는 내보내기를 써야 한다.
@@ -552,12 +580,21 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
           <span style={{ fontWeight: 700, fontSize: 13 }}>{presentIdx + 1} / {focusOrder.length}</span>
           <span className="hint">{currentNode?.title}</span>
           <span className="bar-sep" />
-          <button className="btn btn-ghost btn-sm" onClick={() => setPresentIdx(i => Math.max(0, i - 1))}>{t('Prev')}</button>
-          <button className="btn btn-ghost btn-sm" onClick={() => setPresentIdx(i => Math.min(focusOrder.length - 1, i + 1))}>{t('Next')}</button>
+          <button className="btn btn-ghost btn-sm" onClick={() => goTo(presentIdx - 1)}>{t('Prev')}</button>
+          <button className="btn btn-ghost btn-sm" onClick={() => goTo(presentIdx + 1)}>{t('Next')}</button>
           <button className="btn btn-ghost btn-sm" onClick={() => setShowNotes(v => !v)}>{t('Notes')} {t(showNotes ? 'On' : 'Off')}</button>
-          <button className="btn btn-ghost btn-sm" onClick={() => { setPresent(false); rf.fitView({ duration: 480 }) }}>{t('Exit')}</button>
+          <button className="btn btn-ghost btn-sm" onClick={exitPresent}>{t('Exit')}</button>
         </>)}
       </div>
+
+      {/* 발표 중에는 화면 양쪽 끝을 눌러 넘긴다. 위쪽 막대의 작은 버튼까지
+          마우스를 올려 두지 않아도 되게, 손이 가는 자리에 크게 둔다. */}
+      {present && (<>
+        <button className="present-nav left" disabled={presentIdx === 0}
+          aria-label={t('Prev')} onClick={() => goTo(presentIdx - 1)}>‹</button>
+        <button className="present-nav right" disabled={presentIdx >= focusOrder.length - 1}
+          aria-label={t('Next')} onClick={() => goTo(presentIdx + 1)}>›</button>
+      </>)}
 
       {miro.msg && !present && (
         <div className="board-toast" onClick={() => setMiro(m => ({ ...m, msg: null }))}>{miro.msg}</div>
