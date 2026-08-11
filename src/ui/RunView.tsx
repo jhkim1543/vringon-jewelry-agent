@@ -75,8 +75,10 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
               {bestsellers.map(b => (
                 <div className="compcard" key={b.product_id}>
                   <div className="cc-shot">
-                    <img src={shotUrl(b.image_urls[0] ?? '', b.product_url)} alt={b.name}
-                      onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
+                    {shotUrl(b.image_urls[0] ?? '', b.product_url)
+                      ? <img src={shotUrl(b.image_urls[0] ?? '', b.product_url)} alt={b.name}
+                          onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
+                      : <span className="cc-noshot">{t('No photo')}</span>}
                   </div>
                   <div className="cc-main">
                     <div className="cc-head">
@@ -125,10 +127,10 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
               {st.competitors.map(c => (
                 <div className={`compcard ${c.in_band ? '' : 'out'}`} key={c.product_id}>
                   <div className="cc-shot">
-                    {(c.image_urls?.length || c.product_url)
+                    {shotUrl(c.image_urls?.[0] ?? '', c.product_url)
                       ? <img src={shotUrl(c.image_urls?.[0] ?? '', c.product_url)} alt={c.name}
                           onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
-                      : <span className="cc-noshot">No photo</span>}
+                      : <span className="cc-noshot">{t('No photo')}</span>}
                   </div>
                   <div className="cc-main">
                     <div className="cc-head">

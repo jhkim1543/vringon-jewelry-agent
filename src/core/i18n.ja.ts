@@ -4,6 +4,7 @@
 // 여기서 번역하지 않는다. 화면 틀만 담는다.
 
 export const JA: Record<string, string> = {
+  'No photo': '写真なし',
   // ── 공통 ────────────────────────────────────────────────────────
   'Connect your Miro': '自分のMiroを接続',
   'The board is created in your own Miro account, so it needs your token. It is stored only in this browser.': 'ボードはあなたのMiroアカウントに作成されるため、本人のトークンが必要です。トークンはこのブラウザにのみ保存されます。',

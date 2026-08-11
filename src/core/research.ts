@@ -71,8 +71,15 @@ export function reportPhoto(p: { image_urls?: string[] }): string {
 /** 수집한 원격 이미지는 서버 캐시를 거쳐 불러온다.
  *  페이지를 주면 직링크가 죽었을 때 각 페이지의 og:image로 차례로 폴백한다.
  *  이미 구워 둔 로컬 사진(/samples/…, 정적 배포 포함)은 프록시 없이 그대로 쓴다. */
+/** 정적 배포에는 `/api/shot` 프록시가 없다. base 가 '/' 가 아니면 Pages 빌드다. */
+const STATIC_BUILD = (import.meta.env.BASE_URL || '/') !== '/'
+
 export const shotUrl = (u: string, ...pages: (string | undefined)[]) => {
-  if (u && !/^https?:/i.test(u)) return u
+  if (u && !/^https?:/i.test(u)) return u          // 구워 둔 로컬 파일
+  // 정적 배포에서는 프록시를 부르면 통째로 404 가 되어 깨진 아이콘이 남는다.
+  // 직링크가 있으면 그것만 시도하고, 없으면 아예 주소를 주지 않는다(칸을 접게 한다).
+  // PDF 쪽 규칙(reportPhoto)과 같은 원칙이다 — 화면도 같은 규칙을 따라야 한다.
+  if (STATIC_BUILD) return u
   return `/api/shot?u=${encodeURIComponent(u)}${pages.filter(Boolean).map(p => `&p=${encodeURIComponent(p!)}`).join('')}`
 }
 

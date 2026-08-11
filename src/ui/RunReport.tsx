@@ -19,7 +19,8 @@ const KRW = (n: number) => `₩${Math.round(n).toLocaleString('en-US')}`
 function macroShot(m: Macrotrend): string | null {
   for (const k of m.key_items ?? []) {
     const u = (k as { image_url?: string }).image_url
-    if (u) return shotUrl(u)
+    // 정적 배포에서는 shotUrl 이 빈 문자열을 돌려줄 수 있다 — 그건 사진이 없다는 뜻이다
+    if (u && shotUrl(u)) return shotUrl(u)
   }
   return null
 }

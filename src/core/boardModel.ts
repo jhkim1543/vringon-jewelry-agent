@@ -95,7 +95,7 @@ export function buildBoardModel(st: RunState): BoardModel {
       nodes.push({
         id: `cp-${k}`, kind: 'research', column: 1, row: 1 + k * 2.2,
         title: `${c.brand} · ${c.name.slice(0, 26)}`,
-        imageUrl: (c.image_urls?.[0] || c.product_url) ? shotUrl(c.image_urls?.[0] ?? '', c.product_url) : undefined,
+        imageUrl: shotUrl(c.image_urls?.[0] ?? '', c.product_url) || undefined,
         body: [
           `KRW ${(c.price_krw / 1000).toLocaleString()}k${c.competitor_class ? ` · ${c.competitor_class}` : ''}${c.design_traits?.[0] ? ` · ${c.design_traits[0]}` : ''}`,
         ],
@@ -116,7 +116,7 @@ export function buildBoardModel(st: RunState): BoardModel {
         nodes.push({
           id: `bs-${k}`, kind: 'research', column: 1, row: 14 + k * 2.2,
           title: `${b.brand} · ${b.name.slice(0, 24)}`,
-          imageUrl: (b.image_urls?.[0] || b.product_url) ? shotUrl(b.image_urls?.[0] ?? '', b.product_url) : undefined,
+          imageUrl: shotUrl(b.image_urls?.[0] ?? '', b.product_url) || undefined,
           body: [
             `${b.retailer}${b.rank_note ? ` · ${b.rank_note}` : ''}${b.price_krw > 0 ? ` · KRW ${(b.price_krw / 1000).toLocaleString()}k` : ''}`,
           ],
