@@ -269,7 +269,7 @@ ${FORECAST} ${categoryEn}를 이끌 매크로트렌드 4개를 예측하세요.
   let searches = plan.searches
 
   onStep?.(`Researching ${macros.length} macrotrends`)
-  const filled = await Promise.allSettled(macros.map(async (m) => {
+  const askMacro = async (m) => {
     const r = await ask({
       input: `${base}
 
@@ -297,9 +297,31 @@ ${FORECAST} ${categoryEn}를 이끌 매크로트렌드 4개를 예측하세요.
     })
     searches += r.searches
     return { ...r.data, name: r.data.name || m.name, statement: r.data.statement || m.statement }
-  }))
+  }
+  const filled = await Promise.allSettled(macros.map(askMacro))
 
+  // 실패한 매크로는 조용히 사라지면 안 된다. 넷이 전부 실패해도 예전에는 빈 배열이
+  // 정상처럼 캐시되어, 매크로 0개짜리 도시에가 영구히 남았다(실제로 그랬다).
+  // 이유를 남기고 한 번 더 시도한 뒤, 그래도 없으면 캐시하지 말고 실패로 끝낸다.
   const macrotrends = filled.filter(r => r.status === 'fulfilled').map(r => r.value)
+  const failed = macros.filter((_, i) => filled[i].status === 'rejected')
+  if (failed.length) {
+    for (let i = 0; i < filled.length; i++) {
+      if (filled[i].status === 'rejected') {
+        console.warn(`[dossier] macrotrend "${macros[i].name}" 실패: ${String(filled[i].reason?.message || filled[i].reason).slice(0, 200)}`)
+      }
+    }
+    onStep?.(`Retrying ${failed.length} macrotrends`)
+    const again = await Promise.allSettled(failed.map(m => askMacro(m)))
+    for (let i = 0; i < again.length; i++) {
+      if (again[i].status === 'fulfilled') macrotrends.push(again[i].value)
+      else console.warn(`[dossier] macrotrend "${failed[i].name}" 재시도도 실패: ${String(again[i].reason?.message || again[i].reason).slice(0, 200)}`)
+    }
+  }
+  if (!macrotrends.length) {
+    // 매크로가 없는 도시에는 쓸모가 없다. 캐시에 남기면 그 파라미터로는 영원히 빈 결과가 나온다.
+    throw new Error(`시즌 도시에에 매크로트렌드가 하나도 채워지지 않았습니다 (계획 ${macros.length}개, 전부 실패). 캐시하지 않습니다.`)
+  }
 
   onStep?.('Tracing the last few seasons')
   const yearly = await ask({
