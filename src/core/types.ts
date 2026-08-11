@@ -474,6 +474,10 @@ export interface Design {
   // 품평 게이트 (계층 3)
   verdict?: 'approve' | 'reject'
   verdictTags?: string[]
+  /** 이 디자인에 배정된 조건 레시피 · 조사 결과의 어떤 조합에서 나온 컨셉인지 */
+  recipe?: { title: string; shape: 'solo' | 'pair' | 'fusion'; atoms: { kind: string; label: string }[] }
+  /** MD 페르소나의 셀렉 피드백 · 지표와 별개 층, 절대 합산하지 않는다 */
+  mdReview?: { verdict: 'pick' | 'hold' | 'drop'; reason: string; fix?: string }
 }
 
 // ── 파이프라인 이벤트 ───────────────────────────────────────────────
@@ -486,6 +490,7 @@ export type PipelineEvent =
   | { kind: 'competitors'; items: CompetitorProduct[] }
   | { kind: 'bestsellers'; items: BestsellerProduct[] }
   | { kind: 'report-art'; cover?: string; sections?: Record<string, string> }
+  | { kind: 'md-rationale'; text: string }
   | { kind: 'directions'; items: Direction[] }
   | { kind: 'series-dna'; dna: SeriesDna }
   | { kind: 'dna-conflict'; brandClaim: string; observed: string }
@@ -515,6 +520,8 @@ export interface RunState {
   trendReport: unknown | null
   /** 리포트를 여는 무드컷 · 조사 사진과 달리 증거가 아니라 편집 아트다 */
   reportArt?: { cover?: string; sections?: Record<string, string> }
+  /** MD 총평 · 어떤 기준으로 픽이 갈렸는지 페르소나의 말로 */
+  mdPickRationale?: string
   /** 시즌 도시에 · MICAM 형식의 구조화된 트렌드 자료 */
   dossier: unknown | null
   dossierPending: boolean

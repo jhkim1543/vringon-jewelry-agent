@@ -184,6 +184,10 @@ export default function RunReport({ st, onOpenBoard, competitorDetail, bestselle
             <h2>{t('Top trending designs')}</h2>
             <button className="btn btn-ghost btn-sm" onClick={onOpenBoard}>{t('View all designs')}</button>
           </div>
+          {/* MD 총평 · 무엇이 픽을 갈랐는지, 설정된 페르소나의 말로 */}
+          {st.mdPickRationale && (
+            <p className="rep-mdnote">{st.mdPickRationale}</p>
+          )}
           <div className="rep-designs">
             {shown.map(x => {
               const im = x.images.find(i => i.origin === 'generated' && i.view !== 'sketch') ?? x.images[0]
@@ -191,11 +195,15 @@ export default function RunReport({ st, onOpenBoard, competitorDetail, bestselle
                 <article className="rep-design" key={x.spec.design_id}>
                   <span className="rd-shot">{im ? <img src={im.url} alt="" /> : null}</span>
                   <span className="rd-id">{x.spec.design_id}<i className={`rd-tier t-${x.spec.tier}`}>{t(x.spec.tier)}</i></span>
+                  {x.recipe && <span className="rd-recipe">{x.recipe.title}</span>}
                   <span className="rd-spec">{x.metrics.slice(0, 2).map(m => `${m.label} ${m.value}`).join(' · ')}</span>
                   <span className="rd-chips">
                     <i className={x.rejected ? 'bad' : ''}>{x.rejected ? t('Rule reject') : t('Passed rules')}</i>
                     {x.qa.length > 0 && <i>QA {x.qa.filter(q => q.pass).length}/{x.qa.length}</i>}
+                    {x.mdReview && <i className={x.mdReview.verdict === 'drop' ? 'bad' : ''}>{
+                      x.mdReview.verdict === 'pick' ? t('MD pick') : x.mdReview.verdict === 'drop' ? t('MD drop') : t('MD hold')}</i>}
                   </span>
+                  {x.mdReview && <span className="rd-md">{x.mdReview.reason}</span>}
                 </article>
               )
             })}

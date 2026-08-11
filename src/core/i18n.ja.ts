@@ -5,6 +5,11 @@
 
 export const JA: Record<string, string> = {
   'No photo': '写真なし',
+  'MD pick': 'MDピック',
+  'MD hold': 'MD保留',
+  'MD drop': 'MD不採用',
+  'Fix first': '先に直すこと',
+  'The research conditions this concept was built from': 'このコンセプトの元になった調査条件の組み合わせ',
   // ── 공통 ────────────────────────────────────────────────────────
   'Connect your Miro': '自分のMiroを接続',
   'The board is created in your own Miro account, so it needs your token. It is stored only in this browser.': 'ボードはあなたのMiroアカウントに作成されるため、本人のトークンが必要です。トークンはこのブラウザにのみ保存されます。',

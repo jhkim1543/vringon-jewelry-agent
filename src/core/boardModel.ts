@@ -307,7 +307,11 @@ export function buildBoardModel(st: RunState): BoardModel {
     nodes.push({
       id: d.spec.design_id, kind: 'design', column: 4, row: i,
       title: `${d.spec.design_id} · ${TIER_LABEL[d.spec.tier]}`,
-      body: d.metrics.map(m => `${m.label} ${m.value}`),
+      body: [
+        // 조건 레시피 · 이 컨셉이 조사 결과의 어떤 조합에서 나왔는지 한 줄
+        ...(d.recipe ? [`Recipe: ${d.recipe.title}`] : []),
+        ...d.metrics.map(m => `${m.label} ${m.value}`),
+      ],
       design: d, imageUrl: hero?.url,
     })
     // 어떤 신호에서 나왔는지 · 가중치가 곧 선 굵기
@@ -338,11 +342,25 @@ export function buildBoardModel(st: RunState): BoardModel {
       id: 'top', kind: 'selection', column: 5, row: 0,
       title: `Top ${top.length}`,
       body: [
-        ...top.map(d => `${d.spec.design_id} · ${TIER_LABEL[d.spec.tier]} · distance ${d.topDistance ?? 'n/a'}`),
+        // MD 판정이 있으면 픽 이유가 함께 실린다 · 지표와 별개 층
+        ...top.map(d => `${d.spec.design_id} · ${TIER_LABEL[d.spec.tier]} · distance ${d.topDistance ?? 'n/a'}${d.mdReview ? ` · MD ${d.mdReview.verdict}` : ''}`),
+        ...(st.mdPickRationale ? [`MD: ${st.mdPickRationale}`] : []),
         'At least one per tier, with a distance threshold so they do not converge',
       ],
       tone: 'accent',
     })
+    // MD 피드백 카드 · 판정과 이유, 고칠 점 하나. 총평 카드 옆에 선다.
+    const reviewed = st.designs.filter(d => d.mdReview)
+    if (reviewed.length) {
+      nodes.push({
+        id: 'md-review', kind: 'selection', column: 5, row: 0.9,
+        title: 'MD feedback',
+        body: reviewed.slice(0, 6).map(d =>
+          `${d.spec.design_id} · ${d.mdReview!.verdict}: ${d.mdReview!.reason}${d.mdReview!.fix ? ` · Fix: ${d.mdReview!.fix}` : ''}`),
+        tone: 'accent',
+      })
+      for (const d of reviewed.slice(0, 6)) edges.push({ from: d.spec.design_id, to: 'md-review', label: 'MD', dashed: true })
+    }
     top.forEach(d => edges.push({ from: d.spec.design_id, to: 'top', label: 'selected' }))
 
     // 캠페인 컷은 디자인 다음 단계다. 착용컷과 연출컷을 한 열에 나란히 올린다.

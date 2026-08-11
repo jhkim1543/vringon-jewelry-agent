@@ -9,6 +9,36 @@ export interface BrandLogo {
   scale: 'subtle' | 'normal' | 'bold'
 }
 
+/** MD 페르소나 · 디자인 셀렉 단계에서 피드백을 주는 상품기획자의 판단 기준.
+ *  숫자 가중치는 LLM 페르소나로 잘 동작하지 않는다. 대신 이 네 가지가 판단을 만든다:
+ *  누구를 상대로 파는지(시장·고객), 무엇을 먼저 보는지(우선순위의 **순서**),
+ *  무엇이면 바로 접는지(즉시 탈락 룰), 사진에서 실제로 확인하는 것(체크포인트). */
+export interface MdPersona {
+  /** 직함과 경력 · 예: "백화점 파인주얼리 바이어 12년차" */
+  role: string
+  /** 담당 시장·채널 · 예: "국내 백화점 + 온라인 자사몰" */
+  market: string
+  /** 핵심 고객상 · 예: "30대 자기구매 여성, 데일리 착용" */
+  customer: string
+  /** 평가 우선순위 · 순서가 곧 중요도다. 예: [시즌 적합성, 마진, 제조 난이도] */
+  priorities: string[]
+  /** 즉시 탈락 조건 · 예: "도금 두께로 커버 안 되는 마모 취약 부위" */
+  rejectRules: string[]
+  /** 사진에서 확인하는 것 · 예: "착용 시 실루엣, 스톤 세팅의 견고함" */
+  checkpoints: string[]
+  /** 피드백 말투 */
+  tone: 'direct' | 'soft'
+}
+
+export const EMPTY_MD: MdPersona = {
+  role: '', market: '', customer: '',
+  priorities: [], rejectRules: [], checkpoints: [], tone: 'direct',
+}
+
+export function isMdConfigured(md?: MdPersona | null): boolean {
+  return !!md && !!md.role.trim() && (md.priorities.length > 0 || md.rejectRules.length > 0)
+}
+
 export interface BrandIdentity {
   brandName: string
   tagline: string
@@ -22,6 +52,8 @@ export interface BrandIdentity {
   logo: BrandLogo | null
   /** 로고를 이미지에 실제로 그릴지. 끄면 프롬프트에서 로고를 명시적으로 배제한다 */
   applyLogoToImages: boolean
+  /** 디자인 셀렉에 피드백을 주는 MD 페르소나 · 비우면 셀렉은 지표만으로 돈다 */
+  md?: MdPersona
 }
 
 export const EMPTY_BRAND: BrandIdentity = {

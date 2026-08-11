@@ -1,7 +1,7 @@
 // ── 브랜드 아이덴티티 설정 · 모든 에이전트 결과에 공통으로 실린다 ──────
 import { useRef, useState } from 'react'
-import type { BrandIdentity, BrandLogo } from '../core/brand'
-import { EMPTY_BRAND, brandPromptClause } from '../core/brand'
+import type { BrandIdentity, BrandLogo, MdPersona } from '../core/brand'
+import { EMPTY_BRAND, EMPTY_MD, brandPromptClause, isMdConfigured } from '../core/brand'
 import { Tag } from './bits'
 
 const PLACEMENTS: { id: BrandLogo['placement']; label: string }[] = [
@@ -52,6 +52,9 @@ export default function BrandSetup({ brand, onSave, onClose }: {
   const [b, setB] = useState<BrandIdentity>(brand)
   const fileRef = useRef<HTMLInputElement>(null)
   const set = <K extends keyof BrandIdentity>(k: K, v: BrandIdentity[K]) => setB(p => ({ ...p, [k]: v }))
+  // MD 페르소나 · 옛 저장본에는 없으므로 빈 값에서 시작한다
+  const md: MdPersona = b.md ?? EMPTY_MD
+  const setMd = (patch: Partial<MdPersona>) => setB(p => ({ ...p, md: { ...(p.md ?? EMPTY_MD), ...patch } }))
 
   const readLogo = (f: File) => {
     const r = new FileReader()
@@ -196,7 +199,55 @@ export default function BrandSetup({ brand, onSave, onClose }: {
           </div>
 
           <div className="wcard">
-            <h3><span className="n">4</span> Prompt preview</h3>
+            <h3><span className="n">4</span> MD persona</h3>
+            <p className="hint" style={{ marginBottom: 8 }}>
+              A merchandiser who reviews the design candidates at selection time, looking at the actual renders.
+              What makes the feedback sharp is not scores but four things: who they sell to, what they check first
+              (the order below is the importance), what makes them drop a design instantly, and what they look for in a photograph.
+            </p>
+            <div className="row"><span className="lbl">Role</span>
+              <input className="input" style={{ flex: 1 }} value={md.role}
+                placeholder="e.g. Department store fine jewellery buyer, 12 years"
+                onChange={e => setMd({ role: e.target.value })} />
+            </div>
+            <div className="row"><span className="lbl">Market</span>
+              <input className="input" style={{ flex: 1 }} value={md.market}
+                placeholder="e.g. Korean department stores plus own online mall"
+                onChange={e => setMd({ market: e.target.value })} />
+            </div>
+            <div className="row"><span className="lbl">Customer</span>
+              <input className="input" style={{ flex: 1 }} value={md.customer}
+                placeholder="e.g. Women in their 30s buying for themselves, daily wear"
+                onChange={e => setMd({ customer: e.target.value })} />
+            </div>
+            <TokenList label="Priorities" hint="In order — the first outweighs everything after it"
+              placeholder="e.g. season fit, margin, production difficulty"
+              items={md.priorities} onChange={v => setMd({ priorities: v })} />
+            <TokenList label="Auto-drop" hint="If one of these applies, the design is out regardless"
+              placeholder="e.g. wear-prone spots plating cannot cover"
+              items={md.rejectRules} onChange={v => setMd({ rejectRules: v })} />
+            <TokenList label="Checks" hint="What they actually verify in the photographs"
+              placeholder="e.g. silhouette when worn, how solid the setting looks"
+              items={md.checkpoints} onChange={v => setMd({ checkpoints: v })} />
+            <div className="row"><span className="lbl">Tone</span>
+              <div className="chiprow">
+                {(['direct', 'soft'] as const).map(tn => (
+                  <button key={tn} className={`pick sm ${md.tone === tn ? 'on' : ''}`}
+                    onClick={() => setMd({ tone: tn })}>{tn === 'direct' ? 'Blunt, like an internal review' : 'Constructive, but honest'}</button>
+                ))}
+              </div>
+            </div>
+            <div className="row">
+              <span className="hint">
+                {isMdConfigured(b.md)
+                  ? 'Configured. At selection time this MD reviews every candidate with a verdict, a reason and one fix each.'
+                  : 'Fill in at least the role plus priorities or auto-drop rules to activate the review.'}
+              </span>
+            </div>
+          </div>
+
+          <div className="wcard">
+            <h3><span className="n">5</span> Prompt preview</h3>
             <p className="hint" style={{ marginBottom: 8 }}>This sentence is appended to every image prompt.</p>
             <pre className="promptprev">{brandPromptClause(b) || 'Nothing set yet'}</pre>
           </div>

@@ -74,7 +74,7 @@ const JEWEL_VIEW: Record<string, string> = {
 
 /** 스펙 필드를 프롬프트 구절로 · 유형에 따라 의미 없는 필드는 뺀다 */
 
-function jewelSpecPhrase(spec: DesignSpec): string {
+export function jewelSpecPhrase(spec: DesignSpec): string {
   const f = spec.fields as Record<string, string | number | boolean>
   const stones = Number(f.stone_count)
   const parts = [
@@ -254,31 +254,62 @@ export function wearEditPrompt(category: Category, itemType: string, index: numb
 }
 
 // ── 스케치 한 장에서 갈라져 나오는 실제 제품 베리에이션 ─────────────
-// 같은 골격을 유지하되 한 축씩만 바꾼다. 전부 바꾸면 다른 신발이 되고 비교가 안 된다.
-const VARIATION_AXES: Record<Category, { key: string; label: string; instruction: string }[]> = {
-  jewelry: [
-    { key: 'metal', label: 'Metal swap', instruction: 'Keep the exact form and stone layout. Change the metal to a brushed, cooler tone with a matte finish.' },
-    { key: 'setting', label: 'Setting change', instruction: 'Keep the exact form and metal. Change the stone setting to a bezel with a raised rim, so the stones sit flush and protected.' },
-    { key: 'scale', label: 'Scale shift', instruction: 'Keep the exact design language. Make the piece noticeably heavier and wider in section, so it reads as a bolder statement piece.' },
-    { key: 'texture', label: 'Surface texture', instruction: 'Keep the exact form. Change the surface to a hammered, irregular texture that catches light unevenly.' },
-    { key: 'stone', label: 'Stone layout', instruction: 'Keep the metal and form. Rearrange the stones into a tighter cluster with one larger centre stone.' },
-    { key: 'profile', label: 'Profile change', instruction: 'Keep the metal, stones and finish. Flatten the profile so it sits closer to the body with a squarer section.' },
-    { key: 'edge', label: 'Edge treatment', instruction: 'Keep everything. Change the edges to a chamfered, faceted border that catches a hard highlight.' },
-    { key: 'contrast', label: 'Two-tone', instruction: 'Keep the form and stones. Split the metal into two tones, warm on the body and cool on the setting.' },
-  ],
+// ai-vringon-create-variation(사내 신발 베리에이션 워커)의 방식을 그대로 옮겼다:
+// 양극 스타일 축 8개를 -1~1 슬라이더로 받아, |값|>0.2 인 축만 자연어 지시로
+// 조립하고 원본 이미지를 편집한다. 마무리 문장("구조·팔레트 유지")까지 동일하다.
+// 축 이름만 주얼리 조형 언어로 바꿨다.
+export interface StyleVector {
+  mood_creative_classic?: number      // -1 Classic ~ 1 Creative
+  mood_maximal_minimal?: number       // -1 Minimal ~ 1 Maximal
+  silhouette_long_short?: number      // -1 Short/compact ~ 1 Long/elongated
+  silhouette_voluminous_slim?: number // -1 Slim ~ 1 Voluminous
+  density_dense_airy?: number         // -1 Airy ~ 1 Dense (스톤·디테일 밀도)
+  density_chunky_balanced?: number    // -1 Balanced ~ 1 Chunky
+  edge_soft_sharp?: number            // -1 Soft ~ 1 Sharp
+  edge_fluid_structured?: number      // -1 Fluid ~ 1 Structured
 }
 
-export function variationAxes(category: Category) {
-  return VARIATION_AXES[category]
+/** 원본 build_instruction 의 이식 · 문턱값 0.2, 축별 문구, 유지 문장까지 같은 구조 */
+export function variationInstruction(v: StyleVector): string {
+  const parts: string[] = []
+  const push = (val: number | undefined, pos: string, neg: string) => {
+    if (val !== undefined && Math.abs(val) > 0.2) parts.push(val > 0 ? pos : neg)
+  }
+  push(v.mood_creative_classic, 'more creative', 'more classic')
+  push(v.mood_maximal_minimal, 'more maximal', 'more minimal')
+  push(v.silhouette_long_short, 'a longer, more elongated silhouette', 'a shorter, more compact silhouette')
+  push(v.silhouette_voluminous_slim, 'more voluminous', 'slimmer')
+  push(v.density_dense_airy, 'denser stone and detail work', 'an airier, more open design')
+  push(v.density_chunky_balanced, 'chunkier', 'more balanced proportions')
+  push(v.edge_soft_sharp, 'sharper edges', 'softer edges')
+  push(v.edge_fluid_structured, 'more structured lines', 'more fluid lines')
+  if (!parts.length) return 'Generate a variation of this jewellery piece with subtle style changes. Keep the overall structure and colour palette intact.'
+  return `Edit this jewellery piece to be ${parts.join(', ')}. Keep the overall jewellery structure and colour palette intact.`
+}
+
+/** 자동 실행용 프리셋 벡터 · 서로 확실히 다른 방향으로 2~3축씩 민다.
+ *  슬라이더 UI 가 붙기 전까지는 이 프리셋이 슬라이더 값을 대신한다. */
+const STYLE_PRESETS: { label: string; v: StyleVector }[] = [
+  { label: 'Minimal & slim', v: { mood_maximal_minimal: -0.7, silhouette_voluminous_slim: -0.6 } },
+  { label: 'Bold & chunky', v: { mood_maximal_minimal: 0.6, density_chunky_balanced: 0.7, edge_soft_sharp: 0.4 } },
+  { label: 'Creative & fluid', v: { mood_creative_classic: 0.7, edge_fluid_structured: -0.6 } },
+  { label: 'Classic & structured', v: { mood_creative_classic: -0.7, edge_fluid_structured: 0.6 } },
+  { label: 'Elongated & airy', v: { silhouette_long_short: 0.6, density_dense_airy: -0.6 } },
+  { label: 'Compact & dense', v: { silhouette_long_short: -0.6, density_dense_airy: 0.7 } },
+  { label: 'Soft & voluminous', v: { edge_soft_sharp: -0.6, silhouette_voluminous_slim: 0.6 } },
+  { label: 'Sharp & minimal', v: { edge_soft_sharp: 0.7, mood_maximal_minimal: -0.5, edge_fluid_structured: 0.4 } },
+]
+
+export function variationAxes(_category: Category) {
+  return STYLE_PRESETS.map(p => ({ key: p.label, label: p.label, instruction: variationInstruction(p.v) }))
 }
 
 /** 스케치·기준 렌더에서 갈라지는 제품 베리에이션. 편집이라 같은 계보가 유지된다. */
-export function variationPrompt(category: Category, axisIndex: number): string {
-  const axes = VARIATION_AXES[category]
-  const a = axes[axisIndex % axes.length]
+export function variationPrompt(_category: Category, axisIndex: number): string {
+  const p = STYLE_PRESETS[axisIndex % STYLE_PRESETS.length]
   return [
     'This is a product design variation, not a new product.',
-    a.instruction,
+    variationInstruction(p.v),
     'Photorealistic studio product photograph on a seamless white background, same camera angle as the original, soft even light, sharp focus.',
     'No text, no logo, no watermark, no human.',
   ].join(' ')

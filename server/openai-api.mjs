@@ -12,6 +12,7 @@ import { compositeLogo, logoAvailable } from './logo-api.mjs'
 import { tripoMultiview, tripoProbe, readModel } from './tripo-api.mjs'
 import { configureUnlocker, findProductImage, unlockedFetch, unlockerStatus, unlockerUsage } from './unlock.mjs'
 import { readMoodboard, readSeries, readUpload, storeUpload } from './uploads-api.mjs'
+import { mdReview } from './md-api.mjs'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(HERE, '..')
@@ -297,6 +298,15 @@ export async function handleApi(req, res) {
                   gemini: { keyPresent: !!GEMINI_KEY } }
     if (GEMINI_KEY) { try { out.gemini = { ...out.gemini, ...(await geminiProbe(GEMINI_KEY)) } } catch (e) { out.gemini.error = String(e.message) } }
     return json(res, 200, out)
+  }
+
+  // MD 페르소나 리뷰 · 셀렉 후보를 사진과 스펙으로 평가한다
+  if (path === '/api/md/review' && req.method === 'POST') {
+    try {
+      if (!API_KEY) throw new Error('OPENAI_API_KEY 미설정')
+      const body = await readBody(req)
+      return json(res, 200, await mdReview(API_KEY, ROOT, body))
+    } catch (e) { return json(res, 500, { error: String(e.message || e) }) }
   }
 
   if (path === '/api/research/competitors' && req.method === 'POST') {

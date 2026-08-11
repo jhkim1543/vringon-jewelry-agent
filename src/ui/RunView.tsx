@@ -523,6 +523,12 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
                     ))}
                     <b>{d.spec.design_id}</b>
                     <span className="sk-tier">{t(TIER_LABEL[d.spec.tier] ?? d.spec.tier)}</span>
+                    {/* 조건 레시피 · 이 디자인이 조사 결과의 어떤 조합에서 나왔는지 */}
+                    {d.recipe && (
+                      <span className={`sk-recipe shape-${d.recipe.shape}`} title={t('The research conditions this concept was built from')}>
+                        {d.recipe.title}
+                      </span>
+                    )}
                     {evidence.length > 0 && (
                       <span className="sk-ev">
                         <i>{t('Based on')}</i>
@@ -530,6 +536,14 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
                       </span>
                     )}
                     {d.rationale?.narrative?.[0] && <span className="sk-why">{d.rationale.narrative[0]}</span>}
+                    {/* MD 피드백 · 지표와 별개 층, 페르소나의 말로 */}
+                    {d.mdReview && (
+                      <span className={`sk-md md-${d.mdReview.verdict}`}>
+                        <i>{d.mdReview.verdict === 'pick' ? t('MD pick') : d.mdReview.verdict === 'drop' ? t('MD drop') : t('MD hold')}</i>
+                        {d.mdReview.reason}
+                        {d.mdReview.fix ? <em>{t('Fix first')}: {d.mdReview.fix}</em> : null}
+                      </span>
+                    )}
                   </div>
                   <div className="sk-outs">
                     {outs.length === 0 && <span className="hint">{d.rejected ? t('Rule reject') : t('Rendering')}</span>}

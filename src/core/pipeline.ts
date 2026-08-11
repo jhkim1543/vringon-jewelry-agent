@@ -9,7 +9,10 @@ import {
   generateModel, sketchPrompt, stampLogo, variationAxes, variationPrompt, viewEditPrompt, wearEditPrompt,
 } from './aiClient'
 import type { TrendClauseInput } from './aiClient'
-import { colorizePrompt, reportArtPrompt, sketchVariantPrompt } from './aiClient'
+import { colorizePrompt, jewelSpecPhrase, reportArtPrompt, sketchVariantPrompt } from './aiClient'
+import { assignRecipes, buildConditionPool } from './recipes'
+import { isMdConfigured } from './brand'
+import { fetchMdReview } from './research'
 import type { SeasonDossier } from './research'
 import { fetchCompetitors, fetchDossier, fetchMoodboard, fetchSeriesDna, fetchTrends, moodboardSignals, toBestsellers, toBias, toCompetitors, toSignals, setRunLang } from './research'
 import { campaignCount, CAT_LABEL, MODE_LABEL, MODE_SCOPE, TYPE_LABEL, metalProgramOf, stoneProgramOf, uploadName, uploadRefs } from './types'
@@ -107,6 +110,11 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
     let trendClause: TrendClauseInput | null = null
     // 촬영 계획에 실을 시즌 방향. trendClause는 뒤에서 타입이 좁혀지므로 값만 따로 붙든다.
     let macroName = ''
+    // 레시피 풀 재료 · 조사가 끝나는 대로 쌓인다. 스케치 직전에 조합으로 바뀐다.
+    let dossierMacros: { name: string; materials?: string[]; details?: string[]; colors?: { name: string; hex: string }[] }[] = []
+    let compTraits: string[] = []
+    // 디자인별 트렌드 절 · 레시피가 배정되면 그 조합을, 아니면 공통 절을 준다
+    let clauseFor: (id: string) => TrendClauseInput | null = () => trendClause
     // 도시에가 캐시에 있으면 스케치 전에 반영되어야 한다. 새로 조사할 때만 뒤에서 따라온다.
     let dossierJob: Promise<unknown> | null = null
     // 무드보드에서 읽어낸 신호 · 외부 조사가 없는 모드라 이것이 유일한 신호원이다
@@ -151,6 +159,8 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
         emit({ kind: 'log', stage: 'S1', text: 'No sales proxy scored. One pass gives no time series, so restock and sell-out trends need repeat collection.' })
         if (r.notes) emit({ kind: 'log', stage: 'S1', text: `Limits of this pass: ${r.notes.slice(0, 160)}` })
         emit({ kind: 'competitors', items: comps })
+        // 경쟁사에서 반복 관찰된 조형 특징 · 레시피의 competitor 원자가 된다
+        compTraits = [...new Set(comps.flatMap(c => c.design_traits ?? []))].slice(0, 5)
         // 백화점·명품몰 베스트셀러 · 유저 카테고리에서 "잘 팔린다고 표기된 것"의 사진과 근거
         const best = toBestsellers(r)
         if (best.length) {
@@ -276,6 +286,12 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
         }).then(async d => {
           if (cancelled) return
           // 첫 매크로를 기준 방향으로 잡는다. 여기서 나온 소재·디테일·팔레트가 이미지 프롬프트로 넘어간다.
+          dossierMacros = (d.macrotrends ?? []).map(m => ({
+            name: m.name,
+            materials: (m.materials ?? []).map(x => x.label),
+            details: (m.details ?? []).map(x => x.label),
+            colors: (m.palette ?? []).map(c => ({ name: c.name, hex: c.hex })),
+          }))
           const m0 = d.macrotrends?.[0]
           if (m0) {
             // 신호 키워드가 먼저 실려 있을 수 있으므로 덮어쓰지 않고 합친다
@@ -434,6 +450,28 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
     const alive = designs.filter(d => !d.rejected)
     emit({ kind: 'log', stage: 'S2', text: `${alive.length} of ${designs.length} specs passed · ${designs.length - alive.length} rejected early · rejects are never rendered` })
 
+    // 조건 레시피 배정 · 디자인마다 조사 결과의 다른 조합을 준다.
+    // 전부 같은 트렌드 절을 받으면 스펙만 다르고 방향이 같은 비슷한 디자인만 나온다.
+    // 단독 → 2개 조합 → 융합을 순환하고, 어떤 조합에서 나왔는지 카드에 남는다.
+    const condPool = buildConditionPool({
+      signals: trendClause?.signals,
+      macros: dossierMacros,
+      competitorTraits: compTraits,
+    })
+    if (condPool.length >= 2) {
+      const recipes = assignRecipes(condPool, alive.length, rng, trendClause?.keySpec)
+      alive.forEach((d, i) => {
+        const r = recipes[i]
+        if (!r) return
+        d.recipe = { title: r.title, shape: r.shape, atoms: r.atoms }
+      })
+      const recipeClauses = new Map(alive.map((d, i) => [d.spec.design_id, recipes[i]?.clause]))
+      emit({ kind: 'log', stage: 'S2', text: `Concept recipes assigned · ${recipes.length} distinct combinations from ${condPool.length} research conditions (solo, pair and fusion)` })
+      clauseFor = (id) => recipeClauses.get(id) ?? trendClause
+    } else if (condPool.length) {
+      emit({ kind: 'log', stage: 'S2', text: 'Only one research condition available · every design carries it, recipes need at least two' })
+    }
+
     // 실제 스케치 생성 · 룰 통과분만, 상한까지. 초과분은 SVG 폴백
     if (budget.left() > 0) {
       const targets = alive.slice(0, budget.left())
@@ -442,7 +480,7 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
       await pool(targets, ENGINES[params.imageEngine].concurrency, async (d) => {
         if (cancelled) return
         try {
-          const skPrompt = sketchPrompt(d.spec, params.imageEngine, params.brand, trendClause, params.line)
+          const skPrompt = sketchPrompt(d.spec, params.imageEngine, params.brand, clauseFor(d.spec.design_id), params.line)
           const r = await generateImage(skPrompt, params.imageEngine)
           budget.spend()
           d.images = [...d.images, { view: 'sketch', url: r.url, hash: r.hash, origin: 'generated', promptUsed: skPrompt }]
@@ -502,8 +540,8 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
         //    스케치가 없을 때만(예산 소진·실패) 예전처럼 프롬프트로 직접 그린다.
         let baseHash: string | null = null
         const sketchImgs = d.images.filter(i => i.view === 'sketch' || i.view === 'sketch_var')
-        const colPrompt = colorizePrompt(d.spec, params.brand, trendClause, params.line)
-        const basePrompt = sketchImgs.length ? colPrompt : renderPrompt(d.spec, params.imageEngine, params.brand, trendClause, params.line)
+        const colPrompt = colorizePrompt(d.spec, params.brand, clauseFor(d.spec.design_id), params.line)
+        const basePrompt = sketchImgs.length ? colPrompt : renderPrompt(d.spec, params.imageEngine, params.brand, clauseFor(d.spec.design_id), params.line)
         try {
           const r = sketchImgs.length
             ? await editImage(sketchImgs[0].hash, colPrompt, params.imageEngine)
@@ -625,6 +663,38 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
       emit({ kind: 'design-update', design: { ...d } })
       emit({ kind: 'log', stage: 'S4', text: `Top ${i + 1}: ${d.spec.design_id} [${d.spec.tier}] · spec distance ${d.topDistance}` })
     })
+
+    // MD 리뷰 · 설정된 페르소나가 후보 전체를 사진으로 보고 pick/hold/drop 을 준다.
+    // 지표(계층 1)·모델 평가(계층 2)와 별개의 층이다 — 순위를 바꾸지 않고 판단만 얹는다.
+    // 실패해도 셀렉은 그대로 간다.
+    if (params.brand?.md && isMdConfigured(params.brand.md)) {
+      try {
+        emit({ kind: 'log', stage: 'S4', text: `MD review · ${params.brand.md.role} looking at ${topCandidates.length} candidates with photographs` })
+        const items = topCandidates.map(d => ({
+          id: d.spec.design_id,
+          tier: d.spec.tier,
+          spec: jewelSpecPhrase(d.spec),
+          costNote: `cap ratio ${Math.round(d.cost.cap_ratio * 100)}%`,
+          imageHash: d.images.find(i => i.origin === 'generated' && i.view !== 'sketch')?.hash
+            ?? d.images.find(i => i.view === 'sketch')?.hash,
+          recipe: d.recipe?.title,
+        }))
+        const r = await fetchMdReview({ persona: params.brand.md, item: TYPE_LABEL[params.itemType] ?? params.itemType, designs: items })
+        if (cancelled) return
+        for (const rev of r.reviews) {
+          const d = topCandidates.find(x => x.spec.design_id === rev.design_id)
+          if (!d) continue
+          d.mdReview = { verdict: rev.verdict, reason: rev.reason, fix: rev.fix || undefined }
+          emit({ kind: 'design-update', design: { ...d } })
+        }
+        emit({ kind: 'md-rationale', text: r.pick_rationale })
+        const picks = r.reviews.filter(x => x.verdict === 'pick').length
+        const drops = r.reviews.filter(x => x.verdict === 'drop').length
+        emit({ kind: 'log', stage: 'S4', text: `MD verdicts in: ${picks} pick, ${r.reviews.length - picks - drops} hold, ${drops} drop${r.cached ? ' (reused an earlier review)' : ''}` })
+      } catch (e) {
+        emit({ kind: 'log', stage: 'S4', text: `MD review unavailable · ${String((e as Error).message).slice(0, 100)} · selection continues on metrics alone` })
+      }
+    }
     await wait(700)
     emit({ kind: 'log', stage: 'S4', text: 'Placing each pick on a model · natural position, scale and lighting' })
     await wait(800)

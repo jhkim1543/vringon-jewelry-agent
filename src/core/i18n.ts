@@ -73,6 +73,11 @@ export function tf(s: string, vars: Record<string, string | number>): string {
 
 const KO: Record<string, string> = {
   'No photo': '사진 없음',
+  'MD pick': 'MD 픽',
+  'MD hold': 'MD 보류',
+  'MD drop': 'MD 탈락',
+  'Fix first': '먼저 고칠 것',
+  'The research conditions this concept was built from': '이 컨셉이 나온 조사 조건 조합',
   // ── 공통 ────────────────────────────────────────────────────────
   // ── 위저드 · 질문 세 개로 나눈 화면 ──────────────────────────────
   'Connect your Miro': '내 Miro 연결',

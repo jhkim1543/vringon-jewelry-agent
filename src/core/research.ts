@@ -327,3 +327,17 @@ export function metricText(m: Pick<DossierMetric, 'yoy_percent' | 'magnitude'>):
   if (m.yoy_percent != null) return `${m.yoy_percent > 0 ? '+' : ''}${m.yoy_percent}%`
   return MAG_LABEL[m.magnitude] ?? '—'
 }
+
+// ── MD 리뷰 · 설정된 페르소나가 셀렉 후보를 사진으로 평가한다 ────────
+export interface MdReviewItem {
+  id: string; tier: string; spec: string
+  costNote?: string; imageHash?: string; recipe?: string
+}
+export interface MdReviewRead {
+  reviews: { design_id: string; verdict: 'pick' | 'hold' | 'drop'; reason: string; fix: string }[]
+  pick_rationale: string
+  cached?: boolean
+}
+export const fetchMdReview = (b: {
+  persona: unknown; item: string; designs: MdReviewItem[]; langName?: string
+}) => post<MdReviewRead>('/api/md/review', b)
