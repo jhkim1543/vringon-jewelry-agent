@@ -9,7 +9,8 @@ import {
   generateModel, sketchPrompt, stampLogo, variationAxes, variationPrompt, viewEditPrompt, wearEditPrompt,
 } from './aiClient'
 import type { TrendClauseInput } from './aiClient'
-import { colorizePrompt, sketchVariantPrompt } from './aiClient'
+import { colorizePrompt, reportArtPrompt, sketchVariantPrompt } from './aiClient'
+import type { SeasonDossier } from './research'
 import { fetchCompetitors, fetchDossier, fetchMoodboard, fetchSeriesDna, fetchTrends, moodboardSignals, toBestsellers, toBias, toCompetitors, toSignals, setRunLang } from './research'
 import { campaignCount, CAT_LABEL, MODE_LABEL, MODE_SCOPE, TYPE_LABEL, metalProgramOf, stoneProgramOf, uploadName, uploadRefs } from './types'
 import { ENGINES } from './imageEngines'
@@ -48,6 +49,35 @@ async function pool<T>(items: T[], limit: number, worker: (item: T, i: number) =
     }
   })
   await Promise.all(runners)
+}
+
+/** 리포트를 여는 무드컷 · 표지 한 장과 매크로별 배너.
+ *  이미지 상한과는 무관한, 문서 품질에 쓰는 소량이다. 경쟁사 사진은 스크래핑으로 오고
+ *  이쪽은 순수 장식이라 제품·사람·글자가 들어가면 안 된다(reportArtPrompt 가 막는다).
+ *  섹션 하나가 실패해도 나머지는 그대로 만든다. */
+export async function makeReportArt(
+  d: SeasonDossier,
+  stopped: () => boolean = () => false,
+): Promise<{ cover?: string; sections: Record<string, string> }> {
+  const macros = (d.macrotrends ?? []).slice(0, 3)
+  // 표지·배너는 가로가 길어야 리포트 프레임에 잘리지 않고 들어간다
+  const cover = await generateImage(reportArtPrompt('cover', {
+    season: (d as { forecast_season?: string }).forecast_season ?? d.season,
+    palette: (macros[0]?.palette ?? []).map(c => ({ name: c.name, hex: c.hex })),
+    mood: d.powershift || d.season_title,
+  }), 'fast', '1536x1024')
+  const sections: Record<string, string> = {}
+  for (const m of macros) {
+    if (stopped()) break
+    try {
+      const r = await generateImage(reportArtPrompt('section', {
+        title: m.name, mood: m.statement,
+        palette: (m.palette ?? []).map(c => ({ name: c.name, hex: c.hex })),
+      }), 'fast', '1536x1024')
+      sections[m.name] = r.url
+    } catch { /* 이 섹션만 아트 없이 간다 */ }
+  }
+  return { cover: cover.url, sections }
 }
 
 export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineHandle {
@@ -243,7 +273,7 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
             ? `KRW ${(params.trend.priceMinKrw / 10000).toFixed(0)}0k-${(params.trend.priceMaxKrw / 10000).toFixed(0)}0k ${params.trend.priceBand}`
             : undefined,
           brands: params.mode === 'trend' ? params.trend.competitors : [],
-        }).then(d => {
+        }).then(async d => {
           if (cancelled) return
           // 첫 매크로를 기준 방향으로 잡는다. 여기서 나온 소재·디테일·팔레트가 이미지 프롬프트로 넘어간다.
           const m0 = d.macrotrends?.[0]
@@ -262,6 +292,17 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
           }
           emit({ kind: 'dossier', dossier: d })
           emit({ kind: 'log', stage: 'S1', text: `Season dossier ready · ${d.macrotrends?.length ?? 0} macrotrends, ${d.sources?.length ?? 0} sources (${d.searches} searches)` })
+
+          // 리포트를 여는 무드컷 · 이미지 상한과 무관하게 문서 품질에 쓰는 소량이다.
+          // 실패해도 리포트는 그대로 나간다 (기존 렌더로 채워진다).
+          try {
+            const art = await makeReportArt(d, () => cancelled)
+            if (cancelled) return
+            emit({ kind: 'report-art', cover: art.cover, sections: art.sections })
+            emit({ kind: 'log', stage: 'S1', text: `Report art ready · 1 cover, ${Object.keys(art.sections).length} section openers` })
+          } catch {
+            emit({ kind: 'log', stage: 'S1', text: 'Report art could not be made. The report still prints, using the run\'s own renders.' })
+          }
         }).catch(() => {
           emit({ kind: 'dossier-pending', on: false })
           emit({ kind: 'log', stage: 'S1', text: 'The season dossier failed to build. Signals and the report are still usable.' })

@@ -39,14 +39,15 @@ export default function RunReport({ st, onOpenBoard, competitorDetail, bestselle
   const top = st.designs.filter(x => x.isTop)
   const shown = (top.length ? top : st.designs.filter(x => !x.rejected)).slice(0, 6)
 
-  // 히어로 이미지는 이번 분석이 실제로 만든 렌더를 쓴다
+  // 히어로 이미지는 이번 분석이 실제로 만든 렌더를 쓴다.
+  // 조사만 돌린 런에는 렌더가 없으므로 리포트용으로 생성한 무드컷으로 채운다.
   const hero = useMemo(() => {
     for (const x of [...top, ...st.designs]) {
       const im = x.images.find(i => i.origin === 'generated' && i.view !== 'sketch')
       if (im) return im.url
     }
-    return null
-  }, [st.designs, top])
+    return st.reportArt?.cover ?? null
+  }, [st.designs, top, st.reportArt])
 
   // 경쟁 구도 · 브랜드별로 묶어 가격 범위와 대표 제품을 낸다
   const brands = useMemo(() => {
@@ -142,7 +143,8 @@ export default function RunReport({ st, onOpenBoard, competitorDetail, bestselle
           <div className="rep-head"><h2>{t('Key macro trends')}</h2></div>
           <div className="rep-macros">
             {macros.map(m => {
-              const shot = macroShot(m)
+              // 조사에서 찾은 참고 사진이 먼저다 · 없으면 이 매크로용으로 생성한 무드컷
+              const shot = macroShot(m) ?? st.reportArt?.sections?.[m.name] ?? null
               return (
                 <article className="rep-macro" key={m.name}>
                   {/* 대표 이미지가 없으면 팔레트를 띠로 깐다. 아이콘만 두면 임팩트가 없다. */}

@@ -414,6 +414,17 @@ button { cursor: pointer; background: none; border: none; }
 .pick.on { background: var(--accent-soft); color: var(--accent-hi); border-color: var(--accent); }
 .pick .pk-n { font-size: 11.5px; font-weight: 500; color: var(--text-3); }
 
+/* 걸러낸 결과가 빈 경우 · 빈 캔버스는 고장으로 읽힌다 */
+.board-empty {
+  position: absolute; left: 50%; top: 46%; transform: translate(-50%, -50%); z-index: 5;
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 22px 28px; border-radius: var(--r-card);
+  background: var(--panel); border: 1px solid var(--line-2); box-shadow: 0 8px 28px rgba(0, 0, 0, .28);
+  text-align: center; max-width: 380px;
+}
+.board-empty b { font-size: 14px; color: var(--text); }
+.board-empty span { font-size: 12.5px; color: var(--text-2); line-height: 1.6; }
+
 /* 카드 크기 조절 · React Flow 기본 핸들은 6px이라 사실상 잡히지 않는다.
    모서리는 넉넉히 키우고, 변은 눈에 안 보여도 손에는 걸리도록 두껍게 둔다. */
 .react-flow__resize-control.handle {

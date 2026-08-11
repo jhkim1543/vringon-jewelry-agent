@@ -21,11 +21,11 @@ export async function apiStatus(): Promise<{ keyPresent: boolean; model: string;
 }
 
 /** 신규 생성 · 동일 프롬프트는 서버 캐시로 재사용되어 중복 과금이 없다 */
-export async function generateImage(prompt: string, engine: EngineId = 'detail'): Promise<GenResult> {
+export async function generateImage(prompt: string, engine: EngineId = 'detail', size = '1024x1024'): Promise<GenResult> {
   const r = await fetch('/api/image/generate', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ prompt, size: '1024x1024', engine }),
+    body: JSON.stringify({ prompt, size, engine }),
   })
   const j = await r.json()
   if (!r.ok) throw new Error(j.error || `generate ${r.status}`)
@@ -377,6 +377,30 @@ export function trendPromptClause(t: TrendClauseInput | null): string {
   if (t.colors?.length) bits.push(`season palette: ${t.colors.slice(0, 3).map(c => `${c.name} ${c.hex}`).join(', ')}`)
   if (!bits.length) return ''
   return `It should read as part of the ${t.macroName ?? 'season'} direction: ${bits.join('; ')}.`
+}
+
+// ── 리포트 아트 · 문서를 읽고 싶게 만드는 그림 ────────────────────────
+// 조사 사진(경쟁 제품·베스트셀러)과는 역할이 다르다. 그쪽은 증거라 손대면 안 되고,
+// 이쪽은 표지와 섹션을 여는 무드컷이다. 제품을 그리지 않는다 — 제품을 그리면
+// 독자가 그것을 이 분석의 결과물로 오해한다.
+export function reportArtPrompt(kind: 'cover' | 'section', opts: {
+  season?: string; title?: string; palette?: { name: string; hex: string }[]; mood?: string
+}): string {
+  const colours = (opts.palette ?? []).slice(0, 4).map(c => `${c.name} (${c.hex})`).join(', ')
+  const common = [
+    'Editorial art for a jewellery season report.',
+    'Abstract still life: light, texture and material only.',
+    'No jewellery, no products, no people, no hands, no text, no logo, no watermark.',
+    colours ? `Work in this palette: ${colours}.` : '',
+    opts.mood ? `The mood reads as: ${opts.mood}.` : '',
+    'Soft directional studio light, fine grain, generous negative space, matte finish.',
+    'Composed so text can sit over the quiet half of the frame.',
+  ]
+  return kind === 'cover'
+    ? [...common, `A wide, calm opening image for the ${opts.season ?? 'season'} report.`,
+       'Suggest metal and stone through surfaces: brushed sheet, polished curve, translucent mineral.'].filter(Boolean).join(' ')
+    : [...common, `A narrow banner introducing the section "${opts.title ?? ''}".`,
+       'One dominant material gesture, nothing else competing.'].filter(Boolean).join(' ')
 }
 
 /** 브랜드 로고를 생성 이미지 위에 실제로 얹는다.

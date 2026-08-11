@@ -94,6 +94,7 @@ export default function App() {
         case 'signals': next.signals = e.signals; break
         case 'competitors': next.competitors = e.items; break
         case 'bestsellers': next.bestsellers = e.items; break
+        case 'report-art': next.reportArt = { cover: e.cover, sections: e.sections }; break
         case 'directions': next.directions = e.items; break
         case 'series-dna': next.seriesDna = e.dna; break
         case 'dna-conflict': next.dnaConflict = { brandClaim: e.brandClaim, observed: e.observed }; break

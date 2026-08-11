@@ -132,11 +132,16 @@ function buildDeck(st: RunState): { title: string; html: string } {
   const P = () => ++page
 
   // ── 1 표지 ────────────────────────────────────────────────────
+  // 표지 그림은 생성한 무드컷을 먼저 쓴다 · 없으면 이번 분석의 컷으로 채운다
+  const art = st.reportArt
+  // 생성 아트는 마지막 보루다 · 이번 분석의 실제 컷이 먼저 쓰이고, 빈 칸일 때만 아트가 들어간다.
+  const artList = [art?.cover ?? '', ...Object.values(art?.sections ?? {})].filter(Boolean)
+  const fill = (l: string[], i: number) => at(l, i) || at(artList, i)
   out.push(slide({
     bare: true,
     body: `<div style="display:flex;height:100%">
       <div style="flex:1.15;position:relative;overflow:hidden">
-        ${img(at(pool.concept, 0) || at(pool.any, 0))}
+        ${img(art?.cover || at(pool.concept, 0) || at(pool.any, 0))}
       </div>
       <div style="flex:1;background:#14181D;color:#fff;padding:24mm 16mm;display:flex;flex-direction:column">
         <div style="font-size:9pt;letter-spacing:.3em;font-weight:800">VRINGON</div>
@@ -250,10 +255,10 @@ function buildDeck(st: RunState): { title: string; html: string } {
     eyebrow, tag: 'SEASON', page: P(),
     body: `<div class="cols">
       <div style="flex:1.05;display:flex;flex-direction:column;gap:4mm">
-        ${img(at(pool.render, 0), '')}
+        ${img(fill(pool.render, 0), '')}
         <div style="display:flex;gap:4mm;height:46mm">
-          <div style="flex:1">${img(at(pool.wear, 0) || at(pool.any, 1))}</div>
-          <div style="flex:1">${img(at(pool.concept, 1) || at(pool.any, 2))}</div>
+          <div style="flex:1">${img(at(pool.wear, 0) || fill(pool.any, 1))}</div>
+          <div style="flex:1">${img(at(pool.concept, 1) || fill(pool.any, 2))}</div>
         </div>
       </div>
       <div style="flex:1;display:flex;flex-direction:column">
@@ -274,7 +279,7 @@ function buildDeck(st: RunState): { title: string; html: string } {
           const c = MACRO_COLORS[i % MACRO_COLORS.length]
           return `<div style="display:flex;flex-direction:column;gap:3mm">
             <div style="font-size:26pt;font-weight:800;color:${c};line-height:1">${i + 1}</div>
-            <div style="height:42mm">${img(at(pool.any, i * 2))}</div>
+            <div style="height:42mm">${img(fill(pool.any, i * 2))}</div>
             <div style="background:${c};color:#fff;padding:2mm 3mm;border-radius:1mm;
                         font-size:8.5pt;font-weight:800;letter-spacing:.06em;text-align:center">${esc(m.name)}</div>
             <div style="font-size:7.2pt;color:#565D63;line-height:1.5">${(m.sub_trends ?? []).map(esc).join('<br>')}</div>
@@ -309,10 +314,10 @@ function buildDeck(st: RunState): { title: string; html: string } {
             <div class="quote" style="color:${c};margin-top:auto">${esc(m.statement)}</div>
           </div>
           <div style="flex:1;display:flex;flex-direction:column;gap:3mm">
-            <div style="flex:1.3">${img(at(pool.concept, i) || at(pool.any, i))}</div>
+            <div style="flex:1.3">${img(art?.sections?.[m.name] || at(pool.concept, i) || at(pool.any, i))}</div>
             <div style="flex:1;display:flex;gap:3mm">
-              <div style="flex:1">${img(at(pool.render, i))}</div>
-              <div style="flex:1">${img(at(pool.wear, i))}</div>
+              <div style="flex:1">${img(at(pool.render, i) || fill(pool.any, i + 1))}</div>
+              <div style="flex:1">${img(at(pool.wear, i) || fill(pool.any, i + 2))}</div>
             </div>
           </div>
         </div>
@@ -359,9 +364,10 @@ function buildDeck(st: RunState): { title: string; html: string } {
       if (!items.length) continue
       out.push(slide({
         eyebrow, tag: `MACRO ${i + 1}`, page: P(),
+        // 칸은 아이템 수만큼만 연다. 세 칸에 한 장만 들어가면 나머지 2/3가 통째로 흰 여백이 된다.
         body: `<h2 class="stitle" style="color:${c}">KEY ITEMS <span class="thin">${esc(label)} · ${esc(m.name)}</span></h2>
-          <div class="grid3" style="height:calc(100% - 24mm)">
-            ${items.slice(0, 3).map((k, j) => keyItemCard(k, c, at(pool.variation.length ? pool.variation : pool.any, i * 3 + j))).join('')}
+          <div class="grid3" style="height:calc(100% - 24mm);grid-template-columns:repeat(${Math.min(items.length, 3)},1fr)">
+            ${items.slice(0, 3).map((k, j) => keyItemCard(k, c, fill(pool.variation.length ? pool.variation : pool.any, i * 3 + j))).join('')}
           </div>`,
       }))
     }
@@ -449,7 +455,7 @@ function buildDeck(st: RunState): { title: string; html: string } {
           ${esc(MODE_LABEL[p.mode])} MODE · ${esc(d.collected_at)}
         </div>
       </div>
-      <div style="flex:1.15">${img(at(pool.concept, 2) || at(pool.any, 3))}</div>
+      <div style="flex:1.15">${img(at(pool.concept, 2) || fill(pool.any, 3))}</div>
     </div>`,
   }))
 

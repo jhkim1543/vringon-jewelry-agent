@@ -2612,14 +2612,14 @@
    "images": [
     {
      "view": "sketch",
-     "url": "/samples/e9c1b59f92527f12b22a0924.png",
+     "url": "/samples/e9c1b59f92527f12b22a0924.webp",
      "hash": "e9c1b59f92527f12b22a0924",
      "origin": "generated",
      "promptUsed": "A single hoop earrings, shown in straight front view. Construction: prong setting holding exactly 4 round stones of 3.5mm, 925 silver metal with matte finish, shown as a matched pair. Drawn as a designer's technical sketch: black ink outline on white paper, single consistent line weight, no colour at all, no shading, no material texture, orthographic projection, the kind of drawing that goes on a spec sheet. It should read as part of the season direction: observed market signals to answer: 도톰한 튜브형/돔 실루엣, 오벌·레크탱귤러(스테디움) 비율 후프, 힌지드 클릭러 클로저, 하이 폴리시 광택. Material programme of this line: 925 sterling silver, 18K gold vermeil 2.5 micron, nickel-safe (EU REACH nickel release). No logo, no text, no lettering anywhere on the product. No text, no lettering, no watermark, no human, no props."
     },
     {
      "view": "sketch_var",
-     "url": "/samples/48dc0f3a4c59cf5b62010869.png",
+     "url": "/samples/48dc0f3a4c59cf5b62010869.webp",
      "hash": "48dc0f3a4c59cf5b62010869",
      "origin": "edited_from",
      "editedFrom": "e9c1b59f92527f12b22a0924",
@@ -2627,7 +2627,7 @@
     },
     {
      "view": "front",
-     "url": "/samples/17b082b3aad2e8c1140fb0f3.png",
+     "url": "/samples/17b082b3aad2e8c1140fb0f3.webp",
      "hash": "17b082b3aad2e8c1140fb0f3",
      "origin": "generated",
      "editedFrom": "e9c1b59f92527f12b22a0924",
@@ -2635,7 +2635,7 @@
     },
     {
      "view": "design",
-     "url": "/samples/25039eac89c4120e429d9308.png",
+     "url": "/samples/25039eac89c4120e429d9308.webp",
      "hash": "25039eac89c4120e429d9308",
      "origin": "edited_from",
      "editedFrom": "48dc0f3a4c59cf5b62010869",
@@ -2643,14 +2643,14 @@
     },
     {
      "view": "q45",
-     "url": "/samples/aeadd2606fd14a9b274a9193.png",
+     "url": "/samples/aeadd2606fd14a9b274a9193.webp",
      "hash": "aeadd2606fd14a9b274a9193",
      "origin": "edited_from",
      "editedFrom": "17b082b3aad2e8c1140fb0f3"
     },
     {
      "view": "detail",
-     "url": "/samples/8534e1590c8e7bfd0637a915.png",
+     "url": "/samples/8534e1590c8e7bfd0637a915.webp",
      "hash": "8534e1590c8e7bfd0637a915",
      "origin": "edited_from",
      "editedFrom": "17b082b3aad2e8c1140fb0f3"
@@ -2658,7 +2658,7 @@
     {
      "view": "front",
      "colorway": "gold",
-     "url": "/samples/33870604e36b9574bce593dd.png",
+     "url": "/samples/33870604e36b9574bce593dd.webp",
      "hash": "33870604e36b9574bce593dd",
      "origin": "edited_from",
      "editedFrom": "17b082b3aad2e8c1140fb0f3"
@@ -2666,14 +2666,14 @@
     {
      "view": "front",
      "colorway": "black",
-     "url": "/samples/23895e3932431d65a79d2cda.png",
+     "url": "/samples/23895e3932431d65a79d2cda.webp",
      "hash": "23895e3932431d65a79d2cda",
      "origin": "edited_from",
      "editedFrom": "17b082b3aad2e8c1140fb0f3"
     },
     {
      "view": "variation",
-     "url": "/samples/2b38eb3a81e6b11d1821309e.png",
+     "url": "/samples/2b38eb3a81e6b11d1821309e.webp",
      "hash": "2b38eb3a81e6b11d1821309e",
      "origin": "edited_from",
      "editedFrom": "17b082b3aad2e8c1140fb0f3",
@@ -2682,7 +2682,7 @@
     },
     {
      "view": "variation",
-     "url": "/samples/ddcaa40b74abe00e74bbed36.png",
+     "url": "/samples/ddcaa40b74abe00e74bbed36.webp",
      "hash": "ddcaa40b74abe00e74bbed36",
      "origin": "edited_from",
      "editedFrom": "17b082b3aad2e8c1140fb0f3",
@@ -2691,7 +2691,7 @@
     },
     {
      "view": "variation",
-     "url": "/samples/74a7e9a79ddf387f78e7e398.png",
+     "url": "/samples/74a7e9a79ddf387f78e7e398.webp",
      "hash": "74a7e9a79ddf387f78e7e398",
      "origin": "edited_from",
      "editedFrom": "17b082b3aad2e8c1140fb0f3",
@@ -2700,21 +2700,21 @@
     },
     {
      "view": "concept",
-     "url": "/samples/34dd9bcd60df8137c7125f27.png",
+     "url": "/samples/34dd9bcd60df8137c7125f27.webp",
      "hash": "34dd9bcd60df8137c7125f27",
      "origin": "edited_from",
      "editedFrom": "17b082b3aad2e8c1140fb0f3"
     },
     {
      "view": "wear",
-     "url": "/samples/df3a1f6a2738402dff856460.png",
+     "url": "/samples/df3a1f6a2738402dff856460.webp",
      "hash": "df3a1f6a2738402dff856460",
      "origin": "edited_from",
      "editedFrom": "17b082b3aad2e8c1140fb0f3"
     },
     {
      "view": "ortho_front",
-     "url": "/samples/80180c49fecb4143722b2a51.png",
+     "url": "/samples/80180c49fecb4143722b2a51.webp",
      "hash": "80180c49fecb4143722b2a51",
      "origin": "edited_from",
      "editedFrom": "17b082b3aad2e8c1140fb0f3",
@@ -2722,7 +2722,7 @@
     },
     {
      "view": "ortho_left",
-     "url": "/samples/59f29efaa8afe821a69a22cb.png",
+     "url": "/samples/59f29efaa8afe821a69a22cb.webp",
      "hash": "59f29efaa8afe821a69a22cb",
      "origin": "edited_from",
      "editedFrom": "17b082b3aad2e8c1140fb0f3",
@@ -2730,7 +2730,7 @@
     },
     {
      "view": "ortho_back",
-     "url": "/samples/4045f87597d23e2818a456f6.png",
+     "url": "/samples/4045f87597d23e2818a456f6.webp",
      "hash": "4045f87597d23e2818a456f6",
      "origin": "edited_from",
      "editedFrom": "17b082b3aad2e8c1140fb0f3",
@@ -2738,7 +2738,7 @@
     },
     {
      "view": "ortho_right",
-     "url": "/samples/6d3257ebbdcd27010c2d6e21.png",
+     "url": "/samples/6d3257ebbdcd27010c2d6e21.webp",
      "hash": "6d3257ebbdcd27010c2d6e21",
      "origin": "edited_from",
      "editedFrom": "17b082b3aad2e8c1140fb0f3",
@@ -2930,14 +2930,14 @@
    "images": [
     {
      "view": "sketch",
-     "url": "/samples/8538b718c0ced41d2a9b8315.png",
+     "url": "/samples/8538b718c0ced41d2a9b8315.webp",
      "hash": "8538b718c0ced41d2a9b8315",
      "origin": "generated",
      "promptUsed": "A single hoop earrings, shown in straight front view. Construction: bezel setting holding exactly 1 round stone of 3.1mm, 925 silver metal with polished finish, shown as a matched pair. Drawn as a designer's technical sketch: black ink outline on white paper, single consistent line weight, no colour at all, no shading, no material texture, orthographic projection, the kind of drawing that goes on a spec sheet. It should read as part of the season direction: observed market signals to answer: 도톰한 튜브형/돔 실루엣, 오벌·레크탱귤러(스테디움) 비율 후프, 힌지드 클릭러 클로저, 하이 폴리시 광택. Material programme of this line: 925 sterling silver, 18K gold vermeil 2.5 micron, nickel-safe (EU REACH nickel release). No logo, no text, no lettering anywhere on the product. No text, no lettering, no watermark, no human, no props."
     },
     {
      "view": "sketch_var",
-     "url": "/samples/a18011ba03852cd9b99624d4.png",
+     "url": "/samples/a18011ba03852cd9b99624d4.webp",
      "hash": "a18011ba03852cd9b99624d4",
      "origin": "edited_from",
      "editedFrom": "8538b718c0ced41d2a9b8315",
@@ -3150,14 +3150,14 @@
    "images": [
     {
      "view": "sketch",
-     "url": "/samples/a00b0eb82ced227a6c9eb4fb.png",
+     "url": "/samples/a00b0eb82ced227a6c9eb4fb.webp",
      "hash": "a00b0eb82ced227a6c9eb4fb",
      "origin": "generated",
      "promptUsed": "A single hoop earrings, shown in straight front view. Construction: prong setting holding exactly 1 round stone of 1.3mm, 925 silver metal with hammered finish, shown as a matched pair. Drawn as a designer's technical sketch: black ink outline on white paper, single consistent line weight, no colour at all, no shading, no material texture, orthographic projection, the kind of drawing that goes on a spec sheet. It should read as part of the season direction: observed market signals to answer: 도톰한 튜브형/돔 실루엣, 오벌·레크탱귤러(스테디움) 비율 후프, 힌지드 클릭러 클로저, 하이 폴리시 광택. Material programme of this line: 925 sterling silver, 18K gold vermeil 2.5 micron, nickel-safe (EU REACH nickel release). No logo, no text, no lettering anywhere on the product. No text, no lettering, no watermark, no human, no props."
     },
     {
      "view": "sketch_var",
-     "url": "/samples/be3150d7fe5a5183947b3f36.png",
+     "url": "/samples/be3150d7fe5a5183947b3f36.webp",
      "hash": "be3150d7fe5a5183947b3f36",
      "origin": "edited_from",
      "editedFrom": "a00b0eb82ced227a6c9eb4fb",
@@ -3165,7 +3165,7 @@
     },
     {
      "view": "front",
-     "url": "/samples/6910ea474d6f209ea0a9129b.png",
+     "url": "/samples/6910ea474d6f209ea0a9129b.webp",
      "hash": "6910ea474d6f209ea0a9129b",
      "origin": "generated",
      "editedFrom": "a00b0eb82ced227a6c9eb4fb",
@@ -3173,7 +3173,7 @@
     },
     {
      "view": "design",
-     "url": "/samples/92a49805befa17784c863a61.png",
+     "url": "/samples/92a49805befa17784c863a61.webp",
      "hash": "92a49805befa17784c863a61",
      "origin": "edited_from",
      "editedFrom": "be3150d7fe5a5183947b3f36",
@@ -3181,14 +3181,14 @@
     },
     {
      "view": "detail",
-     "url": "/samples/f2a1e272c465ee2c4ba9e886.png",
+     "url": "/samples/f2a1e272c465ee2c4ba9e886.webp",
      "hash": "f2a1e272c465ee2c4ba9e886",
      "origin": "edited_from",
      "editedFrom": "6910ea474d6f209ea0a9129b"
     },
     {
      "view": "q45",
-     "url": "/samples/daa41209f6d3f7b4fb7c5327.png",
+     "url": "/samples/daa41209f6d3f7b4fb7c5327.webp",
      "hash": "daa41209f6d3f7b4fb7c5327",
      "origin": "edited_from",
      "editedFrom": "6910ea474d6f209ea0a9129b"
@@ -3196,7 +3196,7 @@
     {
      "view": "front",
      "colorway": "gold",
-     "url": "/samples/2e87f497bb339b1b5e4241b1.png",
+     "url": "/samples/2e87f497bb339b1b5e4241b1.webp",
      "hash": "2e87f497bb339b1b5e4241b1",
      "origin": "edited_from",
      "editedFrom": "6910ea474d6f209ea0a9129b"
@@ -3204,14 +3204,14 @@
     {
      "view": "front",
      "colorway": "black",
-     "url": "/samples/45d31a0db9703a1df57c80da.png",
+     "url": "/samples/45d31a0db9703a1df57c80da.webp",
      "hash": "45d31a0db9703a1df57c80da",
      "origin": "edited_from",
      "editedFrom": "6910ea474d6f209ea0a9129b"
     },
     {
      "view": "variation",
-     "url": "/samples/c1935b149f7dbb43e3b99b44.png",
+     "url": "/samples/c1935b149f7dbb43e3b99b44.webp",
      "hash": "c1935b149f7dbb43e3b99b44",
      "origin": "edited_from",
      "editedFrom": "6910ea474d6f209ea0a9129b",
@@ -3220,7 +3220,7 @@
     },
     {
      "view": "variation",
-     "url": "/samples/2203acfb449ecbaf79b462a7.png",
+     "url": "/samples/2203acfb449ecbaf79b462a7.webp",
      "hash": "2203acfb449ecbaf79b462a7",
      "origin": "edited_from",
      "editedFrom": "6910ea474d6f209ea0a9129b",
@@ -3229,7 +3229,7 @@
     },
     {
      "view": "variation",
-     "url": "/samples/20e2633de2acddc9c3cf0d09.png",
+     "url": "/samples/20e2633de2acddc9c3cf0d09.webp",
      "hash": "20e2633de2acddc9c3cf0d09",
      "origin": "edited_from",
      "editedFrom": "6910ea474d6f209ea0a9129b",
@@ -3415,14 +3415,14 @@
    "images": [
     {
      "view": "sketch",
-     "url": "/samples/1f187d4c1152a9a944a51214.png",
+     "url": "/samples/1f187d4c1152a9a944a51214.webp",
      "hash": "1f187d4c1152a9a944a51214",
      "origin": "generated",
      "promptUsed": "A single hoop earrings, shown in straight front view. Construction: prong setting holding exactly 6 round stones of 1.7mm, 925 silver metal with matte finish, shown as a matched pair. Drawn as a designer's technical sketch: black ink outline on white paper, single consistent line weight, no colour at all, no shading, no material texture, orthographic projection, the kind of drawing that goes on a spec sheet. It should read as part of the season direction: observed market signals to answer: 도톰한 튜브형/돔 실루엣, 오벌·레크탱귤러(스테디움) 비율 후프, 힌지드 클릭러 클로저, 하이 폴리시 광택. Material programme of this line: 925 sterling silver, 18K gold vermeil 2.5 micron, nickel-safe (EU REACH nickel release). No logo, no text, no lettering anywhere on the product. No text, no lettering, no watermark, no human, no props."
     },
     {
      "view": "sketch_var",
-     "url": "/samples/0f31228120f841ea04dffb70.png",
+     "url": "/samples/0f31228120f841ea04dffb70.webp",
      "hash": "0f31228120f841ea04dffb70",
      "origin": "edited_from",
      "editedFrom": "1f187d4c1152a9a944a51214",
@@ -3607,14 +3607,14 @@
    "images": [
     {
      "view": "sketch",
-     "url": "/samples/30d1030cf1fa63b196f59bd8.png",
+     "url": "/samples/30d1030cf1fa63b196f59bd8.webp",
      "hash": "30d1030cf1fa63b196f59bd8",
      "origin": "generated",
      "promptUsed": "A single hoop earrings, shown in straight front view. Construction: channel setting holding exactly 5 round stones of 2.1mm, 925 silver metal with matte finish, shown as a matched pair. Drawn as a designer's technical sketch: black ink outline on white paper, single consistent line weight, no colour at all, no shading, no material texture, orthographic projection, the kind of drawing that goes on a spec sheet. It should read as part of the season direction: observed market signals to answer: 도톰한 튜브형/돔 실루엣, 오벌·레크탱귤러(스테디움) 비율 후프, 힌지드 클릭러 클로저, 하이 폴리시 광택. Material programme of this line: 925 sterling silver, 18K gold vermeil 2.5 micron, nickel-safe (EU REACH nickel release). No logo, no text, no lettering anywhere on the product. No text, no lettering, no watermark, no human, no props."
     },
     {
      "view": "sketch_var",
-     "url": "/samples/77ed6d26ceaa7a33dfa3eeb2.png",
+     "url": "/samples/77ed6d26ceaa7a33dfa3eeb2.webp",
      "hash": "77ed6d26ceaa7a33dfa3eeb2",
      "origin": "edited_from",
      "editedFrom": "30d1030cf1fa63b196f59bd8",
@@ -3805,14 +3805,14 @@
    "images": [
     {
      "view": "sketch",
-     "url": "/samples/b6317f04bd078ab1c6358a42.png",
+     "url": "/samples/b6317f04bd078ab1c6358a42.webp",
      "hash": "b6317f04bd078ab1c6358a42",
      "origin": "generated",
      "promptUsed": "A single hoop earrings, shown in straight front view. Construction: prong setting holding exactly 9 round stones of 2.2mm, 925 silver metal with polished finish, shown as a matched pair. Drawn as a designer's technical sketch: black ink outline on white paper, single consistent line weight, no colour at all, no shading, no material texture, orthographic projection, the kind of drawing that goes on a spec sheet. It should read as part of the season direction: observed market signals to answer: 도톰한 튜브형/돔 실루엣, 오벌·레크탱귤러(스테디움) 비율 후프, 힌지드 클릭러 클로저, 하이 폴리시 광택. Material programme of this line: 925 sterling silver, 18K gold vermeil 2.5 micron, nickel-safe (EU REACH nickel release). No logo, no text, no lettering anywhere on the product. No text, no lettering, no watermark, no human, no props."
     },
     {
      "view": "sketch_var",
-     "url": "/samples/c5d61c9283870660063230d2.png",
+     "url": "/samples/c5d61c9283870660063230d2.webp",
      "hash": "c5d61c9283870660063230d2",
      "origin": "edited_from",
      "editedFrom": "b6317f04bd078ab1c6358a42",
@@ -3966,5 +3966,13 @@
   }
  ],
  "sampleTitle": "Gold vermeil hoop - full cycle with 3D",
- "savedAtISO": "2026-08-08T09:06:54.945Z"
+ "savedAtISO": "2026-08-08T09:06:54.945Z",
+ "reportArt": {
+  "cover": "/samples/ad2245150beaa5886b4ac555.webp",
+  "sections": {
+   "LIQUID METAL": "/samples/a62d1a6777769195edf0b25e.webp",
+   "MEGA COLLAR": "/samples/be8d0f91200430a0e2a071a0.webp",
+   "MIXED METAL": "/samples/1f8b07d0bf2bc6f060959e3b.webp"
+  }
+ }
 }

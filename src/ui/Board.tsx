@@ -21,14 +21,48 @@ import { ModelViewer } from './ModelViewer'
 import { copyText, shareLink } from '../core/share'
 
 const COL_X = [0, 440, 880, 1300, 1760, 2520, 2980, 3440]
+const COL_GAP_X = 460   // 표에 없는 칸(칸 추가 등)은 이 간격으로 이어 붙인다
+/** 칸 번호 → x. 표 끝을 넘어가면 **잘라 붙이지 말고 이어서 늘린다.**
+ *  예전에는 마지막 값으로 잘라 냈는데, 그러면 8번째 이후 칸이 모두 같은 x 에 겹쳐 서서
+ *  서로 다른 칸의 카드가 완전히 포개졌다(3D 카드와 캠페인 카드가 실제로 그랬다). */
+const laneX = (i: number) => i < COL_X.length ? COL_X[i] : COL_X[COL_X.length - 1] + (i - COL_X.length + 1) * COL_GAP_X
 const colX = (c: number) => {
   const i = Math.floor(c)
-  const base = COL_X[Math.min(i, COL_X.length - 1)]
-  const next = COL_X[Math.min(i + 1, COL_X.length - 1)]
-  return base + (c - i) * (next - base)
+  return laneX(i) + (c - i) * (laneX(i + 1) - laneX(i))
 }
 const ROW_Y = 150
 const CARD_GAP = 28
+
+/** 걸러낸 뒤 남은 칸을 원래 간격 그대로 왼쪽에 붙여 다시 세운다.
+ *  사라진 칸이 있던 만큼 가로로 빈 자리가 생기는데, 그대로 두면 남은 카드가
+ *  화면 밖으로 밀려 "필터가 안 먹는다"로 보인다.
+ *  칸 배경은 카드보다 24px 왼쪽에 서므로 그 차이를 되돌린 뒤 같은 양을 함께 옮긴다.
+ *  곁가지 레인(4.5 같은 소수 컬럼)은 자기 칸을 갖지 않고 왼쪽 정수 칸을 따라간다. */
+function repackColumns(ns: Node[]): Node[] {
+  const laneOf = (n: Node) => Math.round(n.position.x + (n.type === 'column' ? 24 : 0))
+  const isLane = new Map<number, number>()   // x → 칸 번호
+  for (let i = 0; i < 24; i++) isLane.set(Math.round(laneX(i)), i)
+  const anchors = [...new Set(ns.map(laneOf).filter(x => isLane.has(x)))].sort((a, b) => a - b)
+  if (!anchors.length) return ns
+  const shift = new Map<number, number>()
+  let x = 0
+  for (const a of anchors) {
+    shift.set(a, x - a)
+    const i = isLane.get(a)!
+    x += laneX(i + 1) - laneX(i)
+  }
+  // 정수 칸 사이에 낀 좌표(곁가지)는 바로 왼쪽 칸의 이동량을 그대로 쓴다
+  const shiftFor = (lane: number) => {
+    if (shift.has(lane)) return shift.get(lane)!
+    let best = 0
+    for (const a of anchors) if (a <= lane) best = shift.get(a)!
+    return best
+  }
+  return ns.map(n => {
+    const dx = shiftFor(laneOf(n))
+    return dx === 0 ? n : { ...n, position: { x: n.position.x + dx, y: n.position.y } }
+  })
+}
 
 // 카드 높이는 내용에 따라 크게 달라진다(사진 한 장이 200px을 먹는다).
 // 고정 간격으로 쌓으면 반드시 겹치므로, 글이 몇 줄로 접히는지까지 재서 높이를 낸다.
@@ -298,20 +332,50 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
   const [tool, setTool] = useState<'select' | 'note' | 'lane'>('select')
   const [zoomPct, setZoomPct] = useState(100)
 
+  const [filterEmpty, setFilterEmpty] = useState(false)
   useEffect(() => {
-    // 열(column) 노드는 늘 남긴다. 빼면 화면이 뼈대를 잃는다.
     const KEEP: Record<string, string[]> = {
       research: ['input', 'research', 'signal', 'direction'],
-      design: ['design', 'appendix'],
+      // appendix 는 어느 갈래에도 넣지 않는다. 전제·한계를 적은 꼬리말이라
+      // 디자인 쪽에 끼워 두면 **디자인이 하나도 없는 런에서도 카드가 한 장 남아**
+      // "비어 있다"고 알리지 못하고 텅 빈 보드처럼 보인다.
+      design: ['design'],
       selection: ['selection'],
     }
     const allow = KEEP[kindFilter]
-    setNodes(build(st, onVerdict, edits, ed).nodes
-      // 종류는 data.n.kind 에 있다. data.kind 는 열 노드에만 없는 게 아니라 아예 없다.
-      .filter(n => !allow || n.type === 'column'
-        || allow.includes(String((n.data as { n?: BoardNode })?.n?.kind ?? '')))
-      .map(n => positionsRef.current[n.id] ? { ...n, position: positionsRef.current[n.id] } : n))
+    const all = build(st, onVerdict, edits, ed).nodes
+    const kindOf = (n: Node) => String((n.data as { n?: BoardNode })?.n?.kind ?? '')
+    const kept = all.filter(n => !allow || n.type === 'column' || allow.includes(kindOf(n)))
+    const cards = kept.filter(n => n.type !== 'column')
+    setFilterEmpty(!!allow && cards.length === 0)
+    // 카드가 하나도 안 남은 칸은 배경만 덩그러니 남는다. 칸 배경은 카드보다 24px 왼쪽에
+    // 놓이므로, 그 자리에 카드가 있는 칸만 남긴다.
+    const visible = allow
+      ? kept.filter(n => n.type !== 'column'
+        || cards.some(c => Math.abs(c.position.x - n.position.x - 24) < 1))
+      : kept
+    const placed = visible.map(n => positionsRef.current[n.id] ? { ...n, position: positionsRef.current[n.id] } : n)
+    // 걸러내고 남은 칸을 왼쪽으로 당겨 붙인다. 사라진 칸이 있던 만큼 가로로 빈 자리가 생기는데,
+    // 그대로 두면 카메라 위치에 따라 남은 카드가 통째로 화면 밖이 되어 "필터가 안 먹는다"로 보인다.
+    // (fitView 로도 잡히지만 카메라에만 기대면 첫 화면이 어디였는지에 따라 결과가 갈린다.)
+    setNodes(allow ? repackColumns(placed) : placed)
   }, [st, onVerdict, edits, ed, kindFilter])
+
+  // 필터를 바꾸면 화면을 남은 카드로 다시 맞춘다. 이게 없으면 카메라가 그대로 있어서
+  // 남은 칸이 화면 밖일 때 필터가 아무 일도 안 한 것처럼 보인다.
+  const firstFit = useRef(true)
+  useEffect(() => {
+    if (firstFit.current) { firstFit.current = false; return }
+    const t = setTimeout(() => rf.fitView({ duration: 400, padding: 0.14 }), 60)
+    return () => clearTimeout(t)
+  }, [kindFilter, rf])
+
+  // 걸러낸 카드로 가는 선은 함께 지운다. 남겨 두면 끝이 허공에 뜬 선이 그려진다.
+  const visibleEdges = useMemo(() => {
+    if (!showEdges) return []
+    const live = new Set(nodes.map(n => n.id))
+    return initial.edges.filter(e => live.has(e.source) && live.has(e.target))
+  }, [showEdges, initial.edges, nodes])
 
   // 노드 측정이 늦게 끝나는 환경에서도 첫 화면이 전체 흐름으로 맞춰지게 한다
   useEffect(() => {
@@ -499,6 +563,19 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
         <div className="board-toast" onClick={() => setMiro(m => ({ ...m, msg: null }))}>{miro.msg}</div>
       )}
 
+      {/* 걸러낸 결과가 비면 왜 비었는지 말해 준다. 빈 화면만 두면 고장으로 읽힌다. */}
+      {filterEmpty && !present && (
+        <div className="board-empty">
+          <b>{t('Nothing in this view')}</b>
+          <span>{kindFilter === 'design'
+            ? t('This run stopped before any design was drawn.')
+            : kindFilter === 'selection'
+            ? t('Nothing has been picked on this run yet.')
+            : t('This run has no cards of that kind.')}</span>
+          <button className="btn btn-ghost btn-sm" onClick={() => setKindFilter('all')}>{t('Show everything')}</button>
+        </div>
+      )}
+
       {miroAsk && (
         <div className="dv-modal" onClick={() => setMiroAsk(false)}>
           <div className="dv-modal-box" style={{ width: 'min(460px,100%)' }} onClick={e => e.stopPropagation()}>
@@ -525,7 +602,7 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
       )}
       <ReactFlow
         nodes={nodes}
-        edges={showEdges ? initial.edges : []}
+        edges={visibleEdges}
         onNodesChange={onNodesChange}
         nodeTypes={nodeTypes}
         fitView

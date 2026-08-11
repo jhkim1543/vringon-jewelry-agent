@@ -142,7 +142,9 @@ export function slide(opts: {
  *  링크가 죽는 일은 흔하므로(핫링크 차단·소멸) 인쇄 직전에 한 번 훑어 정리한다. */
 function tidyDeck(doc: Document) {
   for (const im of Array.from(doc.images)) {
-    if (!im.complete || im.naturalWidth === 0) (im.closest('.frame') ?? im).remove()
+    // 다 받고서 실패한 것만 지운다. `!complete` 까지 실패로 치면 아직 받는 중인 사진이
+    // 전부 날아간다 — 로딩 대기가 시간 초과로 끝났을 때 리포트의 사진이 통째로 사라졌다.
+    if (im.complete && im.naturalWidth === 0) (im.closest('.frame') ?? im).remove()
   }
   // 안이 빈 칸은 자리를 차지하지 않게 접는다. 여러 겹으로 감싼 경우가 있어 몇 번 돈다.
   for (let pass = 0; pass < 4; pass++) {
@@ -160,7 +162,7 @@ const TIDY_SCRIPT = `<script>
 addEventListener('load', function () {
   var run = function () {
     Array.prototype.forEach.call(document.images, function (im) {
-      if (!im.complete || im.naturalWidth === 0) { var f = im.closest('.frame') || im; f.remove() }
+      if (im.complete && im.naturalWidth === 0) { var f = im.closest('.frame') || im; f.remove() }
     })
     for (var p = 0; p < 4; p++) {
       var gone = 0

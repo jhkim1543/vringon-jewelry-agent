@@ -485,6 +485,7 @@ export type PipelineEvent =
   | { kind: 'signals'; signals: Signal[] }
   | { kind: 'competitors'; items: CompetitorProduct[] }
   | { kind: 'bestsellers'; items: BestsellerProduct[] }
+  | { kind: 'report-art'; cover?: string; sections?: Record<string, string> }
   | { kind: 'directions'; items: Direction[] }
   | { kind: 'series-dna'; dna: SeriesDna }
   | { kind: 'dna-conflict'; brandClaim: string; observed: string }
@@ -512,6 +513,8 @@ export interface RunState {
   dnaConflict: { brandClaim: string; observed: string; resolved?: string } | null
   reportBias: ReportBias | null
   trendReport: unknown | null
+  /** 리포트를 여는 무드컷 · 조사 사진과 달리 증거가 아니라 편집 아트다 */
+  reportArt?: { cover?: string; sections?: Record<string, string> }
   /** 시즌 도시에 · MICAM 형식의 구조화된 트렌드 자료 */
   dossier: unknown | null
   dossierPending: boolean

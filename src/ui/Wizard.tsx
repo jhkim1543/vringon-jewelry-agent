@@ -40,12 +40,15 @@ const SCOPE_NAME: Record<Stage, string> = {
 
 // 각 범위가 실제로 무엇을 내놓는지, 지난 Run에서 나온 결과물로 보여준다.
 const BASE = import.meta.env.BASE_URL || '/'
+// 남아 있는 데모 샘플(sample_jewel_vermeilhoop)의 실제 산출물을 가리킨다.
+// 샘플을 갈아엎을 때 이 파일들이 함께 지워지면 위저드 미리보기가 통째로 깨진다 —
+// prune-samples 를 돌린 뒤에는 여기 네 경로가 살아 있는지 반드시 확인할 것.
 const SCOPE_ART: Record<Stage, string | null> = {
   S1: null,
-  S2: `${BASE}samples/574e40e504365aa6469c4ddc.webp`,   // 후프 스케치
-  S3: `${BASE}samples/2a28068aad3e78a6cf206c75.webp`,   // 완성 렌더
-  S4: `${BASE}samples/23a39e716b7de8de1dcf415d.webp`,   // 착용 컷
-  S5: `${BASE}samples/d9bf59452bd8eb8d95ee1b30.webp`,   // 3D용 정사영 뷰
+  S2: `${BASE}samples/e9c1b59f92527f12b22a0924.webp`,   // 잉크 스케치
+  S3: `${BASE}samples/17b082b3aad2e8c1140fb0f3.webp`,   // 완성 렌더
+  S4: `${BASE}samples/df3a1f6a2738402dff856460.webp`,   // 착용 컷
+  S5: `${BASE}samples/80180c49fecb4143722b2a51.webp`,   // 3D용 정사영 뷰
 }
 
 /** 리포트 미리보기 · S1은 이미지가 아니라 문서라서 문서처럼 그린다 */

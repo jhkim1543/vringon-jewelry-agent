@@ -33,6 +33,11 @@ function build(st: RunState): { title: string; html: string } {
   // 조사 지문 · 표지가 "무엇을 보고 쓴 리포트인지"를 먼저 밝힌다
   const lineStr = p.line ? `${metalProgramOf(p.line)} · ${stoneProgramOf(p.line)}` : ''
   const captured = (st.dossier as { collected_at?: string } | null)?.collected_at ?? ''
+  const art = st.reportArt
+  // 생성 아트는 마지막 보루다 · 이번 분석의 실제 컷이 하나라도 있으면 그쪽이 먼저 쓰인다.
+  // 조사만 돌린 런(S1)에는 렌더가 아예 없어서, 이게 없으면 사진 칸이 통째로 여백이 된다.
+  const artList = [art?.cover ?? '', ...Object.values(art?.sections ?? {})].filter(Boolean)
+  const fill = (l: string[], i: number) => at(l, i) || at(artList, i)
   const eyebrow = `${item} trend report`
   const out: string[] = []
   let page = 0
@@ -51,7 +56,7 @@ function build(st: RunState): { title: string; html: string } {
           ${esc(MODE_LABEL[p.mode])} mode · ${st.signals.length} signals${captured ? ` · collected ${esc(captured)}` : ''}
         </div>
       </div>
-      <div style="flex:1.15">${img(at(pool.concept, 0) || at(pool.any, 0))}</div>
+      <div style="flex:1.15">${img(art?.cover || at(pool.concept, 0) || at(pool.any, 0))}</div>
     </div>`,
   }))
 
@@ -76,10 +81,10 @@ function build(st: RunState): { title: string; html: string } {
         </div>
       </div>
       <div style="flex:1;display:flex;flex-direction:column;gap:4mm">
-        <div style="flex:1">${img(at(pool.any, 1))}</div>
+        <div style="flex:1">${img(fill(pool.any, 1))}</div>
         <div style="flex:1;display:flex;gap:4mm">
-          <div style="flex:1">${img(at(pool.wear, 0))}</div>
-          <div style="flex:1">${img(at(pool.concept, 1))}</div>
+          <div style="flex:1">${img(fill(pool.wear, 0))}</div>
+          <div style="flex:1">${img(fill(pool.concept, 1))}</div>
         </div>
       </div>
     </div>`,
@@ -166,7 +171,7 @@ function build(st: RunState): { title: string; html: string } {
             return `<p>${esc(x)}</p>`
           }).join('')}
         </div>
-        <div style="flex:.55">${img(at(pool.any, 2 + i))}</div>
+        <div style="flex:.55">${img(fill(pool.any, 2 + i))}</div>
       </div>`,
     }))
   }
