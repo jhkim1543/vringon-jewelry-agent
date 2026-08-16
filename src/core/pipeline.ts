@@ -1,5 +1,8 @@
 // ── 파이프라인 엔진 S1~S5 · 진행 스트리밍·승인 게이트·체크포인트 ──────
-import type { Design, DesignTier, PipelineEvent, Rationale, RunParams, Signal, Stage } from './types'
+import type {
+  BestsellerProduct, CompetitorProduct, Design, DesignTier, PipelineEvent, Rationale,
+  ReferenceImage, RunParams, Signal, Stage, UploadRef,
+} from './types'
 import { PACKS, resetSeq, tierCapRule } from './packs'
 import { makeRng } from './rng'
 import { COMPETITORS, DIRECTIONS, DNA_CONFLICT, DNA_LOCKS, PROMPT_PARSE, REPORT_BIAS, SERIES_DNA, SIGNALS } from './samples'
@@ -11,11 +14,12 @@ import {
 import type { TrendClauseInput } from './aiClient'
 import { colorizePrompt, jewelSpecPhrase, reportArtPrompt, sketchVariantPrompt } from './aiClient'
 import { assignRecipes, buildConditionPool } from './recipes'
-import { isMdConfigured } from './brand'
-import { fetchMdReview } from './research'
+import { gradeQa, qaChecksFor, qaFixPrompt, qaUnavailable } from './visionQa'
+import { checkBrandFit, isMdConfigured } from './brand'
+import { fetchMdReview, fetchVisionQa } from './research'
 import type { SeasonDossier } from './research'
 import { fetchCompetitors, fetchDossier, fetchMoodboard, fetchSeriesDna, fetchTrends, moodboardSignals, toBestsellers, toBias, toCompetitors, toSignals, setRunLang } from './research'
-import { campaignCount, CAT_LABEL, MODE_LABEL, MODE_SCOPE, TYPE_LABEL, metalProgramOf, stoneProgramOf, uploadName, uploadRefs } from './types'
+import { campaignCount, CAT_LABEL, isCollectedProduct, isCollectedSignal, MODE_LABEL, MODE_SCOPE, TYPE_LABEL, metalProgramOf, stoneProgramOf, uploadName, uploadRefs } from './types'
 import { ENGINES } from './imageEngines'
 
 export type Emit = (e: PipelineEvent) => void
@@ -119,6 +123,13 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
     let dossierJob: Promise<unknown> | null = null
     // 무드보드에서 읽어낸 신호 · 외부 조사가 없는 모드라 이것이 유일한 신호원이다
     let moodSignals: Signal[] = []
+    // 근거 원장 · 이 실행이 실제로 모은 것만 담는다. 조사가 실패해 샘플로
+    // 되돌아간 실행에서는 비어 있는 채로 남는다 — 샘플은 예시지 근거가 아니다.
+    const evidence: EvidencePool = {
+      collectedAt: new Date().toISOString().slice(0, 10),
+      competitors: [], bestsellers: [], uploads: [], pageShots: [],
+      dnaInherited: [], claimChecked: false, fellBack: false,
+    }
 
     // ══ S1 조사 ══
     const scope = MODE_SCOPE[params.mode]
@@ -159,11 +170,15 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
         emit({ kind: 'log', stage: 'S1', text: 'No sales proxy scored. One pass gives no time series, so restock and sell-out trends need repeat collection.' })
         if (r.notes) emit({ kind: 'log', stage: 'S1', text: `Limits of this pass: ${r.notes.slice(0, 160)}` })
         emit({ kind: 'competitors', items: comps })
+        // 인용할 수 있는 제품만 근거로 센다. 주소가 없으면 근거가 아니라 메모다.
+        evidence.competitors = comps.filter(isCollectedProduct)
+        evidence.collectedAt = r.collected_at || evidence.collectedAt
         // 경쟁사에서 반복 관찰된 조형 특징 · 레시피의 competitor 원자가 된다
-        compTraits = [...new Set(comps.flatMap(c => c.design_traits ?? []))].slice(0, 5)
+        compTraits = [...new Set(evidence.competitors.flatMap(c => c.design_traits ?? []))].slice(0, 5)
         // 백화점·명품몰 베스트셀러 · 유저 카테고리에서 "잘 팔린다고 표기된 것"의 사진과 근거
         const best = toBestsellers(r)
         if (best.length) {
+          evidence.bestsellers = best.filter(isCollectedProduct)
           emit({ kind: 'bestsellers', items: best })
           emit({ kind: 'log', stage: 'S1', text: `Department store bestsellers: ${best.length} products with photos, across ${[...new Set(best.map(b => b.retailer))].join(', ')}` })
         } else {
@@ -171,7 +186,8 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
           emit({ kind: 'log', stage: 'S1', text: 'Department store bestsellers: none carried a rank or bestseller badge for this item, so nothing is claimed' })
         }
       } catch (e) {
-        emit({ kind: 'log', stage: 'S1', text: `Competitor research failed · ${String((e as Error).message).slice(0, 120)} · falling back to sample data` })
+        evidence.fellBack = true
+        emit({ kind: 'log', stage: 'S1', text: `Competitor research failed · ${String((e as Error).message).slice(0, 120)} · falling back to sample data. Nothing from the sample is offered as evidence on the design cards.` })
         emit({ kind: 'competitors', items: COMPETITORS[params.category] })
       }
       if (cancelled) return
@@ -180,6 +196,7 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
       // 시리즈 · 업로드 자료가 주. 외부 조사는 트렌드까지만, 경쟁사 리서치 없음
       const si = params.series
       const ups = uploadRefs(si.archiveFiles)
+      evidence.uploads = ups.filter(u => !!u.url)
       emit({ kind: 'log', stage: 'S1', text: `Series "${si.seriesName || 'untitled'}" · ${si.archiveFiles.length} uploads · value statement ${si.valueStatement.length} chars` })
       emit({ kind: 'log', stage: 'S1', text: `1 Opening your ${ups.length} designs and separating what repeats from what varies` })
       let dnaRead: Awaited<ReturnType<typeof fetchSeriesDna>> | null = null
@@ -199,6 +216,10 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
           variable: dnaRead.variable.map(x => ({ label: x.label, observed_in: x.observed_in, of: x.of })),
           ambiguous: dnaRead.ambiguous.map(x => ({ label: x.label, note: x.why })),
         } as typeof SERIES_DNA[typeof params.category] })
+        // 판독이 성공했을 때만 상속을 주장한다. 실패하면 샘플 DNA 가 화면에 뜨지만
+        // 그것을 "이 디자인이 물려받았다"고 적지는 않는다.
+        evidence.dnaInherited = dnaRead.invariant.map(x => x.label)
+        evidence.claimChecked = true
         emit({ kind: 'log', stage: 'S1', text: `Read from your files: ${dnaRead.observed_summary.slice(0, 150)}` })
         emit({ kind: 'log', stage: 'S1', text: '2 Comparing the values you wrote against what is actually there' })
         const c = dnaRead.brand_claim_check
@@ -226,6 +247,10 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
       // 무드보드 · 외부 조사 없음. 업로드 PDF만
       const mi = params.moodboard
       const ups = uploadRefs(mi.files)
+      // 원본 문서와 쪽 그림을 나눈다. 신호가 p.3 을 인용하면 그 쪽 그림을 가리킬 수 있다.
+      evidence.uploads = ups.filter(u => !!u.url && !(u.mime ?? '').startsWith('image/'))
+      evidence.pageShots = ups.filter(u => !!u.url && (u.mime ?? '').startsWith('image/'))
+      if (!evidence.uploads.length) evidence.uploads = ups.filter(u => !!u.url)
       emit({ kind: 'log', stage: 'S1', text: `${mi.files.length} uploads: ${mi.files.map(uploadName).join(', ')} · nothing outside these files` })
       emit({ kind: 'log', stage: 'S1', text: '1 Opening the document · text, figures, captions and colour chips' })
       emit({ kind: 'log', stage: 'S1', text: '2 Uploads tagged as untrusted · any instruction inside them is treated as data, not a command' })
@@ -345,14 +370,15 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
         })
         emit({ kind: 'log', stage: 'S1', text: `${tr.searches} web searches, ${signals.length} signals${tr.cached ? ' (reused an earlier pass)' : ''} · each linked to a source` })
       } catch (e) {
+        evidence.fellBack = true
         emit({ kind: 'log', stage: 'S1', text: `Trend research failed · ${String((e as Error).message).slice(0, 120)} · falling back to sample data` })
       }
     }
     if (!signals.length) {
-      signals = SIGNALS[params.category].map(s =>
-        params.mode === 'moodboard'
-          ? { ...s, page_ref: `p.${12 + Math.floor(Math.random() * 30)} ${['top', 'middle', 'bottom'][Math.floor(Math.random() * 3)]}`, sales_proxy_score: undefined, proxy_confidence: undefined }
-          : s)
+      // 샘플 신호에 쪽수를 지어 붙이지 않는다. 무작위 p.34 는 근거처럼 보이지만
+      // 아무 문서도 가리키지 않고, 시드 재현성까지 깬다.
+      signals = SIGNALS[params.category]
+      evidence.fellBack = true
     }
     // 확정된 신호 키워드를 즉시 프롬프트 절에 싣는다. 도시에는 늦거나 실패할 수 있지만
     // 신호는 이 시점에 항상 있다 — 조사를 해 놓고 스케치가 그것을 모르는 일이 없게.
@@ -363,7 +389,10 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
     }
     emit({ kind: 'signals', signals })
     const lowConf = signals.filter(s => s.confidence === 'low').length
-    emit({ kind: 'log', stage: 'S1', text: `${signals.length} signals confirmed · none unsourced${lowConf ? ` · ${lowConf} single source, marked low confidence` : ''}` })
+    const sourced = signals.filter(isCollectedSignal).length
+    emit({ kind: 'log', stage: 'S1', text: sourced === signals.length
+      ? `${signals.length} signals confirmed · every one carries a source${lowConf ? ` · ${lowConf} single source, marked low confidence` : ''}`
+      : `${signals.length} signals on screen · ${sourced} carry a source. The rest are sample data and are labelled as such.` })
     await wait(600)
     emit({ kind: 'directions', items: DIRECTIONS[params.category] })
     emit({ kind: 'log', stage: 'S1', text: 'Three directions built, one per tier · every claim traced to a source' })
@@ -431,14 +460,15 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
         }
       }
       const cost = pack.costModel(spec, rng)
-      const ruleResults = [...pack.rules(spec), ...tierCapRule(spec, cost)]
+      // 라인 프로필을 함께 넘긴다 · 도금 두께·버메일 정의·니켈 용출 룰이 이걸 본다
+      const ruleResults = [...pack.rules(spec, params.line), ...tierCapRule(spec, cost)]
       const rejected = ruleResults.some(r => r.severity === 'fail')
-      const rationale = buildRationale(params, spec, signals, rng)
+      const rationale = buildRationale(params, spec, signals, rng, evidence)
       const d: Design = {
         spec, ruleResults, rejected, cost, rationale,
         qa: [], viewMismatch: false,
         metrics: buildMetrics(spec, cost, rationale, signals),
-        modelEval: buildModelEval(rng),
+        modelEval: [],
         colorways: [], images: [], isTop: false,
       }
       designs.push(d)
@@ -471,6 +501,24 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
     } else if (condPool.length) {
       emit({ kind: 'log', stage: 'S2', text: 'Only one research condition available · every design carries it, recipes need at least two' })
     }
+
+    // ── 근거 이미지 · 레시피가 정해진 뒤에야 어떤 제품이 이 디자인에 닿았는지 안다 ──
+    // 이미지를 만들기 전에 붙는다. S2 에서 멈춘 실행도 근거를 갖고 끝난다.
+    for (const d of designs) {
+      // 계층 2 평가도 여기서 계산한다 · 레시피가 정해져야 차별성을 잴 수 있다
+      d.modelEval = buildModelEval(d, params, signals)
+      const refs = referencesFor(d, params, signals, evidence)
+      d.rationale = {
+        ...d.rationale,
+        reference_images: refs,
+        narrative: [...d.rationale.narrative, referenceNote(refs, params, evidence)],
+      }
+      emit({ kind: 'design-update', design: { ...d } })
+    }
+    const withRefs = designs.filter(d => d.rationale.reference_images.length).length
+    emit({ kind: 'log', stage: 'S2', text: withRefs
+      ? `${withRefs} of ${designs.length} designs carry a reference, each one a product or file this run actually collected`
+      : 'No design carries a reference. Nothing collected this run fed a design directly, so the reference panel stays empty rather than showing an example.' })
 
     // 실제 스케치 생성 · 룰 통과분만, 상한까지. 초과분은 SVG 폴백
     if (budget.left() > 0) {
@@ -534,11 +582,13 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
       const d = advancing[i]
       emit({ kind: 'log', stage: 'S3', text: `${d.spec.design_id} base render, then object mask, then ${params.viewCount - 1} more views as edits rather than new generations` })
       d.colorways = COLORWAY_NAMES.slice(0, params.colorwayCount)
+      // QA 재시도가 기준 렌더를 편집해야 하므로 블록 밖에 둔다
+      let baseHash: string | null = null
 
       if (budget.left() > 0) {
         // ① 기준 디자인 · 스케치가 있으면 그 스케치를 컬러 렌더로 옮긴다(기하 유지).
         //    스케치가 없을 때만(예산 소진·실패) 예전처럼 프롬프트로 직접 그린다.
-        let baseHash: string | null = null
+
         const sketchImgs = d.images.filter(i => i.view === 'sketch' || i.view === 'sketch_var')
         const colPrompt = colorizePrompt(d.spec, params.brand, clauseFor(d.spec.design_id), params.line)
         const basePrompt = sketchImgs.length ? colPrompt : renderPrompt(d.spec, params.imageEngine, params.brand, clauseFor(d.spec.design_id), params.line)
@@ -630,17 +680,73 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
         }
       }
 
-      d.qa = buildQA(d, rng, params)
-      const failed = d.qa.filter(q => !q.pass)
-      if (failed.length) {
-        emit({ kind: 'log', stage: 'S3', text: `${d.spec.design_id} vision QA ${d.qa.length - failed.length}/${d.qa.length} · regenerating the mismatched view, attempt 1 of 2` })
-        await wait(300)
-        if (rng.chance(0.5)) {
-          d.qa = d.qa.map(q => ({ ...q, pass: true }))
-          emit({ kind: 'log', stage: 'S3', text: `${d.spec.design_id} QA passed after regeneration` })
+      // ── 비전 QA · 실제로 만든 컷을 보고 스펙과 대조한다 ─────────────
+      // 검사에 쓸 컷은 기준 뷰와 필수 추가 뷰만이다. 컬러웨이는 일부러 색을 바꾼 것이고
+      // variation·sketch_var 은 일부러 다른 물건이라, 넣으면 전부 불일치로 잡힌다.
+      {
+        const viewKeys = pack.viewSet.filter(v => v.required).slice(0, params.viewCount).map(v => v.key)
+        let cuts = viewKeys
+          .map(k => d.images.find(im => im.view === k && !im.colorway))
+          .filter((im): im is NonNullable<typeof im> => !!im)
+        let surface: 'render' | 'sketch' = 'render'
+        if (!cuts.length) {
+          // 예산이 S3 전에 떨어진 런에는 스케치만 있다. 흑백 도면으로도 개수·세팅·페어는 보인다.
+          const sk = d.images.find(im => im.view === 'sketch')
+          if (sk) { cuts = [sk]; surface = 'sketch' }
+        }
+        const defs = qaChecksFor(d.spec, params.line, surface, cuts.length)
+        if (!cuts.length) {
+          d.qa = qaUnavailable(defs, 'no picture was made for this design')
+          emit({ kind: 'log', stage: 'S3', text: `${d.spec.design_id} has no cut to check, so every item is recorded as unverified rather than passed` })
         } else {
-          d.viewMismatch = true
-          emit({ kind: 'log', stage: 'S3', text: `${d.spec.design_id} failed twice, flagged as a view mismatch and kept visible` })
+          const item = TYPE_LABEL[params.itemType] ?? params.itemType
+          const specPhrase = jewelSpecPhrase(d.spec)
+          try {
+            const read = await fetchVisionQa({
+              item, spec: specPhrase, surface,
+              checks: defs.map(c => ({ id: c.id, label: c.label, target: c.target })),
+              views: cuts.map(c => ({ view: c.view, hash: c.hash })),
+            })
+            d.qa = gradeQa(defs, read)
+            const real = d.qa.filter(q => q.status === 'fail')
+            const unknown = d.qa.filter(q => q.status === 'unknown').length
+            emit({ kind: 'log', stage: 'S3', text: `${d.spec.design_id} vision QA ${d.qa.filter(q => q.pass).length}/${d.qa.length} from ${cuts.length} cut${cuts.length > 1 ? 's' : ''}${unknown ? `, ${unknown} could not be told` : ''}` })
+
+            // 어긋난 것이 있으면 그 컷 한 장을 고쳐 다시 만들고, 진짜로 다시 검사한다.
+            // 예전에는 여기서 동전을 던져 전부 통과로 덮었다.
+            if (real.length && budget.left() > 0 && baseHash) {
+              emit({ kind: 'log', stage: 'S3', text: `${d.spec.design_id} correcting the cut · ${real.map(q => q.check).join(', ')}` })
+              try {
+                const fix = await editImage(baseHash, qaFixPrompt(real, specPhrase), params.imageEngine)
+                budget.spend()
+                // 자리에 끼워 넣는다. view 와 origin 이 바뀌면 뒤 단계가 기준 렌더를 잃는다.
+                const idx = d.images.findIndex(im => im.hash === cuts[0].hash)
+                if (idx >= 0) d.images[idx] = { ...d.images[idx], url: fix.url, hash: fix.hash, qaRemadeFrom: cuts[0].hash }
+                if (baseHash === cuts[0].hash) baseHash = fix.hash
+                const again = await fetchVisionQa({
+                  item, spec: specPhrase, surface,
+                  checks: defs.map(c => ({ id: c.id, label: c.label, target: c.target })),
+                  views: [{ view: cuts[0].view, hash: fix.hash }, ...cuts.slice(1).map(c => ({ view: c.view, hash: c.hash }))],
+                })
+                d.qa = gradeQa(defs, again)
+                const still = d.qa.filter(q => q.status === 'fail')
+                d.viewMismatch = still.length > 0
+                emit({ kind: 'log', stage: 'S3', text: still.length
+                  ? `${d.spec.design_id} still off after the correction · ${still.map(q => q.check).join(', ')} · kept visible and flagged`
+                  : `${d.spec.design_id} matches the spec after the correction` })
+              } catch (e) {
+                d.viewMismatch = true
+                emit({ kind: 'log', stage: 'S3', text: `${d.spec.design_id} correction failed · ${String((e as Error).message).slice(0, 90)} · the mismatch stays on the card` })
+              }
+            } else if (real.length) {
+              d.viewMismatch = true
+              emit({ kind: 'log', stage: 'S3', text: `${d.spec.design_id} does not match the spec and there is no image budget left to correct it · flagged and kept visible` })
+            }
+          } catch (e) {
+            d.qaError = String((e as Error).message || e)
+            d.qa = qaUnavailable(defs, 'the check could not run')
+            emit({ kind: 'log', stage: 'S3', text: `${d.spec.design_id} vision QA unavailable · ${d.qaError.slice(0, 90)} · recorded as unverified, not as a pass` })
+          }
         }
       }
       emit({ kind: 'design-update', design: { ...d } })
@@ -825,18 +931,113 @@ export function runPipeline(params: RunParams, emit: Emit, speed = 1): PipelineH
 }
 
 // ── 근거 추적 체인 (지시서 10.1) ─────────────────────────────────────
-function buildRationale(params: RunParams, spec: { design_id: string; tier: DesignTier }, signals: Signal[], rng: ReturnType<typeof makeRng>): Rationale {
-  const s1 = rng.pick(signals), s2 = rng.pick(signals.filter(s => s.signal_id !== s1.signal_id))
-  const compRef = {
-    ref_id: `rf_${rng.int(100, 999)}`, source_type: 'competitor' as const,
-    source_url: 'https://competitor.example/product/8812', collected_at: '2026-05-14',
-    borrowed_attributes: [s1.attribute, s2.attribute], usage: 'attribute_only' as const,
+/** 이 실행이 실제로 모은 것만 담는 근거 원장 */
+interface EvidencePool {
+  /** 조사 응답이 밝힌 수집일 · 없으면 실행일 */
+  collectedAt: string
+  competitors: CompetitorProduct[]
+  bestsellers: BestsellerProduct[]
+  /** 올린 원본 · 시리즈 디자인 또는 무드보드 문서 */
+  uploads: UploadRef[]
+  /** 문서에서 떠 온 쪽 그림 · 이름에 p.N 이 들어 있다 */
+  pageShots: UploadRef[]
+  /** 업로드에서 실제로 읽어낸 불변 요소 · 판독이 실패하면 빈 배열 */
+  dnaInherited: string[]
+  /** 가치 문장을 업로드와 실제로 대조했는가 */
+  claimChecked: boolean
+  /** 조사가 실패해 샘플로 되돌아갔는가 */
+  fellBack: boolean
+}
+
+const pageNo = (s: string) => Number(/p\.?\s*(\d+)/i.exec(s ?? '')?.[1] ?? 0)
+
+/** 이 디자인에 실제로 닿은 출처만 되짚는다.
+ *  트렌드는 레시피에 실린 조형 특징을 낸 제품으로, 시리즈는 판독된 DNA 로,
+ *  무드보드는 신호가 인용한 쪽으로 이어진다. 이어지지 않으면 비운다 —
+ *  빈 칸은 정직하지만 지어낸 출처는 정직하지 않다. */
+function referencesFor(d: Design, params: RunParams, signals: Signal[], ev: EvidencePool): ReferenceImage[] {
+  if (params.mode === 'series') {
+    // 올린 파일이 있어도 판독이 실패했으면 무엇을 물려받았는지 말할 수 없다
+    if (!ev.dnaInherited.length) return []
+    return ev.uploads.slice(0, 3).map(u => ({
+      ref_id: `up_${u.hash.slice(0, 8)}`,
+      source_type: 'archive' as const,
+      source_url: u.url!,
+      collected_at: ev.collectedAt,
+      borrowed_attributes: ev.dnaInherited,
+      usage: 'attribute_only' as const,
+      label: u.name,
+      linked_via: `Series DNA read across ${ev.uploads.length} uploaded designs`,
+    }))
   }
-  const archRef = {
-    ref_id: `rf_${rng.int(100, 999)}`, source_type: 'archive' as const,
-    source_url: 'supabase://uploads/archive_112.jpg', collected_at: '2026-04-02',
-    borrowed_attributes: ['proportion'], usage: 'visual_reference' as const,
+  if (params.mode === 'moodboard') {
+    const doc = ev.uploads[0]
+    if (!doc?.url) return []
+    const cited = d.rationale.driving_signals
+      .map(ds => signals.find(s => s.signal_id === ds.signal_id))
+      .filter((s): s is Signal => !!s && !!s.page_ref)
+    if (!cited.length) return []
+    return cited.slice(0, 2).map(s => {
+      // 같은 쪽 그림이 올라와 있으면 문서가 아니라 그 쪽을 가리킨다
+      const shot = ev.pageShots.find(u => pageNo(u.name) > 0 && pageNo(u.name) === pageNo(s.page_ref!))
+      const src = shot ?? doc
+      return {
+        ref_id: `${s.signal_id}_${src.hash.slice(0, 8)}`,
+        source_type: 'trend_report' as const,
+        source_url: src.url!,
+        collected_at: ev.collectedAt,
+        borrowed_attributes: [s.attribute],
+        usage: 'attribute_only' as const,
+        page_ref: s.page_ref,
+        label: doc.name,
+        linked_via: `Signal ${s.signal_id}`,
+      }
+    })
   }
+  // 트렌드 · 이 디자인의 레시피에 실린 조형 특징을 낸 제품만 인용한다.
+  // 레시피 원자는 design_traits 에서 글자 그대로 가져온 것이라 === 로 되짚힌다.
+  const traits = (d.recipe?.atoms ?? []).filter(a => a.kind === 'competitor').map(a => a.label)
+  if (!traits.length) return []
+  const pool = [
+    ...ev.competitors.map(p => ({ p, kind: 'competitor' as const, at: ev.collectedAt })),
+    ...ev.bestsellers.map(p => ({ p, kind: 'bestseller' as const, at: p.collected_at || ev.collectedAt })),
+  ]
+  const out: ReferenceImage[] = []
+  for (const { p, kind, at } of pool) {
+    // 그 제품의 design_traits 에 실제로 있는 것만 빌렸다고 적는다
+    const borrowed = (p.design_traits ?? []).filter(x => traits.includes(x))
+    const url = p.product_url || p.source_urls?.[0]
+    if (!borrowed.length || !url) continue
+    out.push({
+      ref_id: p.product_id, source_type: kind, source_url: url, collected_at: at,
+      borrowed_attributes: borrowed,
+      // 제품 사진은 생성에 들어가지 않는다. 속성만 읽는다.
+      usage: 'attribute_only',
+      label: `${p.brand} ${p.name}`,
+      linked_via: d.recipe?.title ?? borrowed[0],
+    })
+    if (out.length >= 3) break
+  }
+  return out
+}
+
+/** 근거 문장 한 줄 · 참조가 없으면 없다고 말한다. 빈 칸을 말없이 두지 않는다. */
+function referenceNote(refs: ReferenceImage[], params: RunParams, ev: EvidencePool): string {
+  if (refs.length) {
+    const names = refs.map(r => r.label ?? r.ref_id).join(', ')
+    return `Attributes were read from ${names}, collected ${refs[0].collected_at}. The photographs were never fed into generation.`
+  }
+  if (ev.fellBack) return 'Research fell back to sample data on this run, so no product is offered as evidence.'
+  if (params.mode === 'trend') return 'No collected product fed this design directly, so no product reference is claimed.'
+  if (params.mode === 'series') return 'The uploaded series could not be read on this run, so no archive reference is claimed.'
+  return 'No page of the uploaded document is cited for this design, so no reference is claimed.'
+}
+
+function buildRationale(params: RunParams, spec: { design_id: string; tier: DesignTier }, signals: Signal[], rng: ReturnType<typeof makeRng>, ev: EvidencePool): Rationale {
+  // 신호가 하나뿐인 실행도 있다. 없는 두 번째 축을 지어내지 않는다.
+  const s1 = rng.pick(signals)
+  const rest = signals.filter(s => s.signal_id !== s1.signal_id)
+  const s2 = rest.length ? rng.pick(rest) : null
   const placement = spec.tier === 'core'
     ? 'No new tooling, existing parts reused, inside the cost cap. That is what Core is for.'
     : spec.tier === 'push'
@@ -847,19 +1048,25 @@ function buildRationale(params: RunParams, spec: { design_id: string; tier: Desi
     agent_mode: params.mode,
     driving_signals: [
       { signal_id: s1.signal_id, weight: 0.4 },
-      { signal_id: s2.signal_id, weight: 0.25 },
+      ...(s2 ? [{ signal_id: s2.signal_id, weight: 0.25 }] : []),
     ],
-    reference_images: [compRef, archRef],
-    reference_prompts: params.mode === 'series'
-      ? [{ text: PROMPT_PARSE[params.category].text, origin: 'user_input', applied_as: PROMPT_PARSE[params.category].applied }]
+    // 참조는 레시피가 배정된 뒤에 붙는다. 그전까지는 비어 있는 것이 정확하다.
+    reference_images: [],
+    // 예시 문장이 아니라 사용자가 쓴 문장을 싣는다. 적용 결과도 실제로 일어난 것만 적는다.
+    reference_prompts: params.mode === 'series' && params.series.valueStatement.trim()
+      ? [{
+          text: params.series.valueStatement, origin: 'user_input' as const,
+          applied_as: [ev.claimChecked
+            ? 'Checked against what the uploaded designs actually show'
+            : 'Recorded with the run. The uploads could not be read, so it was not checked'],
+        }]
       : [],
-    series_dna_inherited: params.mode === 'series' ? SERIES_DNA[params.category].invariant.map(i => i.element) : [],
+    series_dna_inherited: params.mode === 'series' ? ev.dnaInherited : [],
     type_placement_reason: placement,
     narrative: [
       `${s1.label} showed up ${s1.observed_count} times in this price band.${proxyTxt}`,
-      `${s2.label}, observed ${s2.observed_count} times, came in as the second axis.`,
+      ...(s2 ? [`${s2.label}, observed ${s2.observed_count} times, came in as the second axis.`] : []),
       placement + '.',
-      `References were used for attributes only (usage: attribute_only), collected 2026-05-14.`,
     ],
   }
 }
@@ -879,26 +1086,51 @@ function buildMetrics(spec: { category: string }, cost: { cap_ratio: number; too
   ]
 }
 
-function buildModelEval(rng: ReturnType<typeof makeRng>): { label: string; value: string; basis: string }[] {
-  const lv = ['High', 'Medium', 'Low']
-  return [
-    { label: 'Brand fit', value: rng.pick(lv.slice(0, 2)), basis: 'How much of the existing last and mould is reused, and silhouette distance from the archive' },
-    { label: 'Distinctiveness', value: rng.pick(lv), basis: 'Attribute distance from competitor products in the same band' },
-    { label: 'Trend backing', value: rng.pick(lv.slice(0, 2)), basis: 'Observation count and proxy confidence of the linked signals' },
-  ]
-}
+/** 계층 2 · 이 실행의 값에서 실제로 계산되는 것만 낸다.
+ *  예전에는 난수로 High/Medium 을 뽑고 그럴듯한 근거 문장을 붙였다. 화면에서는 판단처럼
+ *  보이지만 아무것도 재지 않았고, 같은 디자인이 실행마다 다른 등급을 받았다.
+ *  잴 수 없는 항목은 등급 대신 "재지 않음"이라고 적는다. */
+function buildModelEval(d: Design, params: RunParams, signals: Signal[]): { label: string; value: string; basis: string }[] {
+  const out: { label: string; value: string; basis: string }[] = []
 
-function buildQA(d: Design, rng: ReturnType<typeof makeRng>, params: RunParams): { check: string; target: string; observed: string; pass: boolean }[] {
-  const f = d.spec.fields as Record<string, any>
+  // 트렌드 근거 · 연결된 신호의 관측 횟수와 신뢰도에서 나온다
+  const linked = d.rationale.driving_signals
+    .map(ds => signals.find(s => s.signal_id === ds.signal_id))
+    .filter((s): s is Signal => !!s)
+  const obs = linked.reduce((sum, s) => sum + s.observed_count, 0)
+  const anyHigh = linked.some(s => s.confidence === 'high')
+  const sourced = linked.filter(isCollectedSignal).length
+  out.push({
+    label: 'Trend backing',
+    value: !linked.length ? 'Not measured' : obs >= 8 && anyHigh ? 'High' : obs >= 4 ? 'Medium' : 'Low',
+    basis: linked.length
+      ? `${linked.length} linked signals, ${obs} observations in total, ${sourced} of them carrying a source`
+      : 'No signal is linked to this design',
+  })
 
-  const stones = Number(f.stone_count)
-  const seenStones = rng.chance(0.78) ? stones : stones + rng.pick([-2, -1, 1])
-  return [
-    { check: 'Stone count matches', target: String(stones), observed: String(seenStones), pass: seenStones === stones },
-    { check: 'Setting reads correctly', target: String(f.setting_type), observed: String(f.setting_type), pass: true },
-    { check: 'Prong count', target: String(f.prong_count), observed: String(f.prong_count), pass: true },
-    { check: 'Same object across three views', target: '>=0.80', observed: (0.74 + rng.next() * 0.24).toFixed(2), pass: rng.chance(0.8) },
-  ]
+  // 차별성 · 레시피가 몇 개의 조건을 겹쳤는지가 곧 방향의 폭이다
+  const atoms = d.recipe?.atoms.length ?? 0
+  out.push({
+    label: 'Distinctiveness',
+    value: !d.recipe ? 'Not measured' : atoms >= 3 ? 'High' : atoms === 2 ? 'Medium' : 'Low',
+    basis: d.recipe
+      ? `Built from ${atoms} research condition${atoms > 1 ? 's' : ''}: ${d.recipe.title}`
+      : 'No condition recipe was assigned, so there is nothing to measure against',
+  })
+
+  // 브랜드 적합 · 금지 규칙 위반과 몰드 재사용으로 잰다
+  const brand = params.brand
+  const hits = brand ? checkBrandFit(brand, d.spec.fields as Record<string, unknown>) : []
+  const reusesMould = !d.spec.fields.is_new_mold
+  out.push({
+    label: 'Brand fit',
+    value: !brand?.brandName ? 'Not set' : hits.length ? 'Low' : reusesMould ? 'High' : 'Medium',
+    basis: !brand?.brandName ? 'No brand rules are configured for this workspace'
+      : hits.length ? `Breaks a rule you set: ${hits.join(', ')}`
+      : reusesMould ? 'Breaks no brand rule and reuses an existing mould'
+      : 'Breaks no brand rule, but needs a new mould',
+  })
+  return out
 }
 
 // Top N 다양성 제약 (지시서 11.2 · 유형별 최소 1개 + 스펙 거리)

@@ -375,12 +375,18 @@ export interface ReportBias {
 // ── 근거 추적 체인 (지시서 10장) ────────────────────────────────────
 export interface ReferenceImage {
   ref_id: string
-  source_type: 'competitor' | 'archive' | 'user_upload' | 'trend_report'
+  source_type: 'competitor' | 'bestseller' | 'archive' | 'user_upload' | 'trend_report'
   source_url: string
   collected_at: string
   borrowed_attributes: string[]
   usage: 'attribute_only' | 'visual_reference'
   blocked?: boolean            // competitor + visual_reference → 시스템 차단
+  /** 화면에 보이는 이름 · 브랜드+제품명 또는 파일명. 없으면 옛 저장본이다. */
+  label?: string
+  /** 이 참조가 이 디자인에 닿은 경로 · 레시피 조합, 시리즈 DNA, 신호 id */
+  linked_via?: string
+  /** 문서 근거의 위치 · 무드보드 PDF 의 쪽 */
+  page_ref?: string
 }
 
 export interface Rationale {
@@ -400,11 +406,27 @@ export interface RuleResult {
   message: string
 }
 
+/** 수집된 근거인가 · 출처가 하나도 없으면 예시 데이터다.
+ *  저장된 옛 Run 도 고치지 않고 같은 기준으로 판정된다 (evidenceId 와 같은 파생식 원칙). */
+export function isCollectedSignal(s: { sources?: string[]; page_ref?: string }): boolean {
+  return (s.sources?.length ?? 0) > 0 || !!s.page_ref
+}
+export function isCollectedProduct(p: { source_urls?: string[]; product_url?: string }): boolean {
+  return (p.source_urls?.length ?? 0) > 0 || !!p.product_url
+}
+
 export interface QAResult {
   check: string
   target: string
   observed: string
   pass: boolean
+  /** 검사 결과 · unknown 은 "확인 못 했다"이지 통과가 아니다.
+   *  선택 필드다 — 옛 저장본과 샘플에는 없고, 그때는 pass 만 읽힌다. */
+  status?: 'pass' | 'fail' | 'unknown'
+  /** 어느 컷에서 봤는가 */
+  view?: string
+  /** 모델이 남긴 한 줄 · 무엇이 어떻게 보였는지 */
+  note?: string
 }
 
 export interface CostEstimate {
@@ -450,6 +472,8 @@ export interface DesignImage {
   conceptLabel?: string
   persona?: string
   editedFrom?: string
+  /** QA 가 어긋난 컷을 고쳐 끼웠을 때, 교체 전 해시 · 이미지 계보를 잃지 않게 남긴다 */
+  qaRemadeFrom?: string
 }
 
 export interface Design {
@@ -460,6 +484,8 @@ export interface Design {
   rationale: Rationale
   qa: QAResult[]
   viewMismatch: boolean        // S3 2회 재시도 실패 플래그
+  /** 비전 QA 가 아예 못 돈 이유 · 있으면 화면에 통과가 아니라 미확인으로 표시된다 */
+  qaError?: string
   // 결정적 지표 (계층 1)
   metrics: { label: string; value: string }[]
   // 모델 평가 (계층 2)

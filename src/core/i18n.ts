@@ -73,6 +73,10 @@ export function tf(s: string, vars: Record<string, string | number>): string {
 
 const KO: Record<string, string> = {
   'No photo': '사진 없음',
+  'collected': '수집일',
+  'unchecked': '미확인',
+  'The check could not run on this design, so nothing below is a pass.': '이 디자인은 검사를 돌리지 못했습니다. 아래 항목은 통과가 아니라 미확인입니다.',
+  'Nothing collected on this run fed this design directly, so no reference is claimed.': '이번 분석에서 모은 것 중 이 디자인에 직접 닿은 것이 없어, 참고 출처를 적지 않습니다.',
   'MD pick': 'MD 픽',
   'MD hold': 'MD 보류',
   'MD drop': 'MD 탈락',

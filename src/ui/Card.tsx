@@ -35,6 +35,9 @@ export function DesignCard({ d, signals, stagePassed, onVerdict, compact }: {
   const fails = d.ruleResults.filter(r => r.severity === 'fail')
   const warns = d.ruleResults.filter(r => r.severity === 'warn')
   const qaPass = d.qa.filter(q => q.pass).length
+  // 확인 못 한 항목은 통과도 실패도 아니다. 초록으로 칠하면 안 본 것을 봤다고 말하는 셈이다.
+  const qaUnknown = d.qa.filter(q => q.status === 'unknown').length
+  const qaFail = d.qa.filter(q => q.status ? q.status === 'fail' : !q.pass).length
 
   return (
     <div className={`dcard ${d.rejected ? 'rejected' : ''}`}>
@@ -93,7 +96,8 @@ export function DesignCard({ d, signals, stagePassed, onVerdict, compact }: {
             ? <Tag kind="ok">{t('Passed rules')}</Tag>
             : fails.map(r => <Tag kind="danger" key={r.rule}>{r.rule}</Tag>)}
           {warns.map(r => <Tag kind="warn" key={r.rule}>{r.rule}</Tag>)}
-          {d.qa.length > 0 && <Tag kind={qaPass === d.qa.length ? 'ok' : 'warn'}>QA {qaPass}/{d.qa.length}</Tag>}
+          {d.qa.length > 0 && <Tag kind={qaFail ? 'warn' : qaUnknown ? undefined : 'ok'}>
+            QA {qaPass}/{d.qa.length}{qaUnknown ? ` · ${qaUnknown} ${t('unchecked')}` : ''}</Tag>}
         </div>
 
         <button className="btn btn-ghost btn-sm" style={{ alignSelf: 'flex-start' }} onClick={() => setShowRationale(v => !v)}>
@@ -163,14 +167,33 @@ export function RationalePanel({ d, signals }: { d: Design; signals: Signal[] })
       </div>
       <div>
         <h5>{t('References, for attribution')}</h5>
+        {/* 참조가 없으면 비어 있다고 말한다. 예전에는 예시 주소 두 줄이 늘 여기 있었다 —
+            근거처럼 보였지만 아무것도 가리키지 않았다. 빈 칸이 정확한 표시다. */}
+        {!d.rationale.reference_images.length && (
+          <div style={{ color: 'var(--text-3)', fontSize: 11.5, lineHeight: 1.55 }}>
+            {t('Nothing collected on this run fed this design directly, so no reference is claimed.')}
+          </div>
+        )}
         {d.rationale.reference_images.map(r => (
-          <div className="refthumb" key={r.ref_id} style={{ marginBottom: 4 }}>
-            <div className="ph">{r.source_type === 'competitor' ? 'CMP' : r.source_type === 'archive' ? 'ARC' : 'REF'}</div>
-            <div style={{ fontSize: 11, lineHeight: 1.5 }}>
-              {r.source_type} · collected {r.collected_at} · {r.borrowed_attributes.join(', ')}
+          <div className="refthumb" key={r.ref_id} style={{ marginBottom: 6 }}>
+            <div className="ph">{r.source_type === 'competitor' ? 'CMP'
+              : r.source_type === 'bestseller' ? 'BST'
+              : r.source_type === 'archive' ? 'ARC' : 'REF'}</div>
+            <div style={{ fontSize: 11, lineHeight: 1.5, minWidth: 0 }}>
+              {/* 실제로 열 수 있는 주소여야 근거다 */}
+              <a href={r.source_url} target="_blank" rel="noreferrer"
+                style={{ color: 'var(--accent-hi)', fontWeight: 600 }}>{r.label ?? r.ref_id}</a>
+              {r.page_ref ? <span style={{ color: 'var(--text-3)' }}> · {r.page_ref}</span> : null}
+              <div style={{ color: 'var(--text-3)' }}>
+                {t('collected')} {r.collected_at}{r.linked_via ? ` · ${r.linked_via}` : ''}
+              </div>
+              {r.borrowed_attributes.length > 0 && (
+                <div style={{ color: 'var(--text-2)' }}>{r.borrowed_attributes.join(' · ')}</div>
+              )}
               <div>
                 <Tag kind={r.usage === 'attribute_only' ? undefined : 'accent'}>{r.usage}</Tag>
-                {r.source_type === 'competitor' && <span style={{ color: 'var(--text-3)' }}> {t('blocked from generation, attributes only')}</span>}
+                {(r.source_type === 'competitor' || r.source_type === 'bestseller') &&
+                  <span style={{ color: 'var(--text-3)' }}> {t('blocked from generation, attributes only')}</span>}
               </div>
             </div>
           </div>
@@ -202,11 +225,21 @@ export function RationalePanel({ d, signals }: { d: Design; signals: Signal[] })
       {d.qa.length > 0 && (
         <div>
           <h5>{t('Vision QA')}</h5>
-          {d.qa.map(q => (
-            <div key={q.check} style={{ color: q.pass ? 'var(--text-2)' : 'var(--warn)' }}>
-              {q.pass ? '✓' : '⚠'} {q.check} · target {q.target} / observed {q.observed}
+          {d.qaError && (
+            <div style={{ color: 'var(--text-3)', fontSize: 11.5, marginBottom: 4 }}>
+              {t('The check could not run on this design, so nothing below is a pass.')}
             </div>
-          ))}
+          )}
+          {d.qa.map(q => {
+            const st = q.status ?? (q.pass ? 'pass' : 'fail')
+            return (
+              <div key={q.check} style={{ color: st === 'pass' ? 'var(--text-2)' : st === 'unknown' ? 'var(--text-3)' : 'var(--warn)' }}>
+                {st === 'pass' ? '✓' : st === 'unknown' ? '?' : '⚠'} {q.check} · target {q.target} / observed {q.observed}
+                {q.view ? <span style={{ color: 'var(--text-3)' }}> · {q.view}</span> : null}
+                {q.note ? <div style={{ color: 'var(--text-3)', paddingLeft: 14 }}>{q.note}</div> : null}
+              </div>
+            )
+          })}
         </div>
       )}
       <div>

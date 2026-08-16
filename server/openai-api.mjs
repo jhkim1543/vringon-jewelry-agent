@@ -13,6 +13,7 @@ import { tripoMultiview, tripoProbe, readModel } from './tripo-api.mjs'
 import { configureUnlocker, findProductImage, unlockedFetch, unlockerStatus, unlockerUsage } from './unlock.mjs'
 import { readMoodboard, readSeries, readUpload, storeUpload } from './uploads-api.mjs'
 import { mdReview } from './md-api.mjs'
+import { visionQa } from './vision-qa-api.mjs'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(HERE, '..')
@@ -298,6 +299,15 @@ export async function handleApi(req, res) {
                   gemini: { keyPresent: !!GEMINI_KEY } }
     if (GEMINI_KEY) { try { out.gemini = { ...out.gemini, ...(await geminiProbe(GEMINI_KEY)) } } catch (e) { out.gemini.error = String(e.message) } }
     return json(res, 200, out)
+  }
+
+  // 비전 QA · 실제로 만든 컷이 스펙대로 나왔는지 사진으로 확인한다
+  if (path === '/api/vision/qa' && req.method === 'POST') {
+    try {
+      if (!API_KEY) throw new Error('OPENAI_API_KEY 미설정')
+      const body = await readBody(req)
+      return json(res, 200, await visionQa(API_KEY, ROOT, body))
+    } catch (e) { return json(res, 500, { error: String(e.message || e) }) }
   }
 
   // MD 페르소나 리뷰 · 셀렉 후보를 사진과 스펙으로 평가한다

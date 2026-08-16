@@ -483,29 +483,7 @@
       "weight": 0.25
      }
     ],
-    "reference_images": [
-     {
-      "ref_id": "rf_279",
-      "source_type": "competitor",
-      "source_url": "https://competitor.example/product/8812",
-      "collected_at": "2026-05-14",
-      "borrowed_attributes": [
-       "semi_precious_as_setting_for_precious",
-       "silver_as_primary_metal"
-      ],
-      "usage": "attribute_only"
-     },
-     {
-      "ref_id": "rf_572",
-      "source_type": "archive",
-      "source_url": "supabase://uploads/archive_112.jpg",
-      "collected_at": "2026-04-02",
-      "borrowed_attributes": [
-       "proportion"
-      ],
-      "usage": "visual_reference"
-     }
-    ],
+    "reference_images": [],
     "reference_prompts": [],
     "series_dna_inherited": [],
     "type_placement_reason": "No new tooling, existing parts reused, inside the cost cap. That is what Core is for.",
@@ -513,10 +491,59 @@
      "세미프레셔스 기반의 프레셔스 세팅 showed up 2 times in this price band.",
      "실버 소재 채택 확대, observed 2 times, came in as the second axis.",
      "No new tooling, existing parts reused, inside the cost cap. That is what Core is for..",
-     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+     "No collected product carries the signals behind this design, so no product reference is claimed."
     ]
    },
-   "qa": [],
+   "qa": [
+    {
+     "check": "Stone count matches",
+     "target": "1 stone",
+     "observed": "각 후프마다 스톤 1개씩만 보임.",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "Stone size against the piece",
+     "target": "2.6mm, reading as small but clearly visible",
+     "observed": "후프 대비 작지만 분명히 보이는 크기.",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "Setting reads correctly",
+     "target": "prong",
+     "observed": "스톤을 잡는 독립된 발톱들이 보여 프롱 세팅으로 읽힘.",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "Prong count",
+     "target": "4 prongs on the centre stone",
+     "observed": "스톤 주위에 발톱 4개가 명확히 표시됨.",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "No chain attached",
+     "target": "no chain",
+     "observed": "체인 요소 없이 후프 본체만 보임.",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "Shown as a matched pair",
+     "target": "two matching pieces",
+     "observed": "대칭으로 보이는 동일 디자인의 두 후프가 함께 제시됨.",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    }
+   ],
    "viewMismatch": false,
    "metrics": [
     {
@@ -667,29 +694,7 @@
       "weight": 0.25
      }
     ],
-    "reference_images": [
-     {
-      "ref_id": "rf_653",
-      "source_type": "competitor",
-      "source_url": "https://competitor.example/product/8812",
-      "collected_at": "2026-05-14",
-      "borrowed_attributes": [
-       "fine_over_demi_fine_preference",
-       "mixed_metals_two_tone"
-      ],
-      "usage": "attribute_only"
-     },
-     {
-      "ref_id": "rf_889",
-      "source_type": "archive",
-      "source_url": "supabase://uploads/archive_112.jpg",
-      "collected_at": "2026-04-02",
-      "borrowed_attributes": [
-       "proportion"
-      ],
-      "usage": "visual_reference"
-     }
-    ],
+    "reference_images": [],
     "reference_prompts": [],
     "series_dna_inherited": [],
     "type_placement_reason": "No new tooling, existing parts reused, inside the cost cap. That is what Core is for.",
@@ -697,10 +702,52 @@
      "파인 주얼리 지향(데미파인 대비) showed up 1 times in this price band.",
      "믹스드 메탈·투톤 확산, observed 1 times, came in as the second axis.",
      "No new tooling, existing parts reused, inside the cost cap. That is what Core is for..",
-     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+     "No collected product carries the signals behind this design, so no product reference is claimed."
     ]
    },
-   "qa": [],
+   "qa": [
+    {
+     "check": "Stone count matches",
+     "target": "4 stones",
+     "observed": "각 후프 전면 채널에 원형 스톤 4개가 보임",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "Stone size against the piece",
+     "target": "3.1mm, reading as the focal point of the piece",
+     "observed": "스톤 패널이 후프의 포인트로 보일 만큼 존재감 있음",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch",
+     "note": "후프 대비 스톤들이 눈에 띄어 초점처럼 읽힘."
+    },
+    {
+     "check": "Setting reads correctly",
+     "target": "channel",
+     "observed": "평행한 금속 벽 사이에 줄지어 놓인 형태로 채널 세팅으로 표현됨",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "No chain attached",
+     "target": "no chain",
+     "observed": "체인은 보이지 않음",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "Shown as a matched pair",
+     "target": "two matching pieces",
+     "observed": "동일한 디자인의 후프 두 개가 한 쌍으로 표시됨",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    }
+   ],
    "viewMismatch": false,
    "metrics": [
     {
@@ -851,29 +898,7 @@
       "weight": 0.25
      }
     ],
-    "reference_images": [
-     {
-      "ref_id": "rf_784",
-      "source_type": "competitor",
-      "source_url": "https://competitor.example/product/8812",
-      "collected_at": "2026-05-14",
-      "borrowed_attributes": [
-       "signed_silver_pieces_recommendation",
-       "statement_single_bold_scale"
-      ],
-      "usage": "attribute_only"
-     },
-     {
-      "ref_id": "rf_588",
-      "source_type": "archive",
-      "source_url": "supabase://uploads/archive_112.jpg",
-      "collected_at": "2026-04-02",
-      "borrowed_attributes": [
-       "proportion"
-      ],
-      "usage": "visual_reference"
-     }
-    ],
+    "reference_images": [],
     "reference_prompts": [],
     "series_dna_inherited": [],
     "type_placement_reason": "Same last and mould, one new element, cost within 30% more. That is Push.",
@@ -881,10 +906,56 @@
      "서명 실버·스칸디나비아 디자인 프리미엄 showed up 1 times in this price band.",
      "대담·조형적 단품 선호(스태킹 대비), observed 2 times, came in as the second axis.",
      "Same last and mould, one new element, cost within 30% more. That is Push..",
-     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+     "No collected product carries the signals behind this design, so no product reference is claimed."
     ]
    },
-   "qa": [],
+   "qa": [
+    {
+     "check": "Stone count matches",
+     "target": "7 stones",
+     "observed": "한쪽 후프에서 하단에 원형 스톤이 7개 보임",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch",
+     "note": "한쪽 후프 하단에 원형 스톤이 7개 확인됨."
+    },
+    {
+     "check": "Stone size against the piece",
+     "target": "1.8mm, reading as small but clearly visible",
+     "observed": "후프 지름 대비 스톤이 작지만 분명히 식별됨",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch",
+     "note": "후프의 두께와 지름 대비 스톤이 작지만 눈에 띕니다."
+    },
+    {
+     "check": "Setting reads correctly",
+     "target": "bezel",
+     "observed": "각 스톤이 끊김 없는 금속 테두리로 둘러싸여 있음",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch",
+     "note": "프롱 없이 연속된 림으로 표현되어 베젤로 읽힘."
+    },
+    {
+     "check": "No chain attached",
+     "target": "no chain",
+     "observed": "체인 연결 요소 없이 힌지형 후프만 보임",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch",
+     "note": "그림에 어떤 체인도 연결되지 않음."
+    },
+    {
+     "check": "Shown as a matched pair",
+     "target": "two matching pieces",
+     "observed": "좌우 대칭의 동일한 후프 두 개가 한 쌍으로 제시됨",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch",
+     "note": "동일 디자인의 두 후프가 나란히 표시됨."
+    }
+   ],
    "viewMismatch": false,
    "metrics": [
     {
@@ -1035,29 +1106,7 @@
       "weight": 0.25
      }
     ],
-    "reference_images": [
-     {
-      "ref_id": "rf_939",
-      "source_type": "competitor",
-      "source_url": "https://competitor.example/product/8812",
-      "collected_at": "2026-05-14",
-      "borrowed_attributes": [
-       "mixed_metals_two_tone",
-       "silver_as_primary_metal"
-      ],
-      "usage": "attribute_only"
-     },
-     {
-      "ref_id": "rf_275",
-      "source_type": "archive",
-      "source_url": "supabase://uploads/archive_112.jpg",
-      "collected_at": "2026-04-02",
-      "borrowed_attributes": [
-       "proportion"
-      ],
-      "usage": "visual_reference"
-     }
-    ],
+    "reference_images": [],
     "reference_prompts": [],
     "series_dna_inherited": [],
     "type_placement_reason": "Same last and mould, one new element, cost within 30% more. That is Push.",
@@ -1065,10 +1114,53 @@
      "믹스드 메탈·투톤 확산 showed up 1 times in this price band.",
      "실버 소재 채택 확대, observed 2 times, came in as the second axis.",
      "Same last and mould, one new element, cost within 30% more. That is Push..",
-     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+     "No collected product carries the signals behind this design, so no product reference is claimed."
     ]
    },
-   "qa": [],
+   "qa": [
+    {
+     "check": "Stone count matches",
+     "target": "5 stones",
+     "observed": "각 후프 하단에 또렷한 메인 스톤 5개씩 보임(프롱 점들은 스톤 아님)",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch",
+     "note": "스케치에서 한쪽 후프 기준으로 5개의 별도 스톤이 분명히 구분됨."
+    },
+    {
+     "check": "Stone size against the piece",
+     "target": "1.3mm, reading as an accent, the metal still dominates",
+     "observed": "링 두께와 비슷한 지름의 스톤이라 금속을 약간 끊어 보이며 ‘소형’에 가까움",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch",
+     "note": "악센트라고 보기엔 스톤이 링 두께와 유사하여 존재감이 큼."
+    },
+    {
+     "check": "Setting reads correctly",
+     "target": "prong",
+     "observed": "각 스톤 둘레에 개별 발톱이 표시되어 프롱 세팅으로 읽힘",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "No chain attached",
+     "target": "no chain",
+     "observed": "체인 요소 없음; 후프 단품 구조",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "Shown as a matched pair",
+     "target": "two matching pieces",
+     "observed": "좌우 대칭의 동일한 후프 두 개가 나란히 표시됨",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    }
+   ],
    "viewMismatch": false,
    "metrics": [
     {
@@ -1219,29 +1311,7 @@
       "weight": 0.25
      }
     ],
-    "reference_images": [
-     {
-      "ref_id": "rf_370",
-      "source_type": "competitor",
-      "source_url": "https://competitor.example/product/8812",
-      "collected_at": "2026-05-14",
-      "borrowed_attributes": [
-       "signed_silver_pieces_recommendation",
-       "semi_precious_as_setting_for_precious"
-      ],
-      "usage": "attribute_only"
-     },
-     {
-      "ref_id": "rf_219",
-      "source_type": "archive",
-      "source_url": "supabase://uploads/archive_112.jpg",
-      "collected_at": "2026-04-02",
-      "borrowed_attributes": [
-       "proportion"
-      ],
-      "usage": "visual_reference"
-     }
-    ],
+    "reference_images": [],
     "reference_prompts": [],
     "series_dna_inherited": [],
     "type_placement_reason": "New tooling allowed with amortisation stated. Experimental, so Signature.",
@@ -1249,10 +1319,52 @@
      "서명 실버·스칸디나비아 디자인 프리미엄 showed up 1 times in this price band.",
      "세미프레셔스 기반의 프레셔스 세팅, observed 2 times, came in as the second axis.",
      "New tooling allowed with amortisation stated. Experimental, so Signature..",
-     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+     "No collected product carries the signals behind this design, so no product reference is claimed."
     ]
    },
-   "qa": [],
+   "qa": [
+    {
+     "check": "Stone count matches",
+     "target": "2 stones",
+     "observed": "후프 한쪽에 원형 스톤 2개가 보임",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "Stone size against the piece",
+     "target": "4.6mm, reading as the focal point of the piece",
+     "observed": "스톤이 링 하단에서 시선을 끄는 중심 크기로 표현됨",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch",
+     "note": "실제 mm 치수는 스케치라 확인 불가하지만 비율상 중심으로 읽힘."
+    },
+    {
+     "check": "Setting reads correctly",
+     "target": "bezel",
+     "observed": "각 스톤 둘레를 연속된 금속 림이 둘러싼 형태로 그림",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "No chain attached",
+     "target": "no chain",
+     "observed": "체인은 없고 힌지형 포스트만 표시됨",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "Shown as a matched pair",
+     "target": "two matching pieces",
+     "observed": "좌우 대칭의 동일한 두 후프가 나란히 표시됨",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    }
+   ],
    "viewMismatch": false,
    "metrics": [
     {
@@ -1409,29 +1521,7 @@
       "weight": 0.25
      }
     ],
-    "reference_images": [
-     {
-      "ref_id": "rf_124",
-      "source_type": "competitor",
-      "source_url": "https://competitor.example/product/8812",
-      "collected_at": "2026-05-14",
-      "borrowed_attributes": [
-       "signed_silver_pieces_recommendation",
-       "colored_gems_and_fancy_diamond_demand"
-      ],
-      "usage": "attribute_only"
-     },
-     {
-      "ref_id": "rf_874",
-      "source_type": "archive",
-      "source_url": "supabase://uploads/archive_112.jpg",
-      "collected_at": "2026-04-02",
-      "borrowed_attributes": [
-       "proportion"
-      ],
-      "usage": "visual_reference"
-     }
-    ],
+    "reference_images": [],
     "reference_prompts": [],
     "series_dna_inherited": [],
     "type_placement_reason": "New tooling allowed with amortisation stated. Experimental, so Signature.",
@@ -1439,10 +1529,60 @@
      "서명 실버·스칸디나비아 디자인 프리미엄 showed up 1 times in this price band.",
      "유색 보석·팬시 컬러 다이아 수요 지속, observed 4 times, came in as the second axis.",
      "New tooling allowed with amortisation stated. Experimental, so Signature..",
-     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+     "No collected product carries the signals behind this design, so no product reference is claimed."
     ]
    },
-   "qa": [],
+   "qa": [
+    {
+     "check": "Stone count matches",
+     "target": "9 stones",
+     "observed": "not checked, no picture was made for this design",
+     "pass": false,
+     "status": "unknown"
+    },
+    {
+     "check": "Stone size against the piece",
+     "target": "5.2mm, reading as large enough to dominate the piece",
+     "observed": "not checked, no picture was made for this design",
+     "pass": false,
+     "status": "unknown"
+    },
+    {
+     "check": "Setting reads correctly",
+     "target": "bezel",
+     "observed": "not checked, no picture was made for this design",
+     "pass": false,
+     "status": "unknown"
+    },
+    {
+     "check": "Metal tone",
+     "target": "white silver",
+     "observed": "not checked, no picture was made for this design",
+     "pass": false,
+     "status": "unknown"
+    },
+    {
+     "check": "Surface finish",
+     "target": "hammered",
+     "observed": "not checked, no picture was made for this design",
+     "pass": false,
+     "status": "unknown"
+    },
+    {
+     "check": "No chain attached",
+     "target": "no chain",
+     "observed": "not checked, no picture was made for this design",
+     "pass": false,
+     "status": "unknown"
+    },
+    {
+     "check": "Shown as a matched pair",
+     "target": "two matching pieces",
+     "observed": "not checked, no picture was made for this design",
+     "pass": false,
+     "status": "unknown"
+    }
+   ],
    "viewMismatch": false,
    "metrics": [
     {

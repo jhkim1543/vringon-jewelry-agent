@@ -2516,25 +2516,42 @@
     ],
     "reference_images": [
      {
-      "ref_id": "rf_672",
+      "ref_id": "cp_1",
       "source_type": "competitor",
-      "source_url": "https://competitor.example/product/8812",
-      "collected_at": "2026-05-14",
+      "source_url": "https://www.monicavinader.com/us/tapered-small-hoop-earrings/gold-vermeil-tapered-small-hoop-earrings",
+      "collected_at": "2026-08-08",
       "borrowed_attributes": [
-       "thick_tubular_profile",
-       "elongated_oval_shape"
+       "테이퍼드 튜브 실루엣이 아래쪽에서 두껍고 위로 갈수록 얇아진다.",
+       "스몰 사이즈 후프로 단독 착용과 레이어링에 적합하다."
       ],
-      "usage": "attribute_only"
+      "usage": "attribute_only",
+      "label": "Monica Vinader Tapered Small Hoop Earrings",
+      "linked_via": "Signal sg_001, also observed on this product"
      },
      {
-      "ref_id": "rf_968",
-      "source_type": "archive",
-      "source_url": "supabase://uploads/archive_112.jpg",
-      "collected_at": "2026-04-02",
+      "ref_id": "cp_3",
+      "source_type": "competitor",
+      "source_url": "https://www.monicavinader.com/us/deia-huggie-earrings/gold-vermeil-deia-huggie-earrings",
+      "collected_at": "2026-08-08",
       "borrowed_attributes": [
-       "proportion"
+       "전체 높이 13mm의 소형 후프가 상하 귓볼 모두에 적합하다."
       ],
-      "usage": "visual_reference"
+      "usage": "attribute_only",
+      "label": "Monica Vinader Deia Huggie Earrings",
+      "linked_via": "Signal sg_002, also observed on this product"
+     },
+     {
+      "ref_id": "cp_5",
+      "source_type": "competitor",
+      "source_url": "https://www.swarovski.com/ko-KR/p-M5749069/Vienna-%ED%9B%84%ED%94%84-%EC%9D%B4%EC%96%B4%EB%A7%81-%EB%AF%B9%EC%8A%A4-%EC%BB%B7-%ED%99%94%EC%9D%B4%ED%8A%B8-%EB%A1%9C%EB%93%90-%ED%94%8C%EB%9E%98%ED%8C%85/?variantID=5749069",
+      "collected_at": "2026-08-08",
+      "borrowed_attributes": [
+       "스완 날개를 재해석한 곡선 실루엣이 보인다.",
+       "길이 약 2.3cm의 스몰 후프로 보인다."
+      ],
+      "usage": "attribute_only",
+      "label": "Swarovski Vienna 후프 이어링, 믹스 컷, 화이트, 로듐 플래팅",
+      "linked_via": "Signal sg_001, also observed on this product"
      }
     ],
     "reference_prompts": [],
@@ -2544,33 +2561,75 @@
      "도톰한 튜브형/돔 실루엣 showed up 3 times in this price band.",
      "오벌·레크탱귤러(스테디움) 비율 후프, observed 2 times, came in as the second axis.",
      "No new tooling, existing parts reused, inside the cost cap. That is what Core is for..",
-     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+     "Attributes were read from Monica Vinader Tapered Small Hoop Earrings, Monica Vinader Deia Huggie Earrings, Swarovski Vienna 후프 이어링, 믹스 컷, 화이트, 로듐 플래팅, collected 2026-08-08. The photographs were never fed into generation."
     ]
    },
    "qa": [
     {
      "check": "Stone count matches",
-     "target": "4",
-     "observed": "4",
-     "pass": true
+     "target": "4 stones",
+     "observed": "각 후프 하단에 스톤이 4개씩 뚜렷하게 구분되어 보임",
+     "pass": true,
+     "status": "pass",
+     "view": "front"
+    },
+    {
+     "check": "Stone size against the piece",
+     "target": "3.5mm, reading as the focal point of the piece",
+     "observed": "스톤은 후프 굵기 대비 작아 금속이 더 지배적으로 보임",
+     "pass": true,
+     "status": "pass",
+     "view": "front",
+     "note": "후프 전체 대비 스톤이 포인트이지만 지배적으로 보이진 않음"
     },
     {
      "check": "Setting reads correctly",
      "target": "prong",
-     "observed": "prong",
-     "pass": true
+     "observed": "각 스톤에 개별 발톱(클로)이 보이고 사이사이에 빈공간이 있음",
+     "pass": true,
+     "status": "pass",
+     "view": "detail"
     },
     {
-     "check": "Prong count",
-     "target": "6",
-     "observed": "6",
-     "pass": true
+     "check": "Metal tone",
+     "target": "yellow gold",
+     "observed": "금속 색상은 밝은 실버톤으로 보임",
+     "pass": false,
+     "status": "fail",
+     "view": "front",
+     "note": "요청한 옐로 골드 톤이 아님"
     },
     {
-     "check": "Same object across three views",
-     "target": ">=0.80",
-     "observed": "0.88",
-     "pass": true
+     "check": "Surface finish",
+     "target": "matte",
+     "observed": "표면이 거울같이 강하게 반사되어 폴리시드로 읽힘",
+     "pass": false,
+     "status": "fail",
+     "view": "q45",
+     "note": "매트 질감으로 보이지 않음"
+    },
+    {
+     "check": "No chain attached",
+     "target": "no chain",
+     "observed": "체인 없이 후프형 귀걸이만 보임",
+     "pass": true,
+     "status": "pass",
+     "view": "front"
+    },
+    {
+     "check": "Shown as a matched pair",
+     "target": "two matching pieces",
+     "observed": "동일한 디자인의 후프 두 개가 함께 제시됨",
+     "pass": true,
+     "status": "pass",
+     "view": "front"
+    },
+    {
+     "check": "Same object across the views",
+     "target": "the same piece in every cut",
+     "observed": "the same piece in every cut",
+     "pass": true,
+     "status": "pass"
     }
    ],
    "viewMismatch": false,
@@ -2862,25 +2921,40 @@
     ],
     "reference_images": [
      {
-      "ref_id": "rf_601",
+      "ref_id": "cp_2",
       "source_type": "competitor",
-      "source_url": "https://competitor.example/product/8812",
-      "collected_at": "2026-05-14",
+      "source_url": "https://www.monicavinader.com/us/tapered-huggie-earrings/gold-vermeil-tapered-huggie-earrings",
+      "collected_at": "2026-08-08",
       "borrowed_attributes": [
-       "hinged_clicker_closure",
-       "ridged_or_hammered_texture"
+       "폭이 1.8~8mm로 점차 변화하는 테이퍼 프로파일이다."
       ],
-      "usage": "attribute_only"
+      "usage": "attribute_only",
+      "label": "Monica Vinader Tapered Huggie Earrings",
+      "linked_via": "Signal sg_005, also observed on this product"
      },
      {
-      "ref_id": "rf_451",
-      "source_type": "archive",
-      "source_url": "supabase://uploads/archive_112.jpg",
-      "collected_at": "2026-04-02",
+      "ref_id": "cp_3",
+      "source_type": "competitor",
+      "source_url": "https://www.monicavinader.com/us/deia-huggie-earrings/gold-vermeil-deia-huggie-earrings",
+      "collected_at": "2026-08-08",
       "borrowed_attributes": [
-       "proportion"
+       "폭이 1.8~4.2mm로 물결치듯 변하는 유기적 프로파일이다."
       ],
-      "usage": "visual_reference"
+      "usage": "attribute_only",
+      "label": "Monica Vinader Deia Huggie Earrings",
+      "linked_via": "Signal sg_005, also observed on this product"
+     },
+     {
+      "ref_id": "bs_4",
+      "source_type": "bestseller",
+      "source_url": "https://www.farfetch.com/ng/shopping/women/boucheron-18kt-yellow-gold-quatre-grosgrain-single-hoop-earring-item-13318797.aspx",
+      "collected_at": "2026-08-07",
+      "borrowed_attributes": [
+       "리브드(grosgrain) 텍스처"
+      ],
+      "usage": "attribute_only",
+      "label": "Boucheron 18kt Yellow Gold Quatre Grosgrain Single Hoop Earring",
+      "linked_via": "Signal sg_005, also observed on this product"
      }
     ],
     "reference_prompts": [],
@@ -2890,10 +2964,52 @@
      "힌지드 클릭러 클로저 showed up 3 times in this price band.",
      "리브·햄머드 등 텍스처드 프로파일, observed 3 times, came in as the second axis.",
      "No new tooling, existing parts reused, inside the cost cap. That is what Core is for..",
-     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+     "Attributes were read from Monica Vinader Tapered Huggie Earrings, Monica Vinader Deia Huggie Earrings, Boucheron 18kt Yellow Gold Quatre Grosgrain Single Hoop Earring, collected 2026-08-08. The photographs were never fed into generation."
     ]
    },
-   "qa": [],
+   "qa": [
+    {
+     "check": "Stone count matches",
+     "target": "1 stone",
+     "observed": "각 후프당 원형 스톤 1개 보임",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "Stone size against the piece",
+     "target": "3.1mm, reading as the focal point of the piece",
+     "observed": "스톤이 후프 대비 작아 보임",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch",
+     "note": "스톤이 후프 전체에 비해 작아 장식 포인트 수준으로 보이며 피스의 중심으로 읽히지 않음."
+    },
+    {
+     "check": "Setting reads correctly",
+     "target": "bezel",
+     "observed": "스톤 둘레를 둘러싼 연속된 림(베젤) 표현",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "No chain attached",
+     "target": "no chain",
+     "observed": "체인 요소 없음",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "Shown as a matched pair",
+     "target": "two matching pieces",
+     "observed": "좌우 대칭의 두 개 후프가 함께 표시됨",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    }
+   ],
    "viewMismatch": false,
    "metrics": [
     {
@@ -3054,25 +3170,41 @@
     ],
     "reference_images": [
      {
-      "ref_id": "rf_629",
+      "ref_id": "cp_1",
       "source_type": "competitor",
-      "source_url": "https://competitor.example/product/8812",
-      "collected_at": "2026-05-14",
+      "source_url": "https://www.monicavinader.com/us/tapered-small-hoop-earrings/gold-vermeil-tapered-small-hoop-earrings",
+      "collected_at": "2026-08-08",
       "borrowed_attributes": [
-       "hollow_tubing_lightweight",
-       "elongated_oval_shape"
+       "스몰 사이즈 후프로 단독 착용과 레이어링에 적합하다."
       ],
-      "usage": "attribute_only"
+      "usage": "attribute_only",
+      "label": "Monica Vinader Tapered Small Hoop Earrings",
+      "linked_via": "Signal sg_002, also observed on this product"
      },
      {
-      "ref_id": "rf_264",
-      "source_type": "archive",
-      "source_url": "supabase://uploads/archive_112.jpg",
-      "collected_at": "2026-04-02",
+      "ref_id": "cp_3",
+      "source_type": "competitor",
+      "source_url": "https://www.monicavinader.com/us/deia-huggie-earrings/gold-vermeil-deia-huggie-earrings",
+      "collected_at": "2026-08-08",
       "borrowed_attributes": [
-       "proportion"
+       "전체 높이 13mm의 소형 후프가 상하 귓볼 모두에 적합하다.",
+       "18k gold vermeil을 925 sterling silver 기반 위에 적용한다."
       ],
-      "usage": "visual_reference"
+      "usage": "attribute_only",
+      "label": "Monica Vinader Deia Huggie Earrings",
+      "linked_via": "Signal sg_006, also observed on this product"
+     },
+     {
+      "ref_id": "cp_5",
+      "source_type": "competitor",
+      "source_url": "https://www.swarovski.com/ko-KR/p-M5749069/Vienna-%ED%9B%84%ED%94%84-%EC%9D%B4%EC%96%B4%EB%A7%81-%EB%AF%B9%EC%8A%A4-%EC%BB%B7-%ED%99%94%EC%9D%B4%ED%8A%B8-%EB%A1%9C%EB%93%90-%ED%94%8C%EB%9E%98%ED%8C%85/?variantID=5749069",
+      "collected_at": "2026-08-08",
+      "borrowed_attributes": [
+       "길이 약 2.3cm의 스몰 후프로 보인다."
+      ],
+      "usage": "attribute_only",
+      "label": "Swarovski Vienna 후프 이어링, 믹스 컷, 화이트, 로듐 플래팅",
+      "linked_via": "Signal sg_002, also observed on this product"
      }
     ],
     "reference_prompts": [],
@@ -3082,33 +3214,85 @@
      "할로우 튜빙 기반 경량 설계 showed up 3 times in this price band.",
      "오벌·레크탱귤러(스테디움) 비율 후프, observed 2 times, came in as the second axis.",
      "Same last and mould, one new element, cost within 30% more. That is Push..",
-     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+     "Attributes were read from Monica Vinader Tapered Small Hoop Earrings, Monica Vinader Deia Huggie Earrings, Swarovski Vienna 후프 이어링, 믹스 컷, 화이트, 로듐 플래팅, collected 2026-08-08. The photographs were never fed into generation."
     ]
    },
    "qa": [
     {
      "check": "Stone count matches",
-     "target": "1",
-     "observed": "1",
-     "pass": true
+     "target": "1 stone",
+     "observed": "각 후프 하단에 보석이 하나씩 보임",
+     "pass": true,
+     "status": "pass",
+     "view": "front",
+     "note": "각 피스 기준으로 1개로 확인됨"
+    },
+    {
+     "check": "Stone size against the piece",
+     "target": "1.3mm, reading as an accent, the metal still dominates",
+     "observed": "보석이 후프 대비 매우 작아 금속이 지배적으로 보임",
+     "pass": true,
+     "status": "pass",
+     "view": "front"
     },
     {
      "check": "Setting reads correctly",
      "target": "prong",
-     "observed": "prong",
-     "pass": true
+     "observed": "작은 발들이 돌을 잡고 있는 프롱 세팅으로 보임",
+     "pass": true,
+     "status": "pass",
+     "view": "detail"
     },
     {
      "check": "Prong count",
-     "target": "6",
-     "observed": "6",
-     "pass": true
+     "target": "6 prongs on the centre stone",
+     "observed": "돌을 잡는 발이 4개로 보임",
+     "pass": false,
+     "status": "fail",
+     "view": "detail",
+     "note": "모든 컷에서 4개로 보이며 6개는 아님"
     },
     {
-     "check": "Same object across three views",
-     "target": ">=0.80",
-     "observed": "0.74",
-     "pass": true
+     "check": "Metal tone",
+     "target": "yellow gold",
+     "observed": "노란빛 없이 차가운 은색 톤",
+     "pass": false,
+     "status": "fail",
+     "view": "front",
+     "note": "세 컷 모두 은색으로 보임"
+    },
+    {
+     "check": "Surface finish",
+     "target": "hammered",
+     "observed": "표면에 망치질 같은 요철 텍스처가 보임",
+     "pass": true,
+     "status": "pass",
+     "view": "front",
+     "note": "디테일 컷은 더 매끈하게 보여 질감이 다소 약함"
+    },
+    {
+     "check": "No chain attached",
+     "target": "no chain",
+     "observed": "체인이나 연결 고리는 보이지 않음",
+     "pass": true,
+     "status": "pass",
+     "view": "front"
+    },
+    {
+     "check": "Shown as a matched pair",
+     "target": "two matching pieces",
+     "observed": "좌우 동일한 후프가 한 쌍으로 제시됨",
+     "pass": true,
+     "status": "pass",
+     "view": "front"
+    },
+    {
+     "check": "Same object across the views",
+     "target": "the same piece in every cut",
+     "observed": "the same piece, with small differences between cuts",
+     "pass": true,
+     "status": "pass",
+     "note": "detail 컷에서 표면이 더 매끈하게 보여 텍스처 표현이 약함 vs front/q45에서는 망치 텍스처가 뚜렷함"
     }
    ],
    "viewMismatch": false,
@@ -3347,25 +3531,40 @@
     ],
     "reference_images": [
      {
-      "ref_id": "rf_420",
+      "ref_id": "cp_2",
       "source_type": "competitor",
-      "source_url": "https://competitor.example/product/8812",
-      "collected_at": "2026-05-14",
+      "source_url": "https://www.monicavinader.com/us/tapered-huggie-earrings/gold-vermeil-tapered-huggie-earrings",
+      "collected_at": "2026-08-08",
       "borrowed_attributes": [
-       "hinged_clicker_closure",
-       "ridged_or_hammered_texture"
+       "폭이 1.8~8mm로 점차 변화하는 테이퍼 프로파일이다."
       ],
-      "usage": "attribute_only"
+      "usage": "attribute_only",
+      "label": "Monica Vinader Tapered Huggie Earrings",
+      "linked_via": "Signal sg_005, also observed on this product"
      },
      {
-      "ref_id": "rf_379",
-      "source_type": "archive",
-      "source_url": "supabase://uploads/archive_112.jpg",
-      "collected_at": "2026-04-02",
+      "ref_id": "cp_3",
+      "source_type": "competitor",
+      "source_url": "https://www.monicavinader.com/us/deia-huggie-earrings/gold-vermeil-deia-huggie-earrings",
+      "collected_at": "2026-08-08",
       "borrowed_attributes": [
-       "proportion"
+       "폭이 1.8~4.2mm로 물결치듯 변하는 유기적 프로파일이다."
       ],
-      "usage": "visual_reference"
+      "usage": "attribute_only",
+      "label": "Monica Vinader Deia Huggie Earrings",
+      "linked_via": "Signal sg_005, also observed on this product"
+     },
+     {
+      "ref_id": "bs_4",
+      "source_type": "bestseller",
+      "source_url": "https://www.farfetch.com/ng/shopping/women/boucheron-18kt-yellow-gold-quatre-grosgrain-single-hoop-earring-item-13318797.aspx",
+      "collected_at": "2026-08-07",
+      "borrowed_attributes": [
+       "리브드(grosgrain) 텍스처"
+      ],
+      "usage": "attribute_only",
+      "label": "Boucheron 18kt Yellow Gold Quatre Grosgrain Single Hoop Earring",
+      "linked_via": "Signal sg_005, also observed on this product"
      }
     ],
     "reference_prompts": [],
@@ -3375,10 +3574,52 @@
      "힌지드 클릭러 클로저 showed up 3 times in this price band.",
      "리브·햄머드 등 텍스처드 프로파일, observed 3 times, came in as the second axis.",
      "Same last and mould, one new element, cost within 30% more. That is Push..",
-     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+     "Attributes were read from Monica Vinader Tapered Huggie Earrings, Monica Vinader Deia Huggie Earrings, Boucheron 18kt Yellow Gold Quatre Grosgrain Single Hoop Earring, collected 2026-08-08. The photographs were never fed into generation."
     ]
    },
-   "qa": [],
+   "qa": [
+    {
+     "check": "Stone count matches",
+     "target": "6 stones",
+     "observed": "각 후프 하단에 스톤이 5개씩 배치된 것으로 보임",
+     "pass": false,
+     "status": "fail",
+     "view": "sketch",
+     "note": "각 피스 하단에 개별 원형 스톤이 다섯 자리만 그려져 있음"
+    },
+    {
+     "check": "Stone size against the piece",
+     "target": "1.7mm, reading as small but clearly visible",
+     "observed": "후프 대비 작지만 분명히 보이는 크기",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "Setting reads correctly",
+     "target": "prong",
+     "observed": "각 스톤 둘레에 독립된 발이 네 개씩 표현되어 있음",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "No chain attached",
+     "target": "no chain",
+     "observed": "체인 요소 없이 힌지형 후프만 보임",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "Shown as a matched pair",
+     "target": "two matching pieces",
+     "observed": "좌우 대칭의 동일한 후프 두 개가 한 쌍으로 제시됨",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    }
+   ],
    "viewMismatch": false,
    "metrics": [
     {
@@ -3539,25 +3780,40 @@
     ],
     "reference_images": [
      {
-      "ref_id": "rf_479",
+      "ref_id": "cp_2",
       "source_type": "competitor",
-      "source_url": "https://competitor.example/product/8812",
-      "collected_at": "2026-05-14",
+      "source_url": "https://www.monicavinader.com/us/tapered-huggie-earrings/gold-vermeil-tapered-huggie-earrings",
+      "collected_at": "2026-08-08",
       "borrowed_attributes": [
-       "hollow_tubing_lightweight",
-       "high_polish_finish"
+       "고광택 마감의 18k gold vermeil이 사용된다."
       ],
-      "usage": "attribute_only"
+      "usage": "attribute_only",
+      "label": "Monica Vinader Tapered Huggie Earrings",
+      "linked_via": "Signal sg_004, also observed on this product"
      },
      {
-      "ref_id": "rf_299",
-      "source_type": "archive",
-      "source_url": "supabase://uploads/archive_112.jpg",
-      "collected_at": "2026-04-02",
+      "ref_id": "cp_3",
+      "source_type": "competitor",
+      "source_url": "https://www.monicavinader.com/us/deia-huggie-earrings/gold-vermeil-deia-huggie-earrings",
+      "collected_at": "2026-08-08",
       "borrowed_attributes": [
-       "proportion"
+       "18k gold vermeil을 925 sterling silver 기반 위에 적용한다."
       ],
-      "usage": "visual_reference"
+      "usage": "attribute_only",
+      "label": "Monica Vinader Deia Huggie Earrings",
+      "linked_via": "Signal sg_006, also observed on this product"
+     },
+     {
+      "ref_id": "cp_5",
+      "source_type": "competitor",
+      "source_url": "https://www.swarovski.com/ko-KR/p-M5749069/Vienna-%ED%9B%84%ED%94%84-%EC%9D%B4%EC%96%B4%EB%A7%81-%EB%AF%B9%EC%8A%A4-%EC%BB%B7-%ED%99%94%EC%9D%B4%ED%8A%B8-%EB%A1%9C%EB%93%90-%ED%94%8C%EB%9E%98%ED%8C%85/?variantID=5749069",
+      "collected_at": "2026-08-08",
+      "borrowed_attributes": [
+       "로듐 플래팅이 차가운 화이트 광택을 낸다."
+      ],
+      "usage": "attribute_only",
+      "label": "Swarovski Vienna 후프 이어링, 믹스 컷, 화이트, 로듐 플래팅",
+      "linked_via": "Signal sg_004, also observed on this product"
      }
     ],
     "reference_prompts": [],
@@ -3567,10 +3823,53 @@
      "할로우 튜빙 기반 경량 설계 showed up 3 times in this price band.",
      "하이 폴리시 광택, observed 3 times, came in as the second axis.",
      "New tooling allowed with amortisation stated. Experimental, so Signature..",
-     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+     "Attributes were read from Monica Vinader Tapered Huggie Earrings, Monica Vinader Deia Huggie Earrings, Swarovski Vienna 후프 이어링, 믹스 컷, 화이트, 로듐 플래팅, collected 2026-08-08. The photographs were never fed into generation."
     ]
    },
-   "qa": [],
+   "qa": [
+    {
+     "check": "Stone count matches",
+     "target": "5 stones",
+     "observed": "전면 채널 안에 원형 스톤 5개가 그려져 있음",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "Stone size against the piece",
+     "target": "2.1mm, reading as small but clearly visible",
+     "observed": "could not tell from these cuts, 스케치만으로 실제 mm 크기 판단 불가; 비례상 스톤은 금속보다 작게 보임",
+     "pass": false,
+     "status": "unknown",
+     "view": "sketch",
+     "note": "스케치에는 치수 기준이 없어 2.1mm 여부와 크기 등급을 확정할 수 없음"
+    },
+    {
+     "check": "Setting reads correctly",
+     "target": "channel",
+     "observed": "평행한 두 벽 사이에 스톤이 연속 배치되어 금속 벽이 이웃 스톤 사이를 연결함",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "No chain attached",
+     "target": "no chain",
+     "observed": "체인이나 연결고리 없이 후프만 표시됨",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "Shown as a matched pair",
+     "target": "two matching pieces",
+     "observed": "단일 후프 한 개의 서로 다른 각도도만 보이며 한 쌍으로 반복된 품은 없음",
+     "pass": false,
+     "status": "fail",
+     "view": "sketch",
+     "note": "두 번째 동일한 후프가 별도로 그려져 있지 않음"
+    }
+   ],
    "viewMismatch": false,
    "metrics": [
     {
@@ -3737,25 +4036,41 @@
     ],
     "reference_images": [
      {
-      "ref_id": "rf_473",
+      "ref_id": "cp_1",
       "source_type": "competitor",
-      "source_url": "https://competitor.example/product/8812",
-      "collected_at": "2026-05-14",
+      "source_url": "https://www.monicavinader.com/us/tapered-small-hoop-earrings/gold-vermeil-tapered-small-hoop-earrings",
+      "collected_at": "2026-08-08",
       "borrowed_attributes": [
-       "elongated_oval_shape",
-       "hollow_tubing_lightweight"
+       "스몰 사이즈 후프로 단독 착용과 레이어링에 적합하다."
       ],
-      "usage": "attribute_only"
+      "usage": "attribute_only",
+      "label": "Monica Vinader Tapered Small Hoop Earrings",
+      "linked_via": "Signal sg_002, also observed on this product"
      },
      {
-      "ref_id": "rf_986",
-      "source_type": "archive",
-      "source_url": "supabase://uploads/archive_112.jpg",
-      "collected_at": "2026-04-02",
+      "ref_id": "cp_3",
+      "source_type": "competitor",
+      "source_url": "https://www.monicavinader.com/us/deia-huggie-earrings/gold-vermeil-deia-huggie-earrings",
+      "collected_at": "2026-08-08",
       "borrowed_attributes": [
-       "proportion"
+       "전체 높이 13mm의 소형 후프가 상하 귓볼 모두에 적합하다.",
+       "18k gold vermeil을 925 sterling silver 기반 위에 적용한다."
       ],
-      "usage": "visual_reference"
+      "usage": "attribute_only",
+      "label": "Monica Vinader Deia Huggie Earrings",
+      "linked_via": "Signal sg_002, also observed on this product"
+     },
+     {
+      "ref_id": "cp_5",
+      "source_type": "competitor",
+      "source_url": "https://www.swarovski.com/ko-KR/p-M5749069/Vienna-%ED%9B%84%ED%94%84-%EC%9D%B4%EC%96%B4%EB%A7%81-%EB%AF%B9%EC%8A%A4-%EC%BB%B7-%ED%99%94%EC%9D%B4%ED%8A%B8-%EB%A1%9C%EB%93%90-%ED%94%8C%EB%9E%98%ED%8C%85/?variantID=5749069",
+      "collected_at": "2026-08-08",
+      "borrowed_attributes": [
+       "길이 약 2.3cm의 스몰 후프로 보인다."
+      ],
+      "usage": "attribute_only",
+      "label": "Swarovski Vienna 후프 이어링, 믹스 컷, 화이트, 로듐 플래팅",
+      "linked_via": "Signal sg_002, also observed on this product"
      }
     ],
     "reference_prompts": [],
@@ -3765,10 +4080,52 @@
      "오벌·레크탱귤러(스테디움) 비율 후프 showed up 2 times in this price band.",
      "할로우 튜빙 기반 경량 설계, observed 3 times, came in as the second axis.",
      "New tooling allowed with amortisation stated. Experimental, so Signature..",
-     "References were used for attributes only (usage: attribute_only), collected 2026-05-14."
+     "Attributes were read from Monica Vinader Tapered Small Hoop Earrings, Monica Vinader Deia Huggie Earrings, Swarovski Vienna 후프 이어링, 믹스 컷, 화이트, 로듐 플래팅, collected 2026-08-08. The photographs were never fed into generation."
     ]
    },
-   "qa": [],
+   "qa": [
+    {
+     "check": "Stone count matches",
+     "target": "9 stones",
+     "observed": "한 피스에서 둥근 스톤 9개가 선명하게 보임",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch",
+     "note": "한 개 후프를 기준으로 세었음."
+    },
+    {
+     "check": "Stone size against the piece",
+     "target": "2.2mm, reading as small but clearly visible",
+     "observed": "후프 폭 대비 스톤이 작지만 분명히 식별됨",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "Setting reads correctly",
+     "target": "prong",
+     "observed": "각 스톤 주위에 개별 발톱 형태가 그려져 프롱 세팅으로 읽힘",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "No chain attached",
+     "target": "no chain",
+     "observed": "체인은 아무 것도 연결되어 있지 않음",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    },
+    {
+     "check": "Shown as a matched pair",
+     "target": "two matching pieces",
+     "observed": "좌우 대칭의 동일한 후프 두 개가 함께 표시됨",
+     "pass": true,
+     "status": "pass",
+     "view": "sketch"
+    }
+   ],
    "viewMismatch": false,
    "metrics": [
     {

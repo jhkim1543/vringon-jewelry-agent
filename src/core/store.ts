@@ -29,13 +29,38 @@ function write(k: string, v: unknown) {
   catch { /* 용량 초과 시 조용히 넘긴다. 저장 실패가 실행을 막으면 안 된다 */ }
 }
 
+/** 예시 주소를 근거로 달고 저장된 옛 Run 을 읽을 때 걷어낸다.
+ *  브라우저에 이미 남은 기록까지 고칠 방법은 이것뿐이다. 지우기만 하고 다른 것으로
+ *  바꾸지 않는다 — 무엇이 근거였는지는 이제 알 수 없고, 지어내면 같은 잘못이다. */
+const FAKE_REF = /example\.(com|org|net)|supabase:\/\//i
+function scrubEvidence(r: RunRecord): RunRecord {
+  const designs = r.state?.designs ?? []
+  let touched = false
+  const fixed = designs.map(d => {
+    const refs = d.rationale?.reference_images ?? []
+    const keep = refs.filter(x => !FAKE_REF.test(x.source_url ?? ''))
+    if (keep.length === refs.length) return d
+    touched = true
+    return {
+      ...d,
+      rationale: {
+        ...d.rationale,
+        reference_images: keep,
+        narrative: (d.rationale?.narrative ?? []).filter(n => !/References were used for attributes only/.test(n)),
+      },
+    }
+  })
+  // 바뀐 것이 없으면 같은 객체를 돌려준다. 새 객체를 만들면 Library 가 매번 다시 그린다.
+  return touched ? { ...r, state: { ...r.state, designs: fixed } } : r
+}
+
 export function listRuns(): RunRecord[] {
   // 같은 도메인의 신발 데모와 저장소 키를 공유한다. 주얼리가 아닌 Run이 섞이면
   // 화면이 낯선 스펙을 읽다 죽으므로, 읽을 때 걸러내고 저장소에서도 지운다.
   const all = read<RunRecord[]>(KEY, [])
   const mine = all.filter(r => (r.state?.params?.category ?? 'jewelry') === 'jewelry')
   if (mine.length !== all.length) write(KEY, mine)
-  return mine.sort((a, b) => b.savedAt - a.savedAt)
+  return mine.map(scrubEvidence).sort((a, b) => b.savedAt - a.savedAt)
 }
 
 export function getRun(id: string): RunRecord | undefined {

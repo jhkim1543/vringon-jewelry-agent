@@ -5,6 +5,10 @@
 
 export const JA: Record<string, string> = {
   'No photo': '写真なし',
+  'collected': '収集日',
+  'unchecked': '未確認',
+  'The check could not run on this design, so nothing below is a pass.': 'このデザインは検査を実行できませんでした。以下は合格ではなく未確認です。',
+  'Nothing collected on this run fed this design directly, so no reference is claimed.': '今回の分析で集めたもののうち、このデザインに直接つながったものがないため、参照元は記載しません。',
   'MD pick': 'MDピック',
   'MD hold': 'MD保留',
   'MD drop': 'MD不採用',

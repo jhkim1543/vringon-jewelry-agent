@@ -199,7 +199,7 @@ export default function RunReport({ st, onOpenBoard, competitorDetail, bestselle
                   <span className="rd-spec">{x.metrics.slice(0, 2).map(m => `${m.label} ${m.value}`).join(' · ')}</span>
                   <span className="rd-chips">
                     <i className={x.rejected ? 'bad' : ''}>{x.rejected ? t('Rule reject') : t('Passed rules')}</i>
-                    {x.qa.length > 0 && <i>QA {x.qa.filter(q => q.pass).length}/{x.qa.length}</i>}
+                    {x.qa.length > 0 && <i className={x.qa.some(q => (q.status ?? (q.pass ? 'pass' : 'fail')) === 'fail') ? 'bad' : ''}>QA {x.qa.filter(q => q.pass).length}/{x.qa.length}</i>}
                     {x.mdReview && <i className={x.mdReview.verdict === 'drop' ? 'bad' : ''}>{
                       x.mdReview.verdict === 'pick' ? t('MD pick') : x.mdReview.verdict === 'drop' ? t('MD drop') : t('MD hold')}</i>}
                   </span>

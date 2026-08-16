@@ -341,3 +341,25 @@ export interface MdReviewRead {
 export const fetchMdReview = (b: {
   persona: unknown; item: string; designs: MdReviewItem[]; langName?: string
 }) => post<MdReviewRead>('/api/md/review', b)
+
+// ── 비전 QA · 만든 컷을 스펙과 대조한다 ─────────────────────────────
+export interface VisionQaRead {
+  checks: {
+    check_id: string
+    observed: string
+    observed_value: string
+    verdict: 'match' | 'mismatch' | 'unclear'
+    evidence_view: string
+    note: string
+  }[]
+  cross_view: { verdict: 'same_object' | 'minor_differences' | 'different_object'; differences: string[]; note: string }
+  worst_view: string
+  overall_note: string
+  views_read?: string[]
+  cached?: boolean
+}
+export const fetchVisionQa = (b: {
+  item: string; spec: string; surface: 'render' | 'sketch'
+  checks: { id: string; label: string; target: string }[]
+  views: { view: string; hash: string }[]
+}) => post<VisionQaRead>('/api/vision/qa', b)

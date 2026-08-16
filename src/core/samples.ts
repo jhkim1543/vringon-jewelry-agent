@@ -1,7 +1,9 @@
 // ── S1 샘플 데이터 · 모드·카테고리별 신호/경쟁사/디렉션/DNA (데모용) ──
 import type { Category, CompetitorProduct, Direction, Mode, ReportBias, SeriesDna, Signal } from './types'
 
-const SRC = (n: number) => Array.from({ length: n }, (_, i) => `https://observed.example/${1000 + i * 37}`)
+// 예시 신호에는 출처를 붙이지 않는다. 지어낸 주소는 근거처럼 보이지만 아무것도 가리키지 않고,
+// isCollectedSignal 이 이것을 수집된 근거로 오판하게 만든다. 빈 배열이 정확한 값이다.
+const SRC = (_n: number): string[] => []
 
 export const SIGNALS: Record<Category, Signal[]> = {
   jewelry: [
@@ -49,7 +51,9 @@ export const SERIES_DNA: Record<Category, SeriesDna> = {
 
 // 시리즈 모드 · DNA 잠금 필드 (S2 스펙 필드값으로 실제 잠김, 지시서 DoD)
 export const DNA_LOCKS: Record<Category, Record<string, string | number>> = {
-  jewelry: { setting_type: 'bezel', min_wall_thickness_mm: 0.9 },
+  // 벽두께는 반지 착용 하한(1.0mm)에 연마분 0.1mm 를 더한 값 위에 둔다.
+  // 0.9 로 두면 시리즈 모드의 반지가 J-12 로 100% 떨어져 보드가 통째로 빈다.
+  jewelry: { setting_type: 'bezel', min_wall_thickness_mm: 1.15 },
 }
 
 export const DNA_CONFLICT: Record<Category, { brandClaim: string; observed: string }> = {
