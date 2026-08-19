@@ -1,5 +1,5 @@
 // ── S1 샘플 데이터 · 모드·카테고리별 신호/경쟁사/디렉션/DNA (데모용) ──
-import type { Category, CompetitorProduct, Direction, Mode, ReportBias, SeriesDna, Signal } from './types'
+import type { Category, CompetitorProduct, SeriesDna, Signal } from './types'
 
 // 예시 신호에는 출처를 붙이지 않는다. 지어낸 주소는 근거처럼 보이지만 아무것도 가리키지 않고,
 // isCollectedSignal 이 이것을 수집된 근거로 오판하게 만든다. 빈 배열이 정확한 값이다.
@@ -25,13 +25,7 @@ export const COMPETITORS: Record<Category, CompetitorProduct[]> = {
   ],
 }
 
-export const DIRECTIONS: Record<Category, Direction[]> = {
-  jewelry: [
-    { id: 'dir_1', title: 'Bold band with a bezel', summary: 'The top two rising signals together. Start where an existing mould can be modified.', signal_ids: ['sg_101', 'sg_105'] },
-    { id: 'dir_2', title: 'Matte mixed metal', summary: 'Differentiates on finish contrast. The extra plating step has to be absorbed inside the cap.', signal_ids: ['sg_109', 'sg_113'] },
-    { id: 'dir_3', title: 'Layering system', summary: 'Built to combine rather than stand alone. Standardising the chain spec keeps SKU count down.', signal_ids: ['sg_118', 'sg_101'] },
-  ],
-}
+// 방향(Direction)은 더 이상 상수가 아니다 · pipeline.ts 의 buildDirections() 가 이번 실행에서 수집한 신호로 만든다.
 
 export const SERIES_DNA: Record<Category, SeriesDna> = {
   jewelry: {
@@ -49,24 +43,11 @@ export const SERIES_DNA: Record<Category, SeriesDna> = {
   },
 }
 
-// 시리즈 모드 · DNA 잠금 필드 (S2 스펙 필드값으로 실제 잠김, 지시서 DoD)
-export const DNA_LOCKS: Record<Category, Record<string, string | number>> = {
-  // 벽두께는 반지 착용 하한(1.0mm)에 연마분 0.1mm 를 더한 값 위에 둔다.
-  // 0.9 로 두면 시리즈 모드의 반지가 J-12 로 100% 떨어져 보드가 통째로 빈다.
-  jewelry: { setting_type: 'bezel', min_wall_thickness_mm: 1.15 },
-}
+// 시리즈 잠금은 더 이상 상수가 아니다. 판독이 스펙 필드로 짚어 낸 것만 잠근다
+// (server/uploads-api.mjs 의 spec_locks). 판독이 못 짚으면 아무것도 잠그지 않는다.
 
 export const DNA_CONFLICT: Record<Category, { brandClaim: string; observed: string }> = {
   jewelry: { brandClaim: '"minimal and restrained"', observed: '9 stones on average, pave setting in 6 of 8' },
 }
 
-export const REPORT_BIAS: ReportBias = {
-  publisher: 'EU trend research report, 2026 S/S',
-  perspective: 'Written from a European contemporary view',
-  notes: ['Asia comes up 3 times across 41 sections', '62% of citations are luxury houses', '12 claims name no price band, so they are docked when promoted to signals'],
-}
 
-// 컨셉 프롬프트 파싱 예 (지시서 1.2 ⑤)
-export const PROMPT_PARSE: Record<Category, { text: string; applied: string[] }> = {
-  jewelry: { text: 'This season, bolder and more masculine, matte materials', applied: ['target_weight_g: +30~50%', 'finish: matte|brushed', 'band_width: increase', 'mood: bold, masculine'] },
-}

@@ -158,17 +158,58 @@ H100 서버에 `server.mjs` 배포. 이게 있어야 기기 간 보드 공유, �
 "9/11 골드, 스톤 6장, 업로드에 반지·체인 팔찌가 섞임". 실제 트렌드 PDF → 신호 8개 전부 p.1~p.3 근거,
 팔레트 6색, 발행처의 감정평가 이해관계 지적, "후프 언급 없음" 고지.
 
-### 데모 샘플은 모드당 한 건
+### 데모 샘플은 모드당 한 건 (2026-08-17 재생성)
 
-`SAMPLE_IDS` = vermeilhoop(트렌드 풀사이클+3D+예측근거이미지) / mode_series / mode_moodboard.
-`node scripts/prune-samples.mjs <남길것...> --go` 가 나머지 JSON 과 **고아 미디어까지** 지운다
-(정리 때 69MB 회수). 샘플을 새로 뜨면 bake-shots → prune 순서로 돌릴 것.
+`SAMPLE_IDS` = `sample_trend_vermeilhoop`(S5) / `sample_series_silverhoop`(S4) / `sample_moodboard_hoop`(S4).
+셋 다 **후프** 하나로 맞췄다 — 모드 차이만 보이게 하려고. 설정은 `.sampleruns/*.cfg.json` 에 있다.
+
+재생성 절차 (서버 5191 이 떠 있어야 한다 · **브라우저 패널에 묶인 서버는 패널이 숨겨지면 죽으므로**
+`cmd /c "npx vite --port 5191 --strictPort"` 를 별도 프로세스로 띄울 것):
+```
+npm run sample:warm -- .sampleruns/<name>.cfg.json --go   # 조사 캐시 미리 채우기(선택)
+npm run sample:make -- .sampleruns/<name>.cfg.json --go   # 파이프라인 헤드리스 실행 → src/samples/
+npm run sample:bake                                       # 사진 굽기 → webp → 위저드 아트 재지정
+node scripts/prune-samples.mjs sample_trend_vermeilhoop sample_series_silverhoop sample_moodboard_hoop --go
+npm run audit                                             # 모드 계약·근거·번역·위저드 아트 검사
+```
+`make-sample.mts` 는 **DNA 충돌 게이트**(`gate reason:'dna'`)를 `resolveDna('archive')` 로 푼다.
+`resume()` 만 부르면 게이트가 안 풀려 프로세스가 미해결 await(exit 13)로 끝난다 — 실제로 겪었다.
 
 **함정 · 샘플을 손댄 뒤에는 `node scripts/check-wizard-art.mjs` 를 돌릴 것.** 위저드 마지막 단계의
 미리보기 네 장(`Wizard.tsx` 의 `SCOPE_ART`)은 샘플 산출물을 직접 가리킨다. 두 가지가 조용히
 이 그림을 깨뜨린다 — **prune-samples 가 그 파일을 지우거나, webp-samples 가 확장자를 바꾸거나.**
 둘 다 실제로 겪었고 화면을 열기 전까지는 아무도 모른다. 검사 스크립트가 MISS 를 찍어 준다.
 지금은 vermeilhoop 의 스케치·렌더·착용컷·정사영(`.webp`)을 가리킨다.
+
+### 모드 계약 · 브랜드/MD · 언어 · 반응형 감사 (2026-08-17)
+
+**모드 계약 위반 4건**을 고쳤다. 도시에가 카테고리 전체로 조사돼 후프 런에 발찌 구조가 실리던 것
+(→ 품목 단위, 캐시 키 `dossier7-type`), 무드보드 판독에 웹 검색이 붙어 "올린 파일만" 계약이 깨지던 것
+(→ `ask(..., { web: false })`), 시리즈가 판독 결과가 아니라 상수(`DNA_LOCKS`)를 잠그던 것
+(→ 판독의 `spec_locks` 만 잠근다), 근거로 보여주는 신호가 프롬프트에 들어간 신호와 다르던 것
+(→ 레시피에서 되짚는다). `node scripts/mode-audit.mjs` 가 재발을 잡는다.
+
+**브랜드 설정 · MD 페르소나 감사 15건.** 화면이 약속하고 코드가 지키지 않던 것들:
+로고 체크박스가 합성을 가르지 않음(프롬프트는 "로고 없음"인데 이미지엔 로고), "브라우저에만 보관"이 거짓
+(합성 위해 서버로, 합성본은 편집 API 로), 사람 승인/반려가 파이프라인에 닿지 않음(반려해도 렌더·Top·촬영·3D 진행)
++ 그 판정이 다음 `design-update` 에 덮여 사라짐, MD 캐시 키에 스펙이 빠짐(`mdrev2` 로 올림),
+"Never 위반 시 카드 표시" 함수(`checkBrandFit`)가 **호출되는 곳이 없었음**, 톤 워드가 컨셉 촬영에 못 닿음
+(`st_mood` 죽은 코드), 컬러웨이가 고정 5색으로 브랜드 팔레트를 덮음, "레퍼런스 뱅크로 다음 실행에 반영"
+이라는 없는 기능 주장 등. 전부 고쳤고 `PipelineHandle` 에 `resolveDna`·`setVerdict` 가 생겼다.
+MD 페르소나는 같은 후보 3종에 정반대 페르소나를 붙여 실측 — 판정이 뒤집히고 사유가 즉시탈락 룰을 인용한다.
+
+**화면 언어.** `BrandSetup.tsx` 가 i18n 을 import 하지 않아 KR 에서도 그 창만 영어였다. 전 화면 369건을
+`t()`/`tf()` 로 연결하고 KO·JA 사전 818항목. **영문 원문이 곧 사전 키**라 누락되면 조용히 영어로 남는다 —
+`node scripts/i18n-audit.mjs` 가 누락·치환자 유실·번역문에 남은 영어 낱말을 잡는다(exit 1).
+모델 프롬프트는 영어 고정, 사용자 입력·조사 데이터는 번역하지 않는다.
+
+**반응형.** 앱 골격(레일 194px, 실행 화면 좌우 300/380px, 모달)이 고정이라 597px 에서 본문이 181px 였다.
+`theme.css` 끝의 세 단계(≤1024 아이콘 레일·한 열 / ≤760 하단 탭바·시트 모달·sticky 시작 버튼 / ≤480)로 덮어쓴다.
+큰 화면 규칙은 손대지 않았다. 375/800/1280 에서 페이지 가로 넘침 0 을 실측했다.
+
+**정리.** 신발 이식 잔재(`SHOE_*`, `TOE_KO`, `IcShoe`, 로고 위치 tongue/heel, 카드의 신발 분기) 제거,
+`noUnusedLocals` 켬(0건), 일회성 수리 스크립트(`backfill-qa`, `fix-sample-evidence`) 삭제,
+`npm run audit` / `sample:*` 명령 추가.
 
 ### 리포트 사진 · `/api/shot` 을 쓰지 말 것
 
@@ -437,4 +478,4 @@ Net-a-Porter는 `srcset`에 `//host/...`(프로토콜 생략)로 준다. 패턴�
 
 아래를 그대로 쓰면 됩니다.
 
-> 위 인수인계 문서대로 이어서 진행해줘. P1(Gemini 품질 감사 3회 추가 실행과 지적사항 반영)부터 시작하고 P2, P3 순서로 진행해줘. 보안 규칙과 함정 항목은 반드시 지켜줘.
+> 위 인수인계 문서대로 이어서 진행해줘. 먼저 `npm run audit` 를 돌려 네 검사가 모두 통과하는지 확인하고, 실패가 있으면 그것부터 고쳐줘. 보안 규칙과 함정 항목은 반드시 지켜줘.

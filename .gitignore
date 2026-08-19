@@ -5,3 +5,8 @@ dist
 .env.local
 *.local
 .cache
+# 샘플 생성 설정은 커밋한다(.sampleruns/*.cfg.json). 실행 중간 산출물·로그는 뺀다
+.sampleruns/*.log
+.vite-detached.*
+.*-probe.*
+*.state.json

@@ -1,9 +1,9 @@
 // ── VRINGON Design Agent · 앱 셸 ─────────────────────────────────────
 import { t, useLang } from './core/i18n'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import type { PipelineEvent, RunParams, RunState, Stage } from './core/types'
+import type { PipelineEvent, RunParams, RunState } from './core/types'
 import { runPipeline } from './core/pipeline'
-import type { PipelineHandle } from './core/pipeline'
+import type { DnaChoice, PipelineHandle } from './core/pipeline'
 import Wizard from './ui/Wizard'
 import RunView from './ui/RunView'
 import Board from './ui/Board'
@@ -16,8 +16,7 @@ import { useTheme } from './ui/useTheme'
 import Library from './ui/Library'
 import ErrorBoundary from './ui/ErrorBoundary'
 import { clearCurrent, firstImage, loadCurrent, newRunId, saveCurrent, saveRun } from './core/store'
-import type { RunRecord } from './core/store'
-import { CAT_LABEL, MODE_LABEL, TYPE_LABEL } from './core/types'
+import { MODE_LABEL, TYPE_LABEL } from './core/types'
 import { ensureSampleRuns } from './core/sampleRun'
 import { getRun } from './core/store'
 import { pushShareTarget, readShareTarget } from './core/share'
@@ -48,6 +47,9 @@ export default function App() {
   const [brand, setBrand] = useState<BrandIdentity>(() => loadBrand())
   const [brandOpen, setBrandOpen] = useState(false)
   const [brandGate, setBrandGate] = useState<RunParams | null>(null)
+  // 브랜드 설정을 하러 간 사이 시작하려던 실행을 붙들어 둔다.
+  // 놓아 버리면 사용자는 시작 버튼을 눌렀는데 아무 일도 일어나지 않은 것으로 본다.
+  const [pendingRun, setPendingRun] = useState<RunParams | null>(null)
   const runIdRef = useRef<string>(newRunId())
   // New run을 누르면 위저드를 새로 마운트해 입력을 처음 상태로 되돌린다
   const [wizardKey, setWizardKey] = useState(0)
@@ -106,7 +108,11 @@ export default function App() {
         case 'dossier-pending': next.dossierPending = e.on; break
         case 'design': next.designs = [...next.designs, e.design]; break
         case 'design-update':
-          next.designs = next.designs.map(d => d.spec.design_id === e.design.spec.design_id ? e.design : d); break
+          // 파이프라인 사본에는 사용자의 승인/반려가 없다. 통째로 갈아 끼우면
+          // 게이트에서 준 판정이 S3 가 그 디자인을 건드리는 순간 사라진다.
+          next.designs = next.designs.map(d => d.spec.design_id === e.design.spec.design_id
+            ? { ...e.design, verdict: d.verdict, verdictTags: d.verdictTags }
+            : d); break
         case 'checkpoint': next.checkpoints = [...next.checkpoints, e.label]; break
         case 'done': next.finished = true; break
       }
@@ -120,7 +126,8 @@ export default function App() {
       if (m) setUsage(u => ({ ...u, searches: u.searches + Number(m[1]) }))
     }
     if (e.kind === 'gate') {
-      setGated(true)
+      // DNA 충돌 게이트는 디자인 승인 게이트가 아니다 · 승인 바를 띄우면 없는 디자인을 승인하라고 하는 셈
+      if (e.reason !== 'dna') setGated(true)
       setSt(prev => prev ? { ...prev, stageStatus: { ...prev.stageStatus, [e.stage]: 'gated' as const } } : prev)
     }
     if (e.kind === 'stage-start') setProgress(p => ({ ...p, [e.stage]: 0 }))
@@ -139,7 +146,9 @@ export default function App() {
     }
   }, [st])
 
-  const start = useCallback((params: RunParams) => {
+  // 브랜드를 방금 저장하고 바로 시작하는 경로가 있다. 그때는 state 가 아직 옛 값이라
+  // 넘겨받은 브랜드를 쓴다 — 아니면 방금 설정한 브랜드 없이 실행된다.
+  const startWith = useCallback((params: RunParams, b: BrandIdentity) => {
     handleRef.current?.cancel()
     runIdRef.current = newRunId()
     clearCurrent()
@@ -147,8 +156,10 @@ export default function App() {
     setProgress({})
     setGated(false)
     setView('run')
-    handleRef.current = runPipeline({ ...params, brand }, onEvent, 1.6)
-  }, [onEvent, brand])
+    handleRef.current = runPipeline({ ...params, brand: b }, onEvent, 1.6)
+  }, [onEvent])
+
+  const start = useCallback((params: RunParams) => startWith(params, brand), [startWith, brand])
 
   const resume = useCallback(() => {
     setGated(false)
@@ -156,21 +167,28 @@ export default function App() {
     handleRef.current?.resume()
   }, [])
 
-  const onResolveDna = useCallback((choice: string) => {
+  const onResolveDna = useCallback((choice: DnaChoice) => {
+    // 선택을 파이프라인에 먼저 넘기고 나서 재개한다 · 순서가 바뀌면 기본값으로 잠겨 버린다
+    handleRef.current?.resolveDna(choice)
     setSt(prev => prev && prev.dnaConflict ? {
       ...prev,
       dnaConflict: { ...prev.dnaConflict, resolved: choice },
-      logs: [...prev.logs, { stage: 'S1', text: `Conflict resolved: going with "${choice}" · recorded in the reasoning chain`, t: Date.now() }],
+      logs: [...prev.logs, { stage: 'S1', text: `Conflict resolved: going with "${choice}"`, t: Date.now() }],
     } : prev)
+    setSt(prev => prev ? { ...prev, stageStatus: { ...prev.stageStatus, S1: 'running' } } : prev)
+    handleRef.current?.resume()
   }, [])
 
   const onVerdict = useCallback((id: string, v: 'approve' | 'reject', tags: string[]) => {
+    // 판정을 파이프라인에도 넘긴다. 화면에만 담아 두면 "반려"라고 적힌 디자인이
+    // 그대로 렌더되고 Top 으로 뽑히고 촬영까지 간다.
+    handleRef.current?.setVerdict(id, v)
     setSt(prev => {
       if (!prev) return prev
       return {
         ...prev,
         designs: prev.designs.map(d => d.spec.design_id === id ? { ...d, verdict: v, verdictTags: tags } : d),
-        logs: [...prev.logs, { stage: 'FB', text: `${id} ${v === 'approve' ? 'approved' : 'rejected (' + tags.join(', ') + ')'} · added to the reference bank, kept per ${prev.params.category} and ${prev.params.mode}`, t: Date.now() }],
+        logs: [...prev.logs, { stage: 'FB', text: `${id} ${v === 'approve' ? 'approved' : 'rejected (' + tags.join(', ') + ')'}${v === 'reject' ? ' · it will be left out of the remaining stages' : ''}`, t: Date.now() }],
       }
     })
   }, [])
@@ -182,7 +200,8 @@ export default function App() {
         {/* 로고는 어디서 눌러도 처음 화면으로 돌아온다 */}
         <button className="brand" onClick={() => setView('create')} title={t('Back to the start')}>
           <VringonLogo />
-          VRINGON
+          {/* 폰에서는 마크만 남고 글자는 CSS 로 숨는다 */}
+          <span className="brand-word">VRINGON</span>
           <span className="module">{t('Jewelry Agent')}</span>
         </button>
         <nav className="topnav">
@@ -193,8 +212,9 @@ export default function App() {
         <div className="right">
           <button className={`btn btn-sm ${isBrandConfigured(brand) ? 'btn-ghost' : 'btn-primary'}`}
             onClick={() => setBrandOpen(true)}
-            title="Logo and brand rules ride along with every result">
-            {isBrandConfigured(brand) ? brand.brandName : t('Set up brand')}
+            title={t('Logo and brand rules ride along with every result')}>
+            {/* 긴 브랜드명이 폰 상단바를 밀어내지 않게 · CSS 가 말줄임 처리한다 */}
+            <span className="brandbtn-t">{isBrandConfigured(brand) ? brand.brandName : t('Set up brand')}</span>
           </button>
           <LangToggle />
           <ThemeToggle theme={theme} onToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
@@ -205,15 +225,16 @@ export default function App() {
         <aside className="siderail">
           {/* 상단은 "지금 어디", 좌측은 "지난 작업". 축이 겹치면 안 되므로
               Create와 같은 곳으로 가던 Run setup 항목은 두지 않는다. */}
-          <button className="sr-new" onClick={() => { setView('create'); setWizardKey(k => k + 1) }}>
+          <button className="sr-new" title={t('New run')} aria-label={t('New run')}
+            onClick={() => { setView('create'); setWizardKey(k => k + 1) }}>
             <IcPlus /> <span>{t('New run')}</span> <IcChevron />
           </button>
           <nav>
-            <button className={`sr-i ${view === 'library' ? 'on' : ''}`} onClick={() => setView('library')}>
-              <IcClock /> {t('History')}
+            <button className={`sr-i ${view === 'library' ? 'on' : ''}`} title={t('History')} aria-label={t('History')} onClick={() => setView('library')}>
+              <IcClock /> <span>{t('History')}</span>
             </button>
-            <button className={`sr-i ${view === 'starred' ? 'on' : ''}`} onClick={() => setView('starred')}>
-              <IcStar /> {t('Starred')}
+            <button className={`sr-i ${view === 'starred' ? 'on' : ''}`} title={t('Starred')} aria-label={t('Starred')} onClick={() => setView('starred')}>
+              <IcStar /> <span>{t('Starred')}</span>
             </button>
           </nav>
           <div className="sr-foot">
@@ -225,7 +246,7 @@ export default function App() {
             </div>
             <button className="sr-clear" onClick={() => setUsage({ images: 0, searches: 0 })}
               disabled={!usage.images && !usage.searches}>
-              <IcTrash /> {t('Clear session')}
+              <IcTrash /> <span>{t('Clear session')}</span>
             </button>
           </div>
         </aside>
@@ -260,8 +281,14 @@ export default function App() {
         {(view === 'run' || view === 'board') && !st && <div className="empty">{t('No run open. Start one from Run setup.')}</div>}
       </div>
       {brandOpen && (
-        <BrandSetup brand={brand} onClose={() => setBrandOpen(false)}
-          onSave={b => { setBrand(b); saveBrand(b) }} />
+        <BrandSetup brand={brand} onClose={() => { setBrandOpen(false); setPendingRun(null) }}
+          onSave={b => {
+            setBrand(b)
+            const r = saveBrand(b)
+            // 저장에 성공했을 때만 붙들어 둔 실행을 이어서 시작한다
+            if (r.ok && pendingRun) { const p = pendingRun; setPendingRun(null); setTimeout(() => startWith(p, b), 0) }
+            return r
+          }} />
       )}
 
       {brandGate && (
@@ -271,9 +298,7 @@ export default function App() {
               <div>
                 <h2>{t('Set up your brand first')}</h2>
                 <p className="hint">
-                  Whatever the agent decides, the result still has to look like your brand.
-                  The logo placement, signature details and the things you never do get attached to every image.
-                  Setting this once takes a minute and it applies to all runs.
+                  {t('Whatever the agent decides, the result still has to look like your brand. The logo placement, signature details and the things you never do get attached to every image. Setting this once takes a minute and it applies to all runs.')}
                 </p>
               </div>
             </div>
@@ -283,8 +308,8 @@ export default function App() {
                 {t('Run without it')}
               </button>
               <button className="btn btn-primary" style={{ marginLeft: 'auto' }}
-                onClick={() => { setBrandGate(null); setBrandOpen(true) }}>
-                Set up brand
+                onClick={() => { setPendingRun(brandGate); setBrandGate(null); setBrandOpen(true) }}>
+                {t('Set up brand')}
               </button>
             </div>
           </div>

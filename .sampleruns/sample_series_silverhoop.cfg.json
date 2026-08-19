@@ -1,0 +1,169 @@
+{
+ "name": "sample_series_silverhoop",
+ "sampleTitle": "시리즈 · 실버 후프",
+ "params": {
+  "mode": "series",
+  "category": "jewelry",
+  "itemType": "hoop",
+  "endStage": "S4",
+  "sketchCount": 12,
+  "tierRatio": [
+   1,
+   1,
+   1
+  ],
+  "renderRatio": 0.5,
+  "viewCount": 3,
+  "colorwayCount": 2,
+  "topN": 3,
+  "designsPerSketch": 2,
+  "variationCount": 3,
+  "campaignShots": 4,
+  "make3d": true,
+  "approvalGate": false,
+  "line": {
+   "preset": "sterling_core",
+   "baseMetal": "925_silver",
+   "coating": "rhodium",
+   "stone": "none"
+  },
+  "imageEngine": "detail",
+  "imageBudget": 30,
+  "trend": {
+   "competitors": [],
+   "priceBand": "contemporary",
+   "priceMinKrw": 150000,
+   "priceMaxKrw": 450000
+  },
+  "series": {
+   "seriesName": "",
+   "archiveFiles": [
+    {
+     "name": "shot_2ceec67cc0af12cc.webp",
+     "hash": "db7fdb3dc4a0b8b9e616ab8a",
+     "mime": "image/webp",
+     "size": 4986,
+     "url": "/samples/up_db7fdb3dc4a0b8b9e616ab8a.webp"
+    },
+    {
+     "name": "shot_2792703701dc6806.webp",
+     "hash": "02753c6b5dce29780c28b978",
+     "mime": "image/webp",
+     "size": 3704,
+     "url": "/samples/up_02753c6b5dce29780c28b978.webp"
+    },
+    {
+     "name": "shot_2817c7926e7e0833.webp",
+     "hash": "95d6179c08ebc49fea9a24ff",
+     "mime": "image/webp",
+     "size": 2866,
+     "url": "/samples/up_95d6179c08ebc49fea9a24ff.webp"
+    },
+    {
+     "name": "shot_d02a4eb1549e3cee.webp",
+     "hash": "a553919c8bb04952f0bde145",
+     "mime": "image/webp",
+     "size": 4058,
+     "url": "/samples/up_a553919c8bb04952f0bde145.webp"
+    },
+    {
+     "name": "shot_1020f5a43aa063fd.webp",
+     "hash": "1b2b9180e3d74998242b1c09",
+     "mime": "image/webp",
+     "size": 7948,
+     "url": "/samples/up_1b2b9180e3d74998242b1c09.webp"
+    },
+    {
+     "name": "shot_fed5525d1e9f2db6.webp",
+     "hash": "5c1804ab261fbf0be8536a95",
+     "mime": "image/webp",
+     "size": 7090,
+     "url": "/samples/up_5c1804ab261fbf0be8536a95.webp"
+    },
+    {
+     "name": "shot_417f251315e38c23.webp",
+     "hash": "b19b5ecb4eda833af2bdcd5b",
+     "mime": "image/webp",
+     "size": 6796,
+     "url": "/samples/up_b19b5ecb4eda833af2bdcd5b.webp"
+    },
+    {
+     "name": "shot_cedac1e99bb963e2.webp",
+     "hash": "1e61451b34e3f8be433571ea",
+     "mime": "image/webp",
+     "size": 10380,
+     "url": "/samples/up_1e61451b34e3f8be433571ea.webp"
+    },
+    {
+     "name": "shot_ddd97a476b97cf93.webp",
+     "hash": "92192655eefdd89096155869",
+     "mime": "image/webp",
+     "size": 12238,
+     "url": "/samples/up_92192655eefdd89096155869.webp"
+    }
+   ],
+   "valueStatement": "우리 시리즈는 무광 실버 좁은 밴드를 유지하고 스톤을 쓰지 않습니다.",
+   "trendSearch": true
+  },
+  "moodboard": {
+   "files": [],
+   "notes": ""
+  },
+  "brand": {
+   "brandName": "VRINGON",
+   "tagline": "Quiet metal, built to be worn every day",
+   "signatureElements": [
+    "softly chamfered edge",
+    "continuous unbroken band line"
+   ],
+   "forbidden": [
+    "printed logo",
+    "plastic-look coating"
+   ],
+   "colorPalette": [
+    {
+     "name": "Vermeil Gold",
+     "hex": "#C79A4B"
+    },
+    {
+     "name": "Deep Ink",
+     "hex": "#1E2228"
+    }
+   ],
+   "materials": [
+    "18k gold vermeil over sterling silver"
+   ],
+   "toneWords": [
+    "restrained",
+    "structural",
+    "warm"
+   ],
+   "logo": null,
+   "applyLogoToImages": false,
+   "md": {
+    "role": "백화점 파인주얼리 바이어 12년차",
+    "market": "국내 백화점 편집관 + 자사 온라인몰",
+    "customer": "30대 자기구매 여성, 데일리 착용과 겹쳐끼기",
+    "priorities": [
+     "시즌 트렌드 적합성",
+     "소매가 대비 마진",
+     "제조 난이도와 리드타임",
+     "기존 몰드 재사용"
+    ],
+    "rejectRules": [
+     "도금으로 커버되지 않는 마모 취약 부위",
+     "세팅이 헐거워 보이는 스톤 배치",
+     "캡 비율 90% 초과"
+    ],
+    "checkpoints": [
+     "착용했을 때의 실루엣",
+     "세팅의 견고함",
+     "표면 마감 균일도",
+     "겹쳐끼기 간섭 여부"
+    ],
+    "tone": "direct"
+   }
+  },
+  "researchLang": "ko"
+ }
+}

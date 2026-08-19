@@ -5,13 +5,14 @@ import { listRuns, saveRun } from './store'
 
 /** 주얼리 전용 · 심어 두는 예시 분석 */
 // 모드마다 한 건씩. 전부 현재 파이프라인으로 실제로 돌린 결과다.
-//   trend     · 풀사이클(3D 포함) + 예측 근거 참고 이미지
-//   series    · 업로드한 디자인 11장을 실제로 읽어 DNA 분리
-//   moodboard · 실제 트렌드 PDF 를 읽어 페이지 근거가 붙은 신호
+//   trend     · 풀사이클(3D 포함) · 경쟁사·베스트셀러·도시에가 근거
+//   series    · 올린 후프 9장을 실제로 읽어 DNA 를 가르고, 가치 문장과 대조한다
+//   moodboard · 올린 트렌드 PDF 만 근거 · 신호마다 쪽 인용이 붙는다
+// 모드 계약 검사는 `node scripts/mode-audit.mjs` 가 한다. 샘플을 새로 뜨면 반드시 돌릴 것.
 const SAMPLE_IDS = [
-  'sample_jewel_vermeilhoop',
-  'sample_mode_series',
-  'sample_mode_moodboard',
+  'sample_trend_vermeilhoop',
+  'sample_series_silverhoop',
+  'sample_moodboard_hoop',
 ] as const
 
 export async function ensureSampleRuns() {

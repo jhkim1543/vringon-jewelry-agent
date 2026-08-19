@@ -1,8 +1,9 @@
 // ── Run 실행 화면 · 핵심만 노출, 상세는 접힘 (진행 · 부분 결과 · 게이트) ──
-import { t } from '../core/i18n'
+import { t, tf } from '../core/i18n'
 import { useEffect, useRef, useState } from 'react'
 import type { RunState } from '../core/types'
-import { MODE_LABEL, CAT_LABEL, TIER_LABEL, TYPE_LABEL, evidenceId } from '../core/types'
+import type { DnaChoice } from '../core/pipeline'
+import { MODE_LABEL, TIER_LABEL, TYPE_LABEL, evidenceId } from '../core/types'
 import RunReport from './RunReport'
 import { DesignCard } from './Card'
 import { ModelViewer } from './ModelViewer'
@@ -29,7 +30,7 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
   onResume: () => void
   onGateVerdict: (id: string, v: 'approve' | 'reject', tags: string[]) => void
   onOpenBoard: () => void
-  onResolveDna: (choice: string) => void
+  onResolveDna: (choice: DnaChoice) => void
 }) {
   const [showLog, setShowLog] = useState(false)
   // 디자인 상세 모달 · 캠페인 컷과 3D 를 연다
@@ -37,8 +38,6 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
   const logRef = useRef<HTMLDivElement>(null)
   useEffect(() => { if (showLog) logRef.current?.scrollTo({ top: 1e9 }) }, [st.logs.length, showLog])
 
-  const s3done = st.stageStatus.S3 === 'done'
-  const s4done = st.stageStatus.S4 === 'done'
   const approvedCount = st.designs.filter(d => d.verdict === 'approve').length
   const rejectedCount = st.designs.filter(d => d.verdict === 'reject').length
   const lastCheckpoint = st.checkpoints[st.checkpoints.length - 1]
@@ -49,12 +48,11 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
   const strongCnt = st.competitors.filter(c => c.evidence_strength === 'strong').length
   const compSummary = st.competitors.length
     ? isLiveResearch
-      ? `${st.competitors.length} products · ${inBand.length} in band · ${strongCnt} strong`
-      : `${st.competitors.length} products (sample)`
+      ? tf('{n} products · {b} in band · {s} strong', { n: st.competitors.length, b: inBand.length, s: strongCnt })
+      : tf('{n} products (sample)', { n: st.competitors.length })
     : ''
   const rising = st.signals.filter(s => s.direction === 'rising').length
-  const topSig = [...st.signals].sort((a, b) => b.observed_count - a.observed_count)[0]
-  const sigSummary = st.signals.length ? `${st.signals.length} signals · ${rising} rising` : ''
+  const sigSummary = st.signals.length ? tf('{n} signals · {r} rising', { n: st.signals.length, r: rising }) : ''
 
   // 백화점·명품몰 베스트셀러 · 조사 시점에 "잘 팔린다고 표기된 것"의 실물 사진과 근거.
   // 경쟁 브랜드 조사와 축이 다르다 — 이쪽은 유통사 랭킹이 기준이다.
@@ -115,11 +113,11 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
             <div style={{ padding: '8px 14px 0' }}>
               {isLiveResearch ? (
                 <div className="notice info" style={{ fontSize: 12 }}>
-                  Collected by searching these brands on the web. Only facts found in sources are listed. No sales score until there are repeat observations.
+                  {t('Collected by searching these brands on the web. Only facts found in sources are listed. No sales score until there are repeat observations.')}
                 </div>
               ) : (
                 <div className="notice warn" style={{ fontSize: 12 }}>
-                  Fixed sample (collection fell back). Do not treat as real numbers.
+                  {t('Fixed sample (collection fell back). Do not treat as real numbers.')}
                 </div>
               )}
             </div>
@@ -135,10 +133,10 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
                   <div className="cc-main">
                     <div className="cc-head">
                       <b>{c.brand}</b> {c.name}
-                      {!c.in_band && <Tag kind="warn">Out of band</Tag>}
+                      {!c.in_band && <Tag kind="warn">{t('Out of band')}</Tag>}
                     </div>
                     <div className="cc-meta">
-                      {c.price_krw > 0 ? `₩${(c.price_krw / 10000).toFixed(1)}0,000` : 'Price unknown'}
+                      {c.price_krw > 0 ? `₩${(c.price_krw / 10000).toFixed(1)}0,000` : t('Price unknown')}
                       {c.rank_note && <> · <span className="cc-rank">{c.rank_note}</span></>}
                       {c.evidence_strength && <> · {c.evidence_strength}</>}
                     </div>
@@ -152,7 +150,7 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
                       <div className="cc-review">
                         {c.user_sentiment && c.user_sentiment !== 'unknown' && (
                           <Tag kind={c.user_sentiment === 'positive' ? 'ok' : c.user_sentiment === 'negative' ? 'danger' : 'warn'}>
-                            {c.user_sentiment === 'positive' ? 'liked' : c.user_sentiment === 'negative' ? 'disliked' : 'mixed'}
+                            {c.user_sentiment === 'positive' ? t('liked') : c.user_sentiment === 'negative' ? t('disliked') : t('mixed')}
                           </Tag>
                         )}
                         {c.praise_points?.[0] && <div className="cc-good">+ {c.praise_points[0]}</div>}
@@ -176,12 +174,15 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
           <Collapse
             title={t('Forecast evidence')}
             summary={st.dossier
-              ? `${(st.dossier as SeasonDossier).macrotrends?.length ?? 0} macrotrends · ${(st.dossier as SeasonDossier).sources?.length ?? 0} sources`
-              : 'Building'}
+              ? tf('{n} macrotrends · {s} sources', {
+                  n: (st.dossier as SeasonDossier).macrotrends?.length ?? 0,
+                  s: (st.dossier as SeasonDossier).sources?.length ?? 0,
+                })
+              : t('Building')}
             defaultOpen={!!st.dossier}>
             {st.dossierPending && !st.dossier ? (
               <div style={{ padding: '14px 16px' }} className="hint">
-                Mapping the macrotrends first, then filling each one with palettes, materials, details and key items.
+                {t('Mapping the macrotrends first, then filling each one with palettes, materials, details and key items.')}
               </div>
             ) : st.dossier ? (() => {
               const d = st.dossier as SeasonDossier
@@ -191,7 +192,7 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
                   <div className="ds-head">
                     <div>
                       <h4>{d.season} · {d.season_title}</h4>
-                      {d.powershift && <div className="ds-power">Powershift: {d.powershift}</div>}
+                      {d.powershift && <div className="ds-power">{tf('Powershift: {value}', { value: d.powershift })}</div>}
                     </div>
                     <button className="btn btn-primary btn-sm" onClick={() => openDossierPdf(st)}>{t('Dossier PDF')}</button>
                   </div>
@@ -200,7 +201,7 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
                       <div className="ds-m-h">
                         <span className="ds-num">{i + 1}</span>
                         <b>{m.name}</b>
-                        <Tag kind="accent">{GRADE_LABEL[m.grade] ?? m.grade}</Tag>
+                        <Tag kind="accent">{t(GRADE_LABEL[m.grade] ?? m.grade)}</Tag>
                       </div>
                       <div className="ds-state">{m.statement}</div>
                       <div className="chiplist">
@@ -210,7 +211,7 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
                         {(m.drivers ?? []).map((x, k) => (
                           <span key={x.label + k} className="ds-met">
                             <b>{pct(x)}</b> {x.label}
-                            <span className="hint"> · {SOURCE_LABEL[x.source_kind] ?? x.source_kind}</span>
+                            <span className="hint"> · {t(SOURCE_LABEL[x.source_kind] ?? x.source_kind)}</span>
                           </span>
                         ))}
                       </div>
@@ -269,12 +270,12 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
           <Collapse
             title={t('Report text')}
             summary={st.trendReport
-              ? `${(st.trendReport as TrendReport).design_implications?.length ?? 0} design implications`
-              : 'Writing'}
+              ? tf('{n} design implications', { n: (st.trendReport as TrendReport).design_implications?.length ?? 0 })
+              : t('Writing')}
             defaultOpen={!!st.trendReport}>
             {st.reportPending && !st.trendReport ? (
               <div style={{ padding: '14px 16px' }} className="hint">
-                Breaking it into sub-questions and pulling them together. It lands here when done.
+                {t('Breaking it into sub-questions and pulling them together. It lands here when done.')}
               </div>
             ) : st.trendReport ? (() => {
               const rep = st.trendReport as TrendReport
@@ -289,14 +290,14 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
                   {rep.design_implications?.length > 0 && (
                     <div style={{ marginBottom: 12 }}>
                       <div style={{ fontSize: 11.5, color: 'var(--text-3)', fontWeight: 700, marginBottom: 4 }}>
-                        What to change in the design
+                        {t('What to change in the design')}
                       </div>
                       {rep.design_implications.map((d, i) => (
                         <div className="tr-imp" key={i}>
                           <span className="tr-area">{d.area}</span>
                           <span>
                             {d.guidance}
-                            <div className="tr-basis">From: {d.basis}</div>
+                            <div className="tr-basis">{tf('From: {basis}', { basis: d.basis })}</div>
                           </span>
                         </div>
                       ))}
@@ -306,7 +307,7 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
                   {rep.open_questions?.length > 0 && (
                     <div style={{ marginTop: 12, paddingTop: 10, borderTop: '1px solid var(--line)' }}>
                       <div style={{ fontSize: 11.5, color: 'var(--text-3)', fontWeight: 700, marginBottom: 4 }}>
-                        Still unverified
+                        {t('Still unverified')}
                       </div>
                       {rep.open_questions.map((q, i) => <div key={i}>· {q}</div>)}
                     </div>
@@ -344,8 +345,8 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
       {/* 좌: 단계 네비 */}
       <div className="run-left">
         <div style={{ marginBottom: 14 }}>
-          <div style={{ fontWeight: 800, fontSize: 15 }}>{MODE_LABEL[st.params.mode]}</div>
-          <div className="hint">{TYPE_LABEL[st.params.itemType]} · {st.params.sketchCount} sketches · through {st.params.endStage}</div>
+          <div style={{ fontWeight: 800, fontSize: 15 }}>{t(MODE_LABEL[st.params.mode])}</div>
+          <div className="hint">{t(TYPE_LABEL[st.params.itemType])} · {tf('{n} sketches · through {stage}', { n: st.params.sketchCount, stage: st.params.endStage })}</div>
         </div>
         {st.finished && TOC.length > 0 ? (
           <nav className="toc">
@@ -367,7 +368,7 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
                   {status === 'running' && progress[s.key] != null && (
                     <div className="progressbar"><div style={{ width: `${progress[s.key]}%` }} /></div>
                   )}
-                  {status === 'gated' && <Tag kind="warn">Waiting</Tag>}
+                  {status === 'gated' && <Tag kind="warn">{t('Waiting')}</Tag>}
                 </div>
               </div>
             )
@@ -381,7 +382,7 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
         )}
         {st.finished && (
           <button className="btn btn-primary" style={{ width: '100%', marginTop: 16 }} onClick={onOpenBoard}>
-            Open board
+            {t('Open board')}
           </button>
         )}
       </div>
@@ -396,8 +397,8 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
         {gated && (
           <div className="gatebar">
             <span style={{ fontWeight: 700 }}>{t('Review gate')}</span>
-            <span className="hint">{t('Approve or reject on the cards. Reasons feed the next run.')}</span>
-            <span style={{ marginLeft: 'auto' }} className="hint">{approvedCount} approved · {rejectedCount} rejected</span>
+            <span className="hint">{t('Approve or reject below. Anything you reject is left out of the remaining stages.')}</span>
+            <span style={{ marginLeft: 'auto' }} className="hint">{tf('{a} approved · {r} rejected', { a: approvedCount, r: rejectedCount })}</span>
             <button className="btn btn-primary btn-sm" onClick={onResume}>{t('Continue')}</button>
           </div>
         )}
@@ -405,18 +406,25 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
         {st.dnaConflict && !st.dnaConflict.resolved && (
           <div className="notice warn" style={{ marginBottom: 14, flexDirection: 'column' }}>
             <div>
-              <b>Your description and what we observed disagree.</b> {st.dnaConflict.brandClaim} vs {st.dnaConflict.observed}. Pick which one leads.
+              <b>{t('Your description and what we observed disagree.')}</b> {tf('{claim} vs {observed}.', { claim: st.dnaConflict.brandClaim, observed: st.dnaConflict.observed })}
+              {' '}{t('Pick which one leads ·')} <b>{t('the run is waiting')}</b> {t('because this decides what gets locked.')}
             </div>
-            <div style={{ display: 'flex', gap: 6 }}>
-              <button className="btn btn-ghost btn-sm" onClick={() => onResolveDna('description')}>Follow the description</button>
-              <button className="btn btn-ghost btn-sm" onClick={() => onResolveDna('archive')}>Follow the archive</button>
-              <button className="btn btn-ghost btn-sm" onClick={() => onResolveDna('shift')}>Shift toward the description</button>
+            <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
+              <button className="btn btn-ghost btn-sm" onClick={() => onResolveDna('archive')}
+                title={t('Lock every spec field the read pinned from your uploads')}>{t('Follow the archive · locks stay')}</button>
+              <button className="btn btn-ghost btn-sm" onClick={() => onResolveDna('description')}
+                title={t('Release the archive locks · the designs stay free on every axis')}>{t('Follow the description · locks released')}</button>
+              <button className="btn btn-ghost btn-sm" onClick={() => onResolveDna('shift')}
+                title={t('Core inherits the archive · Push and Signature are released from it')}>{t('Shift · Core inherits, the rest explores')}</button>
             </div>
           </div>
         )}
         {st.dnaConflict?.resolved && (
           <div className="notice info" style={{ marginBottom: 14 }}>
-            Using <b>{st.dnaConflict.resolved}</b> as the reference. The choice is recorded in the rationale.
+            {t('Using')} <b>{st.dnaConflict.resolved}</b> {t('as the reference.')} {
+              st.dnaConflict.resolved === 'description' ? t('The archive locks were released, so the specs are free on every axis.')
+              : st.dnaConflict.resolved === 'shift' ? t('Core inherits the archive; Push and Signature were released from it.')
+              : t('Every spec field the read pinned stays locked.')}
           </div>
         )}
 
@@ -428,28 +436,38 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
 
 
         {st.seriesDna && (
-          <Collapse title="Series DNA"
-            summary={`${st.seriesDna.invariant.length} fixed (locked) · ${st.seriesDna.variable.length} variable · ${st.seriesDna.ambiguous.length} unclear`}
+          <Collapse title={t('Series DNA')}
+            summary={tf('{f} fixed (locked) · {v} variable · {u} unclear', {
+              f: st.seriesDna.invariant.length, v: st.seriesDna.variable.length, u: st.seriesDna.ambiguous.length,
+            })}
             defaultOpen={!st.dnaConflict?.resolved}>
             <div style={{ padding: '10px 14px', display: 'flex', flexDirection: 'column', gap: 6, fontSize: 12.5 }}>
+              {/* "Constant" 는 아카이브에서 늘 같았다는 뜻이다. 스펙 잠금은 별개(spec_locks)이므로
+                  여기서 Locked 라 부르면 잠기지 않은 것을 잠겼다고 말하게 된다. */}
               {st.seriesDna.invariant.map(e => (
                 <div key={e.element}>
-                  <Tag kind="accent">Locked</Tag> <b>{e.label}</b>
-                  <span className="hint"> seen in {e.observed_in}/{e.of} · {e.confidence} · must_inherit</span>
+                  <Tag kind="accent">{t('Constant')}</Tag> <b>{e.label}</b>
+                  <span className="hint">
+                    {e.of > 0 && ` ${tf('seen in {a}/{b}', { a: e.observed_in, b: e.of })}`}
+                    {e.confidence && ` · ${e.confidence}`}
+                    {e.evidence && ` · ${e.evidence}`}
+                  </span>
                 </div>
               ))}
               {st.seriesDna.variable.map(e => (
-                <div key={e.element}><Tag>Variable</Tag> {e.label} <span className="hint">{e.variation_range?.join(' / ')}</span></div>
+                <div key={e.element}><Tag>{t('Variable')}</Tag> {e.label} <span className="hint">
+                  {e.variation_range?.length ? e.variation_range.join(' / ') : e.evidence ?? ''}</span></div>
               ))}
               {st.seriesDna.ambiguous.map(e => (
-                <div key={e.element}><Tag kind="warn">Unclear</Tag> {e.label} <span className="hint">seen as [{e.observed?.join(', ')}] · {e.note}</span></div>
+                <div key={e.element}><Tag kind="warn">{t('Unclear')}</Tag> {e.label} <span className="hint">
+                  {e.observed?.length ? `${tf('seen as [{list}]', { list: e.observed.join(', ') })} · ` : ''}{e.note}</span></div>
               ))}
             </div>
           </Collapse>
         )}
 
         {st.reportBias && (
-          <Collapse title="Source bias" summary={`${st.reportBias.publisher} · ${st.reportBias.perspective}`}>
+          <Collapse title={t('Source bias')} summary={`${st.reportBias.publisher} · ${st.reportBias.perspective}`}>
             <div style={{ padding: '10px 14px', fontSize: 12.5, color: 'var(--text-2)' }}>
               {st.reportBias.notes.map((n, i) => <div key={i}>· {n}</div>)}
             </div>
@@ -459,15 +477,15 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
         {st.signals.length > 0 && (
           <Collapse title={t('Signals')} summary={sigSummary}>
             <table className="mini">
-              <thead><tr><th>Signal</th><th>Axis</th><th>Seen</th><th>{t('Trend')}</th><th>{st.params.mode === 'moodboard' ? 'Page' : 'Proxy'}</th><th>Source</th></tr></thead>
+              <thead><tr><th>{t('Signal')}</th><th>{t('Axis')}</th><th>{t('Seen')}</th><th>{t('Trend')}</th><th>{st.params.mode === 'moodboard' ? t('Page') : t('Proxy')}</th><th>{t('Source')}</th></tr></thead>
               <tbody>
                 {st.signals.map(s => (
                   <tr key={s.signal_id}>
-                    <td><b>{s.label}</b> <span style={{ color: 'var(--text-3)', fontSize: 11 }}>{s.signal_id}</span>{s.oem_group && <Tag kind="warn">OEM group</Tag>}</td>
+                    <td><b>{s.label}</b> <span style={{ color: 'var(--text-3)', fontSize: 11 }}>{s.signal_id}</span>{s.oem_group && <Tag kind="warn">{t('OEM group')}</Tag>}</td>
                     <td>{s.axis}</td>
                     <td>{s.observed_count}x</td>
-                    <td>{s.direction === 'rising' ? 'Rising' : s.direction === 'stable' ? 'Holding' : 'Fading'}</td>
-                    <td>{s.page_ref ?? (s.sales_proxy_score != null ? `${s.sales_proxy_score} (${s.proxy_confidence})` : 'not scored')}</td>
+                    <td>{s.direction === 'rising' ? t('Rising') : s.direction === 'stable' ? t('Holding') : t('Fading')}</td>
+                    <td>{s.page_ref ?? (s.sales_proxy_score != null ? `${s.sales_proxy_score} (${s.proxy_confidence})` : t('not scored'))}</td>
                     <td>{s.sources.slice(0, 2).map((u, i) => <a key={i} href={u} target="_blank" rel="noreferrer" title={u} style={{ color: 'var(--accent-hi)', marginRight: 4 }}>[{evidenceId(s.signal_id, i)}]</a>)}</td>
                   </tr>
                 ))}
@@ -479,7 +497,7 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
         {/* 디렉션 · S1의 결론이므로 항상 노출 */}
         {st.directions.length > 0 && (
           <div className="panel" style={{ marginBottom: 14 }}>
-            <div className="panel-h">Three directions</div>
+            <div className="panel-h">{t('Three directions')}</div>
             <div style={{ padding: '10px 14px', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10 }}>
               {st.directions.map(d => (
                 <div key={d.id} style={{ background: 'var(--bg-2)', border: '1px solid var(--line-2)', borderRadius: 9, padding: '10px 12px' }}>
@@ -545,6 +563,17 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
                       </span>
                     )}
                   </div>
+                  {/* 게이트 중에는 아직 렌더가 없어 상세를 열 버튼도 없다.
+                      승인/반려를 여기서 바로 할 수 있어야 안내 문구가 사실이 된다. */}
+                  {gated && !d.rejected && (
+                    <div className="sk-verdict">
+                      <button className={`btn btn-sm ${d.verdict === 'approve' ? 'btn-primary' : 'btn-ghost'}`}
+                        onClick={() => onGateVerdict(d.spec.design_id, 'approve', [])}>{t('Approve')}</button>
+                      <button className={`btn btn-sm ${d.verdict === 'reject' ? 'btn-primary' : 'btn-ghost'}`}
+                        onClick={() => onGateVerdict(d.spec.design_id, 'reject', [])}>{t('Reject')}</button>
+                      {d.verdict === 'reject' && <span className="hint">{t('Left out of the rest of the run')}</span>}
+                    </div>
+                  )}
                   <div className="sk-outs">
                     {outs.length === 0 && <span className="hint">{d.rejected ? t('Rule reject') : t('Rendering')}</span>}
                     {outs.map((im, i) => (
@@ -612,7 +641,7 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
       {showLog ? (
         <div className="run-right">
           <div className="panel-h" style={{ borderBottom: '1px solid var(--line)' }}>
-            Progress log
+            {t('Progress log')}
             <button className="btn btn-ghost btn-sm" style={{ marginLeft: 'auto' }} onClick={() => setShowLog(false)}>{t('Close')}</button>
           </div>
           <div className="log" ref={logRef}>
@@ -626,7 +655,7 @@ export default function RunView({ st, progress, gated, onResume, onGateVerdict, 
         </div>
       ) : (
         <div className="log-rail">
-          <button onClick={() => setShowLog(true)}>Log {st.logs.length}</button>
+          <button onClick={() => setShowLog(true)}>{tf('Log {n}', { n: st.logs.length })}</button>
         </div>
       )}
     </div>

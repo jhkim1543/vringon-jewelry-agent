@@ -48,23 +48,9 @@ export async function editImage(baseHash: string, prompt: string, engine: Engine
 // 이미지 모델은 수치를 기하 제약으로 실행하지 않는다(5장). 프롬프트는 최선의
 // 시각적 해석 요청이고, 실제 일치 여부는 비전 QA가 사후 검증한다.
 
-const TOE_KO: Record<string, string> = {
-  almond: 'almond toe', square: 'square toe', round: 'round toe', pointed: 'pointed toe',
-}
-const HEEL_KO: Record<string, string> = {
-  flat: 'flat heel', block: 'block heel', stiletto: 'stiletto heel',
-  stacked: 'stacked leather heel', flare: 'flared heel', wedge: 'wedge heel',
-}
 // 품목 영문 표현은 TAXONOMY 한 곳에서 온다
 const en = (typeId: string, fallback: string) => TYPE_EN[typeId] ?? fallback
 
-const SHOE_VIEW: Record<string, string> = {
-  // 방향을 고정한다. 로고 합성 좌표가 힐이 오른쪽에 있다고 전제하기 때문이다.
-  lateral: 'strict lateral side view, outer side facing the viewer, toe pointing to the left and heel on the right',
-  q34: 'three-quarter front angle view',
-  top: 'top-down view showing the opening and toe shape',
-  outsole: 'outsole view showing the tread pattern',
-}
 const JEWEL_VIEW: Record<string, string> = {
   front: 'straight front view',
   q45: '45 degree angled view showing volume and thickness',
@@ -158,12 +144,14 @@ export function viewEditPrompt(category: Category, viewKey: string): string {
 }
 
 /** 컬러웨이 · 형태 불변, 색만 변경 */
-export function colorwayEditPrompt(colorway: string): string {
+export function colorwayEditPrompt(colorway: string, hex?: string): string {
   const desc: Record<string, string> = {
     gold: 'warm polished gold', black: 'deep matte black', bordeaux: 'dark bordeaux red',
     ivory: 'soft ivory cream', silver: 'brushed silver',
   }
-  return `Keep the exact same product, same camera angle, same shape and proportions. Only recolor the main material to ${desc[colorway] ?? colorway}. Same seamless white background and lighting.`
+  // 브랜드가 정한 색은 이 표에 없다. 이름만 주면 모델이 제멋대로 해석하므로 hex 를 함께 준다.
+  const to = desc[colorway] ?? (hex ? `${colorway} (${hex})` : colorway)
+  return `Keep the exact same product, same camera angle, same shape and proportions. Only recolor the main material to ${to}. Same seamless white background and lighting.`
 }
 
 /** 착용 컷 · 기준 렌더를 편집해 사람이 착용한 상태로 옮긴다.
@@ -214,24 +202,6 @@ const WEAR_ALIAS: Record<string, string> = {
   hoop: 'stud', drop: 'stud', ear_cuff: 'stud', earcuff: 'stud',
   choker: 'pendant', chain: 'pendant', station: 'pendant',
   chain_bracelet: 'bangle', cuff: 'bangle', tennis: 'bangle',
-}
-
-// 신발은 전부 발에 신지만, 목이 있는 것과 없는 것은 프레임이 다르다
-const SHOE_FRAMING: Record<string, string[]> = {
-  low: [
-  ],
-  tall: [
-    'standing, camera low, frame cropped from mid-thigh down so the full shaft of the boot is visible, slim trousers tucked in, three-quarter view',
-    'one leg crossed over the other while seated, frame cropped from the knee down, the shaft and the ankle break both readable',
-  ],
-  open: [
-    'standing on a warm concrete floor, camera at floor level, frame cropped from mid-calf down, bare feet and ankles, the straps and toe line clearly readable, three-quarter view',
-    'mid-step, camera at floor level, frame cropped from just below the knee, bare legs, the footbed and straps in focus',
-  ],
-}
-const SHOE_KIND: Record<string, keyof typeof SHOE_FRAMING> = {
-  ankle_boot: 'tall', chelsea: 'tall', knee_high: 'tall', combat: 'tall',
-  strappy: 'open', slide: 'open', gladiator: 'open',
 }
 
 function wearSpot(category: Category, itemType: string): { on: string; framing: string[] } {

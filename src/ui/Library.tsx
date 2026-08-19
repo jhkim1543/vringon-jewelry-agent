@@ -1,5 +1,5 @@
 // ── Library · 지난 Run을 카드로 보고 다시 연다 ────────────────────────
-import { t } from '../core/i18n'
+import { t, tf } from '../core/i18n'
 import { useMemo, useState } from 'react'
 import type { RunRecord } from '../core/store'
 import { deleteRun, listRuns, toggleFavorite } from '../core/store'
@@ -40,10 +40,10 @@ export default function Library({ onOpen, filter: initial = 'all' }: {
         </div>
         <div className="chiprow" style={{ flex: 'none' }}>
           <button className={`pick sm ${filter === 'all' ? 'on' : ''}`} onClick={() => setFilter('all')}>
-            All {runs.length}
+            {tf('All {n}', { n: runs.length })}
           </button>
           <button className={`pick sm ${filter === 'favorite' ? 'on' : ''}`} onClick={() => setFilter('favorite')}>
-            Starred {runs.filter(r => r.favorite).length}
+            {tf('Starred {n}', { n: runs.filter(r => r.favorite).length })}
           </button>
         </div>
       </div>
@@ -59,7 +59,7 @@ export default function Library({ onOpen, filter: initial = 'all' }: {
               <button className="lc-thumb" onClick={() => onOpen(r, 'board')}>
                 {r.thumb
                   ? <img src={r.thumb} alt="" onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
-                  : <span className="lc-nothumb">No image</span>}
+                  : <span className="lc-nothumb">{t('No image')}</span>}
                 {st.sample && <span className="lc-badge">{t('Sample')}</span>}
               </button>
               <div className="lc-body">
@@ -68,8 +68,8 @@ export default function Library({ onOpen, filter: initial = 'all' }: {
                   <span className="lc-sub">{MODE_LABEL[st.params.mode]}</span>
                 </div>
                 <div className="lc-meta">
-                  {CAT_LABEL[st.params.category]} · {alive} passed
-                  {approved > 0 && <> · {approved} approved</>}
+                  {CAT_LABEL[st.params.category]} · {tf('{n} passed', { n: alive })}
+                  {approved > 0 && <> · {tf('{n} approved', { n: approved })}</>}
                 </div>
                 <div className="lc-tags">
                   {[...tiers].slice(0, 3).map(t => <Tag key={t}>{t}</Tag>)}
@@ -79,7 +79,7 @@ export default function Library({ onOpen, filter: initial = 'all' }: {
                   <button className="btn btn-ghost btn-sm" onClick={() => onOpen(r, 'run')}>{t('Run')}</button>
                   <button className="btn btn-ghost btn-sm" onClick={() => onOpen(r, 'board')}>{t('Board')}</button>
                   <button className={`starbtn ${r.favorite ? 'on' : ''}`}
-                    title={r.favorite ? 'Remove star' : 'Star'}
+                    title={r.favorite ? t('Remove star') : t('Star')}
                     onClick={() => { toggleFavorite(r.id); setTick(t => t + 1) }}>
                     <svg viewBox="0 0 20 20" width="15" height="15"
                       fill={r.favorite ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round">

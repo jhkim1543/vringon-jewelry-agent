@@ -71,7 +71,11 @@ export async function mdReview(apiKey, root, { persona, item, designs, langName 
   if (!designs?.length) throw new Error('평가할 디자인이 없습니다')
 
   // 같은 후보 묶음 + 같은 페르소나는 캐시로 돌려준다 (재실행 재과금 방지)
-  const key = createHash('sha256').update(JSON.stringify(['mdrev1', langName, persona, item, designs.map(d => [d.id, d.imageHash ?? ''])])).digest('hex').slice(0, 24)
+  // 키에는 모델이 실제로 읽는 것이 전부 들어가야 한다. 예전에는 id 와 이미지 해시만 넣어서,
+  // 스펙만 바뀐 재실행(이미지 없이 도는 경우 포함)이 앞선 실행의 판정을 그대로 돌려받았다.
+  const key = createHash('sha256').update(JSON.stringify(['mdrev2', langName, persona, item,
+    designs.map(d => [d.id, d.tier ?? '', d.spec ?? '', d.costNote ?? '', d.recipe ?? '', d.imageHash ?? '']),
+  ])).digest('hex').slice(0, 24)
   const file = join(cacheDir(root), `${key}.json`)
   if (existsSync(file)) return { ...JSON.parse(readFileSync(file, 'utf8')), cached: true }
 

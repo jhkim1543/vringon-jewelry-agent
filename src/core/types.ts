@@ -84,7 +84,15 @@ export interface TrendInput {
 }
 /** 업로드된 파일 한 건 · 실제 내용은 서버 `.cache/uploads` 에 있고 해시로 가리킨다.
  *  (base64 를 그대로 들고 있으면 localStorage 용량이 즉시 터진다.) */
-export interface UploadRef { name: string; hash: string; mime?: string; size?: number; url?: string }
+// derived: 앱이 만든 것(PDF 쪽 그림 등)이지 사용자가 올린 파일이 아니다.
+// 구분하지 않으면 PDF 한 장을 올려도 "9개 업로드"라고 세게 된다.
+export interface UploadRef { name: string; hash: string; mime?: string; size?: number; url?: string; derived?: boolean }
+
+/** 사용자가 실제로 올린 것만 · 앱이 떠 둔 쪽 그림은 뺀다.
+ *  옛 저장본의 문자열 항목은 파일명뿐이라 파생본일 수 없으므로 그대로 남긴다. */
+export function userUploads(list: (string | UploadRef)[]): (string | UploadRef)[] {
+  return list.filter(x => typeof x === 'string' || !x.derived)
+}
 
 /** 올린 것 중 화면에 그릴 수 있는 이미지만 · PDF 는 여기서 빠진다 */
 export function uploadImages(list: (string | UploadRef)[]): UploadRef[] {
@@ -104,9 +112,13 @@ export interface MoodboardInput {
   notes: string
 }
 
-/** 옛 저장본 호환 · 문자열만 있던 시절 것은 내용이 없으므로 읽을 수 없다 */
+/** 옛 저장본 호환 · 문자열만 있던 시절 것은 내용이 없으므로 읽을 수 없다.
+ *  해시가 있는데 주소가 없는 저장본이 있다(무드보드 PDF 가 그랬다). 서버가 해시로 서빙하므로
+ *  여기서 채워 준다 — 주소가 없으면 근거로 인용할 수 없어 참조 패널이 통째로 빈다. */
 export function uploadRefs(list: (string | UploadRef)[]): UploadRef[] {
-  return list.filter((x): x is UploadRef => typeof x === 'object' && !!x?.hash)
+  return list
+    .filter((x): x is UploadRef => typeof x === 'object' && !!x?.hash)
+    .map(x => x.url ? x : { ...x, url: `/api/upload/file/${x.hash}` })
 }
 export function uploadName(x: string | UploadRef): string {
   return typeof x === 'string' ? x : x.name
@@ -353,8 +365,11 @@ export interface SeriesDnaElement {
   label: string
   observed_in: number
   of: number
-  confidence: 'high' | 'medium' | 'low'
+  // 판독본에는 신뢰도가 없다 · 있는 척 비워 두고 찍으면 화면에 빈칸이 남는다
+  confidence?: 'high' | 'medium' | 'low'
   must_inherit?: boolean
+  /** 판독이 이 요소를 어디서 봤는지 · 사람이 되짚을 수 있는 문장 */
+  evidence?: string
   variation_range?: string[]
   observed?: (string | number)[]
   note?: string
@@ -453,7 +468,10 @@ export interface DesignSpec {
   category: Category
   itemType: string
   fields: Record<string, string | number | boolean>
-  fieldsLocked: string[]       // 시리즈 DNA로 잠긴 필드
+  fieldsLocked: string[]       // 잠긴 필드
+  // 무엇이 잠갔는지 · 라인 프로필과 시리즈 DNA 는 출처가 다르다.
+  // 둘을 뭉뚱그려 "DNA" 로 표기하면 시리즈 판독을 하지도 않은 모드에서 DNA 를 물려받은 척하게 된다.
+  lockedBy?: Record<string, 'dna' | 'line'>
 }
 
 /** 실제 생성된 이미지 · origin은 지시서 9장 이미지 원장 */
@@ -486,6 +504,9 @@ export interface Design {
   viewMismatch: boolean        // S3 2회 재시도 실패 플래그
   /** 비전 QA 가 아예 못 돈 이유 · 있으면 화면에 통과가 아니라 미확인으로 표시된다 */
   qaError?: string
+  /** 브랜드의 "절대 안 하는 것"을 스펙이 어긴 항목 · 룰 엔진과 별개 층이다.
+   *  브랜드 설정 화면이 "어기면 카드에 표시된다"고 약속하므로 실제로 표시되어야 한다. */
+  brandViolations?: string[]
   // 결정적 지표 (계층 1)
   metrics: { label: string; value: string }[]
   // 모델 평가 (계층 2)
@@ -527,7 +548,8 @@ export type PipelineEvent =
   | { kind: 'dossier-pending'; on: boolean }
   | { kind: 'design'; design: Design }
   | { kind: 'design-update'; design: Design }
-  | { kind: 'gate'; stage: Stage }         // 승인 게이트 대기
+  // 승인 게이트 대기 · reason 이 'dna' 면 디자인 승인이 아니라 DNA 충돌 선택을 기다리는 것이다
+  | { kind: 'gate'; stage: Stage; reason?: 'designs' | 'dna' }
   | { kind: 'checkpoint'; label: string }
   | { kind: 'done'; endStage: Stage }
 

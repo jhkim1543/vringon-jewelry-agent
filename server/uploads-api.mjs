@@ -11,6 +11,22 @@ import { ask } from './research-api.mjs'
 
 const MAX_BYTES = 25 * 1024 * 1024
 
+// 판독도 다른 모델 호출과 같이 캐시한다. 없으면 같은 파일을 다시 올릴 때마다 다시 과금되고,
+// 샘플을 다시 구울 때 시리즈 판독에만 2분 넘게 다시 쓴다.
+function readCacheDir(root) {
+  const d = join(root, '.cache', 'research')
+  mkdirSync(d, { recursive: true })
+  return d
+}
+function cached(root, parts) {
+  const key = createHash('sha256').update(JSON.stringify(parts)).digest('hex').slice(0, 24)
+  const file = join(readCacheDir(root), key + '.json')
+  return {
+    hit: existsSync(file) ? { ...JSON.parse(readFileSync(file, 'utf8')), cached: true } : null,
+    put: v => { writeFileSync(file, JSON.stringify(v)); return v },
+  }
+}
+
 function uploadDir(root) {
   const d = join(root, '.cache', 'uploads')
   if (!existsSync(d)) mkdirSync(d, { recursive: true })
@@ -44,7 +60,7 @@ export function readUpload(root, hash) {
 const DNA_SCHEMA = {
   type: 'object',
   additionalProperties: false,
-  required: ['invariant', 'variable', 'ambiguous', 'observed_summary', 'brand_claim_check'],
+  required: ['invariant', 'variable', 'ambiguous', 'observed_summary', 'brand_claim_check', 'spec_locks', 'observed_item_type'],
   properties: {
     invariant: {
       type: 'array', description: '올린 것 대부분에서 반복되는 요소. 시리즈의 정체성',
@@ -78,6 +94,22 @@ const DNA_SCHEMA = {
         properties: { label: { type: 'string' }, why: { type: 'string' } },
       },
     },
+    // 불변 요소를 스펙 필드로 옮긴다. 이게 없으면 "DNA 를 잠갔다"고 말할 수 없다 —
+    // 예전에는 판독 결과와 무관한 상수를 잠그면서 상속했다고 적었다.
+    spec_locks: {
+      type: 'array',
+      description: '불변 요소 중 다음 디자인의 스펙 값으로 그대로 고정할 수 있는 것만. 이미지에서 확신할 수 없으면 넣지 말 것. 없으면 빈 배열.',
+      items: {
+        type: 'object', additionalProperties: false,
+        required: ['field', 'value', 'evidence'],
+        properties: {
+          field: { type: 'string', enum: ['metal', 'plating', 'finish', 'setting_type', 'chain_type', 'stone_count'], description: '스펙 필드 이름' },
+          value: { type: 'string', description: "그 필드의 값. metal 은 925 silver|14k gold|brass, plating 은 rhodium|18k gold|none, finish 는 polished|matte|hammered, setting_type 은 prong|bezel|pave|channel, chain_type 은 cable|box|snake|curb|wheat|none, stone_count 는 무석일 때만 0" },
+          evidence: { type: 'string', description: '몇 장 중 몇 장에서 그렇게 보였는지' },
+        },
+      },
+    },
+    observed_item_type: { type: 'string', description: '올라온 사진이 실제로 어떤 품목인지 한 단어. 예: hoop earring, cuff bracelet, band ring. 여러 가지가 섞였으면 mixed.' },
     observed_summary: { type: 'string', description: '이 시리즈가 실제로 무엇인지 2~3문장. 본 것만 쓴다' },
     brand_claim_check: {
       type: 'object', additionalProperties: false,
@@ -126,7 +158,10 @@ note 에는 **어느 주장이 무엇과 어긋나는지**를 씁니다. "이미
       ...images,
     ],
   }]
-  return ask(apiKey, { input, schema: DNA_SCHEMA, name: 'series_dna' })
+  const c = cached(root, ['seriesdna2', langName, categoryKo, typeKo, valueStatement, uploads.map(u => u.hash)])
+  if (c.hit) return c.hit
+  // 올린 이미지에서 보이는 것만 판단한다 · 검색은 붙이지 않는다
+  return c.put(await ask(apiKey, { input, schema: DNA_SCHEMA, name: 'series_dna', web: false }))
 }
 
 // ── 무드보드 · 올린 PDF 를 실제로 읽어 신호를 뽑는다 ────────────────
@@ -202,5 +237,8 @@ ${notes ? `사용자 메모: "${notes}"` : ''}
       ...files,
     ],
   }]
-  return ask(apiKey, { input, schema: MOODBOARD_SCHEMA, name: 'moodboard_read' })
+  const c = cached(root, ['moodread1', langName, categoryKo, typeKo, notes, uploads.map(u => u.hash)])
+  if (c.hit) return c.hit
+  // 검색 도구 없이 부른다 · 올린 문서 밖은 근거가 아니다
+  return c.put(await ask(apiKey, { input, schema: MOODBOARD_SCHEMA, name: 'moodboard_read', web: false }))
 }

@@ -18,12 +18,16 @@ export interface CategoryPack {
 }
 
 let seq = 0
+// 디자인 ID 에 찍히는 시즌 · 예전에는 26FW 로 박혀 있었는데, 도시에가 예측하는 시즌은
+// 그다음(SS27)이다. 같은 화면에 두 시즌이 섞여 어느 쪽 물건인지 알 수 없었다.
+let seasonTag = '26FW'
+export function setSeasonTag(t: string) { if (t) seasonTag = t }
 export function resetSeq() { seq = 0 }
 function nextId(cat: Category, tier: DesignTier) {
   seq += 1
   const p = cat === 'jewelry' ? 'JW' : 'SH'
   const t = tier === 'core' ? 'C' : tier === 'push' ? 'P' : 'S'
-  return `${p}-26FW-${t}${String(seq).padStart(2, '0')}`
+  return `${p}-${seasonTag}-${t}${String(seq).padStart(2, '0')}`
 }
 
 // ════════════════════════════════ 주얼리 팩 ═══════════════════════════

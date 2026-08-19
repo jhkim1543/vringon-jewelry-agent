@@ -210,7 +210,10 @@ try {
 // 조사를 통째로 버리면, 사용자는 이유도 모른 채 경쟁 목록이 반쪽인 결과를 받는다.
 // 일시적 오류만 물러났다가 다시 시도한다 (4xx 입력 오류는 재시도해도 같다).
 const RETRY_STATUS = new Set([408, 429, 500, 502, 503, 504])
-export async function ask(apiKey, { input, schema, name, tries = 3 }) {
+// web 옵션이 false 면 검색 도구를 아예 붙이지 않는다.
+// 무드보드 판독은 "올린 파일만 근거로 쓴다"가 계약인데, 도구가 붙어 있으면
+// 모델이 문서 밖에서 답을 가져와도 막을 방법이 없다. 계약을 코드로 강제한다.
+export async function ask(apiKey, { input, schema, name, tries = 3, web = true }) {
   let lastErr
   for (let attempt = 1; attempt <= tries; attempt++) {
     try {
@@ -219,7 +222,7 @@ export async function ask(apiKey, { input, schema, name, tries = 3 }) {
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
         body: JSON.stringify({
           model: RESEARCH_MODEL,
-          tools: [{ type: 'web_search' }],
+          ...(web ? { tools: [{ type: 'web_search' }] } : {}),
           // 비용보다 결과를 우선한다 · 추론 강도를 최고로 둔다
           reasoning: { effort: 'high' },
           input,

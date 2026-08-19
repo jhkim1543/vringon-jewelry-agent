@@ -3,10 +3,11 @@
 // 연결(edge)은 장식이 아니라 실제 데이터다. 디자인이 어떤 신호에서 나왔는지는
 // rationale.driving_signals에, 디렉션이 어떤 신호를 묶었는지는 signal_ids에 있다.
 import type { Design, RunState } from './types'
-import { MODE_LABEL, MODE_SCOPE, TIER_LABEL, uploadImages, uploadName } from './types'
+import { MODE_LABEL, MODE_SCOPE, TIER_LABEL, uploadImages, uploadName, isCollectedSignal, userUploads} from './types'
 import { buildLocalPitch } from './pitch'
 import type { SeasonDossier } from './research'
 import { GRADE_LABEL, metricText , shotUrl } from './research'
+import { t, tf } from './i18n'
 
 export type BoardNodeKind =
   | 'input' | 'research' | 'signal' | 'direction' | 'design' | 'selection' | 'appendix'
@@ -47,33 +48,33 @@ export function buildBoardModel(st: RunState): BoardModel {
   const edges: BoardEdge[] = []
 
   const columns = [
-    { key: 'input', title: '1 · Input', note: 'What you gave it' },
-    { key: 'research', title: '2 · Research', note: scope.competitor ? 'What the agent collected' : scope.trend ? 'Trend research' : 'Your uploads, read' },
-    { key: 'signal', title: '3 · Signals', note: 'Observations with a source' },
-    { key: 'direction', title: '4 · Directions', note: 'Signals combined' },
-    { key: 'design', title: '5 · Designs', note: 'Spec, rules, image' },
-    { key: 'selection', title: '6 · Selection', note: 'Metrics and calls' },
-    { key: 'variation', title: '7 · Variations', note: 'One sketch, several products' },
-    { key: 'campaign', title: '8 · Campaign shots', note: 'Worn on a model, staged on set' },
-    { key: 'showroom', title: '9 · 3D showroom', note: 'Turn it, or open it full size' },
+    { key: 'input', title: t('1 · Input'), note: t('What you gave it') },
+    { key: 'research', title: t('2 · Research'), note: scope.competitor ? t('What the agent collected') : scope.trend ? t('Trend research') : t('Your uploads, read') },
+    { key: 'signal', title: t('3 · Signals'), note: t('Observations with a source') },
+    { key: 'direction', title: t('4 · Directions'), note: t('Signals combined') },
+    { key: 'design', title: t('5 · Designs'), note: t('Spec, rules, image') },
+    { key: 'selection', title: t('6 · Selection'), note: t('Metrics and calls') },
+    { key: 'variation', title: t('7 · Variations'), note: t('One sketch, several products') },
+    { key: 'campaign', title: t('8 · Campaign shots'), note: t('Worn on a model, staged on set') },
+    { key: 'showroom', title: t('9 · 3D showroom'), note: t('Turn it, or open it full size') },
   ]
 
   // ── 1 입력 ──────────────────────────────────────────────────────
   const inputBody: string[] = []
   if (p.mode === 'trend') {
-    inputBody.push(`${p.trend.competitors.length} competitors: ${p.trend.competitors.join(', ')}`)
-    inputBody.push(`Your band KRW ${(p.trend.priceMinKrw / 10000).toFixed(0)}0k-${(p.trend.priceMaxKrw / 10000).toFixed(0)}0k · ${p.trend.priceBand}`)
+    inputBody.push(tf('{n} competitors: {list}', { n: p.trend.competitors.length, list: p.trend.competitors.join(', ') }))
+    inputBody.push(tf('Your band KRW {min}0k-{max}0k · {band}', { min: (p.trend.priceMinKrw / 10000).toFixed(0), max: (p.trend.priceMaxKrw / 10000).toFixed(0), band: p.trend.priceBand }))
   } else if (p.mode === 'series') {
-    inputBody.push(`Series "${p.series.seriesName || 'untitled'}" · ${p.series.archiveFiles.length} designs`)
-    if (p.series.valueStatement) inputBody.push(`Value: ${p.series.valueStatement.slice(0, 90)}`)
-    inputBody.push(p.series.trendSearch ? 'Trend research on, no competitor research' : 'No outside research')
+    inputBody.push(tf('Series "{name}" · {n} designs', { name: p.series.seriesName || t('untitled'), n: userUploads(p.series.archiveFiles).length }))
+    if (p.series.valueStatement) inputBody.push(tf('Value: {text}', { text: p.series.valueStatement.slice(0, 90) }))
+    inputBody.push(p.series.trendSearch ? t('Trend research on, no competitor research') : t('No outside research'))
   } else {
-    inputBody.push(`${p.moodboard.files.length} uploads: ${p.moodboard.files.map(uploadName).join(', ') || 'none'}`)
-    inputBody.push('Nothing outside these files')
+    inputBody.push(tf('{n} uploads: {list}', { n: userUploads(p.moodboard.files).length, list: userUploads(p.moodboard.files).map(uploadName).join(', ') || t('none') }))
+    inputBody.push(t('Nothing outside these files'))
   }
   nodes.push({
     id: 'in', kind: 'input', column: 0, row: 0,
-    title: `${MODE_LABEL[p.mode]} mode input`, body: inputBody, tone: 'accent',
+    title: tf('{mode} mode input', { mode: MODE_LABEL[p.mode] }), body: inputBody, tone: 'accent',
   })
 
   // ── 2 조사 ──────────────────────────────────────────────────────
@@ -84,10 +85,10 @@ export function buildBoardModel(st: RunState): BoardModel {
     // 요약 한 장 + 제품별 사진 카드. 조사 레인은 글이 아니라 실물이 보여야 한다.
     nodes.push({
       id: 'r-comp', kind: 'research', column: 1, row: 0,
-      title: 'Competitor products',
+      title: t('Competitor products'),
       body: [
-        `${st.competitors.length} collected · ${inBand.length} inside the band`,
-        ...(out.length ? [`${out.length} dropped: ${out.map(c => c.brand).join(', ')} (outside the band)`] : []),
+        tf('{n} collected · {inBand} inside the band', { n: st.competitors.length, inBand: inBand.length }),
+        ...(out.length ? [tf('{n} dropped: {list} (outside the band)', { n: out.length, list: out.map(c => c.brand).join(', ') })] : []),
       ],
     })
     // 조사 레인은 글이 아니라 실물이 말한다 · 사진 크게, 캡션은 한 줄
@@ -97,7 +98,7 @@ export function buildBoardModel(st: RunState): BoardModel {
         title: `${c.brand} · ${c.name.slice(0, 26)}`,
         imageUrl: shotUrl(c.image_urls?.[0] ?? '', c.product_url) || undefined,
         body: [
-          `KRW ${(c.price_krw / 1000).toLocaleString()}k${c.competitor_class ? ` · ${c.competitor_class}` : ''}${c.design_traits?.[0] ? ` · ${c.design_traits[0]}` : ''}`,
+          `${tf('KRW {price}k', { price: (c.price_krw / 1000).toLocaleString() })}${c.competitor_class ? ` · ${c.competitor_class}` : ''}${c.design_traits?.[0] ? ` · ${c.design_traits[0]}` : ''}`,
         ],
       })
       edges.push({ from: 'r-comp', to: `cp-${k}` })
@@ -107,18 +108,18 @@ export function buildBoardModel(st: RunState): BoardModel {
     if (best.length) {
       nodes.push({
         id: 'r-best', kind: 'research', column: 1, row: 13,
-        title: 'Department store bestsellers',
-        body: [`${best.length} products · ${[...new Set(best.map(b => b.retailer))].slice(0, 3).join(', ')}`],
+        title: t('Department store bestsellers'),
+        body: [tf('{n} products · {list}', { n: best.length, list: [...new Set(best.map(b => b.retailer))].slice(0, 3).join(', ') })],
         tone: 'accent',
       })
-      edges.push({ from: 'in', to: 'r-best', label: 'category' })
+      edges.push({ from: 'in', to: 'r-best', label: t('category') })
       best.slice(0, 6).forEach((b, k) => {
         nodes.push({
           id: `bs-${k}`, kind: 'research', column: 1, row: 14 + k * 2.2,
           title: `${b.brand} · ${b.name.slice(0, 24)}`,
           imageUrl: shotUrl(b.image_urls?.[0] ?? '', b.product_url) || undefined,
           body: [
-            `${b.retailer}${b.rank_note ? ` · ${b.rank_note}` : ''}${b.price_krw > 0 ? ` · KRW ${(b.price_krw / 1000).toLocaleString()}k` : ''}`,
+            `${b.retailer}${b.rank_note ? ` · ${b.rank_note}` : ''}${b.price_krw > 0 ? ` · ${tf('KRW {price}k', { price: (b.price_krw / 1000).toLocaleString() })}` : ''}`,
           ],
         })
         edges.push({ from: 'r-best', to: `bs-${k}` })
@@ -127,35 +128,42 @@ export function buildBoardModel(st: RunState): BoardModel {
     const noProxy = st.competitors.filter(c => c.observation_count < 2)
     nodes.push({
       id: 'r-proxy', kind: 'research', column: 1, row: 10,
-      title: 'Sales proxy',
-      body: [noProxy.length ? `${noProxy.length} seen only once · no score without a time series` : 'All seen at least twice'],
+      title: t('Sales proxy'),
+      body: [noProxy.length ? tf('{n} seen only once · no score without a time series', { n: noProxy.length }) : t('All seen at least twice')],
       tone: 'warn',
     })
     nodes.push({
       id: 'r-trend', kind: 'research', column: 1, row: 11,
-      title: 'Trend research', body: [`${st.signals.length} signals, each tied to a source`],
+      // 출처가 붙은 신호만 그렇게 말한다. 조사가 실패해 샘플로 돌아간 실행에서는
+      // 하나도 안 붙어 있는데 예전에는 늘 "each tied to a source" 라고 적혀 있었다.
+      title: t('Trend research'), body: [(() => {
+        const n = st.signals.filter(isCollectedSignal).length
+        return n === st.signals.length
+          ? tf('{n} signals, each tied to a source', { n: st.signals.length })
+          : tf('{n} signals · {sourced} tied to a source, the rest are sample data', { n: st.signals.length, sourced: n })
+      })()],
     })
     researchIds = ['r-comp', 'r-proxy', 'r-trend']
-    edges.push({ from: 'in', to: 'r-comp', label: 'competitor list' })
-    edges.push({ from: 'r-comp', to: 'r-proxy', label: 'repeat observations' })
-    edges.push({ from: 'in', to: 'r-trend', label: 'category' })
+    edges.push({ from: 'in', to: 'r-comp', label: t('competitor list') })
+    edges.push({ from: 'r-comp', to: 'r-proxy', label: t('repeat observations') })
+    edges.push({ from: 'in', to: 'r-trend', label: t('category') })
   } else if (p.mode === 'series') {
     nodes.push({
       id: 'r-dna', kind: 'research', column: 1, row: 0,
-      title: 'Series DNA',
+      title: t('Series DNA'),
       body: [
-        `${st.seriesDna?.invariant.length ?? 0} fixed · ${st.seriesDna?.variable.length ?? 0} variable · ${st.seriesDna?.ambiguous.length ?? 0} unclear`,
-        ...(st.seriesDna?.invariant.slice(0, 2).map(i => `Fixed: ${i.label} (${i.observed_in}/${i.of})`) ?? []),
+        tf('{fixed} fixed · {variable} variable · {unclear} unclear', { fixed: st.seriesDna?.invariant.length ?? 0, variable: st.seriesDna?.variable.length ?? 0, unclear: st.seriesDna?.ambiguous.length ?? 0 }),
+        ...(st.seriesDna?.invariant.slice(0, 2).map(i => tf('Fixed: {label} ({seen}/{of})', { label: i.label, seen: i.observed_in, of: i.of })) ?? []),
       ],
       tone: 'accent',
     })
     nodes.push({
       id: 'r-check', kind: 'research', column: 1, row: 1,
-      title: 'Stated vs observed',
+      title: t('Stated vs observed'),
       body: st.dnaConflict
-        ? [`You wrote ${st.dnaConflict.brandClaim}`, `We see ${st.dnaConflict.observed}`,
-           st.dnaConflict.resolved ? `Going with: ${st.dnaConflict.resolved}` : 'Not resolved yet']
-        : ['No conflict'],
+        ? [tf('You wrote {claim}', { claim: st.dnaConflict.brandClaim }), tf('We see {observed}', { observed: st.dnaConflict.observed }),
+           st.dnaConflict.resolved ? tf('Going with: {choice}', { choice: st.dnaConflict.resolved }) : t('Not resolved yet')]
+        : [t('No conflict')],
       tone: 'warn',
     })
     // 올린 디자인을 그대로 보여준다 · DNA 판정을 눈으로 대조할 수 있어야 한다
@@ -164,23 +172,23 @@ export function buildBoardModel(st: RunState): BoardModel {
         id: `up-${k}`, kind: 'research', column: 1, row: 3 + k * 2.2,
         title: u.name.replace(/\.[a-z0-9]+$/i, '').slice(0, 26),
         imageUrl: u.url,
-        body: ['You uploaded this'],
+        body: [t('You uploaded this')],
       })
       edges.push({ from: 'r-dna', to: `up-${k}` })
     })
     researchIds = ['r-dna', 'r-check']
-    edges.push({ from: 'in', to: 'r-dna', label: 'uploaded designs' })
-    edges.push({ from: 'in', to: 'r-check', label: 'value statement' })
-    edges.push({ from: 'r-dna', to: 'r-check', label: 'observed elements' })
+    edges.push({ from: 'in', to: 'r-dna', label: t('uploaded designs') })
+    edges.push({ from: 'in', to: 'r-check', label: t('value statement') })
+    edges.push({ from: 'r-dna', to: 'r-check', label: t('observed elements') })
     if (p.series.trendSearch) {
-      nodes.push({ id: 'r-trend', kind: 'research', column: 1, row: 2, title: 'Trend research', body: ['The only outside research in Series mode', 'No competitor research'] })
+      nodes.push({ id: 'r-trend', kind: 'research', column: 1, row: 2, title: t('Trend research'), body: [t('The only outside research in Series mode'), t('No competitor research')] })
       researchIds.push('r-trend')
     }
   } else {
     nodes.push({
       id: 'r-pdf', kind: 'research', column: 1, row: 0,
-      title: 'Uploads, read',
-      body: [`${p.moodboard.files.map(uploadName).join(', ') || 'none'} · every signal below carries the page it came from`],
+      title: t('Uploads, read'),
+      body: [tf('{list} · every signal below carries the page it came from', { list: userUploads(p.moodboard.files).map(uploadName).join(', ') || t('none') })],
       tone: 'accent',
     })
     // 문서에서 뽑아 둔 페이지 이미지 · 신호 옆에서 근거를 눈으로 확인한다
@@ -189,19 +197,19 @@ export function buildBoardModel(st: RunState): BoardModel {
         id: `pg-${k}`, kind: 'research', column: 1, row: 3 + k * 2.2,
         title: u.name.replace(/\.(png|webp|jpg)$/i, ''),
         imageUrl: u.url,
-        body: ['From your document'],
+        body: [t('From your document')],
       })
       edges.push({ from: 'r-pdf', to: `pg-${k}` })
     })
     nodes.push({
       id: 'r-bias', kind: 'research', column: 1, row: 1,
-      title: 'Source perspective',
+      title: t('Source perspective'),
       body: st.reportBias ? [st.reportBias.perspective, ...st.reportBias.notes.slice(0, 2)] : [],
       tone: 'warn',
     })
     researchIds = ['r-pdf', 'r-bias']
     edges.push({ from: 'in', to: 'r-pdf', label: 'PDF' })
-    edges.push({ from: 'r-pdf', to: 'r-bias', label: 'citation spread' })
+    edges.push({ from: 'r-pdf', to: 'r-bias', label: t('citation spread') })
   }
 
   // ── 시즌 도시에 · MICAM 형식의 매크로트렌드를 조사 열에 얹는다 ──────
@@ -213,11 +221,11 @@ export function buildBoardModel(st: RunState): BoardModel {
       title: `${dossier.season} · ${dossier.season_title}`,
       body: [
         dossier.powershift ? dossier.powershift : '',
-        `${dossier.macrotrends.length} macrotrends · ${dossier.sources?.length ?? 0} sources`,
+        tf('{n} macrotrends · {sources} sources', { n: dossier.macrotrends.length, sources: dossier.sources?.length ?? 0 }),
       ].filter(Boolean),
       tone: 'accent',
     })
-    edges.push({ from: 'in', to: 'dos', label: 'season brief' })
+    edges.push({ from: 'in', to: 'dos', label: t('season brief') })
 
     dossier.macrotrends.forEach((m, i) => {
       const id = `macro-${i}`
@@ -227,21 +235,21 @@ export function buildBoardModel(st: RunState): BoardModel {
         title: `${m.name} · ${GRADE_LABEL[m.grade] ?? m.grade}`,
         body: [
           m.statement,
-          (m.palette ?? []).length ? `Palette: ${m.palette.slice(0, 4).map(c => c.name).join(', ')}` : '',
+          (m.palette ?? []).length ? tf('Palette: {colors}', { colors: m.palette.slice(0, 4).map(c => c.name).join(', ') }) : '',
         ].filter(Boolean),
       })
-      edges.push({ from: 'dos', to: id, label: 'macrotrend' })
+      edges.push({ from: 'dos', to: id, label: t('macrotrend') })
 
       const items = (m.key_items ?? []).slice(0, 3)
       if (items.length) {
         const kid = `macro-${i}-items`
         nodes.push({
           id: kid, kind: 'research', column: 1, row: 5 + i * 2,
-          title: `${m.name} key items`,
+          title: tf('{name} key items', { name: m.name }),
           body: items.map(k => `${k.name} (${k.segment}) ${k.metric ? pct(k.metric) : '—'} · ${GRADE_LABEL[k.grade] ?? k.grade}`),
           tone: 'muted',
         })
-        edges.push({ from: id, to: kid, label: 'key items' })
+        edges.push({ from: id, to: kid, label: t('key items') })
       }
     })
   }
@@ -252,9 +260,10 @@ export function buildBoardModel(st: RunState): BoardModel {
       id: `sg-${s.signal_id}`, kind: 'signal', column: 2, row: i,
       title: s.label,
       body: [
-        `${s.axis} · seen ${s.observed_count}x · ${s.direction === 'rising' ? 'rising' : s.direction === 'stable' ? 'holding' : 'fading'}`,
-        s.sales_proxy_score != null ? `proxy ${s.sales_proxy_score} (${s.proxy_confidence})`
-          : s.page_ref ? `source ${s.page_ref}` : `${s.sources.length} sources`,
+        tf('{axis} · seen {n}x · {direction}', { axis: s.axis, n: s.observed_count, direction: s.direction === 'rising' ? t('rising') : s.direction === 'stable' ? t('holding') : t('fading') }),
+        // proxy_confidence 는 없을 수 있다 · 없으면 '미상'으로 적는다(빈칸으로 두면 괄호만 남는다)
+        s.sales_proxy_score != null ? tf('proxy {score} ({confidence})', { score: s.sales_proxy_score, confidence: s.proxy_confidence ?? t('unknown') })
+          : s.page_ref ? tf('source {ref}', { ref: s.page_ref }) : tf('{n} sources', { n: s.sources.length }),
       ],
       tone: s.confidence === 'low' ? 'muted' : 'neutral',
     })
@@ -276,7 +285,7 @@ export function buildBoardModel(st: RunState): BoardModel {
   })
   // 시리즈 불변 요소는 디렉션 전 단계에서 스펙을 직접 잠근다
   if (p.mode === 'series' && st.seriesDna) {
-    st.directions.forEach(d => edges.push({ from: 'r-dna', to: `dir-${d.id}`, label: 'DNA lock', dashed: true }))
+    st.directions.forEach(d => edges.push({ from: 'r-dna', to: `dir-${d.id}`, label: t('DNA lock'), dashed: true }))
   }
 
   // ── 5 디자인 ────────────────────────────────────────────────────
@@ -293,23 +302,23 @@ export function buildBoardModel(st: RunState): BoardModel {
       // 발표 카드도 핵심만 · 근거 한 줄, 실현성 한 줄, 예상 반론 한 줄
       nodes.push({
         id: `pitch-${d.spec.design_id}`, kind: 'selection', column: 4.5, row: i,
-        title: 'Why this one',
+        title: t('Why this one'),
         body: [
           pit.why[0],
           pit.feasibility[0],
-          ...(pit.objections.length ? [`Objection: ${pit.objections[0].q} - ${pit.objections[0].a}`] : []),
+          ...(pit.objections.length ? [tf('Objection: {q} - {a}', { q: pit.objections[0].q, a: pit.objections[0].a })] : []),
         ].filter(Boolean),
         tone: 'muted',
         isPitch: true,
       })
-      edges.push({ from: d.spec.design_id, to: `pitch-${d.spec.design_id}`, label: 'reasoning', dashed: true })
+      edges.push({ from: d.spec.design_id, to: `pitch-${d.spec.design_id}`, label: t('reasoning'), dashed: true })
     }
     nodes.push({
       id: d.spec.design_id, kind: 'design', column: 4, row: i,
       title: `${d.spec.design_id} · ${TIER_LABEL[d.spec.tier]}`,
       body: [
         // 조건 레시피 · 이 컨셉이 조사 결과의 어떤 조합에서 나왔는지 한 줄
-        ...(d.recipe ? [`Recipe: ${d.recipe.title}`] : []),
+        ...(d.recipe ? [tf('Recipe: {title}', { title: d.recipe.title })] : []),
         ...d.metrics.map(m => `${m.label} ${m.value}`),
       ],
       design: d, imageUrl: hero?.url,
@@ -328,7 +337,7 @@ export function buildBoardModel(st: RunState): BoardModel {
   if (rejected.length) {
     nodes.push({
       id: 'rejected', kind: 'design', column: 4, row: alive.length,
-      title: `${rejected.length} rejected on rules`,
+      title: tf('{n} rejected on rules', { n: rejected.length }),
       body: rejected.slice(0, 4).map(d =>
         `${d.spec.design_id} · ${d.ruleResults.filter(r => r.severity === 'fail').map(r => r.rule).join(', ')}`),
       tone: 'muted',
@@ -340,12 +349,12 @@ export function buildBoardModel(st: RunState): BoardModel {
   if (top.length) {
     nodes.push({
       id: 'top', kind: 'selection', column: 5, row: 0,
-      title: `Top ${top.length}`,
+      title: tf('Top {n}', { n: top.length }),
       body: [
         // MD 판정이 있으면 픽 이유가 함께 실린다 · 지표와 별개 층
-        ...top.map(d => `${d.spec.design_id} · ${TIER_LABEL[d.spec.tier]} · distance ${d.topDistance ?? 'n/a'}${d.mdReview ? ` · MD ${d.mdReview.verdict}` : ''}`),
+        ...top.map(d => `${tf('{id} · {tier} · distance {distance}', { id: d.spec.design_id, tier: TIER_LABEL[d.spec.tier], distance: d.topDistance ?? t('n/a') })}${d.mdReview ? ` · MD ${d.mdReview.verdict}` : ''}`),
         ...(st.mdPickRationale ? [`MD: ${st.mdPickRationale}`] : []),
-        'At least one per tier, with a distance threshold so they do not converge',
+        t('At least one per tier, with a distance threshold so they do not converge'),
       ],
       tone: 'accent',
     })
@@ -354,14 +363,14 @@ export function buildBoardModel(st: RunState): BoardModel {
     if (reviewed.length) {
       nodes.push({
         id: 'md-review', kind: 'selection', column: 5, row: 0.9,
-        title: 'MD feedback',
+        title: t('MD feedback'),
         body: reviewed.slice(0, 6).map(d =>
-          `${d.spec.design_id} · ${d.mdReview!.verdict}: ${d.mdReview!.reason}${d.mdReview!.fix ? ` · Fix: ${d.mdReview!.fix}` : ''}`),
+          `${d.spec.design_id} · ${d.mdReview!.verdict}: ${d.mdReview!.reason}${d.mdReview!.fix ? ` · ${tf('Fix: {fix}', { fix: d.mdReview!.fix })}` : ''}`),
         tone: 'accent',
       })
       for (const d of reviewed.slice(0, 6)) edges.push({ from: d.spec.design_id, to: 'md-review', label: 'MD', dashed: true })
     }
-    top.forEach(d => edges.push({ from: d.spec.design_id, to: 'top', label: 'selected' }))
+    top.forEach(d => edges.push({ from: d.spec.design_id, to: 'top', label: t('selected') }))
 
     // 캠페인 컷은 디자인 다음 단계다. 착용컷과 연출컷을 한 열에 나란히 올린다.
     let campaignRow = 0
@@ -370,8 +379,8 @@ export function buildBoardModel(st: RunState): BoardModel {
       const worn = d.images.filter(im => im.view === 'wear')
       const concepts = d.images.filter(im => im.view === 'concept')
       const frames = [
-        ...worn.map(im => ({ im, label: 'Virtual fitting', note: 'Simulated wear. The real fit may differ.' })),
-        ...concepts.map(im => ({ im, label: im.conceptLabel ?? 'Concept', note: im.persona ? `Virtual model: ${im.persona}` : 'Staged for the concept, not a real shoot.' })),
+        ...worn.map(im => ({ im, label: t('Virtual fitting'), note: t('Simulated wear. The real fit may differ.') })),
+        ...concepts.map(im => ({ im, label: im.conceptLabel ?? t('Concept'), note: im.persona ? tf('Virtual model: {persona}', { persona: im.persona }) : t('Staged for the concept, not a real shoot.') })),
       ]
       if (d.model) {
         const id = `model-${d.spec.design_id}`
@@ -379,24 +388,24 @@ export function buildBoardModel(st: RunState): BoardModel {
           id, kind: 'selection', column: 8, row: showroomRow++,
           title: `${d.spec.design_id} · 3D`,
           body: [
-            `Built from ${d.model.views} views of this design, not from one photo.`,
-            'Drag to turn it. Scroll to zoom. Click the image to open it full size.',
+            tf('Built from {n} views of this design, not from one photo.', { n: d.model.views }),
+            t('Drag to turn it. Scroll to zoom. Click the image to open it full size.'),
             ...(d.model.note ? [d.model.note] : []),
           ],
           modelUrl: d.model.url,
           imageUrl: (d.images.find(i => i.origin === 'generated' && i.view !== 'sketch') ?? d.images[0])?.url,
         })
-        edges.push({ from: 'top', to: id, label: '3D showroom' })
+        edges.push({ from: 'top', to: id, label: t('3D showroom') })
       }
       frames.forEach((fr, k) => {
         const id = `shot-${d.spec.design_id}-${k}`
         nodes.push({
           id, kind: 'selection', column: 7, row: campaignRow++,
           title: `${d.spec.design_id} · ${fr.label}`,
-          body: [fr.note, 'Edited from the base render, so it is the same product.'],
+          body: [fr.note, t('Edited from the base render, so it is the same product.')],
           imageUrl: fr.im.url,
         })
-        edges.push({ from: 'top', to: id, label: k === 0 ? 'campaign' : undefined })
+        edges.push({ from: 'top', to: id, label: k === 0 ? t('campaign') : undefined })
       })
     })
   }
@@ -408,14 +417,14 @@ export function buildBoardModel(st: RunState): BoardModel {
       const id = `var-${d.spec.design_id}-${k}`
       nodes.push({
         id, kind: 'design', column: 6, row: varRow++,
-        title: `${d.spec.design_id} · ${im.variantAxis ?? 'Variation'}`,
+        title: `${d.spec.design_id} · ${im.variantAxis ?? t('Variation')}`,
         body: [
-          'Same silhouette, one axis changed, so the two stay comparable.',
-          'Edited from the base render rather than generated fresh.',
+          t('Same silhouette, one axis changed, so the two stay comparable.'),
+          t('Edited from the base render rather than generated fresh.'),
         ],
         imageUrl: im.url,
       })
-      edges.push({ from: d.spec.design_id, to: id, label: 'variation' })
+      edges.push({ from: d.spec.design_id, to: id, label: t('variation') })
     })
   })
 
@@ -426,25 +435,26 @@ export function buildBoardModel(st: RunState): BoardModel {
     rejectedByUser.forEach(d => d.verdictTags?.forEach(t => { tagCount[t] = (tagCount[t] ?? 0) + 1 }))
     nodes.push({
       id: 'verdict', kind: 'selection', column: 5, row: 1,
-      title: 'Review calls',
+      title: t('Review calls'),
       body: [
-        `${approved.length} approved · ${rejectedByUser.length} rejected`,
-        ...(Object.keys(tagCount).length ? [`Reasons: ${Object.entries(tagCount).map(([k, v]) => `${k} ${v}`).join(', ')}`] : []),
-        'Calls and reasons feed the reference bank for the next run',
+        tf('{approved} approved · {rejected} rejected', { approved: approved.length, rejected: rejectedByUser.length }),
+        ...(Object.keys(tagCount).length ? [tf('Reasons: {list}', { list: Object.entries(tagCount).map(([k, v]) => `${k} ${v}`).join(', ') })] : []),
+        // 다음 실행으로 넘어가는 저장소는 없다. 반려는 이번 실행에서 그 디자인을 빼는 데 쓰인다.
+        t('Rejected designs are dropped from the rest of this run. Nothing carries over to a later run.'),
       ],
     })
-    approved.forEach(d => edges.push({ from: d.spec.design_id, to: 'verdict', label: 'approved' }))
-    rejectedByUser.forEach(d => edges.push({ from: d.spec.design_id, to: 'verdict', label: 'rejected', dashed: true }))
+    approved.forEach(d => edges.push({ from: d.spec.design_id, to: 'verdict', label: t('approved') }))
+    rejectedByUser.forEach(d => edges.push({ from: d.spec.design_id, to: 'verdict', label: t('rejected'), dashed: true }))
   }
 
   nodes.push({
     id: 'appendix', kind: 'appendix', column: 5, row: 2,
-    title: 'Appendix · assumptions and limits',
+    title: t('Appendix · assumptions and limits'),
     body: [
-      'Costs are rough. The band, the assumptions and what is excluded sit on each card.',
-      'Worn shots are simulated. The real fit may differ.',
-      'Competitor references were read for attributes only and never fed into generation.',
-      'Generated elements may not be copyrightable depending on jurisdiction.',
+      t('Costs are rough. The band, the assumptions and what is excluded sit on each card.'),
+      t('Worn shots are simulated. The real fit may differ.'),
+      t('Competitor references were read for attributes only and never fed into generation.'),
+      t('Generated elements may not be copyrightable depending on jurisdiction.'),
     ],
     tone: 'muted',
   })

@@ -1,11 +1,15 @@
 // ── 브랜드 아이덴티티 · 어떤 에이전트를 쓰든 결과물에 공통으로 실린다 ──
 // 에이전트(트렌드·시리즈·무드보드)의 판단이 우선이지만, 로고와 브랜드 규칙은
 // 그 위에 항상 덧씌워진다. 그래서 파이프라인이 아니라 별도 저장소에 둔다.
+import { t } from './i18n'
 
 export interface BrandLogo {
   name: string
-  dataUrl: string          // 브라우저에만 두고 서버로 보내지 않는다
-  placement: 'none' | 'tongue' | 'heel' | 'side' | 'insole' | 'clasp' | 'pendant'
+  // 합성을 위해 로컬 서버로 보낸다(applyLogoToImages 가 켜져 있을 때만).
+  // 합성된 렌더는 이후 편집 API 로도 나간다 — 브라우저 안에만 머무르지 않는다.
+  dataUrl: string
+  // 주얼리 위치만 · 신발 데모 값(tongue/heel/side/insole)은 loadBrand 가 'none' 으로 정규화한다
+  placement: 'none' | 'clasp' | 'pendant'
   scale: 'subtle' | 'normal' | 'bold'
 }
 
@@ -50,7 +54,8 @@ export interface BrandIdentity {
   materials: string[]
   toneWords: string[]
   logo: BrandLogo | null
-  /** 로고를 이미지에 실제로 그릴지. 끄면 프롬프트에서 로고를 명시적으로 배제한다 */
+  /** 로고를 이미지에 실제로 얹을지. 켜면 프롬프트가 자리를 비워 두고 실제 파일을 합성한다.
+   *  끄면 프롬프트가 로고를 배제하고 합성도 하지 않는다. */
   applyLogoToImages: boolean
   /** 디자인 셀렉에 피드백을 주는 MD 페르소나 · 비우면 셀렉은 지표만으로 돈다 */
   md?: MdPersona
@@ -70,16 +75,34 @@ export const EMPTY_BRAND: BrandIdentity = {
 
 const KEY = 'vringon.brand'
 
+/** 주얼리에서 고를 수 있는 로고 위치 · 신발 데모에서 저장된 값(tongue/heel 등)은 여기에 없다 */
+const JEWELRY_PLACEMENTS: string[] = ['none', 'clasp', 'pendant']
+
 export function loadBrand(): BrandIdentity {
   try {
     const raw = localStorage.getItem(KEY)
     if (!raw) return EMPTY_BRAND
-    return { ...EMPTY_BRAND, ...JSON.parse(raw) }
+    const b = { ...EMPTY_BRAND, ...JSON.parse(raw) } as BrandIdentity
+    // 신발 데모에서 저장한 위치는 이 화면에 칩이 없어 선택 상태가 보이지 않는데,
+    // 프롬프트에는 "on the heel counter" 가 그대로 실린다. 보이지 않는 설정은 끄고 간다.
+    if (b.logo && !JEWELRY_PLACEMENTS.includes(String(b.logo.placement)))
+      b.logo = { ...b.logo, placement: 'none' }
+    return b
   } catch { return EMPTY_BRAND }
 }
 
-export function saveBrand(b: BrandIdentity) {
-  localStorage.setItem(KEY, JSON.stringify(b))
+/** 저장 실패를 삼키지 않는다 · 로고 한 장이면 5MB 한도를 넘길 수 있고,
+ *  조용히 실패하면 사용자는 저장된 줄 알고 창을 닫는다. */
+export function saveBrand(b: BrandIdentity): { ok: true } | { ok: false; error: string } {
+  try {
+    localStorage.setItem(KEY, JSON.stringify(b))
+    return { ok: true }
+  } catch (e) {
+    const big = (b.logo?.dataUrl?.length ?? 0) > 1_000_000
+    return { ok: false, error: big
+      ? t('The logo file is too large for this browser to keep. Use a smaller PNG or SVG.')
+      : String((e as Error).message).slice(0, 120) }
+  }
 }
 
 export function isBrandConfigured(b: BrandIdentity): boolean {
@@ -103,10 +126,7 @@ export function brandPromptClause(b: BrandIdentity): string {
   // 로고는 형태를 재현할 수 없으므로 위치와 절제만 지시한다.
   // 실제 로고 삽입은 편집 단계에서 원본 파일로 합성하는 것이 정확하다.
   if (b.applyLogoToImages && b.logo && b.logo.placement !== 'none') {
-    const where: Record<string, string> = {
-      tongue: 'on the tongue', heel: 'on the heel counter', side: 'on the lateral side panel',
-      insole: 'on the insole', clasp: 'on the clasp', pendant: 'on the pendant face',
-    }
+    const where: Record<string, string> = { clasp: 'on the clasp', pendant: 'on the pendant face' }
     const size = b.logo.scale === 'subtle' ? 'very small and understated'
       : b.logo.scale === 'bold' ? 'clearly visible' : 'modest'
     parts.push(`Leave a clean unbranded area ${where[b.logo.placement]} for a ${size} brand mark. Do not invent any logo, text, or lettering.`)

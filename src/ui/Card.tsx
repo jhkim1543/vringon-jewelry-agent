@@ -1,5 +1,5 @@
 // ── 디자인 카드 (지시서 12.4) · 목표값/시각화/검증 분리 + 근거 패널 + 게이트 ──
-import { t } from '../core/i18n'
+import { t, tf } from '../core/i18n'
 import { useState } from 'react'
 import type { Design, Signal } from '../core/types'
 import { TIER_LABEL, TYPE_LABEL, CAT_LABEL, VERDICT_TAGS, evidenceId } from '../core/types'
@@ -28,9 +28,23 @@ export function DesignCard({ d, signals, stagePassed, onVerdict, compact }: {
   const heroImg = baseImg ?? sketchImg
   const extraImgs = d.images.filter(i => i !== heroImg && i.view !== 'sketch')
 
-  const specSummary = d.spec.category === 'jewelry'
-    ? `${f.stone_count} stones · ${f.setting_type} · ${f.target_weight_g}g · ${f.min_wall_thickness_mm}mm wall`
-    : `${f.heel_height_mm}mm heel · ${f.panel_count} panels · ${f.toe_shape} · ${f.last_id}`
+  // 이 앱의 카테고리는 주얼리 하나다 · 신발 분기는 이식 흔적이라 걷어냈다
+  const specSummary = tf('{stones} stones · {setting} · {weight}g · {wall}mm wall', {
+    stones: String(f.stone_count), setting: String(f.setting_type),
+    weight: String(f.target_weight_g), wall: String(f.min_wall_thickness_mm),
+  })
+
+  // 잠금은 출처별로 센다 · 라인 프로필로 고정된 필드를 "DNA" 라 부르면
+  // 시리즈 판독을 돌리지도 않은 모드에서 물려받은 척하게 된다
+  // 출처를 모르는 저장본(lockedBy 이전)은 출처를 주장하지 않는다 — 그냥 "잠김"이다
+  const LOCK_LABEL: Record<string, string> = { dna: 'DNA', line: t('Line'), unknown: t('Locked') }
+  const locks = (['dna', 'line', 'unknown'] as const)
+    .map(by => ({
+      by,
+      label: LOCK_LABEL[by],
+      n: d.spec.fieldsLocked.filter(k => (d.spec.lockedBy?.[k] ?? 'unknown') === by).length,
+    }))
+    .filter(l => l.n > 0)
 
   const fails = d.ruleResults.filter(r => r.severity === 'fail')
   const warns = d.ruleResults.filter(r => r.severity === 'warn')
@@ -46,7 +60,7 @@ export function DesignCard({ d, signals, stagePassed, onVerdict, compact }: {
         <img src={heroImg ? heroImg.url : svgDataUri(mainSvg)} alt={d.spec.design_id}
           onError={e => { (e.currentTarget as HTMLImageElement).src = svgDataUri(mainSvg) }} />
         <div className="flag" style={{ display: 'flex', gap: 4 }}>
-          {d.isTop && <Tag kind="accent">TOP</Tag>}
+          {d.isTop && <Tag kind="accent">{t('TOP')}</Tag>}
           {d.viewMismatch && <Tag kind="warn">{t('View mismatch')}</Tag>}
           {d.rejected && <Tag kind="danger">{t('Rule reject')}</Tag>}
         </div>
@@ -58,7 +72,9 @@ export function DesignCard({ d, signals, stagePassed, onVerdict, compact }: {
           <div className="viewstrip">
             {extraImgs.length > 0
               ? extraImgs.map(im => (
-                <div className="v" key={im.hash} title={im.colorway ? `${im.colorway} colourway (edit)` : `${im.view} (edit)`}>
+                <div className="v" key={im.hash} title={im.colorway
+                  ? tf('{name} colourway (edit)', { name: im.colorway })
+                  : tf('{view} (edit)', { view: im.view })}>
                   <img src={im.url} alt={im.colorway ?? im.view} />
                 </div>
               ))
@@ -69,7 +85,7 @@ export function DesignCard({ d, signals, stagePassed, onVerdict, compact }: {
                   </div>
                 ))}
                 {d.colorways.map(cw => (
-                  <div className="v" key={cw} title={`${cw} colourway`}>
+                  <div className="v" key={cw} title={tf('{name} colourway', { name: cw })}>
                     <img src={svgDataUri(designSVG(d.spec, 'render', mainView as any, cw))} alt={cw} />
                   </div>
                 ))}
@@ -82,13 +98,13 @@ export function DesignCard({ d, signals, stagePassed, onVerdict, compact }: {
       <div className="body">
         <div className="idline">
           {d.spec.design_id}
-          <span className="muted">{CAT_LABEL[d.spec.category]}/{TYPE_LABEL[d.spec.itemType]}</span>
-          <Tag kind={d.spec.tier === 'signature' ? 'accent' : undefined}>{TIER_LABEL[d.spec.tier]}</Tag>
+          <span className="muted">{t(CAT_LABEL[d.spec.category])}/{t(TYPE_LABEL[d.spec.itemType])}</span>
+          <Tag kind={d.spec.tier === 'signature' ? 'accent' : undefined}>{t(TIER_LABEL[d.spec.tier])}</Tag>
         </div>
 
         {/* 설계 목표값 (AI 생성 스펙) · 한 줄 요약, 상세는 근거 패널 */}
         <div className="metric"><b>{t('Target')}</b> {specSummary}
-          {d.spec.fieldsLocked.length > 0 && <> · <span style={{ color: 'var(--accent-hi)' }}>🔒 DNA {d.spec.fieldsLocked.length}</span></>}
+          {locks.map(l => <span key={l.by}> · <span style={{ color: 'var(--accent-hi)' }}>🔒 {l.label} {l.n}</span></span>)}
         </div>
 
         <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
@@ -96,12 +112,16 @@ export function DesignCard({ d, signals, stagePassed, onVerdict, compact }: {
             ? <Tag kind="ok">{t('Passed rules')}</Tag>
             : fails.map(r => <Tag kind="danger" key={r.rule}>{r.rule}</Tag>)}
           {warns.map(r => <Tag kind="warn" key={r.rule}>{r.rule}</Tag>)}
+          {/* 브랜드 설정의 "절대 안 하는 것" · 룰 탈락과 달리 자동으로 떨어뜨리지 않고 표시만 한다 */}
+          {(d.brandViolations ?? []).map(v => (
+            <Tag kind="warn" key={`bf-${v}`}>{t('Brand rule')} · {v}</Tag>
+          ))}
           {d.qa.length > 0 && <Tag kind={qaFail ? 'warn' : qaUnknown ? undefined : 'ok'}>
             QA {qaPass}/{d.qa.length}{qaUnknown ? ` · ${qaUnknown} ${t('unchecked')}` : ''}</Tag>}
         </div>
 
         <button className="btn btn-ghost btn-sm" style={{ alignSelf: 'flex-start' }} onClick={() => setShowRationale(v => !v)}>
-          {showRationale ? '▾' : '▸'} Reasoning, metrics, cost
+          {showRationale ? '▾' : '▸'} {t('Reasoning, metrics, cost')}
         </button>
       </div>
 
@@ -111,7 +131,7 @@ export function DesignCard({ d, signals, stagePassed, onVerdict, compact }: {
       {onVerdict && !d.rejected && (
         <div className="gate-actions">
           {d.verdict === 'approve' && <Tag kind="ok">{t('Approved')}</Tag>}
-          {d.verdict === 'reject' && <Tag kind="danger">Rejected · {d.verdictTags?.join(', ')}</Tag>}
+          {d.verdict === 'reject' && <Tag kind="danger">{t('Rejected')} · {d.verdictTags?.join(', ')}</Tag>}
           {!d.verdict && !pendingReject && (<>
             <button className="btn btn-ok btn-sm" onClick={() => onVerdict(d.spec.design_id, 'approve', [])}>{t('Approve')}</button>
             <button className="btn btn-danger btn-sm" onClick={() => setPendingReject(true)}>{t('Reject')}</button>
@@ -156,8 +176,8 @@ export function RationalePanel({ d, signals }: { d: Design; signals: Signal[] })
           return (
             <div className="sig" key={ds.signal_id}>
               <Tag kind="accent">{s.signal_id}</Tag>
-              <span>{s.label} · seen {s.observed_count}x · w={ds.weight}
-                {s.sales_proxy_score != null && ` · proxy ${s.sales_proxy_score} (${s.proxy_confidence})`}
+              <span>{s.label} · {tf('seen {n}x · w={w}', { n: s.observed_count, w: ds.weight })}
+                {s.sales_proxy_score != null && ` · ${tf('proxy {score} ({confidence})', { score: s.sales_proxy_score, confidence: String(s.proxy_confidence) })}`}
                 {s.page_ref && ` · ${s.page_ref}`}
                 {' '}{s.sources.slice(0, 2).map((u, i) => <a key={i} href={u} target="_blank" rel="noreferrer" title={u}>[{evidenceId(s.signal_id, i)}]</a>)}
               </span>
@@ -234,7 +254,7 @@ export function RationalePanel({ d, signals }: { d: Design; signals: Signal[] })
             const st = q.status ?? (q.pass ? 'pass' : 'fail')
             return (
               <div key={q.check} style={{ color: st === 'pass' ? 'var(--text-2)' : st === 'unknown' ? 'var(--text-3)' : 'var(--warn)' }}>
-                {st === 'pass' ? '✓' : st === 'unknown' ? '?' : '⚠'} {q.check} · target {q.target} / observed {q.observed}
+                {st === 'pass' ? '✓' : st === 'unknown' ? '?' : '⚠'} {q.check} · {tf('target {target} / observed {observed}', { target: String(q.target), observed: String(q.observed) })}
                 {q.view ? <span style={{ color: 'var(--text-3)' }}> · {q.view}</span> : null}
                 {q.note ? <div style={{ color: 'var(--text-3)', paddingLeft: 14 }}>{q.note}</div> : null}
               </div>
@@ -245,14 +265,18 @@ export function RationalePanel({ d, signals }: { d: Design; signals: Signal[] })
       <div>
         <h5>{t('Cost, with band, assumptions and exclusions')}</h5>
         <div style={{ color: 'var(--text-2)' }}>
-          Estimated KRW {(d.cost.estimated_total_krw / 10000).toFixed(1)}0k · band {d.cost.estimated_band_krw.map(v => (v / 10000).toFixed(1)).join('~')}0k · confidence {d.cost.confidence}
+          {tf('Estimated KRW {total}0k · band {band}0k · confidence {confidence}', {
+            total: (d.cost.estimated_total_krw / 10000).toFixed(1),
+            band: d.cost.estimated_band_krw.map(v => (v / 10000).toFixed(1)).join('~'),
+            confidence: d.cost.confidence,
+          })}
           {d.cost.tooling.total_tooling_krw > 0 && (
-            <div>Tooling KRW {(d.cost.tooling.total_tooling_krw / 10000).toFixed(0)}0k
-              {d.cost.tooling.size_run_count ? ` (${d.cost.tooling.mold_count_required} moulds across a ${d.cost.tooling.size_run_count} size run)` : ''}
-              {' '}÷ {d.cost.tooling.amortization_volume.toLocaleString()} = {d.cost.tooling.tooling_per_unit_krw.toLocaleString()} each</div>
+            <div>{tf('Tooling KRW {total}0k', { total: (d.cost.tooling.total_tooling_krw / 10000).toFixed(0) })}
+              {d.cost.tooling.size_run_count ? ` ${tf('({moulds} moulds across a {sizes} size run)', { moulds: d.cost.tooling.mold_count_required, sizes: String(d.cost.tooling.size_run_count) })}` : ''}
+              {' '}÷ {d.cost.tooling.amortization_volume.toLocaleString()} = {tf('{amount} each', { amount: d.cost.tooling.tooling_per_unit_krw.toLocaleString() })}</div>
           )}
-          <div style={{ color: 'var(--text-3)', fontSize: 11 }}>Assumes: {d.cost.assumptions.join(' · ')}</div>
-          <div style={{ color: 'var(--text-3)', fontSize: 11 }}>Excludes: {d.cost.excluded_costs.join(' · ')}</div>
+          <div style={{ color: 'var(--text-3)', fontSize: 11 }}>{t('Assumes:')} {d.cost.assumptions.join(' · ')}</div>
+          <div style={{ color: 'var(--text-3)', fontSize: 11 }}>{t('Excludes:')} {d.cost.excluded_costs.join(' · ')}</div>
         </div>
       </div>
     </div>

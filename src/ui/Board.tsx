@@ -1,6 +1,6 @@
 // ── 품평 보드 · 좌에서 우로 흐르는 근거 흐름도 (React Flow) ──────────
 // Input → Research → Signals → Directions → Designs → Picks. 연결선은 실제 데이터다.
-import { t } from '../core/i18n'
+import { t, tf } from '../core/i18n'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   ReactFlow, ReactFlowProvider, Background, Controls, MiniMap,
@@ -16,7 +16,7 @@ import type { BoardEdits } from '../core/boardEdits'
 import { EMPTY_EDITS, loadEdits, newNoteId, saveEdits } from '../core/boardEdits'
 import type { BoardNode } from '../core/boardModel'
 import { DesignCard } from './Card'
-import { Tag, ThemeToggle } from './bits'
+import { ThemeToggle } from './bits'
 import { ModelViewer } from './ModelViewer'
 import { copyText, shareLink } from '../core/share'
 
@@ -108,7 +108,7 @@ function EditableText({ value, onSave, className, multiline, editing }: {
     return (
       <div className={className}
         onDoubleClick={editing ? (e) => { e.stopPropagation(); setOpen(true) } : undefined}
-        title={editing ? 'Double-click to edit' : undefined}
+        title={editing ? t('Double-click to edit') : undefined}
         style={editing ? { cursor: 'text' } : undefined}>
         {value || (editing ? <span className="hint">{t('Double-click to write')}</span> : null)}
       </div>
@@ -419,7 +419,7 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
       const row = e.notes.filter(n => n.column === col).length + 6
       return {
         ...e,
-        notes: [...e.notes, { id, column: col, row, title: 'Note', body: ['Double-click to write'] }],
+        notes: [...e.notes, { id, column: col, row, title: t('Note'), body: [t('Double-click to write')] }],
         // 위치를 함께 저장해야 누른 자리에 그대로 놓인다
         positions: at ? { ...e.positions, [id]: at } : e.positions,
       }
@@ -430,12 +430,12 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
   const addColumn = useCallback(() => {
     setEdits(e => {
       const n = e.extraColumns.length + 1
-      return { ...e, extraColumns: [...e.extraColumns, { key: `extra${n}`, title: `${buildBoardModel(st).columns.length + n} · New lane`, note: 'Yours to fill' }] }
+      return { ...e, extraColumns: [...e.extraColumns, { key: `extra${n}`, title: tf('{n} · New lane', { n: buildBoardModel(st).columns.length + n }), note: t('Yours to fill') }] }
     })
   }, [st])
 
   const resetEdits = useCallback(() => {
-    if (!confirm('Discard every edit you made on this board?')) return
+    if (!confirm(t('Discard every edit you made on this board?'))) return
     setEdits({ ...EMPTY_EDITS })
     positionsRef.current = {}
   }, [])
@@ -489,7 +489,7 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
   const exportMiro = useCallback(async () => {
     // 사용자마다 자기 계정 토큰이 필요하다. 없으면 먼저 묻는다.
     if (!localStorage.getItem('vringon.miroToken')) { setMiroDraft(''); setMiroAsk(true); return }
-    setMiro({ busy: true, msg: 'Converting board for Miro' })
+    setMiro({ busy: true, msg: t('Converting board for Miro') })
     try {
       const model = buildBoardModel(st)
       const r = await fetch('/api/miro/export', {
@@ -505,7 +505,7 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
       })
       const j = await r.json()
       if (j.mode === 'created') {
-        setMiro({ busy: false, msg: `Miro board created · ${j.created.frames} frames · ${j.created.items} cards · ${j.created.connectors} connections` })
+        setMiro({ busy: false, msg: tf('Miro board created · {frames} frames · {items} cards · {connectors} connections', { frames: j.created.frames, items: j.created.items, connectors: j.created.connectors }) })
         if (j.viewLink) window.open(j.viewLink, '_blank', 'noopener')
       } else if (j.plan) {
         const blob = new Blob([JSON.stringify(j.plan, null, 2)], { type: 'application/json' })
@@ -514,9 +514,9 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
         a.download = 'miro-board-plan.json'
         a.click()
         URL.revokeObjectURL(a.href)
-        setMiro({ busy: false, msg: `No Miro token, so the build plan was downloaded instead (${j.plan.counts.items} cards, ${j.plan.counts.connectors} connections)` })
+        setMiro({ busy: false, msg: tf('No Miro token, so the build plan was downloaded instead ({items} cards, {connectors} connections)', { items: j.plan.counts.items, connectors: j.plan.counts.connectors }) })
       } else {
-        setMiro({ busy: false, msg: j.error ?? 'Export failed' })
+        setMiro({ busy: false, msg: j.error ?? t('Export failed') })
       }
     } catch (e) {
       setMiro({ busy: false, msg: String((e as Error).message) })
@@ -524,8 +524,6 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
   }, [st])
 
   const currentNode = present ? buildBoardModel(st).nodes.find(n => n.id === focusOrder[presentIdx]) : undefined
-  const approved = st.designs.filter(d => d.verdict === 'approve').length
-  const rejectedByUser = st.designs.filter(d => d.verdict === 'reject').length
 
   return (
     <div className={`board ${light ? 'board-light' : ''}${tool !== 'select' ? ' placing' : ''}`} data-theme={light ? 'light' : 'dark'}>
@@ -621,11 +619,11 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
             <div style={{ padding: '4px 18px 18px', display: 'flex', flexDirection: 'column', gap: 10 }}>
               <p className="hint" style={{ lineHeight: 1.6 }}>{t('The board is created in your own Miro account, so it needs your token. It is stored only in this browser.')}</p>
               <ol style={{ fontSize: 12.5, color: 'var(--text-2)', paddingLeft: 18, lineHeight: 1.7 }}>
-                <li><a href="https://miro.com/app/settings/user-profile/apps" target="_blank" rel="noreferrer" style={{ color: 'var(--accent-hi)' }}>miro.com → Your apps</a> {t('and create an app for your team')}</li>
+                <li><a href="https://miro.com/app/settings/user-profile/apps" target="_blank" rel="noreferrer" style={{ color: 'var(--accent-hi)' }}>{t('miro.com → Your apps')}</a> {t('and create an app for your team')}</li>
                 <li>{t('Tick the boards:write scope, then Install app and get OAuth token')}</li>
                 <li>{t('Paste the token below')}</li>
               </ol>
-              <input className="input" type="password" placeholder="oauth token"
+              <input className="input" type="password" placeholder={t('oauth token')}
                 value={miroDraft} onChange={e => setMiroDraft(e.target.value)} />
               <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
                 <button className="btn btn-ghost btn-sm" onClick={() => setMiroAsk(false)}>{t('Close')}</button>
@@ -712,11 +710,11 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
             ? currentNode.design.rationale.narrative.map((n, i) => <div key={i}>{n}</div>)
             : currentNode.body.map((b, i) => <div key={i}>{b}</div>)}
           {currentNode.design?.viewMismatch && (
-            <div style={{ color: 'var(--warn)' }}>Details disagree between views on this one. The gap survived a regeneration and is left visible.</div>
+            <div style={{ color: 'var(--warn)' }}>{t('Details disagree between views on this one. The gap survived a regeneration and is left visible.')}</div>
           )}
           {currentNode.design && (
             <div style={{ color: 'var(--text-3)', marginTop: 4 }}>
-              {TIER_LABEL[currentNode.design.spec.tier]} · {currentNode.design.rationale.type_placement_reason}
+              {t(TIER_LABEL[currentNode.design.spec.tier] ?? currentNode.design.spec.tier)} · {currentNode.design.rationale.type_placement_reason}
             </div>
           )}
         </div>

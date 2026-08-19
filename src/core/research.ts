@@ -71,8 +71,10 @@ export function reportPhoto(p: { image_urls?: string[] }): string {
 /** 수집한 원격 이미지는 서버 캐시를 거쳐 불러온다.
  *  페이지를 주면 직링크가 죽었을 때 각 페이지의 og:image로 차례로 폴백한다.
  *  이미 구워 둔 로컬 사진(/samples/…, 정적 배포 포함)은 프록시 없이 그대로 쓴다. */
-/** 정적 배포에는 `/api/shot` 프록시가 없다. base 가 '/' 가 아니면 Pages 빌드다. */
-const STATIC_BUILD = (import.meta.env.BASE_URL || '/') !== '/'
+/** 정적 배포에는 `/api/shot` 프록시가 없다. base 가 '/' 가 아니면 Pages 빌드다.
+ *  `import.meta.env` 는 Vite 가 만들어 주는 것이라 Node 로 직접 돌릴 때는 없다
+ *  (샘플 생성 스크립트가 그렇게 돈다). 없으면 dev 로 본다. */
+const STATIC_BUILD = ((import.meta as { env?: { BASE_URL?: string } }).env?.BASE_URL ?? '/') !== '/'
 
 export const shotUrl = (u: string, ...pages: (string | undefined)[]) => {
   if (u && !/^https?:/i.test(u)) return u          // 구워 둔 로컬 파일
@@ -268,6 +270,10 @@ export interface SeasonDossier {
 
 // ── 업로드 판독 · 시리즈 이미지와 무드보드 PDF를 서버가 실제로 연다 ──
 export interface SeriesDnaRead {
+  /** 불변 요소 중 스펙 값으로 고정할 수 있는 것 · 없으면 빈 배열 */
+  spec_locks?: { field: string; value: string; evidence: string }[]
+  /** 사진이 실제로 보여주는 품목 · 사용자가 고른 품목과 다르면 경고한다 */
+  observed_item_type?: string
   invariant: { label: string; observed_in: number; of: number; evidence: string }[]
   variable: { label: string; observed_in: number; of: number; evidence: string }[]
   ambiguous: { label: string; why: string }[]
@@ -307,7 +313,7 @@ export function moodboardSignals(r: MoodboardRead): Signal[] {
 }
 
 export const fetchDossier = (b: {
-  categoryEn: string; season: string; priceBand?: string; brands?: string[]
+  categoryEn: string; typeEn?: string; season: string; priceBand?: string; brands?: string[]
   metalProgram?: string; stoneProgram?: string
 }) => post<SeasonDossier>('/api/research/dossier', b)
 

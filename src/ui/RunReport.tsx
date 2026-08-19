@@ -1,11 +1,11 @@
 // ── 분석 리포트 · 끝난 분석을 한 장짜리 문서처럼 보여준다 ────────────
 // 진행 로그와 접힘 패널은 그대로 두되, 맨 위에 "무엇이 나왔는가"를 먼저 둔다.
 // 여기 있는 숫자와 표는 전부 수집된 데이터에서 뽑는다. 채워 넣은 값은 없다.
-import { t } from '../core/i18n'
+import { t, tf } from '../core/i18n'
 import { useMemo } from 'react'
 import type { ReactNode } from 'react'
 import type { RunState } from '../core/types'
-import { CAT_LABEL, TYPE_LABEL, MODE_LABEL } from '../core/types'
+import { CAT_LABEL, TYPE_LABEL, MODE_LABEL, uploadName, userUploads } from '../core/types'
 import { GRADE_LABEL, shotUrl } from '../core/research'
 import type { Macrotrend, SeasonDossier, TrendReport } from '../core/research'
 import { DeckViewer } from './DeckViewer'
@@ -96,6 +96,47 @@ export default function RunReport({ st, onOpenBoard, competitorDetail, bestselle
   }, [macros, st.signals, d])
 
   const sourceCount = (d?.sources?.length ?? 0) + (report?.sources?.length ?? 0)
+
+  // 표지는 모드마다 다른 것을 말해야 한다. 무드보드 실행에는 매크로트렌드도 외부 출처도 없는데
+  // "Key macro trends · Data sources" 를 세어 보이면 하지 않은 조사를 한 것처럼 읽힌다.
+  const cover = useMemo(() => {
+    const m = st.params.mode
+    if (m === 'moodboard') {
+      const pages = new Set(st.signals.map(s => s.page_ref).filter(Boolean)).size
+      return {
+        title: `${userUploads(st.params.moodboard.files).map(uploadName).join(', ') || t('Your documents')}`,
+        sub: 'read from your documents',
+        stats: [
+          { n: st.signals.length, label: 'Signals read' },
+          { n: pages, label: 'Pages cited' },
+          { n: implications.length, label: 'Design implications' },
+        ],
+      }
+    }
+    if (m === 'series') {
+      const dna = (st.seriesDna?.invariant.length ?? 0) + (st.seriesDna?.variable.length ?? 0)
+      return {
+        title: st.params.series.seriesName
+          ? `${st.params.series.seriesName} ${t('continued')}`
+          : `${t(CAT_LABEL[st.params.category])} ${t('series continuation')}`,
+        sub: 'series continuation report',
+        stats: [
+          { n: dna, label: 'DNA elements read' },
+          { n: macros.length, label: 'Key macro trends' },
+          { n: implications.length, label: 'Design implications' },
+        ],
+      }
+    }
+    return {
+      title: d?.season_title ?? `${t(CAT_LABEL[st.params.category])} ${t('macro trends')}`,
+      sub: 'trend report',
+      stats: [
+        { n: macros.length, label: 'Key macro trends' },
+        { n: sourceCount, label: 'Data sources' },
+        { n: implications.length, label: 'Design implications' },
+      ],
+    }
+  }, [st.params, st.signals, st.seriesDna, macros.length, implications.length, sourceCount, d])
   // 덱은 st 가 바뀔 때만 다시 만든다. 매 렌더마다 만들면 iframe 이 계속 새로 뜬다.
   const trendDeck = useMemo(() => (report ? trendDeckHtml(st) : null), [report, st])
   const seasonDeck = useMemo(() => (d ? dossierDeckHtml(st) : null), [d, st])
@@ -107,17 +148,22 @@ export default function RunReport({ st, onOpenBoard, competitorDetail, bestselle
       <header className="rep-hero">
         <div className="rep-hero-txt">
           <nav className="rep-crumb">
+            {/* 브랜드 이름과 한 줄은 여기서 쓴다 · 설정 화면에서 받아 놓고 아무 데도 안 쓰면 받을 이유가 없다.
+                이미지 프롬프트에는 넣지 않는다 — 글자가 제품에 찍힌다. */}
+            {st.params.brand?.brandName && (
+              <><span title={st.params.brand.tagline || undefined}>
+                {st.params.brand.brandName}{st.params.brand.tagline ? ` · ${st.params.brand.tagline}` : ''}
+              </span><i>/</i></>
+            )}
             <span>{t(MODE_LABEL[st.params.mode])}</span>
             <i>/</i><span>{t(TYPE_LABEL[st.params.itemType])}</span>
-            <i>/</i><span>{d?.season ?? st.params.trend.priceBand}</span>
+            {(d?.season || st.params.mode === 'trend') && <><i>/</i><span>{d?.season ?? st.params.trend.priceBand}</span></>}
           </nav>
-          <h1>{d?.season_title ?? `${t(CAT_LABEL[st.params.category])} ${t('macro trends')}`}</h1>
-          <p className="rep-sub">{t(TYPE_LABEL[st.params.itemType])} {t('trend report')}</p>
+          <h1>{cover.title}</h1>
+          <p className="rep-sub">{t(TYPE_LABEL[st.params.itemType])} {t(cover.sub)}</p>
           <p className="rep-lede">{d?.season_narrative ?? report?.executive_view ?? t('The analysis is still filling in. Sections appear as they land.')}</p>
           <div className="rep-stats">
-            <div><b>{macros.length || '—'}</b><span>{t('Key macro trends')}</span></div>
-            <div><b>{sourceCount || '—'}</b><span>{t('Data sources')}</span></div>
-            <div><b>{implications.length || '—'}</b><span>{t('Design implications')}</span></div>
+            {cover.stats.map(s => <div key={s.label}><b>{s.n || '—'}</b><span>{t(s.label)}</span></div>)}
           </div>
         </div>
         {hero && <div className="rep-hero-art"><img src={hero} alt="" /></div>}
@@ -199,7 +245,7 @@ export default function RunReport({ st, onOpenBoard, competitorDetail, bestselle
                   <span className="rd-spec">{x.metrics.slice(0, 2).map(m => `${m.label} ${m.value}`).join(' · ')}</span>
                   <span className="rd-chips">
                     <i className={x.rejected ? 'bad' : ''}>{x.rejected ? t('Rule reject') : t('Passed rules')}</i>
-                    {x.qa.length > 0 && <i className={x.qa.some(q => (q.status ?? (q.pass ? 'pass' : 'fail')) === 'fail') ? 'bad' : ''}>QA {x.qa.filter(q => q.pass).length}/{x.qa.length}</i>}
+                    {x.qa.length > 0 && <i className={x.qa.some(q => (q.status ?? (q.pass ? 'pass' : 'fail')) === 'fail') ? 'bad' : ''}>{tf('QA {pass}/{total}', { pass: x.qa.filter(q => q.pass).length, total: x.qa.length })}</i>}
                     {x.mdReview && <i className={x.mdReview.verdict === 'drop' ? 'bad' : ''}>{
                       x.mdReview.verdict === 'pick' ? t('MD pick') : x.mdReview.verdict === 'drop' ? t('MD drop') : t('MD hold')}</i>}
                   </span>

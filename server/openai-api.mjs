@@ -345,7 +345,7 @@ export async function handleApi(req, res) {
     try {
       const b = await readBody(req)
       return json(res, 200, await researchSeasonDossier(DEEP_RESEARCH ? DEEP_KEY : API_KEY, ROOT, {
-        categoryEn: b.categoryEn, season: b.season, priceBand: b.priceBand,
+        categoryEn: b.categoryEn, typeEn: b.typeEn, season: b.season, priceBand: b.priceBand,
         brands: b.brands ?? [], deep: DEEP_RESEARCH, langName: b.langName,
         metalProgram: b.metalProgram, stoneProgram: b.stoneProgram,
       }))

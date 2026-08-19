@@ -194,12 +194,15 @@ export function nextSeason(s) {
 
 export async function researchDossier(deps, root, opts) {
   const { ask } = deps
-  const { categoryEn, season, priceBand, brands = [], deep = false, onStep, langName = 'English', metalProgram = '', stoneProgram = '' } = opts
-  const key = createHash('sha256').update(JSON.stringify(['dossier6-refimg', langName, metalProgram, stoneProgram, categoryEn, season, priceBand ?? '', brands, deep])).digest('hex').slice(0, 24)
+  const { categoryEn, typeEn = '', season, priceBand, brands = [], deep = false, onStep, langName = 'English', metalProgram = '', stoneProgram = '' } = opts
+  // 품목까지 키에 넣는다 · 후프와 발찌는 다른 예측서다
+  const key = createHash('sha256').update(JSON.stringify(['dossier7-type', langName, metalProgram, stoneProgram, categoryEn, typeEn, season, priceBand ?? '', brands, deep])).digest('hex').slice(0, 24)
   const file = join(dossierDir(root), `${key}.json`)
   if (existsSync(file)) return { ...JSON.parse(readFileSync(file, 'utf8')), cached: true }
 
   const LANG = langName
+  // 품목이 오면 그것으로 좁힌다. 안 오면 예전처럼 카테고리 전체다(옛 호출 호환).
+  const item = typeEn ? `${categoryEn} / ${typeEn}` : categoryEn
   // 이번 시즌을 정리하는 자료는 이미 시중에 많다. 디자인에 쓸모 있는 건 다음 시즌 예측이다.
   // 그래서 이번 시즌은 "근거", 다음 시즌이 "대상"이다.
   const FORECAST = nextSeason(season) ?? season
@@ -207,7 +210,7 @@ export async function researchDossier(deps, root, opts) {
 
 이 문서는 **${FORECAST} 예측서**다. ${season}은 근거이지 주제가 아니다.
 대상 시즌: ${FORECAST} (예측)  ·  근거 시즌: ${season} (관측)
-품목: ${categoryEn}${priceBand ? ` · 가격대 ${priceBand}` : ''}${metalProgram ? `
+품목: ${item}${priceBand ? ` · 가격대 ${priceBand}` : ''}${metalProgram ? `
 라인: 금속 ${metalProgram} · 스톤 ${stoneProgram || 'no stone'} — 예측은 이 라인의 시장을 중심으로 하고, 다른 소재는 참고로만 다룬다.` : ''}${brands.length ? ` · 참고 브랜드 ${brands.join(', ')}` : ''}
 
 예측 방법:
@@ -241,7 +244,8 @@ ${GRADE_NOTE}
   const plan = await ask({
     input: `${base}
 
-${FORECAST} ${categoryEn}를 이끌 매크로트렌드 4개를 예측하세요.
+${FORECAST} ${item}를 이끌 매크로트렌드 4개를 예측하세요.
+매크로·소재·디테일·키아이템은 전부 ${item} 에 실제로 적용되는 것이어야 합니다. 다른 품목의 구조(체인 길이, 밴드 폭, 클라스프 등 그 품목에만 있는 것)를 넣지 마세요.
 각각 이름(두 단어, 대문자), 한 줄 요약, 서브트렌드 칩 3~4개를 답하세요.
 서로 겹치지 않아야 하고, 넷을 합치면 ${FORECAST} 전체가 설명되어야 합니다.
 넷 중 최소 하나는 ${season}에는 아직 작지만 ${FORECAST}에 올라올 신호여야 합니다.`,
@@ -327,7 +331,7 @@ ${FORECAST} ${categoryEn}를 이끌 매크로트렌드 4개를 예측하세요.
   const yearly = await ask({
     input: `${base}
 
-최근 3~5개 시즌의 ${categoryEn} 트렌드 흐름을 시즌별 한 줄로 정리하세요.
+최근 3~5개 시즌의 ${item} 트렌드 흐름을 시즌별 한 줄로 정리하세요.
 각 항목에 실제 출처 URL을 답니다. 무엇이 직전 시즌 대비 달라졌는지가 핵심입니다.
 그리고 이번 시즌 서사(season_narrative)를 4~6문단으로 쓰세요. 마지막 문단에서 매크로 4개(${macrotrends.map(m => m.name).join(', ')})를 소개합니다.`,
     schema: {

@@ -4,14 +4,14 @@
 //
 // 선택지는 아이콘 + 제목 + 한 줄로 읽는다. 고른 것만 accent 테두리와
 // 체크 배지를 달고, 나머지는 조용히 둔다.
-import { getLang, t } from '../core/i18n'
+import { getLang, t, tf } from '../core/i18n'
 import { useEffect, useMemo, useState } from 'react'
 import { detectRuntime } from '../core/runtime'
 import type { Runtime } from '../core/runtime'
-import { CAT_LABEL, COATING_EN, DEFAULT_PARAMS, firstTypeOf, groupOf, LINE_PRESETS, METAL_EN, MODE_LABEL, MODE_SCOPE, STONE_EN, TAXONOMY, TYPE_LABEL } from '../core/types'
+import { userUploads, COATING_EN, DEFAULT_PARAMS, firstTypeOf, groupOf, LINE_PRESETS, METAL_EN, MODE_LABEL, MODE_SCOPE, STONE_EN, TAXONOMY, TYPE_LABEL } from '../core/types'
 import type { LineProfile, Mode, Category, RunParams, Stage, UploadRef } from '../core/types'
 import { uploadName } from '../core/types'
-import { cumulative, estimate, SCOPE_COPY } from '../core/estimate'
+import { cumulative, estimate, scopeGets } from '../core/estimate'
 import { Seg, Tag } from './bits'
 import { ENGINES } from '../core/imageEngines'
 import {
@@ -45,10 +45,10 @@ const BASE = import.meta.env.BASE_URL || '/'
 // prune-samples 를 돌린 뒤에는 여기 네 경로가 살아 있는지 반드시 확인할 것.
 const SCOPE_ART: Record<Stage, string | null> = {
   S1: null,
-  S2: `${BASE}samples/e9c1b59f92527f12b22a0924.webp`,   // 잉크 스케치
-  S3: `${BASE}samples/17b082b3aad2e8c1140fb0f3.webp`,   // 완성 렌더
-  S4: `${BASE}samples/df3a1f6a2738402dff856460.webp`,   // 착용 컷
-  S5: `${BASE}samples/80180c49fecb4143722b2a51.webp`,   // 3D용 정사영 뷰
+  S2: `${BASE}samples/4192799fa45373cae67a5fe5.webp`,   // 잉크 스케치
+  S3: `${BASE}samples/b2661fcf609525c6cf4abcf8.webp`,   // 완성 렌더
+  S4: `${BASE}samples/5ab3d77e5e10121019a125db.webp`,   // 착용 컷
+  S5: `${BASE}samples/f425fc11e7d1817334939e03.webp`,   // 3D용 정사영 뷰
 }
 
 /** 리포트 미리보기 · S1은 이미지가 아니라 문서라서 문서처럼 그린다 */
@@ -95,7 +95,7 @@ function PickRow<T extends string | number>({ label, options, value, onPick, for
         {options.map(o => (
           <button key={String(o)} className={`pick ${value === o ? 'on' : ''}`}
             onClick={() => onPick(value === o ? undefined : o)}>
-            {format ? format(o) : String(o)}
+            {format ? format(o) : t(String(o))}
           </button>
         ))}
       </div>
@@ -114,6 +114,8 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
   const est = useMemo(() => estimate(p), [p])
   const cum = useMemo(() => cumulative(p), [p])
   const scope = MODE_SCOPE[p.mode]
+  // 앱이 떠 둔 PDF 쪽 그림은 "올린 파일"이 아니다. 여덟 장 기준도 사용자가 올린 것으로 센다.
+  const nSeriesFiles = userUploads(p.series.archiveFiles).length
   const [draft, setDraft] = useState('')
   const [more, setMore] = useState(false)
   const [breakdown, setBreakdown] = useState(false)
@@ -186,7 +188,10 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
       })
       const j = await r.json()
       if (!r.ok || j.error) throw new Error(j.error ?? `upload ${r.status}`)
-      return j.files as UploadRef[]
+      // 앞쪽 list.length 개가 사용자가 고른 파일이고, 뒤는 우리가 떠 둔 PDF 쪽 그림이다.
+      // 표시하지 않으면 PDF 한 장이 "9개 업로드"로 세어진다.
+      const refs = j.files as UploadRef[]
+      return refs.map((f, i) => i < list.length ? f : { ...f, derived: true })
     } catch (e) {
       setUploadError(t('Could not read that file') + ' · ' + String((e as Error).message).slice(0, 80))
       return []
@@ -203,16 +208,13 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
   // 모드별 착수 조건 · 자료 없이 돌리면 결과를 설명할 수 없다
   const blocked = isStatic ? 'Live runs need the local server. Open the saved sample from History to see a finished run.'
     : p.mode === 'trend' ? (p.trend.competitors.length === 0 ? 'Add at least one competitor' : null)
-    : p.mode === 'series' ? (p.series.archiveFiles.length === 0 ? 'Upload your series designs'
+    : p.mode === 'series' ? (nSeriesFiles === 0 ? 'Upload your series designs'
       : !p.series.valueStatement.trim() ? 'Describe what the series stands for' : null)
     : (p.moodboard.files.length === 0 ? 'Upload a PDF' : null)
   // 2단계에서 막히는 조건은 2단계에서 알려야 한다
   const stepBlocked = step === 2 && !isStatic ? blocked : null
 
   const curGroup = groupOf(p.category, p.itemType)
-  const pickCategory = (c: Category) => setP(v => ({
-    ...v, category: c, itemType: TAXONOMY[c][0].types[0].id,
-  }))
   const [rc, rp] = p.tierRatio
   const rsum = p.tierRatio.reduce((a, b) => a + b, 0)
   const perTier = (r: number) => Math.round(p.sketchCount * r / rsum)
@@ -284,8 +286,8 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                         onClick={() => set('itemType', firstTypeOf(p.category, g.id))}>
                         <span className="fam-ic"><Icon /></span>
                         <span className="fam-txt">
-                          <span className="fam-t">{g.label}</span>
-                          <span className="fam-n">{g.note}</span>
+                          <span className="fam-t">{t(g.label)}</span>
+                          <span className="fam-n">{t(g.note)}</span>
                         </span>
                       </button>
                     )
@@ -298,7 +300,7 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                 <div className="chiprow">
                   {(curGroup?.types ?? []).map(ty => (
                     <button key={ty.id} className={`pick ${p.itemType === ty.id ? 'on' : ''}`}
-                      onClick={() => set('itemType', ty.id)}>{ty.label}</button>
+                      onClick={() => set('itemType', ty.id)}>{t(ty.label)}</button>
                   ))}
                 </div>
               </div>
@@ -321,7 +323,7 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                 <div className="chiprow">
                   {LINE_PRESETS.map(pr => (
                     <button key={pr.id} className={`pick ${line.preset === pr.id ? 'on' : ''}`}
-                      onClick={() => set('line', { preset: pr.id, ...pr.line })}>{pr.label}</button>
+                      onClick={() => set('line', { preset: pr.id, ...pr.line })}>{t(pr.label)}</button>
                   ))}
                 </div>
                 <div className="stack">
@@ -431,7 +433,7 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                   {p.trend.competitors.map(c => (
                     <span className="chip-in" key={c}>
                       {c}
-                      <button onClick={() => setP(v => ({ ...v, trend: { ...v.trend, competitors: v.trend.competitors.filter(x => x !== c) } }))} aria-label={`Remove ${c}`}>{t('Remove')}</button>
+                      <button onClick={() => setP(v => ({ ...v, trend: { ...v.trend, competitors: v.trend.competitors.filter(x => x !== c) } }))} aria-label={tf('Remove {name}', { name: c })}>{t('Remove')}</button>
                     </span>
                   ))}
                 </div>
@@ -455,7 +457,7 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                 <div className="stack">
                   <span className="lbl">{t('Tier')}</span>
                   <Seg options={['mass', 'contemporary', 'premium', 'luxury'] as const} value={p.trend.priceBand}
-                    onChange={v => setTrend({ priceBand: v })} />
+                    onChange={v => setTrend({ priceBand: v })} format={v => t(v)} />
                 </div>
                 <div className="stack">
                   <span className="lbl">{t('Price')}</span>
@@ -477,7 +479,7 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                 <h2>{t('Your series')}</h2>
                 <div className="stack">
                   <span className="lbl">{t('Name')}</span>
-                  <input className="input" style={{ maxWidth: 260 }} placeholder="e.g. Arc line"
+                  <input className="input" style={{ maxWidth: 260 }} placeholder={t('e.g. Arc line')}
                     value={p.series.seriesName} onChange={e => setSeries({ seriesName: e.target.value })} />
                 </div>
                 <label className="dropzone">
@@ -490,15 +492,15 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                   <span className="dz-sub">{t('8 or more, so the constants can be told apart')}</span>
                 </label>
                 {uploadError && <p className="note" style={{ color: 'var(--warn)' }}>{uploadError}</p>}
-                {p.series.archiveFiles.length > 0 && (
+                {nSeriesFiles > 0 && (
                   <div className="chiplist quick">
-                    {p.series.archiveFiles.slice(0, 6).map((f, i) => <span className="chip-in" key={i}>{uploadName(f)}</span>)}
-                    {p.series.archiveFiles.length > 6 && <span className="hint">+{p.series.archiveFiles.length - 6} more</span>}
+                    {userUploads(p.series.archiveFiles).slice(0, 6).map((f, i) => <span className="chip-in" key={i}>{uploadName(f)}</span>)}
+                    {nSeriesFiles > 6 && <span className="hint">{tf('+{n} more', { n: nSeriesFiles - 6 })}</span>}
                   </div>
                 )}
                 <div className="chiplist quick">
-                  <Tag kind={p.series.archiveFiles.length >= 8 ? 'ok' : 'warn'}>
-                    {p.series.archiveFiles.length} files · {p.series.archiveFiles.length >= 8 ? 'enough to separate constants' : 'need 8 or more'}
+                  <Tag kind={nSeriesFiles >= 8 ? 'ok' : 'warn'}>
+                    {tf('{n} files', { n: nSeriesFiles })} · {nSeriesFiles >= 8 ? t('enough to separate constants') : t('need 8 or more')}
                   </Tag>
                 </div>
               </section>
@@ -510,7 +512,7 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                 <div className="stack">
                   <span className="lbl">{t('Trends')}</span>
                   <Seg options={['On', 'Off'] as const} value={p.series.trendSearch ? 'On' : 'Off'}
-                    onChange={v => setSeries({ trendSearch: v === 'On' })} />
+                    onChange={v => setSeries({ trendSearch: v === 'On' })} format={v => t(v)} />
                 </div>
                 <p className="note">{t('The only outside research in this mode')}</p>
               </section>
@@ -529,13 +531,21 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                   <span className="dz-sub">{t('Nothing outside these files is used')}</span>
                 </label>
                 {uploadError && <p className="note" style={{ color: 'var(--warn)' }}>{uploadError}</p>}
-                {p.moodboard.files.length > 0 && (
+                {/* 앱이 떠 둔 PDF 쪽 그림은 목록에 세우지 않는다. 지울 때는 그 PDF 에서 나온
+                    쪽 그림도 함께 지운다 — 원본만 빠지고 파생본이 남으면 없는 문서를 인용하게 된다. */}
+                {userUploads(p.moodboard.files).length > 0 && (
                   <div className="chiplist quick">
-                    {p.moodboard.files.map((f, i) => (
-                      <span className="chip-in" key={i}>{uploadName(f)}
-                        <button onClick={() => setMood({ files: p.moodboard.files.filter((_, j) => j !== i) })} aria-label={t('Remove')}>{t('Remove')}</button>
-                      </span>
-                    ))}
+                    {userUploads(p.moodboard.files).map((f, i) => {
+                      const stem = uploadName(f).replace(/\.pdf$/i, '')
+                      return (
+                        <span className="chip-in" key={i}>{uploadName(f)}
+                          <button aria-label={t('Remove')} onClick={() => setMood({
+                            files: p.moodboard.files.filter(x =>
+                              x !== f && !(typeof x === 'object' && x.derived && x.name.startsWith(`${stem} p.`))),
+                          })}>{t('Remove')}</button>
+                        </span>
+                      )
+                    })}
                   </div>
                 )}
                 <div className="stack">
@@ -564,7 +574,7 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                       <span className="sc-thumb">{art ? <img src={art} alt="" /> : <ReportThumb />}</span>
                       <span className="sc-txt">
                         <span className="sc-n">{t(SCOPE_NAME[st])}</span>
-                        <span className="sc-g">{t(SCOPE_COPY[st].gets)}</span>
+                        <span className="sc-g">{t(scopeGets(st, p.mode))}</span>
                       </span>
                       <span className="sc-m">{s.minutes}m · ${s.usd.toFixed(2)}</span>
                       {on && <Badge />}
@@ -616,7 +626,7 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
 
             <button className="moretoggle" onClick={() => setMore(v => !v)}>
               {more ? t('Hide advanced settings') : t('Advanced settings')}
-              <span className="mt-sum">{`${p.tierRatio.join(':')} · ${Math.round(p.renderRatio * 100)}% · ${p.viewCount} views · ${p.campaignShots} cuts · ${ENGINES[p.imageEngine].label}`}</span>
+              <span className="mt-sum">{`${p.tierRatio.join(':')} · ${Math.round(p.renderRatio * 100)}% · ${tf('{v} views · {c} cuts', { v: p.viewCount, c: p.campaignShots })} · ${t(ENGINES[p.imageEngine].label)}`}</span>
             </button>
 
             {more && (<div className="morebox">
@@ -655,7 +665,7 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
               </div>
               <div className="stack"><span className="lbl">{t('3D showroom')}</span>
                 <div className="inrow">
-                  <Seg options={['Off', 'On'] as const} value={p.make3d ? 'On' : 'Off'} onChange={v => set('make3d', v === 'On')} />
+                  <Seg options={['Off', 'On'] as const} value={p.make3d ? 'On' : 'Off'} onChange={v => set('make3d', v === 'On')} format={v => t(v)} />
                   <span className="hint">{t('Only the final picks are built in 3D. Turn and download them on the board.')}</span>
                 </div>
               </div>
@@ -664,9 +674,9 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                   {(['fast', 'detail'] as const).map(id => (
                     <button key={id} className={`opt ${p.imageEngine === id ? 'on' : ''}`}
                       onClick={() => set('imageEngine', id)}>
-                      <span className="o-t">{ENGINES[id].label}</span>
-                      <span className="o-d">{ENGINES[id].blurb}</span>
-                      <span className="o-m">${ENGINES[id].usdPerImage.toFixed(3)} · {ENGINES[id].secPerImage}s each</span>
+                      <span className="o-t">{t(ENGINES[id].label)}</span>
+                      <span className="o-d">{t(ENGINES[id].blurb)}</span>
+                      <span className="o-m">${ENGINES[id].usdPerImage.toFixed(3)} · {tf('{s}s each', { s: ENGINES[id].secPerImage })}</span>
                       {p.imageEngine === id && <Badge />}
                     </button>
                   ))}
@@ -676,7 +686,7 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                 <div className="inrow">
                   <Seg options={[0, 6, 12, 24, 48] as const} value={p.imageBudget}
                     onChange={v => set('imageBudget', v)}
-                    format={v => v === 0 ? 'None' : `${v}`} />
+                    format={v => v === 0 ? t('None') : `${v}`} />
                   <span className="hint">
                     {api && !api.keyPresent
                       ? t('No image server. Diagrams only.')
@@ -732,7 +742,7 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                       <tr key={s.stage} className={active ? '' : 'dim'}>
                         <td>{t(s.label)}</td>
                         {/* 상한에 걸리면 "만들 수 있는 수 / 원한 수"로 보여야 오해가 없다 */}
-                        <td>{s.images > 0 ? (s.real < s.images ? `${s.real} of ${s.images}` : `${s.images} imgs`) : ''}</td>
+                        <td>{s.images > 0 ? (s.real < s.images ? tf('{real} of {total}', { real: s.real, total: s.images }) : tf('{n} imgs', { n: s.images })) : ''}</td>
                         <td>{Math.max(1, Math.round(s.minutes))}m · ${s.usd.toFixed(2)}</td>
                       </tr>
                     )
