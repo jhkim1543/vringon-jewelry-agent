@@ -1021,4 +1021,13 @@ const KO: Record<string, string> = {
   // ── 추가 번역 ────────────────────────────────────────────────
   'Running on your own image server — no per-image charge, so the cap is about time, not money.':
     '직접 세운 이미지 서버로 돌고 있습니다. 장당 과금이 없으므로 이 상한은 비용이 아니라 시간의 문제입니다.',
+
+  // ── 추가 번역 ────────────────────────────────────────────────
+  'Sterling Silver Core': '스털링 실버 기본',
+  'Gold Vermeil': '골드 베르메이유',
+  'Solid Gold Fine': '솔리드 골드 파인',
+  'Diamond Essentials': '다이아몬드 에센셜',
+  'Colored Gemstone': '컬러 젬스톤',
+  'Pearl': '진주',
+  'Fashion & Crystal': '패션 & 크리스털',
 }

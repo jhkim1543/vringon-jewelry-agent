@@ -20,9 +20,13 @@ function svgWrap(inner: string, mode: RenderMode): string {
   <rect width="200" height="200" fill="${bg}"/>${inner}</svg>`
 }
 
+/** 선 속성만 돌려준다. **fill 을 여기 넣으면 안 된다** —
+ *  호출부 대부분이 fill 을 따로 붙이는데, 한 요소에 fill 이 두 번 오면 XML 파서가
+ *  "Attribute fill redefined" 로 SVG 전체를 거부한다. data: URI 로 넣은 <img> 는
+ *  그 순간 통째로 안 뜬다. 실제로 스케치 도식이 전부 그렇게 깨져 있었다. */
 function stroke(mode: RenderMode) {
   return mode === 'sketch'
-    ? `fill="none" stroke="#3A3A40" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"`
+    ? `stroke="#3A3A40" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"`
     : `stroke="#2E2E33" stroke-width="0.8" stroke-linejoin="round"`
 }
 
@@ -43,7 +47,7 @@ function ringSVG(f: Record<string, any>, mode: RenderMode, view: ViewKey, cw: st
       const pc = Number(f.prong_count) || 4
       for (let i = 0; i < pc; i++) {
         const a = (i / pc) * Math.PI * 2 - Math.PI / 2
-        stonesSvg += `<line x1="${cx + Math.cos(a) * stoneR * 2.4}" y1="${cy - 26 + Math.sin(a) * stoneR * 2.4}" x2="${cx + Math.cos(a) * stoneR * 3.1}" y2="${cy - 26 + Math.sin(a) * stoneR * 3.1}" ${s}/>`
+        stonesSvg += `<line x1="${cx + Math.cos(a) * stoneR * 2.4}" y1="${cy - 26 + Math.sin(a) * stoneR * 2.4}" x2="${cx + Math.cos(a) * stoneR * 3.1}" y2="${cy - 26 + Math.sin(a) * stoneR * 3.1}" ${s} fill="none"/>`
       }
     } else if (f.setting_type === 'bezel') {
       stonesSvg += `<circle cx="${cx}" cy="${cy - 26}" r="${stoneR * 2.6}" ${s} fill="none"/>`
@@ -85,7 +89,7 @@ function earringSVG(f: Record<string, any>, mode: RenderMode, view: ViewKey, cw:
       drop += gem(ox, 78 + t * 62, Math.max(2.4, 6 - t * 3), mode, hi)
     }
     return `<circle cx="${ox}" cy="58" r="9" ${s} ${fill}/>
-      <line x1="${ox}" y1="67" x2="${ox}" y2="74" ${s}/>${drop}`
+      <line x1="${ox}" y1="67" x2="${ox}" y2="74" ${s} fill="none"/>${drop}`
   }
   // 페어: 좌우 2개 (지시서 6.5 · 페어 일관성)
   return svgWrap(`${defs}${one(70)}${view === 'detail' ? '' : one(130)}`, mode)
@@ -115,7 +119,7 @@ function necklaceSVG(f: Record<string, any>, mode: RenderMode, view: ViewKey, cw
       pend += gem(100 + Math.cos(a) * 14, 118 + Math.sin(a) * 14, 2.8, mode, hi)
     }
   }
-  pend += `<path d="M100 96 L96 104 L104 104 Z" ${s} ${mode === 'render' ? `fill="url(#m)"` : ''}/>`
+  pend += `<path d="M100 96 L96 104 L104 104 Z" ${s} ${mode === 'render' ? `fill="url(#m)"` : 'fill="none"'}/>`
   return svgWrap(`${defs}${chain}${pend}`, mode)
 }
 

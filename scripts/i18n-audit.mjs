@@ -55,6 +55,17 @@ function mapValuesIn(src) {
   return out
 }
 
+/** types.ts 의 분류·프리셋 표에 있는 label / note · 이것들은 t(x.label) 로 화면에 나가므로
+ *  리터럴 스캔에도, Record 맵 스캔에도 안 걸린다. 실제로 라인 프리셋 일곱 개가
+ *  한국어 화면에 영어로 떠 있었다. */
+function labelFieldsIn(src) {
+  const out = new Set()
+  for (const m of src.matchAll(/\b(?:label|note)\s*:\s*'((?:\\.|[^'\\])+)'/g)) {
+    out.add(m[1].replace(/\\'/g, "'"))
+  }
+  return out
+}
+
 const files = walk(SRC)
 const used = new Map()          // key -> [file, …]
 for (const f of files) {
@@ -62,7 +73,13 @@ for (const f of files) {
   // 맵 값 훑기는 화면 파일에만 적용한다. core/ 의 상수 맵에는 모델에 보내는 프롬프트 조각과
   // 스펙 값(예: '925 silver', 'straight front view')이 들어 있고, 그건 번역 대상이 아니다.
   const isUi = /[\\/]ui[\\/]|App\.tsx$/.test(f)
-  for (const k of new Set([...keysIn(src), ...(isUi ? mapValuesIn(src) : [])])) {
+  // types.ts 는 분류·프리셋의 화면 라벨을 들고 있는 유일한 core 파일이다
+  const isTaxonomy = /core[\\/]types\.ts$/.test(f)
+  for (const k of new Set([
+    ...keysIn(src),
+    ...(isUi ? mapValuesIn(src) : []),
+    ...(isTaxonomy ? labelFieldsIn(src) : []),
+  ])) {
     if (!used.has(k)) used.set(k, [])
     used.get(k).push(f.replace(ROOT + '\\', '').replace(/\\/g, '/'))
   }

@@ -960,4 +960,13 @@ export const JA: Record<string, string> = {
   // ── 追加の翻訳 ────────────────────────────────────────────────
   'Running on your own image server — no per-image charge, so the cap is about time, not money.':
     '自前の画像サーバーで動いています。1枚ごとの課金がないため、この上限は費用ではなく時間の問題です。',
+
+  // ── 追加の翻訳 ────────────────────────────────────────────────
+  'Sterling Silver Core': 'スターリングシルバー基本',
+  'Gold Vermeil': 'ゴールドヴェルメイユ',
+  'Solid Gold Fine': 'ソリッドゴールドファイン',
+  'Diamond Essentials': 'ダイヤモンドエッセンシャル',
+  'Colored Gemstone': 'カラージェムストーン',
+  'Pearl': 'パール',
+  'Fashion & Crystal': 'ファッション＆クリスタル',
 }
