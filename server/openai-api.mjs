@@ -66,6 +66,47 @@ const DEEP_MODEL = env.OPENAI_DEEP_RESEARCH_MODEL || DEEP_MODEL_DEFAULT
 // Tripo · 멀티뷰에서 3D 모델을 만든다
 const TRIPO_KEY = env.TRIPO_API_KEY || ''
 
+// ── 자체 호스팅 이미지 모델 ────────────────────────────────────────
+// 이 파일이 부르는 것은 원래부터 OpenAI 이미지 API 의 형태(/v1/images/generations,
+// /v1/images/edits · b64_json 응답)다. 같은 형태로 서빙하는 서버(vLLM-Omni 등)를
+// 세워 두면 베이스 주소만 바꿔서 그대로 쓸 수 있다 — 장당 과금이 시간당 과금으로 바뀐다.
+//
+//   SELF_HOST_IMAGE_URL   예: http://10.0.0.5:8000   (뒤에 /v1/... 을 붙여 부른다)
+//   SELF_HOST_IMAGE_MODEL 그 서버가 받는 모델 이름
+//   SELF_HOST_IMAGE_KEY   토큰이 필요하면 (없으면 안 보낸다)
+//
+// 주소가 없으면 이 경로는 아예 꺼진다. "자체 호스팅 중"이라고 말하면서 실제로는
+// 유료 API 를 부르는 상태를 만들지 않기 위해, 켜졌을 때는 폴백도 하지 않는다.
+const SELF_HOST_URL = (env.SELF_HOST_IMAGE_URL || '').replace(/\/+$/, '')
+const SELF_HOST_MODEL = env.SELF_HOST_IMAGE_MODEL || ''
+const SELF_HOST_KEY = env.SELF_HOST_IMAGE_KEY || ''
+const selfHostOn = () => !!SELF_HOST_URL && !!SELF_HOST_MODEL
+
+/** 자체 호스팅 서버 호출 · 생성과 편집이 같은 응답 형태를 쓴다 */
+async function selfHostImage(kind, { prompt, size, basePath }) {
+  const headers = SELF_HOST_KEY ? { Authorization: `Bearer ${SELF_HOST_KEY}` } : {}
+  let r
+  if (kind === 'edit') {
+    const form = new FormData()
+    form.append('model', SELF_HOST_MODEL)
+    form.append('prompt', prompt)
+    form.append('size', size)
+    form.append('image', new Blob([readFileSync(basePath)], { type: 'image/png' }), 'base.png')
+    r = await fetch(`${SELF_HOST_URL}/v1/images/edits`, { method: 'POST', headers, body: form })
+  } else {
+    r = await fetch(`${SELF_HOST_URL}/v1/images/generations`, {
+      method: 'POST',
+      headers: { ...headers, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ model: SELF_HOST_MODEL, prompt, size, n: 1 }),
+    })
+  }
+  if (!r.ok) throw new Error(`self-host ${kind} ${r.status}: ${(await r.text()).slice(0, 300)}`)
+  const j = await r.json()
+  const b64 = j?.data?.[0]?.b64_json
+  if (!b64) throw new Error('자체 호스팅 응답에 이미지 없음')
+  return Buffer.from(b64, 'base64')
+}
+
 const SHOT_DIR = join(ROOT, '.cache', 'shots')
 
 function ensureCache() {
@@ -99,11 +140,22 @@ function json(res, code, obj) {
 /** 생성 — 캐시 히트면 API를 호출하지 않는다 (재개 시 중복 과금 0건) */
 async function generate({ prompt, size = '1024x1024', engine = 'detail' }) {
   const { model, quality } = pick(engine)
-  const usedModel = (!GEMINI_FALLBACK_ONLY && engine === 'fast' && GEMINI_KEY) ? 'gemini' : model
+  const usedModel = selfHostOn() ? `self:${SELF_HOST_MODEL}`
+    : (!GEMINI_FALLBACK_ONLY && engine === 'fast' && GEMINI_KEY) ? 'gemini' : model
   ensureCache()
+  // 캐시 키에 어느 백엔드로 만든 것인지 넣는다. 빼면 자체 호스팅으로 바꾼 뒤에도
+  // 예전 유료 API 결과가 나와, 무엇을 보고 있는지 알 수 없게 된다.
   const hash = keyOf(['gen', usedModel, prompt, size, quality])
   const file = join(CACHE_DIR, `${hash}.png`)
   if (existsSync(file)) return { hash, cached: true, model: usedModel }
+
+  // 자체 호스팅이 켜져 있으면 여기서 끝난다. 실패해도 유료 API 로 넘어가지 않는다 —
+  // 비용을 아끼려고 켠 것인데 조용히 과금 경로로 새면 켠 의미가 없다.
+  if (selfHostOn()) {
+    writeFileSync(file, await selfHostImage('gen', { prompt, size }))
+    return { hash, cached: false, model: usedModel }
+  }
+
   if (!API_KEY) throw new Error('OPENAI_API_KEY 미설정 — fashion-agent/.env 확인')
 
   if (!GEMINI_FALLBACK_ONLY && engine === 'fast' && GEMINI_KEY) {
@@ -130,13 +182,20 @@ async function generate({ prompt, size = '1024x1024', engine = 'detail' }) {
 /** 편집 — S3 멀티뷰·컬러웨이는 신규 생성이 아니라 기준 렌더의 편집 (지시서 S3-③) */
 async function edit({ baseHash, prompt, size = '1024x1024', engine = 'detail' }) {
   const { model, quality } = pick(engine)
-  const usedModel = (!GEMINI_FALLBACK_ONLY && engine === 'fast' && GEMINI_KEY) ? 'gemini' : model
+  const usedModel = selfHostOn() ? `self:${SELF_HOST_MODEL}`
+    : (!GEMINI_FALLBACK_ONLY && engine === 'fast' && GEMINI_KEY) ? 'gemini' : model
   ensureCache()
   const hash = keyOf(['edit', usedModel, baseHash, prompt, size, quality])
   const file = join(CACHE_DIR, `${hash}.png`)
   if (existsSync(file)) return { hash, cached: true }
   const basePath = join(CACHE_DIR, `${baseHash}.png`)
   if (!existsSync(basePath)) throw new Error(`기준 이미지 없음: ${baseHash}`)
+
+  if (selfHostOn()) {
+    writeFileSync(file, await selfHostImage('edit', { prompt, size, basePath }))
+    return { hash, cached: false, model: usedModel }
+  }
+
   if (!API_KEY) throw new Error('OPENAI_API_KEY 미설정')
 
   if (!GEMINI_FALLBACK_ONLY && engine === 'fast' && GEMINI_KEY) {
@@ -176,7 +235,10 @@ export async function handleApi(req, res) {
     ensureCache()
     const n = readdirSync(CACHE_DIR).filter(f => f.endsWith('.png')).length
     return json(res, 200, {
-      keyPresent: !!API_KEY, model: IMAGE_MODEL, cachedImages: n,
+      // 자체 호스팅이 켜져 있으면 키가 없어도 이미지를 만들 수 있다 — 화면의 "키 없음" 안내가
+      // 거짓이 되지 않도록 함께 본다.
+      keyPresent: !!API_KEY || selfHostOn(), model: IMAGE_MODEL, cachedImages: n,
+      selfHosted: selfHostOn(),
       miroConnected: !!MIRO_TOKEN,
       deepResearch: DEEP_RESEARCH, deepModel: DEEP_MODEL,
       geminiConnected: !!GEMINI_KEY,

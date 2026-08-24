@@ -1017,4 +1017,8 @@ const KO: Record<string, string> = {
     '보유 아카이브에서 출발합니다. 올린 디자인들에서 반복되는 것을 읽어 다음 시즌으로 이어 갑니다.',
   'Starts from your document. Reads the file you upload and works only from what is in it, page by page.':
     '올린 문서에서 출발합니다. 파일을 쪽 단위로 읽고, 그 안에 있는 것만 가지고 작업합니다.',
+
+  // ── 추가 번역 ────────────────────────────────────────────────
+  'Running on your own image server — no per-image charge, so the cap is about time, not money.':
+    '직접 세운 이미지 서버로 돌고 있습니다. 장당 과금이 없으므로 이 상한은 비용이 아니라 시간의 문제입니다.',
 }

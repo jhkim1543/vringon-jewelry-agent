@@ -143,7 +143,7 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
     setP(prev => clampToScope({ ...prev, [k]: v }))
   const [rt, setRt] = useState<Runtime | null>(null)
   useEffect(() => { detectRuntime().then(setRt) }, [])
-  const api = rt?.kind === 'live' ? { keyPresent: rt.keyPresent, cachedImages: rt.cachedImages } : null
+  const api = rt?.kind === 'live' ? { keyPresent: rt.keyPresent, cachedImages: rt.cachedImages, selfHosted: rt.selfHosted } : null
   const isStatic = rt?.kind === 'static'
   const est = useMemo(() => estimate(p), [p])
   const cum = useMemo(() => cumulative(p), [p])
@@ -808,7 +808,9 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                     onChange={v => set('imageBudget', v)}
                     format={v => v === 0 ? t('None') : `${v}`} />
                   <span className="hint">
-                    {api && !api.keyPresent
+                    {api?.selfHosted
+                      ? t('Running on your own image server — no per-image charge, so the cap is about time, not money.')
+                      : api && !api.keyPresent
                       ? t('No image server. Diagrams only.')
                       : p.imageBudget === 0
                         ? t('Spec diagrams only')

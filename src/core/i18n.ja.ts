@@ -956,4 +956,8 @@ export const JA: Record<string, string> = {
     'アーカイブから出発します。アップロードしたデザインで繰り返される要素を読み取り、次へつなげます。',
   'Starts from your document. Reads the file you upload and works only from what is in it, page by page.':
     'アップロードした文書から出発します。ファイルをページ単位で読み、その中にあるものだけで作業します。',
+
+  // ── 追加の翻訳 ────────────────────────────────────────────────
+  'Running on your own image server — no per-image charge, so the cap is about time, not money.':
+    '自前の画像サーバーで動いています。1枚ごとの課金がないため、この上限は費用ではなく時間の問題です。',
 }

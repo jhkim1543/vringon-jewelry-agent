@@ -12,7 +12,8 @@
     "sample:warm": "node scripts/warm-research.mjs",
     "sample:make": "tsx scripts/make-sample.mts",
     "sample:bake": "node scripts/bake-shots.mjs && node scripts/webp-samples.mjs && node scripts/check-wizard-art.mjs --fix",
-    "i18n:merge": "node scripts/i18n-merge.mjs"
+    "i18n:merge": "node scripts/i18n-merge.mjs",
+    "selfhost:probe": "node scripts/selfhost-probe.mjs"
   },
   "dependencies": {
     "@types/three": "^0.185.4",
