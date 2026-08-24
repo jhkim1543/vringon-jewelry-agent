@@ -8,15 +8,16 @@ import { getLang, t, tf } from '../core/i18n'
 import { useEffect, useMemo, useState } from 'react'
 import { detectRuntime } from '../core/runtime'
 import type { Runtime } from '../core/runtime'
-import { userUploads, COATING_EN, DEFAULT_PARAMS, firstTypeOf, groupOf, LINE_PRESETS, METAL_EN, MODE_LABEL, MODE_SCOPE, STONE_EN, TAXONOMY, TYPE_LABEL } from '../core/types'
-import type { LineProfile, Mode, Category, RunParams, Stage, UploadRef } from '../core/types'
+import { userUploads, COATING_EN, DEFAULT_PARAMS, groupOf, LINE_PRESETS, METAL_EN, MODE_LABEL, MODE_SCOPE, STONE_EN, TAXONOMY, TYPE_LABEL } from '../core/types'
+import type { LineProfile, Mode, RunParams, Stage, UploadRef } from '../core/types'
 import { uploadName } from '../core/types'
-import { cumulative, estimate, scopeGets } from '../core/estimate'
+import { clampToScope, cumulative, estimate, scopeCaps, scopeGets } from '../core/estimate'
 import { Seg, Tag } from './bits'
+import { designSVG, svgDataUri } from '../core/sketch'
+import type { DesignSpec } from '../core/types'
 import { ENGINES } from '../core/imageEngines'
-import {
-  GROUP_ICON, IcArrow, IcExternal, IcGem, IcMoodboard, IcSeries, IcTrend,
-} from './icons'
+import { loadLastParams } from '../core/store'
+import { IcArrow, IcExternal, IcMoodboard, IcSeries, IcTrend } from './icons'
 
 // 카드 안에서는 한 줄만 읽게 한다. 자세한 설명은 고른 뒤에 보여준다.
 const MODE_SHORT: Record<Mode, string> = {
@@ -27,7 +28,6 @@ const MODE_SHORT: Record<Mode, string> = {
 const MODE_ICON: Record<Mode, () => JSX.Element> = {
   trend: IcTrend, series: IcSeries, moodboard: IcMoodboard,
 }
-const CAT_ICON: Record<Category, () => JSX.Element> = { jewelry: IcGem }
 
 // 사용자 말로 쓴 범위 이름. S1~S5는 안쪽 사정이라 화면에 내보내지 않는다.
 const SCOPE_NAME: Record<Stage, string> = {
@@ -68,6 +68,32 @@ function ReportThumb() {
   )
 }
 
+/** 지금까지 고른 것으로 그리는 미리보기.
+ *  실제 실행 결과가 아니라 "무엇을 만들려는지" 를 눈으로 확인하는 용도다.
+ *  스펙은 아직 없으므로 라인 프로필에서 재료만 가져오고 나머지는 대표값을 쓴다. */
+function previewSpec(itemType: string, line: LineProfile): DesignSpec {
+  const hasStone = line.stone !== 'none'
+  return {
+    design_id: 'preview', tier: 'core', category: 'jewelry', itemType,
+    fields: {
+      metal: METAL_EN[line.baseMetal] ?? '925 sterling silver',
+      plating: line.coating === 'none' ? 'none' : COATING_EN[line.coating],
+      target_weight_g: 2.2,
+      stone_count: hasStone ? 3 : 0,
+      stone_size_mm: 1.6,
+      setting_type: hasStone ? 'bezel' : 'none',
+      prong_count: 4,
+      min_wall_thickness_mm: 1.0,
+      chain_type: 'none',
+      finish: 'polished',
+      is_pair: false,
+      is_new_mold: false,
+      existing_mold_id: 'MLD-preview',
+    },
+    fieldsLocked: [],
+  } as unknown as DesignSpec
+}
+
 /** 고른 카드에만 붙는 체크 배지 */
 const Badge = () => (
   <span className="o-badge" aria-hidden="true">
@@ -105,8 +131,16 @@ function PickRow<T extends string | number>({ label, options, value, onPick, for
 
 export default function Wizard({ onStart }: { onStart: (p: RunParams) => void }) {
   const [p, setP] = useState<RunParams>(DEFAULT_PARAMS)
+  // 에이전트 선택은 위저드의 한 항목이 아니라 그 앞의 결정이다.
+  // 아래 항목들과 연결되는 값이 아니고, "무엇을 쓸지" 를 고르는 다른 층이다.
+  const [agentPicked, setAgentPicked] = useState(false)
+  // 지난 실행 설정 · 같은 값을 매번 다시 채우게 하지 않는다. 자료(업로드)는 빼고 설정만 온다.
+  const last = useMemo(() => loadLastParams(), [])
   const [step, setStep] = useState(1)
-  const set = <K extends keyof RunParams>(k: K, v: RunParams[K]) => setP(prev => ({ ...prev, [k]: v }))
+  // 범위(endStage)를 바꾸면 그 뒤 단계의 설정은 의미를 잃는다. 값만 남겨 두면
+  // "조사만" 인데 3D 쇼룸이 켜져 있는 화면이 나온다 — 저장할 때 같이 정리한다.
+  const set = <K extends keyof RunParams>(k: K, v: RunParams[K]) =>
+    setP(prev => clampToScope({ ...prev, [k]: v }))
   const [rt, setRt] = useState<Runtime | null>(null)
   useEffect(() => { detectRuntime().then(setRt) }, [])
   const api = rt?.kind === 'live' ? { keyPresent: rt.keyPresent, cachedImages: rt.cachedImages } : null
@@ -221,12 +255,75 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
   const designCount = Math.max(1, Math.round(p.sketchCount * p.renderRatio))
   // 라인 프로필 · 옛 저장본에는 없어 기본값으로 채운다
   const line: LineProfile = p.line ?? { preset: 'sterling_core', baseMetal: '925_silver', coating: 'rhodium', stone: 'none' }
-  const CatIcon = CAT_ICON[p.category]
+  // 범위가 무엇을 가능하게 하는지 · 화면의 잠금과 파라미터 정리가 같은 값을 본다
+  const caps = scopeCaps(p.endStage)
+  /** 범위 밖 설정을 감싸 흐리게 하고 이유를 붙인다. 지워 버리면 무엇을 잃었는지 모른다. */
+  const Locked = ({ on, why, children }: { on: boolean; why: string; children: JSX.Element }) => (
+    on ? children : (
+      <div className="lockedbox" title={t(why)}>
+        {children}
+        <span className="lk-why">{t(why)}</span>
+      </div>
+    )
+  )
+
+  const agentDesc: Record<Mode, string> = {
+    trend: 'Starts from the market. Researches competitor products and season trends, then designs against what it found.',
+    series: 'Starts from your archive. Reads what repeats across the designs you upload and carries it forward.',
+    moodboard: 'Starts from your document. Reads the file you upload and works only from what is in it, page by page.',
+  }
+
+  // ── 0단계 · 어떤 에이전트를 쓸지. 아래 항목들과 이어지는 값이 아니라 그 앞의 결정이라 화면을 나눈다.
+  if (!agentPicked) {
+    return (
+      <div className="wizard">
+        <div className="agentpick">
+          <h1 className="ask">{t('Which agent should do this?')}</h1>
+          <p className="note top">{t('Each one starts from a different place. That choice decides what gets researched and what the result can be explained by.')}</p>
+          <div className="agentgrid">
+            {(Object.keys(MODE_LABEL) as Mode[]).map(m => {
+              const Icon = MODE_ICON[m]
+              return (
+                <button key={m} className={`agentcard ${p.mode === m ? 'on' : ''}`}
+                  onClick={() => { set('mode', m); setAgentPicked(true); setStep(1) }}>
+                  <span className="ag-ic"><Icon /></span>
+                  <span className="ag-t">{t(MODE_LABEL[m])}</span>
+                  <span className="ag-d">{t(agentDesc[m])}</span>
+                  <span className="ag-go">{t('Use this agent')} <IcArrow /></span>
+                </button>
+              )
+            })}
+          </div>
+          {last && (
+            <button className="lastrun" onClick={() => {
+              setP(clampToScope({ ...last, series: { ...last.series, archiveFiles: [] }, moodboard: { ...last.moodboard, files: [] } }))
+              setAgentPicked(true); setStep(1)
+            }}>
+              <span className="lr-t">{t('Pick up your last setup')}</span>
+              <span className="lr-d">
+                {t(MODE_LABEL[last.mode])} · {t(TYPE_LABEL[last.itemType] ?? last.itemType)}
+                {last.line && <> · {t(LINE_PRESETS.find(x => x.id === last.line!.preset)?.label ?? last.line.preset)}</>}
+                {' · '}{t(SCOPE_NAME[last.endStage])}
+              </span>
+              <span className="lr-n">{t('Files are not carried over — only the settings.')}</span>
+            </button>
+          )}
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="wizard">
       <div className="wizard-inner">
         <div className="wcol">
+          {/* 어떤 에이전트를 세팅하는 중인지 항상 보인다. 요약 표 안에 있으면 눈에 안 들어온다. */}
+          <div className="agentbar">
+            <span className="ab-ic">{(() => { const I = MODE_ICON[p.mode]; return <I /> })()}</span>
+            <span className="ab-t">{t(MODE_LABEL[p.mode])} {t('agent')}</span>
+            <span className="ab-d">{t(MODE_SHORT[p.mode])}</span>
+            <button className="btn btn-ghost btn-sm" onClick={() => setAgentPicked(false)}>{t('Change agent')}</button>
+          </div>
           {isStatic && (
             <div className="staticnote">
               <div className="sn-body">
@@ -255,59 +352,54 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
 
           {/* ── 1단계 · 무엇을 ──────────────────────────────────── */}
           {step === 1 && (<>
+            {/* 계열 5개 + 유형 4개 = 버튼 아홉 개였다. 하나의 드롭다운으로 접으면
+                고를 것이 하나로 줄고, 계열이 유형의 부모라는 관계도 그대로 보인다. */}
             <section className="sect">
-              <h2>{t('Reference')}</h2>
-              <div className="opts three">
-                {(Object.keys(MODE_LABEL) as Mode[]).map(m => {
-                  const Icon = MODE_ICON[m]
-                  return (
-                    <button key={m} className={`opt ${p.mode === m ? 'on' : ''}`} onClick={() => set('mode', m)}>
-                      <span className="o-ic"><Icon /></span>
-                      <span className="o-t">{t(MODE_LABEL[m])}</span>
-                      <span className="o-d">{t(MODE_SHORT[m])}</span>
-                      {p.mode === m && <Badge />}
-                    </button>
-                  )
-                })}
+              <h2>{t('What are we making?')}</h2>
+              <div className="stack">
+                <span className="lbl">{t('Item')}</span>
+                <div className="inrow">
+                  <select className="input sel" value={p.itemType}
+                    onChange={e => set('itemType', e.target.value)}>
+                    {TAXONOMY.jewelry.map(g => (
+                      <optgroup key={g.id} label={t(g.label)}>
+                        {g.types.map(ty => (
+                          <option key={ty.id} value={ty.id}>{t(ty.label)}</option>
+                        ))}
+                      </optgroup>
+                    ))}
+                  </select>
+                  <span className="hint">
+                    {t(curGroup?.label ?? '')} · {t('N molds in the library. Core designs must reuse an existing mold.').replace('N', '22')}
+                  </span>
+                </div>
               </div>
-              <p className="note">{t('Pick where the design should start from. It decides what gets researched in the next step.')}</p>
             </section>
 
+            {/* 프리셋은 금속·도금·스톤을 한 번에 정한다. 그 값이 다음 단계의 조사 범위를
+                통째로 바꾸므로, 조정 항목들보다 먼저 와야 한다. */}
             <section className="sect">
-              <h2>{t('Jewelry family')}</h2>
-
-              <div className="stack">
-                <div className="famrow">
-                  {TAXONOMY.jewelry.map(g => {
-                    const Icon = GROUP_ICON[g.id] ?? CatIcon
-                    const on = curGroup?.id === g.id
-                    return (
-                      <button key={g.id} className={`fam ${on ? 'on' : ''}`}
-                        onClick={() => set('itemType', firstTypeOf(p.category, g.id))}>
-                        <span className="fam-ic"><Icon /></span>
-                        <span className="fam-txt">
-                          <span className="fam-t">{t(g.label)}</span>
-                          <span className="fam-n">{t(g.note)}</span>
-                        </span>
-                      </button>
-                    )
-                  })}
+              <h2>{t('Quick preset')}</h2>
+              <p className="note top">{t('Sets the metal, plating and stone in one go. You can adjust any of it in the next step.')}</p>
+              <div className="chiprow">
+                {LINE_PRESETS.map(pr => (
+                  <button key={pr.id} className={`pick ${line.preset === pr.id ? 'on' : ''}`}
+                    onClick={() => set('line', { preset: pr.id, ...pr.line })}>{t(pr.label)}</button>
+                ))}
+              </div>
+              <div className="preview">
+                <div className="pv-art">
+                  <img src={svgDataUri(designSVG(previewSpec(p.itemType, line), 'sketch', 'front'))} alt="" />
+                </div>
+                <div className="pv-txt">
+                  <b>{t(TYPE_LABEL[p.itemType] ?? p.itemType)}</b>
+                  <span>{t(METAL_EN[line.baseMetal])}
+                    {line.coating !== 'none' && <> · {t(COATING_EN[line.coating])}</>}
+                    {line.stone !== 'none' && <> · {t(STONE_EN[line.stone])}</>}
+                  </span>
+                  <span className="hint">{t('A rough outline of what you are setting up, not a result.')}</span>
                 </div>
               </div>
-
-              <div className="stack">
-                <span className="lbl">{t('Type')}</span>
-                <div className="chiprow">
-                  {(curGroup?.types ?? []).map(ty => (
-                    <button key={ty.id} className={`pick ${p.itemType === ty.id ? 'on' : ''}`}
-                      onClick={() => set('itemType', ty.id)}>{t(ty.label)}</button>
-                  ))}
-                </div>
-              </div>
-
-              <p className="note">
-                {t('N molds in the library. Core designs must reuse an existing mold.').replace('N', '22')}
-              </p>
             </section>
           </>)}
 
@@ -320,11 +412,14 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
               <section className="sect">
                 <h2>{t('What line is this?')}</h2>
                 <p className="note top">{t('Metal and stone are separate axes. The research stays inside this market.')}</p>
-                <div className="chiprow">
-                  {LINE_PRESETS.map(pr => (
-                    <button key={pr.id} className={`pick ${line.preset === pr.id ? 'on' : ''}`}
-                      onClick={() => set('line', { preset: pr.id, ...pr.line })}>{t(pr.label)}</button>
-                  ))}
+                {/* 프리셋 선택은 1단계에서 끝났다. 여기서는 그 결과를 보여 주고 조정만 한다 —
+                    같은 칩을 두 화면에 두면 어느 쪽이 진짜인지 알 수 없다. */}
+                <div className="fromreset">
+                  <span className="fr-t">{t('From your preset')}</span>
+                  <b>{line.preset === 'custom'
+                    ? t('Adjusted by hand')
+                    : t(LINE_PRESETS.find(x => x.id === line.preset)?.label ?? line.preset)}</b>
+                  <button className="btn btn-ghost btn-sm" onClick={() => setStep(1)}>{t('Change preset')}</button>
                 </div>
                 <div className="stack">
                   <span className="lbl">{t('Base metal')}</span>
@@ -586,6 +681,7 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
 
             <section className="sect">
               <h2>{t('How many')}</h2>
+              <Locked on={caps.sketches} why="Research only · no sketches are made">
               <div className="stack">
                 <span className="lbl">{t('Sketches')}</span>
                 <div className="inrow">
@@ -593,6 +689,8 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                   <span className="hint">{t('Core')} {perTier(rc)} · {t('Push')} {perTier(rp)} · {t('Signature')} {p.sketchCount - perTier(rc) - perTier(rp)}</span>
                 </div>
               </div>
+              </Locked>
+              <Locked on={caps.renders} why="Stops before the renders, so this changes nothing">
               <div className="stack">
                 <span className="lbl">{t('Designs per sketch')}</span>
                 <div className="inrow">
@@ -600,6 +698,8 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                   <span className="hint">{designCount * (p.designsPerSketch ?? 2)} {t('designs in total, each from a trend-based prompt')}</span>
                 </div>
               </div>
+              </Locked>
+              <Locked on={caps.campaign} why="Top picks are chosen at the campaign stage">
               <div className="stack">
                 <span className="lbl">{t('Top picks')}</span>
                 <div className="inrow">
@@ -607,6 +707,7 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                   <span className="hint">{t('At least one from each tier')}</span>
                 </div>
               </div>
+              </Locked>
               {/* 조사 결과를 어느 말로 쓸지. 화면 언어와 따로 고른다 —
                   한국어 화면으로 보면서 영문 리포트를 뽑는 경우가 실제로 있다. */}
               <div className="stack"><span className="lbl">{t('Report language')}</span>
@@ -618,15 +719,24 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                   <span className="hint">{t('Research, signals and both PDFs come out in this language.')}</span>
                 </div>
               </div>
+              <Locked on={caps.sketches} why="Research only · there are no sketches to review">
               <label className="checkline">
                 <input type="checkbox" checked={p.approvalGate} onChange={e => set('approvalGate', e.target.checked)} />
                 {t('Show me the sketches before rendering')}
               </label>
+              </Locked>
             </section>
 
-            <button className="moretoggle" onClick={() => setMore(v => !v)}>
-              {more ? t('Hide advanced settings') : t('Advanced settings')}
-              <span className="mt-sum">{`${p.tierRatio.join(':')} · ${Math.round(p.renderRatio * 100)}% · ${tf('{v} views · {c} cuts', { v: p.viewCount, c: p.campaignShots })} · ${t(ENGINES[p.imageEngine].label)}`}</span>
+            {/* 폴드는 "안에 무엇이 있는지" 를 말로 알려야 열어 볼지 판단할 수 있다.
+                숫자만 늘어놓으면 무엇을 다시 쓰는 값인지 읽히지 않는다. */}
+            <button className={`moretoggle ${more ? 'open' : ''}`} onClick={() => setMore(v => !v)}
+              aria-expanded={more}>
+              <span className="mt-cv" aria-hidden="true">
+                <svg viewBox="0 0 16 16"><path d="M6 4l4 4-4 4" fill="none" stroke="currentColor"
+                  strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              </span>
+              <span className="mt-t">{t('Advanced settings')}</span>
+              <span className="mt-sum">{t('Tier mix, how many move on, extra views and colorways, campaign cuts, 3D, image model and cap')}</span>
             </button>
 
             {more && (<div className="morebox">
@@ -638,12 +748,15 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                   <span className="hint">{t('Core : Push : Signature')}</span>
                 </div>
               </div>
+              <Locked on={caps.renders} why="Stops before the renders, so this changes nothing">
               <div className="stack"><span className="lbl">{t('To render')}</span>
                 <div className="inrow">
                   <Seg options={[0.25, 0.5, 0.75] as const} value={p.renderRatio} onChange={v => set('renderRatio', v)} format={v => `${Number(v) * 100}%`} />
                   <span className="hint">{designCount} {t('move on')}</span>
                 </div>
               </div>
+              </Locked>
+              <Locked on={caps.renders} why="Stops before the renders, so this changes nothing">
               <div className="stack"><span className="lbl">{t('Views')}</span>
                 <div className="inrow">
                   <Seg options={[1, 3, 4] as const} value={p.viewCount} onChange={v => set('viewCount', v)} />
@@ -651,24 +764,31 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                   <Seg options={[0, 1, 2, 3] as const} value={p.colorwayCount} onChange={v => set('colorwayCount', v)} />
                 </div>
               </div>
+              </Locked>
+              <Locked on={caps.renders} why="Stops before the renders, so this changes nothing">
               <div className="stack"><span className="lbl">{t('Variations')}</span>
                 <div className="inrow">
                   <Seg options={[0, 2, 3, 4, 6, 8] as const} value={p.variationCount} onChange={v => set('variationCount', v)} />
                   <span className="hint">{t('Branches off one sketch, one axis changed each')}</span>
                 </div>
               </div>
+              </Locked>
+              <Locked on={caps.campaign} why="Stops before the campaign shots">
               <div className="stack"><span className="lbl">{t('Campaign cuts')}</span>
                 <div className="inrow">
                   <Seg options={[0, 2, 4, 6] as const} value={p.campaignShots} onChange={v => set('campaignShots', v)} />
                   <span className="hint">{t('Per selected design. Half worn on a model, half staged.')}</span>
                 </div>
               </div>
+              </Locked>
+              <Locked on={caps.model3d} why="Only the 3D showroom scope builds models">
               <div className="stack"><span className="lbl">{t('3D showroom')}</span>
                 <div className="inrow">
                   <Seg options={['Off', 'On'] as const} value={p.make3d ? 'On' : 'Off'} onChange={v => set('make3d', v === 'On')} format={v => t(v)} />
                   <span className="hint">{t('Only the final picks are built in 3D. Turn and download them on the board.')}</span>
                 </div>
               </div>
+              </Locked>
               <div className="stack"><span className="lbl">{t('Model')}</span>
                 <div className="opts two tight">
                   {(['fast', 'detail'] as const).map(id => (

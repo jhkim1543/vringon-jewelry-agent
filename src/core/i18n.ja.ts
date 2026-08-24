@@ -921,4 +921,39 @@ export const JA: Record<string, string> = {
   // ── 追加の翻訳 ────────────────────────────────────────────────
   'The logo file is too large for this browser to keep. Use a smaller PNG or SVG.':
     'ロゴファイルが大きすぎてこのブラウザに保存できません。より小さいPNGまたはSVGを使ってください。',
+
+  // ── 追加の翻訳 ────────────────────────────────────────────────
+  'Which agent should do this?': 'どのエージェントで行いますか？',
+  'Each one starts from a different place. That choice decides what gets researched and what the result can be explained by.':
+    'エージェントごとに出発点が異なります。その選択が何を調査するか、結果を何で説明できるかを決めます。',
+  'Use this agent': 'このエージェントで開始',
+  'Pick up your last setup': '前回の設定から続ける',
+  'Files are not carried over — only the settings.': 'ファイルは引き継がれません。設定だけを引き継ぎます。',
+  'agent': 'エージェント',
+  'Change agent': 'エージェントを変更',
+  'Item': '品目',
+  'Quick preset': 'クイックプリセット',
+  'Sets the metal, plating and stone in one go. You can adjust any of it in the next step.':
+    '金属・めっき・石を一度に決めます。次のステップでどれでも調整できます。',
+  'A rough outline of what you are setting up, not a result.': 'いま設定している内容のおおよその輪郭です。結果物ではありません。',
+  'From your preset': '選んだプリセット',
+  'Adjusted by hand': '手動で調整済み',
+  'Change preset': 'プリセットを変更',
+  'Tier mix, how many move on, extra views and colorways, campaign cuts, 3D, image model and cap':
+    'ティア比率、レンダーに進む割合、追加ビューとカラーウェイ、キャンペーンカット、3D、画像モデルと上限',
+  'Showing what this card connects to.': 'このカードとつながっているものだけを表示中です。',
+  'Research only · no sketches are made': '調査のみ・スケッチは作りません',
+  'Research only · there are no sketches to review': '調査のみ・レビューするスケッチがありません',
+  'Stops before the renders, so this changes nothing': 'レンダー前で止まるため、この値は影響しません',
+  'Top picks are chosen at the campaign stage': '上位選定はキャンペーン段階で行われます',
+  'Stops before the campaign shots': 'キャンペーンカットの前で止まります',
+  'Only the 3D showroom scope builds models': '3Dショールームの範囲でのみモデルを作ります',
+
+  // ── 追加の翻訳 ────────────────────────────────────────────────
+  'Starts from the market. Researches competitor products and season trends, then designs against what it found.':
+    '市場から出発します。競合製品とシーズントレンドを調査し、見つけたものを根拠にデザインします。',
+  'Starts from your archive. Reads what repeats across the designs you upload and carries it forward.':
+    'アーカイブから出発します。アップロードしたデザインで繰り返される要素を読み取り、次へつなげます。',
+  'Starts from your document. Reads the file you upload and works only from what is in it, page by page.':
+    'アップロードした文書から出発します。ファイルをページ単位で読み、その中にあるものだけで作業します。',
 }

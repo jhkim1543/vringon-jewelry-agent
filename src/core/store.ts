@@ -1,7 +1,7 @@
 // ── Run 저장소 · 실행 이력과 즐겨찾기를 라이브러리처럼 다룬다 ──────────
 // 진행 중인 Run도 계속 저장한다. 새로고침이나 렌더 오류로 화면이 날아가도
 // 결과를 잃지 않게 하기 위한 것이다.
-import type { RunState } from './types'
+import type { RunParams, RunState } from './types'
 
 export interface RunRecord {
   id: string
@@ -117,4 +117,27 @@ export function firstImage(st: RunState): string | undefined {
     if (im) return im.url
   }
   return undefined
+}
+
+// ── 지난 실행 설정 · 다음 실행의 출발점 ─────────────────────────────
+// 매번 같은 값을 다시 채우게 하면 그것만으로 진입 장벽이 된다.
+// 결과가 아니라 "무엇을 어떻게 돌렸는지"만 담는다(업로드 파일은 제외 — 그건 그 실행의 자료다).
+const LAST_KEY = 'vringon.lastrun'
+
+export function saveLastParams(p: RunParams) {
+  try {
+    const slim: RunParams = {
+      ...p,
+      series: { ...p.series, archiveFiles: [] },
+      moodboard: { ...p.moodboard, files: [] },
+    }
+    localStorage.setItem(LAST_KEY, JSON.stringify(slim))
+  } catch { /* 저장 실패가 실행을 막지 않는다 */ }
+}
+
+export function loadLastParams(): RunParams | null {
+  try {
+    const raw = localStorage.getItem(LAST_KEY)
+    return raw ? JSON.parse(raw) as RunParams : null
+  } catch { return null }
 }

@@ -380,11 +380,37 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
   }, [kindFilter, rf])
 
   // 걸러낸 카드로 가는 선은 함께 지운다. 남겨 두면 끝이 허공에 뜬 선이 그려진다.
-  const visibleEdges = useMemo(() => {
+  const baseEdges = useMemo(() => {
     if (!showEdges) return []
     const live = new Set(nodes.map(n => n.id))
     return initial.edges.filter(e => live.has(e.source) && live.has(e.target))
   }, [showEdges, initial.edges, nodes])
+
+  // 카드를 하나 고르면 그 카드에 닿는 것만 남기고 나머지는 물러난다.
+  // 선을 전부 켜 두면 흐름을 눈으로 따라가는 것 자체가 일이 된다.
+  const focusId = useMemo(() => nodes.find(n => n.selected)?.id ?? null, [nodes])
+  const related = useMemo(() => {
+    if (!focusId) return null
+    const near = new Set<string>([focusId])
+    for (const e of baseEdges) {
+      if (e.source === focusId) near.add(e.target)
+      if (e.target === focusId) near.add(e.source)
+    }
+    return near
+  }, [focusId, baseEdges])
+
+  const visibleEdges = useMemo(() => baseEdges.map(e => {
+    if (!related) return e
+    const on = e.source === focusId || e.target === focusId
+    return { ...e, animated: on, style: { ...(e.style ?? {}), opacity: on ? 1 : 0.08 }, zIndex: on ? 10 : 0 }
+  }), [baseEdges, related, focusId])
+
+  // 고른 카드와 이어지지 않은 카드는 흐리게. 지우지는 않는다 — 전체 지형은 보여야 한다.
+  const shownNodes = useMemo(() => nodes.map(n => {
+    if (!related) return n
+    const on = related.has(n.id)
+    return { ...n, style: { ...(n.style ?? {}), opacity: on ? 1 : 0.16, transition: 'opacity .18s' } }
+  }), [nodes, related])
 
   // 노드 측정이 늦게 끝나는 환경에서도 첫 화면이 전체 흐름으로 맞춰지게 한다
   useEffect(() => {
@@ -598,6 +624,15 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
         <div className="board-toast" onClick={() => setMiro(m => ({ ...m, msg: null }))}>{miro.msg}</div>
       )}
 
+      {/* 하나를 고르면 무엇이 달라졌는지 말해 준다. 갑자기 흐려지면 고장으로 읽힌다. */}
+      {focusId && !present && (
+        <div className="focusnote">
+          {t('Showing what this card connects to.')}
+          <button className="btn btn-ghost btn-sm"
+            onClick={() => setNodes(ns => ns.map(n => ({ ...n, selected: false })))}>{t('Show everything')}</button>
+        </div>
+      )}
+
       {/* 걸러낸 결과가 비면 왜 비었는지 말해 준다. 빈 화면만 두면 고장으로 읽힌다. */}
       {filterEmpty && !present && (
         <div className="board-empty">
@@ -636,7 +671,7 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
         </div>
       )}
       <ReactFlow
-        nodes={nodes}
+        nodes={shownNodes}
         edges={visibleEdges}
         onNodesChange={onNodesChange}
         nodeTypes={nodeTypes}

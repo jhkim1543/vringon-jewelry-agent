@@ -147,3 +147,35 @@ export function scopeGets(stage: Stage, mode: Mode): string {
   if (!s.competitor) return t('A read of your series plus trend signals and the season dossier. No competitor products, no images.')
   return SCOPE_COPY.S1.gets
 }
+
+/**
+ * 범위가 정하는 것 · "조사만" 을 골랐는데 3D 쇼룸을 켤 수 있으면 둘 중 하나는 거짓말이다.
+ * 범위를 고르는 순간 그 뒤 단계의 설정은 의미를 잃으므로, 여기서 한 곳에 모아 판정한다.
+ * 화면은 이 값으로 컨트롤을 잠그고, 파라미터도 같이 정리한다.
+ */
+export interface ScopeCaps {
+  sketches: boolean      // S2 이상 · 스케치를 만드는가
+  renders: boolean       // S3 이상 · 디자인 렌더·뷰·컬러웨이·베리에이션
+  campaign: boolean      // S4 이상 · 착용·컨셉 컷
+  model3d: boolean       // S5 · 3D 쇼룸
+}
+
+const ORDER: Stage[] = ['S1', 'S2', 'S3', 'S4', 'S5']
+
+export function scopeCaps(endStage: Stage): ScopeCaps {
+  const i = ORDER.indexOf(endStage)
+  return { sketches: i >= 1, renders: i >= 2, campaign: i >= 3, model3d: i >= 4 }
+}
+
+/**
+ * 범위 밖의 설정을 정리한 파라미터를 돌려준다. 값을 0/off 로 내리기만 하고 되살리지는 않는다 —
+ * 사용자가 범위를 넓혔을 때 예전 값을 멋대로 복원하면 그것대로 놀란다.
+ */
+export function clampToScope(p: RunParams): RunParams {
+  const c = scopeCaps(p.endStage)
+  const next = { ...p }
+  if (!c.renders) { next.viewCount = 1; next.colorwayCount = 0; next.variationCount = 0 }
+  if (!c.campaign) next.campaignShots = 0
+  if (!c.model3d) next.make3d = false
+  return next
+}

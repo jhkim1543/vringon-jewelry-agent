@@ -15,7 +15,7 @@ import type { BrandIdentity } from './core/brand'
 import { useTheme } from './ui/useTheme'
 import Library from './ui/Library'
 import ErrorBoundary from './ui/ErrorBoundary'
-import { clearCurrent, firstImage, loadCurrent, newRunId, saveCurrent, saveRun } from './core/store'
+import { clearCurrent, firstImage, loadCurrent, newRunId, saveCurrent, saveLastParams, saveRun } from './core/store'
 import { MODE_LABEL, TYPE_LABEL } from './core/types'
 import { ensureSampleRuns } from './core/sampleRun'
 import { getRun } from './core/store'
@@ -156,6 +156,8 @@ export default function App() {
     setProgress({})
     setGated(false)
     setView('run')
+    // 이번 설정을 다음 실행의 출발점으로 남긴다 · 매번 같은 값을 다시 채우게 하지 않으려고
+    saveLastParams(params)
     handleRef.current = runPipeline({ ...params, brand: b }, onEvent, 1.6)
   }, [onEvent])
 

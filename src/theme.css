@@ -1480,6 +1480,102 @@ table.mini td b { color: var(--text); font-weight: 600; }
 /* 3D 다운로드 · 확대 버튼 왼쪽 */
 .mv-dl { right: 38px; }
 
+/* 카드 하나에 집중 중임을 알려 준다 */
+.focusnote {
+  position: absolute; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 6;
+  display: flex; align-items: center; gap: 10px; padding: 8px 10px 8px 14px;
+  border-radius: var(--r-chip); border: 1px solid var(--line-2);
+  background: var(--panel); box-shadow: 0 6px 20px rgba(0,0,0,.26);
+  font-size: 12.5px; color: var(--text-2); white-space: nowrap;
+}
+
+/* ── 에이전트 선택 · 위저드 앞에 서는 화면 ─────────────────────── */
+.agentpick { max-width: 940px; margin: 0 auto; padding: 8px 0 40px; }
+.agentgrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 20px; }
+.agentcard {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 10px;
+  padding: 22px 20px 18px; text-align: left;
+  border: 1px solid var(--line-2); border-radius: var(--r-card); background: var(--panel);
+  transition: border-color .15s, background .15s, transform .12s;
+}
+.agentcard:hover { border-color: var(--accent); background: var(--panel-2); transform: translateY(-2px); }
+.agentcard.on { border-color: var(--accent); }
+.agentcard .ag-ic { display: grid; place-items: center; width: 40px; height: 40px; border-radius: var(--r-8);
+  background: var(--accent-soft); color: var(--accent-hi); }
+.agentcard .ag-ic svg { width: 21px; height: 21px; }
+.agentcard .ag-t { font-size: 16px; font-weight: 700; }
+.agentcard .ag-d { font-size: 12.5px; line-height: 1.6; color: var(--text-2); flex: 1; }
+.agentcard .ag-go { display: inline-flex; align-items: center; gap: 5px; font-size: 12.5px;
+  font-weight: 650; color: var(--accent-hi); }
+.agentcard .ag-go svg { width: 13px; height: 13px; }
+
+/* 지난 설정 이어 하기 · 에이전트 카드 아래 한 줄 */
+.lastrun {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 3px; width: 100%;
+  margin-top: 16px; padding: 14px 16px; text-align: left;
+  border: 1px dashed var(--line-2); border-radius: var(--r-8); background: transparent;
+}
+.lastrun:hover { border-color: var(--accent); background: var(--panel); }
+.lastrun .lr-t { font-size: 13px; font-weight: 650; }
+.lastrun .lr-d { font-size: 12.5px; color: var(--text-2); }
+.lastrun .lr-n { font-size: 11.5px; color: var(--text-3); }
+
+/* 세팅 중인 에이전트 · 위저드 내내 상단에 붙어 있다 */
+.agentbar {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 20px;
+  padding: 10px 14px; border: 1px solid var(--line); border-radius: var(--r-8);
+  background: var(--panel);
+}
+.agentbar .ab-ic { display: grid; place-items: center; width: 26px; height: 26px; border-radius: var(--r-4);
+  background: var(--accent-soft); color: var(--accent-hi); flex-shrink: 0; }
+.agentbar .ab-ic svg { width: 15px; height: 15px; }
+.agentbar .ab-t { font-size: 13px; font-weight: 700; }
+.agentbar .ab-d { font-size: 12px; color: var(--text-3); flex: 1; min-width: 0;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* 품목 드롭다운 · 계열과 유형을 하나로 접었다 */
+.input.sel { max-width: 260px; cursor: pointer; }
+
+/* 지금 세팅 중인 것의 윤곽 · 결과가 아니라 확인용이다 */
+.preview { display: flex; align-items: center; gap: 14px; margin-top: 14px;
+  padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--r-8); background: var(--panel-2); }
+.preview .pv-art { width: 76px; height: 76px; flex-shrink: 0; border-radius: var(--r-8);
+  background: var(--bg-2); display: grid; place-items: center; overflow: hidden; }
+.preview .pv-art img { width: 100%; height: 100%; object-fit: contain; }
+.preview .pv-txt { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.preview .pv-txt b { font-size: 14px; }
+.preview .pv-txt span { font-size: 12.5px; color: var(--text-2); }
+
+/* 1단계에서 고른 프리셋을 2단계에서 되짚어 준다 */
+.fromreset { display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+  padding: 9px 12px; border: 1px dashed var(--line-2); border-radius: var(--r-8); }
+.fromreset .fr-t { font-size: 12px; color: var(--text-3); }
+.fromreset b { font-size: 13px; }
+.fromreset .btn { margin-left: auto; }
+
+/* 범위 밖 설정 · 지우지 않고 흐리게 두어 무엇을 잃었는지 보이게 한다 */
+.lockedbox { position: relative; opacity: .42; pointer-events: none; }
+.lockedbox .lk-why {
+  position: absolute; right: 0; top: 0; font-size: 11px; font-weight: 600;
+  color: var(--warn); background: var(--panel); padding: 1px 7px; border-radius: var(--r-chip);
+  border: 1px solid var(--line-2); pointer-events: auto;
+}
+
+/* 폴드 · 열림 상태와 내용물을 둘 다 보인다 */
+.moretoggle {
+  display: flex; align-items: center; gap: 10px; width: 100%; margin-top: 8px;
+  padding: 11px 14px; text-align: left;
+  border: 1px solid var(--line-2); border-radius: var(--r-8); background: var(--panel);
+}
+.moretoggle:hover { border-color: var(--surface-4); background: var(--panel-2); }
+.moretoggle .mt-cv { display: grid; place-items: center; width: 16px; height: 16px;
+  color: var(--text-3); transition: transform .16s; flex-shrink: 0; }
+.moretoggle.open .mt-cv { transform: rotate(90deg); }
+.moretoggle .mt-cv svg { width: 14px; height: 14px; }
+.moretoggle .mt-t { font-size: 13px; font-weight: 650; flex-shrink: 0; }
+.moretoggle .mt-sum { margin-left: 0; font-size: 12px; color: var(--text-3);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
 /* ═══════════════════════════════════════════════════════════════════
    반응형 · 세 단계로만 나눈다. 큰 화면 규칙은 위에 그대로 두고 여기서 덮어쓴다.
      ≤1024  태블릿  · 사이드레일을 아이콘 레일로 줄이고, 실행 화면 좌측 패널을 위로 올린다
@@ -1562,6 +1658,13 @@ table.mini td b { color: var(--text); font-weight: 600; }
   .wizard { padding: 16px 14px 24px; }
   .staticnote { padding: 18px; min-height: 0; }
   .opts.two, .opts.three { grid-template-columns: 1fr; }
+  .agentgrid { grid-template-columns: 1fr; gap: 10px; }
+  .agentcard { padding: 16px; }
+  .agentbar { flex-wrap: wrap; gap: 8px; }
+  .agentbar .ab-d { flex-basis: 100%; white-space: normal; }
+  .input.sel { max-width: none; width: 100%; }
+  .moretoggle .mt-sum { display: none; }
+  .lockedbox .lk-why { position: static; display: inline-block; margin-bottom: 4px; }
   .scopecard { padding: 12px; gap: 12px; }
   .scopecard .sc-thumb { width: 64px; height: 64px; }
   .scopecard .sc-m { position: static; margin-top: 4px; }
@@ -1634,6 +1737,7 @@ table.mini td b { color: var(--text); font-weight: 600; }
   .boardbar .bb-row:not(.bb-top)::-webkit-scrollbar { display: none; }
   .boardbar .btn, .boardbar .chipbtn { flex-shrink: 0; min-height: 36px; }
   .board-empty { max-width: calc(100vw - 32px); padding: 16px; }
+  .focusnote { bottom: 12px; max-width: calc(100vw - 24px); white-space: normal; }
 
   /* 공용 · 카드 뷰스트립·이미지 격자 */
   .dd-body { grid-template-columns: 1fr; }

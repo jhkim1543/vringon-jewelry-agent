@@ -35,11 +35,34 @@ function keysIn(src) {
   return keys
 }
 
+/** 화면 문구를 담은 상수 맵의 값들 · t(MAP[x]) 처럼 변수로 부르면 위 정규식이 못 잡는다.
+ *  Record<..., string> 리터럴의 문자열 값 중 문장처럼 보이는 것을 후보로 올린다.
+ *  이 검사가 없어서 에이전트 설명 세 줄이 화면에 영어로 남았다. */
+function mapValuesIn(src) {
+  const out = new Set()
+  // const NAME: Record<…, string> = { key: '문장', … } 형태만 본다
+  const rx = /(?:const|let)\s+[A-Z_][A-Za-z0-9_]*\s*:\s*Record<[^>]*string\s*>\s*=\s*\{([\s\S]*?)\n\s*\}/g
+  let m
+  while ((m = rx.exec(src))) {
+    const sx = /:\s*'((?:\\.|[^'\\]){4,})'/g
+    let v
+    while ((v = sx.exec(m[1]))) {
+      const val = v[1].replace(/\\'/g, "'")
+      // 낱말 하나짜리 식별자는 번역 대상이 아닐 때가 많다 — 공백이 있는 것만 본다
+      if (/\s/.test(val) && /[A-Za-z]/.test(val)) out.add(val)
+    }
+  }
+  return out
+}
+
 const files = walk(SRC)
 const used = new Map()          // key -> [file, …]
 for (const f of files) {
   const src = readFileSync(f, 'utf8')
-  for (const k of keysIn(src)) {
+  // 맵 값 훑기는 화면 파일에만 적용한다. core/ 의 상수 맵에는 모델에 보내는 프롬프트 조각과
+  // 스펙 값(예: '925 silver', 'straight front view')이 들어 있고, 그건 번역 대상이 아니다.
+  const isUi = /[\\/]ui[\\/]|App\.tsx$/.test(f)
+  for (const k of new Set([...keysIn(src), ...(isUi ? mapValuesIn(src) : [])])) {
     if (!used.has(k)) used.set(k, [])
     used.get(k).push(f.replace(ROOT + '\\', '').replace(/\\/g, '/'))
   }

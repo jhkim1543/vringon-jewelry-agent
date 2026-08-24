@@ -11,7 +11,8 @@
     "audit": "node scripts/mode-audit.mjs && node scripts/evidence-audit.mjs && node scripts/i18n-audit.mjs && node scripts/check-wizard-art.mjs",
     "sample:warm": "node scripts/warm-research.mjs",
     "sample:make": "tsx scripts/make-sample.mts",
-    "sample:bake": "node scripts/bake-shots.mjs && node scripts/webp-samples.mjs && node scripts/check-wizard-art.mjs --fix"
+    "sample:bake": "node scripts/bake-shots.mjs && node scripts/webp-samples.mjs && node scripts/check-wizard-art.mjs --fix",
+    "i18n:merge": "node scripts/i18n-merge.mjs"
   },
   "dependencies": {
     "@types/three": "^0.185.4",

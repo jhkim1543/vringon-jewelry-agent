@@ -982,4 +982,39 @@ const KO: Record<string, string> = {
   // ── 추가 번역 ────────────────────────────────────────────────
   'The logo file is too large for this browser to keep. Use a smaller PNG or SVG.':
     '로고 파일이 너무 커서 이 브라우저에 저장할 수 없습니다. 더 작은 PNG 또는 SVG를 쓰세요.',
+
+  // ── 추가 번역 ────────────────────────────────────────────────
+  'Which agent should do this?': '어떤 에이전트로 할까요?',
+  'Each one starts from a different place. That choice decides what gets researched and what the result can be explained by.':
+    '에이전트마다 출발점이 다릅니다. 그 선택이 무엇을 조사할지, 결과를 무엇으로 설명할 수 있을지를 정합니다.',
+  'Use this agent': '이 에이전트로 시작',
+  'Pick up your last setup': '지난 설정 이어서 하기',
+  'Files are not carried over — only the settings.': '파일은 넘어오지 않습니다. 설정만 가져옵니다.',
+  'agent': '에이전트',
+  'Change agent': '에이전트 바꾸기',
+  'Item': '품목',
+  'Quick preset': '빠른 프리셋',
+  'Sets the metal, plating and stone in one go. You can adjust any of it in the next step.':
+    '금속·도금·스톤을 한 번에 정합니다. 다음 단계에서 어느 것이든 조정할 수 있습니다.',
+  'A rough outline of what you are setting up, not a result.': '지금 설정 중인 것의 대략적인 윤곽입니다. 결과물이 아닙니다.',
+  'From your preset': '고른 프리셋',
+  'Adjusted by hand': '직접 조정함',
+  'Change preset': '프리셋 바꾸기',
+  'Tier mix, how many move on, extra views and colorways, campaign cuts, 3D, image model and cap':
+    '티어 비율, 렌더로 넘길 비율, 추가 뷰와 컬러웨이, 캠페인 컷, 3D, 이미지 모델과 상한',
+  'Showing what this card connects to.': '이 카드와 이어진 것만 보여 주는 중입니다.',
+  'Research only · no sketches are made': '조사만 · 스케치를 만들지 않습니다',
+  'Research only · there are no sketches to review': '조사만 · 검토할 스케치가 없습니다',
+  'Stops before the renders, so this changes nothing': '렌더 전에 멈추므로 이 값은 영향이 없습니다',
+  'Top picks are chosen at the campaign stage': '상위 선정은 캠페인 단계에서 이루어집니다',
+  'Stops before the campaign shots': '캠페인 컷 전에 멈춥니다',
+  'Only the 3D showroom scope builds models': '3D 쇼룸 범위에서만 모델을 만듭니다',
+
+  // ── 추가 번역 ────────────────────────────────────────────────
+  'Starts from the market. Researches competitor products and season trends, then designs against what it found.':
+    '시장에서 출발합니다. 경쟁사 제품과 시즌 트렌드를 조사한 뒤, 찾아낸 것을 근거로 디자인합니다.',
+  'Starts from your archive. Reads what repeats across the designs you upload and carries it forward.':
+    '보유 아카이브에서 출발합니다. 올린 디자인들에서 반복되는 것을 읽어 다음 시즌으로 이어 갑니다.',
+  'Starts from your document. Reads the file you upload and works only from what is in it, page by page.':
+    '올린 문서에서 출발합니다. 파일을 쪽 단위로 읽고, 그 안에 있는 것만 가지고 작업합니다.',
 }
