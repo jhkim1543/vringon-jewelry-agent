@@ -84,6 +84,9 @@ function measureCard(n: BoardNode, w: number, isDesign: boolean): number {
   if (n.modelUrl) h += 198
   else if (n.imageUrl) h += 222
   for (const line of n.body) h += wrapCount(line, units) * LINE_H
+  // 프롬프트 카드는 본문이 1000자를 넘는다. 전문을 다 펼치면 열 하나가 프롬프트로
+  // 가득 차므로 높이를 잘라 두고, 나머지는 카드 안 스크롤(bn-scroll)로 읽게 한다.
+  if (n.kind === 'prompt') return Math.min(Math.max(h, 76), 280)
   return Math.max(h, 76)
 }
 
@@ -335,7 +338,7 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
   const positionsRef = useRef<Record<string, { x: number; y: number }>>({})
 
   // 종류 필터 · 보드가 빽빽해지면 한 갈래만 따라가고 싶어진다
-  const [kindFilter, setKindFilter] = useState<'all' | 'research' | 'design' | 'selection'>('all')
+  const [kindFilter, setKindFilter] = useState<'all' | 'prompt' | 'design' | 'selection'>('all')
   // 도구 · 'note'/'lane' 을 고른 뒤 보드를 누르면 그 자리에 놓인다.
   // 실제로 동작하는 것만 둔다. 눌러도 아무 일 없는 도구는 만들지 않는다.
   const [tool, setTool] = useState<'select' | 'note' | 'lane'>('select')
@@ -344,7 +347,7 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
   const [filterEmpty, setFilterEmpty] = useState(false)
   useEffect(() => {
     const KEEP: Record<string, string[]> = {
-      research: ['input', 'research', 'signal', 'direction'],
+      prompt: ['prompt'],
       // appendix 는 어느 갈래에도 넣지 않는다. 전제·한계를 적은 꼬리말이라
       // 디자인 쪽에 끼워 두면 **디자인이 하나도 없는 런에서도 카드가 한 장 남아**
       // "비어 있다"고 알리지 못하고 텅 빈 보드처럼 보인다.
@@ -584,7 +587,7 @@ function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; ru
 
           {/* ── 아랫줄 · 지금 보이는 것과 조작 ─────────────── */}
           <div className="bb-row bb-sub-row">
-            {([['all', 'All'], ['research', 'Research'], ['design', 'Designs'], ['selection', 'Selection']] as const).map(([k, label]) => (
+            {([['all', 'All'], ['prompt', 'Prompts'], ['design', 'Designs'], ['selection', 'Selection']] as const).map(([k, label]) => (
               <button key={k} className={`chipbtn ${kindFilter === k ? 'on' : ''}`}
                 onClick={() => setKindFilter(k)}>{t(label)}</button>
             ))}
