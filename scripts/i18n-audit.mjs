@@ -77,7 +77,7 @@ for (const f of files) {
   const isTaxonomy = /core[\\/]types\.ts$/.test(f)
   for (const k of new Set([
     ...keysIn(src),
-    ...(isUi ? mapValuesIn(src) : []),
+    ...((isUi || isTaxonomy) ? mapValuesIn(src) : []),
     ...(isTaxonomy ? labelFieldsIn(src) : []),
   ])) {
     if (!used.has(k)) used.set(k, [])
@@ -102,12 +102,17 @@ const KO = dictOf('i18n.ts')
 const JA = dictOf('i18n.ja.ts')
 
 // 한·일에서도 원문 그대로 쓰는 말 · 동일해도 미번역이 아니다
- const SAME_OK = new Set(['QA', 'QA {pass}/{total}', 'MD', 'PDF', '3D', 'DNA', 'VRINGON'])
+ const SAME_OK = new Set(['QA', 'QA {pass}/{total}', 'MD', 'PDF', '3D', 'DNA', 'VRINGON',
+   // 언어 이름은 그 언어 스스로의 표기가 정답이다 · 번역하면 오히려 못 찾는다
+   '한국어', '日本語', 'English', '中文', 'Français', 'Italiano',
+   'Preserve · Transform · Replace · Combine · Avoid',
+   // 서버 프롬프트에 넣는 언어 이름 · 화면에 그리지 않는다 (types.ts 맵 스캔의 오탐)
+   'Korean (한국어)', 'Japanese (日本語)', 'Chinese (中文)', 'French (Français)', 'Italian (Italiano)'])
  const missKo = [], missJa = [], sameKo = [], badPh = []
 for (const [k, where] of used) {
-  if (!(k in KO)) missKo.push([k, where[0]])
+  if (!(k in KO) && !SAME_OK.has(k)) missKo.push([k, where[0]])
   else if (KO[k] === k && /[A-Za-z]/.test(k) && k.length > 2 && !SAME_OK.has(k)) sameKo.push([k, where[0]])
-  if (!(k in JA)) missJa.push([k, where[0]])
+  if (!(k in JA) && !SAME_OK.has(k)) missJa.push([k, where[0]])
   // 치환자 보존 검사
   const ph = [...k.matchAll(/\{(\w+)\}/g)].map(x => x[1])
   for (const p of ph) {
@@ -118,13 +123,23 @@ for (const [k, where] of used) {
 const unusedKo = Object.keys(KO).filter(k => !used.has(k))
 
 // 번역문 안에 영어 낱말이 통째로 남은 경우 · 티어 이름을 문장 속에 두고 잊는 일이 잦다
-const LEFTOVER = /\b(Core|Push|Signature|Trend|Series|Moodboard|Design|Sketch|Research)\b/
+// 'Design DNA' 는 스펙이 정한 고유 명칭이라 여섯 언어 공통으로 그대로 쓴다
+const LEFTOVER = /\b(Core|Push|Signature|Trend|Series|Moodboard|Sketch|Research)\b/
 const leftover = []
 for (const [label, dict] of [['KO', KO], ['JA', JA]]) {
   for (const [k, v] of Object.entries(dict)) {
     if (v === k) continue                       // 원문 그대로 두기로 한 항목
     if (LEFTOVER.test(v)) leftover.push([label, k, v])
   }
+}
+
+// --dump: 누락 키 전체를 조각 JSON 틀로 떨어뜨린다 (번역해서 i18n-merge 에 넣는 용도)
+if (process.argv.includes('--dump')) {
+  const { writeFileSync: wf } = await import('node:fs')
+  const tpl = Object.fromEntries(missKo.map(([k]) => [k, ['', '']]))
+  wf('.i18n-missing.json', JSON.stringify(tpl, null, 1))
+  console.log(`${missKo.length}건 → .i18n-missing.json`)
+  process.exit(0)
 }
 
 const show = (title, rows, fmt) => {

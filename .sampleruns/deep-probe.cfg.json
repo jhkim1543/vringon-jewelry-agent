@@ -1,0 +1,11 @@
+{
+  "name": "deep_probe_ring",
+  "sampleTitle": "딥리서치 확인용",
+  "params": {
+    "algo": 2, "mode": "fashion", "countries": ["Korea"], "analysisLang": "ko",
+    "direction": "무광 실버와 조각적 형태. 데일리 착용 중심.",
+    "itemType": "ring", "items": ["ring"], "designCount": 10, "setCount": 3,
+    "target": { "age": "25-34", "gender": "female" },
+    "competitors": [], "imageEngine": "fast"
+  }
+}

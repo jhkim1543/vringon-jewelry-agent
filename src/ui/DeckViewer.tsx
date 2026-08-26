@@ -40,6 +40,7 @@ export function DeckViewer({ html, title, onPrint, onSave, height }: {
 
   const doc = `<!doctype html><html><head><meta charset="utf-8"><title>${esc(title)}</title>
 <base href="${location.origin}${BASE}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>${DECK_CSS}${VIEWER_CSS}</style></head><body>${fixed}</body></html>`
 
   // 슬라이드 수를 센다. srcdoc 은 부모와 같은 출처라 내용을 읽을 수 있다.

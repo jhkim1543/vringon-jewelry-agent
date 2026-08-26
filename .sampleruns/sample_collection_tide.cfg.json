@@ -1,0 +1,24 @@
+{
+  "name": "sample_collection_tide",
+  "sampleTitle": "주얼리 컬렉션 · 제주 조수 (반지·펜던트)",
+  "params": {
+    "algo": 2,
+    "analysisLang": "ko",
+    "imageEngine": "fast",
+    "setCount": 3,
+    "competitors": [],
+    "mode": "collection",
+    "country": "Korea",
+    "direction": "제주 바다의 조수 간만. 물결이 현무암을 깎아 남긴 결.",
+    "itemType": "ring",
+    "items": [
+      "ring",
+      "pendant"
+    ],
+    "designCount": 10,
+    "target": {
+      "age": "35-44",
+      "gender": "genderless"
+    }
+  }
+}

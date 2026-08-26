@@ -21,7 +21,7 @@
   --text-secondary: #565D63;
   --text-placeholder: #898F95;
   --text-disabled-c: #C5C9CF;
-  --text-success: #00AF79;
+  --text-success: #3B58B4;   /* 초록 금지 지시 · 성공도 차분한 인디고 계열로 */
   --text-warning: #FA7500;
   --text-failed: #E32F3F;
   --text-inverse: #FFFFFF;
@@ -32,7 +32,7 @@
   --text-button-disabled: #F9FAFB;
   --border-default: #C5C9CF;
   --border-selected: #282D32;
-  --border-success: #1CC38A;
+  --border-success: #6E7BD8;
   --border-warning: #FB8200;
   --border-accent: #444AE8;
   --border-fail: #FF4550;
@@ -64,32 +64,41 @@
   --icon-white: #FFFFFF;
   --icon-black: #05070E;
   --icon-accent: #444AE8;
-  --icon-success: #1CC38A;
+  --icon-success: #3B58B4;
   --icon-warning: #FB8200;
   --icon-failed: #FF4550;
   --shadow-shadow1: #000000;
   --shadow-shadow2: #000000;
-  /* 의미 이름 · var() 연쇄를 피해 실제 값을 직접 넣는다 */
-  --bg: #FFFFFF;
-  --bg-2: #F9FAFB;
-  --panel-2: #F3F5F8;
-  --surface-4: #C5C9CF;
-  --text: #181C20;
-  --text-2: #565D63;
-  --text-3: #6B7178;   /* #898F95는 흰 배경에서 3.3:1로 AA 미달이었다 → 4.9:1 */
-  --text-disabled: #C5C9CF;
-  --accent: #444AE8;
+  /* ── 의미 이름 · 라이트 = "인쇄된 룩북" ────────────────────────────
+     GPT 화이트풍 콘셉트에서 가져온 결: 따뜻한 아이보리 종이, 헤어라인 괘선,
+     크림 위 골드 포인트, 부드러운 웜 섀도. 흑백 반전이 아니라 종이의 질감이다. */
+  --bg: #F7F7F5;             /* 거의 흰 바탕 · 5번 목업의 화이트-블루 */
+  --bg-2: #F1F1EE;
+  --panel: #FFFFFF;
+  --panel-2: #F6F6F4;
+  --surface-2: #F7F7F6;
+  --surface-3: #EEEEEB;
+  --surface-4: #CFCFC9;
+  --text: #191B20;
+  --text-2: #4E5560;
+  --text-3: #6C7280;
+  --text-disabled: #C3C6CC;
+  --accent: #4046D4;         /* 상호작용은 브랜드 인디고 유지 */
   --accent-hover: #5D6CFA;
   --accent-pressed: #0E0EA6;
-  --accent-hi: #444AE8;
-  --accent-soft: #F6F7FF;
-  --warn: #B34F00;    /* #FA7500은 흰 배경에서 2.8:1로 AA 미달이었다 → 5.2:1 */
-  --danger: #D42B31;     /* #E32F3F는 흰 배경에서 4.4:1 이었다 → 5.0:1 */
+  --accent-hi: #3A40C8;
+  --accent-soft: #E9E9F8;
+  --gold: #5A63C8;           /* 옛 이름 · 노란 골드는 지시로 제거, 편집 포인트도 인디고 계열 */
+  --gold-soft: #EDEFFB;
+  --warn: #A6490A;
+  --danger: #C22730;
   --alert: #E32F3F;
   --alert-hover: #FF4550;
-  --line-2: #C5C9CF;
-  --panel: #FFFFFF;
-  --line: #F3F5F8;
+  --line: #E7E7E3;           /* 헤어라인 괘선 */
+  --line-2: #D2D2CC;
+  --card-shadow: 0 1px 2px rgba(20, 24, 40, .04), 0 10px 28px rgba(20, 24, 40, .06);
+  --btn-glow: none;
+  --display-font: Didot, "Bodoni MT", "Playfair Display", Georgia, Pretendard, "Pretendard Variable", sans-serif;
 }
 [data-theme="dark"] {
   --primary-primary: #444AE8;
@@ -112,7 +121,7 @@
   --text-secondary: #C5C9CF;
   --text-placeholder: #898F95;
   --text-disabled-c: #353D43;
-  --text-success: #2AEEA8;
+  --text-success: #9BA6E8;   /* 형광 민트였다 · 다크에서도 차분한 톤으로 */
   --text-warning: #FFAB5C;
   --text-failed: #FF7474;
   --text-inverse: #181C20;
@@ -123,7 +132,7 @@
   --text-button-disabled: #898F95;
   --border-default: #353D43;
   --border-selected: #C5C9CF;
-  --border-success: #2AEEA8;
+  --border-success: #5D6CBA;
   --border-warning: #FFAB5C;
   --border-accent: #5D6CFA;
   --border-fail: #FF7474;
@@ -155,32 +164,41 @@
   --icon-white: #FFFFFF;
   --icon-black: #05070E;
   --icon-accent: #5D6CFA;
-  --icon-success: #2AEEA8;
+  --icon-success: #9BA6E8;
   --icon-warning: #FFAB5C;
   --icon-failed: #FF7474;
   --shadow-shadow1: #FFFFFF;
   --shadow-shadow2: #FFFFFF;
-  /* 의미 이름 · var() 연쇄를 피해 실제 값을 직접 넣는다 */
-  --bg: #05070E;
-  --bg-2: #0F1217;
-  --panel-2: #181C20;
-  --surface-4: #282D32;
-  --text: #F3F5F8;
-  --text-2: #C5C9CF;
-  --text-3: #898F95;
-  --text-disabled: #353D43;
-  --accent: #5D6CFA;
-  --accent-hover: #444AE8;
-  --accent-pressed: #0E0EA6;
-  --accent-hi: #6E7BFF;  /* #5D6CFA는 패널 위 11px에서 4.46:1 이었다 → 5.3:1 */
-  --accent-soft: #000045;
+  /* ── 의미 이름 · 다크 = "밤의 프라이빗 쇼룸" ───────────────────────
+     GPT 블랙풍 콘셉트에서 가져온 결: 차콜-네이비 무대, 인디고-바이올렛 글로우,
+     스포트라이트 카드, 세리프 숫자. 라이트를 뒤집은 것이 아니라 다른 조명이다. */
+  --bg: #07080F;             /* 차콜-네이비 무대 */
+  --bg-2: #0B0D16;
+  --panel: #0E1019;          /* 카드 = 무대보다 반 톤 밝게 */
+  --panel-2: #151828;
+  --surface-2: #121522;
+  --surface-3: #1A1E30;
+  --surface-4: #2B3049;
+  --text: #EDEEF6;
+  --text-2: #B9BDD1;
+  --text-3: #8F94AC;
+  --text-disabled: #3A3F58;
+  --accent: #6E7BFF;         /* 글로우 인디고 */
+  --accent-hover: #8B93FF;
+  --accent-pressed: #444AE8;
+  --accent-hi: #98A0FF;
+  --accent-soft: #181C36;
+  --gold: #9BA4F2;           /* 옛 이름 · 노란 골드 제거, 다크는 밝은 인디고 */
+  --gold-soft: #1A1D36;
   --warn: #FFAB5C;
   --danger: #FF7474;
   --alert: #FF4550;
   --alert-hover: #E32F3F;
-  --line-2: #353D43;
-  --panel: #0F1217;
-  --line: #181C20;
+  --line: #1C2033;           /* 은은히 발광하는 구분선 */
+  --line-2: #343A57;
+  --card-shadow: 0 0 0 1px rgba(110, 123, 255, .06), 0 12px 34px rgba(0, 0, 0, .55);
+  --btn-glow: 0 0 20px rgba(110, 123, 255, .35);
+  --display-font: Didot, "Bodoni MT", "Playfair Display", Georgia, Pretendard, "Pretendard Variable", sans-serif;
 }
 
 /* ── VRINGON UI 시스템 ver3 · 간격·라운드 스케일 ─────────────────────

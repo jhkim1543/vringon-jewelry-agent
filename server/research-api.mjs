@@ -7,9 +7,13 @@ import { join } from 'node:path'
 import { researchDossier } from './dossier-api.mjs'
 
 export const RESEARCH_MODEL = 'gpt-5'
-// 딥리서치 · 계정에서 열리면 .env에 OPENAI_DEEP_RESEARCH=1 을 넣어 켠다.
-// 같은 API 키를 쓰며 별도 키가 필요 없다. 모델이 없으면 자동으로 기본 경로로 되돌아간다.
-export const DEEP_MODEL_DEFAULT = 'o3-deep-research'
+// ── 깊은 조사 모델 ──────────────────────────────────────────────────
+// `o3-deep-research` 계열(o3/o4-mini · 날짜본 포함 4종)은 **2026-07-23 에 전부 종료**됐다.
+// 종료된 모델은 /v1/models 목록과 단건 조회에는 남아 200 을 주면서 호출만 404 를 낸다 —
+// 그래서 "권한이 없다"로 오해하기 쉽다. 판별은 메타데이터의 shutdown_date 로 한다.
+// 지금 같은 자리를 채우는 것은 gpt-5-pro 다 (web_search + strict json_schema 로 실측 통과.
+// 한 호출에 약 4분, 검색 9회, 출처 5개). 느린 대신 깊다 — 그래서 기본은 꺼 둔다.
+export const DEEP_MODEL_DEFAULT = 'gpt-5-pro'
 const DEEP_POLL_MS = 10_000
 const DEEP_MAX_WAIT_MS = 15 * 60 * 1000
 
@@ -206,6 +210,14 @@ try {
   longFetch = (url, init = {}) => undiciFetch(url, { ...init, dispatcher: agent })
 } catch { /* undici가 없으면 내장 fetch로 진행한다 */ }
 
+// 깊은 조사 전용 · 한 호출이 수십 분 갈 수 있다
+let deepFetch = longFetch
+try {
+  const { Agent, fetch: undiciFetch } = await import('undici')
+  const agent = new Agent({ headersTimeout: 45 * 60_000, bodyTimeout: 45 * 60_000, connectTimeout: 30_000 })
+  deepFetch = (url, init = {}) => undiciFetch(url, { ...init, dispatcher: agent })
+} catch { /* 내장 fetch 로 진행 */ }
+
 // 상류가 502/503/429를 던지는 일이 실제로 있다. 한 번 튕겼다고 브랜드 하나의
 // 조사를 통째로 버리면, 사용자는 이유도 모른 채 경쟁 목록이 반쪽인 결과를 받는다.
 // 일시적 오류만 물러났다가 다시 시도한다 (4xx 입력 오류는 재시도해도 같다).
@@ -213,15 +225,18 @@ const RETRY_STATUS = new Set([408, 429, 500, 502, 503, 504])
 // web 옵션이 false 면 검색 도구를 아예 붙이지 않는다.
 // 무드보드 판독은 "올린 파일만 근거로 쓴다"가 계약인데, 도구가 붙어 있으면
 // 모델이 문서 밖에서 답을 가져와도 막을 방법이 없다. 계약을 코드로 강제한다.
-export async function ask(apiKey, { input, schema, name, tries = 3, web = true }) {
+export async function ask(apiKey, { input, schema, name, tries = 3, web = true, deep = false, deepModel = DEEP_MODEL_DEFAULT }) {
   let lastErr
   for (let attempt = 1; attempt <= tries; attempt++) {
     try {
-      const r = await longFetch('https://api.openai.com/v1/responses', {
+      // 깊은 조사는 응답이 4분 안팎이라 기본 타임아웃(20분)으로도 되지만,
+      // 무거운 질문은 더 걸린다. 잘리면 조용히 3번 다시 걸어 시간과 비용만 태우므로 넉넉히 준다.
+      const fetcher = deep ? deepFetch : longFetch
+      const r = await fetcher('https://api.openai.com/v1/responses', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${apiKey}` },
         body: JSON.stringify({
-          model: RESEARCH_MODEL,
+          model: deep ? deepModel : RESEARCH_MODEL,
           ...(web ? { tools: [{ type: 'web_search' }] } : {}),
           // 비용보다 결과를 우선한다 · 추론 강도를 최고로 둔다
           reasoning: { effort: 'high' },

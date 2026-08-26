@@ -1,0 +1,26 @@
+{
+  "name": "sample_competitor_ring",
+  "sampleTitle": "경쟁사 트렌드 · 반지 (Pandora·Mejuri, 한국)",
+  "params": {
+    "algo": 2,
+    "analysisLang": "ko",
+    "imageEngine": "fast",
+    "setCount": 3,
+    "competitors": [
+      "Pandora",
+      "Mejuri"
+    ],
+    "mode": "competitor",
+    "country": "Korea",
+    "direction": "조각적인 실버와 볼드한 형태 쪽으로. 데일리로 착용 가능한 것 중심.",
+    "itemType": "ring",
+    "items": [
+      "ring"
+    ],
+    "designCount": 10,
+    "target": {
+      "age": "25-34",
+      "gender": "female"
+    }
+  }
+}

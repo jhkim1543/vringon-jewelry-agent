@@ -6,7 +6,7 @@
 // 그래서 시작할 때 한 번 확인하고, 없으면 화면에 분명히 적는다.
 
 export type Runtime =
-  | { kind: 'live'; keyPresent: boolean; cachedImages: number; selfHosted: boolean }
+  | { kind: 'live'; keyPresent: boolean; cachedImages: number; selfHosted: boolean; deepResearch: boolean; deepModel: string }
   | { kind: 'static'; reason: string }
 
 let cached: Promise<Runtime> | null = null
@@ -18,7 +18,11 @@ export function detectRuntime(): Promise<Runtime> {
       const r = await fetch(`${import.meta.env.BASE_URL}api/status`, { signal: AbortSignal.timeout(4000) })
       if (!r.ok) return { kind: 'static', reason: `API returned ${r.status}` }
       const j = await r.json()
-      return { kind: 'live', keyPresent: !!j.keyPresent, cachedImages: j.cachedImages ?? 0, selfHosted: !!j.selfHosted }
+      return {
+        kind: 'live', keyPresent: !!j.keyPresent, cachedImages: j.cachedImages ?? 0, selfHosted: !!j.selfHosted,
+        // 깊은 조사는 서버가 켜고 끈다 · 화면은 상태를 읽어 시간과 배지에만 쓴다
+        deepResearch: !!j.deepResearch, deepModel: j.deepModel ?? '',
+      }
     } catch {
       return { kind: 'static', reason: 'No API server on this host' }
     }

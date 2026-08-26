@@ -10,10 +10,16 @@ import { DEEP_MODEL_DEFAULT, researchCompetitors, researchTrends, researchSeason
 import { geminiEdit, geminiGenerate, geminiProbe, geminiShotPlan } from './gemini-api.mjs'
 import { compositeLogo, logoAvailable } from './logo-api.mjs'
 import { tripoMultiview, tripoProbe, readModel } from './tripo-api.mjs'
-import { configureUnlocker, findProductImage, unlockedFetch, unlockerStatus, unlockerUsage } from './unlock.mjs'
+import { configureUnlocker, unlockerStatus, unlockerUsage } from './unlock.mjs'
+import { grabImage } from './grab.mjs'
+import { handleBoard } from './board-api.mjs'
 import { readMoodboard, readSeries, readUpload, storeUpload } from './uploads-api.mjs'
 import { mdReview } from './md-api.mjs'
 import { visionQa } from './vision-qa-api.mjs'
+import {
+  agentAdoption, agentCompetitorCrawl, agentForecast, agentItemPrompt, agentKeyword, agentPrompts,
+  agentRefDna, agentReferences, agentRunway, agentScore, agentSets, agentShops, agentTrendReport,
+} from './agents-api.mjs'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
 const ROOT = join(HERE, '..')
@@ -107,13 +113,8 @@ async function selfHostImage(kind, { prompt, size, basePath }) {
   return Buffer.from(b64, 'base64')
 }
 
-const SHOT_DIR = join(ROOT, '.cache', 'shots')
-
 function ensureCache() {
   if (!existsSync(CACHE_DIR)) mkdirSync(CACHE_DIR, { recursive: true })
-}
-function ensureShotCache() {
-  if (!existsSync(SHOT_DIR)) mkdirSync(SHOT_DIR, { recursive: true })
 }
 
 function keyOf(parts) {
@@ -231,6 +232,12 @@ export async function handleApi(req, res) {
   const url = new URL(req.url, 'http://localhost')
   const path = url.pathname
 
+  // 보드 협업 · SSE·op 중계는 board-api 한 곳에서
+  if (path.startsWith('/api/board/')) {
+    const handled = await handleBoard(req, res, url, ROOT)
+    if (handled !== false) return
+  }
+
   if (path === '/api/status') {
     ensureCache()
     const n = readdirSync(CACHE_DIR).filter(f => f.endsWith('.png')).length
@@ -249,24 +256,35 @@ export async function handleApi(req, res) {
     })
   }
 
-  // 딥리서치 접근 진단 · 계정에서 열렸는지 한 번에 확인한다
+  // 딥리서치 접근 진단
+  // 이 진단이 왜 이렇게 생겼는가 · 종료된 모델은 /v1/models 목록과 단건 조회에 남아
+  // 200 을 주면서 호출만 404 를 낸다. 그래서 "권한이 없다"로 오해하기 쉽다.
+  // shutdown_date 를 먼저 읽어 죽은 모델과 못 쓰는 모델을 갈라 놓는다.
   if (path === '/api/research/deep-check') {
     if (!DEEP_KEY) return json(res, 200, { available: false, reason: '딥리서치 키 미설정' })
-    const candidates = [DEEP_MODEL, 'o3-deep-research', 'o4-mini-deep-research']
+    const today = new Date().toISOString().slice(0, 10)
+    const candidates = [...new Set([DEEP_MODEL, 'gpt-5-pro', 'o3-deep-research'])]
     const tried = []
-    for (const m of [...new Set(candidates)]) {
+    for (const m of candidates) {
       try {
+        // ① 메타데이터 · 종료된 모델인가
+        const meta = await fetch(`https://api.openai.com/v1/models/${m}`, {
+          headers: { Authorization: `Bearer ${DEEP_KEY}` },
+        })
+        if (!meta.ok) { tried.push({ model: m, status: meta.status, verdict: '계정에 없는 모델' }); continue }
+        const info = await meta.json()
+        if (info.shutdown_date && info.shutdown_date < today) {
+          tried.push({ model: m, verdict: '서비스 종료됨', shutdownDate: info.shutdown_date })
+          continue
+        }
+        // ② 실제 호출 · 짧게 걸고 바로 취소해 과금을 남기지 않는다
         const r = await fetch('https://api.openai.com/v1/responses', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${DEEP_KEY}` },
-          body: JSON.stringify({
-            model: m, input: 'ping', background: true,
-            tools: [{ type: 'web_search_preview' }],
-          }),
+          body: JSON.stringify({ model: m, input: 'ping', background: true, tools: [{ type: 'web_search' }] }),
         })
         if (r.ok) {
           const j = await r.json()
-          // 진단용이므로 즉시 취소해 과금을 남기지 않는다
           fetch(`https://api.openai.com/v1/responses/${j.id}/cancel`, {
             method: 'POST', headers: { Authorization: `Bearer ${DEEP_KEY}` },
           }).catch(() => {})
@@ -277,9 +295,12 @@ export async function handleApi(req, res) {
         tried.push({ model: m, error: String(e.message).slice(0, 140) })
       }
     }
+    const dead = tried.filter(x => x.verdict === '서비스 종료됨')
     return json(res, 200, {
       available: false, enabledInEnv: DEEP_RESEARCH, tried,
-      hint: '프로젝트의 모델 권한에서 deep research 모델을 허용해야 합니다 (platform.openai.com → Project → Limits).',
+      hint: dead.length
+        ? `권한 문제가 아닙니다. ${dead.map(d => `${d.model}(종료 ${d.shutdownDate})`).join(', ')} 은 서비스가 끝난 모델입니다. OPENAI_DEEP_RESEARCH_MODEL 을 살아 있는 모델(gpt-5-pro)로 바꾸세요.`
+        : '프로젝트의 모델 권한을 확인하세요 (platform.openai.com → Project → Limits).',
     })
   }
 
@@ -291,63 +312,14 @@ export async function handleApi(req, res) {
     // p는 여러 개 줄 수 있다 · 상품 페이지가 봇을 막으면 다음 후보 페이지로 넘어간다
     const pages = url.searchParams.getAll('p').filter(x => /^https:\/\//.test(x))
     if (!/^https:\/\//.test(src) && !pages.length) { res.statusCode = 400; return res.end('bad url') }
-    ensureShotCache()
-    const name = `${keyOf(['shot2', src, ...pages])}.img`
-    const file = join(SHOT_DIR, name)
-    const uaHeaders = (referer) => ({
-      'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36',
-      Accept: 'image/avif,image/webp,image/*,*/*;q=0.8',
-      'Accept-Language': 'en-GB,en;q=0.9,ko;q=0.8',
-      Referer: referer,
-    })
-    const fetchImage = async (imgUrl) => {
-      const r = await fetch(imgUrl, { headers: uaHeaders(new URL(imgUrl).origin + '/'), redirect: 'follow' })
-      if (!r.ok) throw new Error(String(r.status))
-      const type = r.headers.get('content-type') || ''
-      if (!type.startsWith('image/')) throw new Error('not image')
-      const buf = Buffer.from(await r.arrayBuffer())
-      if (buf.length > 8e6) throw new Error('too large')
-      return { buf, type }
-    }
-    const pageImage = async (pageUrl) => {
-      const r = await fetch(pageUrl, {
-        headers: { ...uaHeaders(new URL(pageUrl).origin + '/'), Accept: 'text/html,*/*;q=0.8' },
-        redirect: 'follow',
-      })
-      if (!r.ok) throw new Error(String(r.status))
-      return findProductImage((await r.text()).slice(0, 800_000), pageUrl)
-    }
-    // 유료 언블로커 · 무료 경로가 전부 실패했을 때만 쓴다 (성공당 과금)
-    const paidImage = async (pageUrl) => {
-      const page = await unlockedFetch(pageUrl, { root: ROOT })
-      if (!page) return null
-      // 페이지가 아니라 이미지가 바로 오는 경우도 있다
-      if (page.type) return { buf: page.buf, type: page.type }
-      const imgUrl = findProductImage(page.buf.toString('utf8').slice(0, 800_000), pageUrl)
-      try { return await fetchImage(imgUrl) } catch { /* 이미지도 막히면 유료로 한 번 더 */ }
-      const img = await unlockedFetch(imgUrl, { root: ROOT })
-      return img?.type ? { buf: img.buf, type: img.type } : null
-    }
     try {
-      if (!existsSync(file)) {
-        let got = null
-        if (/^https:\/\//.test(src)) { try { got = await fetchImage(src) } catch { /* 페이지 폴백으로 */ } }
-        for (const pg of pages) {
-          if (got) break
-          try { got = await fetchImage(await pageImage(pg)) } catch { /* 다음 후보로 */ }
-        }
-        for (const pg of pages) {
-          if (got) break
-          try { got = await paidImage(pg) } catch { /* 유료 경로도 실패하면 칩으로 */ }
-        }
-        if (!got) throw new Error('no image')
-        writeFileSync(file, got.buf)
-        writeFileSync(file + '.type', got.type)
-      }
-      const type = existsSync(file + '.type') ? readFileSync(file + '.type', 'utf8') : 'image/jpeg'
-      res.setHeader('Content-Type', type)
+      // 받아 오는 순서(직링크 → 페이지 og:image → 유료 언블로커)와 캐시는 grab.mjs 한 곳에 있다.
+      // 레퍼런스 DNA 도 같은 함수를 쓴다 — 두 벌로 두었더니 한 벌이 조용히 썩었다.
+      const got = await grabImage({ src, pages, root: ROOT })
+      if (!got) throw new Error('no image')
+      res.setHeader('Content-Type', got.type)
       res.setHeader('Cache-Control', 'public, max-age=86400')
-      return res.end(readFileSync(file))
+      return res.end(got.buf)
     } catch {
       // 핫링크 차단·소멸 링크는 흔하다. 빈 칸 대신 중립 칩을 그려 준다.
       res.setHeader('Content-Type', 'image/svg+xml')
@@ -373,6 +345,34 @@ export async function handleApi(req, res) {
   }
 
   // MD 페르소나 리뷰 · 셀렉 후보를 사진과 스펙으로 평가한다
+  // ── 3-에이전트 조사 계층 · 전부 POST + 캐시 ─────────────────────
+  const AGENT_ROUTES = {
+    '/api/agent/competitor/crawl': agentCompetitorCrawl,
+    '/api/agent/shops': agentShops,
+    '/api/agent/trendreport': agentTrendReport,
+    '/api/agent/forecast': agentForecast,
+    '/api/agent/runway': agentRunway,
+    '/api/agent/adoption': agentAdoption,
+    '/api/agent/references': agentReferences,
+    '/api/agent/refdna': agentRefDna,
+    '/api/agent/prompts': agentPrompts,
+    '/api/agent/keyword': agentKeyword,
+    '/api/agent/sets': agentSets,
+    '/api/agent/itemprompt': agentItemPrompt,
+    '/api/agent/score': agentScore,
+  }
+  if (AGENT_ROUTES[path] && req.method === 'POST') {
+    try {
+      if (!API_KEY) throw new Error('OPENAI_API_KEY 미설정')
+      const body = await readBody(req)
+      // 깊은 조사 스위치는 서버가 쥔다 · 화면이 켜고 끄는 값이 아니다.
+      // 켜져 있으면 전용 키로, 없으면 메인 키로 간다.
+      const deep = DEEP_RESEARCH && (path === '/api/agent/trendreport' || path === '/api/agent/forecast')
+      const key = deep ? DEEP_KEY : API_KEY
+      return json(res, 200, await AGENT_ROUTES[path](key, ROOT, { ...body, ...(deep ? { deep: true, deepModel: DEEP_MODEL } : {}) }))
+    } catch (e) { return json(res, 500, { error: String(e.message || e) }) }
+  }
+
   if (path === '/api/md/review' && req.method === 'POST') {
     try {
       if (!API_KEY) throw new Error('OPENAI_API_KEY 미설정')

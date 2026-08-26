@@ -1,0 +1,23 @@
+{
+  "name": "sample_fashion_necklace",
+  "sampleTitle": "패션 트렌드 · 목걸이 (유럽 런웨이)",
+  "params": {
+    "algo": 2,
+    "analysisLang": "ko",
+    "imageEngine": "fast",
+    "setCount": 3,
+    "competitors": [],
+    "mode": "fashion",
+    "country": "Europe",
+    "direction": "런웨이의 레이어드 스타일링을 목걸이로 옮기는 방향. 볼드한 체인과 굵은 링크 중심.",
+    "itemType": "necklace",
+    "items": [
+      "necklace"
+    ],
+    "designCount": 10,
+    "target": {
+      "age": "25-34",
+      "gender": "genderless"
+    }
+  }
+}

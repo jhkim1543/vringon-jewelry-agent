@@ -1,771 +1,639 @@
-// ── 품평 보드 · 좌에서 우로 흐르는 근거 흐름도 (React Flow) ──────────
-// Input → Research → Signals → Directions → Designs → Picks. 연결선은 실제 데이터다.
+// ── 품평 보드 · Miro 식 협업 캔버스 ──────────────────────────────────
+// 분석 탭이 "근거를 읽는 곳"이라면 보드는 "함께 굴리는 곳"이다.
+//  · 결과 카드는 16:9 슬라이드(레퍼런스 → 방향 → 생성 이미지 스포트라이트)
+//  · 링크를 가진 사람은 누구나 들어와 카드를 옮기고 메모·텍스트·이미지·핀(댓글)을 붙인다
+//  · 서로의 커서가 이름표를 달고 실시간으로 보인다 (SSE · board-api)
+//  · 발표 모드는 캔버스 위에서부터 순서대로 카드를 한 장씩 확대한다
+// 서버가 없으면(정적 배포) 이 브라우저 안에서만 동작하고, 그렇게 말해 준다.
 import { t, tf } from '../core/i18n'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
-  ReactFlow, ReactFlowProvider, Background, Controls, MiniMap,
-  useReactFlow, applyNodeChanges, Handle, Position, MarkerType, NodeResizer,
+  ReactFlow, ReactFlowProvider, ViewportPortal, useReactFlow, applyNodeChanges,
 } from '@xyflow/react'
-import type { Node, Edge, NodeChange } from '@xyflow/react'
+import type { Node, NodeChange } from '@xyflow/react'
+import '@xyflow/react/dist/style.css'
 import type { RunState } from '../core/types'
-import { TIER_LABEL, TYPE_LABEL } from '../core/types'
+import { MODE_LABEL } from '../core/types'
+import type { BoardNode, SlidePayload } from '../core/boardModel'
 import { buildBoardModel } from '../core/boardModel'
-import { openTrendReportPdf, saveTrendReportHtml } from '../core/reportPdf'
-import { openDossierPdf, saveDossierHtml } from '../core/dossierPdf'
-import type { BoardEdits } from '../core/boardEdits'
-import { EMPTY_EDITS, loadEdits, newNoteId, saveEdits } from '../core/boardEdits'
-import type { BoardNode } from '../core/boardModel'
-import { DesignCard } from './Card'
-import { ThemeToggle } from './bits'
-import { ModelViewer } from './ModelViewer'
-import { copyText, shareLink } from '../core/share'
+import { shotUrl } from '../core/agents'
+import { pushShareTarget, shareLink } from '../core/share'
+import type { BoardDoc, BoardOp, CursorMsg, LiveBoard, UserNode } from '../core/boardLive'
+import { joinBoard, myColor, myName, setMyName } from '../core/boardLive'
 
-const COL_X = [0, 440, 880, 1300, 1760, 2520, 2980, 3440]
-const COL_GAP_X = 460   // 표에 없는 칸(칸 추가 등)은 이 간격으로 이어 붙인다
-/** 칸 번호 → x. 표 끝을 넘어가면 **잘라 붙이지 말고 이어서 늘린다.**
- *  예전에는 마지막 값으로 잘라 냈는데, 그러면 8번째 이후 칸이 모두 같은 x 에 겹쳐 서서
- *  서로 다른 칸의 카드가 완전히 포개졌다(3D 카드와 캠페인 카드가 실제로 그랬다). */
-const laneX = (i: number) => i < COL_X.length ? COL_X[i] : COL_X[COL_X.length - 1] + (i - COL_X.length + 1) * COL_GAP_X
-const colX = (c: number) => {
-  const i = Math.floor(c)
-  return laneX(i) + (c - i) * (laneX(i + 1) - laneX(i))
-}
-const ROW_Y = 150
-const CARD_GAP = 28
+const CARD_W = 720
+const CARD_H = 405           // 16:9
+const GAP = 48
 
-/** 걸러낸 뒤 남은 칸을 원래 간격 그대로 왼쪽에 붙여 다시 세운다.
- *  사라진 칸이 있던 만큼 가로로 빈 자리가 생기는데, 그대로 두면 남은 카드가
- *  화면 밖으로 밀려 "필터가 안 먹는다"로 보인다.
- *  칸 배경은 카드보다 24px 왼쪽에 서므로 그 차이를 되돌린 뒤 같은 양을 함께 옮긴다.
- *  곁가지 레인(4.5 같은 소수 컬럼)은 자기 칸을 갖지 않고 왼쪽 정수 칸을 따라간다. */
-function repackColumns(ns: Node[]): Node[] {
-  const laneOf = (n: Node) => Math.round(n.position.x + (n.type === 'column' ? 24 : 0))
-  const isLane = new Map<number, number>()   // x → 칸 번호
-  for (let i = 0; i < 24; i++) isLane.set(Math.round(laneX(i)), i)
-  const anchors = [...new Set(ns.map(laneOf).filter(x => isLane.has(x)))].sort((a, b) => a - b)
-  if (!anchors.length) return ns
-  const shift = new Map<number, number>()
-  let x = 0
-  for (const a of anchors) {
-    shift.set(a, x - a)
-    const i = isLane.get(a)!
-    x += laneX(i + 1) - laneX(i)
-  }
-  // 정수 칸 사이에 낀 좌표(곁가지)는 바로 왼쪽 칸의 이동량을 그대로 쓴다
-  const shiftFor = (lane: number) => {
-    if (shift.has(lane)) return shift.get(lane)!
-    let best = 0
-    for (const a of anchors) if (a <= lane) best = shift.get(a)!
-    return best
-  }
-  return ns.map(n => {
-    const dx = shiftFor(laneOf(n))
-    return dx === 0 ? n : { ...n, position: { x: n.position.x + dx, y: n.position.y } }
-  })
+// ══ 슬라이드 렌더러 · 카드와 발표 화면이 같은 것을 그린다 ═════════════
+function Img({ remote, page, shot, className }: { remote?: string; page?: string; shot?: string; className?: string }) {
+  const src = shot || (remote?.startsWith('/') || remote?.startsWith('data:') ? remote : shotUrl(remote, page))
+  if (!src) return <div className={`sl-ph ${className ?? ''}`}>{t('No photo')}</div>
+  return <img className={className} src={src} alt=""
+    onError={e => { (e.currentTarget as HTMLImageElement).style.visibility = 'hidden' }} />
 }
 
-// 카드 높이는 내용에 따라 크게 달라진다(사진 한 장이 200px을 먹는다).
-// 고정 간격으로 쌓으면 반드시 겹치므로, 글이 몇 줄로 접히는지까지 재서 높이를 낸다.
-// 한글은 라틴 문자보다 두 배 넓다 — 글자 수가 아니라 폭으로 세야 맞는다.
-function visualWidth(s: string): number {
-  let n = 0
-  for (const ch of s) n += /[ᄀ-ᇿ぀-ヿ㄰-㆏一-鿿가-힯]/.test(ch) ? 2 : 1
-  return n
-}
-function wrapCount(s: string, unitsPerLine: number): number {
-  return Math.max(1, Math.ceil(visualWidth(s) / Math.max(8, unitsPerLine)))
-}
-const LINE_H = 19
-function measureCard(n: BoardNode, w: number, isDesign: boolean): number {
-  if (isDesign) return 430
-  const units = Math.floor((w - 26) / 6.6)          // 내부 폭 ÷ 글자 폭
-  let h = 34                                         // 위아래 패딩 + 제목 여백
-  h += wrapCount(n.title, Math.floor(units * 0.9)) * LINE_H + 6
-  if (n.modelUrl) h += 198
-  else if (n.imageUrl) h += 222
-  for (const line of n.body) h += wrapCount(line, units) * LINE_H
-  // 프롬프트 카드는 본문이 1000자를 넘는다. 전문을 다 펼치면 열 하나가 프롬프트로
-  // 가득 차므로 높이를 잘라 두고, 나머지는 카드 안 스크롤(bn-scroll)로 읽게 한다.
-  if (n.kind === 'prompt') return Math.min(Math.max(h, 76), 280)
-  return Math.max(h, 76)
+/** 디자인 방향 다섯 줄 · 축마다 짧은 아이콘과 첫 구절만 */
+// Record<string,string> 주석을 붙이면 i18n 감사가 SVG 경로를 문구로 오인한다 · as const 로 둔다
+const AXIS_GLYPH = {
+  preserve: 'M8 2l5 6-5 6-5-6z',                            // 다이아
+  transform: 'M3 8a5 5 0 1 1 1.5 3.5M3 8V4.5M3 8h3.5',      // 회전
+  replace: 'M3 5h8m0 0-2.5-2.5M11 5 8.5 7.5M13 11H5m0 0 2.5-2.5M5 11l2.5 2.5', // 교환
+  combine: 'M8 3v10M3 8h10',                                 // 더하기
+  complement: 'M8 2a6 6 0 0 0 0 12z',                        // 반달
+  avoid: 'M8 2a6 6 0 1 0 0 12A6 6 0 0 0 8 2zM4 12 12 4',    // 금지
+} as const
+/** 첫 문장을 칸 폭(두 줄)에 맞게 요약한다 · 말줄임표는 붙이지 않는다 —
+ *  "…"는 기계 티가 나고 읽다 만 느낌을 준다. 낱말·구두점 경계에서 끊는다. */
+function firstClause(s?: string, max = 34): string {
+  if (!s) return ''
+  const cut = s.split(/(?<=[.다요!?])\s/)[0] ?? s
+  if (cut.length <= max) return cut
+  const head = cut.slice(0, max)
+  const brk = Math.max(head.lastIndexOf(' '), head.lastIndexOf('·'), head.lastIndexOf(','))
+  return head.slice(0, Math.max(16, brk)).replace(/[,·\s]+$/, '')
 }
 
-// ── 노드 렌더러 ──────────────────────────────────────────────────────
-// 편집 모드에서는 제목과 본문을 그 자리에서 고칠 수 있다.
-// contentEditable을 쓰면 캔버스 드래그와 싸우므로, 클릭했을 때만 textarea로 바꾼다.
-interface NodeEdit {
-  editing: boolean
-  light?: boolean
-  onTitle: (id: string, v: string) => void
-  onBody: (id: string, v: string[]) => void
-  onHide: (id: string) => void
-}
-
-function EditableText({ value, onSave, className, multiline, editing }: {
-  value: string; onSave: (v: string) => void; className: string; multiline?: boolean; editing: boolean
-}) {
-  const [open, setOpen] = useState(false)
-  const [draft, setDraft] = useState(value)
-  useEffect(() => { setDraft(value) }, [value])
-  if (!editing || !open) {
+export function SlideView({ slide }: { slide: SlidePayload }) {
+  const [showPrompt, setShowPrompt] = useState(false)
+  if (slide.type === 'cover') {
     return (
-      <div className={className}
-        onDoubleClick={editing ? (e) => { e.stopPropagation(); setOpen(true) } : undefined}
-        title={editing ? t('Double-click to edit') : undefined}
-        style={editing ? { cursor: 'text' } : undefined}>
-        {value || (editing ? <span className="hint">{t('Double-click to write')}</span> : null)}
+      <div className="sl sl-cover">
+        {slide.imageUrl && <Img remote={slide.imageUrl} className="sl-cover-bg" />}
+        <div className="sl-cover-txt">
+          <h1>{slide.title}</h1>
+          <p className="sl-sub">{slide.subtitle}</p>
+          <ul>{slide.lines.map((l, i) => <li key={i}>{l}</li>)}</ul>
+        </div>
       </div>
     )
   }
-  const commit = () => { setOpen(false); if (draft !== value) onSave(draft) }
-  return multiline ? (
-    <textarea className="bn-edit" value={draft} autoFocus rows={Math.max(2, draft.split('\n').length)}
-      onChange={e => setDraft(e.target.value)} onBlur={commit}
-      onKeyDown={e => { if (e.key === 'Escape') { setDraft(value); setOpen(false) } }}
-      onPointerDown={e => e.stopPropagation()} />
-  ) : (
-    <input className="bn-edit" value={draft} autoFocus
-      onChange={e => setDraft(e.target.value)} onBlur={commit}
-      onKeyDown={e => { if (e.key === 'Enter') commit(); if (e.key === 'Escape') { setDraft(value); setOpen(false) } }}
-      onPointerDown={e => e.stopPropagation()} />
+  if (slide.type === 'refs') {
+    return (
+      <div className="sl sl-refs">
+        <header>{slide.heading}</header>
+        <div className="sl-refrow">
+          {slide.cells.map(c => (
+            <div className="sl-refcell" key={c.slot}>
+              <span className="n">#{c.slot}</span>
+              <Img remote={c.imageUrl} shot={c.shot} />
+              <b>{c.title}</b>
+              <span className="s">{c.subtitle}</span>
+              <span className="p">{c.price ? `${c.price.toLocaleString()} ${c.currency ?? ''}` : t('price unconfirmed')}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    )
+  }
+  if (slide.type === 'design') {
+    // 이미지 스포트라이트 카드 · 좌 레퍼런스, 중간 방향 다섯 줄, 우측을 생성 이미지가 채운다
+    const { pair, ref, target } = slide
+    const out = pair.versions[pair.versions.length - 1]
+    const d = pair.direction
+    const rows: { k: string; label: string }[] = d ? [
+      { k: 'preserve', label: firstClause(d.preserve) },
+      { k: 'transform', label: firstClause(d.transform) },
+      { k: 'replace', label: firstClause(d.replace) },
+      { k: 'combine', label: firstClause(d.combine) },
+      ...(d.complement ? [{ k: 'complement', label: firstClause(d.complement) }] : []),
+      { k: 'avoid', label: firstClause(d.avoid) },
+    ].filter(r => r.label) : []
+    return (
+      <div className="sl sl-spot">
+        <header className="sp-head">
+          <span className="sp-target">{target}</span>
+          <b>{pair.id} · {pair.title}</b>
+          {pair.score != null && <span className="sp-score">{pair.score}</span>}
+        </header>
+        <div className="sp-cols">
+          <aside className="sp-ref">
+            <span className="sp-lbl">REFERENCE</span>
+            <span className="sp-refname">{pair.setName ?? (ref ? `${t('Ref')} #${ref.slot}` : '')}</span>
+            {ref && <div className="sp-refim"><Img remote={ref.imageUrl} shot={ref.shot} /></div>}
+            {ref && <span className="sp-refsub">{ref.title}</span>}
+          </aside>
+          <div className="sp-dir">
+            <span className="sp-lbl">DESIGN DIRECTION</span>
+            {rows.map(r => (
+              <div className="sp-row" key={r.k}>
+                <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true">
+                  <path d={AXIS_GLYPH[r.k as keyof typeof AXIS_GLYPH]} fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round" strokeLinecap="round" />
+                </svg>
+                <span>{r.label}</span>
+              </div>
+            ))}
+            <button className="sp-full" onClick={e => { e.stopPropagation(); setShowPrompt(v => !v) }}>
+              {showPrompt ? t('Hide prompt') : t('Full prompt')} ↗
+            </button>
+          </div>
+          <figure className="sp-out">
+            {out ? <img src={out.url} alt="" /> : <div className="sl-ph">{pair.error ? t('generation failed') : t('pending')}</div>}
+            {pair.versions.length > 1 && <span className="cap">v{pair.versions.length}</span>}
+          </figure>
+        </div>
+        {showPrompt && (
+          <div className="sp-prompt" onClick={e => e.stopPropagation()}>
+            <button className="sp-x" onClick={() => setShowPrompt(false)} aria-label={t('Close')}>✕</button>
+            <pre>{pair.prompt}</pre>
+          </div>
+        )}
+      </div>
+    )
+  }
+  // set 카드
+  return (
+    <div className="sl sl-set">
+      <header><b>{slide.name}</b><span>{slide.kind}</span><em>{slide.concept}</em></header>
+      <div className="sl-3col">
+        <div className="sl-setleft">
+          {slide.conceptImg && <img src={slide.conceptImg} alt="" />}
+          <div className="sl-palette">{slide.palette.slice(0, 6).map((c, i) => <span key={i}>{c}</span>)}</div>
+          <div className="sl-meta">{slide.metal} · {slide.surface} · {slide.stones}</div>
+          <div className="sl-meta">{t('Motif')}: {slide.motif}</div>
+        </div>
+        <div className="sl-setitems">
+          {slide.items.map(it => (
+            <div className="sl-item" key={it.item}>
+              {it.imageUrl ? <img src={it.imageUrl} alt="" /> : <div className="sl-ph" />}
+              <b>{it.item}</b>
+              <span>{it.feature}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <footer>
+        <span className="sl-dna">{slide.dna.slice(0, 3).join(' · ')}</span>
+        <span className="sl-story">{slide.story.slice(0, 160)}</span>
+      </footer>
+    </div>
   )
 }
 
-function StepNode({ data, selected }: { data: { n: BoardNode; ed?: NodeEdit }; selected?: boolean }) {
-  const { n, ed } = data
-  const editing = !!ed?.editing
-  // 내가 붙인 메모는 편집 모드를 켜지 않아도 바로 지울 수 있어야 한다.
-  const isNote = n.tone === ('note' as typeof n.tone)
+// ══ ReactFlow 노드들 ═════════════════════════════════════════════════
+function SlideNode({ data }: { data: { n: BoardNode } }) {
   return (
-    <div className={`bnode tone-${n.tone ?? 'neutral'}${editing ? ' editing' : ''}${isNote ? ' is-note' : ''}`}
-      style={{ width: '100%', height: '100%' }}>
-      {/* 카드를 고르면 모서리를 끌어 크기를 바꿀 수 있다 · 크기는 보드 편집에 저장된다 */}
-      {/* 크기 조절 손잡이는 **스크롤되는 안쪽 상자 밖**에 둔다. 안에 넣으면 손잡이가
-          글 영역에 붙어 버려서, 카드가 아니라 글 상자를 잡는 것처럼 보이고
-          손잡이 자체가 스크롤을 따라 움직인다. 카드 테두리에 붙어 있어야 한다. */}
-      <NodeResizer isVisible={!!selected} minWidth={220} minHeight={90} keepAspectRatio={false}
-        handleClassName="handle" lineClassName="line" />
-      <Handle type="target" position={Position.Left} />
-      {(editing || isNote) && (
-        <button className="bn-x" title={t(isNote ? 'Delete this note' : 'Hide this card')}
-          onPointerDown={e => e.stopPropagation()}
-          onClick={() => ed?.onHide(n.id)}>✕</button>
+    <div className={`slidecard tone-${data.n.tone ?? 'neutral'}`} style={{ width: CARD_W, height: CARD_H }}>
+      <SlideView slide={data.n.slide} />
+    </div>
+  )
+}
+
+interface UNodeData extends Record<string, unknown> { u: UserNode; onChange: (u: UserNode) => void; onDelete: (id: string) => void; onOpenPin: (id: string) => void }
+
+function NoteNode({ data }: { data: UNodeData }) {
+  const { u } = data
+  const [editing, setEditing] = useState(!u.text)
+  // 말줄임 대신 글자 크기가 내려간다 · 짧으면 13px, 길수록 11px 까지
+  const fs = (u.text?.length ?? 0) > 220 ? 11 : (u.text?.length ?? 0) > 120 ? 12 : 13
+  return (
+    <div className="bnote" style={{ background: u.color ?? '#F3E4B4', fontSize: fs }} onDoubleClick={() => setEditing(true)}>
+      {editing ? (
+        <textarea autoFocus defaultValue={u.text ?? ''} className="nodrag"
+          onBlur={e => { setEditing(false); data.onChange({ ...u, text: e.target.value }) }} />
+      ) : (
+        <p>{u.text || t('Double-click to write')}</p>
       )}
-      <div className="bn-scroll">
-        <EditableText className="bn-t" value={n.title} editing={editing}
-          onSave={v => ed?.onTitle(n.id, v)} />
-        {/* 착용 컷처럼 이미지가 붙는 노드는 사진이 먼저 보여야 한다.
-            **loading="lazy" 를 쓰면 안 된다.** 보드는 스크롤 컨테이너가 아니라 transform 으로
-            움직이는 캔버스다. 브라우저의 지연 로딩은 스크롤을 기준으로 다시 판단하는데
-            React Flow 는 스크롤을 일으키지 않아서, 화면 안에 들어와 있어도 요청 자체가
-            끝내 나가지 않는다. 조사 사진 카드가 통째로 빈 칸으로 남아 있었다. */}
-        {n.imageUrl && !n.modelUrl && <img className="bn-img" src={n.imageUrl} alt="" />}
-        {/* 3D는 카드 안에서 바로 돌려 본다 */}
-        {n.modelUrl && <ModelViewer url={n.modelUrl} poster={n.imageUrl} height={186} light={ed?.light} />}
-        <EditableText className="bn-body" multiline editing={editing}
-          value={n.body.join('\n')}
-          onSave={v => ed?.onBody(n.id, v.split('\n').filter(x => x.trim()))} />
-      </div>
-      <Handle type="source" position={Position.Right} />
+      <span className="bnote-by">{u.author}</span>
+      <button className="bx nodrag" onClick={() => data.onDelete(u.id)} aria-label={t('Delete')}>✕</button>
     </div>
   )
 }
 
-function DesignFlowNode({ data, selected }: { data: { n: BoardNode; st: RunState; onVerdict: any }; selected?: boolean }) {
-  const { n, st, onVerdict } = data
-  if (!n.design) return null
+function TextNode({ data }: { data: UNodeData }) {
+  const { u } = data
+  const [editing, setEditing] = useState(!u.text)
   return (
-    <div style={{ width: '100%', height: '100%', minWidth: 268 }}>
-      <NodeResizer isVisible={!!selected} minWidth={268} minHeight={320} keepAspectRatio={false}
-        handleClassName="handle" lineClassName="line" />
-      <Handle type="target" position={Position.Left} />
-      <DesignCard d={n.design} signals={st.signals} stagePassed={{ s3: true, s4: true }} onVerdict={onVerdict} />
-      <Handle type="source" position={Position.Right} />
+    <div className="btext" onDoubleClick={() => setEditing(true)}>
+      {editing ? (
+        <textarea autoFocus defaultValue={u.text ?? ''} className="nodrag"
+          onBlur={e => { setEditing(false); data.onChange({ ...u, text: e.target.value }) }} />
+      ) : (
+        <p>{u.text || t('Double-click to write')}</p>
+      )}
+      <button className="bx nodrag" onClick={() => data.onDelete(u.id)} aria-label={t('Delete')}>✕</button>
     </div>
   )
 }
 
-function ColumnNode({ data, selected }: { data: { title: string; note: string; h: number; w?: number }; selected?: boolean }) {
+function ImageNode({ data }: { data: UNodeData }) {
+  const { u } = data
   return (
-    <div className="bcol" style={{ height: '100%', width: '100%', minHeight: data.h, minWidth: 0 }}>
-      {/* 칸(레인)도 늘리고 줄일 수 있다 */}
-      <NodeResizer isVisible={!!selected} minWidth={240} minHeight={240} keepAspectRatio={false}
-        handleClassName="handle" lineClassName="line" />
-      <div className="bcol-h">
-        <span className="bcol-t">{t(data.title)}</span>
-        <span className="bcol-n">{t(data.note)}</span>
-      </div>
+    <div className="bimg">
+      {u.url && <img src={u.url} alt="" draggable={false} />}
+      <span className="bnote-by">{u.author}</span>
+      <button className="bx nodrag" onClick={() => data.onDelete(u.id)} aria-label={t('Delete')}>✕</button>
     </div>
   )
 }
 
-const nodeTypes = { step: StepNode, designFlow: DesignFlowNode, column: ColumnNode }
-
-function build(st: RunState, onVerdict: any, edits: BoardEdits, ed: NodeEdit): { nodes: Node[]; edges: Edge[] } {
-  const model = buildBoardModel(st)
-  const nodes: Node[] = []
-  const hidden = new Set(edits.hidden)
-
-  // 사용자가 고친 문구를 원본 위에 덧칠한다
-  const apply = (n: BoardNode): BoardNode => ({
-    ...n,
-    title: edits.titles[n.id] ?? n.title,
-    body: edits.bodies[n.id] ?? n.body,
-  })
-
-  // 치수와 핸들 위치를 명시한다 · DOM 측정을 기다리지 않고 연결선이 즉시 계산된다
-  const visible = model.nodes.filter(n => !hidden.has(n.id)).map(apply)
-  const noteNodes: BoardNode[] = edits.notes.filter(n => !hidden.has(n.id)).map(n => ({
-    id: n.id, kind: 'selection', column: n.column, row: n.row,
-    title: edits.titles[n.id] ?? n.title,
-    body: edits.bodies[n.id] ?? n.body,
-    tone: 'note' as any,
-  }))
-  const cards = [...visible, ...noteNodes].map(n => {
-    const isDesign = n.kind === 'design' && !!n.design
-    // 사용자가 크기를 바꿨으면 그 크기를 쓴다 · 연결선 핸들도 그 크기를 따라간다
-    const saved = edits.sizes?.[n.id]
-    const w = saved?.w ?? (isDesign ? 268 : (n as { isPitch?: boolean }).isPitch ? 320 : 352)
-    const h = saved?.h ?? measureCard(n, w, isDesign)
-    return { n, isDesign, w, h }
-  })
-
-  // 컬럼별로 실제 높이를 쌓아 내린다. 모델의 row 값은 순서만 정하고, 좌표는 여기서 만든다.
-  // (row × 고정간격으로 두면 사진이 붙은 카드가 아래 카드를 덮는다.)
-  const laid = new Map<string, { x: number; y: number }>()
-  const colBottom = new Map<number, number>()
-  const byColumn = new Map<number, typeof cards>()
-  for (const c of cards) {
-    const arr = byColumn.get(c.n.column) ?? []
-    arr.push(c)
-    byColumn.set(c.n.column, arr)
-  }
-  for (const [col, arr] of byColumn) {
-    arr.sort((a, b) => a.n.row - b.n.row)
-    let y = 0
-    for (const c of arr) {
-      laid.set(c.n.id, { x: colX(col), y })
-      y += c.h + CARD_GAP
-    }
-    // 정수 컬럼 배경 높이는 그 컬럼과 곁가지 레인(4.5 등) 중 큰 쪽을 따른다
-    const key = Math.floor(col)
-    colBottom.set(key, Math.max(colBottom.get(key) ?? 0, y))
-  }
-
-  // 컬럼 배경 · 단계 구분
-  const allColumns = [...model.columns, ...edits.extraColumns]
-  allColumns.forEach((c, i) => {
-    const colH = Math.max((colBottom.get(i) ?? 0) + 120, 360)
-    const colW = i === 4 ? 700 : 396
-    const savedCol = edits.sizes?.[`col-${c.key}`]
-    nodes.push({
-      id: `col-${c.key}`, type: 'column',
-      position: { x: colX(i) - 24, y: -86 },
-      width: savedCol?.w ?? colW, height: savedCol?.h ?? colH,
-      data: { title: c.title, note: c.note, h: colH, w: colW },
-      selectable: true, draggable: false, zIndex: -1,
-    })
-  })
-
-  cards.forEach(({ n, isDesign, w, h }) => {
-    nodes.push({
-      id: n.id,
-      type: isDesign ? 'designFlow' : 'step',
-      width: w, height: h,
-      handles: [
-        { type: 'target', position: Position.Left, x: 0, y: h / 2, width: 1, height: 1 },
-        { type: 'source', position: Position.Right, x: w, y: h / 2, width: 1, height: 1 },
-      ],
-      data: isDesign ? { n, st, onVerdict } : { n, ed },
-      // 사용자가 옮긴 카드는 그 자리를 지킨다
-      position: edits.positions[n.id] ?? laid.get(n.id) ?? { x: colX(n.column), y: n.row * ROW_Y },
-    })
-  })
-
-  const edges: Edge[] = model.edges.filter(e => !hidden.has(e.from) && !hidden.has(e.to)).map((e, i) => ({
-    id: `e${i}`,
-    source: e.from,
-    target: e.to,
-    label: e.label,
-    animated: !!e.weight && e.weight >= 0.35,
-    style: {
-      stroke: e.dashed ? '#54585F' : '#4A50D6',
-      strokeWidth: e.weight ? Math.max(1.2, e.weight * 5) : 1.2,
-      strokeDasharray: e.dashed ? '5 4' : undefined,
-    },
-    labelStyle: { fill: '#A0A4AC', fontSize: 10, fontWeight: 600 },
-    labelBgStyle: { fill: '#101014', fillOpacity: 0.9 },
-    labelBgPadding: [4, 2] as [number, number],
-    labelBgBorderRadius: 3,
-    markerEnd: { type: MarkerType.ArrowClosed, width: 14, height: 14, color: e.dashed ? '#54585F' : '#4A50D6' },
-  }))
-
-  return { nodes, edges }
-}
-
-function BoardInner({ st, onVerdict, runId }: { st: RunState; onVerdict: any; runId: string }) {
+function FrameNode({ data }: { data: UNodeData }) {
+  const { u } = data
   const [editing, setEditing] = useState(false)
-  const [edits, setEdits] = useState<BoardEdits>(() => loadEdits(runId))
-  useEffect(() => { saveEdits(runId, edits) }, [runId, edits])
+  return (
+    <div className="bframe" style={{ width: u.w ?? 920, height: u.h ?? 580 }}>
+      {editing ? (
+        <input autoFocus className="bframe-t nodrag" defaultValue={u.title ?? ''}
+          onBlur={e => { setEditing(false); data.onChange({ ...u, title: e.target.value }) }}
+          onKeyDown={e => { if (e.key === 'Enter') (e.target as HTMLInputElement).blur() }} />
+      ) : (
+        <span className="bframe-t" onDoubleClick={() => setEditing(true)}>{u.title || t('Frame')}</span>
+      )}
+      <button className="bx nodrag" onClick={() => data.onDelete(u.id)} aria-label={t('Delete')}>✕</button>
+    </div>
+  )
+}
 
-  // 편집 콜백은 안정적이어야 한다. 매 렌더마다 새로 만들면 노드가 통째로 다시 그려진다.
-  const [light, setLight] = useState(() => (localStorage.getItem('vringon.boardTheme') ?? 'light') === 'light')
-  const ed = useMemo<NodeEdit>(() => ({
-    editing,
-    light,
-    onTitle: (id, v) => setEdits(e => ({ ...e, titles: { ...e.titles, [id]: v } })),
-    onBody: (id, v) => setEdits(e => ({ ...e, bodies: { ...e.bodies, [id]: v } })),
-    // 내가 만든 메모는 지운다. 파이프라인이 만든 카드는 숨기기만 한다 (다시 계산하면 돌아온다)
-    onHide: (id) => setEdits(e => e.notes.some(n => n.id === id)
-      ? { ...e, notes: e.notes.filter(n => n.id !== id) }
-      : { ...e, hidden: [...new Set([...e.hidden, id])] }),
-  }), [editing, light])
+function ShapeNode({ data }: { data: UNodeData }) {
+  const { u } = data
+  return (
+    <div className="bshape" style={{ width: u.w ?? 260, height: u.h ?? 170 }}>
+      <button className="bx nodrag" onClick={() => data.onDelete(u.id)} aria-label={t('Delete')}>✕</button>
+    </div>
+  )
+}
 
-  const initial = useMemo(() => build(st, onVerdict, edits, ed), [st, onVerdict, edits, ed])
-  const [nodes, setNodes] = useState<Node[]>(initial.nodes)
-  const [present, setPresent] = useState(false)
-  const [presentIdx, setPresentIdx] = useState(0)
-  const [showNotes, setShowNotes] = useState(true)
-  const [miro, setMiro] = useState<{ busy: boolean; msg: string | null }>({ busy: false, msg: null })
-  const [showEdges, setShowEdges] = useState(true)
-  useEffect(() => {
-    localStorage.setItem('vringon.boardTheme', light ? 'light' : 'dark')
-    // 보드도 attribute만 바꾸면 일부 배경이 옛 테마 값으로 남는다. 강제 재계산.
-    const el = document.querySelector('.board') as HTMLElement | null
-    if (el) { const p = el.style.display; el.style.display = 'none'; void el.offsetHeight; el.style.display = p }
-  }, [light])
+function PinNode({ data }: { data: UNodeData }) {
+  const { u } = data
+  return (
+    <button className="bpin nodrag" style={{ background: u.color ?? '#E4573D' }}
+      onClick={() => data.onOpenPin(u.id)} title={u.thread?.[0]?.text ?? ''}>
+      <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true">
+        <path d="M8 1.5a4.5 4.5 0 0 1 4.5 4.5c0 3.2-4.5 8.5-4.5 8.5S3.5 9.2 3.5 6A4.5 4.5 0 0 1 8 1.5z" fill="#fff" />
+      </svg>
+      {(u.thread?.length ?? 0) > 0 && <em>{u.thread!.length}</em>}
+    </button>
+  )
+}
+
+const nodeTypes = {
+  slide: SlideNode, note: NoteNode, text: TextNode, image: ImageNode,
+  pin: PinNode, frame: FrameNode, shape: ShapeNode,
+}
+
+// ── 문서 적용 · 서버의 applyOps 와 같은 규칙 ─────────────────────────
+function applyOpsLocal(doc: BoardDoc, ops: BoardOp[]) {
+  for (const op of ops) {
+    if (op.t === 'snode') doc.snodes[op.node.id] = op.node
+    else if (op.t === 'unode') doc.unodes[op.node.id] = op.node
+    else if (op.t === 'udel') delete doc.unodes[op.id]
+    else if (op.t === 'pos') doc.pos[op.id] = op.xy
+  }
+}
+
+function BoardInner({ st, runId }: { st: RunState | null; runId: string }) {
   const rf = useReactFlow()
-  const positionsRef = useRef<Record<string, { x: number; y: number }>>({})
+  const model = useMemo(() => st ? buildBoardModel(st) : null, [st])
 
-  // 종류 필터 · 보드가 빽빽해지면 한 갈래만 따라가고 싶어진다
-  const [kindFilter, setKindFilter] = useState<'all' | 'prompt' | 'design' | 'selection'>('all')
-  // 도구 · 'note'/'lane' 을 고른 뒤 보드를 누르면 그 자리에 놓인다.
-  // 실제로 동작하는 것만 둔다. 눌러도 아무 일 없는 도구는 만들지 않는다.
-  const [tool, setTool] = useState<'select' | 'note' | 'lane'>('select')
-  const [zoomPct, setZoomPct] = useState(100)
+  // ── 실시간 연결 · undefined = 연결 시도 중 ─────────────────────────
+  const [live, setLive] = useState<LiveBoard | null | undefined>(undefined)
+  const docRef = useRef<BoardDoc>({ rev: 0, snodes: {}, unodes: {}, pos: {}, updatedAt: 0 })
+  const [tick, setTick] = useState(0)
+  const bump = () => setTick(v => v + 1)
+  const [cursors, setCursors] = useState<Record<string, CursorMsg & { at: number }>>({})
+  const [openPin, setOpenPin] = useState<string | null>(null)
+  const [showPins, setShowPins] = useState(true)
+  const [nameDraft, setNameDraft] = useState(myName())
 
-  const [filterEmpty, setFilterEmpty] = useState(false)
   useEffect(() => {
-    const KEEP: Record<string, string[]> = {
-      prompt: ['prompt'],
-      // appendix 는 어느 갈래에도 넣지 않는다. 전제·한계를 적은 꼬리말이라
-      // 디자인 쪽에 끼워 두면 **디자인이 하나도 없는 런에서도 카드가 한 장 남아**
-      // "비어 있다"고 알리지 못하고 텅 빈 보드처럼 보인다.
-      design: ['design'],
-      selection: ['selection'],
-    }
-    const allow = KEEP[kindFilter]
-    const all = build(st, onVerdict, edits, ed).nodes
-    const kindOf = (n: Node) => String((n.data as { n?: BoardNode })?.n?.kind ?? '')
-    const kept = all.filter(n => !allow || n.type === 'column' || allow.includes(kindOf(n)))
-    const cards = kept.filter(n => n.type !== 'column')
-    setFilterEmpty(!!allow && cards.length === 0)
-    // 카드가 하나도 안 남은 칸은 배경만 덩그러니 남는다. 칸 배경은 카드보다 24px 왼쪽에
-    // 놓이므로, 그 자리에 카드가 있는 칸만 남긴다.
-    const visible = allow
-      ? kept.filter(n => n.type !== 'column'
-        || cards.some(c => Math.abs(c.position.x - n.position.x - 24) < 1))
-      : kept
-    const placed = visible.map(n => positionsRef.current[n.id] ? { ...n, position: positionsRef.current[n.id] } : n)
-    // 걸러내고 남은 칸을 왼쪽으로 당겨 붙인다. 사라진 칸이 있던 만큼 가로로 빈 자리가 생기는데,
-    // 그대로 두면 카메라 위치에 따라 남은 카드가 통째로 화면 밖이 되어 "필터가 안 먹는다"로 보인다.
-    // (fitView 로도 잡히지만 카메라에만 기대면 첫 화면이 어디였는지에 따라 결과가 갈린다.)
-    setNodes(allow ? repackColumns(placed) : placed)
-  }, [st, onVerdict, edits, ed, kindFilter])
-
-  // 필터를 바꾸면 화면을 남은 카드로 다시 맞춘다. 이게 없으면 카메라가 그대로 있어서
-  // 남은 칸이 화면 밖일 때 필터가 아무 일도 안 한 것처럼 보인다.
-  const firstFit = useRef(true)
-  useEffect(() => {
-    if (firstFit.current) { firstFit.current = false; return }
-    const t = setTimeout(() => rf.fitView({ duration: 400, padding: 0.14 }), 60)
-    return () => clearTimeout(t)
-  }, [kindFilter, rf])
-
-  // 걸러낸 카드로 가는 선은 함께 지운다. 남겨 두면 끝이 허공에 뜬 선이 그려진다.
-  const baseEdges = useMemo(() => {
-    if (!showEdges) return []
-    const live = new Set(nodes.map(n => n.id))
-    return initial.edges.filter(e => live.has(e.source) && live.has(e.target))
-  }, [showEdges, initial.edges, nodes])
-
-  // 카드를 하나 고르면 그 카드에 닿는 것만 남기고 나머지는 물러난다.
-  // 선을 전부 켜 두면 흐름을 눈으로 따라가는 것 자체가 일이 된다.
-  const focusId = useMemo(() => nodes.find(n => n.selected)?.id ?? null, [nodes])
-  const related = useMemo(() => {
-    if (!focusId) return null
-    const near = new Set<string>([focusId])
-    for (const e of baseEdges) {
-      if (e.source === focusId) near.add(e.target)
-      if (e.target === focusId) near.add(e.source)
-    }
-    return near
-  }, [focusId, baseEdges])
-
-  const visibleEdges = useMemo(() => baseEdges.map(e => {
-    if (!related) return e
-    const on = e.source === focusId || e.target === focusId
-    return { ...e, animated: on, style: { ...(e.style ?? {}), opacity: on ? 1 : 0.08 }, zIndex: on ? 10 : 0 }
-  }), [baseEdges, related, focusId])
-
-  // 고른 카드와 이어지지 않은 카드는 흐리게. 지우지는 않는다 — 전체 지형은 보여야 한다.
-  const shownNodes = useMemo(() => nodes.map(n => {
-    if (!related) return n
-    const on = related.has(n.id)
-    return { ...n, style: { ...(n.style ?? {}), opacity: on ? 1 : 0.16, transition: 'opacity .18s' } }
-  }), [nodes, related])
-
-  // 노드 측정이 늦게 끝나는 환경에서도 첫 화면이 전체 흐름으로 맞춰지게 한다
-  useEffect(() => {
-    const t = setTimeout(() => rf.fitView({ duration: 300, padding: 0.12 }), 120)
-    return () => clearTimeout(t)
-  }, [rf])
-
-  const onNodesChange = useCallback((changes: NodeChange[]) => {
-    setNodes(ns => applyNodeChanges(changes, ns))
-    for (const c of changes) {
-      // 크기 조절 · 손을 뗐을 때만 저장한다. 저장되면 rebuild가 핸들 위치까지 맞춘다.
-      if (c.type === 'dimensions' && c.resizing === false && c.dimensions) {
-        const d = c.dimensions
-        setEdits(e => ({ ...e, sizes: { ...(e.sizes ?? {}), [c.id]: { w: d.width, h: d.height } } }))
-        continue
+    let dead = false
+    let lb: LiveBoard | null = null
+    joinBoard(runId,
+      ops => { applyOpsLocal(docRef.current, ops); bump() },
+      c => setCursors(prev => {
+        if (c.gone) { const { [c.clientId]: _drop, ...rest } = prev; return rest }
+        return { ...prev, [c.clientId]: { ...c, at: Date.now() } }
+      }),
+    ).then(joined => {
+      if (dead) { joined?.close(); return }
+      lb = joined
+      if (joined) docRef.current = joined.doc
+      setLive(joined)
+      // 결과 카드를 문서에 밀어 넣는다 · 방문자는 이걸로 그린다 (바뀐 것만)
+      if (joined && model) {
+        const ops: BoardOp[] = []
+        for (const n of model.nodes) {
+          if (JSON.stringify(joined.doc.snodes[n.id]) !== JSON.stringify(n)) {
+            joined.doc.snodes[n.id] = n
+            ops.push({ t: 'snode', node: n })
+          }
+        }
+        if (ops.length) joined.send(ops)
       }
-      if (c.type !== 'position' || !c.position) continue
-      positionsRef.current[c.id] = c.position
-      // 드래그가 끝났을 때만 저장한다. 이동 중에 매번 쓰면 스토리지가 요동친다.
-      if (c.dragging === false) {
-        const p = c.position
-        setEdits(e => ({ ...e, positions: { ...e.positions, [c.id]: p } }))
-      }
-    }
+      bump()
+    })
+    return () => { dead = true; lb?.close() }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [runId, model])
+
+  // 오래 조용한 커서는 걷는다
+  useEffect(() => {
+    const iv = setInterval(() => {
+      setCursors(prev => {
+        const now = Date.now()
+        const next = Object.fromEntries(Object.entries(prev).filter(([, c]) => now - c.at < 6000))
+        return Object.keys(next).length === Object.keys(prev).length ? prev : next
+      })
+    }, 2000)
+    return () => clearInterval(iv)
   }, [])
 
-  // 메모 카드 · 누른 자리에 연다. 자리를 안 주면 흐름 오른쪽 끝에 쌓는다.
-  const addNote = useCallback((at?: { x: number; y: number }) => {
-    const id = newNoteId()
-    setEdits(e => {
-      const col = Math.max(0, buildBoardModel(st).columns.length - 1)
-      const row = e.notes.filter(n => n.column === col).length + 6
-      return {
-        ...e,
-        notes: [...e.notes, { id, column: col, row, title: t('Note'), body: [t('Double-click to write')] }],
-        // 위치를 함께 저장해야 누른 자리에 그대로 놓인다
-        positions: at ? { ...e.positions, [id]: at } : e.positions,
-      }
+  // ── 편집 보내기 · 문서에 먼저 적용하고(낙관) 서버로 ────────────────
+  const commit = useCallback((ops: BoardOp[]) => {
+    applyOpsLocal(docRef.current, ops)
+    bump()
+    live?.send(ops)
+  }, [live])
+
+  // ── 화면 노드 만들기 · 결과 카드 + 사람이 붙인 것 + 위치 덮어쓰기 ───
+  const slideNodes: BoardNode[] = useMemo(() => {
+    if (model) return model.nodes
+    return Object.values(docRef.current.snodes)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [model, tick, live])
+
+  const unodeData = useCallback((u: UserNode): UNodeData => ({
+    u,
+    onChange: (nu) => commit([{ t: 'unode', node: nu }]),
+    onDelete: (id) => { commit([{ t: 'udel', id }]); setOpenPin(p => p === id ? null : p) },
+    onOpenPin: (id) => setOpenPin(id),
+  }), [commit])
+
+  const builtNodes: Node[] = useMemo(() => {
+    const pos = docRef.current.pos
+    const out: Node[] = slideNodes.map((n, i) => ({
+      id: n.id, type: 'slide',
+      position: pos[n.id] ?? { x: (n.column ?? i % 3) * (CARD_W + GAP), y: (n.row ?? Math.floor(i / 3)) * (CARD_H + GAP) },
+      data: { n }, draggable: true,
+    }))
+    for (const u of Object.values(docRef.current.unodes)) {
+      if (u.kind === 'pin' && !showPins) continue
+      out.push({
+        id: u.id, type: u.kind,
+        position: pos[u.id] ?? { x: u.x, y: u.y },
+        data: unodeData(u), draggable: true,
+        // 프레임·도형은 카드 뒤에 깔린다
+        zIndex: u.kind === 'pin' ? 30 : (u.kind === 'frame' || u.kind === 'shape') ? 0 : 20,
+      })
+    }
+    return out
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [slideNodes, tick, unodeData, showPins])
+
+  const [nodes, setNodes] = useState<Node[]>(builtNodes)
+  useEffect(() => { setNodes(builtNodes) }, [builtNodes])
+  const onNodesChange = useCallback((ch: NodeChange[]) => setNodes(ns => applyNodeChanges(ch, ns)), [])
+  const onNodeDragStop = useCallback((_e: unknown, n: Node) => {
+    commit([{ t: 'pos', id: n.id, xy: { x: Math.round(n.position.x), y: Math.round(n.position.y) } }])
+  }, [commit])
+
+  useEffect(() => {
+    const tm = setTimeout(() => rf.fitView({ duration: 300, padding: 0.1 }), 150)
+    return () => clearTimeout(tm)
+  }, [rf, model, live])
+
+  // ── 커서 보내기 · 8Hz 로 죽인다 ────────────────────────────────────
+  const lastCur = useRef(0)
+  const onMove = useCallback((e: React.PointerEvent) => {
+    if (!live) return
+    const now = Date.now()
+    if (now - lastCur.current < 120) return
+    lastCur.current = now
+    const p = rf.screenToFlowPosition({ x: e.clientX, y: e.clientY })
+    live.sendCursor(Math.round(p.x), Math.round(p.y))
+  }, [live, rf])
+  const onLeave = useCallback(() => { live?.sendCursor(0, 0, true) }, [live])
+
+  // ── 붙이기 · 화면 가운데의 캔버스 좌표에 놓는다 ────────────────────
+  const centerFlow = () => rf.screenToFlowPosition({ x: window.innerWidth / 2, y: window.innerHeight / 2 })
+  const nid = (k: string) => `${k}-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`
+  const addNote = () => {
+    const c = centerFlow()
+    commit([{ t: 'unode', node: { id: nid('note'), kind: 'note', x: c.x, y: c.y, text: '', author: myName(), color: '#FBE89C' } }])
+  }
+  const addText = () => {
+    const c = centerFlow()
+    commit([{ t: 'unode', node: { id: nid('text'), kind: 'text', x: c.x, y: c.y, text: '', author: myName() } }])
+  }
+  const addFrame = () => {
+    const c = centerFlow()
+    commit([{ t: 'unode', node: { id: nid('frame'), kind: 'frame', x: c.x - 460, y: c.y - 290, w: 920, h: 580, title: '', author: myName() } }])
+  }
+  const addShape = () => {
+    const c = centerFlow()
+    commit([{ t: 'unode', node: { id: nid('shape'), kind: 'shape', x: c.x - 130, y: c.y - 85, w: 260, h: 170, author: myName() } }])
+  }
+  const addPin = () => {
+    const c = centerFlow()
+    commit([{ t: 'unode', node: { id: nid('pin'), kind: 'pin', x: c.x, y: c.y, author: myName(), color: myColor(), thread: [] } }])
+  }
+  const fileRef = useRef<HTMLInputElement>(null)
+  const addImage = async (f: File) => {
+    if (!live) return
+    const dataUrl = await new Promise<string>((res, rej) => {
+      const r = new FileReader()
+      r.onload = () => res(String(r.result)); r.onerror = rej
+      r.readAsDataURL(f)
     })
-  }, [st])
+    try {
+      const url = await live.uploadImage(dataUrl)
+      const c = centerFlow()
+      commit([{ t: 'unode', node: { id: nid('img'), kind: 'image', x: c.x, y: c.y, url, author: myName() } }])
+    } catch { /* 실패는 조용히 · 6MB 초과 등 */ }
+  }
 
-  // 칸 추가 · 흐름 오른쪽에 새 단계를 연다
-  const addColumn = useCallback(() => {
-    setEdits(e => {
-      const n = e.extraColumns.length + 1
-      return { ...e, extraColumns: [...e.extraColumns, { key: `extra${n}`, title: tf('{n} · New lane', { n: buildBoardModel(st).columns.length + n }), note: t('Yours to fill') }] }
+  const share = () => {
+    pushShareTarget(runId, 'board')
+    navigator.clipboard?.writeText(shareLink(runId, 'board')).catch(() => undefined)
+  }
+
+  // ── 발표 모드 · 캔버스 위에서 아래로, 왼쪽에서 오른쪽으로 ───────────
+  const presentOrder = useMemo(() => {
+    const pos = docRef.current.pos
+    const entries: { id: string; y: number; x: number; slide?: SlidePayload; u?: UserNode }[] = []
+    slideNodes.forEach((n, i) => {
+      const p = pos[n.id] ?? { x: (n.column ?? i % 3) * (CARD_W + GAP), y: (n.row ?? Math.floor(i / 3)) * (CARD_H + GAP) }
+      entries.push({ id: n.id, x: p.x, y: p.y, slide: n.slide })
     })
-  }, [st])
+    for (const u of Object.values(docRef.current.unodes)) {
+      if (u.kind === 'pin') continue           // 핀은 주석이다 · 발표에 끼우지 않는다
+      const p = pos[u.id] ?? { x: u.x, y: u.y }
+      entries.push({ id: u.id, x: p.x, y: p.y, u })
+    }
+    return entries.sort((a, b) => (a.y - b.y) || (a.x - b.x))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [slideNodes, tick])
 
-  const resetEdits = useCallback(() => {
-    if (!confirm(t('Discard every edit you made on this board?'))) return
-    setEdits({ ...EMPTY_EDITS })
-    positionsRef.current = {}
-  }, [])
-
-  // 발표 순서 = 보드의 논리 순서 그대로.
-  // 화면에 실제로 있는 카드만 넣는다. 걸러낸 카드까지 순서에 두면 "다음"을 눌러도
-  // 아무 일이 안 일어나는 빈 자리가 생긴다.
-  const focusOrder = useMemo(() => {
-    const live = new Set(nodes.map(n => n.id))
-    return buildBoardModel(st).nodes.map(n => n.id).filter(id => live.has(id))
-  }, [st, nodes])
-
-  const goTo = useCallback((i: number) => {
-    setPresentIdx(Math.max(0, Math.min(focusOrder.length - 1, i)))
-  }, [focusOrder.length])
-
-  const exitPresent = useCallback(() => {
-    setPresent(false)
-    // 끄면 다시 전체가 보이는 자리로 물러난다
-    rf.fitView({ duration: 520, padding: 0.12 })
-  }, [rf])
-
+  const [present, setPresent] = useState(false)
+  const [idx, setIdx] = useState(0)
+  const goTo = useCallback((i: number) => setIdx(Math.max(0, Math.min(presentOrder.length - 1, i))), [presentOrder.length])
   useEffect(() => {
     if (!present) return
-    const n = rf.getNodes().find(x => x.id === focusOrder[presentIdx])
-    // 카드 한 장을 화면에 꽉 채운다. maxZoom 을 열어 두지 않으면 작은 카드는
-    // 기본 배율에 걸려 멀찍이 놓인 채로 남는다 — 확대가 안 되는 것처럼 보였다.
-    if (n) rf.fitView({ nodes: [n], duration: 520, padding: 0.14, maxZoom: 1.9, minZoom: 0.2 })
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') exitPresent()
-      if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); goTo(presentIdx + 1) }
-      if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); goTo(presentIdx - 1) }
+      const el = e.target instanceof Element ? e.target : null
+      if (e.key === ' ' && el?.closest('button')) return
+      if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(idx + 1) }
+      if (e.key === 'ArrowLeft') goTo(idx - 1)
       if (e.key === 'Home') goTo(0)
-      if (e.key === 'End') goTo(focusOrder.length - 1)
+      if (e.key === 'End') goTo(presentOrder.length - 1)
+      if (e.key === 'Escape') setPresent(false)
     }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [present, presentIdx, focusOrder, rf, goTo, exitPresent])
+  }, [present, idx, goTo, presentOrder.length])
 
-  // 공유 · 이 보드를 가리키는 주소를 복사한다.
-  // 다른 기기에서는 그 분석이 없어 열리지 않으므로, 그때는 내보내기를 써야 한다.
-  const share = useCallback(async () => {
-    const url = shareLink(runId, 'board')
-    const ok = await copyText(url)
-    // 복사가 막히는 환경이 있다. 그때는 링크를 그대로 띄워 직접 복사하게 둔다.
-    setMiro({ busy: false, msg: ok ? t('Link copied. It opens this board in a browser that has this run.') : url })
-  }, [runId])
+  const cur = presentOrder[idx]
+  const pinOpenNode = openPin ? docRef.current.unodes[openPin] : null
 
-  const [miroAsk, setMiroAsk] = useState(false)
-  const [miroDraft, setMiroDraft] = useState('')
-  const exportMiro = useCallback(async () => {
-    // 사용자마다 자기 계정 토큰이 필요하다. 없으면 먼저 묻는다.
-    if (!localStorage.getItem('vringon.miroToken')) { setMiroDraft(''); setMiroAsk(true); return }
-    setMiro({ busy: true, msg: t('Converting board for Miro') })
-    try {
-      const model = buildBoardModel(st)
-      const r = await fetch('/api/miro/export', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          miroToken: localStorage.getItem('vringon.miroToken') || undefined,
-          model,
-          meta: {
-            name: `VRINGON review · jewelry ${new Date().toISOString().slice(0, 10)}`,
-            description: 'The reasoning from research through to selection',
-          },
-        }),
-      })
-      const j = await r.json()
-      if (j.mode === 'created') {
-        setMiro({ busy: false, msg: tf('Miro board created · {frames} frames · {items} cards · {connectors} connections', { frames: j.created.frames, items: j.created.items, connectors: j.created.connectors }) })
-        if (j.viewLink) window.open(j.viewLink, '_blank', 'noopener')
-      } else if (j.plan) {
-        const blob = new Blob([JSON.stringify(j.plan, null, 2)], { type: 'application/json' })
-        const a = document.createElement('a')
-        a.href = URL.createObjectURL(blob)
-        a.download = 'miro-board-plan.json'
-        a.click()
-        URL.revokeObjectURL(a.href)
-        setMiro({ busy: false, msg: tf('No Miro token, so the build plan was downloaded instead ({items} cards, {connectors} connections)', { items: j.plan.counts.items, connectors: j.plan.counts.connectors }) })
-      } else {
-        setMiro({ busy: false, msg: j.error ?? t('Export failed') })
-      }
-    } catch (e) {
-      setMiro({ busy: false, msg: String((e as Error).message) })
-    }
-  }, [st])
-
-  const currentNode = present ? buildBoardModel(st).nodes.find(n => n.id === focusOrder[presentIdx]) : undefined
+  const modeLabel = st ? t(MODE_LABEL[st.params.mode]) : t('Shared board')
 
   return (
-    <div className={`board ${light ? 'board-light' : ''}${tool !== 'select' ? ' placing' : ''}`} data-theme={light ? 'light' : 'dark'}>
+    <div className="board" onPointerMove={onMove} onPointerLeave={onLeave}>
       <div className="boardbar">
-        {!present ? (<>
-          {/* ── 윗줄 · 정체와 내보내기 ─────────────────────── */}
-          <div className="bb-row bb-top">
-            <span className="bb-title">{t('Review board')}</span>
-            <span className="bb-sub">{t(TYPE_LABEL[st.params.itemType])} · {nodes.length} {t('cards')}</span>
-            <span className="bb-gap" />
-            <ThemeToggle theme={light ? 'light' : 'dark'} onToggle={() => setLight(v => !v)} />
-            <button className="btn btn-ghost btn-sm" onClick={share} title={t('Copy a link to this board')}>{t('Share')}</button>
-            <button className="btn btn-ghost btn-sm" onClick={() => window.print()}>{t('Board PDF')}</button>
-            {!!st.trendReport && (
-              <span className="btn-split">
-                <button className="btn btn-ghost btn-sm" onClick={() => openTrendReportPdf(st)}>{t('Report PDF')}</button>
-                <button className="btn btn-ghost btn-sm sq" title={t('Save as file')}
-                  onClick={() => saveTrendReportHtml(st)}>↓</button>
-              </span>
-            )}
-            {!!st.dossier && (
-              <span className="btn-split">
-                <button className="btn btn-ghost btn-sm" onClick={() => openDossierPdf(st)}>{t('Season dossier')}</button>
-                <button className="btn btn-ghost btn-sm sq" title={t('Save as file')}
-                  onClick={() => saveDossierHtml(st)}>↓</button>
-              </span>
-            )}
-            <button className="btn btn-primary btn-sm" onClick={exportMiro} disabled={miro.busy}>
-              {miro.busy ? t('Exporting') : t('Export to Miro')}
-            </button>
-          </div>
-
-          {/* ── 아랫줄 · 지금 보이는 것과 조작 ─────────────── */}
-          <div className="bb-row bb-sub-row">
-            {([['all', 'All'], ['prompt', 'Prompts'], ['design', 'Designs'], ['selection', 'Selection']] as const).map(([k, label]) => (
-              <button key={k} className={`chipbtn ${kindFilter === k ? 'on' : ''}`}
-                onClick={() => setKindFilter(k)}>{t(label)}</button>
-            ))}
-            <span className="bar-sep" />
-            <button className={`chipbtn ${showEdges ? 'on' : ''}`}
-              onClick={() => setShowEdges(v => !v)} title={t('Show the lines between nodes')}>{t('Links')}</button>
-            <button className={`chipbtn ${editing ? 'on' : ''}`}
-              onClick={() => setEditing(v => !v)} title={t('Double-click any card to rewrite it')}>{t('Edit text')}</button>
-            {(edits.notes.length > 0 || edits.hidden.length > 0 || Object.keys(edits.titles).length > 0 || Object.keys(edits.sizes ?? {}).length > 0) && (
-              <button className="chipbtn" onClick={resetEdits} title={t('Back to the generated board')}>{t('Reset edits')}</button>
-            )}
-            <span className="bb-gap" />
-            <button className="chipbtn" onClick={() => { setPresent(true); setPresentIdx(0) }}>{t('Present')}</button>
-            <button className="chipbtn" onClick={() => rf.fitView({ duration: 400 })}>{t('Fit')}</button>
-          </div>
-        </>) : (<>
-          <span style={{ fontWeight: 700, fontSize: 13 }}>{presentIdx + 1} / {focusOrder.length}</span>
-          <span className="hint">{currentNode?.title}</span>
-          <span className="bar-sep" />
-          <button className="btn btn-ghost btn-sm" onClick={() => goTo(presentIdx - 1)}>{t('Prev')}</button>
-          <button className="btn btn-ghost btn-sm" onClick={() => goTo(presentIdx + 1)}>{t('Next')}</button>
-          <button className="btn btn-ghost btn-sm" onClick={() => setShowNotes(v => !v)}>{t('Notes')} {t(showNotes ? 'On' : 'Off')}</button>
-          <button className="btn btn-ghost btn-sm" onClick={exitPresent}>{t('Exit')}</button>
-        </>)}
+        <div className="bb-row bb-top">
+          <span className="bb-title">{t('Review board')}</span>
+          <span className="bb-sub">{modeLabel} · {tf('{n} cards', { n: builtNodes.length })}</span>
+          {live === null && <span className="bb-off">{t('local only')}</span>}
+          <span className="bb-gap" />
+          {live !== null && (
+            <input className="bb-name" value={nameDraft} title={t('Your name on this board')}
+              onChange={e => setNameDraft(e.target.value)}
+              onBlur={() => { setMyName(nameDraft); setNameDraft(myName()) }} />
+          )}
+          <button className="btn btn-ghost btn-sm" onClick={share}>{t('Share')}</button>
+          <button className="btn btn-primary btn-sm" disabled={!presentOrder.length}
+            onClick={() => { setIdx(0); setPresent(true) }}>{t('Present')}</button>
+        </div>
+        {live === null && (
+          <div className="bb-row"><span className="hint">{t('Realtime collaboration needs the local server. On the static demo the board stays in this browser.')}</span></div>
+        )}
       </div>
 
-      {/* 발표 중에는 화면 양쪽 끝을 눌러 넘긴다. 위쪽 막대의 작은 버튼까지
-          마우스를 올려 두지 않아도 되게, 손이 가는 자리에 크게 둔다. */}
-      {present && (<>
-        <button className="present-nav left" disabled={presentIdx === 0}
-          aria-label={t('Prev')} onClick={() => goTo(presentIdx - 1)}>‹</button>
-        <button className="present-nav right" disabled={presentIdx >= focusOrder.length - 1}
-          aria-label={t('Next')} onClick={() => goTo(presentIdx + 1)}>›</button>
-      </>)}
-
-      {miro.msg && !present && (
-        <div className="board-toast" onClick={() => setMiro(m => ({ ...m, msg: null }))}>{miro.msg}</div>
-      )}
-
-      {/* 하나를 고르면 무엇이 달라졌는지 말해 준다. 갑자기 흐려지면 고장으로 읽힌다. */}
-      {focusId && !present && (
-        <div className="focusnote">
-          {t('Showing what this card connects to.')}
-          <button className="btn btn-ghost btn-sm"
-            onClick={() => setNodes(ns => ns.map(n => ({ ...n, selected: false })))}>{t('Show everything')}</button>
-        </div>
-      )}
-
-      {/* 걸러낸 결과가 비면 왜 비었는지 말해 준다. 빈 화면만 두면 고장으로 읽힌다. */}
-      {filterEmpty && !present && (
-        <div className="board-empty">
-          <b>{t('Nothing in this view')}</b>
-          <span>{kindFilter === 'design'
-            ? t('This run stopped before any design was drawn.')
-            : kindFilter === 'selection'
-            ? t('Nothing has been picked on this run yet.')
-            : t('This run has no cards of that kind.')}</span>
-          <button className="btn btn-ghost btn-sm" onClick={() => setKindFilter('all')}>{t('Show everything')}</button>
-        </div>
-      )}
-
-      {miroAsk && (
-        <div className="dv-modal" onClick={() => setMiroAsk(false)}>
-          <div className="dv-modal-box" style={{ width: 'min(460px,100%)' }} onClick={e => e.stopPropagation()}>
-            <div className="dv-modal-head"><span>{t('Connect your Miro')}</span>
-              <div className="dv-modal-acts"><button className="dv-x" onClick={() => setMiroAsk(false)}>✕</button></div></div>
-            <div style={{ padding: '4px 18px 18px', display: 'flex', flexDirection: 'column', gap: 10 }}>
-              <p className="hint" style={{ lineHeight: 1.6 }}>{t('The board is created in your own Miro account, so it needs your token. It is stored only in this browser.')}</p>
-              <ol style={{ fontSize: 12.5, color: 'var(--text-2)', paddingLeft: 18, lineHeight: 1.7 }}>
-                <li><a href="https://miro.com/app/settings/user-profile/apps" target="_blank" rel="noreferrer" style={{ color: 'var(--accent-hi)' }}>{t('miro.com → Your apps')}</a> {t('and create an app for your team')}</li>
-                <li>{t('Tick the boards:write scope, then Install app and get OAuth token')}</li>
-                <li>{t('Paste the token below')}</li>
-              </ol>
-              <input className="input" type="password" placeholder={t('oauth token')}
-                value={miroDraft} onChange={e => setMiroDraft(e.target.value)} />
-              <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end' }}>
-                <button className="btn btn-ghost btn-sm" onClick={() => setMiroAsk(false)}>{t('Close')}</button>
-                <button className="btn btn-primary btn-sm" disabled={!miroDraft.trim()}
-                  onClick={() => { localStorage.setItem('vringon.miroToken', miroDraft.trim()); setMiroAsk(false); exportMiro() }}>
-                  {t('Save and export')}</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
       <ReactFlow
-        nodes={shownNodes}
-        edges={visibleEdges}
+        nodes={nodes} edges={[]}
         onNodesChange={onNodesChange}
+        onNodeDragStop={onNodeDragStop}
         nodeTypes={nodeTypes}
-        fitView
-        minZoom={0.04}
-        maxZoom={4}
-        zoomOnScroll
-        zoomOnPinch
-        zoomOnDoubleClick
-        panOnScroll={false}
-        preventScrolling
-        selectionOnDrag={false}
+        fitView minZoom={0.05} maxZoom={2.5}
+        zoomOnScroll zoomOnPinch panOnScroll={false} preventScrolling
         proOptions={{ hideAttribution: true }}
-        colorMode={light ? 'light' : 'dark'}
-        onMove={(_, vp) => setZoomPct(Math.round(vp.zoom * 100))}
-        /* 도구를 고른 상태에서는 캔버스를 끄는 대신 놓는다 */
-        panOnDrag={tool === 'select' ? [0, 1, 2] : [1, 2]}
-        onPaneClick={(e) => {
-          if (tool === 'select') return
-          const at = rf.screenToFlowPosition({ x: e.clientX, y: e.clientY })
-          if (tool === 'note') addNote(at)
-          else addColumn()
-          setTool('select')        // 한 번 놓으면 손을 뗀다
-        }}
       >
-        <Background color={light ? '#E3E7EC' : '#1C1C22'} gap={28} />
-        <Controls showInteractive={false} />
-
-        {/* 도구 레일 · 실제로 무언가 일어나는 것만 둔다 */}
-        <div className="btools">
-          {([
-            ['select', t('Select'), 'M5 3.4 18 11.6l-5.4 1.2-2.4 5.2z'],
-            ['note', t('Note'), 'M5.4 4h13.2v10.4L14 19H5.4zM14 19v-4.6h4.6'],
-            ['lane', t('Lane'), 'M4.6 4h4.4v16H4.6zM10.8 4h4.4v16h-4.4zM17 4h2.4v16H17z'],
-          ] as const).map(([k, label, d]) => (
-            <button key={k} className={`btool ${tool === k ? 'on' : ''}`} title={label}
-              onClick={() => {
-                // 칸은 놓을 위치가 없다(열은 항상 오른쪽 끝). 누르는 즉시 추가한다.
-                if (k === 'lane') { addColumn(); return }
-                setTool(k)
-              }}>
-              <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor"
-                strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"><path d={d} /></svg>
-              <span>{label}</span>
-            </button>
+        {/* 다른 사람 커서 · 캔버스 좌표에 붙는다 */}
+        <ViewportPortal>
+          {Object.values(cursors).map(c => (
+            <div className="bcursor" key={c.clientId}
+              style={{ transform: `translate(${c.x}px, ${c.y}px)` }}>
+              <svg viewBox="0 0 16 16" width="15" height="15"><path d="M2 1l5 13 2-5.5L14.5 7z" fill={c.color} stroke="#fff" strokeWidth="1" /></svg>
+              <span style={{ background: c.color }}>{c.name}</span>
+            </div>
           ))}
-        </div>
-
-        {/* 도구를 고른 동안 무엇을 하면 되는지 알려 준다 */}
-        {tool !== 'select' && (
-          <div className="btool-hint">
-            {t(tool === 'note' ? 'Click the board to place a note' : 'Click the board to add a lane')}
-            <button onClick={() => setTool('select')}>{t('Cancel')}</button>
-          </div>
-        )}
-
-        <div className="bzoom">{zoomPct}%</div>
-        <MiniMap pannable zoomable
-          nodeColor={light ? '#D5DAE2' : '#2A2E35'}
-          maskColor={light ? 'rgba(240,242,245,.72)' : 'rgba(10,10,12,.72)'}
-          style={{
-            background: light ? '#FFFFFF' : '#121216',
-            border: `1px solid ${light ? '#E3E7EC' : '#23232A'}`, borderRadius: 8,
-          }} />
+        </ViewportPortal>
       </ReactFlow>
 
-      {present && showNotes && currentNode && (
-        <div className="present-note">
-          <b>{currentNode.title}</b>
-          {currentNode.design
-            ? currentNode.design.rationale.narrative.map((n, i) => <div key={i}>{n}</div>)
-            : currentNode.body.map((b, i) => <div key={i}>{b}</div>)}
-          {currentNode.design?.viewMismatch && (
-            <div style={{ color: 'var(--warn)' }}>{t('Details disagree between views on this one. The gap survived a regeneration and is left visible.')}</div>
-          )}
-          {currentNode.design && (
-            <div style={{ color: 'var(--text-3)', marginTop: 4 }}>
-              {t(TIER_LABEL[currentNode.design.spec.tier] ?? currentNode.design.spec.tier)} · {currentNode.design.rationale.type_placement_reason}
+      {/* ── 붙이기 툴바 · 보드 하단 중앙에 뜬다 ─────────────────────
+          아이콘만, 이름은 title 로. 프레임·도형은 카드 뒤에 깔리는 틀이고,
+          핀은 자리에 다는 댓글이다. Show Pin 토글로 핀만 걷어 볼 수 있다. */}
+      {live !== null && (
+        <div className="btoolbar" role="toolbar" aria-label={t('Board tools')}>
+          <button className="bt-btn" title={t('Frame')} onClick={addFrame}>
+            <svg viewBox="0 0 20 20" width="17" height="17"><path d="M5.5 2v16M14.5 2v16M2 5.5h16M2 14.5h16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
+          </button>
+          <button className="bt-btn" title={t('Shape')} onClick={addShape}>
+            <svg viewBox="0 0 20 20" width="17" height="17"><rect x="3" y="4.5" width="14" height="11" rx="1.5" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>
+          </button>
+          <button className="bt-btn" title={t('Note')} onClick={addNote}>
+            <svg viewBox="0 0 20 20" width="17" height="17"><path d="M4 3h12v9l-4 5H4z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" /><path d="M12 17v-5h4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" /></svg>
+          </button>
+          <button className="bt-btn" title={t('Text')} onClick={addText}>
+            <svg viewBox="0 0 20 20" width="17" height="17"><path d="M4 5V3.5h12V5M10 3.5v13M7.5 16.5h5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" /></svg>
+          </button>
+          <button className="bt-btn" title={t('Image')} onClick={() => fileRef.current?.click()}>
+            <svg viewBox="0 0 20 20" width="17" height="17"><rect x="2.5" y="3.5" width="15" height="13" rx="1.5" fill="none" stroke="currentColor" strokeWidth="1.5" /><circle cx="7" cy="8" r="1.4" fill="currentColor" /><path d="M4 14.5 8.5 10l3 3 2-2 2.5 3.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" /></svg>
+          </button>
+          <button className="bt-btn" title={t('Comment pin')} onClick={addPin}>
+            <svg viewBox="0 0 20 20" width="17" height="17"><path d="M10 2.2a5.4 5.4 0 0 1 5.4 5.4c0 3.8-5.4 10.2-5.4 10.2S4.6 11.4 4.6 7.6A5.4 5.4 0 0 1 10 2.2z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" /><circle cx="10" cy="7.6" r="1.5" fill="currentColor" /></svg>
+          </button>
+          <span className="bt-sep" aria-hidden="true" />
+          <label className="bt-toggle">
+            <span>{t('Show pins')}</span>
+            <button role="switch" aria-checked={showPins} className={`bt-switch ${showPins ? 'on' : ''}`}
+              onClick={() => setShowPins(v => !v)}><i /></button>
+          </label>
+          <input ref={fileRef} type="file" accept="image/*" hidden
+            onChange={e => { const f = e.target.files?.[0]; if (f) addImage(f); e.target.value = '' }} />
+        </div>
+      )}
+
+      {/* 핀 스레드 · 오른쪽에서 열린다 */}
+      {pinOpenNode && (
+        <aside className="pinpanel">
+          <header>
+            <b>{t('Comments')}</b>
+            <span className="hint">{pinOpenNode.author}</span>
+            {/* 핀 자체를 지우는 자리는 여기뿐이다 · 캔버스의 핀은 클릭이 곧 열기라 X 를 못 단다 */}
+            <button className="btn btn-ghost btn-sm" onClick={() => {
+              commit([{ t: 'udel', id: pinOpenNode.id }]); setOpenPin(null)
+            }}>{t('Delete pin')}</button>
+            <button className="bx" onClick={() => setOpenPin(null)} aria-label={t('Close')}>✕</button>
+          </header>
+          <div className="pin-list">
+            {(pinOpenNode.thread ?? []).map(c => (
+              <div className="pin-c" key={c.id}>
+                <b>{c.author}</b>
+                <p>{c.text}</p>
+                <span>{new Date(c.at).toLocaleString()}</span>
+              </div>
+            ))}
+            {!(pinOpenNode.thread ?? []).length && <p className="hint">{t('No comments yet. Write the first one.')}</p>}
+          </div>
+          <PinInput onSend={(text) => {
+            const u = docRef.current.unodes[pinOpenNode.id]
+            if (!u) return
+            const thread = [...(u.thread ?? []), { id: nid('c'), author: myName(), text, at: Date.now() }]
+            commit([{ t: 'unode', node: { ...u, thread } }])
+          }} />
+        </aside>
+      )}
+
+      {present && cur && (
+        <div className="present" role="dialog" aria-label={t('Presentation')}>
+          <div className="present-stage">
+            {cur.slide && <SlideView slide={cur.slide} />}
+            {cur.u?.kind === 'note' && <div className="present-note" style={{ background: cur.u.color ?? '#FBE89C' }}><p>{cur.u.text}</p><span>{cur.u.author}</span></div>}
+            {cur.u?.kind === 'text' && <div className="present-text"><p>{cur.u.text}</p></div>}
+            {cur.u?.kind === 'image' && cur.u.url && <img className="present-img" src={cur.u.url} alt="" />}
+          </div>
+          <button className="present-nav left" disabled={idx === 0} onClick={() => goTo(idx - 1)} aria-label={t('Previous')}>‹</button>
+          <button className="present-nav right" disabled={idx === presentOrder.length - 1} onClick={() => goTo(idx + 1)} aria-label={t('Next')}>›</button>
+          <div className="present-foot">
+            <span className="pf-page">{idx + 1} / {presentOrder.length}</span>
+            <div className="pf-thumbs">
+              {presentOrder.map((n, i) => (
+                <button key={n.id} className={i === idx ? 'on' : ''}
+                  onClick={() => goTo(i)}>{i + 1}</button>
+              ))}
             </div>
-          )}
+            <button className="btn btn-ghost btn-sm" onClick={() => setPresent(false)}>{t('Exit')}</button>
+          </div>
         </div>
       )}
     </div>
   )
 }
 
-export default function Board(props: { st: RunState; onVerdict: any; runId?: string }) {
-  if (props.st.designs.length === 0 && props.st.signals.length === 0) {
-    return <div className="empty" style={{ flex: 1 }}>
-      <div>{t('Nothing on the board yet.')}<br /><span className="hint">{t('Run the agent and the flow from research to selection fills in.')}</span></div>
+function PinInput({ onSend }: { onSend: (text: string) => void }) {
+  const [v, setV] = useState('')
+  const send = () => { const s = v.trim(); if (!s) return; onSend(s); setV('') }
+  return (
+    <div className="pin-input">
+      <input className="input" value={v} placeholder={t('Write a comment')}
+        onChange={e => setV(e.target.value)}
+        onKeyDown={e => { if (e.key === 'Enter') send() }} />
+      <button className="btn btn-primary btn-sm" onClick={send}>{t('Send')}</button>
     </div>
-  }
-  return <ReactFlowProvider><BoardInner {...props} runId={props.runId ?? 'current'} /></ReactFlowProvider>
+  )
+}
+
+export default function Board({ st, runId }: { st: RunState | null; runId: string }) {
+  return <ReactFlowProvider><BoardInner st={st} runId={runId} /></ReactFlowProvider>
 }

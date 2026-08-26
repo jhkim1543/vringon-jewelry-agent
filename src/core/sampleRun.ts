@@ -9,10 +9,17 @@ import { listRuns, saveRun } from './store'
 //   series    · 올린 후프 9장을 실제로 읽어 DNA 를 가르고, 가치 문장과 대조한다
 //   moodboard · 올린 트렌드 PDF 만 근거 · 신호마다 쪽 인용이 붙는다
 // 모드 계약 검사는 `node scripts/mode-audit.mjs` 가 한다. 샘플을 새로 뜨면 반드시 돌릴 것.
+// 3-에이전트 개편 후 샘플 · 새 파이프라인으로 구운 것만 올린다.
+// 옛 알고리즘 샘플(트렌드/시리즈/무드보드)은 새 화면이 읽지 못해 뺐다.
+// 에이전트마다 두 건씩. 지역·품목·방향·타겟을 서로 멀리 벌려 구웠다 —
+// 같은 에이전트라도 입력이 다르면 결과가 갈린다는 것을 보이기 위해서다.
 const SAMPLE_IDS = [
-  'sample_trend_vermeilhoop',
-  'sample_series_silverhoop',
-  'sample_moodboard_hoop',
+  'sample_competitor_ring',
+  'sample_competitor_earrings',
+  'sample_fashion_necklace',
+  'sample_fashion_earrings',
+  'sample_collection_horse',
+  'sample_collection_tide',
 ] as const
 
 export async function ensureSampleRuns() {
@@ -47,9 +54,9 @@ export async function ensureSampleRuns() {
 }
 
 function firstThumb(st: RunState): string | undefined {
-  for (const d of st.designs) {
-    const im = d.images.find(i => i.view !== 'sketch') ?? d.images[0]
-    if (im) return im.url
+  for (const p of st.pairs ?? []) {
+    const v = p.versions[p.versions.length - 1]
+    if (v) return v.url
   }
   return undefined
 }

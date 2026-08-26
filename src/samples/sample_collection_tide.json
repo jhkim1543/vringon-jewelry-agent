@@ -1,0 +1,551 @@
+{
+ "algo": 2,
+ "params": {
+  "algo": 2,
+  "analysisLang": "ko",
+  "imageEngine": "fast",
+  "setCount": 3,
+  "competitors": [],
+  "mode": "collection",
+  "country": "Korea",
+  "direction": "제주 바다의 조수 간만. 물결이 현무암을 깎아 남긴 결.",
+  "itemType": "ring",
+  "items": [
+   "ring",
+   "pendant"
+  ],
+  "designCount": 10,
+  "target": {
+   "age": "35-44",
+   "gender": "genderless"
+  }
+ },
+ "stageStatus": {
+  "S1": "done",
+  "S2": "done",
+  "S3": "done",
+  "S4": "done",
+  "S5": "done"
+ },
+ "logs": [
+  {
+   "stage": "S1",
+   "text": "Researching the keyword in Korea: culture, symbols, forms, colors, and the cliches to avoid",
+   "t": 1787676529792
+  },
+  {
+   "stage": "S1",
+   "text": "Insight ready · 10 abstraction axes, 4 cautions",
+   "t": 1787676529811
+  },
+  {
+   "stage": "S2",
+   "text": "3 set concept(s): 수마결 / 간만리듬 / 파식연산",
+   "t": 1787676529821
+  },
+  {
+   "stage": "S3",
+   "text": "Abstract concept images first, with no jewelry products yet, then one lineup image per set",
+   "t": 1787676529821
+  },
+  {
+   "stage": "S3",
+   "text": "수마결: 4/4 concept images + lineup",
+   "t": 1787676529847
+  },
+  {
+   "stage": "S3",
+   "text": "간만리듬: 4/4 concept images + lineup",
+   "t": 1787676529848
+  },
+  {
+   "stage": "S3",
+   "text": "파식연산: 4/4 concept images + lineup",
+   "t": 1787676529859
+  },
+  {
+   "stage": "S4",
+   "text": "6 designs = 3 set(s) × 2 item(s) · the set DNA stays locked, only the item changes",
+   "t": 1787676529859
+  },
+  {
+   "stage": "S5",
+   "text": "D01 generated (수마결 · ring) · reused",
+   "t": 1787676529878
+  },
+  {
+   "stage": "S5",
+   "text": "D02 generated (수마결 · pendant) · reused",
+   "t": 1787676529881
+  },
+  {
+   "stage": "S5",
+   "text": "D03 generated (간만리듬 · ring) · reused",
+   "t": 1787676529882
+  },
+  {
+   "stage": "S5",
+   "text": "D06 generated (파식연산 · pendant)",
+   "t": 1787676629227
+  },
+  {
+   "stage": "S5",
+   "text": "D05 generated (파식연산 · ring)",
+   "t": 1787676631730
+  },
+  {
+   "stage": "S5",
+   "text": "D04 generated (간만리듬 · pendant)",
+   "t": 1787676633202
+  }
+ ],
+ "references": [],
+ "pairs": [
+  {
+   "id": "D01",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "수마결",
+   "item": "ring",
+   "title": "수마결 · 반지",
+   "prompt": "반지: 수마결 세트의 원본 디자인. 하나의 연속된 침식 홈을 중심축으로 모든 요소를 배치한다. 전체 색감은 한 톤 낮춘 냉색 중립(백금·팔라듐 톤)이며 포인트는 절제된 청록 한 지점만 허용. 표면 대비는 새틴 매트 70, 유광 30을 유지하되 새틴은 외피, 유광은 홈 안쪽 경계와 액센트 에지에만 적용. 스톤은 홈이 가장 좁아지는 목 지점에 1개 배치: 2.3mm 청록 사파이어, 저립 베젤 세팅(립 0.3mm, 시트 0.6mm, 가장자리 여유 0.15mm). 비대칭 균형으로 질량 분포 상단 6, 하단 4; 탑 너비 4.2mm, 하단 3.0mm. 벽 두께 상단 2.2mm, 하단 1.7mm, 홈 바닥 최소 1.2mm, 모든 모서리 R0.6 이상 및 내측 컴포트핏. 측면에는 0.2mm 미세 릿지를 동일 방향으로 넣어 결의 흐름을 잇고, 세트 일체감을 위해 베일과 동일 방향으로 숄더 결 정렬. 스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 포토리얼 조명과 미세 텍스처 표현. 피해야 할 표현: 돌하르방·제주 지도 실루엣·JEJU 각인, 하트 파도·조개 하트·인어, 과장된 에메랄드빛 남용·블루 오팔 범람, 포토 프린트 바다·글리터 과다, 힐링·바캉스 카피.",
+   "versions": [
+    {
+     "url": "/samples/6c034bab5ffca2c6780bba58.png",
+     "hash": "6c034bab5ffca2c6780bba58",
+     "prompt": "반지: 수마결 세트의 원본 디자인. 하나의 연속된 침식 홈을 중심축으로 모든 요소를 배치한다. 전체 색감은 한 톤 낮춘 냉색 중립(백금·팔라듐 톤)이며 포인트는 절제된 청록 한 지점만 허용. 표면 대비는 새틴 매트 70, 유광 30을 유지하되 새틴은 외피, 유광은 홈 안쪽 경계와 액센트 에지에만 적용. 스톤은 홈이 가장 좁아지는 목 지점에 1개 배치: 2.3mm 청록 사파이어, 저립 베젤 세팅(립 0.3mm, 시트 0.6mm, 가장자리 여유 0.15mm). 비대칭 균형으로 질량 분포 상단 6, 하단 4; 탑 너비 4.2mm, 하단 3.0mm. 벽 두께 상단 2.2mm, 하단 1.7mm, 홈 바닥 최소 1.2mm, 모든 모서리 R0.6 이상 및 내측 컴포트핏. 측면에는 0.2mm 미세 릿지를 동일 방향으로 넣어 결의 흐름을 잇고, 세트 일체감을 위해 베일과 동일 방향으로 숄더 결 정렬. 스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 포토리얼 조명과 미세 텍스처 표현. 피해야 할 표현: 돌하르방·제주 지도 실루엣·JEJU 각인, 하트 파도·조개 하트·인어, 과장된 에메랄드빛 남용·블루 오팔 범람, 포토 프린트 바다·글리터 과다, 힐링·바캉스 카피.",
+     "at": "2026-08-25T16:48:49.874Z"
+    }
+   ],
+   "feature": "연속된 침식 홈을 중심으로 상단 6·하단 4 비대칭과 새틴 7:유광 3 대비, 목 지점의 단일 청록 스톤이 포인트인 냉색 중립 반지."
+  },
+  {
+   "id": "D02",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "수마결",
+   "item": "pendant",
+   "title": "수마결 · 펜던트",
+   "prompt": "펜던트: 수마결 세트의 마스터 모티프를 단일 펜던트로 번역한다. 하나의 연속된 침식 홈을 중심축으로, 비대칭 균형(질량 상단 6, 하단 4)으로 볼륨을 배치. 본체는 한 톤 낮춘 냉색 중립의 18K 화이트 골드/팔라듐 실버 계열, 표면 대비는 새틴 매트 70%와 유광 30% 유지; 홈 내부와 베젤 립만 하이폴리시. 측면 전연에는 0.2mm 미세 릿지로 동일한 결 흐름, 모든 모서리는 R0.6 이상 라운딩. 홈의 목 지점에 지름 3mm 단일 청록 사파이어 1개를 플러시-베젤 세팅; 베젤 벽 0.6mm, 바디 최소 두께 1.6mm로 실제 제조 가능 규격. 회전 방지를 위해 상단 후면 이중 히든 베일(2점 체결), 체인 결 방향은 베일·숄더·홈 축과 일치. 스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 미세 먼지 제거, 소프트 하이라이트, 포토리얼. 피해야 할 표현: 돌하르방, 제주 지도 실루엣, JEJU 각인 같은 관광 기념품 코드, 하트 파도·조개 하트·인어 등 도식적 바다 모티프, 과장된 에메랄드빛 바다색·블루 오팔 남용, 포토 프린트 느낌의 바다 재현·글리터 과다, 힐링·바캉스 카피.",
+   "versions": [
+    {
+     "url": "/samples/b5733da5771bd45f42c5799e.png",
+     "hash": "b5733da5771bd45f42c5799e",
+     "prompt": "펜던트: 수마결 세트의 마스터 모티프를 단일 펜던트로 번역한다. 하나의 연속된 침식 홈을 중심축으로, 비대칭 균형(질량 상단 6, 하단 4)으로 볼륨을 배치. 본체는 한 톤 낮춘 냉색 중립의 18K 화이트 골드/팔라듐 실버 계열, 표면 대비는 새틴 매트 70%와 유광 30% 유지; 홈 내부와 베젤 립만 하이폴리시. 측면 전연에는 0.2mm 미세 릿지로 동일한 결 흐름, 모든 모서리는 R0.6 이상 라운딩. 홈의 목 지점에 지름 3mm 단일 청록 사파이어 1개를 플러시-베젤 세팅; 베젤 벽 0.6mm, 바디 최소 두께 1.6mm로 실제 제조 가능 규격. 회전 방지를 위해 상단 후면 이중 히든 베일(2점 체결), 체인 결 방향은 베일·숄더·홈 축과 일치. 스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 미세 먼지 제거, 소프트 하이라이트, 포토리얼. 피해야 할 표현: 돌하르방, 제주 지도 실루엣, JEJU 각인 같은 관광 기념품 코드, 하트 파도·조개 하트·인어 등 도식적 바다 모티프, 과장된 에메랄드빛 바다색·블루 오팔 남용, 포토 프린트 느낌의 바다 재현·글리터 과다, 힐링·바캉스 카피.",
+     "at": "2026-08-25T16:48:49.881Z"
+    }
+   ],
+   "feature": "연속 홈을 중심축으로 한 비대칭 6:4 볼륨, 7:3 새틴/유광 대비, 목 지점의 단일 청록 사파이어와 0.2mm 측면 릿지, 이중 히든 베일로 회전을 억제한 펜던트."
+  },
+  {
+   "id": "D03",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "간만리듬",
+   "item": "ring",
+   "title": "간만리듬 · 반지",
+   "prompt": "반지 원본 디자인: ‘간만리듬’ 세트의 파도 곡선을 탑에서 옆으로 이어지는 솔리드 밴드로 번역. 전체 높이 2.4mm, 안쪽 컴포트핏 최소 두께 1.7mm, 모든 착용 모서리 R0.5 이상. 상단 웨이브의 열림 각 120도로 손가락에 자연 착좌. 파도 흐름을 따라 침식 홈 폭 1.4mm를 일정 유지하고, 그 안에 0.9~1.1mm 광점 스톤 5개를 플러시 세팅: 시트 깊이 스톤 높이의 60%, 주위 금속 벽두께 0.35mm 이상, 세팅 하부 바닥 1.0mm 이상. 스톤 간 간격은 좁힘-넓힘-좁힘으로 리듬 형성. 금속 색감은 14K 옐로 골드, 표면은 미세 매트:유광=2:1, 릿지와 에지선만 하이폴리시. 색 포인트는 청록 한 톤, 미세 에나멜 라인/도트 합계 면적 10% 이하. 숄더의 브러시 결 방향을 밴드 진행 방향과 동일하게 맞춰 세트 통일감 유지. 스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 포토리얼. Avoid: 진한 코발트 블루 전면, 하트 변형·러블리 각인, 전면 하이 미러, 관광 캐릭터, JEJU 노출.",
+   "versions": [
+    {
+     "url": "/samples/6afaa61a05fe0342c16133e7.png",
+     "hash": "6afaa61a05fe0342c16133e7",
+     "prompt": "반지 원본 디자인: ‘간만리듬’ 세트의 파도 곡선을 탑에서 옆으로 이어지는 솔리드 밴드로 번역. 전체 높이 2.4mm, 안쪽 컴포트핏 최소 두께 1.7mm, 모든 착용 모서리 R0.5 이상. 상단 웨이브의 열림 각 120도로 손가락에 자연 착좌. 파도 흐름을 따라 침식 홈 폭 1.4mm를 일정 유지하고, 그 안에 0.9~1.1mm 광점 스톤 5개를 플러시 세팅: 시트 깊이 스톤 높이의 60%, 주위 금속 벽두께 0.35mm 이상, 세팅 하부 바닥 1.0mm 이상. 스톤 간 간격은 좁힘-넓힘-좁힘으로 리듬 형성. 금속 색감은 14K 옐로 골드, 표면은 미세 매트:유광=2:1, 릿지와 에지선만 하이폴리시. 색 포인트는 청록 한 톤, 미세 에나멜 라인/도트 합계 면적 10% 이하. 숄더의 브러시 결 방향을 밴드 진행 방향과 동일하게 맞춰 세트 통일감 유지. 스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 포토리얼. Avoid: 진한 코발트 블루 전면, 하트 변형·러블리 각인, 전면 하이 미러, 관광 캐릭터, JEJU 노출.",
+     "at": "2026-08-25T16:48:49.882Z"
+    }
+   ],
+   "feature": "파도형 침식 홈에 5개의 광점 스톤을 리듬 있게 배치하고 매트:유광 2:1 대비와 청록 포인트(10% 이하)로 절제미를 살린 컴포트 핏 옐로골드 링."
+  },
+  {
+   "id": "D06",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "파식연산",
+   "item": "pendant",
+   "title": "파식연산 · 펜던트",
+   "prompt": "펜던트, 파식연산 세트의 마스터 모티프를 단일 플레이트에 응축한다: 침식된 수로를 따라 층이 겹치고, 교차점에만 하이라이트 폴리시를 얹는다. 프레임 두께 1.6~2.0mm, 세라믹 인서트 0.8~1.2mm, 모든 내각 최소 R0.3 라운드로 취성 보호. 모듈은 일체형이며 단계 이동만 허용. 브리지는 수로를 30~45도 비스듬히 건너 정해진 리듬을 만든다. 외곽은 비대칭 타원, 장축:단축 1.3:1, 상단 오프셋 일체형 베일로 체인 연결과 회전 방지를 동시 확보. 금속은 샌드 매트 바탕에 접선이 고르게 흐르는 미러-매트 이단 버핑; 색은 PVD 그라데이션 한 장(건메탈→웜골드)만 사용, 추가 채색 금지. 스톤은 극도로 절제, 교차점 1곳에만 0.8~1.0mm 마이크로 플러시 세팅 허용. 베일 내경 3.5mm, 권장 체인 1.2~1.5mm, 후면은 미세 곡률과 통풍 언더컷으로 착용 안정과 피부 밀착을 확보. 제조 가능한 미세 공차와 샤프한 엣지를 매크로로 보여주는 스리쿼터 제품 뷰. 무채색 스튜디오 배경, 포토리얼, 고해상도 주얼리 매크로 사진. 피함: 스팀펑크 기어/배관, 공포 모티프, 네온·홀로그램, 전자회로 패턴, 문자·좌표 그래픽.",
+   "versions": [
+    {
+     "url": "/samples/a3d51826a9bd16eab32facf0.png",
+     "hash": "a3d51826a9bd16eab32facf0",
+     "prompt": "펜던트, 파식연산 세트의 마스터 모티프를 단일 플레이트에 응축한다: 침식된 수로를 따라 층이 겹치고, 교차점에만 하이라이트 폴리시를 얹는다. 프레임 두께 1.6~2.0mm, 세라믹 인서트 0.8~1.2mm, 모든 내각 최소 R0.3 라운드로 취성 보호. 모듈은 일체형이며 단계 이동만 허용. 브리지는 수로를 30~45도 비스듬히 건너 정해진 리듬을 만든다. 외곽은 비대칭 타원, 장축:단축 1.3:1, 상단 오프셋 일체형 베일로 체인 연결과 회전 방지를 동시 확보. 금속은 샌드 매트 바탕에 접선이 고르게 흐르는 미러-매트 이단 버핑; 색은 PVD 그라데이션 한 장(건메탈→웜골드)만 사용, 추가 채색 금지. 스톤은 극도로 절제, 교차점 1곳에만 0.8~1.0mm 마이크로 플러시 세팅 허용. 베일 내경 3.5mm, 권장 체인 1.2~1.5mm, 후면은 미세 곡률과 통풍 언더컷으로 착용 안정과 피부 밀착을 확보. 제조 가능한 미세 공차와 샤프한 엣지를 매크로로 보여주는 스리쿼터 제품 뷰. 무채색 스튜디오 배경, 포토리얼, 고해상도 주얼리 매크로 사진. 피함: 스팀펑크 기어/배관, 공포 모티프, 네온·홀로그램, 전자회로 패턴, 문자·좌표 그래픽.",
+     "at": "2026-08-25T16:50:29.227Z"
+    }
+   ],
+   "feature": "교차점 하이라이트와 30~45도 브리지, 1.3:1 비대칭 외곽, 일체형 오프셋 베일, 단일 PVD 그라데이션과 세라믹 인레이로 재료 대비를 극대화한 펜던트."
+  },
+  {
+   "id": "D05",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "파식연산",
+   "item": "ring",
+   "title": "파식연산 · 반지",
+   "prompt": "반지 원본 디자인 선언: 파식연산의 마스터 모티프인 침식 수로와 계단식 레이어의 교차를 손가락 위 타원 프레임에 응집한다. 프레임 두께 1.8mm, 세라믹 인레이 인서트 1.0mm로 단차를 극대화하되 모든 내각은 R0.3 이상 라운드. 외곽 비대칭 오벌 비율 1.3:1, 착용 안정 위해 컴포트핏 내경과 4.5mm 밴드폭. 브리지는 수로를 35도 각도로 비스듬히 건너 하나로 통합된 모듈 안에서 단계 이동만 허용. 색은 단일 PVD 그라데이션(건메탈→웜 골드) 한 장, 베이스는 미세 매트, 층과 수로의 교차점에만 하이라이트 폴리시로 리듬을 만든다. 스톤은 단 한 점, 1.2mm 라운드 브릴리언트 플러시 세팅을 교차점에 사용. 이단 버핑으로 광택·매트 접선이 고르게 흐르고 이음선이 손끝에 걸리지 않게 처리. 스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 포토리얼 조명과 텍스처 표현. 회피: 스팀펑크 기어·배관, 해골·괴수, 네온·홀로그램, 회로 패턴, 문자·좌표 그래픽. 내부 언더컷 없이 세라믹 인서트 압입 가능, 실제 주조·CNC·PVD 공정 호환.",
+   "versions": [
+    {
+     "url": "/samples/25a51864e8c94b0bbd3a6798.png",
+     "hash": "25a51864e8c94b0bbd3a6798",
+     "prompt": "반지 원본 디자인 선언: 파식연산의 마스터 모티프인 침식 수로와 계단식 레이어의 교차를 손가락 위 타원 프레임에 응집한다. 프레임 두께 1.8mm, 세라믹 인레이 인서트 1.0mm로 단차를 극대화하되 모든 내각은 R0.3 이상 라운드. 외곽 비대칭 오벌 비율 1.3:1, 착용 안정 위해 컴포트핏 내경과 4.5mm 밴드폭. 브리지는 수로를 35도 각도로 비스듬히 건너 하나로 통합된 모듈 안에서 단계 이동만 허용. 색은 단일 PVD 그라데이션(건메탈→웜 골드) 한 장, 베이스는 미세 매트, 층과 수로의 교차점에만 하이라이트 폴리시로 리듬을 만든다. 스톤은 단 한 점, 1.2mm 라운드 브릴리언트 플러시 세팅을 교차점에 사용. 이단 버핑으로 광택·매트 접선이 고르게 흐르고 이음선이 손끝에 걸리지 않게 처리. 스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 포토리얼 조명과 텍스처 표현. 회피: 스팀펑크 기어·배관, 해골·괴수, 네온·홀로그램, 회로 패턴, 문자·좌표 그래픽. 내부 언더컷 없이 세라믹 인서트 압입 가능, 실제 주조·CNC·PVD 공정 호환.",
+     "at": "2026-08-25T16:50:31.730Z"
+    }
+   ],
+   "feature": "침식 수로를 가르는 35도 브리지와 단일 PVD 그라데이션, 교차점 하이라이트와 단 한 점의 플러시 스톤으로 재료 대비를 극대화한 비대칭 오벌 컴포트 핏 링."
+  },
+  {
+   "id": "D04",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "간만리듬",
+   "item": "pendant",
+   "title": "간만리듬 · 펜던트",
+   "prompt": "펜던트, 간만리듬 세트의 마스터 모티프를 단일 목걸이에 맞게 구현. 금속은 18K 옐로골드 또는 화이트 톤, 전체 높이 2.2~2.6mm, 곡선의 열림 각도 110~130도, 침식 홈 폭 1.2~1.6mm. 광점 스톤 3~8개(Ø1.0~1.3mm) 플러시/마이크로비드 세팅, 간격을 좁혔다 넓혔다 하며 리듬 형성; 시트 깊이 55%, 보호 립 0.25mm. 매트:유광=2:1(바디 샌드블라스트 매트, 엣지·숄더 하이라이트 미러). 청록 포인트는 단일 톤 콜드 에나멜 인레이, 면적 ≤10%. 모든 착용부 모서리 R0.5 이상 라운드. 일체형 더블 히든 베일(내경 1.1~1.3mm, 벽두께 ≥1.2mm)과 중심 하강 설계로 회전 방지, 최소 벽두께 1.0mm. 체인은 0.9mm 박스 체인 또는 슬림 옴므 체인 권장, 베일·숄더의 결 방향 통일. 스리쿼터 제품 뷰, 무채색 스튜디오 그레이 배경, 매크로 주얼리 사진, 포토리얼 렌더, 부드러운 키라이트와 얕은 심도. Avoid: 진한 코발트 전면, 하트 변형/러블리 각인, 전면 하이미러, 관광 캐릭터, JEJU 영문 노출 금지.",
+   "versions": [
+    {
+     "url": "/samples/2126b5c95b4c402d569ca037.png",
+     "hash": "2126b5c95b4c402d569ca037",
+     "prompt": "펜던트, 간만리듬 세트의 마스터 모티프를 단일 목걸이에 맞게 구현. 금속은 18K 옐로골드 또는 화이트 톤, 전체 높이 2.2~2.6mm, 곡선의 열림 각도 110~130도, 침식 홈 폭 1.2~1.6mm. 광점 스톤 3~8개(Ø1.0~1.3mm) 플러시/마이크로비드 세팅, 간격을 좁혔다 넓혔다 하며 리듬 형성; 시트 깊이 55%, 보호 립 0.25mm. 매트:유광=2:1(바디 샌드블라스트 매트, 엣지·숄더 하이라이트 미러). 청록 포인트는 단일 톤 콜드 에나멜 인레이, 면적 ≤10%. 모든 착용부 모서리 R0.5 이상 라운드. 일체형 더블 히든 베일(내경 1.1~1.3mm, 벽두께 ≥1.2mm)과 중심 하강 설계로 회전 방지, 최소 벽두께 1.0mm. 체인은 0.9mm 박스 체인 또는 슬림 옴므 체인 권장, 베일·숄더의 결 방향 통일. 스리쿼터 제품 뷰, 무채색 스튜디오 그레이 배경, 매크로 주얼리 사진, 포토리얼 렌더, 부드러운 키라이트와 얕은 심도. Avoid: 진한 코발트 전면, 하트 변형/러블리 각인, 전면 하이미러, 관광 캐릭터, JEJU 영문 노출 금지.",
+     "at": "2026-08-25T16:50:33.202Z"
+    }
+   ],
+   "feature": "110~130도 곡선 위 3~8개 광점 스톤의 가변 간격 리듬과 2:1 매트·유광 대비, 청록 단일 포인트, 히든 더블 베일의 회전 방지 구조가 결합된 미니멀 펜던트입니다."
+  }
+ ],
+ "searches": 16,
+ "finished": true,
+ "insight": {
+  "meaning": "제주 바다의 조수 간만은 혼합조형 가운데 반일주 경향이 뚜렷하며 하루에 두 차례 고조와 저조가 나타난다. 2011년 제주 조위 관측 자료의 조석형 수는 약 0.42로 분류상 혼합 반일주에 해당하고, 평균 춘조 조차는 약 1.87 m로 제시된다. 이는 서해의 큰 조차에 비해 작지만 해안 지형과 생활 리듬을 형성할 만큼 분명한 변화다. ([jkscoe.or.kr](https://www.jkscoe.or.kr/upload/pdf/jkscoe-25-6-365.pdf)) 제주 해안의 기반암은 현무암으로, 용암의 냉각 수축에 따른 주상절리가 널리 발달하고 파랑의 해식 작용과 조류가 이를 지속적으로 마모하며 파식대와 해식애의 표면 결을 강조한다. ([agupubs.onlinelibrary.wiley.com](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2007jb005018?utm_source=openai))",
+  "cultural": "Korea 시장에서 제주 바다는 어머니 바다·공동체·지속가능 어업의 상징으로 소비자 정서에 깊게 각인되어 있다. 제주 해녀 문화는 2016년에 유네스코 인류무형문화유산 대표목록에 등재되었고 물때를 기준으로 공동 작업을 조직하는 지식과 관습이 핵심으로 전승된다. ([ich.unesco.org](https://ich.unesco.org/en/RL/culture-of-jeju-haenyeo-women-divers-01068?lang=en&utm_source=openai)) 음력 2월의 칠머리당 영등굿은 바다의 평온과 풍어를 비는 대표적 해양 신앙으로 해녀 공동체 정체성과 연결된다. ([visitjeju.net](https://www.visitjeju.net/kr/themtour/view?contentsid=CNTS_300000000013312&utm_source=openai)) 제주 상징물인 돌하르방과 검은 돌담은 다공질 현무암으로 만들어져 섬의 풍토·보호·환대 이미지를 강화한다. ([korea.net](https://www.korea.net/NewsFocus/Sci-Tech/view?articleId=123366&utm_source=openai))",
+  "background": "제주는 2007년 유네스코 세계자연유산으로 등재된 화산섬이며 한라산·성산일출봉·거문오름 용암동굴계가 대표 지질 유산이다. ([whc.unesco.org](https://whc.unesco.org/en/list/1264?utm_source=openai)) 중문·대포 해안의 주상절리대는 높이 약 30~40 m·연장 약 1 km로 한국 최대급이며 해안 절벽에서 파랑이 치며 물보라가 수십 미터까지 치솟기도 한다. ([visitjeju.net](https://www.visitjeju.net/en/detail/view?contentsid=CNTS_000000000020476&menuId=DOM_700000000010778&utm_source=openai)) 주상절리는 용암의 냉각 전선이 진행하며 다각형 기둥과 기둥면의 세로 스트리아가 형성되는 물리 과정을 거친다. ([agupubs.onlinelibrary.wiley.com](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2007jb005018?utm_source=openai)) 용머리 해안은 응회암층과 평행층리·타포니가 발달하여 파랑·염풍화의 벌집무늬 표면을 관찰할 수 있다. ([jst.re.kr](https://jst.re.kr/upload/pdf/RC00093771.pdf?utm_source=openai)) 학술 연구는 제주 연안 조석이 반일주 성격을 지니며 평균 조차가 약 1.7 m인 사례를 제시해 현장 체감 리듬을 뒷받침한다. ([researchgate.net](https://www.researchgate.net/publication/331536899_Volcaniclastic_tide-modulated_tempestite_in_a_coastal_tuff_ring_Jeju_Island_Korea/fulltext/5c7f173f458515831f87a117/Volcaniclastic-tide-modulated-tempestite-in-a-coastal-tuff-ring-Jeju-Island-Korea.pdf?utm_source=openai))",
+  "symbols": [
+   "어머니 바다·공동체·숨비소리라는 생명 확인의 호흡 소리. ([inmun360.culture.go.kr](https://inmun360.culture.go.kr/content/382.do?cid=103653&mode=view&utm_source=openai))",
+   "해녀의 물때 지식·상군과 하군 체계·공동체 어장. ([ncms.nculture.org](https://ncms.nculture.org/fisheries/story/10821?utm_source=openai))",
+   "주상절리의 육각 기둥과 세로 결·검은 현무암의 공극. ([agupubs.onlinelibrary.wiley.com](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2007jb005018?utm_source=openai))",
+   "영등할망 신앙과 칠머리당 영등굿. ([visitjeju.net](https://www.visitjeju.net/kr/themtour/view?contentsid=CNTS_300000000013312&utm_source=openai))",
+   "돌하르방과 현무암 돌담이 주는 수호·환대의 상징. ([korea.net](https://www.korea.net/NewsFocus/Sci-Tech/view?articleId=123366&utm_source=openai))"
+  ],
+  "emotions": [
+   "고요와 격정의 공존",
+   "해양 리듬에서 오는 호흡같은 안도감",
+   "현무암 절벽 앞의 장엄함과 경외",
+   "거친 파도에 맞서는 회복력·끈기",
+   "섬 공동체의 따뜻함과 연대감"
+  ],
+  "colors": [
+   "현무암 블랙·차콜 그레이",
+   "바다색 그라데이션 에메랄드 그린에서 코발트 블루까지. ([korea.kr](https://www.korea.kr/goNewsRes/attaches/2019.05/23/363_20111016_144469290.pdf?utm_source=openai))",
+   "포말의 백색·소금빛",
+   "조간대의 녹갈색 해조 톤",
+   "해질녘 주상절리의 적갈·구리빛 반사"
+  ],
+  "materials": [
+   "은925 산화마감·블랙 로듐 도금으로 현무암 질감 재현",
+   "재활용 금·은·백금",
+   "소금 결정 인클루전 레진·유리 에나멜로 바다색 레이어 구현",
+   "솔트 앤 페퍼 다이아몬드·흑다이아·블랙 스피넬로 조석의 반짝임 표현",
+   "천연 현무암의 직접 채취·반출은 법적 제약과 환경 훼손 소지가 크므로 금지·지양 권고. ([yna.co.kr](https://www.yna.co.kr/amp/view/AKR20231012116800056?utm_source=openai))"
+  ],
+  "forms": [
+   "육각·오각 기둥의 단면 배열과 기둥면의 세로 홈 스트리아",
+   "수평 파식대와 해식애 경계의 얇은 단차·낮은 테라스 형태. ([yeosu.go.kr](https://www.yeosu.go.kr/contents/55/topic_1_1.pdf?utm_source=openai))",
+   "공극·벌집무늬 타포니·소용돌이식 미세 결. ([jst.re.kr](https://jst.re.kr/upload/pdf/RC00093771.pdf?utm_source=openai))",
+   "용암동굴 유선형 내부·적층된 용암 껍질의 파상면",
+   "파도에 깎인 모서리의 둥근 에지와 파편성 단면"
+  ],
+  "motion": [
+   "조수 간만의 규칙성 하루 두 차례 상승과 하강·혼합 반일주 리듬. ([jkscoe.or.kr](https://www.jkscoe.or.kr/upload/pdf/jkscoe-25-6-365.pdf))",
+   "춘초·하지·추분을 따라 변하는 조차 폭과 파랑 에너지 변화",
+   "큰 너울이 주상절리 절벽에 부딪혀 위로 솟구치는 분사·포말의 상승과 낙하. ([visitjeju.net](https://www.visitjeju.net/en/detail/view?contentsid=CNTS_000000000020476&menuId=DOM_700000000010778&utm_source=openai))",
+   "해녀의 잠수 주기 숨비소리로 이어지는 짧게 내쉼과 깊게 들이쉼의 반복. ([inmun360.culture.go.kr](https://inmun360.culture.go.kr/content/382.do?cid=103653&mode=view&utm_source=openai))"
+  ],
+  "cliches": [
+   "주상절리를 단순 육각 프레임 펜던트 하나로만 치환한 디자인",
+   "돌하르방 얼굴이나 해녀 실루엣을 단순 캐리커처로 새긴 장식",
+   "바다색을 과장한 합성 터키석만 반복 사용",
+   "무심한 헥사곤 링크 체인으로만 제주를 표현하는 방식. 한국 및 글로벌 시장에서 헥사곤 모티프는 이미 매우 보편적이다. ([wooing-official.com](https://wooing-official.com/products/iced-hexagon-chain-necklace?utm_source=openai))"
+  ],
+  "cautions": [
+   "제주 해안에서 현무암·모래·조개 등을 채취하거나 외부 반출하는 행위는 공유수면법·제주특별법 등에 따라 금지되며 단속 대상이 될 수 있다. 합법적 대체 소재를 사용한다. ([yna.co.kr](https://www.yna.co.kr/amp/view/AKR20231012116800056?utm_source=openai))",
+   "해녀 문화와 영등굿 등 신앙 요소는 유네스코 인류무형문화유산으로 존중이 요구된다. 상업화 과정에서 대상화·성적 이미지화·낭만화의 과장 표현을 피한다. ([ich.unesco.org](https://ich.unesco.org/en/RL/culture-of-jeju-haenyeo-women-divers-01068?lang=en&utm_source=openai))",
+   "돌하르방은 지역 수호 상징으로 경박한 희화화나 종교적 의미 오독을 피한다. ([korea.net](https://www.korea.net/NewsFocus/Sci-Tech/view?articleId=123366&utm_source=openai))",
+   "주상절리 형성과정을 파도 침식으로만 설명하는 오류를 피하고 용암 냉각 수축의 과학적 기반을 준수한다. ([agupubs.onlinelibrary.wiley.com](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2007jb005018?utm_source=openai))"
+  ],
+  "abstraction": [
+   {
+    "axis": "상징",
+    "notes": [
+     "어머니 바다·숨비소리·돌하르방·영등할망·주상절리"
+    ]
+   },
+   {
+    "axis": "감정",
+    "notes": [
+     "고요에서 격정으로 이어지는 점층·긴장과 이완의 교차·경외·안도"
+    ]
+   },
+   {
+    "axis": "형태",
+    "notes": [
+     "육각 기둥 군집·세로 홈 스트리아·벌집무늬 타포니·공극 텍스처"
+    ]
+   },
+   {
+    "axis": "움직임",
+    "notes": [
+     "반복 상승과 하강·분출과 낙하·세로 호흡 리듬·포말의 확산"
+    ]
+   },
+   {
+    "axis": "구조",
+    "notes": [
+     "냉각 전선에 수직인 균열·기둥 간 경계의 패싯·층리와 절리 교차. ([agupubs.onlinelibrary.wiley.com](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2007jb005018?utm_source=openai))"
+    ]
+   },
+   {
+    "axis": "표면",
+    "notes": [
+     "매트한 다공성·소금 결정의 결정광·미세 스크래치·물 먹은 윤광"
+    ]
+   },
+   {
+    "axis": "소재",
+    "notes": [
+     "산화은·블랙 로듐·거친 샌드블래스트·투명 에나멜의 수층 레이어"
+    ]
+   },
+   {
+    "axis": "색채",
+    "notes": [
+     "현무암 블랙·바다 블루 그라데이션·포말 화이트·해조 그린"
+    ]
+   },
+   {
+    "axis": "리듬",
+    "notes": [
+     "이박자 물결·삼박자 숨비소리·사계절 파랑 에너지의 맥놀이"
+    ]
+   },
+   {
+    "axis": "이야기",
+    "notes": [
+     "물때를 읽는 지혜·해녀 공동체의 연대·영등굿의 기원과 송별·세계자연유산의 보전과 관람 윤리. ([ncms.nculture.org](https://ncms.nculture.org/fisheries/story/10821?utm_source=openai))"
+    ]
+   }
+  ],
+  "sources": [
+   "Statistical Characteristics of Hourly Tidal Levels around the Korean Peninsula JKSCOE 2012. 제주의 혼합 반일주 경향과 춘조 조차 수치. ([jkscoe.or.kr](https://www.jkscoe.or.kr/upload/pdf/jkscoe-25-6-365.pdf))",
+   "UNESCO World Heritage Centre. Jeju Volcanic Island and Lava Tubes 2007 등재. ([whc.unesco.org](https://whc.unesco.org/en/list/1264?utm_source=openai))",
+   "UNESCO ICH. Culture of Jeju Haenyeo 2016 등재. ([ich.unesco.org](https://ich.unesco.org/en/RL/culture-of-jeju-haenyeo-women-divers-01068?lang=en&utm_source=openai))",
+   "Goehring 2008 JGR. 주상절리와 스트리아 형성 메커니즘. ([agupubs.onlinelibrary.wiley.com](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2007jb005018?utm_source=openai))",
+   "Visit Jeju. 대포 주상절리대 규모·고파랑 물보라 관찰. ([visitjeju.net](https://www.visitjeju.net/en/detail/view?contentsid=CNTS_000000000020476&menuId=DOM_700000000010778&utm_source=openai))",
+   "JST 자료. 산방산·용머리 지질탐방로의 타포니·층리 설명. ([jst.re.kr](https://jst.re.kr/upload/pdf/RC00093771.pdf?utm_source=openai))",
+   "영등굿 안내 Visit Jeju. 음력 2월 해양신앙 의례. ([visitjeju.net](https://www.visitjeju.net/kr/themtour/view?contentsid=CNTS_300000000013312&utm_source=openai))",
+   "Korea.net. 돌하르방과 현무암 돌담이 현무암 기반임. ([korea.net](https://www.korea.net/NewsFocus/Sci-Tech/view?articleId=123366&utm_source=openai))",
+   "연합뉴스. 해변 돌·송이 반출 금지 및 관련 법령. ([yna.co.kr](https://www.yna.co.kr/amp/view/AKR20231012116800056?utm_source=openai))",
+   "Songaksan 연구. 제주 연안의 반일주 조석과 약 1.7 m 조차 사례. ([researchgate.net](https://www.researchgate.net/publication/331536899_Volcaniclastic_tide-modulated_tempestite_in_a_coastal_tuff_ring_Jeju_Island_Korea/fulltext/5c7f173f458515831f87a117/Volcaniclastic-tide-modulated-tempestite-in-a-coastal-tuff-ring-Jeju-Island-Korea.pdf?utm_source=openai))"
+  ],
+  "searches": 16,
+  "cached": true
+ },
+ "sets": [
+  {
+   "name": "수마결",
+   "kind": "대표형",
+   "concept": "조수의 주기적 호흡이 현무암을 깎아 만든 한 줄의 결을 귀금속과 여백으로 번역한 대표형 세트.",
+   "story": "간조에 드러난 바위의 골은 밀물에 매끈히 닦이며 하루마다 조금씩 선을 바꾼다. 그 변화의 기록을 하나의 침식선과 그 옆의 고요한 여백으로 응축했다. 반지와 펜던트 모두 금속의 덩어리를 가르는 하나의 홈과 그 사이를 건너는 브리지로 구조를 통일한다. 스톤은 파도가 모여 하얗게 일렁이는 지점처럼 가장 압축된 구간에만 놓여 리듬의 정점을 만든다.",
+   "palette": [
+    "현무암 흑",
+    "해조 녹",
+    "포말 백",
+    "물안개 회",
+    "달빛 은청"
+   ],
+   "metal": "PT950 플래티넘 기반에 부분 흑로듐 그라데이션, 엣지 라인은 무도금 유광 대비.",
+   "surface": "결 방향 새틴 브러시, 홈 안쪽은 미세 샌드블라스트, 브리지와 릿지는 미세 폴리시로 하이라이트.",
+   "stones": "솔트앤페퍼 다이아몬드 라운드 브릴리언트 1.0~1.3밀리 마이크로 파베, 화이트 다이아몬드 1.2~1.5밀리 포말 포인트, 그린 사파이어 바게트 3×1.5밀리 옵션 센터 포인트.",
+   "silhouette": "비대칭 타원 바디 한가운데를 관통하는 완만한 침식 홈과 얇은 브리지로 연결된 공허의 띠.",
+   "motif": "물결에 깎여 남은 하나의 수마선과 그 선이 만든 음각의 골.",
+   "rhythm": "중심선 기준 준대칭을 유지하되 홈의 폭이 좁아졌다 넓어지는 비정형 반복으로 간만의 숨을 표현.",
+   "structure": "듀얼 레이어 구조. 침식 홈을 가로지르는 브리지에 텐션 베젤 또는 채널 세팅을 적용하고, 링은 컴포트 핏 내경과 하부 무게추로 회전 억제. 펜던트는 홈을 따라 숨은 베일을 배치해 체인이 시야에서 사라지도록 설계.",
+   "avoid": [
+    "돌하르방·제주 지도 실루엣·JEJU 각인 같은 관광 기념품 코드",
+    "하트 파도·조개 하트·인어 등 도식적 바다 모티프",
+    "과장된 에메랄드빛 바다색 남용·블루 오팔 범람",
+    "포토 프린트 느낌의 바다 재현·글리터 과다",
+    "힐링·바캉스 같은 계절성 카피 의존"
+   ],
+   "design_dna": [
+    "항상 하나의 연속된 침식 홈을 중심축으로 두고 모든 요소를 배치한다.",
+    "표면 대비는 새틴 매트 7 대 유광 3 비율을 기본으로 유지한다.",
+    "스톤은 홈이 가장 좁아지는 목 지점에만 배치하며 개수는 1개 또는 파베 1구역으로 제한한다.",
+    "비대칭의 균형을 유지하고 질량 분포는 상단 6 하단 4 비율을 권장한다.",
+    "모서리는 모두 R 0.6 이상 라운딩 처리해 촉감과 내구성을 확보한다.",
+    "측면에는 0.2밀리 미세 릿지를 동일한 방향성으로 넣어 결의 흐름을 이어 준다.",
+    "베일과 링 숄더의 결 방향을 동일하게 맞춰 세트 일체감을 준다.",
+    "전체 색감은 한 톤 낮춘 냉색 중립을 유지하고 포인트는 절제된 청록 한 지점만 사용한다."
+   ],
+   "concept_art": {
+    "form": "Abstract asymmetric oval void carved through a basalt-like mass, flowing striations with a single dominant erosion channel, minimalist composition, strong negative space, no jewelry",
+    "motion": "Tidal breathing rhythm with slow retreat and surge, alternating compressions along the groove, gentle oscillation in a twelve-beat cadence, no jewelry",
+    "material": "Wet basalt texture with brushed platinum sheen, micro-polished edges, fine foam-like white sparkles, subtle teal reflections, no jewelry",
+    "atmosphere": "Misty volcanic shoreline at dawn, restrained luxury, contemplative calm, cool monochrome with a touch of sea-green, no jewelry"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/955f06b8a29548d2af19f5ef.png",
+     "hash": "955f06b8a29548d2af19f5ef"
+    },
+    "motion": {
+     "url": "/samples/d41013eb9c7aedee665b1f47.png",
+     "hash": "d41013eb9c7aedee665b1f47"
+    },
+    "material": {
+     "url": "/samples/a3f032a5af99180b2127edcc.png",
+     "hash": "a3f032a5af99180b2127edcc"
+    },
+    "atmosphere": {
+     "url": "/samples/c51b1245023614a827361c86.png",
+     "hash": "c51b1245023614a827361c86"
+    }
+   },
+   "lineup": {
+    "url": "/samples/1a3f2bb8ec18bc7c35486f8a.png",
+    "hash": "1a3f2bb8ec18bc7c35486f8a"
+   }
+  },
+  {
+   "name": "간만리듬",
+   "kind": "상업형",
+   "concept": "매일 반복되는 간만의 리듬을 부드러운 C곡선과 작은 광점으로 풀어낸 일상 착용용 세트.",
+   "story": "바다는 큰 파형보다도 잔잔한 들고남으로 표면을 바꾼다. 손끝과 쇄골에 닿는 곡선은 낮은 돔과 짧은 홈으로 편안하게 이어지고, 미세한 광점이 포말처럼 리듬을 찍는다. 착용감과 관리성을 최우선으로 하여 날카로운 모서리를 배제하고 높이를 낮췄다. 어느 계절에도 과장되지 않는 중립의 골드톤과 작은 청록 포인트가 도시적 일상에 스며든다.",
+   "palette": [
+    "샌드 골드",
+    "조개 크림",
+    "해무 그레이",
+    "심해 청록 포인트",
+    "현무암 그레이"
+   ],
+   "metal": "14K 옐로골드 기본, 옵션으로 14K 화이트골드 로듐 마감. 포인트 파츠에 라이트 그레이 루테늄 아주 얇게 적용 가능.",
+   "surface": "샌드블라스트 돔 표면, 홈 엣지와 릿지는 미세 유광 라인, 모든 접촉면 소프트 라운드.",
+   "stones": "그린 사파이어 라운드 1.3~1.8밀리 미니 베젤 3~5점, 화이트 사파이어 1.0밀리 마이크로 파베 보조. 업그레이드 옵션으로 동일 규격 화이트 다이아 선택.",
+   "silhouette": "낮은 돔의 C자 곡선이 한쪽에서 시작해 부드럽게 감싸는 콤팩트 실루엣.",
+   "motif": "C곡선을 따라 찍힌 포말의 점열과 얕은 파식 홈.",
+   "rhythm": "3·2·3 혹은 2·2·2 도트 배열을 기본으로 하고 중심선에서 살짝 오프셋해 자연스러운 흐름을 만든다.",
+   "structure": "원피스 캐스팅 후 홈 채널 가공. 도트는 미니 베젤과 플러시 세팅을 혼합해 걸림을 최소화. 펜던트는 오메가형 숨은 베일로 체인 꼬임을 억제하고, 링은 저중심 설계로 회전 방지.",
+   "avoid": [
+    "진한 코발트 블루 전면 사용으로 여름 한정 분위기 만들기",
+    "물결을 하트로 변형한 도상·러블리 각인",
+    "하이 미러 전면 유광으로 스크래치가 두드러지는 처리",
+    "돌하르방·유채꽃·흑돼지 등 관광 캐릭터 차용",
+    "JEJU 영문 표기 노출 중심의 기념품화"
+   ],
+   "design_dna": [
+    "전체 높이는 2.2~2.6밀리 범위 안에서 유지한다.",
+    "곡선의 열림 각도는 110~130도 사이로 맞춰 손가락과 목선에 자연스럽게 앉게 한다.",
+    "침식 홈 폭은 1.2~1.6밀리로 일관되게 유지한다.",
+    "광점 스톤은 3~8개를 넘기지 않고 서로 간격을 점점 좁혔다 넓혔다 하며 리듬을 만든다.",
+    "매트 대 유광 대비는 2 대 1로 유지해 일상 스크래치를 시각적으로 완화한다.",
+    "체인 권장 두께는 0.9밀리 박스 체인 또는 슬림 옴므 체인으로 균형을 맞춘다.",
+    "착용부 모든 모서리는 R 0.5 이상 라운드 처리해 섬유 걸림을 줄인다.",
+    "링과 펜던트 모두 베일·숄더의 결 방향을 동일하게 가져가 세트 통일감을 확보한다.",
+    "색 포인트는 청록 한 톤만 사용하고 면적은 10퍼센트 이하로 제한한다."
+   ],
+   "concept_art": {
+    "form": "Soft C-curve ribbon with a shallow dome, dotted highlights clustering along a carved channel, compact and approachable geometry, no jewelry",
+    "motion": "Gentle daily tide rhythm, repeating pulse of three-two-three accents, easy flowing tempo, no jewelry",
+    "material": "Satin sand-gold surface with a polished ridge line, neutral base with subtle teal glints, micro sparkle grains, no jewelry",
+    "atmosphere": "Warm daylight on a calm shore, approachable elegance, everyday serenity, commercial minimalism, no jewelry"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/c83c75348d4b6511d61c209c.png",
+     "hash": "c83c75348d4b6511d61c209c"
+    },
+    "motion": {
+     "url": "/samples/34800d49f2d5d2f57c389fbd.png",
+     "hash": "34800d49f2d5d2f57c389fbd"
+    },
+    "material": {
+     "url": "/samples/da7258d161d2cad636dfa57e.png",
+     "hash": "da7258d161d2cad636dfa57e"
+    },
+    "atmosphere": {
+     "url": "/samples/fe5e377a9ff506e6b8866dc6.png",
+     "hash": "fe5e377a9ff506e6b8866dc6"
+    }
+   },
+   "lineup": {
+    "url": "/samples/750f7259e3e17a496fc6582b.png",
+    "hash": "750f7259e3e17a496fc6582b"
+   }
+  },
+  {
+   "name": "파식연산",
+   "kind": "실험형",
+   "concept": "파도의 확률적 침식 패턴을 알고리즘으로 변환해 층과 공명으로 구축한 진화형 세트.",
+   "story": "제주의 현무암은 균일하지 않은 파도의 미세 차이를 따라 매번 다른 리브를 남긴다. 이 세트는 레이저로 생성한 지형적 음각에 흑색 세라믹 인레이를 채워 그림자를 고정하고, 금속 브리지가 층을 건너며 응력을 분산한다. 링과 펜던트의 인서트는 미세 자력 결합으로 위치를 한 단계씩 이동할 수 있어 사용자가 리듬을 바꾼다. 색은 DLC 블랙과 청록 PVD의 얇은 베일을 겹쳐 물속 깊이의 변색처럼 보이게 했다.",
+   "palette": [
+    "DLC 블랙",
+    "청록 그라데이션",
+    "현무암 짙은 회",
+    "은백 하이라이트",
+    "심연 녹청"
+   ],
+   "metal": "18K 화이트골드 프레임과 Grade5 티타늄 인서트 하이브리드. 티타늄은 청록 PVD 그라데이션, 일부 표면은 DLC 블랙.",
+   "surface": "레이저 에칭 지형 텍스처, 세라믹 마이크로 인레이, 프레임 상면은 실크 매트, 브리지와 모서리는 하이 폴리시.",
+   "stones": "블랙 다이아몬드 라운드 0.8~1.1밀리 비산 파베로 그림자 효과, 솔트앤페퍼 다이아 슬라이스 오벌을 낮은 베젤로 보호 세팅. 스톤 수는 최소화해 재료 대비를 주인공으로 둔다.",
+   "silhouette": "두 겹의 비대칭 고리가 겹쳐진 단차 레이어와 그 사이를 가르는 깊은 수로형 음각.",
+   "motif": "파식 지형의 단면을 추상화한 계단형 수로와 이를 건너는 얇은 금속 브리지.",
+   "rhythm": "간격이 피보나치 수열처럼 1·1·2·3·5로 늘어나는 준무작위 골 패턴. 축 위상은 고정하되 두께와 간격은 미세하게 흔들려 생동감을 준다.",
+   "structure": "화이트골드 외곽 프레임 안에 티타늄 인서트를 끼워 맞추고 내부에 얕은 자력 포지션을 단계별로 배치. 브리지는 두 점 지지의 텐션 베젤을 겸하며, 링은 내측 컴포트 라운드와 외측 단차로 안정된 질량 분포를 확보. 펜던트는 후면 플로팅 베일로 회전 억제.",
+   "avoid": [
+    "스팀펑크 기어·배관처럼 보이는 과장된 기계장치",
+    "해골·심해 괴수 등 공포 이미지",
+    "과도한 네온 색상 또는 홀로그램 효과",
+    "회로 패턴 복제 등 전자기기 연상 요소",
+    "문자 각인이나 좌표 표기 중심의 정보 그래픽화"
+   ],
+   "design_dna": [
+    "재료 대비를 주연으로 두기 위해 스톤 사용은 극도로 절제한다.",
+    "층과 수로가 만나는 교차점에만 하이라이트 폴리시를 두어 시선의 리듬을 만든다.",
+    "모든 날카로운 내각은 최소 R 0.3로 라운드 처리해 세라믹 인레이의 취성을 보호한다.",
+    "프레임은 1.6~2.0밀리 두께를 유지하고 인서트는 0.8~1.2밀리로 얇게 가져가 단차를 극대화한다.",
+    "색의 변화는 PVD 그라데이션 한 장으로 끝내고 추가 채색은 금지한다.",
+    "모듈은 분리되지 않으며 단계 이동만 허용해 실사용 안정성을 확보한다.",
+    "브리지의 방향은 항상 침식 수로를 비스듬히 건너며 교차각은 30~45도로 통일한다.",
+    "반지와 펜던트의 외곽 비대칭 고리 비율은 장축 대 단축 1.3 대 1로 맞춘다.",
+    "광택과 매트의 접선은 고르게 흐르게 하고 이음선이 손끝에 걸리지 않도록 이단 버핑을 적용한다."
+   ],
+   "concept_art": {
+    "form": "Layered asymmetric rings with a deep carved channel, stepped erosion cross-section, thin bridges spanning the gap, parametric irregularity, no jewelry",
+    "motion": "Quasi-random tidal pulses with phase-fixed yet amplitude-varying cycles, spacing growing like 1 1 2 3 5, slow morphing flow, no jewelry",
+    "material": "DLC black surfaces with teal PVD gradient, ceramic inlay shadows, selective high-polish edges catching light, no jewelry",
+    "atmosphere": "Subaqueous depth and quiet intensity, experimental minimalism, volcanic austerity with a futuristic calm, no jewelry"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/93b097c911bf43e1c6c39bdf.png",
+     "hash": "93b097c911bf43e1c6c39bdf"
+    },
+    "motion": {
+     "url": "/samples/f93420079df91de19b0d23cf.png",
+     "hash": "f93420079df91de19b0d23cf"
+    },
+    "material": {
+     "url": "/samples/4522adab4c2052d7eae944da.png",
+     "hash": "4522adab4c2052d7eae944da"
+    },
+    "atmosphere": {
+     "url": "/samples/96549535ea32ea5c26c07a5a.png",
+     "hash": "96549535ea32ea5c26c07a5a"
+    }
+   },
+   "lineup": {
+    "url": "/samples/4b13e0a41d25955b48cc9147.png",
+    "hash": "4b13e0a41d25955b48cc9147"
+   }
+  }
+ ],
+ "sample": true,
+ "sampleTitle": "주얼리 컬렉션 · 제주 조수 (반지·펜던트)",
+ "savedAtISO": "2026-08-25T16:50:33.203Z"
+}

@@ -1,586 +1,392 @@
-// ── VRINGON Design Agent · 도메인 타입 (작업지시서 v5.0) ──────────────
+// ── VRINGON Jewelry Agent · 도메인 타입 (3-에이전트 개편) ─────────────
+// 에이전트: 경쟁사 트렌드 / 패션 트렌드 / 주얼리 컬렉션.
+// 흐름: 수집 → 트렌드 리포트 → 레퍼런스 → 프롬프트 쌍 → 디자인 생성.
+// 스펙 생성·룰 엔진·MD·브랜드 계층은 이 개편에서 제거됐다 — 디자인은
+// 레퍼런스 DNA 와 프롬프트 쌍에서 나오고, 근거는 조사 산출물에 남는다.
 
-export type Mode = 'trend' | 'series' | 'moodboard'
-export type Category = 'jewelry'
-export type DesignTier = 'core' | 'push' | 'signature'
-export type Stage = 'S1' | 'S2' | 'S3' | 'S4' | 'S5'
+import { t } from './i18n'
+
+export type Mode = 'competitor' | 'fashion' | 'collection'
+
+// ── 검색 지역 ────────────────────────────────────────────────────────
+// 값은 언제나 이 영문 표준명으로 담는다. 화면에 보이는 이름만 언어를 따른다.
+// 번역된 글자를 담으면 화면 언어를 바꾼 순간 선택이 풀리고, 같은 지역이
+// 언어마다 다른 조사 캐시를 만든다. 자유 입력도 그대로 살려 둔다 —
+// 권역이 아니라 특정 도시만 보고 싶을 때가 있다.
+export const REGIONS = [
+  { id: 'KR', label: 'Korea' },
+  { id: 'JP', label: 'Japan' },
+  { id: 'EU', label: 'Europe' },
+  { id: 'AS', label: 'Asia' },
+  { id: 'ME', label: 'Middle East' },
+  { id: 'US', label: 'United States' },
+] as const
+
+/** 담긴 값을 화면 언어로 보여 준다. 표준명이 아니면(자유 입력) 그대로 둔다. */
+export function regionLabel(stored?: string): string {
+  if (!stored) return ''
+  const hit = REGIONS.find(r => r.label === stored)
+  return hit ? t(hit.label) : stored
+}
+
+/** 화면에 보이는 이름을 담을 값으로 되돌린다. */
+export function regionValue(shown: string): string {
+  return REGIONS.find(r => t(r.label) === shown)?.label ?? shown
+}
+
+/** 지역 목록 · 다중 선택을 지원한다. 옛 저장본은 country 한 칸뿐이라 그걸 감싼다. */
+export function regionsOf(p: { countries?: string[]; country?: string }): string[] {
+  if (p.countries?.length) return p.countries
+  return p.country ? [p.country] : []
+}
+
+/** 지역 목록을 화면 언어로 이어 붙인다 */
+export function regionsLabel(p: { countries?: string[]; country?: string }): string {
+  return regionsOf(p).map(regionLabel).join(' · ')
+}
 
 export const MODE_LABEL: Record<Mode, string> = {
-  trend: 'Trend', series: 'Series', moodboard: 'Moodboard',
-}
-export const CAT_LABEL: Record<Category, string> = { jewelry: 'Jewelry' }
-export const TIER_LABEL: Record<DesignTier, string> = {
-  core: 'Core', push: 'Push', signature: 'Signature',
+  competitor: 'Competitor Trend', fashion: 'Fashion Trend', collection: 'Jewelry Collection',
 }
 
-// ── 품목 분류 · 카테고리 → 그룹 → 타입 ─────────────────────────────
-// en은 이미지 프롬프트에, label은 화면에 쓴다. 한 곳에서만 정의한다.
-export interface TypeDef { id: string; label: string; en: string }
-export interface GroupDef { id: string; label: string; note: string; types: TypeDef[] }
-
-export const TAXONOMY: Record<Category, GroupDef[]> = {
-  jewelry: [
-    {
-      id: 'ring', label: 'Rings', note: 'Band, solitaire', types: [
-        { id: 'band_ring', label: 'Band', en: 'plain band ring' },
-        { id: 'solitaire', label: 'Solitaire', en: 'solitaire ring with a single center stone' },
-        { id: 'eternity', label: 'Eternity', en: 'eternity ring with stones set all around' },
-        { id: 'signet', label: 'Signet', en: 'signet ring with a flat engraved face' },
-      ],
-    },
-    {
-      id: 'earring', label: 'Earrings', note: 'Stud, hoop', types: [
-        { id: 'stud', label: 'Stud', en: 'stud earrings' },
-        { id: 'hoop', label: 'Hoop', en: 'hoop earrings' },
-        { id: 'drop', label: 'Drop', en: 'drop earrings' },
-        { id: 'ear_cuff', label: 'Ear cuff', en: 'ear cuff' },
-      ],
-    },
-    {
-      id: 'necklace', label: 'Necklaces', note: 'Pendant, chain', types: [
-        { id: 'pendant', label: 'Pendant', en: 'pendant necklace' },
-        { id: 'choker', label: 'Choker', en: 'choker necklace' },
-        { id: 'chain_necklace', label: 'Chain', en: 'chain necklace' },
-        { id: 'station', label: 'Station', en: 'station necklace with evenly spaced stones' },
-      ],
-    },
-    {
-      id: 'bracelet', label: 'Bracelets', note: 'Bangle, cuff', types: [
-        { id: 'bangle', label: 'Bangle', en: 'rigid bangle bracelet' },
-        { id: 'chain_bracelet', label: 'Chain', en: 'chain bracelet' },
-        { id: 'cuff', label: 'Cuff', en: 'open cuff bracelet' },
-        { id: 'tennis', label: 'Tennis', en: 'tennis bracelet with a continuous line of stones' },
-      ],
-    },
-    {
-      id: 'other', label: 'Other', note: 'Brooch, anklet', types: [
-        { id: 'brooch', label: 'Brooch', en: 'brooch' },
-        { id: 'anklet', label: 'Anklet', en: 'anklet' },
-      ],
-    },
-  ],
-}
-
-export const ALL_TYPES: TypeDef[] = Object.values(TAXONOMY).flatMap(gs => gs.flatMap(g => g.types))
-export const TYPE_LABEL: Record<string, string> = Object.fromEntries(ALL_TYPES.map(t => [t.id, t.label]))
-export const TYPE_EN: Record<string, string> = Object.fromEntries(ALL_TYPES.map(t => [t.id, t.en]))
-
-export function groupOf(category: Category, typeId: string): GroupDef | undefined {
-  return TAXONOMY[category].find(g => g.types.some(t => t.id === typeId))
-}
-export function firstTypeOf(category: Category, groupId: string): string {
-  return TAXONOMY[category].find(g => g.id === groupId)?.types[0].id ?? TAXONOMY[category][0].types[0].id
-}
-
-// ── 모드별 입력 · 세 모드는 조사 범위 자체가 다르다 ──────────────────
-// 트렌드   : 경쟁사 입력 → 경쟁사 제품 리서치 + 트렌드 리서치 (외부 조사 최대)
-// 시리즈   : 시리즈 디자인 업로드 + 가치 기입 → 트렌드 조사까지만 (경쟁사 리서치 없음)
-// 무드보드 : 유저 PDF만 → 외부 조사 없음
-export interface TrendInput {
-  competitors: string[]
-  priceBand: 'mass' | 'contemporary' | 'premium' | 'luxury'
-  priceMinKrw: number
-  priceMaxKrw: number
-}
-/** 업로드된 파일 한 건 · 실제 내용은 서버 `.cache/uploads` 에 있고 해시로 가리킨다.
- *  (base64 를 그대로 들고 있으면 localStorage 용량이 즉시 터진다.) */
-// derived: 앱이 만든 것(PDF 쪽 그림 등)이지 사용자가 올린 파일이 아니다.
-// 구분하지 않으면 PDF 한 장을 올려도 "9개 업로드"라고 세게 된다.
-export interface UploadRef { name: string; hash: string; mime?: string; size?: number; url?: string; derived?: boolean }
-
-/** 사용자가 실제로 올린 것만 · 앱이 떠 둔 쪽 그림은 뺀다.
- *  옛 저장본의 문자열 항목은 파일명뿐이라 파생본일 수 없으므로 그대로 남긴다. */
-export function userUploads(list: (string | UploadRef)[]): (string | UploadRef)[] {
-  return list.filter(x => typeof x === 'string' || !x.derived)
-}
-
-/** 올린 것 중 화면에 그릴 수 있는 이미지만 · PDF 는 여기서 빠진다 */
-export function uploadImages(list: (string | UploadRef)[]): UploadRef[] {
-  return list.filter((x): x is UploadRef =>
-    typeof x === 'object' && !!x?.url && (x.mime ?? '').startsWith('image/'))
-}
-
-export interface SeriesInput {
-  seriesName: string
-  /** 업로드한 시리즈 디자인. 옛 저장본은 파일명 문자열 배열이라 둘 다 받는다. */
-  archiveFiles: (string | UploadRef)[]
-  valueStatement: string        // 시리즈 가치·철학 기입
-  trendSearch: boolean          // 트렌드 조사 ON/OFF (시리즈가 하는 유일한 외부 조사)
-}
-export interface MoodboardInput {
-  files: (string | UploadRef)[] // 트렌드 리포트·무드보드 PDF
-  notes: string
-}
-
-/** 옛 저장본 호환 · 문자열만 있던 시절 것은 내용이 없으므로 읽을 수 없다.
- *  해시가 있는데 주소가 없는 저장본이 있다(무드보드 PDF 가 그랬다). 서버가 해시로 서빙하므로
- *  여기서 채워 준다 — 주소가 없으면 근거로 인용할 수 없어 참조 패널이 통째로 빈다. */
-export function uploadRefs(list: (string | UploadRef)[]): UploadRef[] {
-  return list
-    .filter((x): x is UploadRef => typeof x === 'object' && !!x?.hash)
-    .map(x => x.url ? x : { ...x, url: `/api/upload/file/${x.hash}` })
-}
-export function uploadName(x: string | UploadRef): string {
-  return typeof x === 'string' ? x : x.name
-}
-
-export const MODE_SCOPE: Record<Mode, { competitor: boolean; trend: boolean; upload: boolean; note: string }> = {
-  trend: { competitor: true, trend: true, upload: false, note: 'Researches competitor products and market trends' },
-  series: { competitor: false, trend: true, upload: true, note: 'Reads your series, then checks trends only' },
-  moodboard: { competitor: false, trend: false, upload: true, note: 'Uses only the files you upload' },
-}
-
-// ── 주얼리 라인 프로필 ──────────────────────────────────────────────
-// 925실버+무스톤과 925실버+랩다이아는 경쟁 브랜드·가격 구조·소비자 기대가
-// 완전히 다른 시장이다. 조사 전에 이 축들이 확정되어야 한다.
-export type BaseMetal = '925_silver' | '14k_gold' | '18k_gold' | 'gold_filled' | 'plated_brass'
-export type Coating = 'none' | 'rhodium' | 'gold_vermeil' | 'gold_plated' | 'oxidized'
-export type StoneProgram = 'none' | 'cz' | 'lab_diamond' | 'natural_diamond' | 'ruby' | 'sapphire' | 'pearl' | 'crystal'
-
-// 전문가 설정 · 같은 랩다이아 라인도 D-F/VS와 I-J/SI는 경쟁군과 원가가 다르다.
-// 모르는 값은 비워 둔다 — 사진에서 등급을 추정해 채우지 않는다.
-export interface StoneGrade { color?: string; clarity?: string; cut?: string; caratCt?: number }
-/** 진주 7요소 (GIA) · 종류·크기·형태·색·광택·표면·진주층 */
-export interface PearlSpec {
-  type?: string; sizeMm?: number; shape?: string; color?: string
-  luster?: string; surface?: string; nacre?: string
-}
-
-export interface LineProfile {
-  preset: string; baseMetal: BaseMetal; coating: Coating; stone: StoneProgram
-  /** 도금 두께 μm · 0.5μm 플래시와 2.5μm 버메일은 내구성·가격이 다른 시장이다 */
-  coatingMicrons?: number
-  /** 다이아 4Cs · lab/natural diamond 라인에서만 의미 */
-  stoneGrade?: StoneGrade
-  pearl?: PearlSpec
-  /** 총캐럿(TCW) 상한 · 멀티스톤 설계의 원가 상한이자 조사 필터 */
-  tcwMaxCt?: number
-  /** 컴플라이언스 · EU REACH 니켈 용출, 카드뮴·납 함량 규제. 수출 라인이면 사실상 필수 */
-  compliance?: ('nickel_free' | 'cadmium_free' | 'lead_free')[]
-}
-
-export const COMPLIANCE_EN: Record<string, string> = {
-  nickel_free: 'nickel-safe (EU REACH nickel release)',
-  cadmium_free: 'cadmium-free', lead_free: 'lead-free',
-}
-
-/** 조사 프롬프트에 싣는 영문 표현 · 모델이 검색어를 만들 때 그대로 쓴다 */
-export const METAL_EN: Record<BaseMetal, string> = {
-  '925_silver': '925 sterling silver', '14k_gold': '14K solid gold', '18k_gold': '18K solid gold',
-  gold_filled: 'gold-filled', plated_brass: 'plated brass',
-}
-export const COATING_EN: Record<Coating, string> = {
-  none: '', rhodium: 'rhodium plated', gold_vermeil: '18K gold vermeil',
-  gold_plated: 'gold plated', oxidized: 'oxidized',
-}
-export const STONE_EN: Record<StoneProgram, string> = {
-  none: 'no stone', cz: 'cubic zirconia', lab_diamond: 'laboratory-grown diamond',
-  natural_diamond: 'natural diamond', ruby: 'natural ruby', sapphire: 'natural sapphire',
-  pearl: 'cultured pearl', crystal: 'crystal',
-}
-export function metalProgramOf(l: LineProfile): string {
-  let c = COATING_EN[l.coating]
-  if (c && l.coatingMicrons) c += ` ${l.coatingMicrons} micron`
-  let s = c ? `${METAL_EN[l.baseMetal]}, ${c}` : METAL_EN[l.baseMetal]
-  if (l.compliance?.length) s += `, ${l.compliance.map(x => COMPLIANCE_EN[x]).join(', ')}`
-  return s
-}
-// 전문가 값은 프로그램 문자열에 눌러 담는다. 이 문자열이 조사 프롬프트와 캐시 키의
-// 입력이라, 값이 바뀌면 캐시가 저절로 갈라진다 — 버전 태그를 올릴 필요가 없다.
-export function stoneProgramOf(l: LineProfile): string {
-  let s = STONE_EN[l.stone]
-  if ((l.stone === 'lab_diamond' || l.stone === 'natural_diamond') && l.stoneGrade) {
-    const g = l.stoneGrade
-    const bits = [
-      g.color && `${g.color} colour`, g.clarity, g.cut && `${g.cut} cut`,
-      g.caratCt && `~${g.caratCt}ct centre stone`,
-    ].filter(Boolean)
-    if (bits.length) s += ` (${bits.join(', ')})`
-  }
-  if (l.stone === 'pearl' && l.pearl) {
-    const p = l.pearl
-    const bits = [
-      p.type, p.sizeMm && `${p.sizeMm}mm`, p.shape, p.color,
-      p.luster && `${p.luster} luster`, p.surface && `${p.surface} surface`, p.nacre && `${p.nacre} nacre`,
-    ].filter(Boolean)
-    if (bits.length) s += ` (${bits.join(', ')})`
-  }
-  if (l.stone !== 'none' && l.tcwMaxCt) s += `, total carat weight up to ${l.tcwMaxCt}ct`
-  return s
-}
-
-/** 근거 ID · 소유자 ID + 순번으로 파생시킨다. 저장된 옛 Run을 고치지 않고도
- *  보드·화면·PDF가 같은 근거를 같은 이름으로 가리킬 수 있다. */
-export function evidenceId(ownerId: string, i: number): string { return `${ownerId}.e${i + 1}` }
-
-/** 프리셋은 배타 분류가 아니라 입력값을 미리 채우는 번들이다. 고른 뒤에도 축은 바꿀 수 있다. */
-export const LINE_PRESETS: { id: string; label: string; line: Omit<LineProfile, 'preset'> }[] = [
-  { id: 'sterling_core', label: 'Sterling Silver Core', line: { baseMetal: '925_silver', coating: 'rhodium', stone: 'none' } },
-  { id: 'gold_vermeil', label: 'Gold Vermeil', line: { baseMetal: '925_silver', coating: 'gold_vermeil', stone: 'none' } },
-  { id: 'solid_gold', label: 'Solid Gold Fine', line: { baseMetal: '14k_gold', coating: 'none', stone: 'none' } },
-  { id: 'diamond', label: 'Diamond Essentials', line: { baseMetal: '925_silver', coating: 'rhodium', stone: 'lab_diamond' } },
-  { id: 'colored_gem', label: 'Colored Gemstone', line: { baseMetal: '14k_gold', coating: 'none', stone: 'ruby' } },
-  { id: 'pearl', label: 'Pearl', line: { baseMetal: '925_silver', coating: 'rhodium', stone: 'pearl' } },
-  { id: 'fashion_crystal', label: 'Fashion & Crystal', line: { baseMetal: 'plated_brass', coating: 'gold_plated', stone: 'crystal' } },
+// ── 분석 언어 · 조사·리포트가 이 언어로 나온다 (화면 언어와 별개) ──────
+export type AnalysisLang = 'ko' | 'ja' | 'en' | 'zh' | 'fr' | 'it'
+export const ANALYSIS_LANGS: { id: AnalysisLang; label: string }[] = [
+  { id: 'ko', label: '한국어' }, { id: 'ja', label: '日本語' }, { id: 'en', label: 'English' },
+  { id: 'zh', label: '中文' }, { id: 'fr', label: 'Français' }, { id: 'it', label: 'Italiano' },
 ]
-
-// ── 실행 파라미터 (지시서 2.1) ──────────────────────────────────────
-export interface RunParams {
-  mode: Mode
-  category: Category
-  itemType: string
-  endStage: Stage
-  sketchCount: 6 | 12 | 18 | 24
-  tierRatio: [number, number, number]      // Core : Push : Signature
-  renderRatio: 0.25 | 0.5 | 0.75
-  viewCount: 1 | 3 | 4
-  colorwayCount: 0 | 1 | 2 | 3
-  topN: number                              // 1~5
-  /** 스케치 한 장마다 몇 개의 디자인을 뽑을지. 트렌드 근거로 프롬프트를 바꿔 가며 생성한다. */
-  designsPerSketch?: 1 | 2 | 3 | 4
-  /** 스케치 한 장에서 갈라지는 제품 베리에이션 수 */
-  variationCount: 0 | 2 | 3 | 4 | 6 | 8
-  /** 캠페인 컷 · 착용컷과 연출컷을 한 묶음으로 뽑는다 (top 하나당 장수) */
-  campaignShots: 0 | 2 | 4 | 6
-  /** 옛 샘플 호환 · 저장된 Run이 아직 이 두 값을 들고 있다 */
-  wearCuts?: number
-  conceptShots?: number
-  /** 멀티뷰 → 3D 모델 생성 */
-  make3d: boolean
-  approvalGate: boolean
-  /** 디자인 생성 모델 · 화면에는 성격으로만 노출한다 */
-  imageEngine: 'fast' | 'detail'
-  /** 실제 생성 상한 (장) · 초과분은 SVG로 폴백. 비용 통제 */
-  imageBudget: 0 | 6 | 12 | 24 | 48
-  trend: TrendInput
-  series: SeriesInput
-  moodboard: MoodboardInput
-  /** 주얼리 라인 프로필 · 실버·골드는 금속 축, 다이아·루비·진주는 스톤 축.
-   *  하나의 선택지 그룹으로 합치면 서로 다른 시장이 섞인다. */
-  line?: LineProfile
-  /** 조사 결과를 쓸 언어. 화면 언어와 별개로 분석 시작 시 정한다. */
-  researchLang?: import('./i18n').Lang
-  /** 브랜드 아이덴티티 · 모든 결과물에 공통으로 실린다 */
-  brand?: import('./brand').BrandIdentity
+/** 서버 프롬프트에 넣는 언어 이름 */
+export const ANALYSIS_LANG_NAME: Record<AnalysisLang, string> = {
+  ko: 'Korean (한국어)', ja: 'Japanese (日本語)', en: 'English',
+  zh: 'Chinese (中文)', fr: 'French (Français)', it: 'Italian (Italiano)',
 }
 
+// ── 품목 · 스펙 기준 5종 (에이전트 1·2 는 단일 선택, 컬렉션은 다중) ────
+export interface ItemDef { id: string; label: string; en: string }
+export const ITEMS: ItemDef[] = [
+  { id: 'ring', label: 'Ring', en: 'ring' },
+  { id: 'earrings', label: 'Earrings', en: 'pair of earrings' },
+  { id: 'necklace', label: 'Necklace', en: 'necklace' },
+  { id: 'pendant', label: 'Pendant', en: 'pendant necklace' },
+  { id: 'bracelet', label: 'Bracelet', en: 'bracelet' },
+]
+export const ITEM_LABEL: Record<string, string> = Object.fromEntries(ITEMS.map(i => [i.id, i.label]))
+export const ITEM_EN: Record<string, string> = Object.fromEntries(ITEMS.map(i => [i.id, i.en]))
+/** 조사 프롬프트에 쓰는 한국어 품목명 · 검색은 한국어가 더 잘 잡힌다 */
+export const ITEM_KO: Record<string, string> = {
+  ring: '반지', earrings: '귀걸이', necklace: '목걸이', pendant: '펜던트', bracelet: '브레이슬릿',
+}
 
-/** 캠페인 컷 수 · 옛 Run은 wearCuts + conceptShots 로 저장돼 있다 */
-export function campaignCount(p: Pick<RunParams, 'campaignShots' | 'wearCuts' | 'conceptShots'>): number {
-  if (typeof p.campaignShots === 'number') return p.campaignShots
-  return (p.wearCuts ?? 0) + (p.conceptShots ?? 0)
+export type DesignCount = 10 | 20 | 30 | 40
+export type SetCount = 1 | 3 | 5
+
+/** 수량 → 변형 종류 · 10개 단위로 층이 붙는다 */
+export type VariantKind = 'base' | 'commercial' | 'form' | 'material'
+export const VARIANTS_FOR: Record<DesignCount, VariantKind[]> = {
+  10: ['base'],
+  20: ['base', 'commercial'],
+  30: ['base', 'commercial', 'form'],
+  40: ['base', 'commercial', 'form', 'material'],
+}
+export const VARIANT_LABEL: Record<VariantKind, string> = {
+  base: 'Core design', commercial: 'Commercial variant', form: 'Form experiment', material: 'Material experiment',
+}
+
+export interface TargetCustomer { age: string; gender: 'female' | 'male' | 'unisex' }
+export const GENDER_LABEL: Record<TargetCustomer['gender'], string> = {
+  female: 'Women', male: 'Men', unisex: 'Unisex',
+}
+export function targetText(t: TargetCustomer): string {
+  return `${t.age} · ${GENDER_LABEL[t.gender]}`
+}
+
+/** 컬렉션 고급 설정 · 비우면 에이전트가 정한다 */
+export interface CollectionAdvanced {
+  expression?: 'abstract' | 'balanced' | 'literal'
+  positioning?: 'daily' | 'premium' | 'luxury' | 'artpiece'
+  metalsPrefer?: string
+  metalsAvoid?: string
+  stonesPrefer?: string
+  stonesAvoid?: string
+  priceTarget?: string
+  manufacturing?: string
+}
+
+export interface RunParams {
+  algo: 2                       // 알고리즘 세대 · 옛 저장본(스펙·룰 파이프라인)과 구분한다
+  mode: Mode
+  /** 검색 지역 · 여러 권역을 함께 고를 수 있다. 지역 수만큼 편집샵·확산 조사가 늘어난다. */
+  countries: string[]
+  /** @deprecated 옛 저장본 호환용 · 새 코드는 countries 를 쓴다 */
+  country?: string
+  analysisLang: AnalysisLang
+  /** 조사 방향 (경쟁사·패션) / 컬렉션 키워드·스토리 */
+  direction: string
+  itemType: string              // 에이전트 1·2 단일 품목
+  items: string[]               // 컬렉션 다중 품목
+  designCount: DesignCount
+  setCount: SetCount
+  target: TargetCustomer
+  competitors: string[]         // 경쟁사 에이전트 전용
+  collectionAdv?: CollectionAdvanced
+  imageEngine: 'fast' | 'detail'
 }
 
 export const DEFAULT_PARAMS: RunParams = {
-  mode: 'trend', category: 'jewelry', itemType: 'band_ring',
-  endStage: 'S3', sketchCount: 12, tierRatio: [1, 1, 1],
-  renderRatio: 0.5, viewCount: 3, colorwayCount: 2,
-  topN: 3, designsPerSketch: 2, variationCount: 3, campaignShots: 4, make3d: true, approvalGate: true,
-  line: { preset: 'sterling_core', baseMetal: '925_silver', coating: 'rhodium', stone: 'none' },
-  imageEngine: 'detail', imageBudget: 12,
-  trend: {
-    // 기본을 비워둔다. 가상의 브랜드명으로 검색하면 결과가 무의미하고 시간만 든다.
-    competitors: [],
-    priceBand: 'contemporary', priceMinKrw: 150000, priceMaxKrw: 450000,
-  },
-  series: {
-    seriesName: '', archiveFiles: [], valueStatement: '', trendSearch: true,
-  },
-  moodboard: { files: [], notes: '' },
+  algo: 2, mode: 'competitor', countries: ['Korea'], analysisLang: 'ko',
+  direction: '', itemType: 'ring', items: ['ring', 'earrings', 'necklace'],
+  designCount: 10, setCount: 3,
+  target: { age: '25-34', gender: 'female' },
+  competitors: [],
+  imageEngine: 'fast',
 }
 
-// ── 신호 (S1) ───────────────────────────────────────────────────────
-export interface Signal {
-  signal_id: string
-  attribute: string
-  label: string
-  axis: string
-  observed_count: number
-  sources: string[]
-  price_bands: string[]
-  confidence: 'high' | 'medium' | 'low'
-  direction: 'rising' | 'stable' | 'declining'
-  first_seen: string
-  dedup_group: string
-  oem_group: string | null
-  page_ref?: string            // 무드보드 모드: 페이지·위치 참조
-  sales_proxy_score?: number   // 트렌드 모드
-  proxy_confidence?: 'high' | 'medium' | 'low' | 'none'
-  evidence?: string[]          // 웹 수집 시 확인된 근거 문장
-}
-
-export interface CompetitorProduct {
-  product_id: string
-  brand: string
-  name: string
-  price_krw: number
-  sales_proxy_score: number | null
-  proxy_signals: string[]
-  observation_count: number
-  observation_window: string
-  confidence: 'high' | 'medium' | 'low' | 'none'
-  in_band: boolean
-  evidence_strength?: 'strong' | 'moderate' | 'weak' | 'none'
-  source_urls?: string[]
-  rank_note?: string
-  user_sentiment?: 'positive' | 'mixed' | 'negative' | 'unknown'
-  praise_points?: string[]
-  complaint_points?: string[]
-  design_traits?: string[]
-  /** 라인 대비 경쟁군 분류 · direct(동일 라인) / aspirational(상위 참고) / directional(디자인 참고) */
-  competitor_class?: 'direct' | 'aspirational' | 'directional'
-  line_match?: boolean
-  image_urls?: string[]
-  product_url?: string
-}
-
-export interface Direction {
+// ── 수집 산출물 ──────────────────────────────────────────────────────
+/** 크롤된 제품 · 경쟁사와 편집샵이 같은 카드 형태를 쓴다 */
+export interface CrawledProduct {
   id: string
-  title: string
-  summary: string
-  signal_ids: string[]
-}
-
-/** 백화점·명품몰 베스트셀러 · "조사 시점에 잘 팔린다고 표기된 것"의 스냅샷.
- *  경쟁 브랜드 조사와 축이 다르다 — 이쪽은 유통사 랭킹이 기준이다. */
-export interface BestsellerProduct {
-  product_id: string                 // bs_1 …
-  retailer: string
-  retailer_scope: 'domestic_dept' | 'global_dept' | 'luxury_etail'
+  source: 'competitor' | 'shop'
   brand: string
+  shopName?: string
   name: string
-  price_krw: number
-  /** 사이트에 표기된 순위·배지 그대로. 노출 위치 추정 금지 */
-  rank_note: string
-  popularity_basis: string[]
-  design_traits: string[]
-  image_urls: string[]
-  product_url: string
-  source_urls: string[]
-  collected_at: string
+  /** 경쟁사: representative/best/new · 편집샵: rankBasis 로 구분 */
+  group?: 'representative' | 'best' | 'new'
+  rankBasis?: 'official_best' | 'exposure'
+  rankNote?: string
+  price: number
+  currency: string
+  imageUrl: string              // 원본 원격 주소
+  shot?: string                 // 로컬로 구운 사본 (배포용)
+  productUrl: string
 }
 
-export interface SeriesDnaElement {
-  element: string
-  label: string
-  observed_in: number
-  of: number
-  // 판독본에는 신뢰도가 없다 · 있는 척 비워 두고 찍으면 화면에 빈칸이 남는다
-  confidence?: 'high' | 'medium' | 'low'
-  must_inherit?: boolean
-  /** 판독이 이 요소를 어디서 봤는지 · 사람이 되짚을 수 있는 문장 */
-  evidence?: string
-  variation_range?: string[]
-  observed?: (string | number)[]
-  note?: string
+export interface CompetitorCrawl { brand: string; note: string; items: CrawledProduct[]; sources: string[] }
+export interface ShopCrawl { name: string; url: string; note: string; items: CrawledProduct[]; failed?: string; region?: string }
+
+// ── 트렌드 리포트 ────────────────────────────────────────────────────
+export interface TrendItem { label: string; evidence: string; mentions: number; source_urls: string[]; image_url: string }
+export interface TrendElement { axis: string; trends: TrendItem[] }
+export interface TrendReportData {
+  headline: string
+  summary: string
+  elements: TrendElement[]
+  sources: string[]
+  sub_questions?: string[]
+  searches?: number
+  collected_at?: string
 }
 
-export interface SeriesDna {
-  invariant: SeriesDnaElement[]
-  variable: SeriesDnaElement[]
-  ambiguous: SeriesDnaElement[]
+// ── 다음 시즌 예측 · 예측은 예측이라 말한다 (확신도·근거·관찰 지표 필수) ──
+export interface ForecastPrediction {
+  axis: string; call: string; why: string
+  confidence: 'high' | 'medium' | 'low'; watch: string
+}
+export interface ForecastData {
+  horizon: string; thesis: string
+  predictions: ForecastPrediction[]; risks: string[]; sources: string[]
+  searches?: number
+}
+export const CONFIDENCE_LABEL: Record<ForecastPrediction['confidence'], string> = {
+  high: 'High confidence', medium: 'Medium confidence', low: 'Low confidence',
 }
 
-export interface ReportBias {
-  publisher: string
-  perspective: string
-  notes: string[]
+// ── 패션 전용 ────────────────────────────────────────────────────────
+export interface FashionLook {
+  brand: string; collection: string; season: string; look_note: string
+  image_url: string; source_url: string
+  colors: string[]; materials: string[]; silhouette: string; styling: string
+  jewelry_zone: string
+  shot?: string
+  region?: string
+}
+export interface RunwayData { looks: FashionLook[]; season_now: string; season_next: string; sources: string[] }
+export interface AdoptionSignal { label: string; basis: 'official_best' | 'exposure' | 'editorial' | 'search' | 'street'; evidence: string; source_url: string; image_url: string; region?: string }
+export const BASIS_LABEL: Record<AdoptionSignal['basis'], string> = {
+  official_best: 'Official bestseller', exposure: 'Site exposure', editorial: 'Editorial mention',
+  search: 'Search interest', street: 'Street style',
 }
 
-// ── 근거 추적 체인 (지시서 10장) ────────────────────────────────────
-export interface ReferenceImage {
-  ref_id: string
-  source_type: 'competitor' | 'bestseller' | 'archive' | 'user_upload' | 'trend_report'
-  source_url: string
-  collected_at: string
-  borrowed_attributes: string[]
-  usage: 'attribute_only' | 'visual_reference'
-  blocked?: boolean            // competitor + visual_reference → 시스템 차단
-  /** 화면에 보이는 이름 · 브랜드+제품명 또는 파일명. 없으면 옛 저장본이다. */
-  label?: string
-  /** 이 참조가 이 디자인에 닿은 경로 · 레시피 조합, 시리즈 DNA, 신호 id */
-  linked_via?: string
-  /** 문서 근거의 위치 · 무드보드 PDF 의 쪽 */
-  page_ref?: string
+// ── 컬렉션 전용 ──────────────────────────────────────────────────────
+export interface KeywordInsight {
+  meaning: string; cultural: string; background: string
+  symbols: string[]; emotions: string[]; colors: string[]; materials: string[]
+  forms: string[]; motion: string[]; cliches: string[]; cautions: string[]
+  abstraction: { axis: string; notes: string[] }[]
+  sources: string[]
+}
+export interface ConceptArt { form: string; motion: string; material: string; atmosphere: string }
+export interface CollectionSet {
+  name: string; kind: string; concept: string; story: string
+  palette: string[]; metal: string; surface: string; stones: string
+  silhouette: string; motif: string; rhythm: string; structure: string
+  avoid: string[]
+  design_dna: string[]
+  concept_art: ConceptArt
+  /** 생성된 콘셉트 이미지 (Form/Motion/Material/Atmosphere) */
+  art?: Partial<Record<keyof ConceptArt, { url: string; hash: string }>>
+  /** 세트 전체 라인업 이미지 */
+  lineup?: { url: string; hash: string }
 }
 
-export interface Rationale {
-  agent_mode: Mode
-  driving_signals: { signal_id: string; weight: number }[]
-  reference_images: ReferenceImage[]
-  reference_prompts: { text: string; origin: string; applied_as: string[] }[]
-  series_dna_inherited: string[]
-  type_placement_reason: string
-  narrative: string[]          // 발표 노트 3~4문장
+// ── 레퍼런스 · 프롬프트 쌍 ───────────────────────────────────────────
+export interface Reference {
+  slot: number
+  candidateId: string
+  title: string                 // 제품명 또는 브랜드·컬렉션
+  subtitle: string              // 브랜드·가격 등 한 줄
+  trendCombo: string[]
+  reason: string
+  imageUrl: string
+  shot?: string
+  price?: number
+  currency?: string
+  sourceUrl: string
 }
 
-// ── 룰·검증 ─────────────────────────────────────────────────────────
-export interface RuleResult {
-  rule: string
-  severity: 'fail' | 'warn'
-  message: string
+export interface PromptDirection {
+  preserve: string; transform: string; replace: string; combine: string; complement: string; avoid: string
 }
 
-/** 수집된 근거인가 · 출처가 하나도 없으면 예시 데이터다.
- *  저장된 옛 Run 도 고치지 않고 같은 기준으로 판정된다 (evidenceId 와 같은 파생식 원칙). */
-export function isCollectedSignal(s: { sources?: string[]; page_ref?: string }): boolean {
-  return (s.sources?.length ?? 0) > 0 || !!s.page_ref
-}
-export function isCollectedProduct(p: { source_urls?: string[]; product_url?: string }): boolean {
-  return (p.source_urls?.length ?? 0) > 0 || !!p.product_url
+export interface DesignVersion { url: string; hash: string; prompt: string; at: string }
+
+export interface DesignPair {
+  id: string                    // D01 ...
+  refSlot: number               // 레퍼런스 슬롯 (컬렉션은 세트 번호)
+  variant: VariantKind
+  /** 컬렉션 전용 · 어느 세트의 어느 품목인가 */
+  setName?: string
+  item?: string
+  title: string
+  dna?: Record<string, unknown>
+  direction?: PromptDirection
+  prompt: string                // 현재 프롬프트 (수정 가능)
+  versions: DesignVersion[]     // 생성 이력 · 마지막이 현재
+  score?: number
+  scoreNote?: string
+  error?: string
+  feature?: string              // 컬렉션 · 한 문장 특징
 }
 
-export interface QAResult {
-  check: string
-  target: string
-  observed: string
-  pass: boolean
-  /** 검사 결과 · unknown 은 "확인 못 했다"이지 통과가 아니다.
-   *  선택 필드다 — 옛 저장본과 샘플에는 없고, 그때는 pass 만 읽힌다. */
-  status?: 'pass' | 'fail' | 'unknown'
-  /** 어느 컷에서 봤는가 */
-  view?: string
-  /** 모델이 남긴 한 줄 · 무엇이 어떻게 보였는지 */
-  note?: string
+// ── 실행 상태 ────────────────────────────────────────────────────────
+export type Stage = 'S1' | 'S2' | 'S3' | 'S4' | 'S5'
+/** 단계 이름은 에이전트마다 다르다 · 화면은 이 표로 부른다 */
+export const STAGE_LABELS: Record<Mode, Record<Stage, string>> = {
+  competitor: { S1: 'Crawl', S2: 'Trend report', S3: 'References', S4: 'Prompts', S5: 'Designs' },
+  fashion: { S1: 'Runway and adoption', S2: 'Trend report', S3: 'References', S4: 'Prompts', S5: 'Designs' },
+  collection: { S1: 'Keyword research', S2: 'Set concepts', S3: 'Concept art', S4: 'Prompts', S5: 'Designs' },
 }
 
-export interface CostEstimate {
-  lines: { label: string; krw: number }[]
-  tooling: {
-    total_tooling_krw: number
-    mold_count_required: number
-    size_run_count?: number
-    amortization_volume: number
-    tooling_per_unit_krw: number
-  }
-  estimated_total_krw: number
-  estimated_band_krw: [number, number]
-  cap_ratio: number            // 원가 상한 대비 (1.0 = 100%)
-  confidence: 'low' | 'medium' | 'high'
-  assumptions: string[]
-  excluded_costs: string[]
-}
-
-// ── 디자인 (스펙 + 산출물) ──────────────────────────────────────────
-export interface DesignSpec {
-  design_id: string
-  tier: DesignTier
-  category: Category
-  itemType: string
-  fields: Record<string, string | number | boolean>
-  fieldsLocked: string[]       // 잠긴 필드
-  // 무엇이 잠갔는지 · 라인 프로필과 시리즈 DNA 는 출처가 다르다.
-  // 둘을 뭉뚱그려 "DNA" 로 표기하면 시리즈 판독을 하지도 않은 모드에서 DNA 를 물려받은 척하게 된다.
-  lockedBy?: Record<string, 'dna' | 'line'>
-}
-
-/** 실제 생성된 이미지 · origin은 지시서 9장 이미지 원장 */
-export interface DesignImage {
-  view: string
-  colorway?: string
-  url: string
-  hash: string
-  origin: 'generated' | 'edited_from' | 'regenerated_hq'
-  /** 베리에이션 축 이름 · 어떤 축을 바꾼 안인지 */
-  variantOf?: string
-  variantAxis?: string
-  /** 이 이미지를 만든 프롬프트 · 근거 표시용. 없으면 옛 데이터다. */
-  promptUsed?: string
-  /** 컨셉 촬영 컷 라벨과 가상 인물 */
-  conceptLabel?: string
-  persona?: string
-  editedFrom?: string
-  /** QA 가 어긋난 컷을 고쳐 끼웠을 때, 교체 전 해시 · 이미지 계보를 잃지 않게 남긴다 */
-  qaRemadeFrom?: string
-}
-
-export interface Design {
-  spec: DesignSpec
-  ruleResults: RuleResult[]
-  rejected: boolean            // 룰 탈락
-  cost: CostEstimate
-  rationale: Rationale
-  qa: QAResult[]
-  viewMismatch: boolean        // S3 2회 재시도 실패 플래그
-  /** 비전 QA 가 아예 못 돈 이유 · 있으면 화면에 통과가 아니라 미확인으로 표시된다 */
-  qaError?: string
-  /** 브랜드의 "절대 안 하는 것"을 스펙이 어긴 항목 · 룰 엔진과 별개 층이다.
-   *  브랜드 설정 화면이 "어기면 카드에 표시된다"고 약속하므로 실제로 표시되어야 한다. */
-  brandViolations?: string[]
-  // 결정적 지표 (계층 1)
-  metrics: { label: string; value: string }[]
-  // 모델 평가 (계층 2)
-  modelEval: { label: string; value: string; basis: string }[]
-  colorways: string[]          // hue names
-  images: DesignImage[]        // 실제 생성 이미지 (비면 SVG 시뮬레이션 표시)
-  /** 멀티뷰에서 만든 3D 모델 (GLB) */
-  model?: { url: string; hash: string; format: string; views: number; note?: string }
-  imageError?: string          // 부분 실패 격리 · 이 건만 실패, 나머지는 진행
-  isTop: boolean
-  topDistance?: number         // Top N 상호 스펙 거리
-  // 품평 게이트 (계층 3)
-  verdict?: 'approve' | 'reject'
-  verdictTags?: string[]
-  /** 이 디자인에 배정된 조건 레시피 · 조사 결과의 어떤 조합에서 나온 컨셉인지 */
-  recipe?: { title: string; shape: 'solo' | 'pair' | 'fusion'; atoms: { kind: string; label: string }[] }
-  /** MD 페르소나의 셀렉 피드백 · 지표와 별개 층, 절대 합산하지 않는다 */
-  mdReview?: { verdict: 'pick' | 'hold' | 'drop'; reason: string; fix?: string }
-}
-
-// ── 파이프라인 이벤트 ───────────────────────────────────────────────
-export type PipelineEvent =
-  | { kind: 'log'; stage: Stage | 'S0'; text: string }
-  | { kind: 'stage-start'; stage: Stage }
-  | { kind: 'stage-done'; stage: Stage }
-  | { kind: 'progress'; stage: Stage; pct: number }
-  | { kind: 'signals'; signals: Signal[] }
-  | { kind: 'competitors'; items: CompetitorProduct[] }
-  | { kind: 'bestsellers'; items: BestsellerProduct[] }
-  | { kind: 'report-art'; cover?: string; sections?: Record<string, string> }
-  | { kind: 'md-rationale'; text: string }
-  | { kind: 'directions'; items: Direction[] }
-  | { kind: 'series-dna'; dna: SeriesDna }
-  | { kind: 'dna-conflict'; brandClaim: string; observed: string }
-  | { kind: 'report-bias'; bias: ReportBias }
-  | { kind: 'trend-report'; report: unknown }
-  | { kind: 'report-pending'; on: boolean }
-  | { kind: 'dossier'; dossier: unknown }
-  | { kind: 'dossier-pending'; on: boolean }
-  | { kind: 'design'; design: Design }
-  | { kind: 'design-update'; design: Design }
-  // 승인 게이트 대기 · reason 이 'dna' 면 디자인 승인이 아니라 DNA 충돌 선택을 기다리는 것이다
-  | { kind: 'gate'; stage: Stage; reason?: 'designs' | 'dna' }
-  | { kind: 'checkpoint'; label: string }
-  | { kind: 'done'; endStage: Stage }
+export interface LogLine { stage: Stage; text: string; t: number }
 
 export interface RunState {
+  algo: 2
   params: RunParams
-  stageStatus: Record<Stage, 'idle' | 'running' | 'done' | 'gated'>
-  logs: { stage: string; text: string; t: number }[]
-  signals: Signal[]
-  competitors: CompetitorProduct[]
-  /** 백화점·명품몰 베스트셀러 · 옛 저장본에는 없다 */
-  bestsellers?: BestsellerProduct[]
-  directions: Direction[]
-  seriesDna: SeriesDna | null
-  dnaConflict: { brandClaim: string; observed: string; resolved?: string } | null
-  reportBias: ReportBias | null
-  trendReport: unknown | null
-  /** 리포트를 여는 무드컷 · 조사 사진과 달리 증거가 아니라 편집 아트다 */
-  reportArt?: { cover?: string; sections?: Record<string, string> }
-  /** MD 총평 · 어떤 기준으로 픽이 갈렸는지 페르소나의 말로 */
-  mdPickRationale?: string
-  /** 시즌 도시에 · MICAM 형식의 구조화된 트렌드 자료 */
-  dossier: unknown | null
-  dossierPending: boolean
-  reportPending: boolean
-  designs: Design[]
-  checkpoints: string[]
+  stageStatus: Record<Stage, 'idle' | 'running' | 'done'>
+  logs: LogLine[]
+  // 에이전트 1
+  crawl?: CompetitorCrawl[]
+  shops?: ShopCrawl[]
+  // 에이전트 2
+  runway?: RunwayData
+  adoption?: AdoptionSignal[]
+  // 공통 리포트
+  trendReport?: TrendReportData
+  forecast?: ForecastData
+  // 에이전트 3
+  insight?: KeywordInsight
+  sets?: CollectionSet[]
+  // 공통 산출
+  references: Reference[]
+  pairs: DesignPair[]
+  searches: number
   finished: boolean
-  /** 미리 만들어 둔 예시 Run · 삭제되지 않는다 */
+  failedNote?: string
+  // 샘플 표시
   sample?: boolean
   sampleTitle?: string
   savedAtISO?: string
 }
 
-export const VERDICT_TAGS = ['Form', 'Material', 'Colour', 'Cost', 'Brand tone', 'Manufacturing', 'Too familiar', 'Timing']
+export function freshState(params: RunParams): RunState {
+  return {
+    algo: 2, params,
+    stageStatus: { S1: 'idle', S2: 'idle', S3: 'idle', S4: 'idle', S5: 'idle' },
+    logs: [], references: [], pairs: [], searches: 0, finished: false,
+  }
+}
+
+// ── 파이프라인 이벤트 ────────────────────────────────────────────────
+export type PipelineEvent =
+  | { kind: 'log'; stage: Stage; text: string }
+  | { kind: 'stage-start'; stage: Stage }
+  | { kind: 'stage-done'; stage: Stage }
+  | { kind: 'progress'; stage: Stage; pct: number }
+  | { kind: 'crawl'; crawl: CompetitorCrawl[] }
+  | { kind: 'shops'; shops: ShopCrawl[] }
+  | { kind: 'runway'; runway: RunwayData }
+  | { kind: 'adoption'; signals: AdoptionSignal[] }
+  | { kind: 'trend-report'; report: TrendReportData }
+  | { kind: 'forecast'; forecast: ForecastData }
+  | { kind: 'insight'; insight: KeywordInsight }
+  | { kind: 'sets'; sets: CollectionSet[] }
+  | { kind: 'set-art'; setName: string; art: NonNullable<CollectionSet['art']>; lineup?: CollectionSet['lineup'] }
+  | { kind: 'references'; references: Reference[] }
+  | { kind: 'pair'; pair: DesignPair }
+  | { kind: 'pair-update'; pair: DesignPair }
+  | { kind: 'searches'; n: number }
+  | { kind: 'failed'; note: string }
+  | { kind: 'done' }
+
+// ── 디자인 수량 → 실제 생성 개수 계산 ────────────────────────────────
+export function plannedPairCount(p: RunParams): number {
+  if (p.mode === 'collection') return p.setCount * p.items.length
+  return p.designCount
+}
+
+/** 단계별 예상 시간(분) · 실측 실행에서 잡은 범위다.
+ *  근거(2026-08 실측): 경쟁사 크롤 브랜드당 4~8분 · 편집샵 지역당 6~12분 ·
+ *  리포트(gpt-5) 10~16분 · 런웨이+확산 지역당 5~9분 · 키워드 5~9분 ·
+ *  콘셉트 아트 세트당 2~4분 · 디자인 장당 0.5~1.2분.
+ *  깊은 조사(gpt-5-pro)는 리포트 단계가 25~60분으로 바뀐다 — 단건 호출 4분 안팎 ×
+ *  (하위 질문 병렬 한 겹 + 긴 종합). 실측에서 depth 2 로도 35분을 넘겼다.
+ *  느린 대신 자세하다. 그래서 이 범위를 화면에 숨기지 않고 단계마다 붙여 보여 준다. */
+export interface StageEstimate { min: number; max: number }
+export function estimateStages(p: RunParams, deep = false): Record<Stage, StageEstimate> {
+  const regions = Math.max(1, regionsOf(p).length)
+  const designs = plannedPairCount(p)
+  const report: StageEstimate = deep ? { min: 25, max: 60 } : { min: 10, max: 16 }
+  const gen: StageEstimate = { min: Math.max(1, designs * 0.5), max: designs * 1.2 }
+  if (p.mode === 'competitor') {
+    return {
+      S1: { min: p.competitors.length * 4 + regions * 6, max: p.competitors.length * 8 + regions * 12 },
+      S2: report,
+      S3: { min: 2, max: 5 },
+      S4: { min: 2, max: 6 },
+      S5: gen,
+    }
+  }
+  if (p.mode === 'fashion') {
+    return {
+      S1: { min: regions * 5, max: regions * 9 },
+      S2: report,
+      S3: { min: 2, max: 5 },
+      S4: { min: 2, max: 6 },
+      S5: gen,
+    }
+  }
+  return {
+    S1: { min: 5, max: 9 },
+    S2: { min: 2, max: 4 },
+    S3: { min: p.setCount * 2, max: p.setCount * 4 },
+    S4: { min: 1, max: 3 },
+    S5: { min: Math.max(1, designs * 0.6), max: designs * 1.4 },
+  }
+}
+
+/** 전체 예상 시간(분) · 단계 범위의 합. 한 곳에서만 계산해야 화면끼리 안 어긋난다. */
+export function estimateMinutes(p: RunParams, deep = false): { min: number; max: number } {
+  const st = estimateStages(p, deep)
+  const lo = Object.values(st).reduce((n, s) => n + s.min, 0)
+  const hi = Object.values(st).reduce((n, s) => n + s.max, 0)
+  return { min: Math.max(1, Math.round(lo)), max: Math.round(hi) }
+}

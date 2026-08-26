@@ -29,38 +29,17 @@ function write(k: string, v: unknown) {
   catch { /* 용량 초과 시 조용히 넘긴다. 저장 실패가 실행을 막으면 안 된다 */ }
 }
 
-/** 예시 주소를 근거로 달고 저장된 옛 Run 을 읽을 때 걷어낸다.
- *  브라우저에 이미 남은 기록까지 고칠 방법은 이것뿐이다. 지우기만 하고 다른 것으로
- *  바꾸지 않는다 — 무엇이 근거였는지는 이제 알 수 없고, 지어내면 같은 잘못이다. */
-const FAKE_REF = /example\.(com|org|net)|supabase:\/\//i
-function scrubEvidence(r: RunRecord): RunRecord {
-  const designs = r.state?.designs ?? []
-  let touched = false
-  const fixed = designs.map(d => {
-    const refs = d.rationale?.reference_images ?? []
-    const keep = refs.filter(x => !FAKE_REF.test(x.source_url ?? ''))
-    if (keep.length === refs.length) return d
-    touched = true
-    return {
-      ...d,
-      rationale: {
-        ...d.rationale,
-        reference_images: keep,
-        narrative: (d.rationale?.narrative ?? []).filter(n => !/References were used for attributes only/.test(n)),
-      },
-    }
-  })
-  // 바뀐 것이 없으면 같은 객체를 돌려준다. 새 객체를 만들면 Library 가 매번 다시 그린다.
-  return touched ? { ...r, state: { ...r.state, designs: fixed } } : r
+/** 옛 알고리즘(스펙·룰 파이프라인) 저장본은 새 화면이 읽지 못한다.
+ *  algo 표식이 없는 기록은 목록에서 거른다 — 지우지는 않는다, 되돌릴 수 없으므로. */
+function isCurrentAlgo(r: RunRecord): boolean {
+  return r.state?.algo === 2
 }
 
 export function listRuns(): RunRecord[] {
   // 같은 도메인의 신발 데모와 저장소 키를 공유한다. 주얼리가 아닌 Run이 섞이면
   // 화면이 낯선 스펙을 읽다 죽으므로, 읽을 때 걸러내고 저장소에서도 지운다.
   const all = read<RunRecord[]>(KEY, [])
-  const mine = all.filter(r => (r.state?.params?.category ?? 'jewelry') === 'jewelry')
-  if (mine.length !== all.length) write(KEY, mine)
-  return mine.map(scrubEvidence).sort((a, b) => b.savedAt - a.savedAt)
+  return all.filter(isCurrentAlgo).map(r => r).sort((a, b) => b.savedAt - a.savedAt)
 }
 
 export function getRun(id: string): RunRecord | undefined {
@@ -95,7 +74,7 @@ export function saveCurrent(id: string, st: RunState) {
 }
 export function loadCurrent(): { id: string; savedAt: number; state: RunState } | null {
   const cur = read<{ id: string; savedAt: number; state: RunState } | null>(CURRENT, null)
-  if (cur && (cur.state?.params?.category ?? 'jewelry') !== 'jewelry') return null
+  if (cur && cur.state?.algo !== 2) return null
   return cur
 }
 export function clearCurrent() {
@@ -112,9 +91,15 @@ export function makeTitle(st: RunState, labels: { mode: string; category: string
 }
 
 export function firstImage(st: RunState): string | undefined {
-  for (const d of st.designs) {
-    const im = d.images.find(i => i.view !== 'sketch') ?? d.images[0]
-    if (im) return im.url
+  for (const p of st.pairs) {
+    const v = p.versions[p.versions.length - 1]
+    if (v) return v.url
+  }
+  // 디자인이 아직 없으면 컬렉션 라인업이나 콘셉트 아트라도
+  for (const set of st.sets ?? []) {
+    if (set.lineup) return set.lineup.url
+    const art = set.art && Object.values(set.art)[0]
+    if (art) return art.url
   }
   return undefined
 }
@@ -125,19 +110,15 @@ export function firstImage(st: RunState): string | undefined {
 const LAST_KEY = 'vringon.lastrun'
 
 export function saveLastParams(p: RunParams) {
-  try {
-    const slim: RunParams = {
-      ...p,
-      series: { ...p.series, archiveFiles: [] },
-      moodboard: { ...p.moodboard, files: [] },
-    }
-    localStorage.setItem(LAST_KEY, JSON.stringify(slim))
-  } catch { /* 저장 실패가 실행을 막지 않는다 */ }
+  try { localStorage.setItem(LAST_KEY, JSON.stringify(p)) } catch { /* 저장 실패가 실행을 막지 않는다 */ }
 }
 
 export function loadLastParams(): RunParams | null {
   try {
     const raw = localStorage.getItem(LAST_KEY)
-    return raw ? JSON.parse(raw) as RunParams : null
+    if (!raw) return null
+    const p = JSON.parse(raw) as RunParams
+    // 옛 알고리즘의 설정은 필드가 다르다 · algo 표식 없으면 버린다
+    return p.algo === 2 ? p : null
   } catch { return null }
 }

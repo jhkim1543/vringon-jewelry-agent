@@ -1,35 +1,36 @@
 {
-  "name": "vringon-jewelry-agent",
-  "private": true,
-  "version": "0.5.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "preview": "vite preview",
-    "build:pages": "tsc -b && node -e \"process.env.BUILD_TARGET='pages';require('child_process').execSync('npx vite build',{stdio:'inherit',env:process.env});require('fs').writeFileSync('docs/.nojekyll','')\"",
-    "audit": "node scripts/mode-audit.mjs && node scripts/evidence-audit.mjs && node scripts/i18n-audit.mjs && node scripts/check-wizard-art.mjs && npx tsx scripts/svg-audit.mts",
-    "sample:warm": "node scripts/warm-research.mjs",
-    "sample:make": "tsx scripts/make-sample.mts",
-    "sample:bake": "node scripts/bake-shots.mjs && node scripts/webp-samples.mjs && node scripts/check-wizard-art.mjs --fix",
-    "i18n:merge": "node scripts/i18n-merge.mjs",
-    "selfhost:probe": "node scripts/selfhost-probe.mjs"
-  },
-  "dependencies": {
-    "@types/three": "^0.185.4",
-    "@xyflow/react": "^12.3.5",
-    "pdfjs-dist": "^6.2.108",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "sharp": "^0.35.3",
-    "three": "^0.185.1",
-    "undici": "^8.9.0"
-  },
-  "devDependencies": {
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "@vitejs/plugin-react": "^4.3.4",
-    "typescript": "^5.6.3",
-    "vite": "^5.4.11"
-  }
+ "name": "vringon-jewelry-agent",
+ "private": true,
+ "version": "0.5.0",
+ "type": "module",
+ "scripts": {
+  "dev": "vite",
+  "build": "tsc -b && vite build",
+  "preview": "vite preview",
+  "build:pages": "tsc -b && node -e \"process.env.BUILD_TARGET='pages';require('child_process').execSync('npx vite build',{stdio:'inherit',env:process.env});require('fs').writeFileSync('docs/.nojekyll','')\"",
+  "audit": "node scripts/i18n-audit.mjs && node scripts/copy-audit.mjs && node scripts/agent-audit.mjs",
+  "sample:make": "tsx scripts/make-sample.mts",
+  "sample:diff": "node scripts/sample-diff.mjs",
+  "i18n:merge": "node scripts/i18n-merge.mjs",
+  "selfhost:probe": "node scripts/selfhost-probe.mjs",
+  "direction:review": "node scripts/direction-review.mjs"
+ },
+ "dependencies": {
+  "@types/three": "^0.185.4",
+  "@xyflow/react": "^12.3.5",
+  "pdfjs-dist": "^6.2.108",
+  "pptxgenjs": "^4.0.1",
+  "react": "^18.3.1",
+  "react-dom": "^18.3.1",
+  "sharp": "^0.35.3",
+  "three": "^0.185.1",
+  "undici": "^8.9.0"
+ },
+ "devDependencies": {
+  "@types/react": "^18.3.12",
+  "@types/react-dom": "^18.3.1",
+  "@vitejs/plugin-react": "^4.3.4",
+  "typescript": "^5.6.3",
+  "vite": "^5.4.11"
+ }
 }

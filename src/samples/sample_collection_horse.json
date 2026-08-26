@@ -1,0 +1,637 @@
+{
+ "algo": 2,
+ "params": {
+  "algo": 2,
+  "analysisLang": "ko",
+  "imageEngine": "fast",
+  "setCount": 3,
+  "competitors": [],
+  "mode": "collection",
+  "country": "Korea",
+  "direction": "2026년 말의 해. 말의 갈기가 흐르는 결과 질주의 리듬.",
+  "itemType": "ring",
+  "items": [
+   "ring",
+   "earrings",
+   "necklace"
+  ],
+  "designCount": 10,
+  "target": {
+   "age": "25-34",
+   "gender": "female"
+  }
+ },
+ "stageStatus": {
+  "S1": "done",
+  "S2": "done",
+  "S3": "done",
+  "S4": "done",
+  "S5": "done"
+ },
+ "logs": [
+  {
+   "stage": "S1",
+   "text": "Researching the keyword in Korea: culture, symbols, forms, colors, and the cliches to avoid",
+   "t": 1787676525546
+  },
+  {
+   "stage": "S1",
+   "text": "Insight ready · 10 abstraction axes, 4 cautions",
+   "t": 1787676525563
+  },
+  {
+   "stage": "S2",
+   "text": "3 set concept(s): 갈기결 / 바람결 / 폭풍갈기",
+   "t": 1787676525571
+  },
+  {
+   "stage": "S3",
+   "text": "Abstract concept images first, with no jewelry products yet, then one lineup image per set",
+   "t": 1787676525571
+  },
+  {
+   "stage": "S3",
+   "text": "갈기결: 4/4 concept images + lineup",
+   "t": 1787676525591
+  },
+  {
+   "stage": "S3",
+   "text": "바람결: 4/4 concept images + lineup",
+   "t": 1787676525593
+  },
+  {
+   "stage": "S3",
+   "text": "폭풍갈기: 4/4 concept images + lineup",
+   "t": 1787676525602
+  },
+  {
+   "stage": "S4",
+   "text": "9 designs = 3 set(s) × 3 item(s) · the set DNA stays locked, only the item changes",
+   "t": 1787676525603
+  },
+  {
+   "stage": "S5",
+   "text": "D01 generated (갈기결 · ring) · reused",
+   "t": 1787676525624
+  },
+  {
+   "stage": "S5",
+   "text": "D02 generated (갈기결 · earrings) · reused",
+   "t": 1787676525626
+  },
+  {
+   "stage": "S5",
+   "text": "D03 generated (갈기결 · necklace) · reused",
+   "t": 1787676525627
+  },
+  {
+   "stage": "S5",
+   "text": "D04 generated (바람결 · ring) · reused",
+   "t": 1787676525634
+  },
+  {
+   "stage": "S5",
+   "text": "D05 generated (바람결 · earrings) · reused",
+   "t": 1787676525639
+  },
+  {
+   "stage": "S5",
+   "text": "D06 generated (바람결 · necklace) · reused",
+   "t": 1787676525643
+  },
+  {
+   "stage": "S5",
+   "text": "D07 generated (폭풍갈기 · ring) · reused",
+   "t": 1787676525648
+  },
+  {
+   "stage": "S5",
+   "text": "D08 generated (폭풍갈기 · earrings) · reused",
+   "t": 1787676525652
+  },
+  {
+   "stage": "S5",
+   "text": "D09 generated (폭풍갈기 · necklace) · reused",
+   "t": 1787676525653
+  }
+ ],
+ "references": [],
+ "pairs": [
+  {
+   "id": "D01",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "갈기결",
+   "item": "ring",
+   "title": "갈기결 · 반지",
+   "prompt": "반지: 세트 ‘갈기결’의 마스터 모티프를 한 방향으로 흐르는 테이퍼 곡선으로 응축한 원본 디자인. 18K 옐로 골드(니켈 프리 합금), 헤어라인:하이폴리시=6:4; 결과 평행한 헤어라인, 에지와 스톤 주변만 미러 폴리시. 정면 주 라인은 교차 없이 좌→우로 흐르며 중앙에 4mm 여백의 오픈 구조. 모든 곡선은 시작 대비 30~50% 가늘어지고, 모서리 R≥0.2mm, 내측 컴포트 핏으로 착용 안정. 스톤: 라운드 브릴리언트 다이아몬드 3개 모듈(1.5/1.3/1.1mm) 직렬 배치, 마이크로 튜브 베젤 세팅(튜브 두께 0.35mm, 시트 0.5mm). 제조: 샹크 하단 두께 2.0mm·폭 2.2mm, 상부 리브 1.4mm 이상, 오픈부 브릿지 최소 1.2mm, 하부 무게 배분으로 회전 최소화, 주조·가공 모두 가능. 연출: 스리쿼터 제품 뷰, 무채색 스튜디오(18% 그레이), 소프트박스 확산광, 반사 제어, 매크로 주얼리 사진, 포토리얼 4K. Avoid: 말발굽/카우보이/서부풍, 승마 채찍·재갈·굴레, 경마 베팅·번호표·체커드 깃발, 실사 말 얼굴·캐릭터 십이간지, 붉은 복·풍수 남용, 폭주·파손 연상.",
+   "versions": [
+    {
+     "url": "/samples/8c16014aa552e8bedc9e686e.png",
+     "hash": "8c16014aa552e8bedc9e686e",
+     "prompt": "반지: 세트 ‘갈기결’의 마스터 모티프를 한 방향으로 흐르는 테이퍼 곡선으로 응축한 원본 디자인. 18K 옐로 골드(니켈 프리 합금), 헤어라인:하이폴리시=6:4; 결과 평행한 헤어라인, 에지와 스톤 주변만 미러 폴리시. 정면 주 라인은 교차 없이 좌→우로 흐르며 중앙에 4mm 여백의 오픈 구조. 모든 곡선은 시작 대비 30~50% 가늘어지고, 모서리 R≥0.2mm, 내측 컴포트 핏으로 착용 안정. 스톤: 라운드 브릴리언트 다이아몬드 3개 모듈(1.5/1.3/1.1mm) 직렬 배치, 마이크로 튜브 베젤 세팅(튜브 두께 0.35mm, 시트 0.5mm). 제조: 샹크 하단 두께 2.0mm·폭 2.2mm, 상부 리브 1.4mm 이상, 오픈부 브릿지 최소 1.2mm, 하부 무게 배분으로 회전 최소화, 주조·가공 모두 가능. 연출: 스리쿼터 제품 뷰, 무채색 스튜디오(18% 그레이), 소프트박스 확산광, 반사 제어, 매크로 주얼리 사진, 포토리얼 4K. Avoid: 말발굽/카우보이/서부풍, 승마 채찍·재갈·굴레, 경마 베팅·번호표·체커드 깃발, 실사 말 얼굴·캐릭터 십이간지, 붉은 복·풍수 남용, 폭주·파손 연상.",
+     "at": "2026-08-25T16:48:45.621Z"
+    }
+   ],
+   "feature": "한 방향 테이퍼 곡선과 중앙 오픈 위에 3개 모듈 다이아몬드를 직렬 배치하고 헤어라인:하이폴리시 6:4 대비로 결을 강조한 니켈 프리 18K 링."
+  },
+  {
+   "id": "D02",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "갈기결",
+   "item": "earrings",
+   "title": "갈기결 · 귀걸이",
+   "prompt": "귀걸이 원본 디자인: ‘갈기결’ 세트 DNA를 적용한 귓불을 따라 눕는 하프후프에서 시작, 10mm 드롭으로 이어지는 일방향 흐름. 마스터 모티프는 헤어라인처럼 한 방향으로 흐르는 갈기결; 모든 곡선은 시작보다 끝이 30~50% 가늘어지는 테이퍼. 샴페인 옐로골드 톤, 니켈 프리 합금/도금. 표면 대비는 헤어라인:하이폴리시=6:4, 정면 주 라인은 교차선 없이 흐름만 강조. 스톤은 1.2mm 라운드 3개×2 모듈(총 6pcs) 마이크로 프롱 세팅, 시팅 깊이 0.5mm. 최소 벽두께 0.8~1.0mm, 모든 모서리 R≥0.2mm. 하프후프 외경 12mm, 밴드 두께 1.8→0.9mm 테이퍼, 포스트 0.8mm와 나비 잠금으로 안정 착용. 좌우 미러 페어. 스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 포토리얼리즘으로 금속과 질감 재현. 드롭은 8~12mm 범위에서 얼굴선과 균형을 맞추고, 메인 면은 세로 헤어라인, 에지·세팅은 하이폴리시로 대비. 25–34 여성 타깃의 세련된 미니멀 플로우. Avoid: 말발굽·카우보이·서부풍, 승마 채찍·재갈·굴레, 경마 베팅·번호표·체커드 깃발, 실사 말 얼굴·캐릭터 십이간지, 붉은 복·풍수 남용, 폭주·파손 연상.",
+   "versions": [
+    {
+     "url": "/samples/7a244856b84b747c728aa70d.png",
+     "hash": "7a244856b84b747c728aa70d",
+     "prompt": "귀걸이 원본 디자인: ‘갈기결’ 세트 DNA를 적용한 귓불을 따라 눕는 하프후프에서 시작, 10mm 드롭으로 이어지는 일방향 흐름. 마스터 모티프는 헤어라인처럼 한 방향으로 흐르는 갈기결; 모든 곡선은 시작보다 끝이 30~50% 가늘어지는 테이퍼. 샴페인 옐로골드 톤, 니켈 프리 합금/도금. 표면 대비는 헤어라인:하이폴리시=6:4, 정면 주 라인은 교차선 없이 흐름만 강조. 스톤은 1.2mm 라운드 3개×2 모듈(총 6pcs) 마이크로 프롱 세팅, 시팅 깊이 0.5mm. 최소 벽두께 0.8~1.0mm, 모든 모서리 R≥0.2mm. 하프후프 외경 12mm, 밴드 두께 1.8→0.9mm 테이퍼, 포스트 0.8mm와 나비 잠금으로 안정 착용. 좌우 미러 페어. 스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 포토리얼리즘으로 금속과 질감 재현. 드롭은 8~12mm 범위에서 얼굴선과 균형을 맞추고, 메인 면은 세로 헤어라인, 에지·세팅은 하이폴리시로 대비. 25–34 여성 타깃의 세련된 미니멀 플로우. Avoid: 말발굽·카우보이·서부풍, 승마 채찍·재갈·굴레, 경마 베팅·번호표·체커드 깃발, 실사 말 얼굴·캐릭터 십이간지, 붉은 복·풍수 남용, 폭주·파손 연상.",
+     "at": "2026-08-25T16:48:45.626Z"
+    }
+   ],
+   "feature": "하프후프에서 10mm 드롭으로 이어지는 일방향 갈기결 라인에 3개×2 스톤 모듈과 헤어라인:하이폴리시 6:4 대비를 적용한 니켈 프리 샴페인 골드 귀걸이."
+  },
+  {
+   "id": "D03",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "갈기결",
+   "item": "necklace",
+   "title": "갈기결 · 목걸이",
+   "prompt": "목걸이 원본 디자인: 갈기결 세트의 마스터 모티프를 리본형 한 방향 흐름으로 구현. 모든 곡선은 시작 대비 끝단 40% 테이퍼, 교차선 없음. 18K 샴페인 골드 톤(니켈 프리 합금/도금), 모든 모서리 R0.25mm 이상 라운딩. 표면은 헤어라인:하이폴리시=6:4, 브러시 결은 흐름 방향. 체인은 40cm 기본 + 3cm 익스텐더, 1.1mm 케이블 체인.\n\n센터 펜던트는 오픈 구조의 갈기결 리브로 구성, 최소 벽두께 1.2mm, 끝단 0.8mm. 더블 베일과 히든 바 연결로 회전 방지, 중심 무게를 하단에 배분해 목선에서 안정 착좌.\n\n스톤은 3개 모듈만 사용: 라운드 브릴리언트 클리어 스톤 2.0/1.7/1.5mm, 각 4프롱(0.75mm) 마이크로 세팅, 시트 두께 0.6mm. 모듈 스테이션을 체인에 18mm·12mm 비대칭 간격으로 배열.\n\n3/4 제품 뷰, 무채색(18% 그레이) 스튜디오 배경, 100mm 매크로 주얼리 사진, 소프트박스 반사, 먼지·지문 없음, 포토리얼.\n\nAvoid: 말발굽·카우보이·서부풍, 승마 채찍/재갈/굴레, 경마 베팅·번호표·체커드 깃발, 실사 말 얼굴·캐릭터형 십이간지, 붉은 복·풍수 상징 남용, 폭주·파손 연상.",
+   "versions": [
+    {
+     "url": "/samples/1e8699aff5c34a306038bc32.png",
+     "hash": "1e8699aff5c34a306038bc32",
+     "prompt": "목걸이 원본 디자인: 갈기결 세트의 마스터 모티프를 리본형 한 방향 흐름으로 구현. 모든 곡선은 시작 대비 끝단 40% 테이퍼, 교차선 없음. 18K 샴페인 골드 톤(니켈 프리 합금/도금), 모든 모서리 R0.25mm 이상 라운딩. 표면은 헤어라인:하이폴리시=6:4, 브러시 결은 흐름 방향. 체인은 40cm 기본 + 3cm 익스텐더, 1.1mm 케이블 체인.\n\n센터 펜던트는 오픈 구조의 갈기결 리브로 구성, 최소 벽두께 1.2mm, 끝단 0.8mm. 더블 베일과 히든 바 연결로 회전 방지, 중심 무게를 하단에 배분해 목선에서 안정 착좌.\n\n스톤은 3개 모듈만 사용: 라운드 브릴리언트 클리어 스톤 2.0/1.7/1.5mm, 각 4프롱(0.75mm) 마이크로 세팅, 시트 두께 0.6mm. 모듈 스테이션을 체인에 18mm·12mm 비대칭 간격으로 배열.\n\n3/4 제품 뷰, 무채색(18% 그레이) 스튜디오 배경, 100mm 매크로 주얼리 사진, 소프트박스 반사, 먼지·지문 없음, 포토리얼.\n\nAvoid: 말발굽·카우보이·서부풍, 승마 채찍/재갈/굴레, 경마 베팅·번호표·체커드 깃발, 실사 말 얼굴·캐릭터형 십이간지, 붉은 복·풍수 상징 남용, 폭주·파손 연상.",
+     "at": "2026-08-25T16:48:45.627Z"
+    }
+   ],
+   "feature": "한 방향으로 흐르는 갈기결 리브와 3석 모듈을 18/12mm 비대칭 스테이션으로 배열하고 40cm+3cm 체인, 헤어라인:하이폴리시 6:4 대비, 니켈 프리 샴페인 골드로 완성한 목걸이."
+  },
+  {
+   "id": "D04",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "바람결",
+   "item": "ring",
+   "title": "바람결 · 반지",
+   "prompt": "반지 — 바람결 세트의 마스터 모티프를 단일 아이템에 최적화한 원본 디자인. 상단은 하나의 유려한 C-커브가 자연스러운 V-포인트로 수렴하는 비대칭 바이패스 구조. 선 두께 1.2~1.6mm로 설계하고 끝으로 갈수록 40% 테이퍼. 18K 로즈 골드 미러 폴리시(화이트 골드 동형 제공). 로우 프로파일 총 높이 1.9mm, 평평한 내벽으로 레이어링 호환. 중앙에는 2.4×4.0mm 오벌 필드에 1.0mm 라운드 마이크로 파베 5~7pcs를 배치, 가장자리 0.3mm 여백 유지, 공유 비드 0.2mm, 시트 깊이 0.45mm로 실제 제조 가능. 세팅과 밴드의 연결은 히든 매입형으로 곡선을 끊지 않음, 최소 금속 벽두께 1.2mm 확보. 스리쿼터 제품 뷰, 무채색 스튜디오 배경(차콜/18% 그레이), 매크로 주얼리 사진, 깨끗한 스펙큘러와 섬세한 DOF, 포토리얼 마무리. 피해야 할 표현: 편자·말머리 실루엣 등 직설적 말 모양, 카우보이·서부극·경마 용어 연상, 체커드 깃발·스피드 미터 그래픽, 복·합격 등 미신성 상징 과다 사용, 과도한 하트/왕관/별 장식 남발, 브랜드 로고 과장 노출.",
+   "versions": [
+    {
+     "url": "/samples/9c4c81d811396e6a6493bda5.png",
+     "hash": "9c4c81d811396e6a6493bda5",
+     "prompt": "반지 — 바람결 세트의 마스터 모티프를 단일 아이템에 최적화한 원본 디자인. 상단은 하나의 유려한 C-커브가 자연스러운 V-포인트로 수렴하는 비대칭 바이패스 구조. 선 두께 1.2~1.6mm로 설계하고 끝으로 갈수록 40% 테이퍼. 18K 로즈 골드 미러 폴리시(화이트 골드 동형 제공). 로우 프로파일 총 높이 1.9mm, 평평한 내벽으로 레이어링 호환. 중앙에는 2.4×4.0mm 오벌 필드에 1.0mm 라운드 마이크로 파베 5~7pcs를 배치, 가장자리 0.3mm 여백 유지, 공유 비드 0.2mm, 시트 깊이 0.45mm로 실제 제조 가능. 세팅과 밴드의 연결은 히든 매입형으로 곡선을 끊지 않음, 최소 금속 벽두께 1.2mm 확보. 스리쿼터 제품 뷰, 무채색 스튜디오 배경(차콜/18% 그레이), 매크로 주얼리 사진, 깨끗한 스펙큘러와 섬세한 DOF, 포토리얼 마무리. 피해야 할 표현: 편자·말머리 실루엣 등 직설적 말 모양, 카우보이·서부극·경마 용어 연상, 체커드 깃발·스피드 미터 그래픽, 복·합격 등 미신성 상징 과다 사용, 과도한 하트/왕관/별 장식 남발, 브랜드 로고 과장 노출.",
+     "at": "2026-08-25T16:48:45.634Z"
+    }
+   ],
+   "feature": "C-커브가 V-포인트로 이어지는 비대칭 바이패스 위에 중앙 마이크로 파베가 흐르는, 로우 프로파일 로즈 골드 스택링."
+  },
+  {
+   "id": "D05",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "바람결",
+   "item": "earrings",
+   "title": "바람결 · 귀걸이",
+   "prompt": "귀걸이 원본 디자인 선언: 바람결 마스터 모티프를 부드러운 C커브와 날렵한 V포인트로 연결한 비대칭 S-라인. 라인 두께는 1.2~1.6mm 범위, 중심 1.6mm에서 팁으로 갈수록 40% 테이퍼, 최소 0.9mm 벽 두께 확보. 중앙 러닝라인에 라운드 마이크로 파베 0.8mm 다이아를 4비드 세팅, 가장자리 0.3mm 여백 유지. 석좌 깊이 0.25mm, 비드 높이 0.1mm, 스톤 간 피치 0.15mm로 실제 제조 가능 사양. 좌우 길이 18mm/20mm로 한 쪽을 2mm 길게, 각 1.8g 이하로 안착감과 귓불 부담 최소화. 커넥터·잠금은 전면에서 보이지 않는 히든 포스트와 일체형 클러치로 곡선을 끊지 않음. 18K 로즈 골드 우선 제안, 하이 미러 폴리시; 동일 구조·리듬의 화이트 골드 버전 병기, 25-34 여성 타깃. 스리쿼터 제품 뷰로 좌우 한 쌍을 촬영, 무채색 스튜디오 배경, 소프트 디퓨즈 라이트, 매크로 주얼리 사진. 금속의 에지 하이라이트와 파베의 파이어가 또렷한 포토리얼 마무리, 소품·텍스트 배제. Avoid: 편자·말머리 실루엣, 카우보이·서부극·경마 용어, 체커드 깃발·스피드 미터, 복·합격 등 미신성 상징 과다, 과도한 하트/왕관/별, 브랜드 로고 과장.",
+   "versions": [
+    {
+     "url": "/samples/6f4dfbe0e2b8b00e3a28d27b.png",
+     "hash": "6f4dfbe0e2b8b00e3a28d27b",
+     "prompt": "귀걸이 원본 디자인 선언: 바람결 마스터 모티프를 부드러운 C커브와 날렵한 V포인트로 연결한 비대칭 S-라인. 라인 두께는 1.2~1.6mm 범위, 중심 1.6mm에서 팁으로 갈수록 40% 테이퍼, 최소 0.9mm 벽 두께 확보. 중앙 러닝라인에 라운드 마이크로 파베 0.8mm 다이아를 4비드 세팅, 가장자리 0.3mm 여백 유지. 석좌 깊이 0.25mm, 비드 높이 0.1mm, 스톤 간 피치 0.15mm로 실제 제조 가능 사양. 좌우 길이 18mm/20mm로 한 쪽을 2mm 길게, 각 1.8g 이하로 안착감과 귓불 부담 최소화. 커넥터·잠금은 전면에서 보이지 않는 히든 포스트와 일체형 클러치로 곡선을 끊지 않음. 18K 로즈 골드 우선 제안, 하이 미러 폴리시; 동일 구조·리듬의 화이트 골드 버전 병기, 25-34 여성 타깃. 스리쿼터 제품 뷰로 좌우 한 쌍을 촬영, 무채색 스튜디오 배경, 소프트 디퓨즈 라이트, 매크로 주얼리 사진. 금속의 에지 하이라이트와 파베의 파이어가 또렷한 포토리얼 마무리, 소품·텍스트 배제. Avoid: 편자·말머리 실루엣, 카우보이·서부극·경마 용어, 체커드 깃발·스피드 미터, 복·합격 등 미신성 상징 과다, 과도한 하트/왕관/별, 브랜드 로고 과장.",
+     "at": "2026-08-25T16:48:45.639Z"
+    }
+   ],
+   "feature": "C커브와 V포인트가 만나는 비대칭 S-라인 위로 중앙 마이크로 파베가 흐르는 경량 로즈 골드 귀걸이."
+  },
+  {
+   "id": "D06",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "바람결",
+   "item": "necklace",
+   "title": "바람결 · 목걸이",
+   "prompt": "목걸이 원본 디자인 선언: ‘바람결’ 마스터 모티프를 하나의 유선형 C커브가 V포인트로 유려하게 합류하는 펜던트로 해석한다. 로즈 골드 미러 폴리시를 기본으로, 동일 구조의 화이트 골드 옵션 제공. 프레임 선 두께는 1.2~1.6mm에서 시작해 끝으로 갈수록 40% 테이퍼, 목선에 자연스러운 낙수감을 만든다. 중심부는 라운드 0.9~1.1mm 마이크로 파베를 4비드로 세팅하며, 에지에는 0.3mm 안전 여백을 유지한다. 펜던트 후면에 양측 히든 트윈 루프를 적용해 체인과 이중 포인트로 연결, 회전 방지 및 중심 무게 안정. 커넥터와 잠금은 숨김 처리로 곡선을 끊지 않는다. 체인은 0.9mm 타원 링크, 40/42/45cm 멀티 조절 기본. 실제 제조 기준으로 프레임 최소 벽두께 1.2mm, 프롱 높이 0.25~0.3mm, 스톤 간 간격 0.1~0.15mm. 스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 극사실주의 포토리얼 마무리. 피해야 할 요소: 말·편자 실루엣, 카우보이/서부극/경마 연상, 체커드·스피드 그래픽, 미신성 상징 과다, 과도한 하트·왕관·별, 브랜드 로고 과장.",
+   "versions": [
+    {
+     "url": "/samples/413fd6501621bf821b7f5c26.png",
+     "hash": "413fd6501621bf821b7f5c26",
+     "prompt": "목걸이 원본 디자인 선언: ‘바람결’ 마스터 모티프를 하나의 유선형 C커브가 V포인트로 유려하게 합류하는 펜던트로 해석한다. 로즈 골드 미러 폴리시를 기본으로, 동일 구조의 화이트 골드 옵션 제공. 프레임 선 두께는 1.2~1.6mm에서 시작해 끝으로 갈수록 40% 테이퍼, 목선에 자연스러운 낙수감을 만든다. 중심부는 라운드 0.9~1.1mm 마이크로 파베를 4비드로 세팅하며, 에지에는 0.3mm 안전 여백을 유지한다. 펜던트 후면에 양측 히든 트윈 루프를 적용해 체인과 이중 포인트로 연결, 회전 방지 및 중심 무게 안정. 커넥터와 잠금은 숨김 처리로 곡선을 끊지 않는다. 체인은 0.9mm 타원 링크, 40/42/45cm 멀티 조절 기본. 실제 제조 기준으로 프레임 최소 벽두께 1.2mm, 프롱 높이 0.25~0.3mm, 스톤 간 간격 0.1~0.15mm. 스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 극사실주의 포토리얼 마무리. 피해야 할 요소: 말·편자 실루엣, 카우보이/서부극/경마 연상, 체커드·스피드 그래픽, 미신성 상징 과다, 과도한 하트·왕관·별, 브랜드 로고 과장.",
+     "at": "2026-08-25T16:48:45.643Z"
+    }
+   ],
+   "feature": "C커브가 V포인트로 스며드는 바람결 모티프에 마이크로 파베 중심과 히든 커넥터·멀티 조절 0.9mm 체인을 결합해 곡선을 유지하며 회전을 방지하는 로즈 골드 목걸이."
+  },
+  {
+   "id": "D07",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "폭풍갈기",
+   "item": "ring",
+   "title": "폭풍갈기 · 반지",
+   "prompt": "반지: 폭풍갈기 세트의 Design DNA를 단일 링으로 번역. 블랙:골드 70:30 비율 유지, 블랙은 매트 블랙 세라믹/DLC 인레이, 골드는 18K 옐로 하이폴리시. 상단 모듈은 링 정중선에서 8~12mm 비대칭 오프셋으로 긴장감을 주고, 바람결(갈기) 곡선을 따르는 탈착식 프린지 캡을 채택. 프린지는 3·5·8 길이 시퀀스로 배열, 각 체인 끝단 0.6mm 구형 마감. 힌지 내부에 실리콘 스토퍼/와셔 삽입, 직경 1.0mm 핀 구조로 소음과 마찰 최소화. 오픈 밴드로 ±3호 사이즈 조절, 내경 컴포트 핏(R 0.4mm). 제조 사양: 밴드 벽두께 1.7mm, 폭 3.0mm; 상부 캡 두께 1.2mm; 루프 규격 통일(내경 2.5mm, 와이어 직경 0.8mm)로 참 호환. 스톤은 블랙 계열(오닉스/스피넬) 마이크로 파베 1.1mm, 4발 프롱 또는 비드 세팅으로 포인트만. 표면 대비 매트60·글로스40로 라이트 트래핑 극대화. 3/4 제품 뷰, 무채색 스튜디오(라이트 그레이), 매크로 주얼리 사진, 얕은 심도, 포토리얼 마무리. 피해야 할: 고스·펑크 과장 장식(못/대형 체인), 말채찍·재갈 등 폭력 연상, 레이싱/체커드, 실사 동물 프린트, 과도한 중량 프린지, 소음 큰 구조.",
+   "versions": [
+    {
+     "url": "/samples/0738019957d84336b4d3348f.png",
+     "hash": "0738019957d84336b4d3348f",
+     "prompt": "반지: 폭풍갈기 세트의 Design DNA를 단일 링으로 번역. 블랙:골드 70:30 비율 유지, 블랙은 매트 블랙 세라믹/DLC 인레이, 골드는 18K 옐로 하이폴리시. 상단 모듈은 링 정중선에서 8~12mm 비대칭 오프셋으로 긴장감을 주고, 바람결(갈기) 곡선을 따르는 탈착식 프린지 캡을 채택. 프린지는 3·5·8 길이 시퀀스로 배열, 각 체인 끝단 0.6mm 구형 마감. 힌지 내부에 실리콘 스토퍼/와셔 삽입, 직경 1.0mm 핀 구조로 소음과 마찰 최소화. 오픈 밴드로 ±3호 사이즈 조절, 내경 컴포트 핏(R 0.4mm). 제조 사양: 밴드 벽두께 1.7mm, 폭 3.0mm; 상부 캡 두께 1.2mm; 루프 규격 통일(내경 2.5mm, 와이어 직경 0.8mm)로 참 호환. 스톤은 블랙 계열(오닉스/스피넬) 마이크로 파베 1.1mm, 4발 프롱 또는 비드 세팅으로 포인트만. 표면 대비 매트60·글로스40로 라이트 트래핑 극대화. 3/4 제품 뷰, 무채색 스튜디오(라이트 그레이), 매크로 주얼리 사진, 얕은 심도, 포토리얼 마무리. 피해야 할: 고스·펑크 과장 장식(못/대형 체인), 말채찍·재갈 등 폭력 연상, 레이싱/체커드, 실사 동물 프린트, 과도한 중량 프린지, 소음 큰 구조.",
+     "at": "2026-08-25T16:48:45.648Z"
+    }
+   ],
+   "feature": "블랙:골드 70:30 대비의 바람결 모티프 위에 3·5·8 시퀀스 저소음 탈착식 프린지를 얹고, 8~12mm 비대칭 상단 모듈과 ±3호 오픈 구조로 TPO 전환과 착용 안정을 모두 갖춘 링."
+  },
+  {
+   "id": "D08",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "폭풍갈기",
+   "item": "earrings",
+   "title": "폭풍갈기 · 귀걸이",
+   "prompt": "귀걸이, 폭풍갈기 세트의 마스터 모티프를 계승한 이어재킷형 스터드 한 쌍. 블랙:골드 콘트라스트 70:30 유지, 표면은 매트 60·글로스 40 대비. 마이크로 파베 블랙 스피넬(Ø1.1mm) 4프롱 세팅과 블랙 세라믹 인레이로 블랙 영역을 형성, 골드는 18K 사틴+미러 엣지로 라이트 트래핑 극대화. 상단은 갈기 흐름 라인을 살린 곡률. 스터드는 단독 착용 완성도를 위해 6mm 오벌 돔과 슬림 베젤(벽두께 0.9–1.1mm), 포스트 Ø0.8mm, 하이브리드 실리콘 클러치. 이어재킷 하단 모듈은 귓볼 센터에서 8–12mm 오프셋, 프린지는 3·5·8 수열(예: 12·20·32mm)로 배열하고 경량 튜브 와이어 Ø0.5–0.6mm 적용, 각 끝단 Ø0.6mm 구형 캡. 힌지 내부 실리콘 스토퍼/와셔로 흔들림 소음 최소화. 루프 규격 통일(내경 1.6mm, 외경 2.2mm)로 참 호환. 한 짝 4g 이하, 드롭 최대 32mm로 얼굴 비례 균형. 스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 포토리얼 디테일 샷. Avoid: 고스·펑크 과장 장식, 폭력적 연상, 레이싱/체커드, 실사 동물 프린트, 무거운·소음 큰 프린지.",
+   "versions": [
+    {
+     "url": "/samples/e92da1711a751483f9217cb6.png",
+     "hash": "e92da1711a751483f9217cb6",
+     "prompt": "귀걸이, 폭풍갈기 세트의 마스터 모티프를 계승한 이어재킷형 스터드 한 쌍. 블랙:골드 콘트라스트 70:30 유지, 표면은 매트 60·글로스 40 대비. 마이크로 파베 블랙 스피넬(Ø1.1mm) 4프롱 세팅과 블랙 세라믹 인레이로 블랙 영역을 형성, 골드는 18K 사틴+미러 엣지로 라이트 트래핑 극대화. 상단은 갈기 흐름 라인을 살린 곡률. 스터드는 단독 착용 완성도를 위해 6mm 오벌 돔과 슬림 베젤(벽두께 0.9–1.1mm), 포스트 Ø0.8mm, 하이브리드 실리콘 클러치. 이어재킷 하단 모듈은 귓볼 센터에서 8–12mm 오프셋, 프린지는 3·5·8 수열(예: 12·20·32mm)로 배열하고 경량 튜브 와이어 Ø0.5–0.6mm 적용, 각 끝단 Ø0.6mm 구형 캡. 힌지 내부 실리콘 스토퍼/와셔로 흔들림 소음 최소화. 루프 규격 통일(내경 1.6mm, 외경 2.2mm)로 참 호환. 한 짝 4g 이하, 드롭 최대 32mm로 얼굴 비례 균형. 스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 포토리얼 디테일 샷. Avoid: 고스·펑크 과장 장식, 폭력적 연상, 레이싱/체커드, 실사 동물 프린트, 무거운·소음 큰 프린지.",
+     "at": "2026-08-25T16:48:45.652Z"
+    }
+   ],
+   "feature": "이 귀걸이는 블랙:골드 70:30, 3·5·8 수열 프린지, 8~12mm 오프셋 모듈, 실리콘 댐핑 힌지를 결합해 가볍고 조용하게 흔들리는 이어재킷 스터드다."
+  },
+  {
+   "id": "D09",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "폭풍갈기",
+   "item": "necklace",
+   "title": "폭풍갈기 · 목걸이",
+   "prompt": "목걸이 — 폭풍갈기 세트의 마스터 모티프를 유선형 프린지 군으로 구현, 블랙:골드 콘트라스트 70:30을 유지한다. 중앙 모듈은 센터에서 8~12mm 오프셋되어 긴장감을 주고, 프린지는 3·5·8 수열 길이로 리듬을 만든다. 힌지 내부에 실리콘 스토퍼/와셔를 삽입해 소음을 최소화하며, 각 프린지 끝단은 0.6mm 구형 마감으로 모발 엉킴을 방지. 표면은 매트 60·글로스 40 대비로 라이트 트래핑을 극대화한다. 금속 두께는 바디 1.2~1.5mm, 프린지 로드 0.8mm, 힌지 핀 0.9mm로 실제 제조 가능 규격. 스톤은 사용하지 않음(세트 규칙), 세팅 불요. 펜던트는 더블 루프와 얕은 스탭으로 회전 방지, 모든 모듈은 참 호환 링·루프 내경 3.0mm로 규격 통일. 체인 42cm+3cm 익스텐더, 착용 중량 12g 이내로 목선에 안정적으로 안착. 25–34 여성 타깃. 스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 포토리얼 렌더링. Avoid: 고스·펑크 과장 장식(못·대형 체인), 말채찍·재갈, 레이싱 카·체커드 깃발, 실사 동물 프린트, 과도히 무거운 메탈 프린지, 소음이 큰 장식 구조.",
+   "versions": [
+    {
+     "url": "/samples/b4f069194ceb782c84f3ba10.png",
+     "hash": "b4f069194ceb782c84f3ba10",
+     "prompt": "목걸이 — 폭풍갈기 세트의 마스터 모티프를 유선형 프린지 군으로 구현, 블랙:골드 콘트라스트 70:30을 유지한다. 중앙 모듈은 센터에서 8~12mm 오프셋되어 긴장감을 주고, 프린지는 3·5·8 수열 길이로 리듬을 만든다. 힌지 내부에 실리콘 스토퍼/와셔를 삽입해 소음을 최소화하며, 각 프린지 끝단은 0.6mm 구형 마감으로 모발 엉킴을 방지. 표면은 매트 60·글로스 40 대비로 라이트 트래핑을 극대화한다. 금속 두께는 바디 1.2~1.5mm, 프린지 로드 0.8mm, 힌지 핀 0.9mm로 실제 제조 가능 규격. 스톤은 사용하지 않음(세트 규칙), 세팅 불요. 펜던트는 더블 루프와 얕은 스탭으로 회전 방지, 모든 모듈은 참 호환 링·루프 내경 3.0mm로 규격 통일. 체인 42cm+3cm 익스텐더, 착용 중량 12g 이내로 목선에 안정적으로 안착. 25–34 여성 타깃. 스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 포토리얼 렌더링. Avoid: 고스·펑크 과장 장식(못·대형 체인), 말채찍·재갈, 레이싱 카·체커드 깃발, 실사 동물 프린트, 과도히 무거운 메탈 프린지, 소음이 큰 장식 구조.",
+     "at": "2026-08-25T16:48:45.653Z"
+    }
+   ],
+   "feature": "센터 오프셋 모듈에서 3·5·8 수열 프린지가 블랙:골드 70:30 대비로 유동하며, 실리콘 스토퍼와 0.6mm 구형 마감으로 조용하고 매끈한 착용감을 제공한다."
+  }
+ ],
+ "searches": 26,
+ "finished": true,
+ "insight": {
+  "meaning": "2026년은 병오년(丙午年)으로 ‘붉은 말의 해’이다. 사용 키워드(“말의 갈기가 흐르는 결과 질주의 리듬”)는 한순간에 속도를 응축해 내는 말의 4박자 갤럽과 바람을 가르는 갈기의 유선 흐름을 결합한 이미지로, ‘추진력·해방감·선두성’의 상징으로 해석 가능하다. 2026년 설날(음력 1월 1일)은 양력 2월 17일(화)로, 시즌 컬러·모티프 론칭의 기준일로 활용할 수 있다. ([korea.kr](https://www.korea.kr/news/policyNewsView.do?newsId=148957340&utm_source=openai))",
+  "cultural": "한국 시장에서 2026년은 병오년(丙午年) ‘붉은 말의 해’로 인지된다. 병(丙)=붉은색(화), 오(午)=말의 지지라는 해석이 공식 매체에도 소개되어 있다. ([korea.kr](https://www.korea.kr/news/policyNewsView.do?newsId=148957340&utm_source=openai))\n2026년 설(음력설)은 2월 17일(화)로, 설 선물·기획 세트·띠 컬렉션 커뮤니케이션의 기준일이다. ([nationaltoday.com](https://nationaltoday.com/korean-new-year/?utm_source=openai))\n한국 고대 예술의 ‘말’ 아이콘: 경주 천마총의 ‘장니 천마도’(자작나무 껍질 말다래에 그린 비마/천마 이미지)는 한국에서 ‘날아오르는 말’의 대표 시각 레퍼런스다. ([english.cha.go.kr](https://english.cha.go.kr/chaen/search/selectGeneralSearchDetail.do?ccebAsno=02070000&mn=EN_02_02&pageIndex=22&sCcebCtcd=37&sCcebKdcd=11&utm_source=openai))\n고구려 고분벽화(사냥 장면·기마 사냥)는 박진감 있는 구도로 ‘질주·활시위’의 미학을 남겼고, 말 표현의 동세 연구에 유효한 레퍼런스다. ([whc.unesco.org](https://whc.unesco.org/en/list/1135?utm_source=openai))\n오방색 체계(청·적·황·백·흑)는 한국 전통 색채의 근간이며, ‘병오=화(火)=적’의 컬러 내러티브를 강화한다. ([korea.net](https://www.korea.net/NewsFocus/HonoraryReporters/view?articleId=194270&utm_source=openai))\n민감 이슈 유의: ‘천리마’는 북한의 국가 주도 동원운동 상징으로 정치적 함의가 크다(마케팅 네이밍·카피에 비권장). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Chollima_Movement?utm_source=openai))\n병오년(‘화마·Hinoe-Uma’) 미신은 일본·재일 코리안 사회에서 출생 회피가 뚜렷했으나 한국 내에서는 동일 강도의 급락은 관찰되지 않았다는 연구가 있다. 커뮤니케이션에서 공포·불길 서사를 자극하는 표현은 지양. ([sciencedirect.com](https://www.sciencedirect.com/science/article/abs/pii/S1090513816301696?utm_source=openai))",
+  "background": "경주 천마총 ‘장니 천마도’: 5~6세기 신라, 자작나무 껍질을 여러 겹 겹쳐 만든 말다래(장니)에 백마가 비상하는 모습을 그린 유물(국보). 1973년 발굴되었고, 죽제·금동 투조 장식 사례도 확인되었다. 곡선의 갈기·꼬리, 점렬·마름모 문양 등 패턴 디테일은 주얼리 표면장식 레퍼런스로 유효. ([english.cha.go.kr](https://english.cha.go.kr/chaen/search/selectGeneralSearchDetail.do?ccebAsno=02070000&mn=EN_02_02&pageIndex=22&sCcebCtcd=37&sCcebKdcd=11&utm_source=openai))\n고구려 고분벽화: 무용총·덕흥리·수산리 등에서 기마사냥·행렬 장면이 역동적으로 전개된다. ‘날아뛰기(flying gallop)’, 포물선식 구도, 창끝의 방향성 등은 ‘리듬·선·방향’ 설계에 직접 반영 가능. ([whc.unesco.org](https://whc.unesco.org/en/list/1135?utm_source=openai))\n신라 금관·마구 장식: 금관의 가지·녹각 모티프, 곡옥(gogok)·달개(dalgae) 스팽글의 떨림, 금동 마구(운주·말띠 장식·말방울)는 ‘광채·진동·찰랑’의 물성 아이디어를 제공한다. ([museum.go.kr](https://www.museum.go.kr/site/eng/exhiSpecialTheme/view/current?exhiSpThemId=4180&utm_source=openai))",
+  "symbols": [
+   "속도·추진력(선두, 질주)",
+   "비상·영험(천마 이미지)",
+   "기개·용기(기마·사냥의 서사)",
+   "성공·출발(새해 띠 캐릭터 의미)",
+   "보호(말 장비·방울의 주술/호신적 성격 유추)"
+  ],
+  "emotions": [
+   "해방감",
+   "고양감",
+   "긴장과 쾌감(질주의 스릴)",
+   "결의·단단함",
+   "정열(병오=불의 컬러 내러티브)"
+  ],
+  "colors": [
+   "적(병오·화의 상징)",
+   "흑·백(갈기 대비, 야간/그림자 콘셉트)",
+   "황(중심·흙·먼지의 색)",
+   "청(동방·바람/하늘)",
+   "금색(신라 금공의 레퍼런스) ([korea.net](https://www.korea.net/NewsFocus/HonoraryReporters/view?articleId=194270&utm_source=openai))"
+  ],
+  "materials": [
+   "금(얇은 금판·스팽글·달개) ([museum.go.kr](https://www.museum.go.kr/site/eng/exhiSpecialTheme/view/current?exhiSpThemId=4180&utm_source=openai))",
+   "옥·곡옥 형태(콤마형 비드) ([vcm.museum.go.kr](https://vcm.museum.go.kr/ENG/contents/E0402000000.do?relicId=4878&schM=view&searchId=search&utm_source=openai))",
+   "금동(마구·오브제 세팅) ([museum.go.kr](https://www.museum.go.kr/CHN/contents/E0403000000.do?relicId=2647&schM=view&searchId=represent&utm_source=openai))",
+   "은/흑도금(광택 대비)",
+   "말총(망건 전통에서 착안한 윤리적 대체 섬유·질감표현) ([encykorea.aks.ac.kr](https://encykorea.aks.ac.kr/Article/E0017844?utm_source=openai))",
+   "가죽 또는 가죽질감(장니·마구의 물성 레퍼런스) ([english.cha.go.kr](https://english.cha.go.kr/chaen/search/selectGeneralSearchDetail.do?ccebAsno=02070000&mn=EN_02_02&pageIndex=22&sCcebCtcd=37&sCcebKdcd=11&utm_source=openai))"
+  ],
+  "forms": [
+   "흐르는 갈기의 S-커브와 동심파형 라인",
+   "갈기 다발을 쪼개는 미세 평행선(헤어라인 컷팅·필리그리)",
+   "갤럽의 보폭을 그린 연속 타원·방울 체인(달개) ([museum.go.kr](https://www.museum.go.kr/site/eng/exhiSpecialTheme/view/current?exhiSpThemId=4180&utm_source=openai))",
+   "산(山)·녹각(鹿角)형 수직 파츠(금관 모티프 차용) ([gyeongju.museum.go.kr](https://gyeongju.museum.go.kr/kor/html/sub04/0403.html?mode=V&no=5052&utm_source=openai))",
+   "자작나무 장니의 격자·점렬 문양을 최소화(누빔·펀칭) ([portal.nrich.go.kr](https://portal.nrich.go.kr/kor/archeologyUsrView.do?idx=6059&menuIdx=567&utm_source=openai))"
+  ],
+  "motion": [
+   "갤럽=4박자+공중부양(서스펜션) 리듬을 비드·체인 배열로 번역 ([vanat.ahc.umn.edu](https://vanat.ahc.umn.edu/gaits/transGallop.html?utm_source=openai))",
+   "‘순간 가속, 여운’의 롱숏 리듬(큰 파츠+미세 스팽글의 잔광)",
+   "방향성 있는 라인세팅(창끝·갈기선의 흐름) ([jikimi.cha.go.kr](https://jikimi.cha.go.kr/english/heritage_book/korguryo.pdf?utm_source=openai))"
+  ],
+  "cliches": [
+   "말 옆모습 실루엣을 그대로 본딴 펜던트",
+   "Horseshoe(편자) 단독 행운 부적 모티프의 반복적 사용",
+   "‘백마 탄 왕자’ 서사의 직접 차용(연애·구원 프레이밍) ([en.wikipedia.org](https://en.wikipedia.org/wiki/Horseshoe?utm_source=openai))"
+  ],
+  "cautions": [
+   "정치·이데올로기 연상: ‘천리마(Chollima)’ 명칭·도상은 북한 국가선전 상징과 강하게 연결되므로 한국 시장 브랜딩에서 비권장. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Chollima_Movement?utm_source=openai))",
+   "병오(丙午) 미신(‘화마·Hinoe-Uma’)의 공포 내러티브 자극 금지, 일본·재일 코리안에서의 출생 회피 현상은 문헌으로 확인되나 한국 내 동일 수준 일반화는 곤란. ([sciencedirect.com](https://www.sciencedirect.com/science/article/abs/pii/S1090513816301696?utm_source=openai))",
+   "경마·채찍 등 동물복지에 민감한 이미지는 지양.",
+   "실제 말총·가죽 사용은 윤리·공급망 이슈 점검 후(또는 대체 소재 권장)."
+  ],
+  "abstraction": [
+   {
+    "axis": "상징",
+    "notes": [
+     "붉은 불(병)×말(오)=‘가열된 추진력’",
+     "천마=지상/천상 경계 월경"
+    ]
+   },
+   {
+    "axis": "감정",
+    "notes": [
+     "해방·질주·승리 기대",
+     "긴장, 카타르시스 곡선"
+    ]
+   },
+   {
+    "axis": "형태",
+    "notes": [
+     "S-커브 갈기",
+     "산(山)·녹각 수직 파츠",
+     "장니 격자·점렬"
+    ]
+   },
+   {
+    "axis": "움직임",
+    "notes": [
+     "4박자 갤럽+서스펜션",
+     "선두, 스퍼트, 감속"
+    ]
+   },
+   {
+    "axis": "구조",
+    "notes": [
+     "센터피스(머리/갈기), 드롭 체인(달개), 러너(곡옥) 모듈",
+     "비대칭(리드 다리)로 방향성 부여"
+    ]
+   },
+   {
+    "axis": "표면",
+    "notes": [
+     "헤어라인 커팅·미세 펀칭",
+     "샌드블라스트(먼지/바람)×하이폴리시(광채) 대비"
+    ]
+   },
+   {
+    "axis": "소재",
+    "notes": [
+     "금·금동×적보석(가넷·루벨라이트 등)",
+     "옥/곡옥형 비드",
+     "말총 질감의 텍스타일 메탈"
+    ]
+   },
+   {
+    "axis": "색채",
+    "notes": [
+     "오방색 베이스+레드 도미넌트",
+     "블랙/화이트로 명암 대비",
+     "황토·더스트톤 포인트"
+    ]
+   },
+   {
+    "axis": "리듬",
+    "notes": [
+     "1-2-3-4(갤럽) 박자, 비드 간격 맵핑",
+     "롱숏(큰 파츠)×스파클(소형 스팽글)"
+    ]
+   },
+   {
+    "axis": "이야기",
+    "notes": [
+     "새해(2월 17일) 스타트·선두주자 메시지",
+     "신라 천마, 고구려 기마 서사 현대화"
+    ]
+   }
+  ],
+  "sources": [
+   "대한민국 정책브리핑: “2026년 병오년 ‘붉은 말띠’ 해”(korea.kr). ([korea.kr](https://www.korea.kr/news/policyNewsView.do?newsId=148957340&utm_source=openai))",
+   "Lunar New Year 2026=Feb 17(OC Board; National Today). ([board.oc.gov](https://board.oc.gov/sites/bos.egovoc.com/files/2026-02/rev-sup02102026_3.pdf?utm_source=openai))",
+   "Cultural Heritage Administration: Jangni Cheonmado(경주 천마총 장니 천마도). ([english.cha.go.kr](https://english.cha.go.kr/chaen/search/selectGeneralSearchDetail.do?ccebAsno=02070000&mn=EN_02_02&pageIndex=22&sCcebCtcd=37&sCcebKdcd=11&utm_source=openai))",
+   "Gyeongju National Museum: Birch Bark Saddle Flap with Heavenly Horse; 천마도 전시. ([gyeongju.museum.go.kr](https://gyeongju.museum.go.kr/eng/html/sub02/0202.html?d_mng_no=193&mng_no=299&mode=V&utm_source=openai))",
+   "UNESCO: Koguryo Tombs murals(사냥·기마 장면). ([whc.unesco.org](https://whc.unesco.org/en/list/1135?utm_source=openai))",
+   "Journal of Korean Art & Archaeology: 고구려 벽화·천마 계보. ([ijkaa.org](https://www.ijkaa.org/assets/pdf/136/jkaa-9-8.pdf?utm_source=openai))",
+   "vanat.ahc.umn.edu: Transverse gallop=4-beat single-suspension. ([vanat.ahc.umn.edu](https://vanat.ahc.umn.edu/gaits/transGallop.html?utm_source=openai))",
+   "National Museum of Korea: 신라 금관·달개·곡옥. ([museum.go.kr](https://www.museum.go.kr/site/eng/exhiSpecialTheme/view/current?exhiSpThemId=4180&utm_source=openai))",
+   "NIKH 한국민족문화대백과: 망건(말총). ([encykorea.aks.ac.kr](https://encykorea.aks.ac.kr/Article/E0017844?utm_source=openai))",
+   "Korea.net: Obangsaek(오방색) 소개. ([korea.net](https://www.korea.net/NewsFocus/HonoraryReporters/view?articleId=194270&utm_source=openai))",
+   "ScienceDirect·CiNii: Hinoe-Uma 1966 출생 급감, 한국/재일 코리안 비교. ([sciencedirect.com](https://www.sciencedirect.com/science/article/abs/pii/S1090513816301696?utm_source=openai))",
+   "Wikipedia(개요 확인): Chollima Movement, Horseshoe(행운 상징 배경). ([en.wikipedia.org](https://en.wikipedia.org/wiki/Chollima_Movement?utm_source=openai))"
+  ],
+  "searches": 26,
+  "cached": true
+ },
+ "sets": [
+  {
+   "name": "갈기결",
+   "kind": "대표형",
+   "concept": "샴페인 골드의 S커브에 3박자 리듬으로 빛이 점멸하는 갈기의 결을 정제된 라인으로 번역한 대표 세트.",
+   "story": "2026년 말의 해, 새벽 바람에 눕는 갈기의 미세한 결을 선으로 포착합니다. 이 세트는 그 결을 테이퍼드 S커브로 응축하고, 질주의 3박자를 스톤의 점멸로 표현합니다. 매트와 글로스의 대비가 속도와 정적 사이의 호흡을 만들며, 반지·귀걸이·목걸이가 같은 리듬을 공유합니다. 일상과 포멀을 모두 아우르는 균형감으로 브랜드의 얼굴이 되는 라인입니다.",
+   "palette": [
+    "샴페인 골드 #E6C281",
+    "아이보리 새틴 #F4F1EA",
+    "쿨 화이트 하이라이트 #FFFFFF",
+    "미드 그레이 섀도 #9AA0A6",
+    "소프트 샌드 #D9C6A5"
+   ],
+   "metal": "18K 샴페인 골드 메인, 팔라듐 화이트골드 라인 인레이 포인트, 로듐 마감으로 밝은 톤 유지(니켈 프리).",
+   "surface": "사선 헤어라인 새틴(갈기결 방향 통일), 능선부 하이폴리시 에지, 일부 마이크로 해머드로 산란광 연출.",
+   "stones": "랩 그로운 다이아몬드: 라운드 브릴리언트 0.8~1.2mm 마이크로 파베 + 테이퍼드 바게트 3~4mm를 3개 모듈로 구성.",
+   "silhouette": "한쪽으로 길게 흘러내리는 테이퍼드 S커브.",
+   "motif": "3가닥으로 갈라졌다가 다시 합쳐지는 갈기 리본.",
+   "rhythm": "트리플릿(소-중-소) 스톤 배열, 3·6·9개 단위 반복, S커브 좌우 미러 금지의 비대칭 규칙.",
+   "structure": "채널+바 프롱 혼합 세팅으로 곡면을 따라 바게트를 고정. 목걸이: 3-스테이션(중앙1·사이드2) 비대칭 간격. 귀걸이: 하프후프 베이스에 트리플릿 드롭. 반지: 오픈 S커브 끝단에 트리플릿 배치, 로우 프로파일.",
+   "avoid": [
+    "말발굽(편자)·카우보이·서부풍 연상",
+    "승마 채찍·재갈·굴레 등 장비 모티프",
+    "경마 베팅·번호표·체커드 깃발",
+    "실사 말 얼굴·캐릭터형 십이간지 표현",
+    "붉은 복·풍수 상징 남용",
+    "폭주·파손을 연상시키는 공격적 메시지"
+   ],
+   "design_dna": [
+    "모든 곡선은 시작보다 끝이 30~50% 가늘어지는 테이퍼를 가진다.",
+    "스톤은 반드시 3개 또는 6개 단위 모듈로 배치한다.",
+    "표면 대비는 헤어라인:하이폴리시를 6:4 비율로 유지한다.",
+    "정면 주 라인은 한 방향으로만 흐르며 교차선을 만들지 않는다.",
+    "반지는 오픈 구조로 중앙에 여백을 남겨 흐름을 강조한다.",
+    "귀걸이는 귓불을 따라 눕는 하프후프로 시작해 8~12mm 드롭을 허용한다.",
+    "목걸이는 40cm 기본+3cm 익스텐더, 스테이션 간격은 18mm·12mm의 비대칭으로 배치한다.",
+    "모든 모서리는 0.2mm 이상 라운딩, 알레르기 최소화를 위해 니켈 프리 도금/합금을 사용한다."
+   ],
+   "concept_art": {
+    "form": "Tapered S-curve ribbons splitting into three strands, recombining into a single line, minimal, negative space dominant",
+    "motion": "Triplet rhythm pulses along a flowing curve, wind-swept gradients, staccato flashes of light on the crest",
+    "material": "Champagne metal hairline grain with mirror-polished ridges, translucent diamond-dust glints, soft satin sheen",
+    "atmosphere": "Dawn air over an open plain, elegant and calm, contemporary editorial lighting, pale warm palette"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/68f5efd0752c36664ff72c20.png",
+     "hash": "68f5efd0752c36664ff72c20"
+    },
+    "motion": {
+     "url": "/samples/d37d5568402cd7cc2439e039.png",
+     "hash": "d37d5568402cd7cc2439e039"
+    },
+    "material": {
+     "url": "/samples/aef0520357f9e8147e445593.png",
+     "hash": "aef0520357f9e8147e445593"
+    },
+    "atmosphere": {
+     "url": "/samples/f40ae5e5b0d3824fae58eb6d.png",
+     "hash": "f40ae5e5b0d3824fae58eb6d"
+    }
+   },
+   "lineup": {
+    "url": "/samples/7dcdfe1af9a5acde293db44c.png",
+    "hash": "7dcdfe1af9a5acde293db44c"
+   }
+  },
+  {
+   "name": "바람결",
+   "kind": "상업형",
+   "concept": "한 줄 곡선과 미세 파베가 바람에 눕는 갈기의 가벼움을 데일리 주얼리로 구현한 상업형 세트.",
+   "story": "바쁜 하루에도 흐르는 선 하나가 룩을 정리합니다. 과장 대신 균형을 택해, 작은 파베가 숨 쉬듯 잔잔히 반짝입니다. 직장·데일리·기념일 어디서든 격 없이 어울리도록 두께와 광도를 조율했습니다. 쉽게 레이어링되지만 단독으로도 선명한 존재감을 남깁니다.",
+   "palette": [
+    "로즈 골드 #E8B7A0",
+    "밀크 화이트 #FAF7F2",
+    "라이트 그레이 #CFCFD4",
+    "소프트 핑크 누드 #F3DAD2",
+    "클리어 스톤 화이트 #FFFFFF"
+   ],
+   "metal": "14K 로즈 골드 또는 화이트 골드 선택형, 화이트는 밝은 로듐 마감, 모두 니켈 프리.",
+   "surface": "전면 미러 폴리시 70% + 결 방향 미세 헤어라인 30%로 광·매트 레이어. 일체형 곡선 바의 엣지는 소프트 베벨.",
+   "stones": "화이트 사파이어 또는 큐빅 지르코니아(선택), 라운드 컷 1.0~1.3mm 마이크로 파베; 포인트용 2.5mm 솔리테어 옵션.",
+   "silhouette": "얇은 C커브 바와 테이퍼드 V포인트의 결합.",
+   "motif": "한 줄 갈기(싱글 리본).",
+   "rhythm": "균등 간격의 3점 스테이션 반복; 좌우 거의 대칭이나 중심을 1~2mm 오프셋해 생동감 부여.",
+   "structure": "비드·프롱 마이크로 파베를 곡선 바 안으로 내장. 목걸이: 중앙 커브 스테이션 1개+미니 스테이션 2개. 귀걸이: 하프후프/미니 드롭 교체 가능한 체결. 반지: 슬림 오픈 링과 스태커블 밴드 세트.",
+   "avoid": [
+    "편자·말머리 실루엣 등 직설적 말 모양",
+    "카우보이·서부극·경마 용어 연상",
+    "체커드 깃발·스피드 미터 그래픽",
+    "복·합격 등 미신성 상징 과다 사용",
+    "과도한 하트/왕관/별 장식 남발",
+    "브랜드 로고 과장 노출"
+   ],
+   "design_dna": [
+    "선의 두께는 1.2~1.6mm 범위에서 끝으로 갈수록 40% 테이퍼한다.",
+    "스톤은 라운드 마이크로 파베 중심, 가장자리에서 0.3mm 여백을 유지한다.",
+    "모든 아이템에 최소 한 번의 C커브와 V포인트 연결이 나타나야 한다.",
+    "커넥터·잠금은 히든 형태로 곡선을 끊지 않는다.",
+    "귀걸이는 한 쪽이 최대 2mm 길게 차이를 두어 자연스러운 비대칭을 만든다.",
+    "목걸이 체인은 0.9mm 타원 링크, 40/42/45cm 멀티 조절을 기본으로 한다.",
+    "반지는 로우 프로파일(2.0mm 이하)과 평평한 내벽으로 레이어링 호환성을 높인다.",
+    "로즈 골드를 우선 제안하되 화이트 골드 버전도 동일 구조와 리듬을 따른다."
+   ],
+   "concept_art": {
+    "form": "Single, slender curved bar forming a subtle C-to-V transition, minimal, soft taper, floating in negative space",
+    "motion": "Gentle breeze bending a fine ribbon, even triplet spacing of tiny points of light, calm and continuous",
+    "material": "Rose-gold sheen with soft hairline hints, micro sparkle like fine frost, clean glossy surfaces",
+    "atmosphere": "Warm everyday daylight, airy and approachable, modern Korean lifestyle editorial"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/15f02ca017ccb998ddee34fd.png",
+     "hash": "15f02ca017ccb998ddee34fd"
+    },
+    "motion": {
+     "url": "/samples/1715fe9c46b80db785aac76c.png",
+     "hash": "1715fe9c46b80db785aac76c"
+    },
+    "material": {
+     "url": "/samples/798d8e52cf4a81c0aac85325.png",
+     "hash": "798d8e52cf4a81c0aac85325"
+    },
+    "atmosphere": {
+     "url": "/samples/9991eafcb18ddf7159e84926.png",
+     "hash": "9991eafcb18ddf7159e84926"
+    }
+   },
+   "lineup": {
+    "url": "/samples/21674609dd9211962c1777f4.png",
+    "hash": "21674609dd9211962c1777f4"
+   }
+  },
+  {
+   "name": "폭풍갈기",
+   "kind": "실험형",
+   "concept": "블랙과 골드의 강한 대비 속, 프린지 모듈이 질주의 잔상을 남기며 진동하는 실험 세트.",
+   "story": "폭풍 전의 공기처럼 긴장과 에너지가 표면에 진동합니다. 미세 와이어 프린지와 단계 길이 모듈이 불규칙-규칙의 리듬을 만듭니다. 움직일 때마다 빛의 결이 번져 정지와 질주 사이의 경계를 흔듭니다. 과감한 미학을 유지하면서도 가벼운 착용감을 위해 구조와 재료를 최적화했습니다.",
+   "palette": [
+    "블랙 로듐 #1A1A1A",
+    "오일 블루 #1F3A56",
+    "옐로 골드 하이라이트 #E2B23D",
+    "스모키 그레이 #6B6E72",
+    "아이스 화이트 포인트 #F5F7FA"
+   ],
+   "metal": "SV925 블랙 로듐 코팅 베이스, 18K 옐로 골드 와이어/튜브 포인트, 고강도 스프링 핀으로 프린지 관절 구성(니켈 프리).",
+   "surface": "샷피닝 매트와 미러 엣지의 하이 콘트라스트; 블랙 로듐 고정막 두께 강화; 골드 파이핑은 하이폴리시.",
+   "stones": "블랙 스피넬 바게트 2×4mm, 솔트&페퍼 다이아 라운드 0.9mm, 그레이 문스톤 3mm 카보숑 소량.",
+   "silhouette": "콤마형 스파인에서 방사형 프린지가 퍼지는 비대칭 라인.",
+   "motif": "폭풍에 흩날린 갈기 프린지.",
+   "rhythm": "3-5-8 길이 프린지 군집을 모듈화해 반복, 좌우 비대칭·상하 균형.",
+   "structure": "마이크로 튜브 힌지에 와이어 프린지를 개별 체결(소음 저감 스토퍼 포함). 목걸이: 프린지 스테이션 2+1 비대칭. 귀걸이: 이어재킷/이어클라이머 변환형. 반지: 오픈 링 베이스에 탈착 프린지 캡을 슬라이드 체결.",
+   "avoid": [
+    "고스·펑크 과장 장식(못·대형 체인)으로의 과도한 치우침",
+    "말채찍·재갈 등 폭력적 연상",
+    "레이싱 카·체커드 깃발",
+    "실사 동물 프린트",
+    "지나치게 무거운 메탈 프린지",
+    "소음이 큰 장식 구조"
+   ],
+   "design_dna": [
+    "블랙:골드 콘트라스트를 70:30 기본 비율로 유지한다.",
+    "프린지는 서로 다른 길이 3·5·8 수열로 배열한다.",
+    "힌지 내부에 실리콘 스토퍼/와셔를 삽입해 움직임 소음을 최소화한다.",
+    "프린지 끝단은 0.6mm 구형 마감으로 머리카락 엉킴을 방지한다.",
+    "귀걸이는 스터드 단독 착용도 완성도가 있도록 이어재킷 구조를 채택한다.",
+    "목걸이 중앙 모듈을 센터에서 8~12mm 오프셋해 긴장감을 준다.",
+    "반지는 사이즈 조절 ±3호의 오픈 구조, 프린지 캡은 탈착 가능해 TPO 전환을 돕는다.",
+    "매트 60·글로스 40의 표면 대비로 라이트 트래핑을 극대화한다.",
+    "모든 모듈은 참으로도 활용 가능하도록 링·루프 규격을 통일한다."
+   ],
+   "concept_art": {
+    "form": "Asymmetric comma-shaped spine radiating fine wire fringes, clustered in 3-5-8 lengths, high contrast black and gold",
+    "motion": "Turbulent gusts making filaments quiver, afterimages of speed, irregular-regular oscillations",
+    "material": "Blackened metal with shot-peened matte, mirror-bright gold piping, smoky translucent stones as soft glows",
+    "atmosphere": "Storm-lit dusk, tense and electric, cinematic shadows, avant-garde editorial mood"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/eabf70085185ffa7d27882fb.png",
+     "hash": "eabf70085185ffa7d27882fb"
+    },
+    "motion": {
+     "url": "/samples/7bc63e514a2e2ee45f72fee7.png",
+     "hash": "7bc63e514a2e2ee45f72fee7"
+    },
+    "material": {
+     "url": "/samples/770ed80b348e53ffd95508e5.png",
+     "hash": "770ed80b348e53ffd95508e5"
+    },
+    "atmosphere": {
+     "url": "/samples/a54aa5299d0c1537f482b3a8.png",
+     "hash": "a54aa5299d0c1537f482b3a8"
+    }
+   },
+   "lineup": {
+    "url": "/samples/e3596950cd4bdf745f2ccc61.png",
+    "hash": "e3596950cd4bdf745f2ccc61"
+   }
+  }
+ ],
+ "sample": true,
+ "sampleTitle": "주얼리 컬렉션 · 말의 해 (반지·귀걸이·목걸이)",
+ "savedAtISO": "2026-08-25T16:48:45.654Z"
+}

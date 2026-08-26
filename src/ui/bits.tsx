@@ -1,5 +1,5 @@
 // 공용 소형 컴포넌트
-import { LANGS, setLang, useLang } from '../core/i18n'
+import { LANGS, setLang, t, useLang } from '../core/i18n'
 import { useState } from 'react'
 import type { ReactNode } from 'react'
 
@@ -46,10 +46,10 @@ export function Seg<T extends string | number>({ options, value, onChange, forma
 /** 테마 토글 · 아이콘만 두고, 현재 상태가 아니라 "누르면 되는 상태"를 보여준다 */
 export function ThemeToggle({ theme, onToggle }: { theme: 'light' | 'dark'; onToggle: () => void }) {
   const next = theme === 'dark' ? 'light' : 'dark'
+  // 라벨도 화면 언어를 따른다 · 읽어 주는 도구에는 이 글자만 들린다
+  const label = next === 'light' ? t('Switch to light theme') : t('Switch to dark theme')
   return (
-    <button className="iconbtn" onClick={onToggle}
-      title={next === 'light' ? 'Switch to light' : 'Switch to dark'}
-      aria-label={next === 'light' ? 'Switch to light' : 'Switch to dark'}>
+    <button className="iconbtn" onClick={onToggle} title={label} aria-label={label}>
       {next === 'light' ? (
         // 해 · 누르면 밝아진다
         <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round">
@@ -74,7 +74,7 @@ export function Tag({ kind, children }: { kind?: 'accent' | 'ok' | 'warn' | 'dan
 export function LangToggle() {
   const lang = useLang()
   return (
-    <div className="langtoggle" role="group" aria-label="Language">
+    <div className="langtoggle" role="group" aria-label={t('Language')}>
       {LANGS.map(l => (
         <button key={l.id} className={lang === l.id ? 'on' : ''}
           onClick={() => setLang(l.id)}

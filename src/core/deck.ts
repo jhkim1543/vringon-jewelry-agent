@@ -11,7 +11,7 @@ export const DECK_CSS = `
   @page { size: A4 landscape; margin: 0; }
   * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   html, body { margin: 0; padding: 0; background: #E9EBEF; }
-  body { font: 10pt/1.55 "Helvetica Neue", -apple-system, "Segoe UI", Roboto, sans-serif; color: #14181D; }
+  body { font: 10pt/1.55 Pretendard, "Pretendard Variable", -apple-system, "Segoe UI", "Malgun Gothic", sans-serif; color: #14181D; }
   a { color: inherit; text-decoration: none; }
 
   .slide {
@@ -111,6 +111,82 @@ export const DECK_CSS = `
     body { padding: 8mm 0; }
     .slide { box-shadow: 0 1mm 4mm rgba(0,0,0,.16); }
   }
+
+  /* ══ 트렌드 리포트 템플릿 · 따뜻한 종이색 에디토리얼 ═══════════════
+     왼쪽 번호 포인트 + 오른쪽 사진 격자. 사진은 자르지 않는다(contain) —
+     세로로 긴 제품 사진이 cover 로 잘려 나가던 것이 실제 불만이었다. */
+  .tpl-trend { background: #F4F1EA; color: #1C1B18; }
+  .tpl-trend .tt-wrap { position: absolute; inset: 0; padding: 14mm 16mm 12mm; display: flex; flex-direction: column; }
+  .tpl-trend .tt-eyebrow { font-size: 8pt; letter-spacing: .3em; text-transform: uppercase; color: #6B675C;
+    display: flex; gap: 4mm; align-items: center; }
+  .tpl-trend .tt-eyebrow .b { font-weight: 800; color: #1C1B18; }
+  .tpl-trend .tt-eyebrow .sep { width: .3mm; height: 3.6mm; background: #C9C4B6; }
+  .tpl-trend .tt-cols { display: flex; gap: 12mm; flex: 1; min-height: 0; margin-top: 8mm; }
+  .tpl-trend .tt-left { flex: 0 0 46%; min-width: 0; display: flex; flex-direction: column; }
+  .tpl-trend .tt-title { font-size: 30pt; line-height: 1.08; font-weight: 800; letter-spacing: -.02em; margin: 0; }
+  .tpl-trend .tt-sub { font-size: 9.5pt; color: #55524A; margin: 4mm 0 0; line-height: 1.6; }
+  .tpl-trend .tt-points { margin-top: 7mm; }
+  .tpl-trend .pt { display: flex; gap: 5mm; padding: 4mm 0; border-top: .3mm solid #D8D3C6; align-items: baseline; }
+  .tpl-trend .pt .no { font-family: Didot, "Bodoni MT", Georgia, Pretendard, sans-serif; font-size: 19pt; color: #4A4A98; flex: 0 0 12mm; line-height: 1; }
+  .tpl-trend .pt .pt-t { font-size: 10.5pt; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+  .tpl-trend .pt .pt-d { font-size: 8pt; color: #55524A; margin-top: 1mm; line-height: 1.5; }
+  .tpl-trend .tt-right { flex: 1; min-width: 0; display: grid; grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 1fr; gap: 4mm; align-content: stretch; }
+  .tpl-trend .tt-cell { background: #FFFFFF; border: .3mm solid #E2DED2; border-radius: 1mm;
+    display: flex; flex-direction: column; overflow: hidden; }
+  .tpl-trend .tt-cell .im { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding: 2mm; }
+  .tpl-trend .tt-cell img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .tpl-trend .tt-cap { font-size: 7pt; color: #55524A; text-align: center; padding: 0 2mm 2mm; letter-spacing: .02em; }
+  .tpl-trend .tt-foot { border-top: .35mm solid #C9C4B6; margin-top: 6mm; padding-top: 3mm;
+    display: flex; gap: 5mm; font-size: 7.5pt; color: #6B675C; align-items: baseline; }
+  .tpl-trend .tt-foot .k { font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: #1C1B18; }
+  .tpl-trend .tt-axis { font-size: 8pt; letter-spacing: .26em; text-transform: uppercase; color: #6B675C; margin-bottom: 4mm; }
+  .tpl-trend .tr-row { display: flex; gap: 6mm; padding: 4mm 0; border-top: .3mm solid #D8D3C6; }
+  .tpl-trend .tr-row .no { font-family: Didot, "Bodoni MT", Georgia, Pretendard, sans-serif; font-size: 16pt; color: #4A4A98; flex: 0 0 10mm; line-height: 1.1; }
+  .tpl-trend .tr-row .im2 { flex: 0 0 34mm; height: 26mm; background: #fff; border: .3mm solid #E2DED2;
+    border-radius: 1mm; display: flex; align-items: center; justify-content: center; padding: 1.5mm; }
+  .tpl-trend .tr-row .im2 img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .tpl-trend .tr-row .bd { flex: 1; min-width: 0; }
+  .tpl-trend .tr-row .lb { font-size: 10.5pt; font-weight: 800; }
+  .tpl-trend .tr-row .ev { font-size: 8pt; color: #55524A; line-height: 1.55; margin-top: 1mm; }
+  .tpl-trend .tr-row .mn { font-size: 6.8pt; color: #8B867A; margin-top: 1mm; letter-spacing: .06em; }
+
+  /* ══ 경쟁사·편집샵 리포트 템플릿 · 아이보리 럭셔리 ═════════════════ */
+  .tpl-lux { background: #F7F5F1; color: #191713; }
+  .tpl-lux .lx-wrap { position: absolute; inset: 0; padding: 12mm 14mm 10mm; display: flex; flex-direction: column; }
+  .tpl-lux .lx-top { display: flex; align-items: baseline; gap: 5mm; }
+  .tpl-lux .lx-eyebrow { font-size: 7.5pt; letter-spacing: .3em; text-transform: uppercase; color: #4652B8; font-weight: 700;
+    border-bottom: .5mm solid #4652B8; padding-bottom: 1.2mm; }
+  .tpl-lux .lx-meta { margin-left: auto; font-size: 7.5pt; letter-spacing: .12em; color: #6E685C; text-transform: uppercase;
+    display: flex; gap: 4mm; }
+  .tpl-lux .lx-meta .sep { color: #C9C2B2; }
+  .tpl-lux .lx-brand { font-family: Didot, "Bodoni MT", Georgia, Pretendard, sans-serif; font-size: 34pt; letter-spacing: .04em;
+    margin: 6mm 0 0; line-height: 1; font-weight: 500; }
+  .tpl-lux .lx-sub { font-size: 8.5pt; color: #6E685C; margin-top: 2.5mm; letter-spacing: .04em; }
+  .tpl-lux .lx-cols { display: flex; gap: 8mm; flex: 1; min-height: 0; margin-top: 6mm; }
+  .tpl-lux .lx-hero { flex: 0 0 40%; background: #FFFFFF; border: .3mm solid #E5E0D4; display: flex; flex-direction: column; }
+  .tpl-lux .lx-hero .im { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding: 5mm; }
+  .tpl-lux .lx-hero img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .tpl-lux .lx-hero .cap { padding: 0 5mm 4mm; }
+  .tpl-lux .lx-grid { flex: 1; min-width: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; grid-auto-rows: 1fr; }
+  .tpl-lux .lx-card { background: #FFFFFF; border: .3mm solid #E5E0D4; display: flex; flex-direction: column; min-height: 0; }
+  .tpl-lux .lx-card .im { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; padding: 2.5mm; }
+  .tpl-lux .lx-card img { max-width: 100%; max-height: 100%; object-fit: contain; }
+  .tpl-lux .lx-card .im.miss { background: #EFECE4; color: #A29B8B; font-size: 7.5pt; letter-spacing: .08em; flex-direction: column; gap: 1.5mm; }
+  .tpl-lux .lx-card .cap { padding: 0 3mm 2.5mm; }
+  .tpl-lux .caphead { display: flex; align-items: center; gap: 2.5mm; }
+  .tpl-lux .caphead .no { font-size: 8pt; color: #4652B8; font-weight: 700; letter-spacing: .08em; }
+  .tpl-lux .badge { margin-left: auto; font-size: 5.8pt; letter-spacing: .14em; text-transform: uppercase;
+    border: .3mm solid #4652B8; color: #4652B8; padding: .7mm 2.2mm; border-radius: .8mm; font-weight: 700; white-space: nowrap; }
+  .tpl-lux .badge.fill { background: #4652B8; color: #FFFFFF; }
+  .tpl-lux .badge.mute { border-color: #B9B2A2; color: #8E887A; }
+  .tpl-lux .nm { font-family: Didot, "Bodoni MT", Georgia, Pretendard, sans-serif; font-size: 10pt; margin-top: 1mm; line-height: 1.25; }
+  .tpl-lux .lx-hero .nm { font-size: 13pt; }
+  .tpl-lux .pr { font-size: 7.5pt; color: #6E685C; margin-top: .8mm; letter-spacing: .03em; }
+  .tpl-lux .lx-foot { border-top: .35mm solid #D9D3C4; margin-top: 5mm; padding-top: 2.5mm;
+    display: flex; gap: 6mm; font-size: 7pt; color: #8E887A; letter-spacing: .1em; text-transform: uppercase; }
+  .tpl-lux .lx-foot .k { color: #191713; font-weight: 700; }
+  .tpl-lux .lx-foot .pg { margin-left: auto; color: #4652B8; font-weight: 700; }
 `
 
 /** 슬라이드 한 장 */
@@ -179,6 +255,7 @@ addEventListener('load', function () {
 /** 문서를 만들어 숨은 iframe에서 인쇄한다. 팝업 차단에 걸리지 않는다. */
 export function printDeck(title: string, inner: string) {
   const html = `<!doctype html><html><head><meta charset="utf-8"><title>${esc(title)}</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>${DECK_CSS}</style></head><body>${inner}</body></html>`
 
   const old = document.getElementById('vringon-print')
@@ -213,6 +290,7 @@ export function printDeck(title: string, inner: string) {
 export function downloadDeck(filename: string, title: string, inner: string) {
   // 내려받은 파일은 나중에 열린다. 그때 링크가 죽어 있을 수 있으므로 정리 스크립트를 함께 넣는다.
   const html = `<!doctype html><html><head><meta charset="utf-8"><title>${esc(title)}</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>${DECK_CSS}</style></head><body>${inner}${TIDY_SCRIPT}</body></html>`
   const blob = new Blob([html], { type: 'text/html;charset=utf-8' })
   const a = document.createElement('a')

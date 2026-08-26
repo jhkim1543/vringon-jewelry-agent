@@ -1,0 +1,25 @@
+{
+  "name": "sample_collection_horse",
+  "sampleTitle": "주얼리 컬렉션 · 말의 해 (반지·귀걸이·목걸이)",
+  "params": {
+    "algo": 2,
+    "analysisLang": "ko",
+    "imageEngine": "fast",
+    "setCount": 3,
+    "competitors": [],
+    "mode": "collection",
+    "country": "Korea",
+    "direction": "2026년 말의 해. 말의 갈기가 흐르는 결과 질주의 리듬.",
+    "itemType": "ring",
+    "items": [
+      "ring",
+      "earrings",
+      "necklace"
+    ],
+    "designCount": 10,
+    "target": {
+      "age": "25-34",
+      "gender": "female"
+    }
+  }
+}

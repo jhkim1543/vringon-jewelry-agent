@@ -1,0 +1,23 @@
+{
+  "name": "sample_fashion_earrings",
+  "sampleTitle": "패션 트렌드 · 귀걸이 (일본, 아카이브 미니멀)",
+  "params": {
+    "algo": 2,
+    "analysisLang": "ko",
+    "imageEngine": "fast",
+    "setCount": 3,
+    "competitors": [],
+    "mode": "fashion",
+    "country": "Japan",
+    "direction": "아카이브 미니멀과 유틸리티 쪽으로. 무광 실버 중심이고 큰 장식은 배제.",
+    "itemType": "earrings",
+    "items": [
+      "earrings"
+    ],
+    "designCount": 10,
+    "target": {
+      "age": "18-24",
+      "gender": "female"
+    }
+  }
+}
