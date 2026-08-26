@@ -35,6 +35,7 @@ export default function App() {
   const runIdRef = useRef<string>(newRunId())
   const [wizardKey, setWizardKey] = useState(0)
   const [shareMiss, setShareMiss] = useState<string | null>(null)
+  const [modOpen, setModOpen] = useState(false)
   // 링크로 들어온 방문자 · 이 브라우저에 분석이 없어도 서버가 보드 문서를 가지고 있으면
   // 그 문서만으로 보드를 연다 (Board 가 st=null 을 받아 snodes 로 그린다).
   const [remoteBoard, setRemoteBoard] = useState<string | null>(null)
@@ -173,7 +174,9 @@ export default function App() {
   return (
     <ErrorBoundary onReset={() => setView('create')}>
     <div className="app">
-      <div className="topbar">
+      {/* VRINGON 안(iframe)에서는 이 앱의 상단바를 그리지 않는다 — 호스트 헤더가 이미 있어
+          로고와 언어·테마가 두 벌로 보이기 때문이다. 주소를 직접 열면 예전처럼 나온다. */}
+      <div className="topbar" hidden={host.framed}>
         {/* 로고 = 처음으로 · 픽커부터 다시 시작한다 (재마운트로 agentPicked 초기화) */}
         <button className="brand" onClick={() => { setView('create'); setWizardKey(k => k + 1) }} title={t('Back to the start')}>
           <VringonLogo />
@@ -194,6 +197,20 @@ export default function App() {
 
       <div className="main">
         <aside className="siderail">
+          {/* 지금 쓰는 에이전트 · VRINGON 안에서는 여기가 이 화면의 이름표가 된다.
+              다른 기획 에이전트(신발 등)가 붙으면 이 자리에서 고른다. */}
+          <div className="sr-mod">
+            <button className="sr-modbtn" onClick={() => setModOpen(v => !v)} aria-expanded={modOpen}>
+              <span>{t('Jewelry Agent')}</span>
+              <i className={modOpen ? 'up' : ''} aria-hidden="true">⌄</i>
+            </button>
+            {modOpen && (
+              <div className="sr-modmenu">
+                <span className="on">{t('Jewelry Agent')}</span>
+                <span className="soon">{t('Shoe Agent')} · {t('Coming soon')}</span>
+              </div>
+            )}
+          </div>
           <nav>
             <button className={`sr-i ${view === 'create' ? 'on' : ''}`} title={t('Create')} aria-label={t('Create')}
               onClick={() => { setView('create'); setWizardKey(k => k + 1) }}>

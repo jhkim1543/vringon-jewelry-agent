@@ -8,6 +8,8 @@ import type { Lang } from './i18n'
 export interface HostInfo {
   /** 호스트가 언어·테마를 정해 주는가 (=Planning 으로 열렸는가) */
   embedded: boolean
+  /** VRINGON 화면 안(iframe)에서 도는가 · 이 앱의 상단바를 그리지 않는다 */
+  framed: boolean
   lang?: Lang
   theme?: 'light' | 'dark'
   /** 로그인한 사용자 · 분석 내역을 이 사람 것으로 저장한다 */
@@ -20,7 +22,10 @@ let cached: HostInfo | null = null
 
 export function hostInfo(): HostInfo {
   if (cached) return cached
-  let info: HostInfo = { embedded: false }
+  // 상위 문서가 있으면 iframe 안이다. 다른 출처라 window.top 접근이 막히면 그것도 iframe 이다.
+  let framed = false
+  try { framed = window.self !== window.top } catch { framed = true }
+  let info: HostInfo = { embedded: false, framed }
   try {
     const q = new URLSearchParams(location.search)
     const lang = q.get('lang')
@@ -29,7 +34,8 @@ export function hostInfo(): HostInfo {
     const token = q.get('token')
     const name = q.get('uname')
     info = {
-      embedded: q.get('embed') === '1' || !!(lang || theme || uid),
+      embedded: q.get('embed') === '1' || framed || !!(lang || theme || uid),
+      framed,
       lang: lang === 'ko' || lang === 'en' || lang === 'ja' ? lang : undefined,
       theme: theme === 'light' || theme === 'dark' ? theme : undefined,
       user: uid ? { id: uid, name: name ?? undefined } : undefined,

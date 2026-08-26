@@ -346,6 +346,8 @@ const KO: Record<string, string> = {
 
   'Create': '새로 만들기',
   'Create New': '새로 만들기',
+  'Shoe Agent': '신발 에이전트',
+  'Coming soon': '준비 중',
   'Saved to {name}': '{name} 님의 계정에 저장됩니다',
   'Analysis result': '분석 결과',
   'Finished': '완료',

@@ -200,6 +200,8 @@ export const JA: Record<string, string> = {
   'Virtual fitting': 'バーチャル着用',
   'Create': '新規作成',
   'Create New': '新規作成',
+  'Shoe Agent': 'シューズエージェント',
+  'Coming soon': '準備中',
   'Saved to {name}': '{name} さんのアカウントに保存されます',
   'Analysis result': '分析結果',
   'Finished': '完了',
