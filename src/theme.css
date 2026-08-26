@@ -2241,8 +2241,6 @@ table.mini td b { color: var(--text); font-weight: 600; }
 .tb-deep { font-style: normal; font-size: 11px; font-weight: 700; color: var(--accent);
   background: var(--accent-soft); border-radius: 99px; padding: 1px 8px; }
 .tb-track { position: relative; flex: 1; min-width: 160px; height: 6px; border-radius: 99px; background: var(--surface-3); }
-.tb-range { position: absolute; top: 0; bottom: 0; border-radius: 99px; background: var(--accent-soft);
-  border: 1px solid var(--accent); opacity: .7; }
 .tb-now { position: absolute; top: 50%; width: 12px; height: 12px; border-radius: 50%;
   background: var(--accent); transform: translate(-50%, -50%); box-shadow: 0 0 0 3px var(--panel); }
 .tb-over { width: 100%; font-size: 12px; color: var(--warn); }

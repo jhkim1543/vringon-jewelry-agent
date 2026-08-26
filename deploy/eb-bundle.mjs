@@ -33,12 +33,29 @@ writeFileSync(join(STAGE, 'package.json'), JSON.stringify({
 
 writeFileSync(join(STAGE, 'Procfile'), 'web: node server/prod.mjs\n')
 
+/* nginx — 딥리서치는 한 요청이 수십 분이다. 기본 60초 프록시 타임아웃이면 전부 죽는다.
+   보드 SSE 를 위해 버퍼링도 끈다. 업로드(무드보드 사진)용으로 본문 크기도 올린다. */
+mkdirSync(join(STAGE, '.platform', 'nginx', 'conf.d'), { recursive: true })
+writeFileSync(join(STAGE, '.platform', 'nginx', 'conf.d', 'long-requests.conf'),
+  'proxy_read_timeout 3600s;\nproxy_send_timeout 3600s;\nproxy_buffering off;\nclient_max_body_size 50M;\n')
+
 /* .env 가 절대 섞여 들어가지 않았는지 마지막으로 확인 */
 if (existsSync(join(STAGE, '.env')) || existsSync(join(STAGE, 'server', '.env'))) {
   console.error('.env 가 스테이지에 들어갔다 — 중단')
   process.exit(1)
 }
 
-execFileSync('powershell', ['-NoProfile', '-Command',
-  `Compress-Archive -Path '${STAGE}\\*' -DestinationPath '${ZIP}' -Force`], { stdio: 'inherit' })
+/* Compress-Archive 는 경로 구분자를 백슬래시로 써서 EB(리눅스 unzip)가 거부한다 —
+   실측: "appears to use backslashes as path separators". 파이썬 zipfile 로 슬래시를 보장한다. */
+const py = `
+import os, zipfile
+stage = r'${STAGE}'
+with zipfile.ZipFile(r'${ZIP}', 'w', zipfile.ZIP_DEFLATED) as z:
+    for root, dirs, files in os.walk(stage):
+        for f in files:
+            p = os.path.join(root, f)
+            z.write(p, os.path.relpath(p, stage).replace(os.sep, '/'))
+print('entries', len(z.namelist()))
+`
+execFileSync('python', ['-c', py], { stdio: 'inherit' })
 console.log('완료 →', ZIP)

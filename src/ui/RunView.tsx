@@ -185,12 +185,8 @@ export default function RunView({ st, progress, onOpenBoard, onPairUpdate, onSco
                 {deepOn && <i className="tb-deep">{t('deep research on')}</i>}</span>
             )}
             <span className="tb-track" aria-hidden="true">
-              {/* 예상 범위 구간을 띠로, 경과를 점으로 · max 의 1.25배를 눈금 끝으로 잡아
-                  범위를 지나친 경과도 그대로 보이게 한다 */}
-              <i className="tb-range" style={{
-                left: `${(totalEst.min / (totalEst.max * 1.25)) * 100}%`,
-                width: `${((totalEst.max - totalEst.min) / (totalEst.max * 1.25)) * 100}%`,
-              }} />
+              {/* 경과를 점으로 · 예상 범위는 글에만 남긴다(띠 박스는 지시로 제거) ·
+                  max 의 1.25배를 눈금 끝으로 잡아 범위를 지나친 경과도 그대로 보이게 한다 */}
               <b className="tb-now" style={{ left: `${Math.min(100, (elapsedMin / (totalEst.max * 1.25)) * 100)}%` }} />
             </span>
             {!st.finished && elapsedMin > totalEst.max && (
