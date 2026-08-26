@@ -193,6 +193,7 @@ const KO: Record<string, string> = {
   'low': '낮음',
   'Season report': '다음 시즌 예측',
   'Share': '공유',
+  'Link copied. Anyone who opens it joins this board.': '링크를 복사했습니다. 링크를 연 사람은 이 보드에 함께 들어옵니다.',
   'Copy a link to this board': '이 보드 링크 복사',
   'Link copied. It opens this board in a browser that has this run.': '링크를 복사했습니다. 이 분석을 가진 브라우저에서 열립니다.',
   'Could not copy the link': '링크를 복사하지 못했습니다',

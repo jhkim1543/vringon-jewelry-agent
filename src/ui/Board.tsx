@@ -291,6 +291,12 @@ function BoardInner({ st, runId }: { st: RunState | null; runId: string }) {
   const [tick, setTick] = useState(0)
   const bump = () => setTick(v => v + 1)
   const [cursors, setCursors] = useState<Record<string, CursorMsg & { at: number }>>({})
+  const [toast, setToast] = useState<string | null>(null)
+  useEffect(() => {
+    if (!toast) return
+    const h = setTimeout(() => setToast(null), 6000)
+    return () => clearTimeout(h)
+  }, [toast])
   const [openPin, setOpenPin] = useState<string | null>(null)
   const [showPins, setShowPins] = useState(true)
   const [nameDraft, setNameDraft] = useState(myName())
@@ -442,9 +448,23 @@ function BoardInner({ st, runId }: { st: RunState | null; runId: string }) {
     } catch { /* 실패는 조용히 · 6MB 초과 등 */ }
   }
 
-  const share = () => {
+  const share = async () => {
     pushShareTarget(runId, 'board')
-    navigator.clipboard?.writeText(shareLink(runId, 'board')).catch(() => undefined)
+    const link = shareLink(runId, 'board')
+    // HTTP 배포(EB 기본 도메인)에는 navigator.clipboard 가 아예 없다 —
+    // 조용히 실패하던 자리라 execCommand 폴백과 복사 알림을 함께 둔다.
+    let ok = false
+    try { await navigator.clipboard.writeText(link); ok = true } catch { /* 아래 폴백 */ }
+    if (!ok) {
+      const ta = document.createElement('textarea')
+      ta.value = link
+      ta.style.position = 'fixed'; ta.style.opacity = '0'
+      document.body.appendChild(ta); ta.select()
+      try { ok = document.execCommand('copy') } catch { ok = false }
+      ta.remove()
+    }
+    // 복사가 끝내 안 되면 링크 자체를 보여 준다 — 거짓 성공 알림은 띄우지 않는다
+    setToast(ok ? t('Link copied. Anyone who opens it joins this board.') : link)
   }
 
   // ── 발표 모드 · 캔버스 위에서 아래로, 왼쪽에서 오른쪽으로 ───────────
@@ -508,6 +528,9 @@ function BoardInner({ st, runId }: { st: RunState | null; runId: string }) {
           <div className="bb-row"><span className="hint">{t('Realtime collaboration needs the local server. On the static demo the board stays in this browser.')}</span></div>
         )}
       </div>
+
+      {/* 공유 알림 · 누르면 닫힌다 */}
+      {toast && <div className="board-toast" onClick={() => setToast(null)}>{toast}</div>}
 
       <ReactFlow
         nodes={nodes} edges={[]}
