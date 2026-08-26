@@ -280,14 +280,14 @@ function ShapeNode({ data }: { data: UNodeData }) {
 }
 
 function PinNode({ data }: { data: UNodeData }) {
+  // 구글 문서식 · 핀은 단 사람의 아바타 원이고, 누르면 오른쪽 레일에 스레드가 열린다.
+  // 글자·말풍선을 마커에 얹지 않는다 — 예전 title/개수 배지가 "핀에 글씨가 써지는" 혼란을 만들었다.
   const { u } = data
+  const who = (u.thread?.[0]?.author ?? u.author ?? '?').slice(0, 1).toUpperCase()
   return (
-    <button className="bpin nodrag" style={{ background: u.color ?? '#E4573D' }}
-      onClick={() => data.onOpenPin(u.id)} title={u.thread?.[0]?.text ?? ''}>
-      <svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true">
-        <path d="M8 1.5a4.5 4.5 0 0 1 4.5 4.5c0 3.2-4.5 8.5-4.5 8.5S3.5 9.2 3.5 6A4.5 4.5 0 0 1 8 1.5z" fill="#fff" />
-      </svg>
-      {(u.thread?.length ?? 0) > 0 && <em>{u.thread!.length}</em>}
+    <button className="bpin nodrag" style={{ background: u.color ?? '#5A63C8' }}
+      onClick={() => data.onOpenPin(u.id)} aria-label={t('Comments')}>
+      <span>{who}</span>
     </button>
   )
 }
@@ -324,7 +324,11 @@ function BoardInner({ st, runId }: { st: RunState | null; runId: string }) {
     return () => clearTimeout(h)
   }, [toast])
   const [openPin, setOpenPin] = useState<string | null>(null)
-  const [showPins, setShowPins] = useState(true)
+  // 핀 모드 · 켜면 커서가 핀이 되고, 캔버스를 찍은 자리에 컴포저가 뜬다.
+  // 핀은 첫 댓글이 보내질 때 비로소 만들어진다 — 빈 핀이 남지 않는다.
+  const [pinMode, setPinMode] = useState(false)
+  const [draft, setDraft] = useState<{ x: number; y: number } | null>(null)
+  const [nameOpen, setNameOpen] = useState(false)
   const [nameDraft, setNameDraft] = useState(myName())
 
   useEffect(() => {
@@ -399,7 +403,6 @@ function BoardInner({ st, runId }: { st: RunState | null; runId: string }) {
       data: { n }, draggable: true,
     }))
     for (const u of Object.values(docRef.current.unodes)) {
-      if (u.kind === 'pin' && !showPins) continue
       out.push({
         id: u.id, type: u.kind,
         position: pos[u.id] ?? { x: u.x, y: u.y },
@@ -410,7 +413,7 @@ function BoardInner({ st, runId }: { st: RunState | null; runId: string }) {
     }
     return out
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [slideNodes, tick, unodeData, showPins])
+  }, [slideNodes, tick, unodeData])
 
   const [nodes, setNodes] = useState<Node[]>(builtNodes)
   useEffect(() => { setNodes(builtNodes) }, [builtNodes])
@@ -455,10 +458,28 @@ function BoardInner({ st, runId }: { st: RunState | null; runId: string }) {
     const c = centerFlow()
     commit([{ t: 'unode', node: { id: nid('shape'), kind: 'shape', x: c.x - 130, y: c.y - 85, w: 260, h: 170, author: myName() } }])
   }
-  const addPin = () => {
-    const c = centerFlow()
-    commit([{ t: 'unode', node: { id: nid('pin'), kind: 'pin', x: c.x, y: c.y, author: myName(), color: myColor(), thread: [] } }])
-  }
+  // 핀 모드에서 캔버스를 찍으면 · 그 자리에 컴포저를 열고 커서는 보통으로 돌린다
+  const onPaneClick = useCallback((e: React.MouseEvent) => {
+    if (!pinMode) { setOpenPin(null); return }
+    const p = rf.screenToFlowPosition({ x: e.clientX, y: e.clientY })
+    setDraft({ x: Math.round(p.x), y: Math.round(p.y) })
+    setPinMode(false)
+  }, [pinMode, rf])
+
+  useEffect(() => {
+    if (!draft && !pinMode) return
+    const h = (e: KeyboardEvent) => { if (e.key === 'Escape') { setDraft(null); setPinMode(false) } }
+    window.addEventListener('keydown', h)
+    return () => window.removeEventListener('keydown', h)
+  }, [draft, pinMode])
+
+  // 코멘트 레일 목록 · 첫 댓글이 달린 핀들, 오래된 것부터 쌓인다
+  const pinList = useMemo(() =>
+    Object.values(docRef.current.unodes)
+      .filter(u => u.kind === 'pin' && (u.thread?.length ?? 0) > 0)
+      .sort((a, b) => (a.thread![0].at ?? 0) - (b.thread![0].at ?? 0)),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [tick, model])
   const fileRef = useRef<HTMLInputElement>(null)
   const addImage = async (f: File) => {
     if (!live) return
@@ -534,7 +555,7 @@ function BoardInner({ st, runId }: { st: RunState | null; runId: string }) {
   const modeLabel = st ? t(MODE_LABEL[st.params.mode]) : t('Shared board')
 
   return (
-    <div className="board" onPointerMove={onMove} onPointerLeave={onLeave}>
+    <div className={`board${pinMode ? ' pin-mode' : ''}`} onPointerMove={onMove} onPointerLeave={onLeave}>
       <div className="boardbar">
         <div className="bb-row bb-top">
           <span className="bb-title">{t('Review board')}</span>
@@ -542,9 +563,22 @@ function BoardInner({ st, runId }: { st: RunState | null; runId: string }) {
           {live === null && <span className="bb-off">{t('local only')}</span>}
           <span className="bb-gap" />
           {live !== null && (
-            <input className="bb-name" value={nameDraft} title={t('Your name on this board')}
-              onChange={e => setNameDraft(e.target.value)}
-              onBlur={() => { setMyName(nameDraft); setNameDraft(myName()) }} />
+            <div className="bb-me">
+              {/* 구글 드라이브식 · 내 아바타를 눌러야 내 이름을 고친다. 남의 이름은 만질 수 없다. */}
+              <button className="bb-ava" style={{ background: myColor() }} title={t('Your name on this board')}
+                onClick={() => { setNameDraft(myName()); setNameOpen(v => !v) }}>
+                {myName().slice(0, 1).toUpperCase()}
+              </button>
+              {nameOpen && (
+                <div className="bb-namepop">
+                  <span className="hint">{t('Your name on this board')}</span>
+                  <input className="input" autoFocus value={nameDraft}
+                    onChange={e => setNameDraft(e.target.value)}
+                    onKeyDown={e => { if (e.key === 'Enter') (e.target as HTMLInputElement).blur() }}
+                    onBlur={() => { setMyName(nameDraft); setNameDraft(myName()); setNameOpen(false) }} />
+                </div>
+              )}
+            </div>
           )}
           <button className="btn btn-ghost btn-sm" onClick={share}>{t('Share')}</button>
           <button className="btn btn-primary btn-sm" disabled={!presentOrder.length}
@@ -562,6 +596,7 @@ function BoardInner({ st, runId }: { st: RunState | null; runId: string }) {
         nodes={nodes} edges={[]}
         onNodesChange={onNodesChange}
         onNodeDragStop={onNodeDragStop}
+        onPaneClick={onPaneClick}
         nodeTypes={nodeTypes}
         fitView minZoom={0.05} maxZoom={2.5}
         zoomOnScroll zoomOnPinch panOnScroll={false} preventScrolling
@@ -576,6 +611,24 @@ function BoardInner({ st, runId }: { st: RunState | null; runId: string }) {
               <span style={{ background: c.color }}>{c.name}</span>
             </div>
           ))}
+          {/* 방금 찍은 핀 자리 · 첫 댓글을 보내면 그때 핀이 만들어진다 */}
+          {draft && (
+            <div className="pin-draft" style={{ transform: `translate(${draft.x}px, ${draft.y}px)` }}
+              onMouseDown={e => e.stopPropagation()} onClick={e => e.stopPropagation()}>
+              <span className="bpin" style={{ background: myColor() }}>{myName().slice(0, 1).toUpperCase()}</span>
+              <div className="pin-composer">
+                <PinInput autoFocus placeholder={t('Leave a comment')} onSend={text => {
+                  commit([{ t: 'unode', node: {
+                    id: nid('pin'), kind: 'pin', x: draft.x, y: draft.y,
+                    author: myName(), color: myColor(),
+                    thread: [{ id: nid('c'), author: myName(), text, at: Date.now() }],
+                  } }])
+                  setDraft(null)
+                }} />
+                <button className="bx" onClick={() => setDraft(null)} aria-label={t('Close')}>✕</button>
+              </div>
+            </div>
+          )}
         </ViewportPortal>
       </ReactFlow>
 
@@ -599,48 +652,69 @@ function BoardInner({ st, runId }: { st: RunState | null; runId: string }) {
           <button className="bt-btn" title={t('Image')} onClick={() => fileRef.current?.click()}>
             <svg viewBox="0 0 20 20" width="17" height="17"><rect x="2.5" y="3.5" width="15" height="13" rx="1.5" fill="none" stroke="currentColor" strokeWidth="1.5" /><circle cx="7" cy="8" r="1.4" fill="currentColor" /><path d="M4 14.5 8.5 10l3 3 2-2 2.5 3.5" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" /></svg>
           </button>
-          <button className="bt-btn" title={t('Comment pin')} onClick={addPin}>
-            <svg viewBox="0 0 20 20" width="17" height="17"><path d="M10 2.2a5.4 5.4 0 0 1 5.4 5.4c0 3.8-5.4 10.2-5.4 10.2S4.6 11.4 4.6 7.6A5.4 5.4 0 0 1 10 2.2z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" /><circle cx="10" cy="7.6" r="1.5" fill="currentColor" /></svg>
+          {/* 압정 · 켜면 커서가 핀이 되고 찍은 자리에 댓글을 단다 */}
+          <button className={`bt-btn${pinMode ? ' on' : ''}`} title={t('Comment pin')} aria-pressed={pinMode}
+            onClick={() => { setPinMode(v => !v); setDraft(null) }}>
+            <svg viewBox="0 0 20 20" width="17" height="17" aria-hidden="true">
+              <path d="M12.2 2.4 17.6 7.8 15 8.7a2.6 2.6 0 0 0-1.6 1.6l-1 2.9-6.6-6.6 2.9-1a2.6 2.6 0 0 0 1.6-1.6z"
+                fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+              <path d="M8.5 11.5 3.2 16.8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
           </button>
-          <span className="bt-sep" aria-hidden="true" />
-          <label className="bt-toggle">
-            <span>{t('Show pins')}</span>
-            <button role="switch" aria-checked={showPins} className={`bt-switch ${showPins ? 'on' : ''}`}
-              onClick={() => setShowPins(v => !v)}><i /></button>
-          </label>
           <input ref={fileRef} type="file" accept="image/*" hidden
             onChange={e => { const f = e.target.files?.[0]; if (f) addImage(f); e.target.value = '' }} />
         </div>
       )}
 
-      {/* 핀 스레드 · 오른쪽에서 열린다 */}
-      {pinOpenNode && (
-        <aside className="pinpanel">
-          <header>
-            <b>{t('Comments')}</b>
-            <span className="hint">{pinOpenNode.author}</span>
-            {/* 핀 자체를 지우는 자리는 여기뿐이다 · 캔버스의 핀은 클릭이 곧 열기라 X 를 못 단다 */}
-            <button className="btn btn-ghost btn-sm" onClick={() => {
-              commit([{ t: 'udel', id: pinOpenNode.id }]); setOpenPin(null)
-            }}>{t('Delete pin')}</button>
-            <button className="bx" onClick={() => setOpenPin(null)} aria-label={t('Close')}>✕</button>
-          </header>
-          <div className="pin-list">
-            {(pinOpenNode.thread ?? []).map(c => (
-              <div className="pin-c" key={c.id}>
-                <b>{c.author}</b>
-                <p>{c.text}</p>
-                <span>{new Date(c.at).toLocaleString()}</span>
+      {/* 코멘트 레일 · 댓글이 쌓이면 오른쪽에 계속 붙는다. 핀을 누르면 그 핀의 스레드(대댓글)로 들어간다. */}
+      {(pinList.length > 0 || pinOpenNode) && !present && (
+        <aside className="pinrail">
+          {!pinOpenNode ? (
+            <>
+              <header><b>{tf('{n} Comments', { n: pinList.length })}</b></header>
+              <div className="pr-list">
+                {pinList.map(u => {
+                  const c0 = u.thread![0]
+                  return (
+                    <button className="pr-item" key={u.id} onClick={() => setOpenPin(u.id)}>
+                      <span className="bb-ava" style={{ background: u.color ?? '#5A63C8' }}>{c0.author.slice(0, 1).toUpperCase()}</span>
+                      <span className="pr-body">
+                        <b>{c0.author}</b>
+                        <p>{c0.text}</p>
+                        <i>{fmtAgo(c0.at)}</i>
+                        {u.thread!.length > 1 && <em>{tf('{n} replies', { n: u.thread!.length - 1 })}</em>}
+                      </span>
+                    </button>
+                  )
+                })}
               </div>
-            ))}
-            {!(pinOpenNode.thread ?? []).length && <p className="hint">{t('No comments yet. Write the first one.')}</p>}
-          </div>
-          <PinInput onSend={(text) => {
-            const u = docRef.current.unodes[pinOpenNode.id]
-            if (!u) return
-            const thread = [...(u.thread ?? []), { id: nid('c'), author: myName(), text, at: Date.now() }]
-            commit([{ t: 'unode', node: { ...u, thread } }])
-          }} />
+            </>
+          ) : (
+            <>
+              <header>
+                <button className="bx" onClick={() => setOpenPin(null)} aria-label={t('Back')}>‹</button>
+                <b>{t('Reply')}</b>
+                <button className="btn btn-ghost btn-sm" onClick={() => {
+                  commit([{ t: 'udel', id: pinOpenNode.id }]); setOpenPin(null)
+                }}>{t('Delete pin')}</button>
+              </header>
+              <div className="pr-list pr-thread">
+                {(pinOpenNode.thread ?? []).map((c, i) => (
+                  <div className={`pr-item${i === 0 ? ' root' : ''}`} key={c.id}>
+                    <span className="bb-ava" style={{ background: pinOpenNode.color ?? '#5A63C8' }}>{c.author.slice(0, 1).toUpperCase()}</span>
+                    <span className="pr-body"><b>{c.author}</b><p>{c.text}</p><i>{fmtAgo(c.at)}</i></span>
+                  </div>
+                ))}
+                {(pinOpenNode.thread ?? []).length < 2 && <p className="hint">{t('No replies yet. Leave one!')}</p>}
+              </div>
+              <PinInput placeholder={t('Leave a comment')} onSend={(text) => {
+                const u = docRef.current.unodes[pinOpenNode.id]
+                if (!u) return
+                const thread = [...(u.thread ?? []), { id: nid('c'), author: myName(), text, at: Date.now() }]
+                commit([{ t: 'unode', node: { ...u, thread } }])
+              }} />
+            </>
+          )}
         </aside>
       )}
 
@@ -672,17 +746,33 @@ function BoardInner({ st, runId }: { st: RunState | null; runId: string }) {
   )
 }
 
-function PinInput({ onSend }: { onSend: (text: string) => void }) {
+function PinInput({ onSend, placeholder, autoFocus }: { onSend: (text: string) => void; placeholder?: string; autoFocus?: boolean }) {
   const [v, setV] = useState('')
   const send = () => { const s = v.trim(); if (!s) return; onSend(s); setV('') }
   return (
     <div className="pin-input">
-      <input className="input" value={v} placeholder={t('Write a comment')}
+      <input className="input" value={v} placeholder={placeholder ?? t('Write a comment')} autoFocus={autoFocus}
         onChange={e => setV(e.target.value)}
         onKeyDown={e => { if (e.key === 'Enter') send() }} />
-      <button className="btn btn-primary btn-sm" onClick={send}>{t('Send')}</button>
+      <button className="pin-send" onClick={send} aria-label={t('Send')} disabled={!v.trim()}>
+        <svg viewBox="0 0 20 20" width="15" height="15" aria-hidden="true">
+          <path d="M2.5 10 17 3 12.5 17l-3-5.5z M9.5 11.5 17 3" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
+        </svg>
+      </button>
     </div>
   )
+}
+
+/** 방금·몇 분 전 식의 상대 시각 · 하루가 넘으면 날짜로 */
+function fmtAgo(at?: number): string {
+  if (!at) return ''
+  const d = Math.max(0, Date.now() - at)
+  if (d < 60_000) return t('Just now')
+  const m = Math.floor(d / 60_000)
+  if (m < 60) return tf('{n} min ago', { n: m })
+  const h = Math.floor(m / 60)
+  if (h < 24) return tf('{n} hr ago', { n: h })
+  return new Date(at).toLocaleDateString()
 }
 
 export default function Board({ st, runId }: { st: RunState | null; runId: string }) {
