@@ -232,14 +232,9 @@ export const JA: Record<string, string> = {
   'Save as file': 'ファイルで保存',
 
   // ── 레일 ────────────────────────────────────────────────────────
-  'New run': '新規分析',
   'Recent': '最近',
   'Saved runs': '過去の分析',
-  'Current session': '現在のセッション',
   'This session': '現在のセッション',
-  'Clear session': 'セッションをクリア',
-  'Images': '画像',
-  'Searches': 'Web検索',
   'images': '枚',
   'searches': '回検索',
 

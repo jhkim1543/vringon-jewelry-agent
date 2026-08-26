@@ -10,7 +10,7 @@ import type { PipelineHandle } from './core/pipeline'
 import Wizard from './ui/Wizard'
 import RunView from './ui/RunView'
 import Board from './ui/Board'
-import { IcChevron, IcClock, IcPlus, IcStar, IcTrash } from './ui/icons'
+import { IcClock, IcStar } from './ui/icons'
 import { ThemeToggle, VringonLogo, LangToggle } from './ui/bits'
 import { useTheme } from './ui/useTheme'
 import Library from './ui/Library'
@@ -27,7 +27,6 @@ export default function App() {
   const [view, setView] = useState<View>('create')
   const [st, setSt] = useState<RunState | null>(null)
   const [progress, setProgress] = useState<Record<string, number>>({})
-  const [usage, setUsage] = useState({ images: 0, searches: 0 })
   const handleRef = useRef<PipelineHandle | null>(null)
   const { theme, setTheme } = useTheme()
   const runIdRef = useRef<string>(newRunId())
@@ -103,8 +102,6 @@ export default function App() {
       return next
     })
     if (e.kind === 'progress') setProgress(p => ({ ...p, [e.stage]: e.pct }))
-    if (e.kind === 'searches') setUsage(u => ({ ...u, searches: u.searches + e.n }))
-    if (e.kind === 'pair-update') setUsage(u => ({ ...u, images: u.images + 1 }))
   }, [])
 
   // 진행 상태를 계속 남긴다 · 끝나면 내역에 저장
@@ -174,10 +171,6 @@ export default function App() {
 
       <div className="main">
         <aside className="siderail">
-          <button className="sr-new" title={t('New run')} aria-label={t('New run')}
-            onClick={() => { setView('create'); setWizardKey(k => k + 1) }}>
-            <IcPlus /> <span>{t('New run')}</span> <IcChevron />
-          </button>
           <nav>
             <button className={`sr-i ${view === 'library' ? 'on' : ''}`} title={t('History')} aria-label={t('History')} onClick={() => setView('library')}>
               <IcClock /> <span>{t('History')}</span>
@@ -186,17 +179,6 @@ export default function App() {
               <IcStar /> <span>{t('Starred')}</span>
             </button>
           </nav>
-          <div className="sr-foot">
-            <div className="sr-label">{t('Current session')}</div>
-            <div className="sr-stats">
-              <div><b>{usage.images}</b><span>{t('Images')}</span></div>
-              <div><b>{usage.searches}</b><span>{t('Searches')}</span></div>
-            </div>
-            <button className="sr-clear" onClick={() => setUsage({ images: 0, searches: 0 })}
-              disabled={!usage.images && !usage.searches}>
-              <IcTrash /> <span>{t('Clear session')}</span>
-            </button>
-          </div>
         </aside>
 
         {shareMiss && view === 'create' && (
