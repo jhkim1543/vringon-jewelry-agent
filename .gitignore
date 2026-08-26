@@ -10,3 +10,5 @@ dist
 .vite-detached.*
 .*-probe.*
 *.state.json
+deploy/eb-stage
+deploy/eb-bundle.zip
