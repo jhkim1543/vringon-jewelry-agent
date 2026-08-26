@@ -227,6 +227,41 @@ async function edit({ baseHash, prompt, size = '1024x1024', engine = 'detail' })
   return { hash, cached: false, model: usedModel }
 }
 
+// ── 발표용 레퍼런스 재현 샷 ──────────────────────────────────────────
+// 크롤 썸네일은 작고 잘려 있어 발표 화면에 키우면 뭉개진다. 원본 사진을 기준으로
+// "같은 제품의 스튜디오 컷"을 이미지 편집 모델로 다시 그린다 — 실물 사진을 대체하는 게
+// 아니라 발표 화면 전용이고, 화면에는 AI 재현 배지가 붙는다. 같은 원본+프롬프트는 캐시로 1회만 과금.
+const REFSHOT_PROMPT = 'Recreate this exact jewelry product as a clean e-commerce studio photograph: the same product with identical design, materials and proportions, centered on a soft neutral light background, gentle studio lighting, photorealistic, no hands, no model, no text.'
+
+async function refshot({ src }) {
+  if (typeof src !== 'string' || !src) throw new Error('src 없음')
+  ensureCache()
+  let buf
+  if (/^https?:/.test(src)) {
+    const r = await fetch(src, { headers: { 'User-Agent': 'Mozilla/5.0' } })
+    if (!r.ok) throw new Error(`원본 사진을 못 가져옴 ${r.status}`)
+    buf = Buffer.from(await r.arrayBuffer())
+  } else if (src.startsWith('/') && !src.includes('..')) {
+    // 정적 산출물 경로 (/samples/…, /api/shot 이 굳힌 사본 등) — dist 먼저, dev 는 public
+    const rel = src.replace(/^\//, '').split('?')[0]
+    const cand = [join(ROOT, 'dist', rel), join(ROOT, 'public', rel)]
+    const hit = cand.find(p => existsSync(p))
+    if (!hit) throw new Error(`원본 파일 없음: ${rel}`)
+    buf = readFileSync(hit)
+  } else throw new Error('src 형식이 아님')
+
+  // 편집 API 는 png 를 원한다 · sharp 로 정규화 (없으면 원본 그대로 시도)
+  try {
+    const sharp = (await import('sharp')).default
+    buf = await sharp(buf).resize(1024, 1024, { fit: 'inside', withoutEnlargement: false }).png().toBuffer()
+  } catch { /* sharp 미설치·비이미지면 원본으로 시도 */ }
+
+  const baseHash = createHash('sha256').update(buf).digest('hex').slice(0, 24)
+  const basePath = join(CACHE_DIR, `${baseHash}.png`)
+  if (!existsSync(basePath)) writeFileSync(basePath, buf)
+  return edit({ baseHash, prompt: REFSHOT_PROMPT, engine: 'fast' })
+}
+
 /** connect 스타일 핸들러 — Vite dev 미들웨어와 단독 서버 양쪽에서 사용 */
 export async function handleApi(req, res) {
   const url = new URL(req.url, 'http://localhost')
@@ -586,6 +621,10 @@ export async function handleApi(req, res) {
     }
     if (path === '/api/image/edit') {
       const { hash, cached, model } = await edit(body)
+      return json(res, 200, { url: `/api/image/file/${hash}.png`, hash, cached, model })
+    }
+    if (path === '/api/image/refshot') {
+      const { hash, cached, model } = await refshot(body)
       return json(res, 200, { url: `/api/image/file/${hash}.png`, hash, cached, model })
     }
   } catch (e) {

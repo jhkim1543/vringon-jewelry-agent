@@ -124,6 +124,7 @@ export const JA: Record<string, string> = {
   'low': '低',
   'Season report': '次シーズン予測',
   'Share': '共有',
+  'AI render': 'AI再現',
   'Link copied. Anyone who opens it joins this board.': 'リンクをコピーしました。開いた人はこのボードに参加します。',
   'Copy a link to this board': 'このボードのリンクをコピー',
   'Link copied. It opens this board in a browser that has this run.': 'リンクをコピーしました。この分析を持つブラウザで開きます。',

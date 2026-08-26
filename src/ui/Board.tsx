@@ -33,6 +33,32 @@ function Img({ remote, page, shot, className }: { remote?: string; page?: string
     onError={e => { (e.currentTarget as HTMLImageElement).style.visibility = 'hidden' }} />
 }
 
+/** 발표용 레퍼런스 이미지 · 크롤 썸네일은 발표 크기로 키우면 뭉개져서,
+ *  같은 제품의 AI 재현 스튜디오 컷을 서버에 청해 바꿔 끼운다(캐시라 재과금 없음).
+ *  서버가 없거나(정적 배포) 실패하면 원본 그대로 두고, 배지는 재현이 실제로 떴을 때만 붙는다. */
+function PresentRefImg({ remote, shot }: { remote?: string; shot?: string }) {
+  const [ai, setAi] = useState<string | null>(null)
+  const askSrc = shot || remote
+  useEffect(() => {
+    if (!askSrc) return
+    let dead = false
+    fetch('/api/image/refshot', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ src: askSrc }),
+    })
+      .then(r => (r.ok ? r.json() : null))
+      .then(j => { if (!dead && j?.url) setAi(j.url) })
+      .catch(() => undefined)
+    return () => { dead = true }
+  }, [askSrc])
+  return (
+    <span className="pr-wrap">
+      {ai ? <img src={ai} alt="" /> : <Img remote={remote} shot={shot} />}
+      {ai && <i className="pr-ai">{t('AI render')}</i>}
+    </span>
+  )
+}
+
 /** 디자인 방향 다섯 줄 · 축마다 짧은 아이콘과 첫 구절만 */
 // Record<string,string> 주석을 붙이면 i18n 감사가 SVG 경로를 문구로 오인한다 · as const 로 둔다
 const AXIS_GLYPH = {
@@ -54,7 +80,7 @@ function firstClause(s?: string, max = 34): string {
   return head.slice(0, Math.max(16, brk)).replace(/[,·\s]+$/, '')
 }
 
-export function SlideView({ slide }: { slide: SlidePayload }) {
+export function SlideView({ slide, present = false }: { slide: SlidePayload; present?: boolean }) {
   const [showPrompt, setShowPrompt] = useState(false)
   if (slide.type === 'cover') {
     return (
@@ -76,7 +102,7 @@ export function SlideView({ slide }: { slide: SlidePayload }) {
           {slide.cells.map(c => (
             <div className="sl-refcell" key={c.slot}>
               <span className="n">#{c.slot}</span>
-              <Img remote={c.imageUrl} shot={c.shot} />
+              {present ? <PresentRefImg remote={c.imageUrl} shot={c.shot} /> : <Img remote={c.imageUrl} shot={c.shot} />}
               <b>{c.title}</b>
               <span className="s">{c.subtitle}</span>
               <span className="p">{c.price ? `${c.price.toLocaleString()} ${c.currency ?? ''}` : t('price unconfirmed')}</span>
@@ -620,8 +646,10 @@ function BoardInner({ st, runId }: { st: RunState | null; runId: string }) {
 
       {present && cur && (
         <div className="present" role="dialog" aria-label={t('Presentation')}>
+          {/* 우측 상단 닫기 · Esc 와 같은 일 */}
+          <button className="present-x" onClick={() => setPresent(false)} aria-label={t('Close')}>✕</button>
           <div className="present-stage">
-            {cur.slide && <SlideView slide={cur.slide} />}
+            {cur.slide && <SlideView slide={cur.slide} present />}
             {cur.u?.kind === 'note' && <div className="present-note" style={{ background: cur.u.color ?? '#FBE89C' }}><p>{cur.u.text}</p><span>{cur.u.author}</span></div>}
             {cur.u?.kind === 'text' && <div className="present-text"><p>{cur.u.text}</p></div>}
             {cur.u?.kind === 'image' && cur.u.url && <img className="present-img" src={cur.u.url} alt="" />}

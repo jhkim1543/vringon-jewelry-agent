@@ -1936,6 +1936,22 @@ table.mini td b { color: var(--text); font-weight: 600; }
 .pf-thumbs button { min-width: 28px; height: 24px; border-radius: 6px; font-size: 11px;
   background: rgba(255, 255, 255, .12); color: #C9CDD6; }
 .pf-thumbs button.on { background: var(--accent); color: #fff; }
+.present-x { position: absolute; top: 18px; right: 18px; width: 44px; height: 44px; z-index: 3;
+  border-radius: 99px; background: rgba(16, 16, 20, .8); color: #fff; font-size: 18px; }
+.present-x:hover { background: rgba(255, 255, 255, .18); }
+
+/* 발표모드 · 레퍼런스가 무대를 채운다 — 카드용 고정 150px 그대로 키우면 상단에 조그맣게 뜬다 */
+.present-stage .sl-refs header { font-size: 24px; margin-bottom: 18px; }
+.present-stage .sl-refrow { gap: 18px; }
+.present-stage .sl-refcell { gap: 6px; }
+.present-stage .sl-refcell .pr-wrap { position: relative; display: flex; flex: 1; min-height: 0; }
+.present-stage .sl-refcell img { height: 100%; flex: 1; min-height: 0; border-radius: 10px; }
+.present-stage .sl-refcell .n { font-size: 13px; top: 8px; left: 8px; padding: 2px 8px; }
+.present-stage .sl-refcell b { font-size: 15px; }
+.present-stage .sl-refcell .s { font-size: 12.5px; }
+.present-stage .sl-refcell .p { font-size: 13.5px; }
+.pr-ai { position: absolute; right: 8px; bottom: 8px; font-style: normal; font-size: 11px; font-weight: 700;
+  color: #fff; background: rgba(16, 16, 20, .72); border-radius: 99px; padding: 2px 9px; backdrop-filter: blur(4px); }
 
 /* 반응형 보완 · 새 화면 */
 @media (max-width: 760px) {
