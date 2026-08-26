@@ -3,6 +3,7 @@
 // 남의 편집·커서를 SSE 로 받는다. 서버가 없으면(정적 배포) null 을 돌려주고
 // 보드는 이 브라우저 안에서만 동작한다 — 흉내내지 않는다.
 import type { BoardNode } from './boardModel'
+import { apiUrl } from './api'
 
 export interface BoardComment { id: string; author: string; text: string; at: number }
 
@@ -79,13 +80,13 @@ export async function joinBoard(
 ): Promise<LiveBoard | null> {
   let doc: BoardDoc
   try {
-    const r = await fetch(`/api/board/doc?id=${encodeURIComponent(id)}`)
+    const r = await fetch(apiUrl(`/api/board/doc?id=${encodeURIComponent(id)}`))
     if (!r.ok) return null
     doc = (await r.json()).doc
   } catch { return null }
 
   const clientId = newClientId()
-  const es = new EventSource(`/api/board/events?id=${encodeURIComponent(id)}`)
+  const es = new EventSource(apiUrl(`/api/board/events?id=${encodeURIComponent(id)}`))
   es.onmessage = (e) => {
     try {
       const msg = JSON.parse(e.data)

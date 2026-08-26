@@ -2,6 +2,7 @@
 // 실제로 파이프라인을 돌려 만든 결과를 JSON으로 떠서 넣는다. API 호출은 하지 않는다.
 import type { RunState } from './types'
 import { listRuns, saveRun } from './store'
+import { apiUrl, baseUrl } from './api'
 
 /** 주얼리 전용 · 심어 두는 예시 분석 */
 // 모드마다 한 건씩. 전부 현재 파이프라인으로 실제로 돌린 결과다.
@@ -31,8 +32,12 @@ export async function ensureSampleRuns() {
       const mod = await import(`../samples/${id}.json`)
       // 배포 경로가 하위 폴더면(예: GitHub Pages) 절대경로 /samples/ 가 어긋난다.
       // 저장된 JSON은 그대로 두고, 읽어들일 때만 base를 붙인다.
-      const base = import.meta.env.BASE_URL || '/'
-      const raw = JSON.stringify(mod.default ?? mod).replaceAll('"/samples/', `"${base}samples/`)
+      // VRINGON 저장소 안으로 옮겨 쓸 때는 샘플 사진 320MB 를 같이 옮기지 않는다 —
+      // port-to-vringon 이 경로에 __AGENT_API__ 표식을 남기고, 여기서 조사 서버로 돌린다.
+      const base = baseUrl()
+      const raw = JSON.stringify(mod.default ?? mod)
+        .replaceAll('"__AGENT_API__/samples/', `"${apiUrl('/samples/')}`)
+        .replaceAll('"/samples/', `"${base}samples/`)
       const st = JSON.parse(raw) as RunState
       st.sample = true
       const fileAt = Date.parse(st.savedAtISO ?? '') || 0

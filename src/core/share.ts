@@ -10,6 +10,7 @@
 // 실시간 공동 열람은 상태를 중계할 서버가 필요하다. 정적 배포에는 그 서버가
 // 없으므로 여기서는 흉내내지 않는다. 붙일 자리는 openLiveSession 이다.
 
+import { baseUrl } from './api'
 export interface ShareTarget { runId: string; view: 'board' | 'run' }
 
 const P_RUN = 'run'
@@ -28,7 +29,7 @@ export function readShareTarget(): ShareTarget | null {
 
 /** 공유 링크 만들기 · base 경로를 유지해야 Pages 배포에서도 열린다 */
 export function shareLink(runId: string, view: ShareTarget['view'] = 'board'): string {
-  const base = import.meta.env.BASE_URL || '/'
+  const base = baseUrl()
   const url = new URL(base, location.origin)
   url.searchParams.set(P_RUN, runId)
   url.searchParams.set(P_VIEW, view)

@@ -46,10 +46,12 @@ const listeners = new Set<() => void>()
 
 export function getLang(): Lang { return lang }
 
-export function setLang(l: Lang) {
+export function setLang(l: Lang, opts?: { fromHost?: boolean }) {
   if (l === lang) return
   lang = l
-  try { localStorage.setItem(KEY, l) } catch { /* 무시 */ }
+  // 호스트(VRINGON)가 정해 준 언어는 이 앱의 저장소에 남기지 않는다 —
+  // 다음에 이 앱을 따로 열었을 때 남의 선택이 따라오면 안 된다.
+  if (!opts?.fromHost) { try { localStorage.setItem(KEY, l) } catch { /* 무시 */ } }
   document.documentElement.lang = l
   listeners.forEach(fn => fn())
 }

@@ -6,9 +6,10 @@ import type {
   RunParams, RunwayData, ShopCrawl, TrendReportData, VariantKind,
 } from './types'
 import { ANALYSIS_LANG_NAME, ITEM_EN, ITEM_KO, regionsOf, targetText } from './types'
+import { apiUrl } from './api'
 
 async function post<T>(url: string, body: unknown): Promise<T> {
-  const r = await fetch(url, {
+  const r = await fetch(apiUrl(url), {
     method: 'POST', headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(body),
   })
@@ -134,5 +135,5 @@ export function shotUrl(remote: string | undefined, page?: string): string {
   const q: string[] = []
   if (remote) q.push(`u=${encodeURIComponent(remote)}`)
   if (page && /^https:/.test(page)) q.push(`p=${encodeURIComponent(page)}`)
-  return `/api/shot?${q.join('&')}`
+  return apiUrl(`/api/shot?${q.join('&')}`)
 }

@@ -5,6 +5,7 @@
 // 두 번째에서 실행 버튼을 그냥 눌리게 두면 아무 일도 안 일어난 것처럼 보인다.
 // 그래서 시작할 때 한 번 확인하고, 없으면 화면에 분명히 적는다.
 
+import { apiUrl, baseUrl } from './api'
 export type Runtime =
   | { kind: 'live'; keyPresent: boolean; cachedImages: number; selfHosted: boolean; deepResearch: boolean; deepModel: string }
   | { kind: 'static'; reason: string }
@@ -15,7 +16,7 @@ export function detectRuntime(): Promise<Runtime> {
   if (cached) return cached
   cached = (async (): Promise<Runtime> => {
     try {
-      const r = await fetch(`${import.meta.env.BASE_URL}api/status`, { signal: AbortSignal.timeout(4000) })
+      const r = await fetch(apiUrl(`${baseUrl()}api/status`), { signal: AbortSignal.timeout(4000) })
       if (!r.ok) return { kind: 'static', reason: `API returned ${r.status}` }
       const j = await r.json()
       return {

@@ -6,6 +6,7 @@
 //  · 발표 모드는 캔버스 위에서부터 순서대로 카드를 한 장씩 확대한다
 // 서버가 없으면(정적 배포) 이 브라우저 안에서만 동작하고, 그렇게 말해 준다.
 import { t, tf } from '../core/i18n'
+import { apiUrl } from '../core/api'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import {
   ReactFlow, ReactFlowProvider, ViewportPortal, useReactFlow, applyNodeChanges,
@@ -42,7 +43,7 @@ function PresentRefImg({ remote, shot }: { remote?: string; shot?: string }) {
   useEffect(() => {
     if (!askSrc) return
     let dead = false
-    fetch('/api/image/refshot', {
+    fetch(apiUrl('/api/image/refshot'), {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ src: askSrc }),
     })

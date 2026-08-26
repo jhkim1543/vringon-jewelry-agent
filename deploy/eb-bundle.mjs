@@ -21,6 +21,11 @@ rmSync(ZIP, { force: true })
 mkdirSync(STAGE, { recursive: true })
 
 cpSync(join(ROOT, 'dist'), join(STAGE, 'dist'), { recursive: true })
+/* PPT 라이브러리는 브라우저 번들에 넣지 않고 이 서버가 내준다
+   (번들러가 Node 모듈을 끌고 들어가려다 실패한다 · VRINGON dev 가 실제로 이걸로 죽었다) */
+mkdirSync(join(STAGE, 'dist', 'vendor'), { recursive: true })
+cpSync(join(ROOT, 'node_modules', 'pptxgenjs', 'dist', 'pptxgen.es.js'),
+  join(STAGE, 'dist', 'vendor', 'pptxgen.es.js'))
 cpSync(join(ROOT, 'server'), join(STAGE, 'server'), { recursive: true })
 
 /* 런타임 의존성만 남긴 package.json — EB 가 배포 시 npm install 을 돈다 */

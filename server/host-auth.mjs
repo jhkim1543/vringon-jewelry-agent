@@ -1,8 +1,8 @@
 // ── 호스트(VRINGON) 사용자 확인 ──────────────────────────────────────
-// 이 앱은 VRINGON QA 의 Planning 메뉴에서 새 탭으로 열린다. 그때 호스트가 실어 보낸
-// 액세스 토큰을 그대로 VRINGON API 에 되물어 "누구인지" 를 확인한다.
-//   GET {VRINGON_API}/user/info   ·  Authorization: Bearer <token>
-//   → { status, message, body: { userId, email, nickName, ... } }
+// Planning 화면이 실어 보낸 액세스 토큰을 그대로 VRINGON API 에 되물어 "누구인지" 를 확인한다.
+//   GET {VRINGON_API}/user/self   ·  Authorization: Bearer <token>
+//   → { id, email, nickname, ... }            (qa 의 v2 API)
+// 옛 v1(/user/info · { body: { userId, nickName } })도 함께 받아 둔다 — 환경마다 다르다.
 //
 // 토큰을 우리가 해석하지 않는다(서명 키가 없다). 발급처에 물어보는 것이 유일하게
 // 정직한 방법이고, 위조 토큰은 여기서 그대로 걸러진다.
@@ -39,15 +39,22 @@ export async function resolveUser(req, url) {
   if (hit && Date.now() - hit.at < TTL) return hit.user
 
   try {
-    const r = await fetch(`${API}/user/info`, {
-      headers: { Authorization: `Bearer ${token}` },
-      signal: AbortSignal.timeout(8000),
-    })
-    if (!r.ok) return null
-    const j = await r.json()
-    const b = j?.body
-    if (!b?.userId) return null
-    const user = { id: String(b.userId), name: b.nickName || String(b.email ?? '').split('@')[0] }
+    // v2 가 먼저 · 실패하면 v1 로 한 번 더 (환경마다 API 세대가 다르다)
+    let body = null
+    for (const path of ['/user/self', '/user/info']) {
+      const r = await fetch(`${API}${path}`, {
+        headers: { Authorization: `Bearer ${token}` },
+        signal: AbortSignal.timeout(8000),
+      }).catch(() => null)
+      if (!r?.ok) continue
+      const j = await r.json().catch(() => null)
+      const cand = j?.body ?? j                       // v1 은 body 로 한 겹 감싼다
+      if (cand?.id || cand?.userId) { body = cand; break }
+    }
+    if (!body) return null
+    const id = String(body.id ?? body.userId)
+    const name = body.nickname || body.nickName || String(body.email ?? '').split('@')[0]
+    const user = { id, name }
     cache.set(key, { user, at: Date.now() })
     // 캐시가 무한히 자라지 않게 · 오래된 것부터 걷는다
     if (cache.size > 500) {

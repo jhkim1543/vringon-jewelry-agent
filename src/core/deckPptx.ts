@@ -5,10 +5,13 @@
 // PPT 로 주는 의미가 있다.
 // 글꼴: 한글은 Pretendard 로 지정한다. 없는 기기에서는 PowerPoint 가 맑은 고딕으로
 // 대체한다 — 임베드는 pptxgenjs 가 지원하지 않는다.
-import PptxGenJS from 'pptxgenjs'
+// pptxgenjs 는 package.json 의 exports 때문에 브라우저 번들러가 Node 모듈(https 등)을
+// 끌고 들어가려다 실패한다(VRINGON dev 서버가 실제로 이걸로 죽었다). 번들에 넣지 않고,
+// 우리 서버가 내주는 파일을 누를 때 받아 온다 — 외부 CDN 이 아니라 같은 서버다.
 import type { RunState } from './types'
 import { CONFIDENCE_LABEL, ITEM_KO, regionsLabel, regionsOf } from './types'
 import { shotUrl } from './agents'
+import { apiUrl } from './api'
 import { t } from './i18n'
 
 // 16:9 인치
@@ -19,6 +22,31 @@ const LUX = { bg: 'F7F5F1', ink: '191713', sub: '6E685C', accent: '4652B8', line
 const PAPER = { bg: 'F4F1EA', ink: '1C1B18', sub: '55524A', accent: '4A4A98', line: 'D8D3C6' }
 const SANS = 'Pretendard'
 const SERIF = 'Georgia'
+
+/** 브라우저에서 쓸 PptxGenJS · 번들러가 따라가지 못하게 주소를 런타임에 만든다 */
+interface PptxDeck {
+  defineLayout(o: unknown): void
+  layout: string
+  title: string
+  addSlide(): PptxSlide
+  writeFile(o: { fileName: string }): Promise<unknown>
+}
+type PptxCtor = new () => PptxDeck
+type PptxSlide = {
+  background: unknown
+  addText(v: unknown, o: unknown): void
+  addShape(k: string, o: unknown): void
+  addImage(o: unknown): void
+}
+let ctor: PptxCtor | null = null
+async function loadPptx(): Promise<PptxCtor> {
+  if (ctor) return ctor
+  const url = apiUrl('/vendor/pptxgen.es.js')
+  const mod = await import(/* @vite-ignore */ url) as { default: PptxCtor }
+  ctor = mod.default
+  return ctor
+}
+
 
 /** 사진을 dataURL 로 · 실패하면 null (칸은 "이미지 확인 필요"로 남긴다) */
 async function imgData(remote?: string, shot?: string, page?: string): Promise<string | null> {
@@ -38,8 +66,9 @@ async function imgData(remote?: string, shot?: string, page?: string): Promise<s
   } catch { return null }
 }
 
-function newDeck(title: string): PptxGenJS {
-  const p = new PptxGenJS()
+async function newDeck(title: string): Promise<PptxDeck> {
+  const Ctor = await loadPptx()
+  const p = new Ctor()
   p.defineLayout({ name: 'W169', width: W, height: H })
   p.layout = 'W169'
   p.title = title
@@ -49,7 +78,7 @@ function newDeck(title: string): PptxGenJS {
 interface LuxSlideItem { name: string; sub: string; badge: string; data: string | null }
 
 /** 럭셔리 격자 한 장 · 히어로 1 + 5칸 (이후 장은 6칸) */
-function luxSlide(p: PptxGenJS, o: {
+function luxSlide(p: PptxDeck, o: {
   eyebrow: string; brand: string; sub: string; items: LuxSlideItem[]
   foot: string; page: number; hero: boolean
 }) {
@@ -96,14 +125,14 @@ function luxSlide(p: PptxGenJS, o: {
 }
 
 /** 종이색 제목 슬라이드 공통 머리 */
-function paperHead(s: ReturnType<PptxGenJS['addSlide']>, eyebrow: string) {
+function paperHead(s: PptxSlide, eyebrow: string) {
   s.background = { color: PAPER.bg }
   s.addText(eyebrow, { x: 0.7, y: 0.4, w: 11, h: 0.3, fontFace: SANS, fontSize: 9, color: PAPER.sub, charSpacing: 4 })
 }
 
 /** RunState 하나에서 모든 덱을 한 파일로 · 화면과 같은 순서 */
 export async function downloadAllPptx(st: RunState) {
-  const p = newDeck(`VRINGON · ${new Date().toISOString().slice(0, 10)}`)
+  const p = await newDeck(`VRINGON · ${new Date().toISOString().slice(0, 10)}`)
   const item = ITEM_KO[st.params.itemType] ?? st.params.itemType
 
   // ── 경쟁사·편집샵 · 럭셔리 격자 ─────────────────────────────────────

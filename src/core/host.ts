@@ -20,6 +20,14 @@ export interface HostInfo {
 
 let cached: HostInfo | null = null
 
+/**
+ * 호스트가 직접 알려 주는 경우 · VRINGON 저장소 안의 한 화면으로 도는 형태에서 쓴다.
+ * 주소로 값을 주고받을 필요가 없으므로 토큰이 주소창에 아예 실리지 않는다.
+ */
+export function setHostContext(info: Partial<HostInfo>) {
+  cached = { ...(cached ?? { embedded: true, framed: true }), ...info, embedded: true }
+}
+
 export function hostInfo(): HostInfo {
   if (cached) return cached
   // 상위 문서가 있으면 iframe 안이다. 다른 출처라 window.top 접근이 막히면 그것도 iframe 이다.

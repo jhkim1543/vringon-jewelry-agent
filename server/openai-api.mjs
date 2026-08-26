@@ -265,9 +265,30 @@ async function refshot({ src }) {
 }
 
 /** connect 스타일 핸들러 — Vite dev 미들웨어와 단독 서버 양쪽에서 사용 */
+/* VRINGON 화면 안에서 부를 때는 출처가 다르다(qa.vringon.com → planning.vringon.com).
+   허용 목록에 있는 출처만 열어 준다 — 아무 사이트나 이 API 를 쓰지 못하게. */
+const CORS_ALLOW = new Set([
+  'https://qa.vringon.com', 'https://vringon.com', 'https://www.vringon.com',
+  'https://asics.vringon.com', 'https://mcm.vringon.com',
+  'http://localhost:5173', 'http://localhost:5188',
+])
+function applyCors(req, res) {
+  const origin = req.headers.origin
+  if (!origin || !CORS_ALLOW.has(origin)) return false
+  res.setHeader('Access-Control-Allow-Origin', origin)
+  res.setHeader('Vary', 'Origin')
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-Host-Token')
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, OPTIONS')
+  res.setHeader('Access-Control-Max-Age', '86400')
+  return true
+}
+
 export async function handleApi(req, res) {
   const url = new URL(req.url, 'http://localhost')
   const path = url.pathname
+
+  applyCors(req, res)
+  if (req.method === 'OPTIONS') { res.statusCode = 204; return res.end() }
 
   // 보드 협업 · SSE·op 중계는 board-api 한 곳에서
   if (path.startsWith('/api/board/')) {

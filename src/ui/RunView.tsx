@@ -14,7 +14,6 @@ import { detectRuntime } from '../core/runtime'
 import { shotUrl } from '../core/agents'
 import { DeckViewer } from './DeckViewer'
 import { downloadDeck, printDeck } from '../core/deck'
-import { downloadAllPptx } from '../core/deckPptx'
 import {
   adoptionDeckHtml, competitorDeckHtml, keywordDeckHtml, runwayDeckHtml, shopsDeckHtml, trendDeckHtml,
 } from '../core/agentDeck'
@@ -164,7 +163,14 @@ export default function RunView({ st, progress, onOpenBoard, onPairUpdate, onSco
             {pairsDone}/{st.pairs.length || '–'} {t('designs')}
           </span>
           <button className="btn btn-ghost btn-sm" disabled={pptBusy}
-            onClick={async () => { setPptBusy(true); try { await downloadAllPptx(st) } finally { setPptBusy(false) } }}>
+            onClick={async () => {
+              setPptBusy(true)
+              try {
+                // pptxgenjs 는 Node 전용 모듈(https 등)을 끌고 온다 · 누를 때만 받아 온다
+                const { downloadAllPptx } = await import('../core/deckPptx')
+                await downloadAllPptx(st)
+              } finally { setPptBusy(false) }
+            }}>
             {pptBusy ? t('Making PPT…') : t('Download PPT')}
           </button>
           <button className="btn btn-ghost btn-sm" onClick={() => setShowLog(v => !v)}>

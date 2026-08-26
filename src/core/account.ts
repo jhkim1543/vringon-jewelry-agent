@@ -7,6 +7,7 @@
 //   · 저장·삭제·별 → 로컬에 먼저 쓰고 서버로도 보낸다 (화면이 기다리지 않는다)
 // 만 한다. 로그인 정보가 없으면(주소를 직접 연 데모) 예전처럼 로컬에만 남는다.
 import type { RunRecord } from './store'
+import { apiUrl } from './api'
 import { isUsableRun } from './store'
 import { hostInfo } from './host'
 
@@ -39,7 +40,7 @@ export function currentAccount(): Account | null { return account }
 export async function detectAccount(): Promise<Account | null> {
   if (!hostToken()) return null
   try {
-    const r = await fetch('/api/status', { headers: headers() })
+    const r = await fetch(apiUrl('/api/status'), { headers: headers() })
     if (!r.ok) return null
     const j = await r.json()
     account = j?.user ?? null
@@ -66,7 +67,7 @@ export async function pullRuns(
   try { localStorage.setItem(OWNER_KEY, acc.id) } catch { /* 무시 */ }
 
   try {
-    const r = await fetch('/api/runs', { headers: headers() })
+    const r = await fetch(apiUrl('/api/runs'), { headers: headers() })
     if (!r.ok) return false
     const j = await r.json()
     const index: { id: string }[] = j?.runs ?? []
@@ -74,7 +75,7 @@ export async function pullRuns(
     const full: RunRecord[] = []
     for (const row of index.slice(0, 40)) {
       try {
-        const rr = await fetch(`/api/runs/${encodeURIComponent(row.id)}`, { headers: headers() })
+        const rr = await fetch(apiUrl(`/api/runs/${encodeURIComponent(row.id)}`), { headers: headers() })
         if (!rr.ok) continue
         const rec = await rr.json()
         // 손상된 기록 하나가 화면 전체를 죽이지 않게, 쓸 수 있는 것만 들인다
@@ -90,19 +91,19 @@ export async function pullRuns(
 /** 저장 · 화면을 기다리게 하지 않는다 (실패해도 로컬에는 남아 있다) */
 export function pushRun(rec: RunRecord) {
   if (!account || rec.state?.sample) return
-  fetch('/api/runs', { method: 'POST', headers: headers(), body: JSON.stringify(rec) })
+  fetch(apiUrl('/api/runs'), { method: 'POST', headers: headers(), body: JSON.stringify(rec) })
     .catch(() => undefined)
 }
 
 export function pushDelete(id: string) {
   if (!account) return
-  fetch(`/api/runs/${encodeURIComponent(id)}`, { method: 'DELETE', headers: headers() })
+  fetch(apiUrl(`/api/runs/${encodeURIComponent(id)}`), { method: 'DELETE', headers: headers() })
     .catch(() => undefined)
 }
 
 export function pushFavorite(id: string, favorite: boolean) {
   if (!account) return
-  fetch(`/api/runs/${encodeURIComponent(id)}/favorite`, {
+  fetch(apiUrl(`/api/runs/${encodeURIComponent(id)}/favorite`), {
     method: 'POST', headers: headers(), body: JSON.stringify({ favorite }),
   }).catch(() => undefined)
 }

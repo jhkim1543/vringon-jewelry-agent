@@ -2,6 +2,7 @@
 // 실행이 끝나면 항상 분석 탭이 먼저다. 분석 내역에서 지난 결과를 열 때도
 // 보드가 아니라 분석 탭의 요약부터 연다 — 결과의 근거를 먼저 보게 한다.
 import { t, tf, useLang } from './core/i18n'
+import { apiUrl } from './core/api'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { DesignPair, PipelineEvent, RunParams, RunState } from './core/types'
 import { MODE_LABEL, ITEM_LABEL, freshState } from './core/types'
@@ -73,7 +74,7 @@ export default function App() {
         return
       }
       // 로컬에 없다 · 서버 보드 문서로 열어 본다 (없거나 정적 배포면 안내로 떨어진다)
-      fetch(`/api/board/doc?id=${encodeURIComponent(target.runId)}`)
+      fetch(apiUrl(`/api/board/doc?id=${encodeURIComponent(target.runId)}`))
         .then(r => r.ok ? r.json() : null)
         .then(j => {
           if (j?.doc && Object.keys(j.doc.snodes ?? {}).length) {

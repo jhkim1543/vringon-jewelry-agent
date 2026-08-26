@@ -1,5 +1,6 @@
 // ── 테마 · 라이트/다크 (보드는 별도로 라이트 고정 가능) ─────────────
 import { useEffect, useState } from 'react'
+import { hostInfo } from '../core/host'
 
 export type Theme = 'light' | 'dark'
 const KEY = 'vringon.theme'
@@ -17,6 +18,9 @@ export function useTheme() {
     (localStorage.getItem(BOARD_KEY) as Theme) || 'light')
 
   useEffect(() => {
+    // VRINGON 화면 안에서는 테마를 호스트가 관리한다 — 우리가 html 을 건드리면
+    // 호스트의 다른 화면까지 같이 바뀐다.
+    if (hostInfo().framed) return
     const root = document.documentElement
     root.setAttribute('data-theme', theme)
     localStorage.setItem(KEY, theme)

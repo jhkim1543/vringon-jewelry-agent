@@ -7,6 +7,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { DECK_CSS, esc } from '../core/deck'
 import { t } from '../core/i18n'
+import { baseUrl } from '../core/api'
 
 const MM = 96 / 25.4          // 1mm 를 CSS 픽셀로
 const SLIDE_W = 297 * MM      // ≈ 1122.5
@@ -34,7 +35,7 @@ export function DeckViewer({ html, title, onPrint, onSave, height }: {
 
   // 덱은 "/samples/..." 같은 절대 경로를 들고 있다. GitHub Pages 는 하위 경로에
   // 올라가므로 그대로 두면 iframe 안에서 전부 404 가 나고 깨진 이미지만 남는다.
-  const BASE = import.meta.env.BASE_URL || '/'
+  const BASE = baseUrl()
   const fixed = BASE === '/' ? html
     : html.replace(/(src|href)="\/(samples|brand|assets)\//g, `$1="${BASE}$2/`)
 
