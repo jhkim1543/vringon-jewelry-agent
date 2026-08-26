@@ -30,3 +30,8 @@ export const isRemoteApi = () => !!BASE
 export function baseUrl(): string {
   return (import.meta as { env?: { BASE_URL?: string } }).env?.BASE_URL || '/'
 }
+
+/** 덱 iframe 의 <base> · 자산이 있는 곳을 가리켜야 안쪽 상대 경로가 산다 */
+export function assetBase(): string {
+  return BASE ? `${BASE}/` : `${location.origin}${baseUrl()}`
+}

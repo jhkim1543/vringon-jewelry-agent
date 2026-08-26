@@ -17,6 +17,7 @@ import { ENGINES } from '../core/imageEngines'
 import { loadLastParams } from '../core/store'
 import { IcArrow } from './icons'
 import { Seg } from './bits'
+import { assetUrl } from '../core/api'
 
 const AGENT_DESC: Record<Mode, string> = {
   competitor: 'Crawls your competitors and the select shops of the search regions, builds a trend report along your direction, then designs from trend-ranked references.',
@@ -57,7 +58,7 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
   const [more, setMore] = useState(false)
   const [open, setOpen] = useState<StepId | null>(null)
 
-  const BASE = (import.meta as { env?: { BASE_URL?: string } }).env?.BASE_URL ?? '/'
+  // 브랜드 이미지는 조사 서버가 서빙한다 · VRINGON 안에서 돌 때 같은 출처에는 없다
   const steps = stepsFor(p.mode)
   const regions = regionsOf(p)
 
@@ -122,7 +123,7 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
           <div className="aghero">
             {(Object.keys(MODE_LABEL) as Mode[]).map((m, i) => (
               <button key={m} className="agh-card" onClick={() => { set('mode', m); setAgentPicked(true); setOpen(null) }}>
-                <span className="agh-photo"><img src={`${BASE}brand/${AGENT_ART[m]}`} alt="" loading="lazy" /></span>
+                <span className="agh-photo"><img src={assetUrl(`/brand/${AGENT_ART[m]}`)} alt="" loading="lazy" /></span>
                 <span className="agh-num">{nums[i]}</span>
                 <span className="agh-t">{t(MODE_LABEL[m])}</span>
                 <span className="agh-d">{t(AGENT_DESC[m])}</span>

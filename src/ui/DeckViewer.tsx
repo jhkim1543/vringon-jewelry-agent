@@ -7,7 +7,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { DECK_CSS, esc } from '../core/deck'
 import { t } from '../core/i18n'
-import { baseUrl } from '../core/api'
+import { assetBase, assetUrl } from '../core/api'
 
 const MM = 96 / 25.4          // 1mm 를 CSS 픽셀로
 const SLIDE_W = 297 * MM      // ≈ 1122.5
@@ -35,12 +35,13 @@ export function DeckViewer({ html, title, onPrint, onSave, height }: {
 
   // 덱은 "/samples/..." 같은 절대 경로를 들고 있다. GitHub Pages 는 하위 경로에
   // 올라가므로 그대로 두면 iframe 안에서 전부 404 가 나고 깨진 이미지만 남는다.
-  const BASE = baseUrl()
-  const fixed = BASE === '/' ? html
-    : html.replace(/(src|href)="\/(samples|brand|assets)\//g, `$1="${BASE}$2/`)
+  // 덱 안의 /samples/… /brand/… 는 조사 서버에 있다.
+  // VRINGON 안에서 돌 때 같은 출처로 두면 전부 깨진다 — 절대 주소로 돌린다.
+  const fixed = html.replace(/(src|href)="\/(samples|brand|assets)\//g,
+    (_m, attr, dir) => `${attr}="${assetUrl(`/${dir}/`)}`)
 
   const doc = `<!doctype html><html><head><meta charset="utf-8"><title>${esc(title)}</title>
-<base href="${location.origin}${BASE}">
+<base href="${assetBase()}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <style>${DECK_CSS}${VIEWER_CSS}</style></head><body>${fixed}</body></html>`
 

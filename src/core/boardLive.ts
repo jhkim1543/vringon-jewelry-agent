@@ -97,7 +97,7 @@ export async function joinBoard(
   }
 
   const post = (path: string, body: unknown) =>
-    fetch(path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+    fetch(apiUrl(path), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
 
   return {
     doc, clientId,

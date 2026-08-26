@@ -11,7 +11,7 @@
 import type { RunState } from './types'
 import { CONFIDENCE_LABEL, ITEM_KO, regionsLabel, regionsOf } from './types'
 import { shotUrl } from './agents'
-import { apiUrl } from './api'
+import { apiUrl, assetUrl } from './api'
 import { t } from './i18n'
 
 // 16:9 인치
@@ -50,7 +50,8 @@ async function loadPptx(): Promise<PptxCtor> {
 
 /** 사진을 dataURL 로 · 실패하면 null (칸은 "이미지 확인 필요"로 남긴다) */
 async function imgData(remote?: string, shot?: string, page?: string): Promise<string | null> {
-  const src = shot || shotUrl(remote, page)
+  // shot 은 '/samples/…' 같은 상대 경로다 · VRINGON 안에서 돌 때는 조사 서버를 가리켜야 한다
+  const src = assetUrl(shot) || shotUrl(remote, page)
   if (!src) return null
   try {
     const r = await fetch(src)
