@@ -15,15 +15,18 @@ import { ThemeToggle, VringonLogo, LangToggle } from './ui/bits'
 import { useTheme } from './ui/useTheme'
 import Library from './ui/Library'
 import ErrorBoundary from './ui/ErrorBoundary'
-import { clearCurrent, firstImage, loadCurrent, newRunId, saveCurrent, saveLastParams, saveRun } from './core/store'
+import { clearCurrent, firstImage, loadCurrent, newRunId, readAllRuns, saveCurrent, saveLastParams, saveRun, writeAllRuns } from './core/store'
 import { ensureSampleRuns } from './core/sampleRun'
 import { getRun } from './core/store'
 import { pushShareTarget, readShareTarget } from './core/share'
+import { hostInfo } from './core/host'
+import { detectAccount, pullRuns } from './core/account'
 
 type View = 'create' | 'run' | 'board' | 'library' | 'starred'
 
 export default function App() {
   useLang()
+  const host = hostInfo()
   const [view, setView] = useState<View>('create')
   const [st, setSt] = useState<RunState | null>(null)
   const [progress, setProgress] = useState<Record<string, number>>({})
@@ -36,7 +39,26 @@ export default function App() {
   // 그 문서만으로 보드를 연다 (Board 가 st=null 을 받아 snodes 로 그린다).
   const [remoteBoard, setRemoteBoard] = useState<string | null>(null)
 
-  useEffect(() => { ensureSampleRuns() }, [])
+  // 샘플 적재 → 계정 확인 → 서버 내역 당겨오기. 이 순서를 지켜야 한다.
+  // 샘플 적재가 비동기(동적 import)라, 계정 동기화가 먼저 끝나면 아직 없는 샘플을
+  // "이 계정 것이 아니다" 라고 판단해 지워 버린다 — 실제로 그렇게 사라졌었다.
+  const [account, setAccount] = useState<{ id: string; name?: string } | null>(null)
+  const [synced, setSynced] = useState(0)
+  useEffect(() => {
+    let dead = false
+    void (async () => {
+      await ensureSampleRuns()
+      if (dead) return
+      const acc = await detectAccount()
+      if (dead) return
+      if (acc) {
+        setAccount(acc)
+        await pullRuns(readAllRuns, writeAllRuns)
+      }
+      if (!dead) setSynced(v => v + 1)          // 내역 화면을 다시 그린다
+    })()
+    return () => { dead = true }
+  }, [])
 
   // 새로고침 복구 · 공유 링크(?run=…) 우선. 옛 알고리즘(algo 없음) 저장본은 열지 않는다.
   useEffect(() => {
@@ -160,10 +182,14 @@ export default function App() {
         </button>
         {/* 상단에는 탭을 두지 않는다 · 분석 결과와 보드는 그 분석을 연 뒤에 고르는 것이라
             아래 상세 헤더의 세그먼트로 옮겼다. 이동은 왼쪽 레일이 맡는다. */}
-        <div className="right">
-          <LangToggle />
-          <ThemeToggle theme={theme} onToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
-        </div>
+        {/* 언어·테마는 호스트(VRINGON)에서 한 번만 고른다 · Planning 으로 열렸으면 여기서는 감춘다.
+            주소를 직접 연 독립 데모에서는 예전처럼 이 앱이 스스로 고른다. */}
+        {!host.embedded && (
+          <div className="right">
+            <LangToggle />
+            <ThemeToggle theme={theme} onToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
+          </div>
+        )}
       </div>
 
       <div className="main">
@@ -232,7 +258,9 @@ export default function App() {
             useState 의 초기값으로만 읽어서, 같은 인스턴스가 남으면 상단의 "즐겨찾기" 를
             눌러도 목록이 그대로였다 */}
         {(view === 'library' || view === 'starred') && (
-          <Library key={view} filter={view === 'starred' ? 'favorite' as const : 'all'}
+          <Library key={`${view}-${synced}`} filter={view === 'starred' ? 'favorite' as const : 'all'}
+            onCreate={() => { setView('create'); setWizardKey(k => k + 1) }}
+            account={account}
             running={st && !st.finished ? st : null}
             onOpenRunning={() => setView('run')}
             onOpen={(rec, want) => {

@@ -52,8 +52,12 @@ function RunningCard({ st, onOpen }: { st: RunState; onOpen: () => void }) {
   )
 }
 
-export default function Library({ onOpen, filter: initial = 'all', running, onOpenRunning }: {
+export default function Library({ onOpen, onCreate, account, filter: initial = 'all', running, onOpenRunning }: {
   onOpen: (rec: RunRecord, view: 'run' | 'board') => void
+  /** 맨 앞의 "새로 만들기" 카드 · 레일의 새로 만들기와 같은 일을 한다 */
+  onCreate: () => void
+  /** 로그인한 계정 · 있으면 이 사람 것으로 서버에 남는다는 사실을 밝힌다 */
+  account?: { id: string; name?: string } | null
   filter?: Filter
   /** 지금 돌고 있는 실행 · 있으면 맨 앞에 진행 카드가 선다 */
   running?: RunState | null
@@ -83,7 +87,10 @@ export default function Library({ onOpen, filter: initial = 'all', running, onOp
       <div className="libhead">
         <div>
           <h1>{t('History')}</h1>
-          <p className="lead">{t('Every analysis you have run. Open one to see its result and board.')}</p>
+          <p className="lead">
+            {t('Every analysis you have run. Open one to see its result and board.')}
+            {account && <em className="lib-acct">{tf('Saved to {name}', { name: account.name ?? account.id })}</em>}
+          </p>
         </div>
         <div className="chiprow" style={{ flex: 'none' }}>
           <button className={`pick sm ${filter === 'all' ? 'on' : ''}`} onClick={() => setFilter('all')}>
@@ -95,15 +102,16 @@ export default function Library({ onOpen, filter: initial = 'all', running, onOp
         </div>
       </div>
 
-      {empty ? (
-        <div className="empty" style={{ height: 260 }}>
-          <div>{t('Run the agent once and it will show up here.')}</div>
-        </div>
-      ) : (
-        <div className="libgrid">
-          {running && !running.finished && onOpenRunning && (
-            <RunningCard st={running} onOpen={onOpenRunning} />
-          )}
+      <div className="libgrid">
+        {/* 가장 왼쪽은 언제나 새로 만들기 · 내역이 비어 있어도 여기서 시작할 수 있다 */}
+        <button className="libcard newcard" onClick={onCreate}>
+          <span className="nc-plus" aria-hidden="true">+</span>
+          <span className="nc-t">{t('Create New')}</span>
+        </button>
+        {running && !running.finished && onOpenRunning && (
+          <RunningCard st={running} onOpen={onOpenRunning} />
+        )}
+        {empty && <div className="libcard hintcard">{t('Run the agent once and it will show up here.')}</div>}
           {shown.map(r => {
             const st = r.state
             const made = st.pairs.filter(p => p.versions.length > 0).length
@@ -158,8 +166,7 @@ export default function Library({ onOpen, filter: initial = 'all', running, onOp
               </div>
             )
           })}
-        </div>
-      )}
+      </div>
     </div>
   )
 }

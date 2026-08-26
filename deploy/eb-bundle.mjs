@@ -39,6 +39,13 @@ mkdirSync(join(STAGE, '.platform', 'nginx', 'conf.d'), { recursive: true })
 writeFileSync(join(STAGE, '.platform', 'nginx', 'conf.d', 'long-requests.conf'),
   'proxy_read_timeout 3600s;\nproxy_send_timeout 3600s;\nproxy_buffering off;\nclient_max_body_size 50M;\n')
 
+/* 계정별 분석 내역이 재배포로 사라지지 않게, 앱 폴더 밖에 저장 자리를 만들어 둔다.
+   EB 는 배포마다 /var/app/current 를 통째로 갈아치우므로 그 안에 두면 안 된다.
+   서버는 RUNS_DIR 환경변수를 보고 이 경로에 쓴다. */
+mkdirSync(join(STAGE, '.platform', 'hooks', 'predeploy'), { recursive: true })
+writeFileSync(join(STAGE, '.platform', 'hooks', 'predeploy', '01_runs_dir.sh'),
+  '#!/bin/bash\nset -e\nmkdir -p /var/app/data/runs\nchown -R webapp:webapp /var/app/data\n', { mode: 0o755 })
+
 /* .env 가 절대 섞여 들어가지 않았는지 마지막으로 확인 */
 if (existsSync(join(STAGE, '.env')) || existsSync(join(STAGE, 'server', '.env'))) {
   console.error('.env 가 스테이지에 들어갔다 — 중단')

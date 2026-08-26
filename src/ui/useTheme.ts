@@ -6,8 +6,12 @@ const KEY = 'vringon.theme'
 const BOARD_KEY = 'vringon.boardTheme'
 
 export function useTheme() {
-  const [theme, setTheme] = useState<Theme>(() =>
-    (localStorage.getItem(KEY) as Theme) || 'dark')
+  const [theme, setTheme] = useState<Theme>(() => {
+    // 호스트(VRINGON)가 정해 준 테마가 있으면 그걸 따른다
+    const q = new URLSearchParams(location.search).get('theme')
+    if (q === 'light' || q === 'dark') return q
+    return (localStorage.getItem(KEY) as Theme) || 'dark'
+  })
   // 보드는 발표용이라 흰 배경이 읽기 편하다. 기본값을 따로 둔다.
   const [boardTheme, setBoardTheme] = useState<Theme>(() =>
     (localStorage.getItem(BOARD_KEY) as Theme) || 'light')

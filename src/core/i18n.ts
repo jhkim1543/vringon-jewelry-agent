@@ -25,6 +25,9 @@ const KEY = 'vringon.lang'
 
 function initial(): Lang {
   try {
+    // 호스트(VRINGON)가 언어를 정해 주면 그걸 따른다 · 순환 임포트를 피해 주소를 직접 읽는다
+    const q = new URLSearchParams(location.search).get('lang')
+    if (q === 'ko' || q === 'en' || q === 'ja') return q
     const saved = localStorage.getItem(KEY)
     if (saved === 'ko' || saved === 'en' || saved === 'ja') return saved
     const nav = navigator.language?.toLowerCase() ?? ''
@@ -37,6 +40,8 @@ function initial(): Lang {
 }
 
 let lang: Lang = initial()
+// html lang 도 처음부터 맞춘다 (스크린리더·글꼴 폴백이 이걸 본다)
+try { document.documentElement.lang = lang } catch { /* 무시 */ }
 const listeners = new Set<() => void>()
 
 export function getLang(): Lang { return lang }
@@ -340,6 +345,8 @@ const KO: Record<string, string> = {
   'Name': '이름',
 
   'Create': '새로 만들기',
+  'Create New': '새로 만들기',
+  'Saved to {name}': '{name} 님의 계정에 저장됩니다',
   'Analysis result': '분석 결과',
   'Finished': '완료',
   'In progress': '진행 중',

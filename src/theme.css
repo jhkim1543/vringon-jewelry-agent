@@ -2418,3 +2418,21 @@ input.bframe-t { border-bottom: 1px solid var(--accent); color: var(--text); }
   .dh-seg { width: 100%; }
   .dh-seg button { flex: 1; padding: 9px 0; }
 }
+
+/* 내역 격자 맨 앞의 새로 만들기 카드 (참고 화면과 같은 자리) */
+.libcard.newcard {
+  align-items: center; justify-content: center; gap: 10px; min-height: 220px;
+  cursor: pointer; border-style: dashed; border-color: var(--line-2); background: var(--bg-2);
+  color: var(--text-2); box-shadow: none;
+}
+.libcard.newcard:hover { color: var(--text); border-color: var(--surface-4); background: var(--panel); }
+.nc-plus { font-size: 26px; line-height: 1; font-weight: 300; }
+.nc-t { font-size: 14px; font-weight: 700; }
+.libcard.hintcard {
+  display: grid; place-items: center; min-height: 220px; padding: 20px; text-align: center;
+  color: var(--text-3); font-size: 13px; box-shadow: none; background: transparent; border-style: dashed;
+}
+
+/* 내역 머리 · 어느 계정에 남는지 */
+.lib-acct { font-style: normal; margin-left: 10px; padding: 2px 10px; border-radius: 99px;
+  background: var(--surface-3); color: var(--text-2); font-size: 12px; font-weight: 650; }

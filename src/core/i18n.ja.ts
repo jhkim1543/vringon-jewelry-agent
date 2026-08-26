@@ -199,6 +199,8 @@ export const JA: Record<string, string> = {
   'Campaign': 'キャンペーン',
   'Virtual fitting': 'バーチャル着用',
   'Create': '新規作成',
+  'Create New': '新規作成',
+  'Saved to {name}': '{name} さんのアカウントに保存されます',
   'Analysis result': '分析結果',
   'Finished': '完了',
   'In progress': '進行中',

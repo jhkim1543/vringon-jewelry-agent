@@ -2,6 +2,7 @@
 // 진행 중인 Run도 계속 저장한다. 새로고침이나 렌더 오류로 화면이 날아가도
 // 결과를 잃지 않게 하기 위한 것이다.
 import type { RunParams, RunState } from './types'
+import { pushDelete, pushFavorite, pushRun } from './account'
 
 export interface RunRecord {
   id: string
@@ -30,9 +31,16 @@ function write(k: string, v: unknown) {
 }
 
 /** 옛 알고리즘(스펙·룰 파이프라인) 저장본은 새 화면이 읽지 못한다.
- *  algo 표식이 없는 기록은 목록에서 거른다 — 지우지는 않는다, 되돌릴 수 없으므로. */
+ *  algo 표식이 없는 기록은 목록에서 거른다 — 지우지는 않는다, 되돌릴 수 없으므로.
+ *  params 도 함께 본다: 서버에서 받아 온 기록이 손상돼 있으면 화면 전체가 죽는다
+ *  (실측: params 없는 기록 하나로 "Cannot read properties of undefined (reading 'mode')"). */
+export function isUsableRun(r: unknown): r is RunRecord {
+  const rec = r as RunRecord | undefined
+  return !!rec && typeof rec.id === 'string'
+    && rec.state?.algo === 2 && !!rec.state?.params?.mode && Array.isArray(rec.state?.pairs)
+}
 function isCurrentAlgo(r: RunRecord): boolean {
-  return r.state?.algo === 2
+  return isUsableRun(r)
 }
 
 export function listRuns(): RunRecord[] {
@@ -53,10 +61,12 @@ export function saveRun(rec: RunRecord) {
   const favs = all.filter(r => r.favorite)
   const rest = all.filter(r => !r.favorite).slice(0, MAX - favs.length)
   write(KEY, [...favs, ...rest])
+  pushRun(rec)                      // 로그인 상태면 계정에도 남는다
 }
 
 export function deleteRun(id: string) {
   write(KEY, read<RunRecord[]>(KEY, []).filter(r => r.id !== id))
+  pushDelete(id)
 }
 
 export function toggleFavorite(id: string): boolean {
@@ -65,8 +75,13 @@ export function toggleFavorite(id: string): boolean {
   if (!r) return false
   r.favorite = !r.favorite
   write(KEY, all)
+  pushFavorite(id, r.favorite)
   return r.favorite
 }
+
+/** 계정 동기화가 쓰는 통로 · 화면은 여전히 위의 동기 함수만 쓴다 */
+export function readAllRuns(): RunRecord[] { return read<RunRecord[]>(KEY, []) }
+export function writeAllRuns(rows: RunRecord[]) { write(KEY, rows) }
 
 // ── 진행 중 Run · 새로고침 복구용 ───────────────────────────────────
 export function saveCurrent(id: string, st: RunState) {

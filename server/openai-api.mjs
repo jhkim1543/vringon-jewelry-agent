@@ -13,6 +13,8 @@ import { tripoMultiview, tripoProbe, readModel } from './tripo-api.mjs'
 import { configureUnlocker, unlockerStatus, unlockerUsage } from './unlock.mjs'
 import { grabImage } from './grab.mjs'
 import { handleBoard } from './board-api.mjs'
+import { handleRuns } from './runs-api.mjs'
+import { resolveUser } from './host-auth.mjs'
 import { readMoodboard, readSeries, readUpload, storeUpload } from './uploads-api.mjs'
 import { mdReview } from './md-api.mjs'
 import { visionQa } from './vision-qa-api.mjs'
@@ -273,10 +275,19 @@ export async function handleApi(req, res) {
     if (handled !== false) return
   }
 
+  // 계정별 분석 내역 · 호스트(VRINGON) 토큰으로 사용자를 확인한 뒤에만 저장한다
+  if (path.startsWith('/api/runs')) {
+    const handled = await handleRuns(req, res, url, ROOT)
+    if (handled !== false) return
+  }
+
   if (path === '/api/status') {
     ensureCache()
     const n = readdirSync(CACHE_DIR).filter(f => f.endsWith('.png')).length
+    // 호스트 토큰이 함께 왔으면 누구인지 알려 준다 · 화면은 이걸 보고 계정 저장을 켠다
+    const who = await resolveUser(req, url)
     return json(res, 200, {
+      user: who ? { id: who.id, name: who.name } : null,
       // 자체 호스팅이 켜져 있으면 키가 없어도 이미지를 만들 수 있다 — 화면의 "키 없음" 안내가
       // 거짓이 되지 않도록 함께 본다.
       keyPresent: !!API_KEY || selfHostOn(), model: IMAGE_MODEL, cachedImages: n,
