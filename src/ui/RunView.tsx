@@ -8,6 +8,7 @@ import type { DesignPair, PromptDirection, RunState, Stage } from '../core/types
 import {
   BASIS_LABEL, GENDER_LABEL, ITEM_LABEL, MODE_LABEL, STAGE_LABELS, VARIANT_LABEL,
   estimateMinutes, estimateStages, regionsLabel,
+  agesOf,
 } from '../core/types'
 import { detectRuntime } from '../core/runtime'
 import { shotUrl } from '../core/agents'
@@ -210,7 +211,7 @@ export default function RunView({ st, progress, onOpenBoard, onPairUpdate, onSco
             <div className="hub-facts">
               <div><b>{t(MODE_LABEL[p.mode])}</b><span>{t('Agent')}</span></div>
               <div><b>{regionsLabel(p)}</b><span>{t('Regions')}</span></div>
-              <div><b>{p.target.age} · {t(GENDER_LABEL[p.target.gender])}</b><span>{t('Target')}</span></div>
+              <div><b>{agesOf(p.target).join(', ')} · {t(GENDER_LABEL[p.target.gender])}</b><span>{t('Target')}</span></div>
               <div><b>{p.mode === 'collection' ? p.items.map(i => t(ITEM_LABEL[i])).join(', ') : t(ITEM_LABEL[p.itemType])}</b><span>{p.mode === 'collection' ? t('Items') : t('Item')}</span></div>
               <div><b>{pairsDone}{pairsFail ? ` (+${pairsFail} ${t('failed')})` : ''}</b><span>{t('Designs generated')}</span></div>
               {p.mode === 'competitor' && <div><b>{(st.crawl ?? []).reduce((n, c) => n + c.items.length, 0)} / {(st.shops ?? []).reduce((n, s) => n + s.items.length, 0)}</b><span>{t('Competitor / shop items')}</span></div>}

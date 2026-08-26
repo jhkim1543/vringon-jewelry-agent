@@ -33,7 +33,7 @@
   --border-default: #C5C9CF;
   --border-selected: #282D32;
   --border-success: #6E7BD8;
-  --border-warning: #FB8200;
+  --border-warning: #D2705C;
   --border-accent: #444AE8;
   --border-fail: #FF4550;
   --border-light: #F3F5F8;
@@ -65,7 +65,7 @@
   --icon-black: #05070E;
   --icon-accent: #444AE8;
   --icon-success: #3B58B4;
-  --icon-warning: #FB8200;
+  --icon-warning: #D2705C;
   --icon-failed: #FF4550;
   --shadow-shadow1: #000000;
   --shadow-shadow2: #000000;
@@ -90,7 +90,7 @@
   --accent-soft: #E9E9F8;
   --gold: #5A63C8;           /* 옛 이름 · 노란 골드는 지시로 제거, 편집 포인트도 인디고 계열 */
   --gold-soft: #EDEFFB;
-  --warn: #A6490A;
+  --warn: #B4432F;           /* 노란 경고는 지시로 제거 · 절제된 코랄 */
   --danger: #C22730;
   --alert: #E32F3F;
   --alert-hover: #FF4550;
@@ -131,7 +131,7 @@
   --text-button-secondary: #E9EAFF;
   --text-button-disabled: #898F95;
   --border-default: #353D43;
-  --border-selected: #C5C9CF;
+  --border-selected: #3C3C44;   /* 열린 카드 외곽선 · 흰 테두리는 지시로 제거 */
   --border-success: #5D6CBA;
   --border-warning: #FFAB5C;
   --border-accent: #5D6CFA;
@@ -165,38 +165,38 @@
   --icon-black: #05070E;
   --icon-accent: #5D6CFA;
   --icon-success: #9BA6E8;
-  --icon-warning: #FFAB5C;
+  --icon-warning: #E88C7D;
   --icon-failed: #FF7474;
   --shadow-shadow1: #FFFFFF;
   --shadow-shadow2: #FFFFFF;
-  /* ── 의미 이름 · 다크 = "밤의 프라이빗 쇼룸" ───────────────────────
-     GPT 블랙풍 콘셉트에서 가져온 결: 차콜-네이비 무대, 인디고-바이올렛 글로우,
-     스포트라이트 카드, 세리프 숫자. 라이트를 뒤집은 것이 아니라 다른 조명이다. */
-  --bg: #07080F;             /* 차콜-네이비 무대 */
-  --bg-2: #0B0D16;
-  --panel: #0E1019;          /* 카드 = 무대보다 반 톤 밝게 */
-  --panel-2: #151828;
-  --surface-2: #121522;
-  --surface-3: #1A1E30;
-  --surface-4: #2B3049;
-  --text: #EDEEF6;
-  --text-2: #B9BDD1;
-  --text-3: #8F94AC;
-  --text-disabled: #3A3F58;
+  /* ── 의미 이름 · 다크 = VRINGON 제품 화면과 같은 결 ─────────────────
+     중성 차콜 무대에 인디고는 버튼·현재 표시에만. 예전 네이비 틴트를 걷어
+     "파란 화면"으로 읽히던 인상을 없앴다(실제 제품 UI 톤에 맞춤). */
+  --bg: #0A0A0C;             /* 거의 순수한 검정 무대 */
+  --bg-2: #101013;
+  --panel: #141417;          /* 카드 = 무대보다 반 톤 밝게 */
+  --panel-2: #1A1A1E;
+  --surface-2: #161619;
+  --surface-3: #1F1F24;
+  --surface-4: #34343C;
+  --text: #F2F2F4;
+  --text-2: #B7B8BE;
+  --text-3: #8A8B93;
+  --text-disabled: #45464E;
   --accent: #6E7BFF;         /* 글로우 인디고 */
   --accent-hover: #8B93FF;
   --accent-pressed: #444AE8;
   --accent-hi: #98A0FF;
-  --accent-soft: #181C36;
+  --accent-soft: #1C1D2E;
   --gold: #9BA4F2;           /* 옛 이름 · 노란 골드 제거, 다크는 밝은 인디고 */
-  --gold-soft: #1A1D36;
-  --warn: #FFAB5C;
+  --gold-soft: #1C1D2E;
+  --warn: #E88C7D;          /* 노란 경고는 지시로 제거 · 절제된 코랄 */
   --danger: #FF7474;
   --alert: #FF4550;
   --alert-hover: #E32F3F;
-  --line: #1C2033;           /* 은은히 발광하는 구분선 */
-  --line-2: #343A57;
-  --card-shadow: 0 0 0 1px rgba(110, 123, 255, .06), 0 12px 34px rgba(0, 0, 0, .55);
+  --line: #232327;           /* 중성 구분선 */
+  --line-2: #33333A;
+  --card-shadow: 0 0 0 1px rgba(255, 255, 255, .04), 0 12px 34px rgba(0, 0, 0, .55);
   --btn-glow: 0 0 20px rgba(110, 123, 255, .35);
   --display-font: Didot, "Bodoni MT", "Playfair Display", Georgia, Pretendard, "Pretendard Variable", sans-serif;
 }

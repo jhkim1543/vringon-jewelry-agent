@@ -107,7 +107,7 @@ button { cursor: pointer; background: none; border: none; }
 .tag-accent { background: var(--surface-4); color: var(--text); border-color: var(--line-2); font-weight: 600; }
 /* chip/accent outline · border·text accent (다크 대비 보정) */
 .tag-ok { background: transparent; color: var(--accent-hi); border-color: rgba(93, 108, 250, .62); font-weight: 600; }
-.tag-warn { background: transparent; color: var(--warn); border-color: rgba(255, 171, 92, .5); }
+.tag-warn { background: transparent; color: var(--warn); border-color: rgba(232, 140, 125, .5); }
 .tag-danger { background: transparent; color: var(--danger); border-color: rgba(255, 116, 116, .5); }
 
 .panel { background: var(--panel); border: 1px solid var(--line); border-radius: var(--r); }
@@ -383,7 +383,7 @@ button { cursor: pointer; background: none; border: none; }
   transition: border-color .15s, color .15s, background .15s;
 }
 .pick:hover { color: var(--text); border-color: var(--surface-4); }
-.pick.on { background: var(--accent-soft); color: var(--accent-hi); border-color: var(--accent); }
+.pick.on { background: var(--surface-3); color: var(--text); border-color: var(--surface-4); }
 .pick .pk-n { font-size: 11.5px; font-weight: 500; color: var(--text-3); }
 
 /* 걸러낸 결과가 빈 경우 · 빈 캔버스는 고장으로 읽힌다 */
@@ -499,7 +499,7 @@ button { cursor: pointer; background: none; border: none; }
 
 .gatebar {
   display: flex; align-items: center; gap: 12px; padding: 12px 16px;
-  background: rgba(255, 171, 92, .07); border: 1px solid rgba(255, 171, 92, .27); border-radius: var(--r-card); margin-bottom: 12px;
+  background: rgba(232, 140, 125, .07); border: 1px solid rgba(232, 140, 125, .27); border-radius: var(--r-card); margin-bottom: 12px;
 }
 
 .grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
@@ -624,7 +624,7 @@ table.mini td { padding: 4px 8px; border-bottom: 1px solid var(--line); color: v
 table.mini td b { color: var(--text); font-weight: 600; }
 
 .notice { display: flex; gap: 8px; padding: 12px 12px; border-radius: var(--r-card); font-size: 12px; line-height: 1.6; }
-.notice.warn { background: rgba(255, 171, 92, .07); border: 1px solid rgba(255, 171, 92, .27); color: var(--warn); }
+.notice.warn { background: rgba(232, 140, 125, .07); border: 1px solid rgba(232, 140, 125, .27); color: var(--warn); }
 .notice.info { background: var(--accent-soft); border: 1px solid rgba(93, 108, 250, .38); color: var(--accent-hi); }
 
 /* ── 모달 · 브랜드 설정 ── */
@@ -865,9 +865,9 @@ table.mini td b { color: var(--text); font-weight: 600; }
 .tag-ok     { background: var(--surface-accent01); color: var(--text-accent); border-color: var(--border-selected); }
 .tag-warn   { background: var(--surface-warning, transparent); color: var(--text-warning); border-color: var(--border-warning); font-weight: 600; }
 .tag-danger { background: var(--surface-alert, transparent); color: var(--text-alert); border-color: var(--border-alert); font-weight: 600; }
-[data-theme="light"] .tag-warn   { color: #8A4B00; border-color: #FB8200; background: #FFF6EC; }
+[data-theme="light"] .tag-warn   { color: #9A3520; border-color: #D2705C; background: #FBEFEC; }
 [data-theme="light"] .tag-danger { color: #A31420; border-color: #E32F3F; background: #FDECEE; }
-[data-theme="dark"]  .tag-warn   { color: #FFC489; border-color: #FFAB5C; background: #2A1E10; }
+[data-theme="dark"]  .tag-warn   { color: #F0A99C; border-color: #E88C7D; background: #2A1A17; }
 [data-theme="dark"]  .tag-danger { color: #FFA0A0; border-color: #FF7474; background: #2E1516; }
 
 /* 보드는 앱 테마와 따로 논다. 밝은 보드 위 글자가 앱의 밝은 글자색을 물려받으면 안 보인다. */
@@ -882,11 +882,11 @@ table.mini td b { color: var(--text); font-weight: 600; }
 .board-light .dcard h5 { color: #565D63; }
 
 /* 보드 테마는 앱 테마와 독립이다. 밝은 보드 위 태그도 밝은 쪽 값을 써야 한다. */
-.board-light .tag-warn   { color: #8A4B00; border-color: #FB8200; background: #FFF6EC; }
+.board-light .tag-warn   { color: #9A3520; border-color: #D2705C; background: #FBEFEC; }
 .board-light .tag-danger { color: #A31420; border-color: #E32F3F; background: #FDECEE; }
 .board-light .tag-ok     { color: #2B31A8; border-color: #8793FF; background: #F6F7FF; }
 .board-light .tag-accent { color: #181C20; border-color: #C5C9CF; background: #F3F5F8; }
-.board-dark .tag-warn    { color: #FFC489; border-color: #FFAB5C; background: #2A1E10; }
+.board-dark .tag-warn    { color: #F0A99C; border-color: #E88C7D; background: #2A1A17; }
 .board-dark .tag-danger  { color: #FFA0A0; border-color: #FF7474; background: #2E1516; }
 
 
@@ -1787,7 +1787,7 @@ table.mini td b { color: var(--text); font-weight: 600; }
 .pairlist { display: flex; flex-direction: column; gap: 12px; }
 .pairrow { display: grid; grid-template-columns: 180px minmax(0, 1fr) 220px; gap: 14px;
   border: 1px solid var(--line); border-radius: var(--r-card); background: var(--panel); padding: 14px; }
-.pairrow.err { border-color: rgba(255, 171, 92, .45); }
+.pairrow.err { border-color: rgba(232, 140, 125, .45); }
 .pr-ref { position: relative; }
 .pr-ref img { width: 100%; height: 110px; object-fit: cover; border-radius: 8px; }
 .pr-reftag { position: absolute; top: 6px; left: 6px; font-size: 10.5px; font-weight: 700;
@@ -1994,7 +1994,6 @@ table.mini td b { color: var(--text); font-weight: 600; }
   max-width: 1240px; margin: 0 auto;
   display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 30px; align-items: start;
 }
-.w2-eyebrow { color: var(--accent); font-weight: 700; letter-spacing: .16em; font-size: 11.5px; }
 .w2-headrow { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-top: 4px; }
 .w2-title { font-size: 26px; font-weight: 800; }
 .w2-sub { color: var(--text-3); margin-top: 4px; }
@@ -2007,8 +2006,8 @@ table.mini td b { color: var(--text); font-weight: 600; }
   font-style: normal; font-size: 11.5px; font-weight: 700;
   background: var(--surface-3); color: var(--text-3); border: 1px solid var(--line);
 }
-.w2-step.done i { background: var(--accent); color: #fff; border-color: var(--accent); }
-.w2-step.cur i { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+.w2-step.done i { background: var(--surface-4); color: var(--text); border-color: var(--surface-4); }
+.w2-step.cur i { border-color: var(--accent); color: var(--accent); background: transparent; }
 .w2-step.done.cur i { color: #fff; }
 .w2-step b { font-size: 13px; font-weight: 650; color: var(--text-2); }
 .w2-step.cur b { color: var(--text); }
@@ -2029,8 +2028,8 @@ table.mini td b { color: var(--text); font-weight: 600; }
   display: grid; place-items: center; font-size: 12px; font-weight: 750;
   background: var(--surface-3); color: var(--text-2); border: 1px solid var(--line);
 }
-.stepcard.open .sc-num { background: var(--accent); color: #fff; border-color: var(--accent); }
-.stepcard.done:not(.open) .sc-num { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+.stepcard.open .sc-num { background: var(--surface-4); color: var(--text); border-color: var(--surface-4); }
+.stepcard.done:not(.open) .sc-num { background: var(--surface-3); color: var(--text-2); border-color: var(--line-2); }
 .sc-t { font-size: 14.5px; font-weight: 750; }
 .sc-sum { display: inline-flex; gap: 6px; margin-left: 6px; overflow: hidden; }
 .sc-sum em {
@@ -2219,8 +2218,6 @@ button.bb-ava { cursor: pointer; }
 /* 라이트 전용 · 골드 괘선의 편집 디테일 */
 :root:not([data-theme="dark"]) .topbar,
 [data-theme="light"] .topbar { border-bottom: 1px solid var(--line-2); }
-[data-theme="light"] .w2-eyebrow,
-:root:not([data-theme="dark"]) .w2-eyebrow { color: var(--gold); }
 [data-theme="light"] .rep-head h2,
 :root:not([data-theme="dark"]) .rep-head h2 {
   border-bottom: 3px double var(--gold); padding-bottom: 4px;

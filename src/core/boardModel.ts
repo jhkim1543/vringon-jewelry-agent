@@ -3,7 +3,7 @@
 // 뒤에 디자인 쌍 카드가 하나씩, 컬렉션은 표지 1장 + 세트당 1장.
 // 발표 모드는 이 카드들을 PPT 쇼처럼 한 장씩 크게 넘긴다.
 import type { DesignPair, Reference, RunState } from './types'
-import { GENDER_LABEL, ITEM_LABEL, MODE_LABEL, regionsLabel, targetText } from './types'
+import { agesOf, GENDER_LABEL, ITEM_LABEL, MODE_LABEL, regionsLabel, targetText } from './types'
 import { t, tf } from './i18n'
 
 export interface RefCell {
@@ -53,8 +53,8 @@ function place(nodes: BoardNode[]): BoardNode[] {
 export function buildBoardModel(st: RunState): BoardModel {
   const p = st.params
   const nodes: BoardNode[] = []
-  const target = targetText({ age: p.target.age, gender: p.target.gender })
-  const targetLabel = `${p.target.age} · ${t(GENDER_LABEL[p.target.gender])}`
+  const target = targetText(p.target)
+  const targetLabel = `${agesOf(p.target).join(', ')} · ${t(GENDER_LABEL[p.target.gender])}`
 
   if (p.mode === 'collection') {
     // ── 표지 ─────────────────────────────────────────────────────────

@@ -7,7 +7,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import type { RunRecord } from '../core/store'
 import { deleteRun, listRuns, toggleFavorite } from '../core/store'
 import type { RunState, Stage } from '../core/types'
-import { ITEM_LABEL, MODE_LABEL, STAGE_LABELS, regionsLabel } from '../core/types'
+import { agesOf, ITEM_LABEL, MODE_LABEL, STAGE_LABELS, regionsLabel } from '../core/types'
 
 type Filter = 'all' | 'favorite'
 
@@ -125,7 +125,7 @@ export default function Library({ onOpen, filter: initial = 'all', running, onOp
                   <div className="lc-meta">
                     <span>{regionsLabel(st.params)} · {tf('{n} designs', { n: made })}</span>
                     <i aria-hidden="true" />
-                    <span>{st.params.target.age}</span>
+                    <span>{agesOf(st.params.target).join(', ')}</span>
                     <span className="lc-date">{new Date(r.savedAt).toLocaleDateString()}</span>
                   </div>
                   <div className="lc-acts">

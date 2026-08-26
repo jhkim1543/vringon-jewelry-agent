@@ -10,6 +10,7 @@ import type { Runtime } from '../core/runtime'
 import {
   ANALYSIS_LANGS, DEFAULT_PARAMS, GENDER_LABEL, ITEMS, ITEM_LABEL, MODE_LABEL,
   REGIONS, estimateMinutes, estimateStages, plannedPairCount, regionLabel, regionsOf,
+  agesOf,
 } from '../core/types'
 import type { DesignCount, Mode, RunParams, SetCount } from '../core/types'
 import { ENGINES } from '../core/imageEngines'
@@ -26,7 +27,8 @@ const AGENT_ART: Record<Mode, string> = {
   competitor: 'agent-competitor.webp', fashion: 'agent-fashion.webp', collection: 'agent-collection.webp',
 }
 
-const AGE_BANDS = ['18-24', '25-34', '35-44', '45-54', '55+'] as const
+// 나이대는 다중 선택 · 5년 단위로 잘게, 위쪽은 넓게 묶는다
+const AGE_BANDS = ['18-21', '22-25', '26-29', '30-34', '35-39', '40-44', '45-49', '50-54', '55-64', '65+'] as const
 
 // ── 단계 정의 · 에이전트마다 첫 단계가 다르다 ────────────────────────
 type StepId = 'competitors' | 'keyword' | 'scope' | 'design' | 'review'
@@ -174,7 +176,6 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
     <div className="wizard2">
       <div className="w2-cols">
         <div className="w2-main">
-          <p className="w2-eyebrow">NEW ANALYSIS</p>
           <div className="w2-headrow">
             <div>
               <h1 className="w2-title">{tf('{agent} analysis', { agent: t(MODE_LABEL[p.mode]) })}</h1>
@@ -321,10 +322,19 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
             <div className="stack">
               <span className="lbl">{t('Target customer')}</span>
               <div className="chiprow">
-                {AGE_BANDS.map(a => (
-                  <button key={a} className={`pick sm ${p.target.age === a ? 'on' : ''}`}
-                    onClick={() => set('target', { ...p.target, age: a })}>{a}</button>
-                ))}
+                {AGE_BANDS.map(a => {
+                  const on = agesOf(p.target).includes(a)
+                  return (
+                    <button key={a} className={`pick sm ${on ? 'on' : ''}`}
+                      onClick={() => {
+                        // 여러 나이대를 함께 고를 수 있다 · 마지막 하나는 끄지 않는다(타겟이 비면 프롬프트가 흔들린다)
+                        const cur = agesOf(p.target)
+                        const next = on ? cur.filter(x => x !== a) : [...cur, a]
+                        if (!next.length) return
+                        set('target', { ...p.target, ages: AGE_BANDS.filter(b => next.includes(b)) })
+                      }}>{a}</button>
+                  )
+                })}
               </div>
               <div className="chiprow">
                 {(Object.keys(GENDER_LABEL) as (keyof typeof GENDER_LABEL)[]).map(g => (
@@ -406,7 +416,7 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
                 <tr><td>{t('Language')}</td><td /><td>{ANALYSIS_LANGS.find(l => l.id === p.analysisLang)?.label}</td></tr>
                 <tr><td>{p.mode === 'collection' ? t('Items') : t('Item')}</td><td /><td>
                   {p.mode === 'collection' ? p.items.map(i => t(ITEM_LABEL[i])).join(', ') : t(ITEM_LABEL[p.itemType])}</td></tr>
-                <tr><td>{t('Target')}</td><td /><td>{p.target.age} · {t(GENDER_LABEL[p.target.gender])}</td></tr>
+                <tr><td>{t('Target')}</td><td /><td>{agesOf(p.target).join(', ')} · {t(GENDER_LABEL[p.target.gender])}</td></tr>
                 {p.direction && <tr><td>{p.mode === 'collection' ? t('Keyword') : t('Direction')}</td><td /><td>{p.direction.slice(0, 80)}</td></tr>}
               </tbody></table>
             </div>
@@ -444,7 +454,7 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
             <div><span>{t('Language')}</span><b>{ANALYSIS_LANGS.find(l => l.id === p.analysisLang)?.label}</b></div>
             <div><span>{p.mode === 'collection' ? t('Items') : t('Item')}</span>
               <b>{p.mode === 'collection' ? p.items.map(i => t(ITEM_LABEL[i])).join(', ') || '–' : t(ITEM_LABEL[p.itemType])}</b></div>
-            <div><span>{t('Target')}</span><b>{p.target.age} · {t(GENDER_LABEL[p.target.gender])}</b></div>
+            <div><span>{t('Target')}</span><b>{agesOf(p.target).join(', ')} · {t(GENDER_LABEL[p.target.gender])}</b></div>
           </div>
           {blocked && <p className="rp-block">{blocked}</p>}
           <button className="btn btn-primary rp-go" disabled={!!blocked} onClick={() => onStart(p)}>

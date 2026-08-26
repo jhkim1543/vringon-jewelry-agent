@@ -92,12 +92,19 @@ export const VARIANT_LABEL: Record<VariantKind, string> = {
   base: 'Core design', commercial: 'Commercial variant', form: 'Form experiment', material: 'Material experiment',
 }
 
-export interface TargetCustomer { age: string; gender: 'female' | 'male' | 'unisex' }
+/** 나이대는 여러 개를 고를 수 있다(ages). age 는 옛 저장분·샘플이 쓰던 단수 필드로,
+ *  읽을 때만 참고한다 — 새로 쓰는 쪽은 ages 만 채운다. */
+export interface TargetCustomer { age?: string; ages?: string[]; gender: 'female' | 'male' | 'unisex' }
 export const GENDER_LABEL: Record<TargetCustomer['gender'], string> = {
   female: 'Women', male: 'Men', unisex: 'Unisex',
 }
+/** 고른 나이대 · 옛 저장분은 단수 age 하나로 읽힌다 */
+export function agesOf(t: TargetCustomer): string[] {
+  if (t.ages?.length) return t.ages
+  return t.age ? [t.age] : []
+}
 export function targetText(t: TargetCustomer): string {
-  return `${t.age} · ${GENDER_LABEL[t.gender]}`
+  return `${agesOf(t).join(', ')} · ${GENDER_LABEL[t.gender]}`
 }
 
 /** 컬렉션 고급 설정 · 비우면 에이전트가 정한다 */
@@ -136,7 +143,7 @@ export const DEFAULT_PARAMS: RunParams = {
   algo: 2, mode: 'competitor', countries: ['Korea'], analysisLang: 'ko',
   direction: '', itemType: 'ring', items: ['ring', 'earrings', 'necklace'],
   designCount: 10, setCount: 3,
-  target: { age: '25-34', gender: 'female' },
+  target: { ages: ['26-29', '30-34'], gender: 'female' },
   competitors: [],
   imageEngine: 'fast',
 }
