@@ -340,6 +340,11 @@ const KO: Record<string, string> = {
   'Name': '이름',
 
   'Create': '새로 만들기',
+  'Analysis result': '분석 결과',
+  'Finished': '완료',
+  'In progress': '진행 중',
+  '{agent} report': '{agent} 리포트',
+  'Every analysis you have run. Open one to see its result and board.': '지금까지 돌린 분석이 모두 남습니다. 하나를 열면 결과와 보드를 볼 수 있습니다.',
   'Run': '분석',
   'Board': '보드',
   'Run setup': '분석 설정',

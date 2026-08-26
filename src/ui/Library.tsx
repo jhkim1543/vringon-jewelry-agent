@@ -82,8 +82,8 @@ export default function Library({ onOpen, filter: initial = 'all', running, onOp
     <div className="libwrap">
       <div className="libhead">
         <div>
-          <h1>{t('Library')}</h1>
-          <p className="lead">{t('Past runs, with their boards. Star the ones worth keeping.')}</p>
+          <h1>{t('History')}</h1>
+          <p className="lead">{t('Every analysis you have run. Open one to see its result and board.')}</p>
         </div>
         <div className="chiprow" style={{ flex: 'none' }}>
           <button className={`pick sm ${filter === 'all' ? 'on' : ''}`} onClick={() => setFilter('all')}>
@@ -109,7 +109,7 @@ export default function Library({ onOpen, filter: initial = 'all', running, onOp
             const made = st.pairs.filter(p => p.versions.length > 0).length
             return (
               <div className="libcard" key={r.id}>
-                <button className="lc-thumb" onClick={() => onOpen(r, 'board')}>
+                <button className="lc-thumb" onClick={() => onOpen(r, 'run')}>
                   {r.thumb
                     ? <img src={r.thumb} alt="" onError={e => { (e.currentTarget as HTMLImageElement).style.display = 'none' }} />
                     : <span className="lc-nothumb">{t('No image')}</span>}

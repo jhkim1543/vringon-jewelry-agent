@@ -1,7 +1,7 @@
 // ── VRINGON Jewelry Agent · 앱 셸 (3-에이전트 개편) ──────────────────
 // 실행이 끝나면 항상 분석 탭이 먼저다. 분석 내역에서 지난 결과를 열 때도
 // 보드가 아니라 분석 탭의 요약부터 연다 — 결과의 근거를 먼저 보게 한다.
-import { t, useLang } from './core/i18n'
+import { t, tf, useLang } from './core/i18n'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import type { DesignPair, PipelineEvent, RunParams, RunState } from './core/types'
 import { MODE_LABEL, ITEM_LABEL, freshState } from './core/types'
@@ -10,7 +10,7 @@ import type { PipelineHandle } from './core/pipeline'
 import Wizard from './ui/Wizard'
 import RunView from './ui/RunView'
 import Board from './ui/Board'
-import { IcClock, IcStar } from './ui/icons'
+import { IcClock, IcPen, IcStar } from './ui/icons'
 import { ThemeToggle, VringonLogo, LangToggle } from './ui/bits'
 import { useTheme } from './ui/useTheme'
 import Library from './ui/Library'
@@ -158,11 +158,8 @@ export default function App() {
           <span className="brand-word">VRINGON</span>
           <span className="module">{t('Jewelry Agent')}</span>
         </button>
-        <nav className="topnav">
-          <button className={view === 'create' ? 'on' : ''} onClick={() => setView('create')}>{t('Create')}</button>
-          <button className={view === 'run' ? 'on' : ''} onClick={() => st && setView('run')} disabled={!st} style={!st ? { opacity: .4 } : undefined}>{t('Analysis')}</button>
-          <button className={view === 'board' ? 'on' : ''} onClick={() => (st || remoteBoard) && setView('board')} disabled={!st && !remoteBoard} style={(!st && !remoteBoard) ? { opacity: .4 } : undefined}>{t('Board')}</button>
-        </nav>
+        {/* 상단에는 탭을 두지 않는다 · 분석 결과와 보드는 그 분석을 연 뒤에 고르는 것이라
+            아래 상세 헤더의 세그먼트로 옮겼다. 이동은 왼쪽 레일이 맡는다. */}
         <div className="right">
           <LangToggle />
           <ThemeToggle theme={theme} onToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
@@ -172,7 +169,11 @@ export default function App() {
       <div className="main">
         <aside className="siderail">
           <nav>
-            <button className={`sr-i ${view === 'library' ? 'on' : ''}`} title={t('History')} aria-label={t('History')} onClick={() => setView('library')}>
+            <button className={`sr-i ${view === 'create' ? 'on' : ''}`} title={t('Create')} aria-label={t('Create')}
+              onClick={() => { setView('create'); setWizardKey(k => k + 1) }}>
+              <IcPen /> <span>{t('Create')}</span>
+            </button>
+            <button className={`sr-i ${view === 'library' || view === 'run' || view === 'board' ? 'on' : ''}`} title={t('History')} aria-label={t('History')} onClick={() => setView('library')}>
               <IcClock /> <span>{t('History')}</span>
             </button>
             <button className={`sr-i ${view === 'starred' ? 'on' : ''}`} title={t('Starred')} aria-label={t('Starred')} onClick={() => setView('starred')}>
@@ -190,12 +191,42 @@ export default function App() {
         )}
 
         {view === 'create' && <Wizard key={wizardKey} onStart={start} />}
-        {view === 'run' && st && (
-          <RunView st={st} progress={progress}
-            onOpenBoard={() => setView('board')}
-            onPairUpdate={onPairUpdate} onScoreAll={onScoreAll} />
+
+        {/* 열린 분석 · 머리(돌아가기 + 결과/보드 전환)와 본문을 한 열로 세운다 */}
+        {(view === 'run' || view === 'board') && (st || remoteBoard) && (
+          <div className="detailwrap">
+          <div className="detailhead">
+            <div className="dh-crumb">
+              <button className="dh-back" onClick={() => setView('library')}>
+                <span aria-hidden="true">‹</span> {t('History')}
+              </button>
+              <span className="dh-sep" aria-hidden="true">/</span>
+              <span className="dh-where">
+                {st ? `${t(ITEM_LABEL[st.params.mode === 'collection' ? st.params.items[0] ?? st.params.itemType : st.params.itemType])} · ${t(MODE_LABEL[st.params.mode])}` : t('Shared board')}
+              </span>
+            </div>
+            <div className="dh-row">
+              <div>
+                <h1 className="dh-title">{st ? tf('{agent} report', { agent: t(MODE_LABEL[st.params.mode]) }) : t('Shared board')}</h1>
+                {st && <p className="dh-sub">{st.finished ? t('Finished') : t('In progress')}</p>}
+              </div>
+              <div className="dh-seg" role="tablist">
+                <button role="tab" aria-selected={view === 'run'} className={view === 'run' ? 'on' : ''}
+                  disabled={!st} onClick={() => setView('run')}>{t('Analysis result')}</button>
+                <button role="tab" aria-selected={view === 'board'} className={view === 'board' ? 'on' : ''}
+                  onClick={() => setView('board')}>{t('Board')}</button>
+              </div>
+            </div>
+          </div>
+
+          {view === 'run' && st && (
+            <RunView st={st} progress={progress}
+              onOpenBoard={() => setView('board')}
+              onPairUpdate={onPairUpdate} onScoreAll={onScoreAll} />
+          )}
+          {view === 'board' && <Board st={st} runId={runIdRef.current} />}
+          </div>
         )}
-        {view === 'board' && (st || remoteBoard) && <Board st={st} runId={runIdRef.current} />}
         {(view === 'run' || view === 'board') && !st && !remoteBoard && <div className="empty">{t('No run open. Start one from Run setup.')}</div>}
         {/* Library 에 key 를 붙여 뷰가 바뀔 때 다시 마운트한다 · Library 는 filter 를
             useState 의 초기값으로만 읽어서, 같은 인스턴스가 남으면 상단의 "즐겨찾기" 를
@@ -204,12 +235,12 @@ export default function App() {
           <Library key={view} filter={view === 'starred' ? 'favorite' as const : 'all'}
             running={st && !st.finished ? st : null}
             onOpenRunning={() => setView('run')}
-            onOpen={(rec) => {
+            onOpen={(rec, want) => {
               if (rec.state.algo !== 2) return   // 옛 알고리즘 저장본은 새 화면이 읽지 못한다
               runIdRef.current = rec.id
               setSt(rec.state)
-              // 스펙: 내역에서 열어도 항상 분석 탭부터
-              setView('run')
+              // 기본은 분석 결과 · 카드에서 보드를 직접 고른 경우만 보드로 연다
+              setView(want === 'board' ? 'board' : 'run')
             }} />
         )}
       </div>

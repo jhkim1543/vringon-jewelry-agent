@@ -2380,3 +2380,41 @@ input.bframe-t { border-bottom: 1px solid var(--accent); color: var(--text); }
 .lc-step.running { color: var(--accent); }
 .lc-step.done { color: var(--text); }
 .lc-step i { font-style: normal; color: var(--line-2); margin: 0 7px; }
+
+/* ── 열린 분석의 머리 · 분석 내역 → 결과/보드 ─────────────────────── */
+.detailwrap { flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.detailhead {
+  flex: none; padding: 14px 20px 12px; border-bottom: 1px solid var(--line); background: var(--bg);
+}
+.dh-crumb { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--text-3); margin-bottom: 8px; }
+.dh-back {
+  display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: var(--r-8);
+  border: 1px solid var(--line-2); background: var(--panel); color: var(--text-2);
+  font-size: 12.5px; font-weight: 650; cursor: pointer;
+}
+.dh-back:hover { color: var(--text); border-color: var(--surface-4); }
+.dh-where { color: var(--text-2); font-weight: 600; }
+.dh-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+.dh-title { font-size: 23px; font-weight: 800; letter-spacing: -0.025em; }
+.dh-sub { color: var(--text-3); font-size: 12.5px; margin-top: 3px; }
+/* 결과 ↔ 보드 · 화면에서 인디고를 쓰는 몇 안 되는 자리 */
+.dh-seg {
+  display: inline-flex; flex: none; gap: 4px; padding: 4px; border-radius: 10px;
+  border: 1px solid var(--line-2); background: var(--panel);
+}
+.dh-seg button {
+  padding: 8px 22px; border-radius: 7px; font-size: 13px; font-weight: 700;
+  color: var(--text-2); background: transparent; cursor: pointer;
+}
+.dh-seg button:hover:not(.on):not(:disabled) { color: var(--text); background: var(--surface-3); }
+.dh-seg button.on { background: var(--accent); color: #fff; }
+.dh-seg button:disabled { opacity: .4; cursor: default; }
+.detailwrap .run, .detailwrap .board { flex: 1; min-height: 0; }
+
+@media (max-width: 760px) {
+  .detailhead { padding: 12px 14px 10px; }
+  .dh-row { flex-direction: column; align-items: stretch; gap: 10px; }
+  .dh-title { font-size: 19px; }
+  .dh-seg { width: 100%; }
+  .dh-seg button { flex: 1; padding: 9px 0; }
+}
