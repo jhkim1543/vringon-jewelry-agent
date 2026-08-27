@@ -6,11 +6,11 @@ import { t, tf } from '../core/i18n'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { DesignPair, MakeSpec, PromptDirection, RunState, Stage } from '../core/types'
 import { TechPack } from './TechPack'
-import { estimateCost, marketBand, priceStats } from '../core/cost'
+import { currencyFor, estimateCost, marketBand, moneyIn, priceStats } from '../core/cost'
 import type { MarketBand } from '../core/cost'
 import {
   BASIS_LABEL, GENDER_LABEL, ITEM_LABEL, MODE_LABEL, STAGE_LABELS, VARIANT_LABEL,
-  estimateMinutes, estimateStages, regionsLabel,
+  estimateMinutes, estimateStages, regionsLabel, regionsOf,
   agesOf,
 } from '../core/types'
 import { detectRuntime } from '../core/runtime'
@@ -48,8 +48,8 @@ function Bars({ rows }: { rows: { label: string; n: number }[] }) {
 
 /** 수집 가격 분포 · 눈금은 로그다. 등간격으로 자르면 11달러와 5136달러가 한 칸에 들어가
  *  76건 중 64건이 첫 칸에 몰린다 — 그런 그래프는 아무것도 말해 주지 않는다. */
-function PriceDist({ s }: { s: NonNullable<ReturnType<typeof priceStats>> }) {
-  const usd = (n: number) => `$${n < 10 ? n.toFixed(1) : Math.round(n)}`
+function PriceDist({ s, currency }: { s: NonNullable<ReturnType<typeof priceStats>>; currency: string }) {
+  const usd = moneyIn(currency)
   const max = Math.max(1, ...s.bins.map(b => b.n))
   return (
     <div className="pdist">
@@ -270,7 +270,7 @@ export default function RunView({ st, progress, onOpenBoard, onPairUpdate, onSco
               {p.mode === 'collection' && <div><b>{st.sets?.length ?? 0}</b><span>{t('Sets')}</span></div>}
             </div>
             {hubRows.length > 0 && <Bars rows={hubRows} />}
-            {prices && <PriceDist s={prices} />}
+            {prices && <PriceDist s={prices} currency={currencyFor(regionsOf(p))} />}
             <p className="hint">{t('These numbers are counted from what was actually collected. None of this is generated art.')}</p>
           </div>
         </section>
@@ -355,10 +355,11 @@ export default function RunView({ st, progress, onOpenBoard, onPairUpdate, onSco
 
 /** 접힘 요약은 펼쳤을 때 실제로 보이는 축만 센다 · Complement 는 패션 모드에만 채워진다 */
 /** 접힌 줄에 보일 한 줄 · 원가가 계산됐으면 그것부터 보여 준다 */
-function specSummary(spec: MakeSpec): string {
-  const c = estimateCost(spec)
+function specSummary(spec: MakeSpec, currency: string): string {
+  const m = moneyIn(currency)
+  const c = estimateCost(spec, m)
   const w = spec.weight_g?.min ? `${spec.weight_g.min}~${spec.weight_g.max}g` : ''
-  const cost = c.ok ? `$${Math.round(c.low)}~${Math.round(c.high)}` : c.blocked
+  const cost = c.ok ? `${m(c.low)}~${m(c.high)}` : c.blocked
   return [spec.metal, w, cost].filter(Boolean).join(' · ')
 }
 
@@ -433,8 +434,9 @@ function PairRow({ st, pair, onPairUpdate, market }: {
           <pre className="pr-prompt">{pair.prompt || t('No prompt. This one failed before the prompt stage.')}</pre>
         )}
         {pair.spec && (
-          <Collapse title={t('Tech pack and cost')} summary={specSummary(pair.spec)}>
-            <TechPack spec={pair.spec} priceTarget={st.params.collectionAdv?.priceTarget || st.params.direction} market={market} />
+          <Collapse title={t('Tech pack and cost')} summary={specSummary(pair.spec, currencyFor(regionsOf(st.params)))}>
+            <TechPack spec={pair.spec} priceTarget={st.params.collectionAdv?.priceTarget || st.params.direction}
+              market={market} currency={currencyFor(regionsOf(st.params))} />
           </Collapse>
         )}
         {pair.feature && <p className="hint">{pair.feature}</p>}

@@ -5,7 +5,7 @@
 import {
   GOLD_24K_USD_G, METAL_USD_G,
   checkTarget, currencyCode, dimText, estimateCost, marketBand, metalBasis, metalKey, parsePriceTarget,
-  stoneKey, stoneText,
+  currencyFor, moneyIn, stoneKey, stoneText,
   type MakeSpec,
 } from '../src/core/cost'
 
@@ -213,6 +213,20 @@ console.log('\n── 시장 가격대 ──')
   const m = marketBand([...mk(5, 100, 'USD'), ...mk(5, 135000, '원')])
   eq('기호 통화도 표본에 든다', m?.n, 10)
   eq('통화를 모르는 것만 제외로 센다', marketBand([...mk(6, 100, 'USD'), ...mk(2, 100, '???')])?.skipped, 2)
+}
+
+console.log('\n── 화면 통화 ──')
+// 계산은 달러로 하지만 유럽 공방은 유로로, 한국 MD 는 원으로 일한다.
+// "$292~385" 만 주면 그 사람이 다시 환산해야 한다 (이탈리아 공방 오너 지적)
+{
+  eq('유럽은 유로', currencyFor(['Europe']), 'EUR')
+  eq('한국은 원', currencyFor(['Korea']), 'KRW')
+  eq('모르는 지역은 달러', currencyFor(['어딘가']), 'USD')
+  const eur = moneyIn('EUR')
+  eq('유로로 찍는다', eur(100).startsWith('€'), true)
+  eq('환율을 함께 밝힌다', eur.note.includes('1 USD'), true)
+  eq('원은 100원 단위로 끊는다', moneyIn('KRW')(100), '₩135,000')
+  eq('달러면 환산 문구가 없다', moneyIn('USD').note, '')
 }
 
 console.log('\n── 목표 대비 판정 ──')

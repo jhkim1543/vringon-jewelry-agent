@@ -10,7 +10,7 @@
 import type { CrawledProduct, RunState } from './types'
 import { BASIS_LABEL, CONFIDENCE_LABEL, ITEM_KO, regionsLabel, regionsOf } from './types'
 import { esc, slide } from './deck'
-import { checkTarget, dimText, estimateCost, marketBand, placeInMarket, retailBand, stoneText } from './cost'
+import { checkTarget, currencyFor, dimText, estimateCost, marketBand, moneyIn, placeInMarket, retailBand, stoneText } from './cost'
 import { shotUrl } from './agents'
 import { t } from './i18n'
 
@@ -378,14 +378,14 @@ export function techPackDeckHtml(st: RunState): { title: string; html: string } 
   // 컬렉션은 전용 칸이 있고, 나머지 두 에이전트는 사용자가 조사 방향에 적어 둔다
   const priceTarget = st.params.collectionAdv?.priceTarget || st.params.direction
   const market = marketBand((st.shops ?? []).flatMap(x => x.items))
-  const money = (n: number) => `$${n < 10 ? n.toFixed(1) : Math.round(n)}`
+  const money = moneyIn(currencyFor(regionsOf(st.params)))
   const rowsOf = (rows: Array<[string, string]>) => rows.length
     ? `<table class="tk-t">${rows.map(([k, v]) => `<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`).join('')}</table>`
     : `<p class="tk-none">${esc(t('Not specified'))}</p>`
 
   const html = pairs.map((p, i) => {
     const s = p.spec!
-    const c = estimateCost(s)
+    const c = estimateCost(s, money)
     const shot = p.versions[p.versions.length - 1]
     const [rLo, rHi] = retailBand(c)
 
@@ -417,7 +417,7 @@ export function techPackDeckHtml(st: RunState): { title: string; html: string } 
       eyebrow: 'TECH PACK',
       tag: p.id,
       page: i + 1,
-      foot: t('Cost is computed from the spec on this sheet using reference rates. Replace them with your own supplier quotes.'),
+      foot: t('Cost is computed from the spec on this sheet using reference rates. Replace them with your own supplier quotes.') + (money.note ? ` · ${money.note}` : ''),
       body: `<div class="tk">
         <div class="tk-l">
           ${shot ? `<img src="${esc(shot.url)}"/>` : ''}
@@ -438,8 +438,9 @@ export function techPackDeckHtml(st: RunState): { title: string; html: string } 
                  전에는 순서가 반대여서 "견적 필요" 와 목표 대비 판정이 페이지 밖으로 나갔다. */ ''}
             ${c.ok ? `<p class="tk-big">${money(c.low)} – ${money(c.high)}</p>` : ''}
             ${(s.weight_basis?.trim() || c.pair) ? `<p class="tk-basis">${
-              c.pair ? `<b>${esc(t('per pair'))}</b> · ` : ''}${esc(s.weight_basis ?? '')}${
-              c.pair ? ` · ${esc(t('The spec weight is per piece, so this was doubled for the pair.'))}` : ''}</p>` : ''}
+              c.pair
+                ? `<b>${esc(t('per pair'))}</b> · ${esc(t('The spec weight is per piece, so this was doubled for the pair.'))}`
+                : esc(s.weight_basis ?? '')}</p>` : ''}
             ${c.ok ? `<p class="tk-sug">${esc(t('Suggested DTC price'))} ${money(rLo)} – ${money(rHi)}</p>` : ''}
             ${(() => { const v = checkTarget(c, priceTarget); return v.verdict === 'unknown' ? ''
               : `<p class="tk-v ${v.verdict}">${esc(v.note)}</p>` })()}

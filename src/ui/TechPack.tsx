@@ -6,19 +6,21 @@
    원가는 estimateCost() 가 계산한다 — 모델에게 묻지 않는다.
    그래서 같은 사양이면 늘 같은 값이 나오고, 무엇을 곱해서 나왔는지 줄마다 남는다. */
 import {
-  checkTarget, dimText, estimateCost, placeInMarket, retailBand, stoneText,
+  checkTarget, dimText, estimateCost, moneyIn, placeInMarket, retailBand, stoneText,
   type MakeSpec, type MarketBand,
 } from '../core/cost'
 import { t } from '../core/i18n'
 
-const usd = (n: number) => `$${n < 10 ? n.toFixed(1) : Math.round(n)}`
 
-export function TechPack({ spec, priceTarget, market }: {
+export function TechPack({ spec, priceTarget, market, currency = 'USD' }: {
   spec?: MakeSpec; priceTarget?: string
   /** 같은 실행에서 수집한 실제 판매가 · 없으면 대조를 띄우지 않는다 */
   market?: MarketBand | null
+  /** 화면에 찍을 통화 · 계산은 달러로 하고 여기서 환산한다 */
+  currency?: string
 }) {
-  const c = estimateCost(spec)
+  const usd = moneyIn(currency)
+  const c = estimateCost(spec, usd)
   if (!spec) return null
 
   const [rLo, rHi] = retailBand(c)
@@ -71,9 +73,9 @@ export function TechPack({ spec, priceTarget, market }: {
           {c.ok ? (<>
             <p className="tp-big">{usd(c.low)} – {usd(c.high)}</p>
             <p className="hint tp-basis">
-              {c.pair && <b>{t('per pair')} · </b>}
-              {spec.weight_basis?.trim()}
-              {c.pair && ` · ${t('The spec weight is per piece, so this was doubled for the pair.')}`}
+              {c.pair
+                ? <><b>{t('per pair')}</b> · {t('The spec weight is per piece, so this was doubled for the pair.')}</>
+                : spec.weight_basis?.trim()}
             </p>
             <table className="tp-tab">
               <tbody>
@@ -109,6 +111,7 @@ export function TechPack({ spec, priceTarget, market }: {
             )}
             <p className="hint tp-src">
               {t('Computed from the spec above using reference prices from')} {c.pricedAt}.
+              {usd.note && ` · ${usd.note}.`}
               {' '}{t('Metal weight is an estimate, so the cost is a range. Replace the rates with your own supplier quotes.')}
             </p>
           </>) : (

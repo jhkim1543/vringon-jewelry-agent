@@ -40,10 +40,10 @@ export const METAL_USD_G: Record<string, number> = {
 }
 
 /** 이 금속값이 어디서 나왔는지 한 줄 · 화면에 그대로 띄운다 */
-export function metalBasis(key: string): string {
+export function metalBasis(key: string, m: Money = moneyIn('USD')): string {
   if (key in KARAT) {
     const k = key as keyof typeof KARAT
-    return `24K ${GOLD_24K_USD_G}달러/g × 순도 ${Math.round(KARAT[k] * 1000)}/1000 × 세공 ${Math.round((FABRICATION - 1) * 100)}%`
+    return `24K ${m(GOLD_24K_USD_G)}/g × 순도 ${Math.round(KARAT[k] * 1000)}/1000 × 세공 ${Math.round((FABRICATION - 1) * 100)}%`
   }
   return ''
 }
@@ -215,7 +215,12 @@ const mmOf = (s: string): number => {
 }
 
 /** 사양에서 원가를 계산한다. AI 를 부르지 않는다 — 같은 사양이면 항상 같은 값이다. */
-export function estimateCost(spec: MakeSpec | undefined, metalUsdG = METAL_USD_G): CostEstimate {
+export function estimateCost(
+  spec: MakeSpec | undefined,
+  /** 계산 근거를 적을 통화 · 금액은 유로인데 근거만 달러면 읽는 사람이 다시 환산해야 한다 */
+  m: Money = moneyIn('USD'),
+  metalUsdG = METAL_USD_G,
+): CostEstimate {
   const empty: CostEstimate = { ok: false, blocked: '', low: 0, high: 0, lines: [], quotes: [], pricedAt: PRICED_AT }
   if (!spec) return { ...empty, blocked: '제작 사양이 없습니다' }
 
@@ -242,9 +247,9 @@ export function estimateCost(spec: MakeSpec | undefined, metalUsdG = METAL_USD_G
   const g = metalUsdG[mk]
   const mLo = wMin * g * (1 + SCRAP)
   const mHi = wMax * g * (1 + SCRAP)
-  const basis = metalBasis(mk)
+  const basis = metalBasis(mk, m)
   add('금속', mLo, mHi,
-    `${spec.metal} ${wMin === wMax ? `${wMin}g` : `${wMin}~${wMax}g`} × ${g}달러/g${
+    `${spec.metal} ${wMin === wMax ? `${wMin}g` : `${wMin}~${wMax}g`} × ${m(g)}/g${
       basis ? ` (${basis})` : ''} · 주조·연마 손실 ${Math.round(SCRAP * 100)}% 포함`)
 
   // ── 스톤 ──
@@ -265,8 +270,8 @@ export function estimateCost(spec: MakeSpec | undefined, metalUsdG = METAL_USD_G
     const mm = mmOf(st.mm) || 3
     const each = Math.max(STONE_FLOOR[k], STONE_BASE_3MM[k] * Math.pow(mm / 3, 3))
     add(`스톤 · ${st.type} ${st.mm}`, each * n, each * n * 1.4,
-      `${n}알 × ${each.toFixed(2)}달러 (3mm ${STONE_BASE_3MM[k]}달러 기준, 지름 세제곱${
-        each === STONE_FLOOR[k] ? ` · 작은 알 최저 ${STONE_FLOOR[k]}달러 적용` : ''})`)
+      `${n}알 × ${m(each)} (3mm ${m(STONE_BASE_3MM[k])} 기준, 지름 세제곱${
+        each === STONE_FLOOR[k] ? ` · 작은 알 최저 ${m(STONE_FLOOR[k])} 적용` : ''})`)
   }
 
   // ── 부속 ──
@@ -297,7 +302,7 @@ export function estimateCost(spec: MakeSpec | undefined, metalUsdG = METAL_USD_G
     const hard = /베젤|bezel|파베|pave|채널|channel|플러시|flush|집시|gypsy|마이크로|micro/i.test(setText)
     const rate = hard ? LABOR.settingBezel : LABOR.settingProng
     add('스톤 세팅', rate * stoneCount, rate * stoneCount * 1.3,
-      `${stoneCount}알 × ${rate}달러 (${hard ? '베젤·파베·채널' : '프롱'})`)
+      `${stoneCount}알 × ${m(rate)} (${hard ? '베젤·파베·채널' : '프롱'})`)
     if (/에나멜|enamel|칠보|법랑|珐琅/i.test(setText))
       quotes.push('에나멜 공정이 있습니다 · 소성 횟수와 불량률에 따라 값이 달라져 견적이 필요합니다')
   }
@@ -556,4 +561,46 @@ export function priceStats(
     .sort((a, b) => b.n - a.n)
 
   return { n: rows.length, skipped, min, max, band, bins: out, byGroup }
+}
+
+// ── 화면 통화 ────────────────────────────────────────────────────────
+// 계산은 달러로 하지만, 유럽 공방은 유로로 일하고 한국 MD 는 원으로 일한다.
+// "$292~385" 만 보여 주면 그 사람이 다시 환산해야 한다 — 이탈리아 공방 오너가 짚었다.
+// 환산했다는 사실과 쓴 환율을 함께 적는다. 숨기면 그것도 못 믿을 숫자가 된다.
+
+const REGION_CURRENCY: Record<string, string> = {
+  Korea: 'KRW', Japan: 'JPY', Europe: 'EUR', 'United States': 'USD',
+  'Middle East': 'AED', Asia: 'USD',
+}
+const SYMBOL: Record<string, string> = {
+  USD: '$', KRW: '₩', EUR: '€', JPY: '¥', GBP: '£', AED: 'AED ', CNY: '¥', THB: '฿', INR: '₹',
+}
+
+export interface Money {
+  /** 달러 값을 그 통화로 바꿔 글자로 */
+  (usd: number): string
+  code: string
+  /** 환산했으면 쓴 환율 한 줄 · 달러면 빈 문자열 */
+  note: string
+}
+
+/** 고른 지역에서 화면에 쓸 통화를 정한다 · 여러 지역이면 첫 번째를 따른다 */
+export function currencyFor(regions: string[]): string {
+  for (const r of regions ?? []) if (REGION_CURRENCY[r]) return REGION_CURRENCY[r]
+  return 'USD'
+}
+
+/** 그 통화로 찍는 함수 · 환율과 통화 코드를 함께 들고 다닌다 */
+export function moneyIn(code: string): Money {
+  const fx = FX_PER_USD[code] ?? 1
+  const sym = SYMBOL[code] ?? ''
+  const fn = ((usd: number) => {
+    const v = usd * fx
+    // 원·엔은 소수점이 의미 없고, 달러·유로는 작은 값에서 의미가 있다
+    const n = fx >= 100 ? Math.round(v / 100) * 100 : v < 10 ? Math.round(v * 10) / 10 : Math.round(v)
+    return `${sym}${n.toLocaleString()}`
+  }) as Money
+  fn.code = code
+  fn.note = code === 'USD' ? '' : `1 USD = ${fx.toLocaleString()} ${code}`
+  return fn
 }
