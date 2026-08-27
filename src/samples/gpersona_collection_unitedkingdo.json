@@ -1,0 +1,665 @@
+{
+ "algo": 2,
+ "params": {
+  "algo": 2,
+  "mode": "collection",
+  "countries": [
+   "Europe"
+  ],
+  "analysisLang": "en",
+  "direction": "빅토리안 시대의 뾰족한 아치 건축 양식에서 영감을 받은 백금(Platinum)과 사파이어 소재의 펜던트. 이브닝 드레스에 어울리는 £5,000 이상의 럭셔리 제품.",
+  "itemType": "pendant",
+  "items": [
+   "pendant",
+   "ring",
+   "earrings"
+  ],
+  "designCount": 6,
+  "setCount": 3,
+  "target": {
+   "ages": [
+    "45-49",
+    "50-54",
+    "55-64"
+   ],
+   "gender": "female"
+  },
+  "competitors": [],
+  "imageEngine": "fast"
+ },
+ "stageStatus": {
+  "S1": "done",
+  "S2": "done",
+  "S3": "done",
+  "S4": "done",
+  "S5": "done"
+ },
+ "logs": [
+  {
+   "stage": "S1",
+   "text": "Researching the keyword in Europe: culture, symbols, forms, colors, and the cliches to avoid",
+   "t": 1787787113301
+  },
+  {
+   "stage": "S1",
+   "text": "Insight ready · 10 abstraction axes, 4 cautions",
+   "t": 1787787447258
+  },
+  {
+   "stage": "S2",
+   "text": "3 set concept(s): Lancet Nocturne / Arcade Poise / Tracery Flux",
+   "t": 1787787576248
+  },
+  {
+   "stage": "S3",
+   "text": "Abstract concept images first, with no jewelry products yet, then one lineup image per set",
+   "t": 1787787576248
+  },
+  {
+   "stage": "S3",
+   "text": "Arcade Poise: 4/4 concept images + lineup",
+   "t": 1787787719494
+  },
+  {
+   "stage": "S3",
+   "text": "Lancet Nocturne: 4/4 concept images + lineup",
+   "t": 1787787719609
+  },
+  {
+   "stage": "S3",
+   "text": "Tracery Flux: 4/4 concept images + lineup",
+   "t": 1787787866492
+  },
+  {
+   "stage": "S4",
+   "text": "9 designs = 3 set(s) × 3 item(s) · the set DNA stays locked, only the item changes",
+   "t": 1787787866493
+  },
+  {
+   "stage": "S5",
+   "text": "D03 generated (Lancet Nocturne · earrings)",
+   "t": 1787787988392
+  },
+  {
+   "stage": "S5",
+   "text": "D02 generated (Lancet Nocturne · ring)",
+   "t": 1787788010176
+  },
+  {
+   "stage": "S5",
+   "text": "D01 generated (Lancet Nocturne · pendant)",
+   "t": 1787788037766
+  },
+  {
+   "stage": "S5",
+   "text": "D04 generated (Arcade Poise · pendant)",
+   "t": 1787788099943
+  },
+  {
+   "stage": "S5",
+   "text": "D05 generated (Arcade Poise · ring)",
+   "t": 1787788133701
+  },
+  {
+   "stage": "S5",
+   "text": "D06 generated (Arcade Poise · earrings)",
+   "t": 1787788152460
+  },
+  {
+   "stage": "S5",
+   "text": "D07 generated (Tracery Flux · pendant)",
+   "t": 1787788228266
+  },
+  {
+   "stage": "S5",
+   "text": "D08 generated (Tracery Flux · ring)",
+   "t": 1787788259909
+  },
+  {
+   "stage": "S5",
+   "text": "D09 generated (Tracery Flux · earrings)",
+   "t": 1787788299527
+  }
+ ],
+ "references": [],
+ "pairs": [
+  {
+   "id": "D03",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "Lancet Nocturne",
+   "item": "earrings",
+   "title": "Lancet Nocturne · 귀걸이",
+   "prompt": "Earrings — Lancet Nocturne original design declaration: a mirrored pair that frames a single feature sapphire within a precise lancet outline, readable at a distance. Calibré-cut sapphires form an unbroken channel-set arc from each springing point to the sharp, touch-safe apex (≈0.25 mm radius). Open spandrels lighten the body and project shadow patterns. Metal: 950 platinum, bright polish with crisp 0.15 mm milgrain along the lancet edges; no surface treatments that darken the metal. Proportions ~2.6:1 (height ~34 mm, width ~13 mm). Structural wall 1.2–1.4 mm, seat 0.6 mm; bezel for the center sapphire 0.7 mm. Balanced ear mechanics: hidden post and hinged omega back; gallery concealed; weight under 6.5 g per ear; post at upper third for comfort. Express luxury through center-stone quality, flawless calibré cutting, and hand finishing, not mass. Three-quarter view of mirrored pair, neutral gray studio background, macro jewelry photograph, controlled softbox reflections, photoreal. Avoid: princess/queen slogans, tiara, bridal, bling, flashy hype, ornate filigree, hearts, bows, vampire/dark gothic tropes, blackened plating, rose gold, wide silhouettes.",
+   "versions": [
+    {
+     "url": "/samples/232b34b5f4a35133253f2d24.png",
+     "hash": "232b34b5f4a35133253f2d24",
+     "prompt": "Earrings — Lancet Nocturne original design declaration: a mirrored pair that frames a single feature sapphire within a precise lancet outline, readable at a distance. Calibré-cut sapphires form an unbroken channel-set arc from each springing point to the sharp, touch-safe apex (≈0.25 mm radius). Open spandrels lighten the body and project shadow patterns. Metal: 950 platinum, bright polish with crisp 0.15 mm milgrain along the lancet edges; no surface treatments that darken the metal. Proportions ~2.6:1 (height ~34 mm, width ~13 mm). Structural wall 1.2–1.4 mm, seat 0.6 mm; bezel for the center sapphire 0.7 mm. Balanced ear mechanics: hidden post and hinged omega back; gallery concealed; weight under 6.5 g per ear; post at upper third for comfort. Express luxury through center-stone quality, flawless calibré cutting, and hand finishing, not mass. Three-quarter view of mirrored pair, neutral gray studio background, macro jewelry photograph, controlled softbox reflections, photoreal. Avoid: princess/queen slogans, tiara, bridal, bling, flashy hype, ornate filigree, hearts, bows, vampire/dark gothic tropes, blackened plating, rose gold, wide silhouettes.",
+     "at": "2026-08-26T23:46:28.388Z"
+    }
+   ],
+   "feature": "A pure lancet silhouette framing a single sapphire, traced by an unbroken calibré-sapphire arc with crisp milgrain and concealed ear mechanics for balanced all-evening wear."
+  },
+  {
+   "id": "D02",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "Lancet Nocturne",
+   "item": "ring",
+   "title": "Lancet Nocturne · 반지",
+   "prompt": "Ring — original design declaration: Lancet Nocturne frames a single feature sapphire inside a precise lancet outline, readable at distance. Metal: platinum or rhodium-white gold, mirror-polished with crisp 0.25 mm milgrain on all edges. Stones: one top-grade sapphire; matched hand-cut calibre sapphires form an unbroken channel-set arc from each shoulder springing point to the apex. Open spandrels for lightness and shadow. Proportions: head ratio 2.6:1; apex visually sharp yet touch-safe (~0.3 mm radius). Build: comfort inner-court shank 2.2 mm wide x 1.8 mm thick; head wall 1.0 mm; channel walls 0.8 mm; hidden under-gallery keeps the outline pure; low profile. Value via center-stone quality, calibre cutting, and hand finishing, not mass. Three-quarter product view, neutral studio background; macro jewelry photo; photoreal finish with soft diffused speculars and white balance. Avoid: princess or queen slogans, tiara references, bridal messaging, bling or flashy hype, overly ornate filigree that obscures structure, hearts or bows, vampire or dark gothic tropes, blackened heavy plating, rose gold mixing, overly wide silhouettes that fight an evening neckline.",
+   "versions": [
+    {
+     "url": "/samples/2b648118d7cabf44923e4470.png",
+     "hash": "2b648118d7cabf44923e4470",
+     "prompt": "Ring — original design declaration: Lancet Nocturne frames a single feature sapphire inside a precise lancet outline, readable at distance. Metal: platinum or rhodium-white gold, mirror-polished with crisp 0.25 mm milgrain on all edges. Stones: one top-grade sapphire; matched hand-cut calibre sapphires form an unbroken channel-set arc from each shoulder springing point to the apex. Open spandrels for lightness and shadow. Proportions: head ratio 2.6:1; apex visually sharp yet touch-safe (~0.3 mm radius). Build: comfort inner-court shank 2.2 mm wide x 1.8 mm thick; head wall 1.0 mm; channel walls 0.8 mm; hidden under-gallery keeps the outline pure; low profile. Value via center-stone quality, calibre cutting, and hand finishing, not mass. Three-quarter product view, neutral studio background; macro jewelry photo; photoreal finish with soft diffused speculars and white balance. Avoid: princess or queen slogans, tiara references, bridal messaging, bling or flashy hype, overly ornate filigree that obscures structure, hearts or bows, vampire or dark gothic tropes, blackened heavy plating, rose gold mixing, overly wide silhouettes that fight an evening neckline.",
+     "at": "2026-08-26T23:46:50.176Z"
+    }
+   ],
+   "feature": "A precise lancet frame presents a single sapphire with an unbroken calibre-sapphire arc, crisp milgrain, open spandrels, and a hidden gallery preserving a pure, touch-safe silhouette."
+  },
+  {
+   "id": "D01",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "Lancet Nocturne",
+   "item": "pendant",
+   "title": "Lancet Nocturne · 펜던트",
+   "prompt": "Pendant - original design declaration: Lancet Nocturne in 950 platinum, a precise lancet-arched pendant framing a single feature sapphire, readable at distance. Proportion 2.6:1 (approx. 28 x 10.8 mm); arch apex sharp yet touch-safe with a 0.25 mm micro-chamfer. Unbroken arcs of hand-cut calibre sapphires run from each springing point to the apex, channel-set in 0.7 mm with seats at ~45% depth. Center sapphire 1.6-2.0 ct royal blue, precision-cut; bezel 1.0-1.2 mm. Edges bear a crisp 0.2 mm milgrain; spandrels stay open for shadow and weight relief. Hidden twin bails and gallery behind the springing points connect to a cable; an underside keel prevents rotation, preserving a pure outline. Surfaces: platinum mirror finish. Luxury via center-stone quality, calibre cutting, and hand finishing, not mass. Three-quarter macro jewelry photo, gray seamless studio background, photoreal.\n\nAvoid: princess or queen slogans, tiara references, bridal messaging, bling or flashy hype, overly ornate filigree that obscures structure, hearts or bows, gothic or vampire tropes, blackened heavy plating, rose gold mixing, overly wide silhouettes.",
+   "versions": [
+    {
+     "url": "/samples/2958ae336a5a9fe39e08a5f3.png",
+     "hash": "2958ae336a5a9fe39e08a5f3",
+     "prompt": "Pendant - original design declaration: Lancet Nocturne in 950 platinum, a precise lancet-arched pendant framing a single feature sapphire, readable at distance. Proportion 2.6:1 (approx. 28 x 10.8 mm); arch apex sharp yet touch-safe with a 0.25 mm micro-chamfer. Unbroken arcs of hand-cut calibre sapphires run from each springing point to the apex, channel-set in 0.7 mm with seats at ~45% depth. Center sapphire 1.6-2.0 ct royal blue, precision-cut; bezel 1.0-1.2 mm. Edges bear a crisp 0.2 mm milgrain; spandrels stay open for shadow and weight relief. Hidden twin bails and gallery behind the springing points connect to a cable; an underside keel prevents rotation, preserving a pure outline. Surfaces: platinum mirror finish. Luxury via center-stone quality, calibre cutting, and hand finishing, not mass. Three-quarter macro jewelry photo, gray seamless studio background, photoreal.\n\nAvoid: princess or queen slogans, tiara references, bridal messaging, bling or flashy hype, overly ornate filigree that obscures structure, hearts or bows, gothic or vampire tropes, blackened heavy plating, rose gold mixing, overly wide silhouettes.",
+     "at": "2026-08-26T23:47:17.766Z"
+    }
+   ],
+   "feature": "A lancet-arched platinum pendant that frames a single vivid sapphire with unbroken calibre-sapphire arcs, crisp milgrain, open spandrels, and hidden twin bails that prevent rotation."
+  },
+  {
+   "id": "D04",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "Arcade Poise",
+   "item": "pendant",
+   "title": "Arcade Poise · 펜던트",
+   "prompt": "펜던트 — Arcade Poise distilled into a pendant: a single clean platinum arch defines the silhouette, keeping it uncluttered. A medium‑deep royal to cornflower blue sapphire sits low in a 0.9 mm bezel (seat height ~0.6 mm) for scarf‑safe comfort; two matched baguette sapphires per side rise in even 0.4 mm steps, channel‑set flush so the arch line reads unbroken. Arch wall 1.2–1.4 mm thick, overall drop ~27 mm and width ~13 mm; inner surfaces softly brushed, outer edges crisp and mirror‑bright. Anti‑rotation is solved with twin lateral pass‑through bails integrated at the shoulders; mass centers under the arch. A 45 cm adjustable platinum cable chain (~0.9 mm) uses a discreet slider to hold center. Value shows in sapphire quality, precision fit, and platinum integrity; never oversized or overly dark. Render as a photoreal macro jewelry image, three‑quarter view, monochrome studio, controlled reflections, sharp focus on metal transitions and bezel lips. Avoid spikes, >35 mm drops, overly dark sapphires, yellow/rose gold, filigree, hype slang, rainbow gems, bridal cues, heart shapes.",
+   "versions": [
+    {
+     "url": "/samples/42c0033a2bc710e061962b84.png",
+     "hash": "42c0033a2bc710e061962b84",
+     "prompt": "펜던트 — Arcade Poise distilled into a pendant: a single clean platinum arch defines the silhouette, keeping it uncluttered. A medium‑deep royal to cornflower blue sapphire sits low in a 0.9 mm bezel (seat height ~0.6 mm) for scarf‑safe comfort; two matched baguette sapphires per side rise in even 0.4 mm steps, channel‑set flush so the arch line reads unbroken. Arch wall 1.2–1.4 mm thick, overall drop ~27 mm and width ~13 mm; inner surfaces softly brushed, outer edges crisp and mirror‑bright. Anti‑rotation is solved with twin lateral pass‑through bails integrated at the shoulders; mass centers under the arch. A 45 cm adjustable platinum cable chain (~0.9 mm) uses a discreet slider to hold center. Value shows in sapphire quality, precision fit, and platinum integrity; never oversized or overly dark. Render as a photoreal macro jewelry image, three‑quarter view, monochrome studio, controlled reflections, sharp focus on metal transitions and bezel lips. Avoid spikes, >35 mm drops, overly dark sapphires, yellow/rose gold, filigree, hype slang, rainbow gems, bridal cues, heart shapes.",
+     "at": "2026-08-26T23:48:19.943Z"
+    }
+   ],
+   "feature": "A single platinum arch with a low‑bezel sapphire and even step baguette accents, stabilized by twin pass‑through bails and a 45 cm adjustable slider chain."
+  },
+  {
+   "id": "D05",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "Arcade Poise",
+   "item": "ring",
+   "title": "Arcade Poise · 반지",
+   "prompt": "Ring — original design declaration: a single clean arch defines Arcade Poise, kept uncluttered. PT950 platinum only, cool-toned. The center sapphire sits low in a full bezel; select a vivid royal blue that stays blue in low light. Baguette accents rise in even steps that never break the arch contour. Inner finger rail receives a soft brushed finish; outer edges stay crisp and reflective. Oval comfort shank 2.0–2.3 mm for stable wear with a balanced, low center of gravity. Bezel wall 0.9–1.0 mm with a 0.6 mm seat; channel-set baguettes on 0.3 mm bearings with 0.05 mm tolerance, precision-fitted, micro-chamfered to prevent snagging. Under-gallery relief for clean-through access without added height. Three-quarter product view, monochrome studio background, macro jewelry photograph, soft controlled lighting, photoreal and true-to-scale. Luxury is expressed through sapphire quality, precision fit, and platinum integrity, not size. Avoid: spikes, oversized drops, overly dark sapphires, mixed gold colors, busy filigree, hype slang, rainbow mixes, bridal cues, hearts.",
+   "versions": [
+    {
+     "url": "/samples/18ed4c46b5df3dc4088a3eb7.png",
+     "hash": "18ed4c46b5df3dc4088a3eb7",
+     "prompt": "Ring — original design declaration: a single clean arch defines Arcade Poise, kept uncluttered. PT950 platinum only, cool-toned. The center sapphire sits low in a full bezel; select a vivid royal blue that stays blue in low light. Baguette accents rise in even steps that never break the arch contour. Inner finger rail receives a soft brushed finish; outer edges stay crisp and reflective. Oval comfort shank 2.0–2.3 mm for stable wear with a balanced, low center of gravity. Bezel wall 0.9–1.0 mm with a 0.6 mm seat; channel-set baguettes on 0.3 mm bearings with 0.05 mm tolerance, precision-fitted, micro-chamfered to prevent snagging. Under-gallery relief for clean-through access without added height. Three-quarter product view, monochrome studio background, macro jewelry photograph, soft controlled lighting, photoreal and true-to-scale. Luxury is expressed through sapphire quality, precision fit, and platinum integrity, not size. Avoid: spikes, oversized drops, overly dark sapphires, mixed gold colors, busy filigree, hype slang, rainbow mixes, bridal cues, hearts.",
+     "at": "2026-08-26T23:48:53.701Z"
+    }
+   ],
+   "feature": "A PT950 platinum ring built around a single clean arch, with a low-bezel vivid royal-blue sapphire and even stepped baguette accents, brushed inner rail, and crisp outer edges for poised, snag-free comfort."
+  },
+  {
+   "id": "D06",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "Arcade Poise",
+   "item": "earrings",
+   "title": "Arcade Poise · 귀걸이",
+   "prompt": "귀걸이 original design: A pair of Arcade Poise drops translating the single clean arch motif in platinum 950. Each earring presents one uninterrupted arch, outer edges crisp high-polish, inner surfaces softly brushed. A luminous medium-blue sapphire sits low in a full bezel (0.9 mm wall, 0.25 mm seat). Evenly stepped baguette diamonds, channel-set (0.8 mm walls), rise without breaking the arch. Arch ribbon 1.8–2.0 mm; inner corners eased. 28 mm drop from hinge to tip, balanced to the face and light on the lobe. Low-profile platinum lever-back with hidden latch keeps the arch centered. Three-quarter pair view, mirrored left/right; macro jewelry photo on an achromatic studio background; photoreal finish with soft 5000K diffusion, controlled speculars, no props. Luxury reads through sapphire quality, precision fit, and platinum integrity. Avoid: spiky extremes that snag evening fabrics, drops beyond 35 mm, sapphires so dark they read black in low light, mixing yellow or rose gold, busy filigree scrolls, bling slang or hype copy, rainbow gem mixing, bridal or engagement cues, heart shapes.",
+   "versions": [
+    {
+     "url": "/samples/f7a23bc2ec711963497be690.png",
+     "hash": "f7a23bc2ec711963497be690",
+     "prompt": "귀걸이 original design: A pair of Arcade Poise drops translating the single clean arch motif in platinum 950. Each earring presents one uninterrupted arch, outer edges crisp high-polish, inner surfaces softly brushed. A luminous medium-blue sapphire sits low in a full bezel (0.9 mm wall, 0.25 mm seat). Evenly stepped baguette diamonds, channel-set (0.8 mm walls), rise without breaking the arch. Arch ribbon 1.8–2.0 mm; inner corners eased. 28 mm drop from hinge to tip, balanced to the face and light on the lobe. Low-profile platinum lever-back with hidden latch keeps the arch centered. Three-quarter pair view, mirrored left/right; macro jewelry photo on an achromatic studio background; photoreal finish with soft 5000K diffusion, controlled speculars, no props. Luxury reads through sapphire quality, precision fit, and platinum integrity. Avoid: spiky extremes that snag evening fabrics, drops beyond 35 mm, sapphires so dark they read black in low light, mixing yellow or rose gold, busy filigree scrolls, bling slang or hype copy, rainbow gem mixing, bridal or engagement cues, heart shapes.",
+     "at": "2026-08-26T23:49:12.460Z"
+    }
+   ],
+   "feature": "A single, uninterrupted platinum arch cradles a low-bezel sapphire, with even channel-set baguette steps that never break the contour."
+  },
+  {
+   "id": "D07",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "Tracery Flux",
+   "item": "pendant",
+   "title": "Tracery Flux · 펜던트",
+   "prompt": "펜던트 - Tracery Flux master motif for the neck. A lancet-profile openwork pendant with >=50% negative space; crisp edges eased by 0.2 mm micro-bevels at skin contact. Hand-fitted calibre-cut blue sapphires form a deliberate gradient - ice at the base to midnight at the apex - channel-set into a 1.1-1.3 mm platinum frame and ribs; no visible prongs, screws, or fasteners. Internal ribs subtly shift while the outer lancet stays legible. Hidden dual rear bails and a slim concealed hinge give a breath-like swing and prevent chain rotation; a rear balance gallery holds the face upright. Mirror-polished arrises with soft satin inside the tracery add depth without visual heaviness, supporting GBP 5,000+ craftsmanship. Manufacturable build: 0.8 mm stone seats, 0.9 mm minimum web. Three-quarter product view, neutral monochrome studio background, macro jewelry photography, photoreal finish. Avoid: overtly mechanical aesthetics, exposed screws, techno jargon, sharp catch points, non-blue color pops, enamel or lacquer, heavy oxidation, neon lighting themes, spikes or claws.",
+   "versions": [
+    {
+     "url": "/samples/fdae9c7c09d324359753da34.png",
+     "hash": "fdae9c7c09d324359753da34",
+     "prompt": "펜던트 - Tracery Flux master motif for the neck. A lancet-profile openwork pendant with >=50% negative space; crisp edges eased by 0.2 mm micro-bevels at skin contact. Hand-fitted calibre-cut blue sapphires form a deliberate gradient - ice at the base to midnight at the apex - channel-set into a 1.1-1.3 mm platinum frame and ribs; no visible prongs, screws, or fasteners. Internal ribs subtly shift while the outer lancet stays legible. Hidden dual rear bails and a slim concealed hinge give a breath-like swing and prevent chain rotation; a rear balance gallery holds the face upright. Mirror-polished arrises with soft satin inside the tracery add depth without visual heaviness, supporting GBP 5,000+ craftsmanship. Manufacturable build: 0.8 mm stone seats, 0.9 mm minimum web. Three-quarter product view, neutral monochrome studio background, macro jewelry photography, photoreal finish. Avoid: overtly mechanical aesthetics, exposed screws, techno jargon, sharp catch points, non-blue color pops, enamel or lacquer, heavy oxidation, neon lighting themes, spikes or claws.",
+     "at": "2026-08-26T23:50:28.266Z"
+    }
+   ],
+   "feature": "Lancet-profile openwork pendant featuring a light-to-dark blue calibre-cut sapphire gradient, hidden dual-bail anti-roll gallery, and micro-beveled platinum edges that allow gentle, breath-like articulation."
+  },
+  {
+   "id": "D08",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "Tracery Flux",
+   "item": "ring",
+   "title": "Tracery Flux · 반지",
+   "prompt": "RING - original design declaration: Tracery Flux distilled into a wearable lancet. Preserve a crisp outer lancet silhouette while internal open ribs appear to breathe with a barely perceptible swing. 950 platinum in cool white; mirror-polished display planes, soft satin inner surfaces, all skin-contact edges eased with 0.2 mm micro-bevels. Color lives only in hand-cut calibre blue sapphires, graded from pale ice near the shank to deep midnight at the apex; channel set on concealed bridges, 0.8–1.0 mm seats, no visible fasteners. Openwork is 60% negative space. Structural band 2.0 mm thick; ribs 1.2–1.4 mm; head about 18 x 10 mm. A concealed under-gallery weight and comfort-fit oval keep the ring upright; a hidden hinge within the gallery allows a silent, sub-millimeter sway of the inner ribs. Photoreal macro jewelry photograph, three-quarter view at 45 deg, neutral grey studio background, softbox highlights, high resolution, focus-stacked realism. Avoid: exposed screws or mechanical tropes, techno jargon, snagging points, any non-blue color pops, enamel/lacquer, heavy oxidation, neon lighting, spikes or claws.",
+   "versions": [
+    {
+     "url": "/samples/6bc36422837febdfc6515712.png",
+     "hash": "6bc36422837febdfc6515712",
+     "prompt": "RING - original design declaration: Tracery Flux distilled into a wearable lancet. Preserve a crisp outer lancet silhouette while internal open ribs appear to breathe with a barely perceptible swing. 950 platinum in cool white; mirror-polished display planes, soft satin inner surfaces, all skin-contact edges eased with 0.2 mm micro-bevels. Color lives only in hand-cut calibre blue sapphires, graded from pale ice near the shank to deep midnight at the apex; channel set on concealed bridges, 0.8–1.0 mm seats, no visible fasteners. Openwork is 60% negative space. Structural band 2.0 mm thick; ribs 1.2–1.4 mm; head about 18 x 10 mm. A concealed under-gallery weight and comfort-fit oval keep the ring upright; a hidden hinge within the gallery allows a silent, sub-millimeter sway of the inner ribs. Photoreal macro jewelry photograph, three-quarter view at 45 deg, neutral grey studio background, softbox highlights, high resolution, focus-stacked realism. Avoid: exposed screws or mechanical tropes, techno jargon, snagging points, any non-blue color pops, enamel/lacquer, heavy oxidation, neon lighting, spikes or claws.",
+     "at": "2026-08-26T23:50:59.909Z"
+    }
+   ],
+   "feature": "Platinum lancet silhouette with breathing openwork ribs and a shank-to-apex blue sapphire gradient, stabilized by a concealed under-gallery weight and softened micro-bevels."
+  },
+  {
+   "id": "D09",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "Tracery Flux",
+   "item": "earrings",
+   "title": "Tracery Flux · 귀걸이",
+   "prompt": "귀걸이: original design for Tracery Flux, preserving the lancet master motif, cool-white metal, micro-beveled surfaces, and an all-blue calibre-sapphire rule. A legible outer lancet frames shifting internal ribs; negative space occupies at least 55% of the field. Color grades deliberately from pale ice at the lobe/base to deep navy at the apex. 950 platinum polished with 0.15 mm skin-side bevels; structural walls min 1.1-1.2 mm. Hand-cut calibre sapphires (1.3-1.8 mm tall) are channel-set into low shared rails; seat depth 0.35 mm; construction hidden; calibre craft justifies luxury without heaviness. A concealed micro link behind the stud allows a 5-7 degrees swing so movement reads as breath. Rear galleries and a counterweight keep the form upright. 40 mm drop, 11 mm wide, <6 g each; 0.9 mm post with hidden omega guard, no fasteners visible on display sides. Three-quarter product view on a monochrome studio background, macro jewelry photo, photoreal finish with diffused light. Avoid: mechanical looks, exposed screws, techno jargon, snagging points, non-blue pops, enamel/lacquer, heavy oxidation, neon lighting, spikes/claws.",
+   "versions": [
+    {
+     "url": "/samples/ac0ccbfc94f679e9f5ed9f0f.png",
+     "hash": "ac0ccbfc94f679e9f5ed9f0f",
+     "prompt": "귀걸이: original design for Tracery Flux, preserving the lancet master motif, cool-white metal, micro-beveled surfaces, and an all-blue calibre-sapphire rule. A legible outer lancet frames shifting internal ribs; negative space occupies at least 55% of the field. Color grades deliberately from pale ice at the lobe/base to deep navy at the apex. 950 platinum polished with 0.15 mm skin-side bevels; structural walls min 1.1-1.2 mm. Hand-cut calibre sapphires (1.3-1.8 mm tall) are channel-set into low shared rails; seat depth 0.35 mm; construction hidden; calibre craft justifies luxury without heaviness. A concealed micro link behind the stud allows a 5-7 degrees swing so movement reads as breath. Rear galleries and a counterweight keep the form upright. 40 mm drop, 11 mm wide, <6 g each; 0.9 mm post with hidden omega guard, no fasteners visible on display sides. Three-quarter product view on a monochrome studio background, macro jewelry photo, photoreal finish with diffused light. Avoid: mechanical looks, exposed screws, techno jargon, snagging points, non-blue pops, enamel/lacquer, heavy oxidation, neon lighting, spikes/claws.",
+     "at": "2026-08-26T23:51:39.527Z"
+    }
+   ],
+   "feature": "A legible lancet silhouette with at least 50% negative space and a light-to-dark blue calibre-sapphire gradient, balanced to breathe via hidden articulation with no visible fasteners."
+  }
+ ],
+ "searches": 19,
+ "finished": true,
+ "insight": {
+  "meaning": "A platinum and sapphire pendant that draws from the Victorian era’s pointed-arch language signals verticality, devotion to craft, and an evening formality that suits black tie and gala contexts above £5,000. The pointed arch was the emblematic profile of medieval Gothic later revived across 19th century Britain and Europe during the Gothic Revival, so using it as a silhouette or tracery cue immediately codes heritage and elevation in European taste, especially when translated into refined platinum openwork. ([historicengland.org.uk](https://historicengland.org.uk/research/inclusive-heritage/womens-history/glossary/a-z/712196/?showdetails=y&utm_source=openai))",
+  "cultural": "Europe overall. Pointed arches and tracery are pan‑European church forms that communicate awe, light and ascent, widely revived in 19th century architecture and decorative arts. Framing a deep blue sapphire in platinum evokes this shared visual memory without relying on explicit religious symbols. ([historicengland.org.uk](https://historicengland.org.uk/research/inclusive-heritage/womens-history/glossary/a-z/712196/?showdetails=y&utm_source=openai)) United Kingdom. Sapphires are strongly tied to monarchy via the Imperial State Crown, which carries St Edward’s Sapphire, reinforcing readings of royal blue and continuity. For evening dress norms, fine jewellery is appropriate with black tie although tiaras are reserved for white tie or state contexts. ([rct.uk](https://www.rct.uk/collection/stories/the-crown-jewels/the-imperial-state-crown?utm_source=openai)) France. The cultural imagination of stained glass blue is anchored by Chartres where the celebrated Bleu de Chartres embodies luminous cobalt depth; pairing a sapphire with platinum can allude to that nocturne‑light palette. Napoleon’s court also cemented sapphire romance through the diamond and sapphire engagement ring given to Joséphine. ([cathedrale-chartres.org](https://www.cathedrale-chartres.org/visite/decouvrir/la-cathedrale/?utm_source=openai)) Sweden. The Leuchtenberg sapphire parure, originating from Joséphine’s family line, remains an official royal set in regular ceremonial use, keeping sapphires central in Scandinavian court dress. ([kungahuset.se](https://www.kungahuset.se/kungligt-kulturarv/smycken?utm_source=openai))",
+  "background": "Gothic Revival during the Victorian era, led by figures such as A W N Pugin and advocated by John Ruskin, revalued medieval craft and forms including pointed arches, lancets and complex window tracery; stained glass experienced a technical and artistic revival. Jewellery designers of the period occasionally adopted Gothic motifs. ([riba.org](https://www.riba.org/explore/riba-collections/architectural-styles/gothic-revival-movement/?utm_source=openai)) The pointed arch and lancet window are core Gothic profiles that drive a vertical gaze and admit light, while tracery adds rhythmic geometry of trefoils and quatrefoils. ([heritagecalling.com](https://heritagecalling.com/2022/05/05/what-is-gothic-architecture/?utm_source=openai)) Platinum entered European high jewellery at scale only in the late Victorian to Edwardian years, once high‑temperature torches made the metal workable; by the 1900s Cartier and others were crafting delicate platinum mountings that defined Belle Époque and Edwardian taste. ([gia.edu](https://www.gia.edu/doc/FA93.pdf?utm_source=openai)) Sapphires in European lore symbolize nobility, truth and faithfulness, long worn by royalty and clergy, and remain the archetypal royal blue gem in public consciousness. ([gia.edu](https://www.gia.edu/articles/sapphire-history-lore))",
+  "symbols": [
+   "Pointed arch as ascent and aspiration within a sacred or ceremonial visual vocabulary. ([historicengland.org.uk](https://historicengland.org.uk/research/inclusive-heritage/womens-history/glossary/a-z/712196/?showdetails=y&utm_source=openai))",
+   "Lancet window as purity of line and illumination. ([english-heritage.org.uk](https://www.english-heritage.org.uk/learn/story-of-england/medieval/architecture/?utm_source=openai))",
+   "Tracery trefoil for the Christian Trinity where appropriate, quatrefoil for ordered harmony in Gothic decoration. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Trefoil?utm_source=openai))",
+   "Sapphire as royalty, loyalty, sincerity and protection in historic lore. ([gia.edu](https://www.gia.edu/articles/sapphire-history-lore))",
+   "Platinum as modern lightness and strength championed in Edwardian high jewellery. ([gia.edu](https://www.gia.edu/gems-gemology/fall-1993-edwardian-jewels-misiorowski?utm_source=openai))"
+  ],
+  "emotions": [
+   "Awe and uplift",
+   "Quiet majesty",
+   "Fidelity and devotion",
+   "Night‑sky calm",
+   "Refined glamour suitable for evening"
+  ],
+  "colors": [
+   "Royal blue to cobalt inspired by Chartres blue stained glass",
+   "Platinum white to cool silver light",
+   "Optional midnight navy enamel accents for depth",
+   "Diamond white highlights to echo window tracery sparkle. ([cathedrale-chartres.org](https://www.cathedrale-chartres.org/visite/decouvrir/la-cathedrale/?utm_source=openai))"
+  ],
+  "materials": [
+   "Platinum Pt950 for strength and a naturally white, untarnishing setting aligned with European hallmarking norms. ([hallmarkingconvention.org](https://hallmarkingconvention.org/en/about-how-is-the-convention-working?utm_source=openai))",
+   "Blue sapphire center stone, faceted or cabochon depending on the mood; European royal precedents include major crown and parure sapphires. ([rct.uk](https://www.rct.uk/collection/stories/the-crown-jewels/the-imperial-state-crown?utm_source=openai))",
+   "Diamond accents in old‑cut or modern brilliant to read as star‑points in tracery",
+   "Optional vitreous enamel in deep blue to reference stained glass without literal pictorial scenes. ([vam.ac.uk](https://www.vam.ac.uk/articles/stained-glass-gothic-revival-and-beyond?utm_source=openai))"
+  ],
+  "forms": [
+   "Primary silhouette in a tall lancet or equilateral pointed arch; consider an ogee variant for late Gothic inflection. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Lancet_window?utm_source=openai))",
+   "Openwork window‑like fields using bar tracery, with trefoil or quatrefoil piercings that remain abstract at jewel scale. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Tracery?utm_source=openai))",
+   "Elongated navette or drop framing to echo vertical rise; a single sapphire drop can read as a pendant boss within an arch",
+   "Pinnacle or finial‑like peak at the apex kept minimal to avoid literal spire quoting",
+   "Micro‑millegrain edges to allude to carved stone mouldings in a wearable scale typical of Edwardian platinum work. ([gia.edu](https://www.gia.edu/gems-gemology/fall-1993-edwardian-jewels-misiorowski?utm_source=openai))"
+  ],
+  "motion": [
+   "Upward pull created by the arch profile and taper that guides the eye from neckline to apex. ([historicengland.org.uk](https://historicengland.org.uk/research/inclusive-heritage/womens-history/glossary/a-z/712196/?showdetails=y&utm_source=openai))",
+   "Rhythmic repetition of small cusps or foils to suggest tracery cadence",
+   "Gentle swing of a sapphire briolette or drop for living sparkle over evening fabrics",
+   "Light play through open platinum lattice echoing the light‑through‑glass idea without glass fragility. ([vam.ac.uk](https://www.vam.ac.uk/articles/stained-glass-gothic-revival-and-beyond?utm_source=openai))"
+  ],
+  "cliches": [
+   "Overt cruciform or literal cathedral façade pendants that shift the object from architecture‑inspired to devotional object",
+   "Gothic‑as‑Halloween tropes like skulls or dripping black enamel that read as subculture rather than Victorian Revival luxury",
+   "Over‑busy tracery that sacrifices negative space and risks snagging on evening fabrics",
+   "Copying exact royal parures or brand‑signature forms rather than creating an original vocabulary from shared sources"
+  ],
+  "cautions": [
+   "In Europe the UK and many Convention states require correct hallmarking for platinum articles; Pt950 marks and any Common Control Mark should be used as applicable. Plan hallmark placement so it does not intrude on the arch motif. ([gov.uk](https://www.gov.uk/government/publications/hallmarking-guidance-notes/hallmarking-is-the-law-guidance-summary?utm_source=openai))",
+   "Be sensitive to sacred connotations. Trefoil or arch references should remain abstract so the jewel is architectural rather than devotional in Catholic or Protestant contexts across Europe. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Trefoil?utm_source=openai))",
+   "For UK black tie contexts fine jewellery is appropriate but tiaras are not for guests; design expressive but not ceremonial regalia. ([debretts.com](https://debretts.com/etiquette-category/events-and-dress-codes/?utm_source=openai))",
+   "Avoid Victorian mourning cues if the intent is celebratory evening wear, for example extensive black jet effects or hairwork associations. ([whitbymuseum.org.uk](https://whitbymuseum.org.uk/collection/jet-and-jet-jewellery/?utm_source=openai))"
+  ],
+  "abstraction": [
+   {
+    "axis": "Symbol",
+    "notes": [
+     "Ascent",
+     "Window to light",
+     "Crown‑adjacent prestige",
+     "Constellation sparkle"
+    ]
+   },
+   {
+    "axis": "Emotion",
+    "notes": [
+     "Uplift",
+     "Serene confidence",
+     "Romance",
+     "Reverence without piety"
+    ]
+   },
+   {
+    "axis": "Form",
+    "notes": [
+     "Lancet outline",
+     "Trefoil or quatrefoil piercings",
+     "Finial apex",
+     "Navette drop"
+    ]
+   },
+   {
+    "axis": "Motion",
+    "notes": [
+     "Vertical glide",
+     "Pulsing cusp rhythm",
+     "Pendant swing",
+     "Light flicker through lattice"
+    ]
+   },
+   {
+    "axis": "Structure",
+    "notes": [
+     "Pt950 skeleton",
+     "Bar‑tracery ribs",
+     "Hidden gallery bars",
+     "Balanced center of gravity"
+    ]
+   },
+   {
+    "axis": "Surface",
+    "notes": [
+     "High‑polish platinum flanks",
+     "Millegrain borders",
+     "Knife‑edge ribs",
+     "Micro‑pavé stars"
+    ]
+   },
+   {
+    "axis": "Material",
+    "notes": [
+     "Unheated or fine sapphire focus",
+     "Colorless diamond accents",
+     "Optional blue enamel fields",
+     "Platinum only or platinum over gold for warmth contrast"
+    ]
+   },
+   {
+    "axis": "Color",
+    "notes": [
+     "Royal blue to Chartres blue",
+     "Moonlit white metals",
+     "Occasional midnight navy enamel",
+     "Diamond white scintillation"
+    ]
+   },
+   {
+    "axis": "Rhythm",
+    "notes": [
+     "One tall arch as cantus firmus",
+     "Repeating foils as counterpoint",
+     "Peak accent as cadence",
+     "Even spacing for calm"
+    ]
+   },
+   {
+    "axis": "Story",
+    "notes": [
+     "Victorian Revival architecture recast as jewellery",
+     "Moonlight on stone and glass",
+     "Royal blue reinterpreted for modern gala",
+     "Historic craft made light and wearable"
+    ]
+   }
+  ],
+  "sources": [
+   "Historic England on Gothic features and the term Gothic Revival; RIBA overview of the Gothic Revival movement. ([historicengland.org.uk](https://historicengland.org.uk/research/inclusive-heritage/womens-history/glossary/a-z/712196/?showdetails=y&utm_source=openai))",
+   "English Heritage on lancet windows and medieval Gothic vocabulary. ([english-heritage.org.uk](https://www.english-heritage.org.uk/learn/story-of-england/medieval/architecture/?utm_source=openai))",
+   "V&A on stained glass revival in the 19th century. ([vam.ac.uk](https://www.vam.ac.uk/articles/stained-glass-gothic-revival-and-beyond?utm_source=openai))",
+   "Royal Collection Trust and Historic Royal Palaces on St Edward’s Sapphire and the Imperial State Crown. ([rct.uk](https://www.rct.uk/collection/stories/the-crown-jewels/the-imperial-state-crown?utm_source=openai))",
+   "Chartres Cathedral resources on Bleu de Chartres. ([cathedrale-chartres.org](https://www.cathedrale-chartres.org/visite/decouvrir/la-cathedrale/?utm_source=openai))",
+   "GIA on sapphire history and symbolism. ([gia.edu](https://www.gia.edu/articles/sapphire-history-lore))",
+   "GIA Gems and Gemology on platinum’s late 19th to early 20th century adoption in Edwardian jewellery. ([gia.edu](https://www.gia.edu/doc/FA93.pdf?utm_source=openai))",
+   "Hallmarking authorities on Pt950 and the Common Control Mark in Europe and the UK. ([hallmarkingconvention.org](https://hallmarkingconvention.org/en/about-how-is-the-convention-working?utm_source=openai))",
+   "Swedish Royal Court on royal jewellery including the Leuchtenberg sapphires. ([kungahuset.se](https://www.kungahuset.se/kungligt-kulturarv/smycken?utm_source=openai))",
+   "Trefoil and tracery references for symbolic and formal cues. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Trefoil?utm_source=openai))",
+   "Debrett’s on evening dress norms. ([debretts.com](https://debretts.com/etiquette-category/events-and-dress-codes/?utm_source=openai))",
+   "Whitby Museum on Victorian jet and mourning jewellery as a cautionary contrast. ([whitbymuseum.org.uk](https://whitbymuseum.org.uk/collection/jet-and-jet-jewellery/?utm_source=openai))"
+  ],
+  "searches": 19,
+  "cached": false
+ },
+ "sets": [
+  {
+   "name": "Lancet Nocturne",
+   "kind": "Flagship",
+   "concept": "An iconic evening set that sculpts the Victorian pointed arch in platinum and lights it with vivid blue sapphires.",
+   "story": "The design abstracts lancet windows into slender ribs that collect and release light. A central oval sapphire appears to hover inside the arch while a ribbon of calibre cut sapphires traces the ascent to the apex. Fine milgrain recalls hand carved masonry and broad mirror planes answer ballroom lighting. Conceived as a hero pendant with matching ring and earrings, the set sits above five thousand pounds through gem quality and artisanal cutting.",
+   "palette": [
+    "midnight sapphire blue",
+    "cornflower blue",
+    "cool platinum white",
+    "icy diamond white",
+    "charcoal shadow"
+   ],
+   "metal": "950 platinum in cool white",
+   "surface": "Mirror polish on exterior ribs, micro satin within the vault, fine milgrain along structural edges",
+   "stones": "Natural blue sapphires as central ovals or cushions plus calibre cut sapphire baguettes that follow the arch and round brilliant diamond accents in F to G color and VS clarity. Pendant center 2.5~4.0 ct, ring center 1.5~2.0 ct, earring centers 0.9~1.2 ct each, diamond accents 0.25~0.70 tcw.",
+   "silhouette": "Elongated pointed arch with a slender apex and open spandrels; height to width about 2.6 to 1",
+   "motif": "Ribbed lancet arch enclosing a floating sapphire",
+   "rhythm": "Vertical axial symmetry with a triple band rhythm outer border plus polished rib plus sapphire track, evenly spaced from springing points to apex",
+   "structure": "Cathedral undergallery supports a four claw cradle with talon tips. Calibre sapphire channel is undercut to read as a continuous ribbon. Pendant bail hides behind the apex. Ring shoulders rise as twin ribs. Earrings hang from lever back hooks with a miniature hinge so the arch stays upright. Posts, hinges, and clasps are platinum for secure evening wear.",
+   "avoid": [
+    "princess or queen slogans",
+    "tiara references",
+    "bridal messaging",
+    "bling or flashy hype",
+    "overly ornate filigree that obscures structure",
+    "hearts or bows",
+    "vampire or dark gothic tropes",
+    "blackened heavy plating",
+    "rose gold mixing",
+    "overly wide silhouettes that fight an evening neckline"
+   ],
+   "design_dna": [
+    "Every piece frames a single feature sapphire inside a precise lancet outline that remains readable at a distance.",
+    "Calibre sapphires must form an unbroken arc from each springing point to the apex.",
+    "Edges carry a fine milgrain bead that is crisp yet never coarse.",
+    "Spandrels remain open to reduce weight and to project shadow patterns.",
+    "Overall proportions sit between 2.4 and 2.8 to 1 in height to width and the arch apex must stay sharp but touch safe.",
+    "Bails, galleries, and mechanisms are visually hidden so the outline remains pure.",
+    "Fit is paramount with a comfort inner court on the ring and balanced ear mechanics for long wear during evening events.",
+    "Pricing above five thousand pounds is achieved through center stone quality, calibre cutting, and hand finishing rather than sheer mass."
+   ],
+   "concept_art": {
+    "form": "Tall lancet framed by layered ribs with a hovering oval core and open spandrels",
+    "motion": "Light climbs the arch from base to apex creating a quiet upward pull",
+    "material": "Platinum mirror planes contrasted with micro satin hollows and a river of deep blue glass like sapphire",
+    "atmosphere": "Ballroom darkness with crisp architectural shadows and discreet sparkle"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/56eca76261dfcd3b2ddb44f3.png",
+     "hash": "56eca76261dfcd3b2ddb44f3"
+    },
+    "motion": {
+     "url": "/samples/51c00c0845af9d36faba1d84.png",
+     "hash": "51c00c0845af9d36faba1d84"
+    },
+    "material": {
+     "url": "/samples/bcf02464d7cc6b202bfdf14c.png",
+     "hash": "bcf02464d7cc6b202bfdf14c"
+    },
+    "atmosphere": {
+     "url": "/samples/aaa88295a3b69119e0cd0103.png",
+     "hash": "aaa88295a3b69119e0cd0103"
+    }
+   },
+   "lineup": {
+    "url": "/samples/f9ca007e097ce7011dc8f853.png",
+    "hash": "f9ca007e097ce7011dc8f853"
+   }
+  },
+  {
+   "name": "Arcade Poise",
+   "kind": "Commercial",
+   "concept": "A refined pointed arcade translated into streamlined platinum volumes and luminous sapphires for effortless evening wear.",
+   "story": "The silhouette softens the lancet into welcoming curves that flatter the neckline and hand. A low bezel sapphire anchors each piece while petite sapphire baguettes ascend the arch in measured steps. Interior surfaces are quietly brushed to temper reflections and to hide daily contact marks. Scaled for European wardrobes, the pieces hold a price above five thousand pounds through stone grade and craftsmanship.",
+   "palette": [
+    "navy to cornflower sapphire gradient",
+    "cool platinum white",
+    "soft grey satin",
+    "diamond white accents"
+   ],
+   "metal": "950 platinum in cool white with restrained mass",
+   "surface": "Full high polish on exterior contours, soft brush inside the vault, crisp chamfers for definition",
+   "stones": "Blue sapphires in pear or oval centers held in low bezels, straight baguette calibre sapphires stepping along the arch, optional tiny round diamonds in G to VS used as discreet markers at the springing points. Pendant 1.2~1.8 ct, ring 1.0~1.5 ct, each earring 0.7~1.0 ct, diamonds 0.05~0.15 tcw.",
+   "silhouette": "Compact pointed arch with a softened apex; height to width about 2.3 to 1",
+   "motif": "Single arcade with a quiet keystone emphasis at the apex",
+   "rhythm": "Bilateral symmetry with sequences of three or five baguettes on each side spaced evenly by thin platinum ribs",
+   "structure": "Low dome bezels sit within a shallow cathedral frame for snag free wear. Baguettes are channel set with open backs for light. The pendant uses a hidden bail behind the crown. The ring uses low shoulders that hug the bezel and a comfort inner band. The earrings use omega backs for lobe support and friction posts with large disks to distribute weight.",
+   "avoid": [
+    "spiky extremes that snag evening fabrics",
+    "oversized drops beyond 35 millimeters",
+    "sapphires so dark they read black in low light",
+    "mixing yellow or rose gold",
+    "busy filigree scrolls",
+    "bling slang or hype copy",
+    "rainbow gem mixing",
+    "bridal or engagement cues",
+    "heart shapes"
+   ],
+   "design_dna": [
+    "One clean arch per piece defines identity and avoids clutter.",
+    "Center stones sit low in bezels to maximize comfort under evening wraps and scarves.",
+    "Baguette accents rise in even steps that never break the arch contour.",
+    "Inner surfaces receive a soft brush while outer edges remain crisp and reflective.",
+    "Chain length is adjustable around 45 centimeters with a discreet slider that keeps the pendant centered.",
+    "Ring shank is an oval comfort profile around 2 to 2.3 millimeters for easy wear.",
+    "Earring drops hover in the 26 to 30 millimeter band for balance and poise.",
+    "Luxury value is expressed through sapphire quality, precision fitting, and platinum integrity rather than overt size."
+   ],
+   "concept_art": {
+    "form": "Rounded lancet arcade with an oval void nested low and a gentle keystone accent",
+    "motion": "Even step rhythm that climbs toward the apex in calm progression",
+    "material": "Platinum surfaces that alternate between bright polish and velvety brush with crisp reflections in cool blue light",
+    "atmosphere": "Poised, quiet, and urbane with a sense of order and comfort"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/333d72e5a20991976d617006.png",
+     "hash": "333d72e5a20991976d617006"
+    },
+    "motion": {
+     "url": "/samples/293178d2ac92aa1554efec12.png",
+     "hash": "293178d2ac92aa1554efec12"
+    },
+    "material": {
+     "url": "/samples/2aef7f8000061185903f3f16.png",
+     "hash": "2aef7f8000061185903f3f16"
+    },
+    "atmosphere": {
+     "url": "/samples/6cfcb9c26c138e575865a520.png",
+     "hash": "6cfcb9c26c138e575865a520"
+    }
+   },
+   "lineup": {
+    "url": "/samples/a6a40eb9230625942cc5663b.png",
+    "hash": "a6a40eb9230625942cc5663b"
+   }
+  },
+  {
+   "name": "Tracery Flux",
+   "kind": "Experimental",
+   "concept": "A deconstructed pointed arch where platinum ribs slide past each other and sapphires stream in a graded current.",
+   "story": "Victorian tracery is recast as movement and light rather than ornament. Three offset ribs define a lancet boundary while calibre sapphires flow from pale to deep blue along a sinuous corridor. Micro articulation in the pendant and earrings produces a slow tilt that breathes with the wearer without noise. High complexity cutting and hidden engineering support a price above five thousand pounds while keeping the pieces unexpectedly light.",
+   "palette": [
+    "sky to midnight sapphire gradient",
+    "cool platinum white",
+    "graphite shadow",
+    "crisp diamond glints"
+   ],
+   "metal": "950 platinum with alternating mirror planes and vapor blasted micro matte for strong contrast",
+   "surface": "Alternating mirror and micro matte panels, knife edge arrises with tiny safety bevels, skeletonized inner walls to reduce mass",
+   "stones": "Calibre cut blue sapphires in tapered baguette and kite forms graded from light to dark, discreet round diamonds as pivot points that read as sparks.",
+   "silhouette": "Lancet boundary built from three offset ribs with generous negative space; height to width around 2.7 to 1",
+   "motif": "Split arch with a flowing sapphire vein",
+   "rhythm": "Asymmetry inside a symmetrical boundary; gradient direction runs from base toward apex with rib offsets that increase in small steps",
+   "structure": "Ribs interlock through hidden tongue and groove joints with press fitted platinum pins concealed under sapphires. The pendant uses a concealed swivel bail for natural facing. The ring employs a saddle shaped under gallery that centers weight and keeps the arch vertical. Earrings use two stage articulation with a latch back for security. Undersides are open for light and to aerate the structure.",
+   "avoid": [
+    "overtly mechanical aesthetics with exposed screws",
+    "techno jargon in messaging",
+    "sharp points that can catch on fabrics",
+    "color pops outside blue that dilute the concept",
+    "enamel or lacquer overlays",
+    "heavy oxidation",
+    "neon lighting themes",
+    "aggressive spikes or claws"
+   ],
+   "design_dna": [
+    "The outer lancet profile must remain legible even as internal ribs shift.",
+    "Color flows along a deliberate gradient from light near the base to dark near the apex.",
+    "Articulation is present but limited to a gentle swing so movement reads as breath rather than jitter.",
+    "Engineering is hidden and fasteners are never visible on display sides.",
+    "Edges are crisp yet softened with tiny bevels wherever skin contacts metal.",
+    "Negative space functions as a material in itself and should be at least half of the visual field.",
+    "Balance weights or galleries keep the pieces upright during wear despite open construction.",
+    "Craft measures and hand cut calibre stones justify luxury pricing above five thousand pounds without visual heaviness."
+   ],
+   "concept_art": {
+    "form": "Split lancet built from interlacing ribs with a central flowing corridor",
+    "motion": "Slow shear and upward tidal flow that suggests breath and ascent",
+    "material": "Platinum planes alternating mirror and micro matte alongside translucent blue glass gradient with tiny white sparks",
+    "atmosphere": "Contemporary hush inside an old stone nave at night with quiet kinetic energy"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/b425187a9967c61dd611e858.png",
+     "hash": "b425187a9967c61dd611e858"
+    },
+    "motion": {
+     "url": "/samples/4a0a9c6748988ddf60d928a0.png",
+     "hash": "4a0a9c6748988ddf60d928a0"
+    },
+    "material": {
+     "url": "/samples/2ad96368538c27137dbdea9c.png",
+     "hash": "2ad96368538c27137dbdea9c"
+    },
+    "atmosphere": {
+     "url": "/samples/efb635a12e688c96df96fa2d.png",
+     "hash": "efb635a12e688c96df96fa2d"
+    }
+   },
+   "lineup": {
+    "url": "/samples/47d93aebb7bfb71b9178e94f.png",
+    "hash": "47d93aebb7bfb71b9178e94f"
+   }
+  }
+ ],
+ "sample": true,
+ "sampleTitle": "Eleanor Wright (United Kingdom) · collection",
+ "savedAtISO": "2026-08-26T23:51:39.528Z"
+}

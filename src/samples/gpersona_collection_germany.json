@@ -1,0 +1,656 @@
+{
+ "algo": 2,
+ "params": {
+  "algo": 2,
+  "mode": "collection",
+  "countries": [
+   "Europe"
+  ],
+  "analysisLang": "en",
+  "direction": "바우하우스 철학을 반영하여 티타늄과 무광 스틸을 사용한 직선적이고 미니멀한 형태의 펜던트. 스마트캐주얼 룩에 어울리며 €150 주변의 합리적 가격.",
+  "itemType": "pendant",
+  "items": [
+   "pendant",
+   "ring",
+   "bracelet"
+  ],
+  "designCount": 6,
+  "setCount": 3,
+  "target": {
+   "ages": [
+    "30-34",
+    "35-39"
+   ],
+   "gender": "unisex"
+  },
+  "competitors": [],
+  "imageEngine": "fast"
+ },
+ "stageStatus": {
+  "S1": "done",
+  "S2": "done",
+  "S3": "done",
+  "S4": "done",
+  "S5": "done"
+ },
+ "logs": [
+  {
+   "stage": "S1",
+   "text": "Researching the keyword in Europe: culture, symbols, forms, colors, and the cliches to avoid",
+   "t": 1787766839136
+  },
+  {
+   "stage": "S1",
+   "text": "Insight ready · 10 abstraction axes, 4 cautions",
+   "t": 1787767094121
+  },
+  {
+   "stage": "S2",
+   "text": "3 set concept(s): Planar Grid / Module Fold / Axis Drift",
+   "t": 1787767194355
+  },
+  {
+   "stage": "S3",
+   "text": "Abstract concept images first, with no jewelry products yet, then one lineup image per set",
+   "t": 1787767194355
+  },
+  {
+   "stage": "S3",
+   "text": "Module Fold: 4/4 concept images + lineup",
+   "t": 1787767336957
+  },
+  {
+   "stage": "S3",
+   "text": "Planar Grid: 4/4 concept images + lineup",
+   "t": 1787767338070
+  },
+  {
+   "stage": "S3",
+   "text": "Axis Drift: 4/4 concept images + lineup",
+   "t": 1787767484364
+  },
+  {
+   "stage": "S4",
+   "text": "9 designs = 3 set(s) × 3 item(s) · the set DNA stays locked, only the item changes",
+   "t": 1787767484365
+  },
+  {
+   "stage": "S5",
+   "text": "D02 generated (Planar Grid · ring)",
+   "t": 1787767574849
+  },
+  {
+   "stage": "S5",
+   "text": "D01 generated (Planar Grid · pendant)",
+   "t": 1787767582726
+  },
+  {
+   "stage": "S5",
+   "text": "D04 generated (Module Fold · pendant)",
+   "t": 1787767657447
+  },
+  {
+   "stage": "S5",
+   "text": "D05 generated (Module Fold · ring)",
+   "t": 1787783461852
+  },
+  {
+   "stage": "S5",
+   "text": "D03 generated (Planar Grid · bracelet)",
+   "t": 1787783466788
+  },
+  {
+   "stage": "S5",
+   "text": "D06 generated (Module Fold · bracelet)",
+   "t": 1787783497983
+  },
+  {
+   "stage": "S5",
+   "text": "D08 generated (Axis Drift · ring)",
+   "t": 1787783542510
+  },
+  {
+   "stage": "S5",
+   "text": "D09 generated (Axis Drift · bracelet)",
+   "t": 1787783610662
+  },
+  {
+   "stage": "S5",
+   "text": "D07 generated (Axis Drift · pendant)",
+   "t": 1787783618169
+  }
+ ],
+ "references": [],
+ "pairs": [
+  {
+   "id": "D02",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "Planar Grid",
+   "item": "ring",
+   "title": "Planar Grid · 반지",
+   "prompt": "Ring - original design declaration: Planar Grid translated into a wearable band built only from straight bars and right-angle, parallel lines. Master motif kept: a 1:2.5 rectangular top plate with an off-center one-third grid break; metals and finish unchanged: matte grade 5 titanium for all skin-touch surfaces, matte 316L steel for structural spans. Real-world build: inner titanium comfort sleeve 2.0-2.2 mm thick; steel outer frame and orthogonal rails 2.4 mm thick; all edges carry 0.3 mm chamfers. Accent rule preserved: a single 1.5 mm square ceramic or PVD inlay, placed at the one-third offset, under 10% visible area; no faceted stones, no mirror polish. Hidden construction: press-fit liner with underside lock; no front-visible seams, pins, or settings. Photographic brief: three-quarter product view at 30 degrees, neutral gray seamless studio, soft top/side light, 85 mm macro lens look, crisp photoreal detail, subtle ground shadow, true-to-scale millimeter fidelity, matte texture emphasized. Avoid: luxury, glamorous, ornate, baroque, vintage, boho, bling, gemstone heavy, curvy vine, rose gold, feminine, masculine.",
+   "versions": [
+    {
+     "url": "/samples/205895edc8101453ef8c1fb4.png",
+     "hash": "205895edc8101453ef8c1fb4",
+     "prompt": "Ring - original design declaration: Planar Grid translated into a wearable band built only from straight bars and right-angle, parallel lines. Master motif kept: a 1:2.5 rectangular top plate with an off-center one-third grid break; metals and finish unchanged: matte grade 5 titanium for all skin-touch surfaces, matte 316L steel for structural spans. Real-world build: inner titanium comfort sleeve 2.0-2.2 mm thick; steel outer frame and orthogonal rails 2.4 mm thick; all edges carry 0.3 mm chamfers. Accent rule preserved: a single 1.5 mm square ceramic or PVD inlay, placed at the one-third offset, under 10% visible area; no faceted stones, no mirror polish. Hidden construction: press-fit liner with underside lock; no front-visible seams, pins, or settings. Photographic brief: three-quarter product view at 30 degrees, neutral gray seamless studio, soft top/side light, 85 mm macro lens look, crisp photoreal detail, subtle ground shadow, true-to-scale millimeter fidelity, matte texture emphasized. Avoid: luxury, glamorous, ornate, baroque, vintage, boho, bling, gemstone heavy, curvy vine, rose gold, feminine, masculine.",
+     "at": "2026-08-26T18:06:14.844Z"
+    }
+   ],
+   "feature": "Orthogonal steel grid in a 1:2.5 rectangle caps a titanium comfort sleeve with a single off-center 1.5 mm square color inlay, all matte with 0.3 mm edge chamfers."
+  },
+  {
+   "id": "D01",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "Planar Grid",
+   "item": "pendant",
+   "title": "Planar Grid · 펜던트",
+   "prompt": "Pendant — original design. Planar Grid master motif: a 1:2.5 rectangle in brushed steel composed of straight bars at right angles and parallel lines with a one‑third offset void. All surfaces matte; micro-bead‑blasted with subtle straight-grain satin on top planes; small 0.3 mm edge chamfers for comfort. Thickness 2.6 mm overall with 0.8 mm deep recess lanes; walls ≥1.0 mm around apertures for manufacturability. Skin-contact backplate and dual hidden bails in matte titanium; structural grid in 316L steel. Accent color: one 2.5 mm square enamel/PVD inlay or a 6 mm x 1 mm line, flush-set, covering <10% area; no faceted stones. Chain interface: two concealed rear slots for a 1.3 mm matte titanium cable, spaced to prevent rotation; no front-visible hardware. Photographed three-quarter product view, neutral gray studio background, diffused light, macro jewelry photo, photoreal clarity; show fine chamfers and non-reflective finish; no mirror polish. Value-conscious build targeting ~150 EUR retail in Europe. Avoid luxury, glamorous, ornate, baroque, vintage, boho, bling, gemstone heavy, curvy vine, rose gold, feminine, masculine.",
+   "versions": [
+    {
+     "url": "/samples/8b1e1fb20173f6bcd0b60467.png",
+     "hash": "8b1e1fb20173f6bcd0b60467",
+     "prompt": "Pendant — original design. Planar Grid master motif: a 1:2.5 rectangle in brushed steel composed of straight bars at right angles and parallel lines with a one‑third offset void. All surfaces matte; micro-bead‑blasted with subtle straight-grain satin on top planes; small 0.3 mm edge chamfers for comfort. Thickness 2.6 mm overall with 0.8 mm deep recess lanes; walls ≥1.0 mm around apertures for manufacturability. Skin-contact backplate and dual hidden bails in matte titanium; structural grid in 316L steel. Accent color: one 2.5 mm square enamel/PVD inlay or a 6 mm x 1 mm line, flush-set, covering <10% area; no faceted stones. Chain interface: two concealed rear slots for a 1.3 mm matte titanium cable, spaced to prevent rotation; no front-visible hardware. Photographed three-quarter product view, neutral gray studio background, diffused light, macro jewelry photo, photoreal clarity; show fine chamfers and non-reflective finish; no mirror polish. Value-conscious build targeting ~150 EUR retail in Europe. Avoid luxury, glamorous, ornate, baroque, vintage, boho, bling, gemstone heavy, curvy vine, rose gold, feminine, masculine.",
+     "at": "2026-08-26T18:06:22.726Z"
+    }
+   ],
+   "feature": "Rectilinear 1:2.5 steel grid with a one‑third offset void, dual hidden titanium bails, and a tiny flush inlay accent that keeps the front clean and prevents rotation."
+  },
+  {
+   "id": "D04",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "Module Fold",
+   "item": "pendant",
+   "title": "Module Fold · 펜던트",
+   "prompt": "펜던트 — Module Fold master motif: a rounded‑rectangle body with a clear central channel. Neutral metal color in satin 316L steel (or rhodium‑plated silver), low gloss with a consistent linear grain across pendant and slot bail. Size about 24 × 16 × 3.2 mm; walls 1.3 mm; edges softened with R0.6 mm for long‑wear comfort. Color lives only as a narrow enamel/PVD infill inside the channel, under 15% of visible area; optional one 1.0 mm flush‑set black spinel centered in the channel. Unisex proportions, no taper or dainty cues. Integrated slot bail (3.5 × 5.0 mm internal) fits standard European chains 1.5–2.5 mm; mass balanced below the bail with a shallow rear keel to resist rotation. Single‑body casting/CNC with one press‑fit inlay; no screws; user tool‑free and jeweler‑serviceable. Back carries micro engraving under 1 mm. Finishes repeatable to protect a €150 pendant target. Three‑quarter view, neutral monochrome studio, macro jewelry photo, photoreal realism. Avoid: glossy, glitter, sparkly, ornate, antique, vintage, baroque, boho, gem heavy, rose gold, oversized logo.",
+   "versions": [
+    {
+     "url": "/samples/fab75cf1639438c2e483336b.png",
+     "hash": "fab75cf1639438c2e483336b",
+     "prompt": "펜던트 — Module Fold master motif: a rounded‑rectangle body with a clear central channel. Neutral metal color in satin 316L steel (or rhodium‑plated silver), low gloss with a consistent linear grain across pendant and slot bail. Size about 24 × 16 × 3.2 mm; walls 1.3 mm; edges softened with R0.6 mm for long‑wear comfort. Color lives only as a narrow enamel/PVD infill inside the channel, under 15% of visible area; optional one 1.0 mm flush‑set black spinel centered in the channel. Unisex proportions, no taper or dainty cues. Integrated slot bail (3.5 × 5.0 mm internal) fits standard European chains 1.5–2.5 mm; mass balanced below the bail with a shallow rear keel to resist rotation. Single‑body casting/CNC with one press‑fit inlay; no screws; user tool‑free and jeweler‑serviceable. Back carries micro engraving under 1 mm. Finishes repeatable to protect a €150 pendant target. Three‑quarter view, neutral monochrome studio, macro jewelry photo, photoreal realism. Avoid: glossy, glitter, sparkly, ornate, antique, vintage, baroque, boho, gem heavy, rose gold, oversized logo.",
+     "at": "2026-08-26T18:07:37.447Z"
+    }
+   ],
+   "feature": "Unisex satin steel pendant built on a rounded‑rectangle with a central channel, featuring a tool‑free slot bail, anti‑rotation keel, softened edges, and discreet color infill under 15%."
+  },
+  {
+   "id": "D05",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "Module Fold",
+   "item": "ring",
+   "title": "Module Fold · 반지",
+   "prompt": "Ring - original design built from the Module Fold DNA. Master motif: a rounded-rectangle top with a clear central channel as the anchor geometry. Metal in satin stainless steel or matte silver with consistent, repeatable grain. Color only as a thin infill within the channel, under 15% area, matte charcoal or ultramarine ceramic/enamel. Non-tapered, unisex proportions; edges softened with 0.3-0.5 mm radii. Specs: shank 6.0 mm wide, 2.3 mm thick; minimum wall 1.6 mm; channel 2.0 x 0.6 mm. Optional 1.2 mm clear flush-set lab stone at center; no prongs. One-piece band with press-fit infill; no visible fasteners; jeweler-serviceable. Marks only inside the band under 1 mm high. Three-quarter product view, neutral gray studio background, macro jewelry photo, softbox lighting, photoreal finish. Avoid: glossy, glitter, sparkly, ornate, antique, vintage, baroque, boho, gem heavy, rose gold, oversized logo.",
+   "versions": [
+    {
+     "url": "/samples/dd9a5f555d6aed2edb1e4d4d.png",
+     "hash": "dd9a5f555d6aed2edb1e4d4d",
+     "prompt": "Ring - original design built from the Module Fold DNA. Master motif: a rounded-rectangle top with a clear central channel as the anchor geometry. Metal in satin stainless steel or matte silver with consistent, repeatable grain. Color only as a thin infill within the channel, under 15% area, matte charcoal or ultramarine ceramic/enamel. Non-tapered, unisex proportions; edges softened with 0.3-0.5 mm radii. Specs: shank 6.0 mm wide, 2.3 mm thick; minimum wall 1.6 mm; channel 2.0 x 0.6 mm. Optional 1.2 mm clear flush-set lab stone at center; no prongs. One-piece band with press-fit infill; no visible fasteners; jeweler-serviceable. Marks only inside the band under 1 mm high. Three-quarter product view, neutral gray studio background, macro jewelry photo, softbox lighting, photoreal finish. Avoid: glossy, glitter, sparkly, ornate, antique, vintage, baroque, boho, gem heavy, rose gold, oversized logo.",
+     "at": "2026-08-26T22:31:01.852Z"
+    }
+   ],
+   "feature": "A unisex, non-tapered band defined by a rounded-rectangle central channel with under-15% matte ceramic infill and an optional flush micro-stone, executed in low-sheen metal."
+  },
+  {
+   "id": "D03",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "Planar Grid",
+   "item": "bracelet",
+   "title": "Planar Grid · 브레이슬릿",
+   "prompt": "Bracelet: Planar Grid original design respecting the master motif of straight bars, right angles, and parallel lines. Segment the band into 1:2.5 rectangles with a one‑third offset rhythm; bar thickness 2.4–3.0 mm, edges chamfered 0.3 mm. Linked by low‑profile right‑angle hinges with 1.5 mm flush pins. Outer spans in matte bead‑blasted 316L steel; all skin‑touching inner cuff and clasp in matte Grade 5 titanium. Surfaces stay fully matte, no mirror areas. Accent color appears as one flush 3 mm square or a 6×2 mm short line inlay (matte cobalt blue ceramic or enamel), under 10% of the visible area, set in a 0.4 mm deep pocket with crisp walls. Hidden box clasp integrated on the underside; push‑button release at the edge keeps hardware invisible from the front. No gemstones; geometry only. Three‑quarter product view, unisex scale, macro jewelry photography on a neutral gray studio background; photoreal materials, true metal roughness and micro‑chamfers sharply resolved. Avoid luxury, glamorous, ornate, baroque, vintage, boho, bling, gemstone heavy, curvy vine, rose gold, feminine, masculine.",
+   "versions": [
+    {
+     "url": "/samples/8cf397fe67b6e568361071f2.png",
+     "hash": "8cf397fe67b6e568361071f2",
+     "prompt": "Bracelet: Planar Grid original design respecting the master motif of straight bars, right angles, and parallel lines. Segment the band into 1:2.5 rectangles with a one‑third offset rhythm; bar thickness 2.4–3.0 mm, edges chamfered 0.3 mm. Linked by low‑profile right‑angle hinges with 1.5 mm flush pins. Outer spans in matte bead‑blasted 316L steel; all skin‑touching inner cuff and clasp in matte Grade 5 titanium. Surfaces stay fully matte, no mirror areas. Accent color appears as one flush 3 mm square or a 6×2 mm short line inlay (matte cobalt blue ceramic or enamel), under 10% of the visible area, set in a 0.4 mm deep pocket with crisp walls. Hidden box clasp integrated on the underside; push‑button release at the edge keeps hardware invisible from the front. No gemstones; geometry only. Three‑quarter product view, unisex scale, macro jewelry photography on a neutral gray studio background; photoreal materials, true metal roughness and micro‑chamfers sharply resolved. Avoid luxury, glamorous, ornate, baroque, vintage, boho, bling, gemstone heavy, curvy vine, rose gold, feminine, masculine.",
+     "at": "2026-08-26T22:31:06.788Z"
+    }
+   ],
+   "feature": "Planar straight‑bar grid bracelet in matte steel and titanium, built from 1:2.5 rectangular segments with 0.3 mm chamfers, a hidden underside box clasp, and a tiny matte cobalt blue flush inlay under 10% area."
+  },
+  {
+   "id": "D06",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "Module Fold",
+   "item": "bracelet",
+   "title": "Module Fold · 브레이슬릿",
+   "prompt": "브레이슬릿 — Module Fold master motif as a unisex wrist piece: a rounded‑rectangle centerpiece with a clear central channel in satin 316L steel. Uniform linear‑brushed, low‑sheen grain across parts. Center plaque ~24 × 8 mm; wall 1.5 mm; channel 3.0 mm wide × 0.8 mm deep; edge radius 0.5 mm for comfort. Color only as matte enamel infill in the channel, under 15% of visible area; optional single 1.3 mm flush‑set lab stone at the midpoint. Tool‑free, low‑profile box clasp with thumb tab; captured 1.0 mm spring pin for jeweler service. Minimal parts (center, two side links, clasp) and repeatable finishes uphold price discipline aligned with the set’s ~150€ pendant target. Marks on the back only, relief below 1 mm. Unisex proportions, no taper. EU‑standard box clasp plus a discreet 1.8 mm slot bail at one end link for compatibility. Three‑quarter view on a neutral monochrome studio background; macro jewelry photo, photoreal materials, calibrated metal roughness. Avoid: glossy, glitter, sparkly, ornate, antique, vintage, baroque, boho, gem heavy, rose gold, oversized logo.",
+   "versions": [
+    {
+     "url": "/samples/5a571b2c1a6b188ac6d5bbf1.png",
+     "hash": "5a571b2c1a6b188ac6d5bbf1",
+     "prompt": "브레이슬릿 — Module Fold master motif as a unisex wrist piece: a rounded‑rectangle centerpiece with a clear central channel in satin 316L steel. Uniform linear‑brushed, low‑sheen grain across parts. Center plaque ~24 × 8 mm; wall 1.5 mm; channel 3.0 mm wide × 0.8 mm deep; edge radius 0.5 mm for comfort. Color only as matte enamel infill in the channel, under 15% of visible area; optional single 1.3 mm flush‑set lab stone at the midpoint. Tool‑free, low‑profile box clasp with thumb tab; captured 1.0 mm spring pin for jeweler service. Minimal parts (center, two side links, clasp) and repeatable finishes uphold price discipline aligned with the set’s ~150€ pendant target. Marks on the back only, relief below 1 mm. Unisex proportions, no taper. EU‑standard box clasp plus a discreet 1.8 mm slot bail at one end link for compatibility. Three‑quarter view on a neutral monochrome studio background; macro jewelry photo, photoreal materials, calibrated metal roughness. Avoid: glossy, glitter, sparkly, ornate, antique, vintage, baroque, boho, gem heavy, rose gold, oversized logo.",
+     "at": "2026-08-26T22:31:37.983Z"
+    }
+   ],
+   "feature": "Unisex satin‑brushed steel bracelet centered on a rounded‑rectangle channel module with color-limited matte enamel infill, a tool‑free EU‑standard box clasp, and a discreet slot bail for compatibility."
+  },
+  {
+   "id": "D08",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "Axis Drift",
+   "item": "ring",
+   "title": "Axis Drift · 반지",
+   "prompt": "Ring — original Axis Drift design. Translate the set’s straight-line motion into a top rail with a shuttle that slides 4 mm along dual parallel guides, zero camber. Keep it silent with 0.2 mm PTFE liners and a dry-film graphite coat; 0.1 mm side clearance to prevent rattle. CNC-milled 316L stainless steel, fully matte bead-blast; unisex proportions: band width 5.8 mm, wall 1.8–2.0 mm, comfort-fit interior. Edges crisp yet safe with R0.15 mm. Color limited to one accent: a 0.5 mm small blue enamel line on the shuttle; no gemstones. All fasteners hidden on the inside of the shank: two micro screws serviced with a standard hex driver. Short linear travel returns to a seamless bar silhouette at rest for smart-casual wear. Designed for efficient production to target ~€150 retail. Three-quarter product view, neutral gray studio background, macro jewelry photo, hyper-detailed photoreal render, soft diffused light, no reflections beyond matte grain. Avoid: ornate, bling, flashy, romantic, curvy, vintage, boho, gemstone cluster, rose gold, noisy mechanism.",
+   "versions": [
+    {
+     "url": "/samples/8d6ae09604014fd278af1f0c.png",
+     "hash": "8d6ae09604014fd278af1f0c",
+     "prompt": "Ring — original Axis Drift design. Translate the set’s straight-line motion into a top rail with a shuttle that slides 4 mm along dual parallel guides, zero camber. Keep it silent with 0.2 mm PTFE liners and a dry-film graphite coat; 0.1 mm side clearance to prevent rattle. CNC-milled 316L stainless steel, fully matte bead-blast; unisex proportions: band width 5.8 mm, wall 1.8–2.0 mm, comfort-fit interior. Edges crisp yet safe with R0.15 mm. Color limited to one accent: a 0.5 mm small blue enamel line on the shuttle; no gemstones. All fasteners hidden on the inside of the shank: two micro screws serviced with a standard hex driver. Short linear travel returns to a seamless bar silhouette at rest for smart-casual wear. Designed for efficient production to target ~€150 retail. Three-quarter product view, neutral gray studio background, macro jewelry photo, hyper-detailed photoreal render, soft diffused light, no reflections beyond matte grain. Avoid: ornate, bling, flashy, romantic, curvy, vintage, boho, gemstone cluster, rose gold, noisy mechanism.",
+     "at": "2026-08-26T22:32:22.510Z"
+    }
+   ],
+   "feature": "A matte 316L ring with a silent, short-throw linear shuttle and a single blue line that aligns into a clean bar at rest."
+  },
+  {
+   "id": "D09",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "Axis Drift",
+   "item": "bracelet",
+   "title": "Axis Drift · 브레이슬릿",
+   "prompt": "Bracelet — original Axis Drift design declaration: a unisex matte 316L stainless bangle featuring the set’s master motif, a straight-track shuttle with 6 mm linear travel only. The shuttle rides silently on PTFE/POM liners with a dry-film coat; no rattle. All visible faces are bead-blasted matte; edges crisp yet safe with 0.2–0.3 mm radius. Color is limited to a single 0.5 mm blue enamel line in the shuttle; no gemstones. Hidden fasteners on the back: micro Torx screws only. Production-realistic geometry: band width 6.0–6.5 mm, wall thickness 1.6–1.8 mm, top module 20 mm x 3.2 mm, slot 1.2 mm. Low-profile flush slide-lock clasp on the underside for wrist movement and secure closure. At rest, the shuttle aligns to read as one clean line, suitable for smart casual. Designed for affordable CNC/stamped parts to meet ~€150 retail, with unisex proportions and size steps. Three-quarter product view, achromatic studio background, macro jewelry photo, photoreal finish, diffused lighting. Avoid: ornate, bling, flashy, romantic, curvy, vintage, boho, gemstone cluster, rose gold, noisy mechanism.",
+   "versions": [
+    {
+     "url": "/samples/715a1b717c5f978731c2dbf9.png",
+     "hash": "715a1b717c5f978731c2dbf9",
+     "prompt": "Bracelet — original Axis Drift design declaration: a unisex matte 316L stainless bangle featuring the set’s master motif, a straight-track shuttle with 6 mm linear travel only. The shuttle rides silently on PTFE/POM liners with a dry-film coat; no rattle. All visible faces are bead-blasted matte; edges crisp yet safe with 0.2–0.3 mm radius. Color is limited to a single 0.5 mm blue enamel line in the shuttle; no gemstones. Hidden fasteners on the back: micro Torx screws only. Production-realistic geometry: band width 6.0–6.5 mm, wall thickness 1.6–1.8 mm, top module 20 mm x 3.2 mm, slot 1.2 mm. Low-profile flush slide-lock clasp on the underside for wrist movement and secure closure. At rest, the shuttle aligns to read as one clean line, suitable for smart casual. Designed for affordable CNC/stamped parts to meet ~€150 retail, with unisex proportions and size steps. Three-quarter product view, achromatic studio background, macro jewelry photo, photoreal finish, diffused lighting. Avoid: ornate, bling, flashy, romantic, curvy, vintage, boho, gemstone cluster, rose gold, noisy mechanism.",
+     "at": "2026-08-26T22:33:30.662Z"
+    }
+   ],
+   "feature": "A matte stainless bangle with a silent, PTFE-lined straight-track shuttle (6 mm travel), a single 0.5 mm blue line accent, hidden underside fasteners, and a flush slide-lock clasp."
+  },
+  {
+   "id": "D07",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "Axis Drift",
+   "item": "pendant",
+   "title": "Axis Drift · 펜던트",
+   "prompt": "Pendant — Original Design Statement: Axis Drift distilled into a unisex pendant with a silent linear shuttle traveling only 4 mm along straight guides, reading as one clean line at rest, suited to smart casual wear. Fully matte 316L stainless steel body (30 × 6 × 3.5 mm), edges R0.2 mm; slot 1.0 mm wide with 1.2 mm minimum wall. Color is limited to a single ultramarine line: a 0.25 mm enamel groove; no other accents or stones. Shuttle runs on 0.1 mm PTFE liners per side with dry-film lubricant; no rattle. All fasteners hidden on the back: two M1.2 Torx T4 screws for standard service. Integrated rectangular bail with dual-channel anti-rotation for a 1.4 mm matte box chain keeps the pendant facing forward and centered. Designed for efficient CNC 316L with fine glass-bead matte blast to land near €150 retail. Three-quarter view, monochrome studio background, macro jewelry photo, soft diffused lighting, photoreal, focus stacked, crisp surfaces, no logos. Avoid: ornate, bling, flashy, romantic, curvy, vintage, boho, gemstone cluster, rose gold, noisy mechanism.",
+   "versions": [
+    {
+     "url": "/samples/dd983853b33bd266411bd713.png",
+     "hash": "dd983853b33bd266411bd713",
+     "prompt": "Pendant — Original Design Statement: Axis Drift distilled into a unisex pendant with a silent linear shuttle traveling only 4 mm along straight guides, reading as one clean line at rest, suited to smart casual wear. Fully matte 316L stainless steel body (30 × 6 × 3.5 mm), edges R0.2 mm; slot 1.0 mm wide with 1.2 mm minimum wall. Color is limited to a single ultramarine line: a 0.25 mm enamel groove; no other accents or stones. Shuttle runs on 0.1 mm PTFE liners per side with dry-film lubricant; no rattle. All fasteners hidden on the back: two M1.2 Torx T4 screws for standard service. Integrated rectangular bail with dual-channel anti-rotation for a 1.4 mm matte box chain keeps the pendant facing forward and centered. Designed for efficient CNC 316L with fine glass-bead matte blast to land near €150 retail. Three-quarter view, monochrome studio background, macro jewelry photo, soft diffused lighting, photoreal, focus stacked, crisp surfaces, no logos. Avoid: ornate, bling, flashy, romantic, curvy, vintage, boho, gemstone cluster, rose gold, noisy mechanism.",
+     "at": "2026-08-26T22:33:38.169Z"
+    }
+   ],
+   "feature": "A silent 4 mm linear shuttle that aligns flush into a matte 316L bar, reading as a single clean line with all service screws hidden on the back."
+  }
+ ],
+ "searches": 11,
+ "finished": true,
+ "insight": {
+  "meaning": "A linear minimal pendant that translates core Bauhaus ideas into jewelry using honest industrial materials titanium and matte stainless steel with visible logic of construction and no superfluous ornament. It targets smart casual outfits and sits at an accessible retail band near €150 in Europe. ([moma.org](https://www.moma.org/calendar/galleries/5388?utm_source=openai))",
+  "cultural": "Europe associates Bauhaus with functional clarity social progress and the unity of art craft and industry that still shapes everyday objects and visual culture. The movement was born in Germany in 1919 and spread across Europe through designers and museums then re-entered policy discourse via the New European Bauhaus which links design to sustainability and inclusion. For European consumers a Bauhaus inflected pendant signals rational taste quiet modernity and cross border design heritage rather than regional ornament. ([metmuseum.org](https://www.metmuseum.org/de/essays/the-bauhaus-1919-1933?utm_source=openai))",
+  "background": "Bauhaus education combined formal studies of space color and composition with applied workshops in metalwork cabinetmaking weaving and typography under figures such as Walter Gropius László Moholy Nagy Paul Klee and Wassily Kandinsky. The metal workshop in Weimar and Dessau produced prototypes for modern living and influenced jewelry scale metalwork including work by Naum Slutzky often characterized by geometric reduction and function driven construction. ([moma.org](https://www.moma.org/calendar/galleries/5388?utm_source=openai))",
+  "symbols": [
+   "Positive functional clarity form follows function social good via good design. ([sothebys.com](https://www.sothebys.com/en/art-movements/bauhaus?utm_source=openai))",
+   "Positive democratization of culture and everyday impact. ([oeil.europarl.europa.eu](https://oeil.europarl.europa.eu/oeil/en/procedure-file/pdf?reference=2021%2F2255%28INI%29&utm_source=openai))",
+   "Positive honesty of materials and industrial craft lineage. ([metmuseum.org](https://www.metmuseum.org/de/essays/the-bauhaus-1919-1933?utm_source=openai))",
+   "Negative can feel austere or impersonal if abstract geometry is used without functional rationale. ([goethe.de](https://www.goethe.de/ins/mm/en/kul/mag/21412385.html?utm_source=openai))"
+  ],
+  "emotions": [
+   "calm",
+   "order",
+   "focus",
+   "confidence",
+   "discipline",
+   "quiet strength",
+   "understatement",
+   "modern optimism"
+  ],
+  "colors": [
+   "Core neutrals titanium grey steel grey graphite black to emphasize structure and surface",
+   "Optional micro accents in primary colors red yellow blue derived from Bauhaus color form studies used sparingly along edges screws or cord terminations. ([bauhaus.de](https://www.bauhaus.de/en/sammlung/highlights/204_unterricht/444?utm_source=openai))"
+  ],
+  "materials": [
+   "Titanium for low weight corrosion resistance and high biocompatibility generally hypoallergenic. ([bluenile.com](https://www.bluenile.com/education/metal/titanium?utm_source=openai))",
+   "316L stainless steel for durable matte structures low nickel release when correctly specified and finished. ([bssa.org.uk](https://bssa.org.uk/bssa_articles/selection-and-use-of-stainless-steels-for-skin-contact-and-body-piercing-jewellery-applications/?utm_source=openai))",
+   "Surface treatments brushed satin or bead blasted to lower reflectivity and reveal linear grain or soft non directional texture. ([worldstainless.org](https://worldstainless.org/about-stainless/process-and-production/surface-treatment/?utm_source=openai))",
+   "Optional anodized titanium accents that create stable interference colors without dyes when used on small planes or fasteners. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Anodizing?utm_source=openai))"
+  ],
+  "forms": [
+   "Rectilinear bars plates channels or slim extrusions with clear edge breaks and radii sized for comfort",
+   "Geometric primitives circle square triangle referenced only when they support structure or clasp geometry",
+   "Proportional modules that read as grid units for example equal bar segments or stepped volumes echoing workshop prototypes",
+   "Joints designed as honest details tiny screws tubes or rivets visible and aligned with the form axis rather than hidden decoration. ([metmuseum.org](https://www.metmuseum.org/de/essays/the-bauhaus-1919-1933?utm_source=openai))"
+  ],
+  "motion": [
+   "Rhythm by repetition of equal or alternating linear units building quiet pulse along the pendant axis following Klee’s basic rhythm studies",
+   "Balanced tensions between vertical and horizontal reads using spacing rather than curvature to create visual movement. ([openendedgroup.com](https://openendedgroup.com/field2/assets/Klee_Paul_Pedagogical_Sketchbook_1960.pdf?utm_source=openai))"
+  ],
+  "cliches": [
+   "Triad of red yellow blue slapped on generic shapes without functional reason avoid it or it reads as superficial Bauhaus cosplay. ([velvetmatter.art](https://velvetmatter.art/journal/bauhaus-in-jewellery-and-object-design-a-visual-guide/?utm_source=openai))",
+   "Random triangles circles squares with no connection to clasp mechanics or wearability",
+   "Over polishing that contradicts utilitarian intent when the design concept calls for matte functional surfaces. ([worldstainless.org](https://worldstainless.org/about-stainless/process-and-production/surface-treatment/?utm_source=openai))"
+  ],
+  "cautions": [
+   "EU nickel release law applies to jewelry in prolonged skin contact so components must meet EN 1811 migration limits 0.5 microgram per square centimeter per week for most items and 0.2 for posts. Market claims like nickel free are insufficient without release testing. ([eur-lex.europa.eu](https://eur-lex.europa.eu/legal-content/EN/TXT/?qid=1724082961094&uri=CELEX%3A02006R1907-20240606&utm_source=openai))",
+   "Use grade appropriate stainless non free machining sulfur rich grades can exceed nickel release thresholds. ([outokumpu.com](https://www.outokumpu.com/en/sustainability/-/media/files/sustainability/outokumpu-eu-safety-information-sheet-stainless-steel-2023.pdf?modified=20230705085841&revision=466ad64b-bfe7-4302-b6d2-383ba574fde7&utm_source=openai))",
+   "Price positioning around €150 should be justified through material choice and finishing quality comparable EU retail shows titanium or stainless pendants in roughly €110 to €190 which supports a €150 target. ([schmuckwerk-shop.com](https://www.schmuckwerk-shop.com/pendants/pendants-stainless-steel-titanium.html?utm_source=openai))",
+   "Respect the term Bauhaus. Use inspired by rather than implying institutional endorsement and anchor any visual references in functional choices drawn from workshop practice. ([metmuseum.org](https://www.metmuseum.org/de/essays/the-bauhaus-1919-1933?utm_source=openai))"
+  ],
+  "abstraction": [
+   {
+    "axis": "symbol",
+    "notes": [
+     "Unity of art and industry",
+     "Form follows function",
+     "Honest materials visible joins"
+    ]
+   },
+   {
+    "axis": "emotion",
+    "notes": [
+     "Quiet confidence",
+     "Clarity and order",
+     "Modern restraint"
+    ]
+   },
+   {
+    "axis": "form",
+    "notes": [
+     "Linear bar or channel body",
+     "Orthogonal edges with eased radii",
+     "Inset slot or through hole for cord alignment"
+    ]
+   },
+   {
+    "axis": "movement",
+    "notes": [
+     "Even unit repetition one to one or one two cadence per Klee rhythm studies",
+     "Optical calm through parallel grain direction"
+    ]
+   },
+   {
+    "axis": "structure",
+    "notes": [
+     "Pinned or screwed bail that reads as an engineered hinge",
+     "Tolerance stack kept visible as thin shadow lines"
+    ]
+   },
+   {
+    "axis": "surface",
+    "notes": [
+     "Directional brushed No.4 for linear read",
+     "Bead blasted matte for soft non directional planes",
+     "Local high polish only where friction demands it like screw heads. ([worldstainless.org](https://worldstainless.org/about-stainless/process-and-production/surface-treatment/?utm_source=openai))"
+    ]
+   },
+   {
+    "axis": "material",
+    "notes": [
+     "Titanium body elements for weight and skin safety",
+     "316L stainless inserts or frames for crisp edges and cost control",
+     "Optional small anodized titanium color chips for signal accents. ([bluenile.com](https://www.bluenile.com/education/metal/titanium?utm_source=openai))"
+    ]
+   },
+   {
+    "axis": "color",
+    "notes": [
+     "Neutral base titanium grey steel grey black",
+     "Micro accents in red yellow blue only where they mark function for example alignment dot or screw seat. ([bauhaus.de](https://www.bauhaus.de/en/sammlung/highlights/204_unterricht/444?utm_source=openai))"
+    ]
+   },
+   {
+    "axis": "rhythm",
+    "notes": [
+     "Module grid for perforations in 2 or 3 equal steps",
+     "Chain or cord selected to mirror the pendant’s cadence for example cable with uniform pitch"
+    ]
+   },
+   {
+    "axis": "story",
+    "notes": [
+     "From Bauhaus workshops to today the piece treats a pendant as a small industrial object built for daily European life",
+     "It pairs with smart casual wardrobes without shouting carrying forward a century old ideal that good design serves everyday use. ([metmuseum.org](https://www.metmuseum.org/de/essays/the-bauhaus-1919-1933?utm_source=openai))"
+    ]
+   }
+  ],
+  "sources": [
+   "MoMA gallery text 519 Bauhaus and Beyond, The Museum of Modern Art ([moma.org](https://www.moma.org/calendar/galleries/5388?utm_source=openai))",
+   "The Bauhaus 1919~1933, The Metropolitan Museum of Art ([metmuseum.org](https://www.metmuseum.org/de/essays/the-bauhaus-1919-1933?utm_source=openai))",
+   "EU REACH Annex XVII nickel release limits, EUR Lex consolidated text as of June 6 2024 ([eur-lex.europa.eu](https://eur-lex.europa.eu/legal-content/EN/TXT/?qid=1724082961094&uri=CELEX%3A02006R1907-20240606&utm_source=openai))",
+   "British Stainless Steel Association guidance on stainless grades and nickel release testing EN 1811 ([bssa.org.uk](https://bssa.org.uk/bssa_articles/selection-and-use-of-stainless-steels-for-skin-contact-and-body-piercing-jewellery-applications/?utm_source=openai))",
+   "World Stainless overview of brushed satin bead blasted finishes for low reflectivity surfaces ([worldstainless.org](https://worldstainless.org/about-stainless/process-and-production/surface-treatment/?utm_source=openai))",
+   "Blue Nile titanium education page hypoallergenic corrosion resistant ([bluenile.com](https://www.bluenile.com/education/metal/titanium?utm_source=openai))",
+   "Rio Grande reactive metals white paper titanium properties and anodizing notes ([riogrande.com](https://www.riogrande.com/globalassets/knowledge-hub/properties-reactive-metals-wp.pdf?utm_source=openai))",
+   "Bauhaus metal workshop context Bauhaus Kooperation and Met Museum essay plus Naum Slutzky as Bauhaus jeweler ([bauhauskooperation.com](https://bauhauskooperation.com/knowledge/the-bauhaus/training/workshops/metal/?utm_source=openai))",
+   "Paul Klee Pedagogical Sketchbook rhythm and movement studies ([openendedgroup.com](https://openendedgroup.com/field2/assets/Klee_Paul_Pedagogical_Sketchbook_1960.pdf?utm_source=openai))",
+   "European retail benchmarks for titanium and stainless pendants Boccia Titanium and Schmuckwerk listings €110 to €194 range ([idealo.de](https://www.idealo.de/preisvergleich/Liste/122742201/boccia-titanium-anhaenger.html?utm_source=openai))"
+  ],
+  "searches": 11,
+  "cached": false
+ },
+ "sets": [
+  {
+   "name": "Planar Grid",
+   "kind": "Representative",
+   "concept": "A strict right angle bar language in titanium and matte steel delivers a calm Bauhaus statement for smart casual days.",
+   "story": "This set distills Bauhaus utility into two intersecting bars and a measured offset. Plain titanium meets matte steel to create tonal contrast without gloss. Tiny primary color squares act as wayfinding notes rather than decoration. The build is robust and serviceable to keep pricing clear and the pendant near 150 euro.",
+   "palette": [
+    "Titanium gray",
+    "Matte steel silver",
+    "Primary red",
+    "Ultramarine blue",
+    "Sunflower yellow",
+    "Matte black"
+   ],
+   "metal": "Grade 2 titanium in neutral gray and 316L stainless steel in matte silver with an optional black DLC steel variant for a deeper tone.",
+   "surface": "Titanium bead blasted matte near 800 grit and steel linear brushed near 400 grit with a soft micro chamfer around 0.3 mm and a clear anti fingerprint coating.",
+   "stones": "No gemstone. Optional 1.5 mm square glass enamel insert in red or blue or yellow set flush at one end of the bar.",
+   "silhouette": "An elongated rectangle in a one to two point five proportion with a short cross bar placed at one third.",
+   "motif": "A right angle intersection of two flat bars.",
+   "rhythm": "One long bar with a shorter cross bar repeats at regular intervals of two units then one unit across the bracelet. The ring keeps bilateral symmetry with a single offset cross bar on the top. The pendant presents a single intersection that reads clearly from a distance.",
+   "structure": "A steel core bar slides inside a titanium sleeve and locks with two flush micro screws on the back to allow maintenance. The pendant uses a hidden slot bail inside the junction so a chain stays invisible from the front. The ring uses a comfort steel inner band with titanium outer rails pinned by two small screws. The bracelet uses short H links that alternate long and short bars for easy articulation. Adhesives are limited to the enamel insert.",
+   "avoid": [
+    "luxury",
+    "glamorous",
+    "ornate",
+    "baroque",
+    "vintage",
+    "boho",
+    "bling",
+    "gemstone heavy",
+    "curvy vine",
+    "rose gold",
+    "feminine",
+    "masculine"
+   ],
+   "design_dna": [
+    "Always compose from straight bars with right angles or parallel lines.",
+    "Keep all surfaces matte and free of mirror polish.",
+    "Maintain small edge chamfers around 0.3 mm for comfort.",
+    "Accent color appears as a small square or short line and covers less than ten percent of visible area.",
+    "Hidden bails and closures keep hardware invisible on the front.",
+    "Thickness targets between 2 mm and 3.2 mm to stay light and durable.",
+    "Use titanium for elements that touch skin and steel for structural spans.",
+    "Target retail for the pendant near 150 euro in Europe with rings and bracelets scaled in the same value logic.",
+    "Proportions favor a one to two point five rectangle and a one third offset."
+   ],
+   "concept_art": {
+    "form": "Abstract composition of orthogonal bars on a neutral field, rectangles of varied length aligned to a grid, strong right angles, generous negative space",
+    "motion": "Slow sliding alignment of linear elements that approach then pause then continue, a calm cadence",
+    "material": "Matte titanium texture and bead blasted steel grain with diffuse light and soft shadows, no gloss",
+    "atmosphere": "Quiet studio mood with rational clarity and small Bauhaus primary color squares placed with precision"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/42fc56c6b7daa4542d968a2f.png",
+     "hash": "42fc56c6b7daa4542d968a2f"
+    },
+    "motion": {
+     "url": "/samples/7ad9a7883df698fb36090a5b.png",
+     "hash": "7ad9a7883df698fb36090a5b"
+    },
+    "material": {
+     "url": "/samples/c77f4b0e049314cead3e1e77.png",
+     "hash": "c77f4b0e049314cead3e1e77"
+    },
+    "atmosphere": {
+     "url": "/samples/97bae521fd9cea9128e3aed2.png",
+     "hash": "97bae521fd9cea9128e3aed2"
+    }
+   },
+   "lineup": {
+    "url": "/samples/9b090bf55e30c6e37bcdec7c.png",
+    "hash": "9b090bf55e30c6e37bcdec7c"
+   }
+  },
+  {
+   "name": "Module Fold",
+   "kind": "Commercial",
+   "concept": "Friendly chamfered modules in titanium and matte steel build a versatile unisex line with clear primary accents.",
+   "story": "This set optimizes parts count and finishing for consistent pricing and volume production. A folded steel shell carries a titanium face plate so weight stays low and feel stays solid. Ceramic pigment infill in primary colors brings the Bauhaus note without fragile gems. Every clasp and bail is tool free and easy so people can wear it daily with smart casual outfits.",
+   "palette": [
+    "Titanium gray",
+    "Matte steel silver",
+    "Ultramarine blue",
+    "Signal red",
+    "Bright yellow",
+    "Graphite black"
+   ],
+   "metal": "316L stainless steel folded shell in matte silver and grade 2 titanium face plate in neutral gray with optional black PVD steel spacers for contrast.",
+   "surface": "Cross brushed faces and micro bead blasted sides with a soft corner radius near 1 mm and a durable anti scratch top coat.",
+   "stones": "None. Primary accents are fired ceramic pigment infill in shallow channels that sit fully flush.",
+   "silhouette": "A rounded rectangle module with a centered longitudinal channel and a constant thickness near 2.4 mm.",
+   "motif": "A stacked module unit defined by a clean central groove.",
+   "rhythm": "The bracelet repeats five identical modules separated by thin steel spacers with equal gaps. The ring is a continuous band with a single centered groove. The pendant is a vertical module hung through a hidden rear slot so the front channel reads as unbroken.",
+   "structure": "A one piece folded steel shell wraps a titanium face and locks by hidden tabs so a jeweler can open it for service. The bracelet uses a flat box clasp integrated as a sixth module. The ring adds an inner spring shim to allow micro sizing from EU size 52 to 62. The pendant bail is a rear keyhole that slides over a cable or flat chain and stays unseen from the front.",
+   "avoid": [
+    "glossy",
+    "glitter",
+    "sparkly",
+    "ornate",
+    "antique",
+    "vintage",
+    "baroque",
+    "boho",
+    "gem heavy",
+    "rose gold",
+    "oversized logo"
+   ],
+   "design_dna": [
+    "Use a rounded rectangle with a clear central channel as the anchor geometry.",
+    "Keep surfaces low gloss and consistent in grain between parts.",
+    "Let color live only in small infill zones and never on more than fifteen percent of the visible area.",
+    "All closures and joints must be tool free for the user and serviceable by a jeweler.",
+    "Edges are softened with a small radius for comfort over long wear.",
+    "Manufacture with a minimal parts count and repeatable finishes to protect price targets around 150 euro for the pendant.",
+    "All items must read unisex in proportion and avoid tapered or dainty cues.",
+    "When engraved marks are needed place them on the back and keep them under one millimeter in height.",
+    "Maintain compatibility with standard European chains and bracelets through simple slot bails and box clasps."
+   ],
+   "concept_art": {
+    "form": "Soft cornered rectangles arranged in a tidy stack, a shallow central groove running through each tile, clean modular grid",
+    "motion": "Subtle click like progression as modules align and space repeats, a friendly step by step rhythm",
+    "material": "Matte steel silver and gray titanium with fine linear brushing, tiny pools of saturated primary color ceramic infill",
+    "atmosphere": "Approachable industrial calm with product like clarity, lit as a storefront display without glare"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/2176ac221c1cf9f83c1ff6e5.png",
+     "hash": "2176ac221c1cf9f83c1ff6e5"
+    },
+    "motion": {
+     "url": "/samples/a369dde0888be2a13f221c9a.png",
+     "hash": "a369dde0888be2a13f221c9a"
+    },
+    "material": {
+     "url": "/samples/b677ba83dd3db2b3d6c75b03.png",
+     "hash": "b677ba83dd3db2b3d6c75b03"
+    },
+    "atmosphere": {
+     "url": "/samples/fe3e6bac1a1d2d7ff849f381.png",
+     "hash": "fe3e6bac1a1d2d7ff849f381"
+    }
+   },
+   "lineup": {
+    "url": "/samples/57c694871709b7bfda2600e2.png",
+    "hash": "57c694871709b7bfda2600e2"
+   }
+  },
+  {
+   "name": "Axis Drift",
+   "kind": "Experimental",
+   "concept": "Kinetic rails in titanium and matte steel allow a silent slide and pivot that turns Bauhaus lines into restrained motion.",
+   "story": "This set explores how minimal geometry can move without noise or fuss. Each piece holds a floating shuttle that slides a few millimeters inside parallel rails. A single dark or white insert anchors the eye and keeps the color language disciplined. The motion feels calming in the hand and reads smart and technical on the body.",
+   "palette": [
+    "Titanium gray",
+    "Matte steel silver",
+    "Matte black",
+    "Cobalt blue micro accent",
+    "White ceramic micro accent"
+   ],
+   "metal": "Grade 2 titanium rails for skin contact and 316L stainless steel bases for stiffness with optional black DLC coated steel shuttles for a deep monochrome variant.",
+   "surface": "Micro peened matte on titanium and satin brushed steel on flats with an edge radius around 0.2 to 0.4 mm and a dry lubricant wax in channels.",
+   "stones": "Optional zirconia ceramic rod in matte black or white about 2 mm by 8 mm set as a floating pin inside the shuttle.",
+   "silhouette": "Two parallel rails separated by a precise negative space with a short central shuttle that reads as a compact bar.",
+   "motif": "An axis track with a movable bar captured inside.",
+   "rhythm": "The bracelet alternates fixed rail modules and short gaps in a pattern of two then one then two. The ring places the shuttle at the top and limits travel to a short arc. The pendant hangs vertically so the shuttle rests at the lower stop and climbs a little with the wearer movement.",
+   "structure": "Titanium U channels screw to a steel base from the rear and hide all fasteners. The shuttle glides on a concealed PTFE liner and is retained by invisible end stops. The ring uses a tiny pivot pin that allows a short travel arc. The bracelet clasp hides under a rail module and locks with a low profile tongue for a seamless front.",
+   "avoid": [
+    "ornate",
+    "bling",
+    "flashy",
+    "romantic",
+    "curvy",
+    "vintage",
+    "boho",
+    "gemstone cluster",
+    "rose gold",
+    "noisy mechanism"
+   ],
+   "design_dna": [
+    "Express motion through straight guides and short linear travel only.",
+    "Keep the moving piece silent and free of rattle by using liners or dry film.",
+    "Surfaces are fully matte to highlight form not shine.",
+    "Color is limited to a single dark or white insert or a small blue line.",
+    "All fasteners are hidden on the back and use standard tools for service.",
+    "Edges stay crisp yet safe with a tiny radius.",
+    "The pendant must read as a clean line when the shuttle is at rest and must fit a smart casual outfit.",
+    "Design for production with affordable parts so the pendant can sit near 150 euro in retail.",
+    "Maintain unisex proportions and avoid dramatic size jumps across sizes."
+   ],
+   "concept_art": {
+    "form": "Parallel rails with a small bar that slides within, large negative space and strict right angles in an abstract field",
+    "motion": "Gentle glide along an axis with a soft stop, repeat and pause, a meditative mechanical gesture",
+    "material": "Matte titanium and satin steel surfaces with faint wear on contact points, dark insert in ceramic or DLC",
+    "atmosphere": "Quiet kinetic study with cool studio light and a slightly technical mood"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/91c7e00b9680a0d3fb551a6c.png",
+     "hash": "91c7e00b9680a0d3fb551a6c"
+    },
+    "motion": {
+     "url": "/samples/f3450e0f72a315385101b1aa.png",
+     "hash": "f3450e0f72a315385101b1aa"
+    },
+    "material": {
+     "url": "/samples/f08fd05b6019b8d8624ac6f4.png",
+     "hash": "f08fd05b6019b8d8624ac6f4"
+    },
+    "atmosphere": {
+     "url": "/samples/f314b03886554aaea57254f5.png",
+     "hash": "f314b03886554aaea57254f5"
+    }
+   },
+   "lineup": {
+    "url": "/samples/f1085b673206b3a7b797edce.png",
+    "hash": "f1085b673206b3a7b797edce"
+   }
+  }
+ ],
+ "sample": true,
+ "sampleTitle": "Klaus Weber (Germany) · collection",
+ "savedAtISO": "2026-08-26T22:33:38.170Z"
+}

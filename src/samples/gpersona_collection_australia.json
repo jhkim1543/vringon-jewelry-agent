@@ -1,0 +1,657 @@
+{
+ "algo": 2,
+ "params": {
+  "algo": 2,
+  "mode": "collection",
+  "countries": [
+   "Europe",
+   "United States"
+  ],
+  "analysisLang": "en",
+  "direction": "바다의 물결과 산호초 형태를 본뜬 유기적인 형태의 재활용 스털링 실버 반지. 비치웨어에 어울리는 캐주얼한 무드의 $120 AUD 제품.",
+  "itemType": "ring",
+  "items": [
+   "ring",
+   "pendant",
+   "earrings"
+  ],
+  "designCount": 6,
+  "setCount": 3,
+  "target": {
+   "ages": [
+    "18-21",
+    "22-25",
+    "26-29",
+    "30-34"
+   ],
+   "gender": "unisex"
+  },
+  "competitors": [],
+  "imageEngine": "fast"
+ },
+ "stageStatus": {
+  "S1": "done",
+  "S2": "done",
+  "S3": "done",
+  "S4": "done",
+  "S5": "done"
+ },
+ "logs": [
+  {
+   "stage": "S1",
+   "text": "Researching the keyword in Europe, United States: culture, symbols, forms, colors, and the cliches to avoid",
+   "t": 1787765005511
+  },
+  {
+   "stage": "S1",
+   "text": "Insight ready · 10 abstraction axes, 5 cautions",
+   "t": 1787765296855
+  },
+  {
+   "stage": "S2",
+   "text": "3 set concept(s): Littoral Crest / Shoreline Echo / Pelagic Lattice",
+   "t": 1787765504058
+  },
+  {
+   "stage": "S3",
+   "text": "Abstract concept images first, with no jewelry products yet, then one lineup image per set",
+   "t": 1787765504059
+  },
+  {
+   "stage": "S3",
+   "text": "Shoreline Echo: 4/4 concept images + lineup",
+   "t": 1787765651762
+  },
+  {
+   "stage": "S3",
+   "text": "Littoral Crest: 4/4 concept images + lineup",
+   "t": 1787765670939
+  },
+  {
+   "stage": "S3",
+   "text": "Pelagic Lattice: 4/4 concept images + lineup",
+   "t": 1787765816648
+  },
+  {
+   "stage": "S4",
+   "text": "9 designs = 3 set(s) × 3 item(s) · the set DNA stays locked, only the item changes",
+   "t": 1787765816648
+  },
+  {
+   "stage": "S5",
+   "text": "D02 generated (Littoral Crest · pendant)",
+   "t": 1787765911207
+  },
+  {
+   "stage": "S5",
+   "text": "D03 generated (Littoral Crest · earrings)",
+   "t": 1787765946658
+  },
+  {
+   "stage": "S5",
+   "text": "D01 generated (Littoral Crest · ring)",
+   "t": 1787765968027
+  },
+  {
+   "stage": "S5",
+   "text": "D04 generated (Shoreline Echo · ring)",
+   "t": 1787766001135
+  },
+  {
+   "stage": "S5",
+   "text": "D05 generated (Shoreline Echo · pendant)",
+   "t": 1787766036498
+  },
+  {
+   "stage": "S5",
+   "text": "D06 generated (Shoreline Echo · earrings)",
+   "t": 1787766060839
+  },
+  {
+   "stage": "S5",
+   "text": "D07 generated (Pelagic Lattice · ring)",
+   "t": 1787766096029
+  },
+  {
+   "stage": "S5",
+   "text": "D08 generated (Pelagic Lattice · pendant)",
+   "t": 1787766123702
+  },
+  {
+   "stage": "S5",
+   "text": "D09 generated (Pelagic Lattice · earrings)",
+   "t": 1787766173028
+  }
+ ],
+ "references": [],
+ "pairs": [
+  {
+   "id": "D02",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "Littoral Crest",
+   "item": "pendant",
+   "title": "Littoral Crest · 펜던트",
+   "prompt": "Pendant — original Littoral Crest design: a crest aperture motif in recycled 925 sterling silver with no rhodium, retaining a warm natural tone. Ridges are mirror-polished; hollows are micro bead-blasted to a soft mineral finish. Negative space occupies about 30–40% of the face. Optional stone: 2.5–3.0 mm round set flush in a smooth bezel; seat depth ~0.3 mm, bezel lip ~0.5 mm, snag‑free. Overall profile under 3.5 mm; body wall ≥1.4 mm; edges softened to R0.3+ for comfort. Use the master Crest Aperture slightly rotated and scaled for the pendant. Hidden anti‑rotation connection: twin low‑profile bails behind the upper ridge (about 10 and 2 o’clock) to keep it centered and read as one continuous form; fits a 1.2–1.6 mm chain. Show a 3/4 product view, neutral gray studio background, soft key light, macro jewelry photo, ultra‑photoreal, crisp metal highlights. Avoid: mermaid vibes, boho, goddess or siren language, nautical anchors or ropes, shell charms, waterproof or ocean‑safe claims, heavily hammered, overly tiny, mega bling, tribal or ethnic labels, gendered phrases.",
+   "versions": [
+    {
+     "url": "/samples/7d8ddf7771d6573ea2f9efa6.png",
+     "hash": "7d8ddf7771d6573ea2f9efa6",
+     "prompt": "Pendant — original Littoral Crest design: a crest aperture motif in recycled 925 sterling silver with no rhodium, retaining a warm natural tone. Ridges are mirror-polished; hollows are micro bead-blasted to a soft mineral finish. Negative space occupies about 30–40% of the face. Optional stone: 2.5–3.0 mm round set flush in a smooth bezel; seat depth ~0.3 mm, bezel lip ~0.5 mm, snag‑free. Overall profile under 3.5 mm; body wall ≥1.4 mm; edges softened to R0.3+ for comfort. Use the master Crest Aperture slightly rotated and scaled for the pendant. Hidden anti‑rotation connection: twin low‑profile bails behind the upper ridge (about 10 and 2 o’clock) to keep it centered and read as one continuous form; fits a 1.2–1.6 mm chain. Show a 3/4 product view, neutral gray studio background, soft key light, macro jewelry photo, ultra‑photoreal, crisp metal highlights. Avoid: mermaid vibes, boho, goddess or siren language, nautical anchors or ropes, shell charms, waterproof or ocean‑safe claims, heavily hammered, overly tiny, mega bling, tribal or ethnic labels, gendered phrases.",
+     "at": "2026-08-26T17:38:31.204Z"
+    }
+   ],
+   "feature": "Twin hidden stabilizing bails behind the crest prevent rotation while preserving a continuous silhouette."
+  },
+  {
+   "id": "D03",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "Littoral Crest",
+   "item": "earrings",
+   "title": "Littoral Crest · 귀걸이",
+   "prompt": "Original design: 귀걸이 Littoral Crest pair of earrings. Recycled 925 sterling silver, unplated (no rhodium) for a warm natural tone. Crest Aperture motif mirrored: 17 mm ovoid plates with 30-35% negative space, rotated plus/minus 8 degrees. Glossy mirror-polished crest ridges; micro bead-blasted hollows with a soft mineral finish. Profile height max 3.2 mm; edge radii at least 0.35 mm. Manufacturable walls 1.2-1.4 mm; ridge cap thickness 2.6-3.0 mm. Optional stone: one 1.7 mm round flush in a smooth bezel (0.5 mm seat, 1.3 mm floor); image shows none. Hidden closure: integrated hinged huggie, 0.9 mm earwire, snap latch behind the lobe so the form reads continuous. Day-long comfort; unisex. Three-quarter product view of the pair on a neutral grey studio background, macro jewelry photograph, photoreal, soft diffused lighting, subtle shadows, no branding. Avoid: mermaid vibes, boho/bohemian, goddess/siren, anchors/ropes, shell charms, waterproof or ocean safe claims, heavily hammered, overly dainty, mega statement bling, tribal or ethnic labels, gendered phrases.",
+   "versions": [
+    {
+     "url": "/samples/e9084ca2a9ccddcb19bbe863.png",
+     "hash": "e9084ca2a9ccddcb19bbe863",
+     "prompt": "Original design: 귀걸이 Littoral Crest pair of earrings. Recycled 925 sterling silver, unplated (no rhodium) for a warm natural tone. Crest Aperture motif mirrored: 17 mm ovoid plates with 30-35% negative space, rotated plus/minus 8 degrees. Glossy mirror-polished crest ridges; micro bead-blasted hollows with a soft mineral finish. Profile height max 3.2 mm; edge radii at least 0.35 mm. Manufacturable walls 1.2-1.4 mm; ridge cap thickness 2.6-3.0 mm. Optional stone: one 1.7 mm round flush in a smooth bezel (0.5 mm seat, 1.3 mm floor); image shows none. Hidden closure: integrated hinged huggie, 0.9 mm earwire, snap latch behind the lobe so the form reads continuous. Day-long comfort; unisex. Three-quarter product view of the pair on a neutral grey studio background, macro jewelry photograph, photoreal, soft diffused lighting, subtle shadows, no branding. Avoid: mermaid vibes, boho/bohemian, goddess/siren, anchors/ropes, shell charms, waterproof or ocean safe claims, heavily hammered, overly dainty, mega statement bling, tribal or ethnic labels, gendered phrases.",
+     "at": "2026-08-26T17:39:06.658Z"
+    }
+   ],
+   "feature": "Mirrored huggie earrings in recycled 925 silver with a 30-35% Crest Aperture cutout, glossy ridges and micro bead-blasted hollows, sub-3.5 mm profile, and a concealed hinge for a seamless silhouette."
+  },
+  {
+   "id": "D01",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "Littoral Crest",
+   "item": "ring",
+   "title": "Littoral Crest · 반지",
+   "prompt": "Ring - original design declaration for Littoral Crest: Master motif is the Crest Aperture, scaled to the ring face and rotated about 12-15 degrees. Recycled 925 sterling silver, unplated (no rhodium) for a warm natural tone. Ridges are mirror-gloss; hollows are micro bead-blasted to a soft mineral matte. Frontal negative space equals 30% (+/-5%). Profile height under 3.3 mm; band about 4 mm wide; minimum wall 1.4 mm; all edges radiused >=0.3 mm; comfort-fit interior. Optional stone: single 1.8-2.0 mm round set fully flush in a smooth bezel integrated into the aperture; show without stone by default. Continuous shank, hidden seam, minimal inside hallmark. Low-slung crest keeps weight balanced; discreet inner rib beneath the aperture adds stability. Three-quarter product view, neutral gray studio background; macro jewelry photo; soft diffused light; photoreal; no props or hands. Avoid: mermaid vibes; boho/bohemian; goddess/siren language; nautical anchors or ropes; shell charms; waterproof or ocean-safe claims; heavily hammered cliches; overly dainty/tiny; mega bling; tribal or ethnic labels; gendered phrases like \"for her\" or \"for him\".",
+   "versions": [
+    {
+     "url": "/samples/edaa4ecd9f8220c4fe77c09f.png",
+     "hash": "edaa4ecd9f8220c4fe77c09f",
+     "prompt": "Ring - original design declaration for Littoral Crest: Master motif is the Crest Aperture, scaled to the ring face and rotated about 12-15 degrees. Recycled 925 sterling silver, unplated (no rhodium) for a warm natural tone. Ridges are mirror-gloss; hollows are micro bead-blasted to a soft mineral matte. Frontal negative space equals 30% (+/-5%). Profile height under 3.3 mm; band about 4 mm wide; minimum wall 1.4 mm; all edges radiused >=0.3 mm; comfort-fit interior. Optional stone: single 1.8-2.0 mm round set fully flush in a smooth bezel integrated into the aperture; show without stone by default. Continuous shank, hidden seam, minimal inside hallmark. Low-slung crest keeps weight balanced; discreet inner rib beneath the aperture adds stability. Three-quarter product view, neutral gray studio background; macro jewelry photo; soft diffused light; photoreal; no props or hands. Avoid: mermaid vibes; boho/bohemian; goddess/siren language; nautical anchors or ropes; shell charms; waterproof or ocean-safe claims; heavily hammered cliches; overly dainty/tiny; mega bling; tribal or ethnic labels; gendered phrases like \"for her\" or \"for him\".",
+     "at": "2026-08-26T17:39:28.027Z"
+    }
+   ],
+   "feature": "Low-profile Crest Aperture ring in warm recycled sterling silver, combining mirror-polished ridges, mineral-matte hollows, and a 30% negative window with an optional fully flush bezel stone."
+  },
+  {
+   "id": "D04",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "Shoreline Echo",
+   "item": "ring",
+   "title": "Shoreline Echo · 반지",
+   "prompt": "Ring — Shoreline Echo base design. A compact, stackable band in bright-finish recycled 925 silver, defined by one continuous groove (never doubled or crosshatched), 0.9–1.1 mm wide and 0.3–0.5 mm deep; edges of the groove eased 0.1 mm to protect color fills. Offer variants with bio-based cold enamel in seafoam, coral, or sand, and a no‑color silver version. Optional upsell: a single 1.2 mm round lab‑grown diamond flush set, seat depth ~0.6 mm, at the groove’s apex. Band proportions: 3.0 mm face tapering to 2.4 mm; thickness 2.0 mm crown, 1.8 mm palm. Interior comfort finish with micro‑bevels (0.2–0.3 mm) and softened outer edges so rings stack without snagging knits. Quiet, unisex exterior; logos and hallmarks on the inner face only. Photoreal macro jewelry image, 3/4 view, neutral gray studio background, diffused lighting, crisp reflections, clean enamel fills, no props. Avoid surfer/beach tropes, tourist souvenir look, anchors, ropes, compass roses, sailor stripes, shell or mermaid motifs, waterproof claims, vague “eco-friendly” buzzwords, cartoon waves.",
+   "versions": [
+    {
+     "url": "/samples/8d9be5769fcfda70a662d6b2.png",
+     "hash": "8d9be5769fcfda70a662d6b2",
+     "prompt": "Ring — Shoreline Echo base design. A compact, stackable band in bright-finish recycled 925 silver, defined by one continuous groove (never doubled or crosshatched), 0.9–1.1 mm wide and 0.3–0.5 mm deep; edges of the groove eased 0.1 mm to protect color fills. Offer variants with bio-based cold enamel in seafoam, coral, or sand, and a no‑color silver version. Optional upsell: a single 1.2 mm round lab‑grown diamond flush set, seat depth ~0.6 mm, at the groove’s apex. Band proportions: 3.0 mm face tapering to 2.4 mm; thickness 2.0 mm crown, 1.8 mm palm. Interior comfort finish with micro‑bevels (0.2–0.3 mm) and softened outer edges so rings stack without snagging knits. Quiet, unisex exterior; logos and hallmarks on the inner face only. Photoreal macro jewelry image, 3/4 view, neutral gray studio background, diffused lighting, crisp reflections, clean enamel fills, no props. Avoid surfer/beach tropes, tourist souvenir look, anchors, ropes, compass roses, sailor stripes, shell or mermaid motifs, waterproof claims, vague “eco-friendly” buzzwords, cartoon waves.",
+     "at": "2026-08-26T17:40:01.135Z"
+    }
+   ],
+   "feature": "A bright-finish recycled 925 silver band defined by one 1 mm groove with optional seafoam/coral/sand bio‑enamel or a single 1.2 mm flush‑set stone, sized to stack with a comfort‑fit and inner micro‑bevels."
+  },
+  {
+   "id": "D05",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "Shoreline Echo",
+   "item": "pendant",
+   "title": "Shoreline Echo · 펜던트",
+   "prompt": "Pendant: Shoreline Echo DNA translated into a compact pendant necklace. Recycled 925 silver in a bright mirror finish forms a 18 x 12 x 2.0 mm plaque with micro‑bevels and a flat back. One continuous groove defines the motif—0.8–1.2 mm wide, 0.3–0.5 mm deep—never doubled or crosshatched. Finishes: bare silver core, or bio‑based cold enamel infill in seafoam, coral, or sand. Base version is no‑stone; upsell adds a single 1.3–1.5 mm round flush‑set dot (lab diamond or white topaz) placed on the lower third of the groove; leave ≥1.2 mm seat metal. Twin hidden bails on the reverse prevent rotation and fit 1.0–1.6 mm chains; massing keeps the piece upright. Hallmarks and logo sit on the inner back. Maintain ≥1.2 mm wall around groove and bails for manufacturability. Three‑quarter product view, achromatic studio background, macro jewelry photo, photoreal, clean reflections, shallow depth of field. Avoid: surfer dude, beach bum tropes, tourist souvenir look, anchors, ropes, compass roses, sailor stripes, shell icons, mermaid language, waterproof claims, vague eco buzzwords, cartoon waves.",
+   "versions": [
+    {
+     "url": "/samples/656d22deae6be04b066cfb16.png",
+     "hash": "656d22deae6be04b066cfb16",
+     "prompt": "Pendant: Shoreline Echo DNA translated into a compact pendant necklace. Recycled 925 silver in a bright mirror finish forms a 18 x 12 x 2.0 mm plaque with micro‑bevels and a flat back. One continuous groove defines the motif—0.8–1.2 mm wide, 0.3–0.5 mm deep—never doubled or crosshatched. Finishes: bare silver core, or bio‑based cold enamel infill in seafoam, coral, or sand. Base version is no‑stone; upsell adds a single 1.3–1.5 mm round flush‑set dot (lab diamond or white topaz) placed on the lower third of the groove; leave ≥1.2 mm seat metal. Twin hidden bails on the reverse prevent rotation and fit 1.0–1.6 mm chains; massing keeps the piece upright. Hallmarks and logo sit on the inner back. Maintain ≥1.2 mm wall around groove and bails for manufacturability. Three‑quarter product view, achromatic studio background, macro jewelry photo, photoreal, clean reflections, shallow depth of field. Avoid: surfer dude, beach bum tropes, tourist souvenir look, anchors, ropes, compass roses, sailor stripes, shell icons, mermaid language, waterproof claims, vague eco buzzwords, cartoon waves.",
+     "at": "2026-08-26T17:40:36.497Z"
+    }
+   ],
+   "feature": "Twin hidden bails and a single shoreline‑echo groove with an optional flush‑set dot stone define a bright‑finish 925 silver pendant that hangs upright and layers cleanly."
+  },
+  {
+   "id": "D06",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "Shoreline Echo",
+   "item": "earrings",
+   "title": "Shoreline Echo · 귀걸이",
+   "prompt": "귀걸이 — Original design declaration: Compact unisex hinged huggies for the Shoreline Echo set in recycled 925 silver, bright finish. Identity is a single continuous groove along the outer arc; width 0.8-1.2 mm, depth 0.3-0.5 mm; never doubled or crosshatched. Bio-based cold enamel colorways: seafoam, coral, sand; plus a no-color silver core. Base version carries no stones; upsell adds one 1.2-1.5 mm round flush-set dot at the front apex. Comfort interiors with micro bevels prevent snagging; logos/hallmarks on inner faces only. Proportions for stacking: OD ~12-14 mm, section ~2.2 mm with minimum wall 1.1 mm; hinge post 0.9 mm; flush-set seat leaves >=0.4 mm metal under the stone. Mirrored left/right pair, <2.5 g each, balanced on face. Three-quarter product view of the pair, neutral monochrome studio background, macro jewelry photo, photoreal with crisp silver speculars; show tolerances and latch detail. Avoid surfer dude or beach bum tropes, tourist souvenir look, anchors, ropes, compass roses, sailor stripes, shell icons, mermaid language, waterproof claims, vague 'eco friendly,' and cartoon waves.",
+   "versions": [
+    {
+     "url": "/samples/6dfda24e20482fb28e3b6ce4.png",
+     "hash": "6dfda24e20482fb28e3b6ce4",
+     "prompt": "귀걸이 — Original design declaration: Compact unisex hinged huggies for the Shoreline Echo set in recycled 925 silver, bright finish. Identity is a single continuous groove along the outer arc; width 0.8-1.2 mm, depth 0.3-0.5 mm; never doubled or crosshatched. Bio-based cold enamel colorways: seafoam, coral, sand; plus a no-color silver core. Base version carries no stones; upsell adds one 1.2-1.5 mm round flush-set dot at the front apex. Comfort interiors with micro bevels prevent snagging; logos/hallmarks on inner faces only. Proportions for stacking: OD ~12-14 mm, section ~2.2 mm with minimum wall 1.1 mm; hinge post 0.9 mm; flush-set seat leaves >=0.4 mm metal under the stone. Mirrored left/right pair, <2.5 g each, balanced on face. Three-quarter product view of the pair, neutral monochrome studio background, macro jewelry photo, photoreal with crisp silver speculars; show tolerances and latch detail. Avoid surfer dude or beach bum tropes, tourist souvenir look, anchors, ropes, compass roses, sailor stripes, shell icons, mermaid language, waterproof claims, vague 'eco friendly,' and cartoon waves.",
+     "at": "2026-08-26T17:41:00.839Z"
+    }
+   ],
+   "feature": "Compact unisex hinged huggies defined by a single 0.8-1.2 mm groove, stackable, with seafoam/coral/sand enamel options and an optional one-dot flush stone."
+  },
+  {
+   "id": "D07",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "Pelagic Lattice",
+   "item": "ring",
+   "title": "Pelagic Lattice · 반지",
+   "prompt": "반지 — Pelagic Lattice ring translating the set’s Voronoi Reef Cell study into a unisex, stable daily‑wear band. Recycled 925 silver with an oxidation gradient: darkest in recesses, brightest on polished nodes. Lattice walls hold 1.2–2.0 mm thickness; cell diameters range 2–6 mm and compress toward an off‑center focal wave to imply interference patterns. Only 20–30% of cells receive a translucent ocean‑tinted resin inlay with preserved microbubbles for a surf‑trapped look; inlays sit flush or up to 0.1 mm recessed, no prongs. Ring top rise under 4 mm; interior comfort‑fit with softly rounded edges; gentle taper and non‑mirrored silhouette for organic balance and finger stability. Two slim flexible bridge links hidden at the underside introduce soft motion without snagging while maintaining structure. Same Reef Cell logic ties to the pendant and earrings so the set reads as one study. Shot as a three‑quarter product view on a neutral monochrome studio background, macro jewelry photograph, photoreal finish; emphasize crisp gradient, bright nodes, and resin clarity. Avoid: gothic skull/bone cues, steampunk gears, aggressive spikes, horror coral/parasite language, razor edges or snagging prongs, heavy clasps, perfect bilateral symmetry.",
+   "versions": [
+    {
+     "url": "/samples/b1ca060501ab0b0f26cfdba2.png",
+     "hash": "b1ca060501ab0b0f26cfdba2",
+     "prompt": "반지 — Pelagic Lattice ring translating the set’s Voronoi Reef Cell study into a unisex, stable daily‑wear band. Recycled 925 silver with an oxidation gradient: darkest in recesses, brightest on polished nodes. Lattice walls hold 1.2–2.0 mm thickness; cell diameters range 2–6 mm and compress toward an off‑center focal wave to imply interference patterns. Only 20–30% of cells receive a translucent ocean‑tinted resin inlay with preserved microbubbles for a surf‑trapped look; inlays sit flush or up to 0.1 mm recessed, no prongs. Ring top rise under 4 mm; interior comfort‑fit with softly rounded edges; gentle taper and non‑mirrored silhouette for organic balance and finger stability. Two slim flexible bridge links hidden at the underside introduce soft motion without snagging while maintaining structure. Same Reef Cell logic ties to the pendant and earrings so the set reads as one study. Shot as a three‑quarter product view on a neutral monochrome studio background, macro jewelry photograph, photoreal finish; emphasize crisp gradient, bright nodes, and resin clarity. Avoid: gothic skull/bone cues, steampunk gears, aggressive spikes, horror coral/parasite language, razor edges or snagging prongs, heavy clasps, perfect bilateral symmetry.",
+     "at": "2026-08-26T17:41:36.029Z"
+    }
+   ],
+   "feature": "Voronoi reef‑lattice ring in recycled 925 silver with oxidized gradient, translucent microbubble resin in 20~30% of cells, hidden flexible bridge links, and a sub‑4 mm rise for unisex daily wear."
+  },
+  {
+   "id": "D08",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "Pelagic Lattice",
+   "item": "pendant",
+   "title": "Pelagic Lattice · 펜던트",
+   "prompt": "Pendant—original Pelagic Lattice design declaration: the set’s Voronoi Reef Cell motif pendant in recycled 925 silver, oxidation gradient darkest in recesses and brightest on exposed nodes. Lattice walls hold 1.2–2.0 mm thickness; cell diameters vary 2–6 mm, compressing near a lower-third focal zone to suggest wave interference. No gemstones; 20–30% of cells carry translucent aqua resin inlay with sparse microbubbles for a surf-trapped look. Silhouette gently tapers and avoids perfect mirrors while remaining neck-stable. An asymmetrical dual-node micro-bridge bail spans two upper nodes to prevent rotation on a fine 1.3 mm oxidized cable chain; micro-flex links at the bail create a soft ripple in motion. Back is relieved to sit flush; edges are radiused to avoid snagging. Nodes reinforced to 2.0 mm for strength. Three-quarter product view, macro jewelry photograph, achromatic studio background, shallow depth of field, photoreal, crisp metal and resin detail. Avoid: gothic skull or bone cues, steampunk gears, aggressive spikes, horror coral or parasite language, razor edges or snagging prongs, visually heavy clasps, perfect bilateral symmetry.",
+   "versions": [
+    {
+     "url": "/samples/be0551a3bfa1d690b5d174a5.png",
+     "hash": "be0551a3bfa1d690b5d174a5",
+     "prompt": "Pendant—original Pelagic Lattice design declaration: the set’s Voronoi Reef Cell motif pendant in recycled 925 silver, oxidation gradient darkest in recesses and brightest on exposed nodes. Lattice walls hold 1.2–2.0 mm thickness; cell diameters vary 2–6 mm, compressing near a lower-third focal zone to suggest wave interference. No gemstones; 20–30% of cells carry translucent aqua resin inlay with sparse microbubbles for a surf-trapped look. Silhouette gently tapers and avoids perfect mirrors while remaining neck-stable. An asymmetrical dual-node micro-bridge bail spans two upper nodes to prevent rotation on a fine 1.3 mm oxidized cable chain; micro-flex links at the bail create a soft ripple in motion. Back is relieved to sit flush; edges are radiused to avoid snagging. Nodes reinforced to 2.0 mm for strength. Three-quarter product view, macro jewelry photograph, achromatic studio background, shallow depth of field, photoreal, crisp metal and resin detail. Avoid: gothic skull or bone cues, steampunk gears, aggressive spikes, horror coral or parasite language, razor edges or snagging prongs, visually heavy clasps, perfect bilateral symmetry.",
+     "at": "2026-08-26T17:42:03.702Z"
+    }
+   ],
+   "feature": "Asymmetrical dual-node micro-bridge bail prevents rotation and adds soft ripple motion, keeping the oxidized Voronoi lattice and surf-bubble resin accents centered on the neck."
+  },
+  {
+   "id": "D09",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "Pelagic Lattice",
+   "item": "earrings",
+   "title": "Pelagic Lattice · 귀걸이",
+   "prompt": "Earrings — original design: Pelagic Lattice pair using the same Voronoi Reef Cell logic as ring and pendant, realized as a light, ripple‑moving stud‑drop. Cast in recycled 925 silver with an oxidation gradient: darkest in recesses, brightest on nodes. Lattice walls 1.2–2.0 mm thick; cell diameters 2–6 mm, locally compressed to suggest wave interference. Translucent resin inlay (sea‑glass tint) fills 20–30% of cells with microbubbles, surf‑trapped. Silhouettes taper gently and the two pieces are cousins, not mirror twins. A micro hinge or flexible bridge link between post and drop yields soft motion; each earring under 6 g, about 32–38 mm long. Safe radiused edges, no snagging; low‑profile 0.9 mm silver post with slim clutch. Three‑quarter product view, gray studio background, macro jewelry photography, diffused light, photoreal render; show oxidation gradient and resin translucency; keep manufacturable finishing. Avoid: gothic skull or bone cues, steampunk gears, aggressive spikes, horror coral or parasite language, razor edges or snagging prongs, visually heavy clasps that catch hair, perfect bilateral symmetry that kills the organic read.",
+   "versions": [
+    {
+     "url": "/samples/dab77fbe29355a1a01382332.png",
+     "hash": "dab77fbe29355a1a01382332",
+     "prompt": "Earrings — original design: Pelagic Lattice pair using the same Voronoi Reef Cell logic as ring and pendant, realized as a light, ripple‑moving stud‑drop. Cast in recycled 925 silver with an oxidation gradient: darkest in recesses, brightest on nodes. Lattice walls 1.2–2.0 mm thick; cell diameters 2–6 mm, locally compressed to suggest wave interference. Translucent resin inlay (sea‑glass tint) fills 20–30% of cells with microbubbles, surf‑trapped. Silhouettes taper gently and the two pieces are cousins, not mirror twins. A micro hinge or flexible bridge link between post and drop yields soft motion; each earring under 6 g, about 32–38 mm long. Safe radiused edges, no snagging; low‑profile 0.9 mm silver post with slim clutch. Three‑quarter product view, gray studio background, macro jewelry photography, diffused light, photoreal render; show oxidation gradient and resin translucency; keep manufacturable finishing. Avoid: gothic skull or bone cues, steampunk gears, aggressive spikes, horror coral or parasite language, razor edges or snagging prongs, visually heavy clasps that catch hair, perfect bilateral symmetry that kills the organic read.",
+     "at": "2026-08-26T17:42:53.028Z"
+    }
+   ],
+   "feature": "Unisex stud‑drop earrings translating the Pelagic Lattice Voronoi Reef cells into recycled oxidized 925 silver with translucent surf‑bubble resin, 1.2~2.0 mm walls and a micro‑hinged bridge for rippling motion under 6 g each."
+  }
+ ],
+ "searches": 17,
+ "finished": true,
+ "insight": {
+  "meaning": "An organic recycled sterling silver ring modeled on ocean waves and coral-branch voids reads as flow, vitality, seaside freedom and quiet protection, while positioning the piece as an easy casual accent for beachwear at a giftable mid price. Recycled silver reduces demand for newly mined metal and peer‑reviewed LCAs indicate secondary silver can have lower average carbon intensity than primary production, though impacts vary with process and feedstock. Third‑party programs such as SCS Recycled Content and Responsible Source can substantiate recycled claims. ([sciencedirect.com](https://www.sciencedirect.com/science/article/pii/S266678942500056X?utm_source=openai))",
+  "cultural": "Europe: Coral has long been worn as an amulet, especially for children, and its Mediterranean prestige is embedded in art, religion and popular belief. Ovid’s origin myth narrates seaweed hardening into coral when touched by Medusa’s head, a story retold in European art and museum texts. Contemporary resort culture from the Riviera shaped European beachwear aesthetics, while Europe’s surf scene took off at Biarritz in the late 1950s. Large cross‑country studies also link European coastal blue‑space visits with mental well‑being benefits, which supports ocean‑themed design cues in this market. ([huntmuseum.com](https://www.huntmuseum.com/stories/objects-in-focus/16th-century-ad-coral-amulet/?utm_source=openai)) United States: Modern surf and beach style grew from Native Hawaiian and broader Polynesian surfing that became central to U.S. coastal identity in Hawaii and California, so wave motifs read as leisure, freedom and surf culture. Blue is commonly associated with calm and positive affect in psychological research communications. Southwestern jewelry traditions may combine silver with coral and turquoise, but U.S. marketing is subject to the Indian Arts and Crafts Act which prohibits misrepresenting non‑Native work as Native American. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Surf_culture?utm_source=openai))",
+  "background": "Classical to early modern Europe associated coral with protection and vitality. Museums document coral baby rattles and amulets meant to guard infants from illness or the evil eye, while Victorian jewelers carved naturalistic coral florals. Ovid’s Metamorphoses fixed the coral‑from‑seaweed tale in Latin literature, later inspiring European paintings. ([resources.metmuseum.org](https://resources.metmuseum.org/resources/metpublications/pdf/Early_American_Silver_in_The_Metropolitan_Museum_of_Art.pdf?utm_source=openai))",
+  "symbols": [
+   "Protection against harm or evil eye in Mediterranean tradition",
+   "Life force and rebirth in early Christian and popular symbolism",
+   "Change and impermanence signaled by waves and tides",
+   "Summer leisure, travel, surf identity in Western pop culture",
+   "Eco‑mindedness via recycled silver and ocean‑aware storytelling"
+  ],
+  "emotions": [
+   "Calm and contentment associated with blue water cues",
+   "Freedom and adventure from surf and travel narratives",
+   "Nostalgia for seaside holidays",
+   "Protective care and luck from coral lore"
+  ],
+  "colors": [
+   "Sea blue to aquamarine for water calm",
+   "Foam white for crest highlights",
+   "Coral pink to red as a symbolic accent without using real coral",
+   "Sun‑faded sand neutrals for casual styling"
+  ],
+  "materials": [
+   "Recycled sterling silver 925 per the standard of 92.5 percent silver alloyed for durability",
+   "Optional ocean‑hued accents such as aquamarine‑tone enamel or lab‑grown blue spinel",
+   "Beach‑friendly finishes like light matte or brushed to hide micro‑scratches",
+   "Avoid real coral due to conservation and trade controls; reference coral in form only",
+   "Consider rhodium flash on contact areas to slow tarnish"
+  ],
+  "forms": [
+   "Undulating ring shoulders tracing a soft sine profile",
+   "Openwork branching that echoes encrusting or branching coral while keeping mass light",
+   "Asymmetric crest and trough heights to feel organic rather than geometric",
+   "Pebble‑softened edges and sea‑worn micro‑facets for comfort and tactile appeal"
+  ],
+  "motion": [
+   "Low‑frequency wave undulation around the band",
+   "Rhythmic alternation of crest and trough as the eye rotates the ring",
+   "Branching gradients that taper like coral growth from trunk to tip"
+  ],
+  "cliches": [
+   "Literal anchors, starfish, rope knots and mermaid tails crowd the ocean‑jewelry category",
+   "Highly polished uniform wave cut‑outs already saturate the market through mass brands",
+   "Fake or dyed coral cabochons signal unsustainable sourcing to many buyers"
+  ],
+  "cautions": [
+   "Do not use real coral; stony corals are CITES Appendix II listed and global mass bleaching underscores sensitivity. Use coral as a form language only, paired with recycled metals. ([cites.org](https://cites.org/sites/default/files/eng/app/2021/E-Appendices-2021-06-22.pdf?utm_source=openai))",
+   "If referencing Southwestern or other Native American aesthetics, do not suggest tribal origin or affiliation unless it is authentic and authorized. U.S. law prohibits misrepresentation; collaborate and credit when appropriate. ([doi.gov](https://www.doi.gov/iacb/act/?utm_source=openai))",
+   "Avoid lifting Polynesian tattoo grammars such as the Māori koru without cultural guidance; these are living visual languages with specific meanings. Use generic wave geometry rather than sacred motifs. ([teara.govt.nz](https://teara.govt.nz/en/photograph/2422/the-koru?utm_source=openai))",
+   "Set accurate expectations for beachwear use. Sterling silver tarnishes faster with salt air, salt water, chlorine and some sunscreens; advise rinsing and quick clean after beach days. ([tiffany.com](https://www.tiffany.com/faq/care-and-repair-faq/how-do-i-care-for-my-tiffany-co-sterling-silver/?utm_source=openai))",
+   "Be precise in sustainability claims. Recycled content must be verifiable and does not by itself guarantee low impact; cite recognized programs such as SCS and avoid overclaiming absolute footprint reductions. ([scsstandards.org](https://www.scsstandards.org/standards/responsible-source-for-precious-metals-standard?utm_source=openai))"
+  ],
+  "abstraction": [
+   {
+    "axis": "symbol",
+    "notes": [
+     "Protection amulet recalled in coral lore",
+     "Sea journey and return",
+     "Care for oceans through material choice"
+    ]
+   },
+   {
+    "axis": "emotion",
+    "notes": [
+     "Calm and restoration",
+     "Freedom and play",
+     "Tender luck for the wearer"
+    ]
+   },
+   {
+    "axis": "form",
+    "notes": [
+     "Sine‑like band with crest emphasis",
+     "Branching negative spaces",
+     "Rounded pebbled profiles"
+    ]
+   },
+   {
+    "axis": "motion",
+    "notes": [
+     "Ebb to flow around the circumference",
+     "Amplitude modulation small to large",
+     "Crest lead then slow decay"
+    ]
+   },
+   {
+    "axis": "structure",
+    "notes": [
+     "Asymmetry with balanced mass",
+     "Openwork ribs that strengthen like coral trunks",
+     "Comfort‑fit inner radius"
+    ]
+   },
+   {
+    "axis": "surface",
+    "notes": [
+     "Matte micro‑brushing like sea‑worn glass",
+     "Selective polish on crest edges",
+     "Subtle stipple for foam"
+    ]
+   },
+   {
+    "axis": "material",
+    "notes": [
+     "Recycled 925 silver with optional rhodium touch points",
+     "No animal or reef‑derived inlays",
+     "Low‑impact packaging narrative to match"
+    ]
+   },
+   {
+    "axis": "color",
+    "notes": [
+     "Aquamarine to teal enamel accents",
+     "Warm coral‑pink detail as a nod to myth",
+     "Neutral sand satin for contrast"
+    ]
+   },
+   {
+    "axis": "rhythm",
+    "notes": [
+     "Two short ripples then one long swell pattern",
+     "Tapered branching repeating three times",
+     "Visual rest at the ring’s inner arc"
+    ]
+   },
+   {
+    "axis": "story",
+    "notes": [
+     "From seaweed to coral in Ovid to today’s reef care",
+     "Riviera holiday to California surf crossover",
+     "From mined to recycled silver as a personal choice"
+    ]
+   }
+  ],
+  "sources": [
+   "The Hunt Museum Coral Amulet overview",
+   "NOAA Coral Reef Watch global bleaching updates 2024 to 2025",
+   "CITES listings for stony corals Scleractinia Appendix II",
+   "Ovid Metamorphoses coral origin passages and related museum notes",
+   "The Met and other museums on coral baby rattles and Victorian coral jewelry",
+   "BlueHealth multi‑country studies on blue spaces and well‑being",
+   "GIA and USGS on sterling silver 925 composition and care including rhodium plating",
+   "SCS Global Services standards for recycled precious metals and recycled content",
+   "Origins and diffusion of surfing in Hawaii, California and Europe including Biarritz histories",
+   "APA Speaking of Psychology on color and emotion associations for blue and calmness",
+   "NOAA and museum resources on coral growth forms and morphology",
+   "Pandora and similar market examples of mass‑market wave rings for cliché awareness"
+  ],
+  "searches": 17,
+  "cached": false
+ },
+ "sets": [
+  {
+   "name": "Littoral Crest",
+   "kind": "Representative",
+   "concept": "Organic wave crests and coral apertures shaped in recycled sterling silver for relaxed beachwear that reads unisex across ages 18 to 34 in Europe and the United States.",
+   "story": "This set captures a quiet moment when the tide recedes and leaves glinting windows of water between coral forms. Polished crest lines catch sunlight while soft matte hollows feel like wet sand under fingertips. Tiny sea glass dots echo living polyps without turning the pieces into miniatures of nature. The hero ring lands at 120 AUD to anchor accessibility while keeping the material story honest with recycled 925 silver.",
+   "palette": [
+    "seafoam green",
+    "sunlit silver",
+    "sand beige",
+    "pale coral",
+    "charcoal shadow"
+   ],
+   "metal": "Recycled 925 sterling silver in a natural warm silver tone with an optional champagne vermeil edge highlight for limited editions.",
+   "surface": "High polish on crest ridges, fine sandblasted or satin matte in recesses, a light hand-applied oxidation in micro pores for depth.",
+   "stones": "Optional recycled sea glass cabochons in seafoam or pale aqua at 2~3 mm round, alternative lab grown white sapphire at 1.2 mm as a single bright cut, all set flush within low bezels.",
+   "silhouette": "Softly asymmetric ovals with one off center window that recalls a tidepool, kept low profile for comfort on ring, pendant, and earrings.",
+   "motif": "Crest Aperture that frames a negative space like a calm pool between coral spurs.",
+   "rhythm": "Quasi periodic crest spacing in three to five beats around a form with no perfect mirror symmetry; negative spaces vary in size to feel tidal rather than geometric.",
+   "structure": "Lost wax cast from recycled silver with underside relief for lightness; flush bezel nests for micro stones; integrated hidden bail on pendant; hinged huggie earring with internal lock that shows no hardware when viewed from the front.",
+   "avoid": [
+    "mermaid vibes",
+    "boho or bohemian",
+    "goddess or siren language",
+    "nautical anchors or ropes",
+    "shell charms",
+    "waterproof claims",
+    "ocean safe claims",
+    "heavily hammered as a style cliche",
+    "overly dainty or tiny",
+    "mega statement bling",
+    "tribal or ethnic as style labels",
+    "gendered phrases like for her or for him"
+   ],
+   "design_dna": [
+    "All pieces use recycled 925 sterling silver as the base metal without rhodium so the tone stays warm and natural.",
+    "Crest ridges are always glossy while hollows are micro bead blasted to a soft mineral finish.",
+    "Negative space covers roughly one quarter to two fifths of the frontal area to keep the pieces breathable and unisex.",
+    "Any stone is optional and must sit flush within a smooth bezel so the surface remains snag free and casual.",
+    "Profile height stays under 3.5 mm across ring, pendant, and earring for day long comfort.",
+    "Closures and bails are hidden or minimal so the forms read as continuous when worn.",
+    "All edges have at least a 0.3 mm radius for tactile comfort and a gender neutral look.",
+    "The Crest Aperture drawing is scaled and slightly rotated across items so the family reads as one coherent language."
+   ],
+   "concept_art": {
+    "form": "Porous ovals and gentle ridge caps that frame irregular windows of space, no literal jewelry depicted.",
+    "motion": "A calm ebb and flow with three soft crest beats that pulse outward from a center pool.",
+    "material": "Liquid silver like surfaces paired with frosted silica textures and translucent seafoam glass glints.",
+    "atmosphere": "Morning beach hush with bright but low angle sun and cool shadows over wet sand flats."
+   },
+   "art": {
+    "form": {
+     "url": "/samples/dd80730b16887f6c2a6682c0.png",
+     "hash": "dd80730b16887f6c2a6682c0"
+    },
+    "motion": {
+     "url": "/samples/d7170e8c43b2a6435b4c062e.png",
+     "hash": "d7170e8c43b2a6435b4c062e"
+    },
+    "material": {
+     "url": "/samples/d5cad65c5500d788a50093c3.png",
+     "hash": "d5cad65c5500d788a50093c3"
+    },
+    "atmosphere": {
+     "url": "/samples/28b169206ddf6b6bf334d491.png",
+     "hash": "28b169206ddf6b6bf334d491"
+    }
+   },
+   "lineup": {
+    "url": "/samples/0a5402bc1680f801327a5673.png",
+    "hash": "0a5402bc1680f801327a5673"
+   }
+  },
+  {
+   "name": "Shoreline Echo",
+   "kind": "Commercial",
+   "concept": "Everyday unisex essentials in recycled sterling silver defined by one clean meander groove with optional color fill that pairs easily with beachwear.",
+   "story": "Designed for volume production and stackable styling, this set reduces the ocean idea to a single line that drifts like a small wave across a bright surface. The ring opens the line at 120 AUD and invites multiples in different colors for personal mixes. A compact coin or bar pendant and micro hoops repeat the path for a neat family read. The result feels casual and modern for Europe and the United States without resorting to novelty iconography.",
+   "palette": [
+    "ocean teal",
+    "seafoam",
+    "coral blush",
+    "sand",
+    "ink charcoal"
+   ],
+   "metal": "Recycled 925 sterling silver in a bright polish with an optional clear nano coat for tarnish resistance, ear posts also 925 and nickel safe.",
+   "surface": "Mirror polished field with a micro brushed bed inside the groove so color fill reads matte against gloss.",
+   "stones": "Optional single dot at 1 mm in clear lab grown spinel or cubic zirconia, set as a flush burnish near the start of the groove to mimic a sun glint on water.",
+   "silhouette": "Low profile comfort fit ring at 3.5~5.5 mm width, small coin or slim vertical bar pendant, compact hoops or studs with the same continuous groove.",
+   "motif": "Meander Groove that traces a shoreline echo across otherwise minimal planes.",
+   "rhythm": "One continuous path that loops once around the ring or curves once across a face, kept slightly off center for life while overall symmetry stays calm.",
+   "structure": "Die struck or milled blanks for consistency; CNC cut groove with 0.8~1.2 mm width and 0.3~0.5 mm depth; cold cure bio based enamel filled flush; friction back posts for studs; pendant with integrated low profile bail.",
+   "avoid": [
+    "surfer dude or beach bum tropes",
+    "tourist souvenir look",
+    "anchors, ropes, compass roses, or sailor stripes",
+    "shell icons",
+    "mermaid language",
+    "waterproof claims",
+    "vague eco words without proof such as eco friendly as a stand alone pitch",
+    "kid like cartoon waves"
+   ],
+   "design_dna": [
+    "Recycled 925 silver in bright finish is the visual baseline for all items.",
+    "A single groove defines identity and is never doubled or crosshatched to avoid clutter.",
+    "Groove width is held between 0.8~1.2 mm and depth between 0.3~0.5 mm for clean color fills that survive wear.",
+    "Color variants use bio based cold enamel in seafoam, coral, and sand; a no color silver version remains core for minimalists.",
+    "Each item offers a no stone base and a single dot flush stone upsell to keep price ladders clear.",
+    "Interior surfaces are comfort finished with micro bevels so pieces do not catch on knits or straps.",
+    "Proportions are compact and stackable so multiple rings or earrings can layer without interference.",
+    "Logos and hallmarks are placed on inner faces to keep the exterior language quiet and unisex."
+   ],
+   "concept_art": {
+    "form": "A pristine plane crossed by one serpentine incision that suggests water meeting sand.",
+    "motion": "A slow sine wave that drifts laterally across a field, easing in and easing out.",
+    "material": "Glossy metallic surface beside a matte inlay that reads like enamel against silver.",
+    "atmosphere": "Crisp daylight minimalism with coastal freshness and graphic clarity."
+   },
+   "art": {
+    "form": {
+     "url": "/samples/956e1bbd56dab548d06cd346.png",
+     "hash": "956e1bbd56dab548d06cd346"
+    },
+    "motion": {
+     "url": "/samples/b35336400af5f3c36da489c7.png",
+     "hash": "b35336400af5f3c36da489c7"
+    },
+    "material": {
+     "url": "/samples/b76478d3a79834e1cb8d7c64.png",
+     "hash": "b76478d3a79834e1cb8d7c64"
+    },
+    "atmosphere": {
+     "url": "/samples/1a281567981cad7c1b9b92e7.png",
+     "hash": "1a281567981cad7c1b9b92e7"
+    }
+   },
+   "lineup": {
+    "url": "/samples/97c7d249f17c6b1596fec63d.png",
+    "hash": "97c7d249f17c6b1596fec63d"
+   }
+  },
+  {
+   "name": "Pelagic Lattice",
+   "kind": "Experimental",
+   "concept": "Sculptural open lattices derived from coral microstructures and wave interference, rendered in recycled sterling silver with oxidized gradients and translucent recycled resin inlays.",
+   "story": "This set turns reef logic into wearable architecture using generative cell networks that breathe with the body. Select cells receive translucent aqua inlays with tiny bubbles so the pieces look wet without gloss overload. A gentle hinge or bridge link lets larger elements ripple as the wearer moves. Dark to light oxidation gradients emphasize depth while keeping a unisex edge for European and U.S. street to shore styling.",
+   "palette": [
+    "deep slate",
+    "gunmetal",
+    "petrol blue",
+    "seafoam translucency",
+    "gloss silver highlights"
+   ],
+   "metal": "Recycled 925 sterling silver with controlled oxidation from charcoal in recesses to bright on node caps.",
+   "surface": "Etched micro texture inside cells, brushed midtones on walls, polished node tips; oxidation gradient fixed by heat sealing.",
+   "stones": "No traditional stones; translucent recycled resin or PET inlays inside selected cells at 0.3~0.6 mm thickness with microbubbles; optional tiny lab grown opal flakes encapsulated in the resin under 0.5 mm to create subtle color play.",
+   "silhouette": "Airy cellular panels that taper and curve to the body; ring with a light open crown, pendant as an elongated ellipse tile, earrings as threaders or hinged tiles that swing softly.",
+   "motif": "Voronoi Reef Cell translated into a wearable mesh.",
+   "rhythm": "Non repeating cell distribution with a density gradient that tightens toward focal nodes so the eye flows center to edge like wave interference.",
+   "structure": "Precision printed wax and cast in recycled silver or fine milled frameworks; micro hinge links join segments for motion; resin poured into masked cells and finished flush; ring available in a fixed and a lightly adjustable open version; ear threads in integrated silver wire with stop bead.",
+   "avoid": [
+    "gothic skull or bone cues",
+    "steampunk gears",
+    "aggressive spikes",
+    "horror coral or parasite language",
+    "razor edges or snagging prongs",
+    "visually heavy clasps that catch hair",
+    "perfect bilateral symmetry that kills the organic read"
+   ],
+   "design_dna": [
+    "Base metal is recycled 925 silver with an oxidation gradient that stays darkest in recesses and brightest on nodes.",
+    "Walls of the lattice hold between 1.2~2.0 mm thickness to balance strength and lightness.",
+    "Cell diameters vary 2~6 mm and compress near focal areas to suggest wave interference patterns.",
+    "Resin inlay fills no more than 20~30 percent of cells and is kept translucent with occasional microbubbles for a surf trapped look.",
+    "Overall silhouettes taper gently and avoid perfect mirrors while remaining stable on the body.",
+    "Motion is designed in through micro hinges or flexible bridge links so pieces ripple softly in wear.",
+    "Weight targets stay under 6 g per earring and ring top rise under 4 mm to keep daily wear feasible.",
+    "The same Voronoi Reef Cell logic applies across ring, pendant, and earring so the set reads as one experimental study."
+   ],
+   "concept_art": {
+    "form": "Interlaced cellular mesh with tapered density and bright node caps, abstracted from coral without depicting jewelry.",
+    "motion": "A slow ripple that passes through a field of cells causing local expansion and contraction.",
+    "material": "Oxidized silver gradients with pockets of translucent aqua resin that hold tiny suspended bubbles.",
+    "atmosphere": "Moody coastal light with cool shadows and bright pin highlights that suggest depth and quiet power."
+   },
+   "art": {
+    "form": {
+     "url": "/samples/04e11d6eba6ee7978d2f33e5.png",
+     "hash": "04e11d6eba6ee7978d2f33e5"
+    },
+    "motion": {
+     "url": "/samples/e21362607b7f66e8735b19d5.png",
+     "hash": "e21362607b7f66e8735b19d5"
+    },
+    "material": {
+     "url": "/samples/1c9a3f4ba1987c5bddda5403.png",
+     "hash": "1c9a3f4ba1987c5bddda5403"
+    },
+    "atmosphere": {
+     "url": "/samples/0ca9ad508f9bf58c218ab904.png",
+     "hash": "0ca9ad508f9bf58c218ab904"
+    }
+   },
+   "lineup": {
+    "url": "/samples/86f41c62381694e66a25640c.png",
+    "hash": "86f41c62381694e66a25640c"
+   }
+  }
+ ],
+ "sample": true,
+ "sampleTitle": "Oliver Smith (Australia) · collection",
+ "savedAtISO": "2026-08-26T17:42:53.029Z"
+}

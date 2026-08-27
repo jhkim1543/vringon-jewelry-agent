@@ -15,7 +15,9 @@
    실행: node scripts/scope-css.mjs <입력.css> <출력.css> */
 import { readFileSync, writeFileSync } from 'node:fs'
 
-const ROOT = '.pa-root'
+// 뿌리 클래스는 인자로 바꿀 수 있다 · 주얼리와 신발이 한 화면에서 나란히 도는데
+// 둘 다 .pa-root 로 가두면 뒤에 실린 쪽이 앞의 스타일을 덮는다 (.topbar, .btn 처럼 이름이 겹친다)
+const ROOT = process.argv[4] || '.pa-root'
 
 /** 셀렉터 하나를 스코프 안으로 */
 function scopeOne(sel) {
@@ -64,9 +66,21 @@ function scope(css) {
     } else if (headTrim.startsWith('@')) {
       out += head + '{' + scope(body) + '}'                 // @media·@supports → 재귀
     } else {
-      const sel = scopeSelectorList(headTrim)
+      // 셀렉터 앞에 붙은 주석은 떼어 그대로 내보낸다.
+      // 안 떼면 ".pa-root /*주석*/ :root" 가 되어 아무것에도 안 맞고,
+      // 그 블록의 변수가 조용히 사라진다 (간격·라운드 토큰이 실제로 이렇게 없어졌다).
+      let lead = ''
+      let rest = head
+      for (;;) {
+        const m2 = rest.match(/^(\s*\/\*[\s\S]*?\*\/)/)
+        if (!m2) break
+        lead += m2[1]
+        rest = rest.slice(m2[1].length)
+      }
+      const sel = scopeSelectorList(rest.trim())
       // html/body/#root 만 있던 규칙(높이 지정 등)은 호스트 몫이라 버린다
-      if (sel) out += (head.startsWith('\n') ? '\n' : '') + sel + ' {' + body + '}'
+      if (sel) out += (head.startsWith('\n') ? '\n' : '') + lead + (lead ? '\n' : '') + sel + ' {' + body + '}'
+      else out += lead
     }
     i = j + 1
   }
@@ -79,5 +93,8 @@ const src = readFileSync(inFile, 'utf8')
 const done = scope(src)
 writeFileSync(outFile, done)
 const leaked = [...done.matchAll(/(^|\})\s*(:root|\*|html|body)\s*[,{]/g)].length
-console.log(`${inFile} → ${outFile} · 남은 전역 셀렉터 ${leaked}`)
-if (leaked) process.exit(2)
+// 접두사를 붙였지만 실제로는 아무것에도 안 맞는 셀렉터도 실패로 본다 —
+// 조용히 규칙이 사라지는 쪽이 전역 유출보다 찾기 어렵다
+const dead = [...done.matchAll(/\.pa-[a-z-]+\s+:root\b/g)].length
+console.log(`${inFile} → ${outFile} · 남은 전역 셀렉터 ${leaked} · 죽은 셀렉터 ${dead}`)
+if (leaked || dead) process.exit(2)

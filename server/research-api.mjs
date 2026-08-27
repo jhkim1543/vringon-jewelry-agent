@@ -11,9 +11,15 @@ export const RESEARCH_MODEL = 'gpt-5'
 // `o3-deep-research` 계열(o3/o4-mini · 날짜본 포함 4종)은 **2026-07-23 에 전부 종료**됐다.
 // 종료된 모델은 /v1/models 목록과 단건 조회에는 남아 200 을 주면서 호출만 404 를 낸다 —
 // 그래서 "권한이 없다"로 오해하기 쉽다. 판별은 메타데이터의 shutdown_date 로 한다.
-// 지금 같은 자리를 채우는 것은 gpt-5-pro 다 (web_search + strict json_schema 로 실측 통과.
-// 한 호출에 약 4분, 검색 9회, 출처 5개). 느린 대신 깊다 — 그래서 기본은 꺼 둔다.
-export const DEEP_MODEL_DEFAULT = 'gpt-5-pro'
+// 그 자리는 한동안 gpt-5-pro 가 채웠는데, 호출당 비용이 너무 커서 gpt-5.2 로 내렸다.
+// 셋 다 web_search + strict json_schema 를 실측으로 통과했고, 같은 질문에서
+//   gpt-5-pro  느림(한 호출 4분 안팎) · 가장 비쌈
+//   gpt-5      45초 · 검색 4회
+//   gpt-5.2    10초 · 검색 1회        ← 지금 기본
+// 속도가 빠른 만큼 한 번에 훑는 폭은 좁다. 그래서 깊이는 모델이 아니라 하위 질문 수(depth)로
+// 만든다 — agentTrendReport 가 deep 일 때 depth 를 올리는 구조는 그대로 둔다.
+// 더 깊게 가야 하면 .env 의 OPENAI_DEEP_RESEARCH_MODEL 로 gpt-5-pro 를 되돌릴 수 있다.
+export const DEEP_MODEL_DEFAULT = 'gpt-5.2'
 const DEEP_POLL_MS = 10_000
 const DEEP_MAX_WAIT_MS = 15 * 60 * 1000
 

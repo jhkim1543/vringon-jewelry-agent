@@ -1,0 +1,482 @@
+{
+ "algo": 2,
+ "params": {
+  "algo": 2,
+  "mode": "collection",
+  "countries": [
+   "United States",
+   "Europe"
+  ],
+  "analysisLang": "en",
+  "direction": "캐나다 로키 산맥의 바위 질감을 담은 비정형 재활용 실버 귀걸이와 펜던트. 데일리 오피스룩에 자연스러운 포인트를 주며 $80 CAD 선에 맞춘 제품.",
+  "itemType": "earrings",
+  "items": [
+   "earrings",
+   "pendant"
+  ],
+  "designCount": 6,
+  "setCount": 2,
+  "target": {
+   "ages": [
+    "26-29",
+    "30-34"
+   ],
+   "gender": "female"
+  },
+  "competitors": [],
+  "imageEngine": "fast"
+ },
+ "stageStatus": {
+  "S1": "done",
+  "S2": "done",
+  "S3": "done",
+  "S4": "done",
+  "S5": "done"
+ },
+ "logs": [
+  {
+   "stage": "S1",
+   "text": "Researching the keyword in United States, Europe: culture, symbols, forms, colors, and the cliches to avoid",
+   "t": 1787766175969
+  },
+  {
+   "stage": "S1",
+   "text": "Insight ready · 10 abstraction axes, 5 cautions",
+   "t": 1787766364467
+  },
+  {
+   "stage": "S2",
+   "text": "2 set concept(s): Strata Echo / Drift Pebble",
+   "t": 1787766471165
+  },
+  {
+   "stage": "S3",
+   "text": "Abstract concept images first, with no jewelry products yet, then one lineup image per set",
+   "t": 1787766471166
+  },
+  {
+   "stage": "S3",
+   "text": "Drift Pebble: 4/4 concept images + lineup",
+   "t": 1787766624402
+  },
+  {
+   "stage": "S3",
+   "text": "Strata Echo: 4/4 concept images + lineup",
+   "t": 1787766624826
+  },
+  {
+   "stage": "S4",
+   "text": "4 designs = 2 set(s) × 2 item(s) · the set DNA stays locked, only the item changes",
+   "t": 1787766624827
+  },
+  {
+   "stage": "S5",
+   "text": "D01 generated (Strata Echo · earrings)",
+   "t": 1787766712145
+  },
+  {
+   "stage": "S5",
+   "text": "D03 generated (Drift Pebble · earrings)",
+   "t": 1787766780423
+  },
+  {
+   "stage": "S5",
+   "text": "D04 generated (Drift Pebble · pendant)",
+   "t": 1787766820098
+  },
+  {
+   "stage": "S5",
+   "text": "D02 generated (Strata Echo · pendant)",
+   "t": 1787766834800
+  }
+ ],
+ "references": [],
+ "pairs": [
+  {
+   "id": "D01",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "Strata Echo",
+   "item": "earrings",
+   "title": "Strata Echo · 귀걸이",
+   "prompt": "귀걸이 — original Strata Echo pair. Compact irregular silhouettes (12 mm body) in recycled sterling silver; satin baseline with light–medium oxidized lows and brightened ridge tips. A single diagonal ridge and a small erosion notch define the master motif; edges softened to >=0.3 mm radius, no snag points. Subtle left/right asymmetry aligns through the ridge angle and a triad of shallow surface pits. Hidden mechanics: recessed post and clutch so hardware is not visible from the front. Visual weight under 3.0 g per pair. Realistic build: average wall 1.2 mm, local 1.0 mm minimum; micro flush stone (optional 0.8–1.0 mm round) set in one pit with 0.6 mm metal under-seat, no prongs. Oxide kept off skin-contact high points to avoid color transfer. Surfaces show honest heat bloom and fine tool marks suggesting weathered rock, never literal landscapes. Three-quarter view of the pair, macro jewelry photo, monochrome studio background, soft diffused lighting, ultra-sharp photoreal finish. Avoid: boho/bohemian, gypsy, tribal/ethnic, mountain magic, spiritual healing, energy stone claims, pure silver, non-tarnish, sustainable, Rockies affiliation.",
+   "versions": [
+    {
+     "url": "/samples/43599e59ca52ab0dbdf9f826.png",
+     "hash": "43599e59ca52ab0dbdf9f826",
+     "prompt": "귀걸이 — original Strata Echo pair. Compact irregular silhouettes (12 mm body) in recycled sterling silver; satin baseline with light–medium oxidized lows and brightened ridge tips. A single diagonal ridge and a small erosion notch define the master motif; edges softened to >=0.3 mm radius, no snag points. Subtle left/right asymmetry aligns through the ridge angle and a triad of shallow surface pits. Hidden mechanics: recessed post and clutch so hardware is not visible from the front. Visual weight under 3.0 g per pair. Realistic build: average wall 1.2 mm, local 1.0 mm minimum; micro flush stone (optional 0.8–1.0 mm round) set in one pit with 0.6 mm metal under-seat, no prongs. Oxide kept off skin-contact high points to avoid color transfer. Surfaces show honest heat bloom and fine tool marks suggesting weathered rock, never literal landscapes. Three-quarter view of the pair, macro jewelry photo, monochrome studio background, soft diffused lighting, ultra-sharp photoreal finish. Avoid: boho/bohemian, gypsy, tribal/ethnic, mountain magic, spiritual healing, energy stone claims, pure silver, non-tarnish, sustainable, Rockies affiliation.",
+     "at": "2026-08-26T17:51:52.140Z"
+    }
+   ],
+   "feature": "Compact 12 mm recycled sterling-silver studs with one primary diagonal ridge, a subtle erosion notch, and a triad of pits, finished satin with bright ridge tips and light oxide, asymmetrically paired with a front-clean hidden post."
+  },
+  {
+   "id": "D03",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "Drift Pebble",
+   "item": "earrings",
+   "title": "Drift Pebble · 귀걸이",
+   "prompt": "Earrings, original design for the Drift Pebble set. Show a pair of rounded pebble discs, each with one off-center dimple placed on the same upper third for left-right symmetry. Neutral silver hue with light passivation; no gemstones; ornament comes from light and texture. Surfaces are micro-hammered or fine sandblasted to a satin matte that hides fingerprints and micro wear; the rim carries a 0.2 mm bright line from a light bevel polish for subtle office-light flash. Components stay slim: diameter ~11 mm, dome height <= 2.5 mm, thinnest wall 0.8-1.0 mm, under 1.2 g per earring. Flat back with centered 0.8 mm post, 10-11 mm long, low-profile clutch; dimple is shallow, press-formed, no piercings. Maintain set scale rule (pendant ~1.3x earring) though not shown. Three-quarter product view of the pair, slightly staggered, neutral gray studio background, macro jewelry photography, soft reflections, photoreal finish. Avoid bling or overly sparkly effects, statement-piece scale, gypsy/tribal/ethnic cues, 'pure silver', 'non-tarnish/never tarnish' promises, unqualified 'sustainable' claims, and geological or spiritual healing claims.",
+   "versions": [
+    {
+     "url": "/samples/a23f6c51082db8a526486ea0.png",
+     "hash": "a23f6c51082db8a526486ea0",
+     "prompt": "Earrings, original design for the Drift Pebble set. Show a pair of rounded pebble discs, each with one off-center dimple placed on the same upper third for left-right symmetry. Neutral silver hue with light passivation; no gemstones; ornament comes from light and texture. Surfaces are micro-hammered or fine sandblasted to a satin matte that hides fingerprints and micro wear; the rim carries a 0.2 mm bright line from a light bevel polish for subtle office-light flash. Components stay slim: diameter ~11 mm, dome height <= 2.5 mm, thinnest wall 0.8-1.0 mm, under 1.2 g per earring. Flat back with centered 0.8 mm post, 10-11 mm long, low-profile clutch; dimple is shallow, press-formed, no piercings. Maintain set scale rule (pendant ~1.3x earring) though not shown. Three-quarter product view of the pair, slightly staggered, neutral gray studio background, macro jewelry photography, soft reflections, photoreal finish. Avoid bling or overly sparkly effects, statement-piece scale, gypsy/tribal/ethnic cues, 'pure silver', 'non-tarnish/never tarnish' promises, unqualified 'sustainable' claims, and geological or spiritual healing claims.",
+     "at": "2026-08-26T17:53:00.423Z"
+    }
+   ],
+   "feature": "Symmetric pebble-disc stud earrings in neutral silver with a shallow upper-third dimple, satin-matte micro-hammered surface and a bright beveled rim, kept under 1.2 g each for easy all-day wear."
+  },
+  {
+   "id": "D04",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "Drift Pebble",
+   "item": "pendant",
+   "title": "Drift Pebble · 펜던트",
+   "prompt": "Pendant — original design for the Drift Pebble set. Show a simple rounded pebble disc in neutral‑hue sterling silver, one off‑center dimple placed on the upper third. Surface is fine sandblasted to a satin matte that hides micro wear; a 0.2 mm polished bevel around the rim creates a subtle bright line. Keep the dome low (max 2.3 mm) and the wall 0.8–1.0 mm; disc diameter ≈13 mm (about 1.3× the earring), total pendant mass under 2.0 g. Back is flat for comfort. No gemstones; ornament comes from light and texture. Hardware is discreet: a small tab bail concealed behind the top curve, 0.9 mm thick, closed loop ID ~1.2 mm to pass a 1.0 mm cable chain; use a two‑point hidden figure‑8 or twin eyelet to resist rotation and keep the dimple upright. Three‑quarter product view, macro jewelry photo, neutral studio background, soft diffused lighting, photoreal finish; highlight the bright edge without sparkle. Avoid bling, sparkly language, statement‑piece claims, gypsy/tribal/ethnic labels, “pure silver,” non‑tarnish/never‑tarnish, unqualified sustainable, healing or geology claims.",
+   "versions": [
+    {
+     "url": "/samples/16cc90a6286937f18306571c.png",
+     "hash": "16cc90a6286937f18306571c",
+     "prompt": "Pendant — original design for the Drift Pebble set. Show a simple rounded pebble disc in neutral‑hue sterling silver, one off‑center dimple placed on the upper third. Surface is fine sandblasted to a satin matte that hides micro wear; a 0.2 mm polished bevel around the rim creates a subtle bright line. Keep the dome low (max 2.3 mm) and the wall 0.8–1.0 mm; disc diameter ≈13 mm (about 1.3× the earring), total pendant mass under 2.0 g. Back is flat for comfort. No gemstones; ornament comes from light and texture. Hardware is discreet: a small tab bail concealed behind the top curve, 0.9 mm thick, closed loop ID ~1.2 mm to pass a 1.0 mm cable chain; use a two‑point hidden figure‑8 or twin eyelet to resist rotation and keep the dimple upright. Three‑quarter product view, macro jewelry photo, neutral studio background, soft diffused lighting, photoreal finish; highlight the bright edge without sparkle. Avoid bling, sparkly language, statement‑piece claims, gypsy/tribal/ethnic labels, “pure silver,” non‑tarnish/never‑tarnish, unqualified sustainable, healing or geology claims.",
+     "at": "2026-08-26T17:53:40.098Z"
+    }
+   ],
+   "feature": "Satin‑matte sterling pebble disc with an upper‑third dimple and a hidden anti‑rotation tab bail, edged by a fine polished bevel."
+  },
+  {
+   "id": "D02",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "Strata Echo",
+   "item": "pendant",
+   "title": "Strata Echo · 펜던트",
+   "prompt": "펜던트 — Original design declaration: Strata Echo’s master motif in recycled sterling silver as the only visible metal, satin body, light–medium oxidized lows, bright-burnished ridge tips. Irregular silhouette with one primary diagonal ridge and a small erosion notch; edges softened to ≥0.3 mm radius; 16×12 mm footprint, 2.2–2.6 mm at ridge with 1.2 mm min field, under 2.5 g. Controlled asymmetry and a triad of shallow pits; surfaces keep heat and tool marks that evoke rock, not literal mountain outlines. Hidden mechanics: integrated rear tunnel bail (1.3×2.3 mm interior) for 1.0–1.2 mm cable chain; off‑center along ridge axis to resist rotation; no front‑visible ring. Optional 0.9 mm lab sapphire, micro flush‑set; 0.3 mm seat depth with 0.4 mm rim, no prongs. Oxide kept light at contact zones to minimize color transfer. Three‑quarter product view, macro jewelry photo, neutral monochrome studio background, soft diffused light, photoreal. Avoid: boho/bohemian, gypsy, tribal/ethnic, mountain magic, spiritual healing/energy claims, \"pure silver\" for sterling, non‑tarnish promises, unqualified \"sustainable,\" Canadian Rockies ties, mirror‑gloss.",
+   "versions": [
+    {
+     "url": "/samples/86994d6b7384fff09d8a9872.png",
+     "hash": "86994d6b7384fff09d8a9872",
+     "prompt": "펜던트 — Original design declaration: Strata Echo’s master motif in recycled sterling silver as the only visible metal, satin body, light–medium oxidized lows, bright-burnished ridge tips. Irregular silhouette with one primary diagonal ridge and a small erosion notch; edges softened to ≥0.3 mm radius; 16×12 mm footprint, 2.2–2.6 mm at ridge with 1.2 mm min field, under 2.5 g. Controlled asymmetry and a triad of shallow pits; surfaces keep heat and tool marks that evoke rock, not literal mountain outlines. Hidden mechanics: integrated rear tunnel bail (1.3×2.3 mm interior) for 1.0–1.2 mm cable chain; off‑center along ridge axis to resist rotation; no front‑visible ring. Optional 0.9 mm lab sapphire, micro flush‑set; 0.3 mm seat depth with 0.4 mm rim, no prongs. Oxide kept light at contact zones to minimize color transfer. Three‑quarter product view, macro jewelry photo, neutral monochrome studio background, soft diffused light, photoreal. Avoid: boho/bohemian, gypsy, tribal/ethnic, mountain magic, spiritual healing/energy claims, \"pure silver\" for sterling, non‑tarnish promises, unqualified \"sustainable,\" Canadian Rockies ties, mirror‑gloss.",
+     "at": "2026-08-26T17:53:54.800Z"
+    }
+   ],
+   "feature": "Integrated rear tunnel bail aligned with the diagonal ridge prevents spin while keeping the erosion notch and triad of pits as the quiet focal signature."
+  }
+ ],
+ "searches": 12,
+ "finished": true,
+ "insight": {
+  "meaning": "Asymmetric recycled silver earrings and a pendant that translate the fractured bedding, glacial scours and weathered pores of the Canadian Rockies into tactile everyday jewelry for office wear. The pieces signal steadiness, resilience and quiet adventure while keeping price accessibility near 80 CAD by favoring light weight, single-alloy builds and texture-forward finishing instead of costly stones or mechanisms.",
+  "cultural": "United States: Mountain imagery evokes the outdoors ethic and national parks culture, so rock-texture silver can read as grit, independence and restoration in the workweek. Nature‑analog materials and textures fit biophilic design thinking, which links nature cues in daily environments to comfort and well-being, making subtle organic textures appropriate for offices. Consumers increasingly reward credible sustainability and traceability narratives in jewelry, so recycled‑content claims should be truthful and substantiated for US marketing. ([terrapinbrightgreen.com](https://www.terrapinbrightgreen.com/reports/14-patterns/?o=7639&utm_source=openai)) Europe: Mountain forms have long signified the Sublime in European art and thought, mixing awe with a tinge of fear and transcendence. A restrained, textured silver surface can nod to this Romantic inheritance without literal alpine silhouettes. For market compliance, many European countries require hallmarking and widely recognize the Common Control Mark, and jewelry that contacts skin must respect EU nickel‑release limits. Environmental claims are under tightening scrutiny through the proposed EU Green Claims Directive, so recycled‑metal messaging should be evidence‑based. ([gutenberg.org](https://www.gutenberg.org/files/15043/15043-h/15043-h.htm?utm_source=openai))",
+  "background": "Geology to form language: The Canadian Rockies are dominated by sedimentary strata such as limestone, shale and quartzite, stacked in thrust sheets and shaped by glaciers. These processes yield textures designers can borrow, including parallel striations from ice movement, karstic pitting in limestone and sharp ridgelines. The region’s turquoise lakes come from suspended rock flour that scatters light. The parks are a UNESCO World Heritage Site that also includes the Burgess Shale, underscoring a deep earth-history narrative. ([parks.canada.ca](https://parks.canada.ca/pn-np/ab/jasper/nature/environment/geolog?pubDate=20250712&utm_source=openai)) Cultural context of place: Banff and Yoho lie within Indigenous homelands including Blackfoot, Stoney Nakoda, Ktunaxa and Secwépemc Nations, whose connections to these mountains predate the parks. Position inspiration clearly as geology‑based and avoid implying Indigenous authorship. ([parks.canada.ca](https://parks.canada.ca/pn-np/ab/banff/info/gestion-management/involved/plan/plan-2022?utm_source=openai))",
+  "symbols": [
+   "Peak and cairn as perseverance and orientation",
+   "Layered strata as time and memory",
+   "Glacial striation as direction and passage",
+   "Karst void as humility and negative space",
+   "Rockfall facet as controlled chaos"
+  ],
+  "emotions": [
+   "Awe",
+   "Calm focus",
+   "Groundedness",
+   "Resolve",
+   "Quiet optimism"
+  ],
+  "colors": [
+   "Matte sterling grey",
+   "Charcoal shadowing in recesses",
+   "Glacier turquoise accent in packaging or photography",
+   "Spruce green accent for brand palette",
+   "Lichen orange micro‑accent or photo prop"
+  ],
+  "materials": [
+   "Recycled sterling silver 925 for all visible components with truthful recycled‑content substantiation. ([law.cornell.edu](https://www.law.cornell.edu/cfr/text/16/260.13?utm_source=openai))",
+   "Low‑release nickel‑free or nickel‑safe ear posts and clasps for EU compliance. ([eur-lex.europa.eu](https://eur-lex.europa.eu/legal-content/EN/TXT/?qid=1724082961094&uri=CELEX%3A02006R1907-20240606&utm_source=openai))",
+   "Patina by liver of sulfur to darken recesses and reveal texture ridges. ([riogrande.com](https://www.riogrande.com/product/midas-liver-of-sulfur-8-oz/331030GP/?utm_source=openai))",
+   "Optional quartzite‑like matte by bead‑blast or Scotch‑Brite finishing to resist office scuffs",
+   "Recyclable paper box with mineral‑grey insert to echo rock palette"
+  ],
+  "forms": [
+   "Asymmetric silhouettes that suggest broken bedding planes rather than literal mountain outlines",
+   "Ridged and grooved micro‑topography recalling glacial striations aligned in one flow direction for visual coherence. ([usgs.gov](https://www.usgs.gov/media/images/glacial-striations?utm_source=openai))",
+   "Shallow pits and softened voids to reference limestone solution weathering without snag risk. ([geolsoc.org.uk](https://www.geolsoc.org.uk/ks3/gsl/education/resources/rockcycle/page3722.html?utm_source=openai))",
+   "Edge bevels that feel chipped yet comfortable on skin",
+   "Subtle stratified steps like thrust sheets to build depth without bulk"
+  ],
+  "motion": [
+   "Flow from narrow to broad to echo meltwater fans",
+   "Rhythmic ridges spaced irregularly to feel natural rather than machined",
+   "Local turbulence zones where grooves intersect to catch light",
+   "Overall massing that tapers so pieces sit balanced on the ear or chest"
+  ],
+  "cliches": [
+   "Literal mountain‑outline pendants and stamped coordinates",
+   "Overused compass, antler or generic feather charms",
+   "Tourist‑souvenir engraving of place names",
+   "Random hammered dots that read as generic texture rather than geology",
+   "Dreamcatcher or arrowhead tropes not tied to origin or collaboration"
+  ],
+  "cautions": [
+   "Cultural respect and US law: Do not imply Native American or First Nations origin. The US Indian Arts and Crafts Act prohibits marketing that falsely suggests Indigenous production and carries civil and criminal penalties. ([doi.gov](https://www.doi.gov/iacb/act/?utm_source=openai))",
+   "EU skin‑contact safety: Ear posts and other parts in prolonged skin contact must stay under EU nickel‑release limits of less than 0.2 micrograms per square centimeter per week for posts and 0.5 for other parts. Choose nickel‑free or compliant alloys and document test results. ([eur-lex.europa.eu](https://eur-lex.europa.eu/legal-content/EN/TXT/?qid=1724082961094&uri=CELEX%3A02006R1907-20240606&utm_source=openai))",
+   "Hallmarking and labeling: Several European countries legally require hallmarking and the Vienna Convention Common Control Mark is widely accepted. Plan assay and fineness marks alongside maker’s marks early in development. ([gov.uk](https://www.gov.uk/government/publications/hallmarking-guidance-notes/hallmarking-is-the-law-guidance-summary?utm_source=openai))",
+   "Recycled‑content claims: In the US, the FTC Green Guides require truthful, substantiated recycled‑content statements and discourage unqualified or implied general environmental benefit claims. Use precise percentages and recognized certifications such as SCS Recycled Content where applicable. ([law.cornell.edu](https://www.law.cornell.edu/cfr/text/16/260.13?utm_source=openai))",
+   "Finish care disclosure: Patinated sterling can lighten with abrasion and all silver can tarnish from sulfur exposure. Provide clear care guidance for office‑wear users. ([canada.ca](https://www.canada.ca/en/conservation-institute/services/preventive-conservation/guidelines-collections/metal-objects/understanding-silver-tarnish.html?utm_source=openai))"
+  ],
+  "abstraction": [
+   {
+    "axis": "symbol",
+    "notes": [
+     "Strata as memory",
+     "Cairn as guidance",
+     "Glacier trail as journey",
+     "Karst void as humility"
+    ]
+   },
+   {
+    "axis": "emotion",
+    "notes": [
+     "Awe tempered by calm",
+     "Quiet confidence",
+     "Resilience",
+     "Focus"
+    ]
+   },
+   {
+    "axis": "form",
+    "notes": [
+     "Asymmetry",
+     "Tapered massing",
+     "Layer steps",
+     "Groove fields"
+    ]
+   },
+   {
+    "axis": "movement",
+    "notes": [
+     "Directional flow",
+     "Intersecting currents",
+     "Eddies at junctions",
+     "Settling at the base"
+    ]
+   },
+   {
+    "axis": "structure",
+    "notes": [
+     "Single‑alloy build for price discipline",
+     "Hidden jump rings to avoid visual clutter",
+     "Balanced weight near lobe or sternum",
+     "Comfort bevels on all contact points"
+    ]
+   },
+   {
+    "axis": "surface",
+    "notes": [
+     "Reticulated zones for rock‑skin feel",
+     "Roller‑printed micrograin",
+     "Selective patina in recesses",
+     "Matte burnish on peaks"
+    ]
+   },
+   {
+    "axis": "material",
+    "notes": [
+     "Recycled 925 verified",
+     "Nickel‑safe findings",
+     "Low‑VOC finishing",
+     "Plastic‑free packaging"
+    ]
+   },
+   {
+    "axis": "color",
+    "notes": [
+     "Sterling grey as base",
+     "Shadow black in creases",
+     "Photographic accents of glacier turquoise",
+     "Brand greens from spruce"
+    ]
+   },
+   {
+    "axis": "rhythm",
+    "notes": [
+     "Irregular repetition of grooves",
+     "Density increases toward one edge",
+     "Quiet negative pauses",
+     "Light flicker on ridges"
+    ]
+   },
+   {
+    "axis": "story",
+    "notes": [
+     "From glacial force to daily calm",
+     "Time recorded in layers",
+     "Place expressed as texture not map",
+     "Respect for Indigenous homelands framed as geology‑only inspiration"
+    ]
+   }
+  ],
+  "sources": [
+   "Parks Canada Jasper geology page on sedimentary rocks and quartzite in the park. ([parks.canada.ca](https://parks.canada.ca/pn-np/ab/jasper/nature/environment/geolog?pubDate=20250712&utm_source=openai))",
+   "Parks Canada on glaciers and rock flour coloring waters. ([parks.canada.ca](https://www.parks.canada.ca/pn-np/ab/jasper/nature/environment/ecosys/glaciers?wbdisable=true&utm_source=openai))",
+   "UNESCO Canadian Rocky Mountain Parks overview including Burgess Shale. ([whc.unesco.org](https://whc.unesco.org/en/list/304?utm_source=openai))",
+   "USGS definition and visuals of glacial striations. ([usgs.gov](https://www.usgs.gov/media/images/glacial-striations?utm_source=openai))",
+   "Geological Society explainer on limestone solution weathering and karst. ([geolsoc.org.uk](https://www.geolsoc.org.uk/ks3/gsl/education/resources/rockcycle/page3722.html?utm_source=openai))",
+   "Terrapin Bright Green 14 Patterns of Biophilic Design and evidence summary. ([terrapinbrightgreen.com](https://www.terrapinbrightgreen.com/reports/14-patterns/?o=7639&utm_source=openai))",
+   "McKinsey on sustainability shaping fine jewelry and watches. ([mckinsey.com](https://www.mckinsey.com/industries/retail/our-insights/in-fine-jewelry-and-watches-sustainability-shines-through?utm_source=openai))",
+   "EU REACH nickel‑release limits for jewelry in skin contact. ([eur-lex.europa.eu](https://eur-lex.europa.eu/legal-content/EN/TXT/?qid=1724082961094&uri=CELEX%3A02006R1907-20240606&utm_source=openai))",
+   "UK and Convention hallmarking guidance. ([gov.uk](https://www.gov.uk/government/publications/hallmarking-guidance-notes/hallmarking-is-the-law-guidance-summary?utm_source=openai))",
+   "FTC Jewelry Guides and Green Guides on recycled‑content claims. ([consumer.ftc.gov](https://consumer.ftc.gov/articles/buying-platinum-gold-and-silver-jewelry?utm_source=openai))",
+   "SCS Recycled Content Standard example for precious metals. ([cdn.scscertified.com](https://cdn.scscertified.com/products/cert_pdfs/UPMR_SCS-MC-02250_s.pdf?utm_source=openai))",
+   "DOI Indian Arts and Crafts Act overview and enforcement basis. ([doi.gov](https://www.doi.gov/iacb/act/?utm_source=openai))",
+   "Ganoksin on reticulation technique for natural rock‑like textures. ([ganoksin.com](https://www.ganoksin.com/article/reticulation-technique-procedure/?utm_source=openai))",
+   "Rio Grande guidance on liver of sulfur patina use. ([riogrande.com](https://www.riogrande.com/product/midas-liver-of-sulfur-8-oz/331030GP/?utm_source=openai))",
+   "Burke’s Sublime as art‑historical frame for mountain awe. ([gutenberg.org](https://www.gutenberg.org/files/15043/15043-h/15043-h.htm?utm_source=openai))"
+  ],
+  "searches": 12,
+  "cached": false
+ },
+ "sets": [
+  {
+   "name": "Strata Echo",
+   "kind": "대표형",
+   "concept": "Irregular recycled silver captures the weathered strata of the Canadian Rockies and adds a quiet daily accent for office wear near the 80 CAD tier.",
+   "story": "Born from offcuts of recycled sterling silver, each piece is heated until the surface puckers and settles like rock after frost. Gentle oxidation darkens the valleys and lets the ridges catch office light without glare. The forms stay compact to sit calmly near the face and collarbone. The result reads modern and grounded for city routines in the United States and Europe.",
+   "palette": [
+    "cool silver gray",
+    "charcoal oxide",
+    "chalk white highlight",
+    "faint glacier blue air"
+   ],
+   "metal": "Recycled 925 sterling silver in cool gray with localized charcoal patina",
+   "surface": "Reticulated ridge mapping, satin brushed flats, selective high polish on ridge tips, sealed with microcrystalline wax",
+   "stones": "None by default. Optional one round black spinel 0.8~1.0 mm flush set as a single dot",
+   "silhouette": "Soft asymmetric oval pebble with a shallow erosion notch, 10~14 mm for earrings and 14~18 mm for the pendant",
+   "motif": "A strata line that crosses the face at roughly forty five degrees",
+   "rhythm": "Asymmetry is intentional. The pair uses echoing yet non matching ridge angles and grooves appear in a group of three. The pendant mirrors the left earring angle for visual linkage.",
+   "structure": "Stud earrings on a 0.8 mm post with medium clutch. Pendant with hidden tunnel bail behind the ridge sized for a 1.0~1.2 mm cable chain. If a stone is used it is flush set in the deepest pit to avoid snagging.",
+   "avoid": [
+    "boho or bohemian",
+    "gypsy",
+    "tribal or ethnic as style descriptors",
+    "mountain magic, spiritual healing, energy stone claims",
+    "pure silver claim for sterling",
+    "non tarnish or never tarnish promises",
+    "sustainable without a clear qualifier",
+    "official Canadian Rockies affiliation or sourcing claims",
+    "overly glossy mirror polish vibe"
+   ],
+   "design_dna": [
+    "Recycled sterling silver is the only visible metal and the baseline finish is satin with oxidized lows and bright ridge tips.",
+    "Irregular silhouette with one primary diagonal ridge and a small erosion notch is the shared signature across earrings and pendant.",
+    "Edges are softened to a comfort radius of at least 0.3 mm for daily wear with no snag points.",
+    "Visual weight stays compact: earring body within 10~14 mm and under 3.0 g per pair, pendant within 14~18 mm and under 2.5 g to respect the 80 CAD target.",
+    "Asymmetry is controlled so left and right differ slightly but align through the ridge angle and a triad of surface pits.",
+    "Oxide depth remains light to medium so contact areas near skin do not transfer color and to keep contrast gentle under office light.",
+    "Any stone when used is a single micro dot in flush setting with no prongs to keep forms quiet and costs contained.",
+    "Hidden mechanics are preferred so the bail is integrated and earring hardware is not visible from the front.",
+    "Surfaces show honest heat and tool marks that suggest rock without literal mountain outlines."
+   ],
+   "concept_art": {
+    "form": "eroded strata planes that fold into a soft asymmetric oval with one dominant ridge and micro pits",
+    "motion": "slow geological creep that seems to pause then continue like frost lift followed by settling",
+    "material": "recycled silver crust, basalt dust, chalky residue, thin oxide film",
+    "atmosphere": "cool studio light with raking highlights and soft shadows like dawn in alpine fog"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/39723a40efed21d22b6040ca.png",
+     "hash": "39723a40efed21d22b6040ca"
+    },
+    "motion": {
+     "url": "/samples/fca9fe1823328d8fb1cf047f.png",
+     "hash": "fca9fe1823328d8fb1cf047f"
+    },
+    "material": {
+     "url": "/samples/ab5f9ba5356c95f4a4475dd0.png",
+     "hash": "ab5f9ba5356c95f4a4475dd0"
+    },
+    "atmosphere": {
+     "url": "/samples/f6251285e1c1200bd095202f.png",
+     "hash": "f6251285e1c1200bd095202f"
+    }
+   },
+   "lineup": {
+    "url": "/samples/53dd77e979682759feb58059.png",
+    "hash": "53dd77e979682759feb58059"
+   }
+  },
+  {
+   "name": "Drift Pebble",
+   "kind": "상업형",
+   "concept": "Streamlined pebble like recycled silver with fine stipple texture reads clean and versatile for office outfits at the 80 CAD level.",
+   "story": "Each piece is formed from a reusable pebble master and hand stoned to create a fine grain like river worn granite. Edges are softly beveled and lightly polished so hair and knitwear slide past. A satin body with micro stipple hides daily scuffs and reduces maintenance. Sizes stay modest and symmetrical to serve broad preferences in the United States and Europe.",
+   "palette": [
+    "soft silver gray",
+    "graphite speckle",
+    "cloud white",
+    "pale steel blue reflection"
+   ],
+   "metal": "Recycled 925 sterling silver in neutral cool gray with minimal oxidation and bright edge highlights",
+   "surface": "Micro hammered or sandblasted stipple, full body satin, a single bright edge line to catch light",
+   "stones": "None. The texture is the focal point.",
+   "silhouette": "Rounded pebble disc with a flat back and a tiny off center dimple, 8~12 mm for earrings and 12~16 mm for the pendant",
+   "motif": "Glacial pebble field expressed as a single quiet dimple",
+   "rhythm": "Earrings are a matched pair for easy styling. The dimple repeats once per piece and sits in the upper third. The pendant scales the same proportion so the set reads as one family.",
+   "structure": "Stud earrings with a low dome profile and comfort clutch. Optional short drop variant uses a small jump ring with 2.0~3.0 mm internal diameter. Pendant uses a micro integrated tab bail behind the top curve sized for a 1.0 mm cable chain and sits flat against the chest.",
+   "avoid": [
+    "bling or overly sparkly language",
+    "statement piece claims that contradict daily wear",
+    "gypsy, tribal, ethnic as style labels",
+    "pure silver claim for sterling",
+    "non tarnish or never tarnish promises",
+    "sustainable as an unqualified buzzword",
+    "claims of geological or spiritual healing properties"
+   ],
+   "design_dna": [
+    "A simple rounded pebble disc with one off center dimple defines the family silhouette.",
+    "Texture is micro hammered or sandblasted to a satin matte that resists fingerprints and hides micro wear.",
+    "Edges carry a fine bright line from a light bevel polish to add subtle flash under office lighting.",
+    "Components stay slim with dome height under 2.5 mm and weight under 1.2 g per earring and under 2.0 g for the pendant for comfort and price control.",
+    "Symmetry is preferred for this set so left and right match with the dimple aligned on the same upper third.",
+    "No gemstone is used and ornament comes from light and texture for cost discipline and easy care.",
+    "Hardware stays discreet with centered posts on the flat back and a small tab bail concealed behind the top curve.",
+    "Surface hue remains neutral silver with only light passivation to avoid color transfer on skin or shirts.",
+    "Proportions scale consistently so the pendant diameter is about one point three times the earring diameter."
+   ],
+   "concept_art": {
+    "form": "streamlined pebble discs with shallow dimple and soft edges plus flattened back planes",
+    "motion": "gentle drift like stones nudged by slow water with a smooth gliding feel",
+    "material": "fine grain silver, granite speckle, frost matte, clean light",
+    "atmosphere": "quiet minimal backdrop with cool daylight and crisp focus that fades into soft gradients"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/9784d108fb1ca5c958844f15.png",
+     "hash": "9784d108fb1ca5c958844f15"
+    },
+    "motion": {
+     "url": "/samples/b5ef2dfb1081e016ec3b5027.png",
+     "hash": "b5ef2dfb1081e016ec3b5027"
+    },
+    "material": {
+     "url": "/samples/4c5863fffe863fd725f45410.png",
+     "hash": "4c5863fffe863fd725f45410"
+    },
+    "atmosphere": {
+     "url": "/samples/368a919ae1ca23bed9aec34f.png",
+     "hash": "368a919ae1ca23bed9aec34f"
+    }
+   },
+   "lineup": {
+    "url": "/samples/30a28c29c72ecb5561d5b6c6.png",
+    "hash": "30a28c29c72ecb5561d5b6c6"
+   }
+  }
+ ],
+ "sample": true,
+ "sampleTitle": "Chloe Tremblay (Canada) · collection",
+ "savedAtISO": "2026-08-26T17:53:54.801Z"
+}

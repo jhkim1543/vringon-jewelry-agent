@@ -24,6 +24,11 @@ mkdirSync(DEST, { recursive: true })
 
 /* 화면 코드 · main.tsx 와 전역 CSS 원본은 뺀다 */
 const SKIP = new Set(['main.tsx', 'tokens.css', 'theme.css', 'vite-env.d.ts'])
+/* 샘플은 앱이 실제로 심는 것만 옮긴다 — QA 실행 산출물(persona_*.json)이 함께 따라가면
+   남의 저장소에 검증 쓰레기가 쌓인다(실측: 한 번에 10여 개가 딸려 갔다). */
+const DEMO_SAMPLES = new Set(
+  [...readFileSync(join(HERE, 'src', 'core', 'sampleRun.ts'), 'utf8')
+    .matchAll(/'(sample_[a-z_]+)'/g)].map(m => `${m[1]}.json`))
 cpSync(join(HERE, 'src'), DEST, {
   recursive: true,
   filter: (src) => {
@@ -31,6 +36,7 @@ cpSync(join(HERE, 'src'), DEST, {
     if (!rel) return true
     const base = rel.split(/[\\/]/).pop()
     if (SKIP.has(base)) return false
+    if (rel.startsWith('samples') && base.endsWith('.json') && !DEMO_SAMPLES.has(base)) return false
     return true
   },
 })

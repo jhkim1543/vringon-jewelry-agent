@@ -1,0 +1,780 @@
+{
+ "algo": 2,
+ "params": {
+  "algo": 2,
+  "mode": "collection",
+  "countries": [
+   "Asia"
+  ],
+  "analysisLang": "zh",
+  "direction": "18K 베이지 골드와 연옥 포인트(또는 유리 에나멜 대체). 체인 1.2–1.5mm, 낮은 프로파일로 사무실 드레스코드 적합.",
+  "itemType": "necklace",
+  "items": [
+   "ring",
+   "earrings",
+   "necklace"
+  ],
+  "designCount": 10,
+  "setCount": 4,
+  "target": {
+   "ages": [
+    "26-29",
+    "30-34"
+   ],
+   "gender": "female"
+  },
+  "competitors": [],
+  "imageEngine": "fast"
+ },
+ "stageStatus": {
+  "S1": "done",
+  "S2": "done",
+  "S3": "done",
+  "S4": "done",
+  "S5": "done"
+ },
+ "logs": [
+  {
+   "stage": "S1",
+   "text": "Researching the keyword in Asia: culture, symbols, forms, colors, and the cliches to avoid",
+   "t": 1787752448630
+  },
+  {
+   "stage": "S1",
+   "text": "Insight ready · 10 abstraction axes, 7 cautions",
+   "t": 1787752750505
+  },
+  {
+   "stage": "S2",
+   "text": "4 set concept(s): Quiet Meridian / Soft Grid / Aperture Mist / Silk Fold",
+   "t": 1787752924250
+  },
+  {
+   "stage": "S3",
+   "text": "Abstract concept images first, with no jewelry products yet, then one lineup image per set",
+   "t": 1787752924250
+  },
+  {
+   "stage": "S3",
+   "text": "Quiet Meridian: 4/4 concept images + lineup",
+   "t": 1787753074269
+  },
+  {
+   "stage": "S3",
+   "text": "Soft Grid: 4/4 concept images + lineup",
+   "t": 1787753079124
+  },
+  {
+   "stage": "S3",
+   "text": "Silk Fold: 4/4 concept images + lineup",
+   "t": 1787753234799
+  },
+  {
+   "stage": "S3",
+   "text": "Aperture Mist: 4/4 concept images + lineup",
+   "t": 1787753234955
+  },
+  {
+   "stage": "S4",
+   "text": "12 designs = 4 set(s) × 3 item(s) · the set DNA stays locked, only the item changes",
+   "t": 1787753234955
+  },
+  {
+   "stage": "S5",
+   "text": "D02 generated (Quiet Meridian · earrings)",
+   "t": 1787753330013
+  },
+  {
+   "stage": "S5",
+   "text": "D01 generated (Quiet Meridian · ring)",
+   "t": 1787753332780
+  },
+  {
+   "stage": "S5",
+   "text": "D03 generated (Quiet Meridian · necklace)",
+   "t": 1787753381304
+  },
+  {
+   "stage": "S5",
+   "text": "D04 generated (Soft Grid · ring)",
+   "t": 1787753431435
+  },
+  {
+   "stage": "S5",
+   "text": "D05 generated (Soft Grid · earrings)",
+   "t": 1787753432556
+  },
+  {
+   "stage": "S5",
+   "text": "D06 generated (Soft Grid · necklace)",
+   "t": 1787753479679
+  },
+  {
+   "stage": "S5",
+   "text": "D07 generated (Aperture Mist · ring)",
+   "t": 1787753557059
+  },
+  {
+   "stage": "S5",
+   "text": "D08 generated (Aperture Mist · earrings)",
+   "t": 1787753559572
+  },
+  {
+   "stage": "S5",
+   "text": "D09 generated (Aperture Mist · necklace)",
+   "t": 1787753621709
+  },
+  {
+   "stage": "S5",
+   "text": "D10 generated (Silk Fold · ring)",
+   "t": 1787753655850
+  },
+  {
+   "stage": "S5",
+   "text": "D11 generated (Silk Fold · earrings)",
+   "t": 1787753672477
+  },
+  {
+   "stage": "S5",
+   "text": "D12 generated (Silk Fold · necklace)",
+   "t": 1787753703901
+  }
+ ],
+ "references": [],
+ "pairs": [
+  {
+   "id": "D02",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "Quiet Meridian",
+   "item": "earrings",
+   "title": "Quiet Meridian · 귀걸이",
+   "prompt": "귀걸이：Quiet Meridian 一对耳钉设计。18K米色金为基底，主形为 7×6 mm 扁平椭圆片；正面元素趋于平面，侧高≤2.0 mm；边缘倒角 R0.2 mm，触感顺滑不勾衣。沿中心留一条 0.2 mm 极细抛亮“子午线”识别，其余细雾面。左上点缀 1.2 mm 浅玉色半透明珐琅，嵌入 0.25 mm 浅槽并与金面齐平，无爪，边框厚≥0.2 mm；金片厚 0.9–1.1 mm。耳针 0.8×10.5 mm 18K，牢固焊接，单边总重≤1.2 g；无摆动，静音佩戴。三分之四产品视角，成对镜像摆放，灰白无彩工作室背景；微距珠宝摄影，100 mm 微距镜头，柔光箱照明，真实金属色温与雾面纹理，摄影级超写实。避免：大颗粒翡翠主石、厚重高台、尖爪与锐角、大面积镜面高抛光、宫廷/龙凤繁纹、下垂坠长>20 mm。",
+   "versions": [
+    {
+     "url": "/samples/794ab3dd14abf9c243fc17d8.png",
+     "hash": "794ab3dd14abf9c243fc17d8",
+     "prompt": "귀걸이：Quiet Meridian 一对耳钉设计。18K米色金为基底，主形为 7×6 mm 扁平椭圆片；正面元素趋于平面，侧高≤2.0 mm；边缘倒角 R0.2 mm，触感顺滑不勾衣。沿中心留一条 0.2 mm 极细抛亮“子午线”识别，其余细雾面。左上点缀 1.2 mm 浅玉色半透明珐琅，嵌入 0.25 mm 浅槽并与金面齐平，无爪，边框厚≥0.2 mm；金片厚 0.9–1.1 mm。耳针 0.8×10.5 mm 18K，牢固焊接，单边总重≤1.2 g；无摆动，静音佩戴。三分之四产品视角，成对镜像摆放，灰白无彩工作室背景；微距珠宝摄影，100 mm 微距镜头，柔光箱照明，真实金属色温与雾面纹理，摄影级超写实。避免：大颗粒翡翠主石、厚重高台、尖爪与锐角、大面积镜面高抛光、宫廷/龙凤繁纹、下垂坠长>20 mm。",
+     "at": "2026-08-26T14:08:50.008Z"
+    }
+   ],
+   "feature": "以扁平椭圆片与极细抛亮“子午线”为识别，辅以 1.2 mm 浅玉色珐琅点、18K米色金雾面与 R0.2 mm 倒角，打造轻薄静音、日常友好的耳钉。"
+  },
+  {
+   "id": "D01",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "Quiet Meridian",
+   "item": "ring",
+   "title": "Quiet Meridian · 반지",
+   "prompt": "반지 原创设计：Quiet Meridian 静默子午线母题。18K米色金为基底，正面扁平化，侧高≤2.2 mm；一条0.25 mm极细抛亮线贯穿雾面金面，于交点内嵌Ø0.9 mm墨绿冷珐琅微点点睛。戒臂厚1.2–1.4 mm，内侧微拱；边缘倒角R0.15–0.25 mm，顺滑不勾衣。微点采用低台内嵌/微包镶，座壁≥0.3 mm，面与金齐平，日常耐磨；全件雾面，仅保留亮线识别；无爪无锐角、无松动结构，佩戴静音。三分之四视角，中性无彩棚拍背景，微距珠宝照片，真实金属颗粒与体积光，照片级写实渲染。避免：大颗粒翡翠主石、厚重高台、尖爪镶与锐角、大面积镜面高抛光、宫廷或龙凤繁复纹样、超过20 mm的下垂坠。",
+   "versions": [
+    {
+     "url": "/samples/6bc94dbe3b3e3c0542c6ea0a.png",
+     "hash": "6bc94dbe3b3e3c0542c6ea0a",
+     "prompt": "반지 原创设计：Quiet Meridian 静默子午线母题。18K米色金为基底，正面扁平化，侧高≤2.2 mm；一条0.25 mm极细抛亮线贯穿雾面金面，于交点内嵌Ø0.9 mm墨绿冷珐琅微点点睛。戒臂厚1.2–1.4 mm，内侧微拱；边缘倒角R0.15–0.25 mm，顺滑不勾衣。微点采用低台内嵌/微包镶，座壁≥0.3 mm，面与金齐平，日常耐磨；全件雾面，仅保留亮线识别；无爪无锐角、无松动结构，佩戴静音。三分之四视角，中性无彩棚拍背景，微距珠宝照片，真实金属颗粒与体积光，照片级写实渲染。避免：大颗粒翡翠主石、厚重高台、尖爪镶与锐角、大面积镜面高抛光、宫廷或龙凤繁复纹样、超过20 mm的下垂坠。",
+     "at": "2026-08-26T14:08:52.780Z"
+    }
+   ],
+   "feature": "雾面18K米色金上以极细抛亮“子午线”贯穿，并以Ø0.9 mm冷珐琅微点低台内嵌点睛，戒臂1.2~1.4 mm、侧高≤2.2 mm，触感顺滑且静音。"
+  },
+  {
+   "id": "D03",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "Quiet Meridian",
+   "item": "necklace",
+   "title": "Quiet Meridian · 목걸이",
+   "prompt": "목걸이 Quiet Meridian 项链设计，以18K米色金为基底的扁平胶囊形吊牌；正面平面化，侧高1.9 mm；边缘倒角R0.2 mm，手感顺滑不勾衣物。遵循“玉或珐琅仅作小面积点睛”，本款采用直径1.6 mm墨青高温珐琅点，平嵌于0.5 mm浅槽，与中央沿长轴0.25 mm极细抛亮线共同形成识别子午线。背板厚0.9 mm，结构可量产制造。吊牌以双点固接横向小桥连接链条，防旋转，中心重量居中；所有连接环闭口焊，合缝朝内。链条线径1.3 mm圆环链，配3.5 mm弹簧扣与延长环，适配38–43 cm颈线，坠位平衡。表面以雾面微珠喷为主，仅保留亮线与微倒角亮边。避免大颗粒翡翠主石、厚重高台、尖爪镶与锐角、大面积镜面高抛光、宫廷或龙凤繁复纹样、超过20 mm的下垂坠。三分之四产品视角，灰白无彩工作室背景，微距珠宝摄影，照片级写实，真实金属质感，受控高光与柔和阴影。",
+   "versions": [
+    {
+     "url": "/samples/62f9aef1f775963ab40be59d.png",
+     "hash": "62f9aef1f775963ab40be59d",
+     "prompt": "목걸이 Quiet Meridian 项链设计，以18K米色金为基底的扁平胶囊形吊牌；正面平面化，侧高1.9 mm；边缘倒角R0.2 mm，手感顺滑不勾衣物。遵循“玉或珐琅仅作小面积点睛”，本款采用直径1.6 mm墨青高温珐琅点，平嵌于0.5 mm浅槽，与中央沿长轴0.25 mm极细抛亮线共同形成识别子午线。背板厚0.9 mm，结构可量产制造。吊牌以双点固接横向小桥连接链条，防旋转，中心重量居中；所有连接环闭口焊，合缝朝内。链条线径1.3 mm圆环链，配3.5 mm弹簧扣与延长环，适配38–43 cm颈线，坠位平衡。表面以雾面微珠喷为主，仅保留亮线与微倒角亮边。避免大颗粒翡翠主石、厚重高台、尖爪镶与锐角、大面积镜面高抛光、宫廷或龙凤繁复纹样、超过20 mm的下垂坠。三分之四产品视角，灰白无彩工作室背景，微距珠宝摄影，照片级写实，真实金属质感，受控高光与柔和阴影。",
+     "at": "2026-08-26T14:09:41.304Z"
+    }
+   ],
+   "feature": "极简扁平胶囊吊牌上的抛亮“子午线”与一点墨青珐琅对位，双点固接防旋转，在雾面18K米色金中呈现静雅而平衡的中轴识别。"
+  },
+  {
+   "id": "D05",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "Soft Grid",
+   "item": "earrings",
+   "title": "Soft Grid · 귀걸이",
+   "prompt": "귀걸이 以“Soft Grid”柔和网格为主母题的一对短垂耳饰；模块化边长6/9/12 mm统一，推荐9 mm主件+6 mm副件，单件最高≤2.3 mm，所有边角倒R≥0.8 mm。金属18K香槟金，单向细腻拉丝；青白玉或雾感浅米色珐琅嵌片与金面齐平，嵌槽深0.9–1.0 mm，留壁≥0.8 mm。连接用1.3 mm短盒链或细圆环，长度3–4 mm，控制体量与面部比例，整体下垂≤15 mm、每只≤3 g，贴耳重心稳固，适合26–34岁女性日常。耳针Φ0.9 mm、长10.5 mm，蝶形耳堵；背面中部隐刻品牌印记。三分之四产品视角，灰白无彩工作室背景，微距珠宝摄影，柔和漫反射，高分辨率照片级真实，金属倒角与均一拉丝清晰呈现。避免：过密工业网格、强对比黑白珐琅、过度logo化、未倒角的尖锐边、夸张的长垂坠。",
+   "versions": [
+    {
+     "url": "/samples/c912a073adac276f7bb84c5c.png",
+     "hash": "c912a073adac276f7bb84c5c",
+     "prompt": "귀걸이 以“Soft Grid”柔和网格为主母题的一对短垂耳饰；模块化边长6/9/12 mm统一，推荐9 mm主件+6 mm副件，单件最高≤2.3 mm，所有边角倒R≥0.8 mm。金属18K香槟金，单向细腻拉丝；青白玉或雾感浅米色珐琅嵌片与金面齐平，嵌槽深0.9–1.0 mm，留壁≥0.8 mm。连接用1.3 mm短盒链或细圆环，长度3–4 mm，控制体量与面部比例，整体下垂≤15 mm、每只≤3 g，贴耳重心稳固，适合26–34岁女性日常。耳针Φ0.9 mm、长10.5 mm，蝶形耳堵；背面中部隐刻品牌印记。三分之四产品视角，灰白无彩工作室背景，微距珠宝摄影，柔和漫反射，高分辨率照片级真实，金属倒角与均一拉丝清晰呈现。避免：过密工业网格、强对比黑白珐琅、过度logo化、未倒角的尖锐边、夸张的长垂坠。",
+     "at": "2026-08-26T14:10:32.556Z"
+    }
+   ],
+   "feature": "柔和网格方形模块以9 mm主件配6 mm副件、1.3 mm短盒链微悬连接，玉/珐琅与金面齐平并保持单向拉丝，实现低轮廓与轻盈配重。"
+  },
+  {
+   "id": "D04",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "Soft Grid",
+   "item": "ring",
+   "title": "Soft Grid · 반지",
+   "prompt": "戒指·原生设计宣言：以“软格”母题转译为单一9 mm圆角方模块（S/M/L=6/9/12 mm），内分2×2柔圆格，肋宽约1.2 mm，所有转角倒R≥0.8 mm。低轮廓：全件最高点≤2.3 mm；戒臂宽2.4–2.8 mm，壁厚≥1.2 mm，内圈舒适圆弧，重心居中以确保佩戴稳定。材质18K香槟金，表面统一丝向的细腻拉丝，边缘微抛亮以提净度。浅玉或雾粉珐琅嵌片与金面齐平，开槽深0.4–0.6 mm，边框≥0.8 mm；可选1.0 mm圆钻微镶且不破坏网格秩序。品牌印记隐于内壁中部，仅近看可见。3/4视角单品，微距珠宝摄影，中性无彩影棚背景，柔光主灯，照片级写实呈现真实金属与细微纹理。避免：过密工业网格、强对比黑白珐琅、过度logo化、未倒角尖锐边、夸张长垂坠。",
+   "versions": [
+    {
+     "url": "/samples/7c76450aff508c9505bae2ac.png",
+     "hash": "7c76450aff508c9505bae2ac",
+     "prompt": "戒指·原生设计宣言：以“软格”母题转译为单一9 mm圆角方模块（S/M/L=6/9/12 mm），内分2×2柔圆格，肋宽约1.2 mm，所有转角倒R≥0.8 mm。低轮廓：全件最高点≤2.3 mm；戒臂宽2.4–2.8 mm，壁厚≥1.2 mm，内圈舒适圆弧，重心居中以确保佩戴稳定。材质18K香槟金，表面统一丝向的细腻拉丝，边缘微抛亮以提净度。浅玉或雾粉珐琅嵌片与金面齐平，开槽深0.4–0.6 mm，边框≥0.8 mm；可选1.0 mm圆钻微镶且不破坏网格秩序。品牌印记隐于内壁中部，仅近看可见。3/4视角单品，微距珠宝摄影，中性无彩影棚背景，柔光主灯，照片级写实呈现真实金属与细微纹理。避免：过密工业网格、强对比黑白珐琅、过度logo化、未倒角尖锐边、夸张长垂坠。",
+     "at": "2026-08-26T14:10:31.435Z"
+    }
+   ],
+   "feature": "低轮廓9 mm圆角方“软格”戒面与齐平珐琅/玉嵌片，配合R≥0.8 mm倒角和统一丝向拉丝，呈现柔和而干净的现代几何气质。"
+  },
+  {
+   "id": "D06",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "Soft Grid",
+   "item": "necklace",
+   "title": "Soft Grid · 목걸이",
+   "prompt": "목걸이 Soft Grid 原型：圆角软格母题，内格梁宽约 1.0 mm。中心 12 mm 模块为主，配 9/6 mm 同系模块形成轻层次与家族统一；所有倒 R≥0.8 mm，整体最高点 ≤2.3 mm。18K 香槟金，单一方向细腻拉丝；浅玉或柔和浅色珐琅嵌片与金面齐平，台阶深 0.8 mm，嵌片厚 0.8–1.0 mm，金框壁厚 ≥0.9 mm，胶缝 0.05–0.1 mm。1.3 mm 盒链 40+5 cm，贴颈顺颈线；双侧内藏吊耳连接，重心居中防转，受力均匀。品牌印记微雕于背面中部，仅近看可见。三分之四产品视角，微距珠宝摄影，灰白无纹工作室背景，柔和顶侧光与浅阴影，真实反射、细腻拉丝纹理与金属边缘微磨痕，照片级写实。避免：过密工业网格、强对比黑白珐琅、过度 logo 化、未倒角的尖锐边、夸张长垂坠。",
+   "versions": [
+    {
+     "url": "/samples/2c2af1514af7e2369d7f7714.png",
+     "hash": "2c2af1514af7e2369d7f7714",
+     "prompt": "목걸이 Soft Grid 原型：圆角软格母题，内格梁宽约 1.0 mm。中心 12 mm 模块为主，配 9/6 mm 同系模块形成轻层次与家族统一；所有倒 R≥0.8 mm，整体最高点 ≤2.3 mm。18K 香槟金，单一方向细腻拉丝；浅玉或柔和浅色珐琅嵌片与金面齐平，台阶深 0.8 mm，嵌片厚 0.8–1.0 mm，金框壁厚 ≥0.9 mm，胶缝 0.05–0.1 mm。1.3 mm 盒链 40+5 cm，贴颈顺颈线；双侧内藏吊耳连接，重心居中防转，受力均匀。品牌印记微雕于背面中部，仅近看可见。三分之四产品视角，微距珠宝摄影，灰白无纹工作室背景，柔和顶侧光与浅阴影，真实反射、细腻拉丝纹理与金属边缘微磨痕，照片级写实。避免：过密工业网格、强对比黑白珐琅、过度 logo 化、未倒角的尖锐边、夸张长垂坠。",
+     "at": "2026-08-26T14:11:19.678Z"
+    }
+   ],
+   "feature": "三阶圆角软格与齐平玉/珐琅在低轮廓香槟金上呈现干净秩序，并以双侧内藏吊耳确保重心稳定与防转。"
+  },
+  {
+   "id": "D07",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "Aperture Mist",
+   "item": "ring",
+   "title": "Aperture Mist · 반지",
+   "prompt": "반지：Aperture Mist 以“透空+雾感”为母题，让肌肤参与构图。18K香槟金，细砂雾面，窄倒角微抛；仅两元素：圆角矩形开窗+半透明白玉/雾灰珐琅，实/虚≈6/4，玉/珐与金边留缝0.1–0.2 mm。线框截面为圆角矩形；戒臂宽1.8–2.0 mm、厚≥1.2 mm，开窗梁宽1.2–1.5 mm，内R≥0.3 mm不刮手。镶承台阶式包边，高0.6 mm，重心居中，佩戴稳定不旋转；焊点抛顺，背面微拱贴肤。三分之四产品视角，无彩中性灰背景，微距珠宝摄影，柔和侧光、浅景深，真实金属与玉/珐折射，4K照片级写实。避免：全封闭厚片与无留白、高饱和荧光绿、大面积镜面、过长摇摆结构、锐利内角与薄弱尖点。",
+   "versions": [
+    {
+     "url": "/samples/bbaa9c3ecbaba1a2f744c237.png",
+     "hash": "bbaa9c3ecbaba1a2f744c237",
+     "prompt": "반지：Aperture Mist 以“透空+雾感”为母题，让肌肤参与构图。18K香槟金，细砂雾面，窄倒角微抛；仅两元素：圆角矩形开窗+半透明白玉/雾灰珐琅，实/虚≈6/4，玉/珐与金边留缝0.1–0.2 mm。线框截面为圆角矩形；戒臂宽1.8–2.0 mm、厚≥1.2 mm，开窗梁宽1.2–1.5 mm，内R≥0.3 mm不刮手。镶承台阶式包边，高0.6 mm，重心居中，佩戴稳定不旋转；焊点抛顺，背面微拱贴肤。三分之四产品视角，无彩中性灰背景，微距珠宝摄影，柔和侧光、浅景深，真实金属与玉/珐折射，4K照片级写实。避免：全封闭厚片与无留白、高饱和荧光绿、大面积镜面、过长摇摆结构、锐利内角与薄弱尖点。",
+     "at": "2026-08-26T14:12:37.059Z"
+    }
+   ],
+   "feature": "圆角矩形开窗与雾感玉/珐以6/4实虚比例形成轻薄戒面，香槟金雾面与0.1~0.2 mm光缝强化通透层次。"
+  },
+  {
+   "id": "D08",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "Aperture Mist",
+   "item": "earrings",
+   "title": "Aperture Mist · 귀걸이",
+   "prompt": "귀걸이 原创设计：遵循 Aperture Mist 的“透空+雾感”DNA。一对短垂耳饰，总长≤18 mm；两枚元素：圆角矩形开孔外框与半透明浅灰青珐琅/玉片，实虚≈6:4。金属18K香槟金，外框截面R角矩形，壁厚1.0 mm，边宽1.6 mm，背面微拱，焊点抛顺不刮肤。玉/珐琅Ø5.8 mm 厚0.7 mm，设0.2 mm承台与隐蔽卡扣，周圈与金边留0.1–0.2 mm透光缝。连接1.3 mm细链+微型调节环，耳针0.8 mm，单只<2.5 g，适配26–34岁通勤佩戴。表面微雾面缎光与细倒角高光。成对三分之四视角，灰白无色背景，微距珠宝摄影，照片级写实；避免全封闭厚片与无留白、高饱和荧光绿、大面积镜面、过长摇摆结构、锐利内角与薄弱尖点。",
+   "versions": [
+    {
+     "url": "/samples/6a8c5bef0283296d83b559e8.png",
+     "hash": "6a8c5bef0283296d83b559e8",
+     "prompt": "귀걸이 原创设计：遵循 Aperture Mist 的“透空+雾感”DNA。一对短垂耳饰，总长≤18 mm；两枚元素：圆角矩形开孔外框与半透明浅灰青珐琅/玉片，实虚≈6:4。金属18K香槟金，外框截面R角矩形，壁厚1.0 mm，边宽1.6 mm，背面微拱，焊点抛顺不刮肤。玉/珐琅Ø5.8 mm 厚0.7 mm，设0.2 mm承台与隐蔽卡扣，周圈与金边留0.1–0.2 mm透光缝。连接1.3 mm细链+微型调节环，耳针0.8 mm，单只<2.5 g，适配26–34岁通勤佩戴。表面微雾面缎光与细倒角高光。成对三分之四视角，灰白无色背景，微距珠宝摄影，照片级写实；避免全封闭厚片与无留白、高饱和荧光绿、大面积镜面、过长摇摆结构、锐利内角与薄弱尖点。",
+     "at": "2026-08-26T14:12:39.572Z"
+    }
+   ],
+   "feature": "透空为主、圆角矩形光圈与雾感玉/珐琅双元素平衡，金边留缝透光并配短链微调，长度克制且贴肤舒适。"
+  },
+  {
+   "id": "D09",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "Aperture Mist",
+   "item": "necklace",
+   "title": "Aperture Mist · 목걸이",
+   "prompt": "목걸이 — Aperture Mist 原型设计声明：以“透空”为主视觉，让肌肤参与构图。吊坠为圆角矩形开窗框，18K香槟金，丝绒哑光面，外缘细抛高光；线框截面约1.6×1.2 mm，壁厚0.9 mm。唯一内嵌雾感半透明乳白珐琅片，置于内台阶座厚0.5 mm，以两点隐形金桥承托，周圈与金边预留0.15 mm透光缝；元素不超过两枚，实虚约6:4。吊坠尺寸约16×12 mm，背面微拱贴肤，所有焊点抛顺。链条为1.3 mm细链，配微型调节环38/40/42 cm；左右双接环并联U形稳定桥，重心居中，防翻转，挂点过渡圆润不刮颈。遵循套系金属色感、表面与用石规则，不额外加石，保持轻盈留白。三分之四产品视角，无彩中性工作室背景，微距珠宝摄影，高分辨率，柔和定向光，真实金属与珐琅质感、细节锐利、照片级写实。",
+   "versions": [
+    {
+     "url": "/samples/4b8647fd0eb23b17903f3c92.png",
+     "hash": "4b8647fd0eb23b17903f3c92",
+     "prompt": "목걸이 — Aperture Mist 原型设计声明：以“透空”为主视觉，让肌肤参与构图。吊坠为圆角矩形开窗框，18K香槟金，丝绒哑光面，外缘细抛高光；线框截面约1.6×1.2 mm，壁厚0.9 mm。唯一内嵌雾感半透明乳白珐琅片，置于内台阶座厚0.5 mm，以两点隐形金桥承托，周圈与金边预留0.15 mm透光缝；元素不超过两枚，实虚约6:4。吊坠尺寸约16×12 mm，背面微拱贴肤，所有焊点抛顺。链条为1.3 mm细链，配微型调节环38/40/42 cm；左右双接环并联U形稳定桥，重心居中，防翻转，挂点过渡圆润不刮颈。遵循套系金属色感、表面与用石规则，不额外加石，保持轻盈留白。三分之四产品视角，无彩中性工作室背景，微距珠宝摄影，高分辨率，柔和定向光，真实金属与珐琅质感、细节锐利、照片级写实。",
+     "at": "2026-08-26T14:13:41.709Z"
+    }
+   ],
+   "feature": "圆角矩形开窗框内悬浮一片雾感乳白珐琅，与金边留0.15 mm透光缝，配1.3 mm细链与双侧防旋接环，实现实虚6:4的轻盈平衡。"
+  },
+  {
+   "id": "D10",
+   "refSlot": 4,
+   "variant": "base",
+   "setName": "Silk Fold",
+   "item": "ring",
+   "title": "Silk Fold · 반지",
+   "prompt": "반지 原创设计声明：Silk Fold 丝褶主轴贯穿戒面，褶痕方向统一，戒面顶长15–18 mm，低矮贴指，适配办公室低调佩戴。材质18K香槟金，金属厚度1.1–1.3 mm，内壁舒适圆角，背部微中空减重；全边0.1–0.2 mm微倒角，无锐角翘边。表面顺佩戴方向细腻拉丝以弱化划痕。沿主轴嵌入0.6–0.8 mm白玉或浅米色珐琅细线，与金面齐平，沟槽倒角0.05 mm；关键受力点按简化有限元逻辑加肋，确保日常耐用与可制造。实物高度≤3.0 mm，三分之四视角单件，微距珠宝摄影，无彩中性工作室背景，焦点在褶线与嵌线，光影真实，超写实质感。避免：夸张的S形大波纹、易卷发的尖翘角、强对比拼色、过厚的聚焦台面。",
+   "versions": [
+    {
+     "url": "/samples/9fbd70308dab464b12729be5.png",
+     "hash": "9fbd70308dab464b12729be5",
+     "prompt": "반지 原创设计声明：Silk Fold 丝褶主轴贯穿戒面，褶痕方向统一，戒面顶长15–18 mm，低矮贴指，适配办公室低调佩戴。材质18K香槟金，金属厚度1.1–1.3 mm，内壁舒适圆角，背部微中空减重；全边0.1–0.2 mm微倒角，无锐角翘边。表面顺佩戴方向细腻拉丝以弱化划痕。沿主轴嵌入0.6–0.8 mm白玉或浅米色珐琅细线，与金面齐平，沟槽倒角0.05 mm；关键受力点按简化有限元逻辑加肋，确保日常耐用与可制造。实物高度≤3.0 mm，三分之四视角单件，微距珠宝摄影，无彩中性工作室背景，焦点在褶线与嵌线，光影真实，超写实质感。避免：夸张的S形大波纹、易卷发的尖翘角、强对比拼色、过厚的聚焦台面。",
+     "at": "2026-08-26T14:14:15.850Z"
+    }
+   ],
+   "feature": "以线性主轴的丝褶戒面为核心，嵌入≤0.8 mm浅色玉/珐琅细线并与金面齐平，顺佩戴方向拉丝与全域微倒角，低矮贴指且经受力校核，适合日常与办公室佩戴。"
+  },
+  {
+   "id": "D11",
+   "refSlot": 4,
+   "variant": "base",
+   "setName": "Silk Fold",
+   "item": "earrings",
+   "title": "Silk Fold · 귀걸이",
+   "prompt": "귀걸이：Silk Fold 母题，线性主轴与褶痕统一。18K淡金，顺佩戴方向细拉丝；全边微倒角无锐角。单件18mm，厚1.2mm，背面微中空；1.3mm双环链防打转。≤0.8mm浅玉/淡色珐琅沿褶痕嵌线，与金面齐平；关键受力点经简化有限元校核加固，轻巧稳固，适配26–34岁办公室。成对三分之四视角，无彩工作室背景，微距珠宝摄影，照片级写实。避免夸张S形大波纹、尖翘角、强对比拼色、过厚聚焦台面。",
+   "versions": [
+    {
+     "url": "/samples/fd41a48b81508d6bb478d0fc.png",
+     "hash": "fd41a48b81508d6bb478d0fc",
+     "prompt": "귀걸이：Silk Fold 母题，线性主轴与褶痕统一。18K淡金，顺佩戴方向细拉丝；全边微倒角无锐角。单件18mm，厚1.2mm，背面微中空；1.3mm双环链防打转。≤0.8mm浅玉/淡色珐琅沿褶痕嵌线，与金面齐平；关键受力点经简化有限元校核加固，轻巧稳固，适配26–34岁办公室。成对三分之四视角，无彩工作室背景，微距珠宝摄影，照片级写实。避免夸张S形大波纹、尖翘角、强对比拼色、过厚聚焦台面。",
+     "at": "2026-08-26T14:14:32.477Z"
+    }
+   ],
+   "feature": "以统一线性主轴与丝褶母题为核心，18K淡金细拉丝配≤0.8mm玉/珐琅齐平嵌线，18mm轻量中空与1.3mm双环链连接，边缘微倒角，日常稳固不抢镜。"
+  },
+  {
+   "id": "D12",
+   "refSlot": 4,
+   "variant": "base",
+   "setName": "Silk Fold",
+   "item": "necklace",
+   "title": "Silk Fold · 목걸이",
+   "prompt": "목걸이，Silk Fold 系列单吊坠项链原型：沿统一线性主轴的丝褶母题，褶痕同向；18K浅香槟金，纵向细腻拉丝。吊坠长18 mm，金属厚1.2 mm，0.15 mm微倒角，无锐角翘边；背面微中空蜂窝减重，关键受力点做有限元简化校核并内侧加筋。0.7 mm奶白冷珐琅嵌线与金面齐平（遵循玉/珐琅嵌线≤0.8 mm规则）。隐藏式吊环与重心共线，双环闭合防打转；1.3 mm细盒链。适配26–34岁女性通勤，低调不抢镜。三分之四产品视图，无彩中性工作室背景，微距珠宝摄影，真实金属与珐琅微反射，照片级写实渲染。避免：夸张的S形大波纹、易卷发的尖翘角、强对比拼色、过厚的聚焦台面。",
+   "versions": [
+    {
+     "url": "/samples/10709f423ecd3e467e0514e1.png",
+     "hash": "10709f423ecd3e467e0514e1",
+     "prompt": "목걸이，Silk Fold 系列单吊坠项链原型：沿统一线性主轴的丝褶母题，褶痕同向；18K浅香槟金，纵向细腻拉丝。吊坠长18 mm，金属厚1.2 mm，0.15 mm微倒角，无锐角翘边；背面微中空蜂窝减重，关键受力点做有限元简化校核并内侧加筋。0.7 mm奶白冷珐琅嵌线与金面齐平（遵循玉/珐琅嵌线≤0.8 mm规则）。隐藏式吊环与重心共线，双环闭合防打转；1.3 mm细盒链。适配26–34岁女性通勤，低调不抢镜。三分之四产品视图，无彩中性工作室背景，微距珠宝摄影，真实金属与珐琅微反射，照片级写实渲染。避免：夸张的S形大波纹、易卷发的尖翘角、强对比拼色、过厚的聚焦台面。",
+     "at": "2026-08-26T14:15:03.901Z"
+    }
+   ],
+   "feature": "统一主轴丝褶母题与同向折痕，0.7 mm齐平奶白珐琅嵌线，18K香槟金纵向拉丝与双环防转连接，18 mm小巧稳重。"
+  }
+ ],
+ "searches": 17,
+ "finished": true,
+ "insight": {
+  "meaning": "本 브리프의 핵심은 18K 베이지 골드와 연옥 포인트의 조합으로 아시아 사무환경에 어울리는 얇은 체인 1.2~1.5밀리미터, 낮은 프로파일의 일상 착용 주얼리를 설계하는 것이다. 18K는 순금 75퍼센트 합금으로 내구성과 작업성이 균형을 이루며 브랜드 CHANEL의 18K BEIGE GOLD처럼 노란색과 분홍색 사이의 중립적·누드 톤 합금이 시장에 존재한다. 이는 피부 톤 스펙트럼에서 튀지 않으면서도 금의 따뜻함을 유지해 오피스 드레스코드에 유리하다. ([cartier.com](https://www.cartier.com/en-us/faq/creations/jewellery/?utm_source=openai)) 연옥 즉 네프라이트는 옥 계열 두 재료 가운데 하나로 섬유상 결합조직 덕분에 매우 질겨 일상 마찰에 강하며 비젤·채널 같은 낮은 세팅과 잘 맞는다. ([gia.edu](https://www.gia.edu/jade?utm_source=openai)) 유리 에나멜은 옥의 반투명·채도를 대체 표현할 수 있으나 금속과의 열팽창 적합성이 맞지 않으면 칩·크랙 위험이 커지므로 합금 선택과 두께 제어가 필수다. ([ganoksin.com](https://www.ganoksin.com/article/metals-suitable-for-enameling/?utm_source=openai)) 1.2~1.5밀리미터 체인은 소형 펜던트의 업무용 착장에 시각적으로 가볍고 구조적으로 충분하다는 가이드가 다수 제시되어 있다. ([bustle.com](https://www.bustle.com/style/best-chains-for-pendants?utm_source=openai))",
+  "cultural": "아시아 핵심 문화 맥락 요약 중국 문화 의미 옥은 미·덕·신분의 종합 상징으로 공자가 옥의 11가지 덕에 비유했다. 고고학적 전통의 옥 비 디스크는 하늘·천문·의례의 표상으로 장송과 위계 코드에 쓰였고 여전히 현대 디자인 모티프로 재해석된다. ([uplopen.com](https://uplopen.com/books/5447/files/d2120c51-fe85-4955-8dea-06cf52276ab0.pdf?utm_source=openai)) 여의如意의 구름·영지 머리 형상은 뜻하는 바대로 이루어지기를 축원하는 호의의 상징으로 길상 선물 맥락이 강하다. ([metmuseum.org](https://www.metmuseum.org/art/collection/search/40703?utm_source=openai)) 근현대 비즈니스 착장에서는 절제된 액세서리가 권장되므로 얇은 체인과 작은 포인트 스톤이 무난하다. ([rbcglobalconnect.rbc.com](https://rbcglobalconnect.rbc.com/en/resources/explore-new-markets/country-profiles/china/business-practices?utm_source=openai)) 한국 문화 의미 삼국시대 신라 금관과 장신구에 곡옥이 다량 장식되어 위계·생장·길상의 상징을 이뤘고 곡옥은 한국식 반달·콩 모양 옥 장식으로 오늘날까지 미감의 자산이다. ([museum.go.kr](https://www.museum.go.kr/site/eng/exhiSpecialTheme/view/current?exhiSpThemId=4180&utm_source=openai)) 한국에서는 이름을 붉은 잉크로 쓰는 행위가 장례·사망 표기 관습에서 비롯된 금기로 여겨져 시각 코드 사용 시 유의가 필요하다. ([korea.net](https://www.korea.net/NewsFocus/HonoraryReporters/view?articleId=191095&utm_source=openai)) 일본 문화 의미 마가타마는 선사 이래 주술·호신의 구슬로 이어져 오늘날까지 국가 상징 체계인 삼종신기의 구슬 요소로 전승된다. 일본 박물관·신도학 사전은 마가타마의 지속적 신성성과 생산지를 정리한다. ([narahaku.go.jp](https://www.narahaku.go.jp/english/collection/217-0.html?utm_source=openai)) 일본 비즈니스 매너에서는 과장된 주얼리를 피하고 작은 금속선의 억제미를 선호한다. ([eda.admin.ch](https://www.eda.admin.ch/content/dam/countries/countries-content/japan/en/Japan_business_guide_2024.pdf?utm_source=openai)) 공통 금기와 컬러 동아시아권에서는 백색이 전통 상장 색이며 숫자 4 회피가 생활 전반에서 관찰된다. 착장 색과 모티프 구성 시 과도한 백색·4개 묶음은 지양하는 편이 안전하다. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Mourning?utm_source=openai)) 중국 문화의 특수 금기 녹색 모자 이미지는 외도·모욕의 은유로 상업 커뮤니케이션에서 회피 대상이다. ([chinadaily.com.cn](https://www.chinadaily.com.cn/culture/2015-02/02/content_19451373_3.htm?utm_source=openai))",
+  "background": "재료·역사·신화·예술 맥락 옥은 네프라이트와 제이드(jadeite)의 총칭이며 중국 선사시대부터 의례·권위·장송의 핵심 재료였다. 한대 이후 비·총 등의 의기 형식과 공자 담론이 결합해 도덕과 품격의 은유로 굳어졌다. ([gia.edu](https://www.gia.edu/jade?wm=3049_b111%27%5B0%5D&utm_source=openai)) 한국의 곡옥과 일본의 마가타마는 선사 후반부터 6세기에 걸쳐 권위·호신의 구슬로 확산했고 신라 금관의 곡옥, 일본 삼종신기의 구슬로 계보화되었다. ([metmuseum.org](https://www.metmuseum.org/ko/perspectives/precious-punctuation?utm_source=openai)) 현대 주얼리 합금으로서 18K는 가공성과 경도를 확보하는 표준이며 CHANEL의 18K BEIGE GOLD 사례에서 보듯 브랜드별 전용 베이지 톤 합금이 정착했다. ([cartier.com](https://www.cartier.com/en-us/faq/creations/jewellery/?utm_source=openai)) 네프라이트는 섬유상 결합조직으로 보석 중 매우 높은 인성 값을 가지며 일상 착용에 유리하다. ([gia.edu](https://www.gia.edu/gia-news-research/how-protect-diamond-chipping)) 에나멜은 금·은·구리 계열 금속 위에 유리질을 융착하는 기술군으로, 클루아조네·샹르베·바스 타이유·프리카주르 등 기법에 따라 투과와 광택의 연출이 다르다. 중국에는 원대 이후 전래되어 예술·장식의 한 장르를 이루었다. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Vitreous_enamel?utm_source=openai))",
+  "symbols": [
+   "비 디스크 원환 원형의 완전·천문·관문 상징 ([emuseum.cornell.edu](https://emuseum.cornell.edu/objects/14859/bi-disc-with-incised-spiral-designs?utm_source=openai))",
+   "여의 구름머리 소망 성취·축복 ([metmuseum.org](https://www.metmuseum.org/art/collection/search/40703?utm_source=openai))",
+   "곡옥·마가타마 반달·씨앗·태아의 생장 은유 ([narahaku.go.jp](https://www.narahaku.go.jp/english/collection/217-0.html?utm_source=openai))",
+   "대나무 마디 절개·청렴·성장",
+   "연꽃 청정·갱생",
+   "서수 문양 박쥐 수寿자 길상 조합"
+  ],
+  "emotions": [
+   "청정함",
+   "온기와 안정감",
+   "절제된 품위",
+   "잔잔한 희망",
+   "집중과 평정"
+  ],
+  "colors": [
+   "베이지 골드의 누드 톤",
+   "백색 또는 우윳빛 네프라이트",
+   "담녹·비취색을 닮은 투명 녹색 에나멜",
+   "흑백의 단정 대비 소량 포인트",
+   "매트 표면으로 광휘를 완만하게 조절"
+  ],
+  "materials": [
+   "18K beige gold 합금 75퍼센트 금 함량 ([cartier.com](https://www.cartier.com/en-us/faq/creations/jewellery/?utm_source=openai))",
+   "Nephrite jade 연옥 고인성 보석 ([gia.edu](https://www.gia.edu/gia-news-research/how-protect-diamond-chipping))",
+   "Vitreous enamel 유리 에나멜 투명·반투명 조합 ([en.wikipedia.org](https://en.wikipedia.org/wiki/Vitreous_enamel?utm_source=openai))",
+   "미세 케이블 체인 1.2~1.5밀리미터 권장 범위 ([bustle.com](https://www.bustle.com/style/best-chains-for-pendants?utm_source=openai))",
+   "브러시드·새틴 피니시 표면 흠 은폐에 유리 ([mohlondon.com](https://www.mohlondon.com/guidance/metals-guide/finishing?utm_source=openai))"
+  ],
+  "forms": [
+   "낮은 프로파일의 비젤·채널 세팅 곡면 보호 ([gia.edu](https://www.gia.edu/doc/Gemstone-Durability-Design-to-Display.pdf?utm_source=openai))",
+   "원형 비 디스크를 축소한 미니 펜던트",
+   "곡옥·마가타마의 콤마형 드랍",
+   "여의 머리의 유선형 캡 또는 엔드링크",
+   "대나무 마디를 닮은 짧은 간격의 링크",
+   "플랫 케이블 체인 1.2~1.5밀리미터"
+  ],
+  "motion": [
+   "원이 겹치며 잔물결처럼 번지는 리듬",
+   "콤마형 드랍의 미세한 스윙",
+   "체인 전체의 균일한 호흡감",
+   "새틴결의 방향성 흐름"
+  ],
+  "cliches": [
+   "큰 사이즈의 웃는 불상·관음 펜던트를 과장된 금테로 감싼 전형적 기복 주얼리",
+   "비 디스크에 과도한 용·봉·수자 조각을 혼합해 상징이 번잡한 구성",
+   "과장된 투톤 하이폴리시로 오피스 조명 아래 난반사를 유도하는 표면",
+   "1밀리미터 이하 초극세 체인에 과중한 펜던트를 거는 불균형 설계"
+  ],
+  "cautions": [
+   "동아시아권 장례 맥락의 백색 과용·숫자 4의 반복을 피하고 묶음 수를 3 또는 5로 조정한다. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Mourning?utm_source=openai))",
+   "중국 문화권에서 녹색 모자 이미지는 불륜의 속어로 통하므로 제품·비주얼에 사용하지 않는다. ([chinadaily.com.cn](https://www.chinadaily.com.cn/culture/2015-02/02/content_19451373_3.htm?utm_source=openai))",
+   "한국 시장 커뮤니케이션에서 이름을 붉은색으로 표기하는 그래픽을 피한다. ([korea.net](https://www.korea.net/NewsFocus/HonoraryReporters/view?articleId=191095&utm_source=openai))",
+   "일본 시장에서 16엽 국화 문장은 천황가 문장으로 상업 모티프로의 직접 사용을 지양한다. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Imperial_crest_of_Japan?utm_source=openai))",
+   "불교 성상 이미지를 단순 장식으로 소비하는 연출은 반감을 살 수 있으므로 상징 의미를 안내하고 존중 규범을 제시한다. ([knowingbuddha.org](https://knowingbuddha.org/zh/home-zh/?utm_source=openai))",
+   "에나멜은 금속·유리의 열팽창 불일치 시 크랙 위험이 있다. 에나멜 조성·두께·카운터 에나멜을 검토한다. ([ganoksin.com](https://www.ganoksin.com/article/metals-suitable-for-enameling/?utm_source=openai))",
+   "중국 판매품은 GB 28480 최신 개정의 중금속·니켈 등 안전 요구를 확인하고 유리질 에나멜의 납 규제 예외 범주를 EU 규정과 함께 검토한다. ([sgs.com](https://www.sgs.com/en-us/news/2026/06/safeguards-08526-china-updates-mandatory-national-standard-for-jewelry?utm_source=openai))"
+  ],
+  "abstraction": [
+   {
+    "axis": "상징",
+    "notes": [
+     "비 디스크의 하늘·관문",
+     "여의의 소망 성취",
+     "곡옥의 생장·호신"
+    ]
+   },
+   {
+    "axis": "감정",
+    "notes": [
+     "평온·절제",
+     "은근한 따뜻함",
+     "포용"
+    ]
+   },
+   {
+    "axis": "형태",
+    "notes": [
+     "원·환·공",
+     "콤마형 드랍",
+     "구름머리 모서리의 부드러운 R 처리"
+    ]
+   },
+   {
+    "axis": "움직임",
+    "notes": [
+     "미세 스윙",
+     "연속 파동",
+     "선의 흐름을 한 호흡으로 잇기"
+    ]
+   },
+   {
+    "axis": "구조",
+    "notes": [
+     "낮은 비젤·플러시 세팅으로 걸림 최소화",
+     "체인과 고리의 직경 여유를 유지해 회전 마찰을 줄이기",
+     "펜던트 무게 대비 체인 두께를 1.2~1.5밀리미터로 맞추기"
+    ]
+   },
+   {
+    "axis": "표면",
+    "notes": [
+     "새틴·브러시드로 반사 제어",
+     "하이폴리시 포인트는 가장자리 얇게",
+     "마모가 많은 면은 미세결 방향성을 통일"
+    ]
+   },
+   {
+    "axis": "소재",
+    "notes": [
+     "18K beige gold 중립 톤",
+     "네프라이트 포인트 또는 투명 녹색 에나멜",
+     "니켈 프리·납 규정 적합 소재"
+    ]
+   },
+   {
+    "axis": "색채",
+    "notes": [
+     "베이지 골드와 백옥의 저채도 조합",
+     "담녹 에나멜로 수분감 강조",
+     "흑·백 소량 대비로 리듬 부여"
+    ]
+   },
+   {
+    "axis": "리듬",
+    "notes": [
+     "체인 링크의 규칙적 박동",
+     "비·콤마형의 장단 반복",
+     "광택과 매트의 교호"
+    ]
+   },
+   {
+    "axis": "이야기",
+    "notes": [
+     "선사에서 궁정까지 이어진 옥의 미덕 서사",
+     "소망을 비는 여의의 축원",
+     "업무 일상의 단정함과 개인적 안온 사이의 균형"
+    ]
+   }
+  ],
+  "sources": [
+   "옥의 정의·문화·인성 지표 GIA 및 논문 근거 ([gia.edu](https://www.gia.edu/jade?wm=3049_b111%27%5B0%5D&utm_source=openai))",
+   "중국 비 디스크·여의 상징과 박물관 해설 ([emuseum.cornell.edu](https://emuseum.cornell.edu/objects/14859/bi-disc-with-incised-spiral-designs?utm_source=openai))",
+   "한국 곡옥·신라 금관의 상징과 사례 ([museum.go.kr](https://www.museum.go.kr/site/eng/exhiSpecialTheme/view/current?exhiSpThemId=4180&utm_source=openai))",
+   "일본 마가타마·삼종신기 전승 맥락 ([narahaku.go.jp](https://www.narahaku.go.jp/english/collection/217-0.html?utm_source=openai))",
+   "18K와 베이지 골드 레퍼런스 ([cartier.com](https://www.cartier.com/en-us/faq/creations/jewellery/?utm_source=openai))",
+   "에나멜 기술·리스크 및 규제 ([en.wikipedia.org](https://en.wikipedia.org/wiki/Vitreous_enamel?utm_source=openai))",
+   "오피스 주얼리 절제 권고 및 체인 굵기 가이드 ([eda.admin.ch](https://www.eda.admin.ch/content/dam/countries/countries-content/japan/en/Japan_business_guide_2024.pdf?utm_source=openai))"
+  ],
+  "searches": 17,
+  "cached": false
+ },
+ "sets": [
+  {
+   "name": "Quiet Meridian",
+   "kind": "代表型",
+   "concept": "以切线圆点和温润18K米色金表达秩序与宁静 小规格和田玉或玻璃珐琅作点睛 全套低轮廓适配办公室着装。",
+   "story": "灵感来自城市经纬与日程线 在繁忙节奏中寻找一颗稳定心跳。米色金的中性色温贴合亚洲肤色 在自然光下显得柔和不突兀。一枚微小的玉色圆点像留下的呼吸间隙 让五官与手部的线条更显克制。从正面看轻巧干净 从侧面看几乎与皮肤齐平 适合26至34岁女性的通勤生活。",
+   "palette": [
+    "米色金",
+    "细腻青瓷绿",
+    "燕麦白",
+    "雾灰"
+   ],
+   "metal": "18K米色金 色温介于黄金与香槟金之间 偏暖中性 不偏红不偏黄",
+   "surface": "正面丝绒雾面 边缘窄亮边 亮边宽约0.2~0.4 mm 强化轮廓同时减轻刮痕显现",
+   "stones": "和田玉微型蛋面直径约2.5~3.0 mm 色选豆青·淡翠 亦可用半透明玻璃珐琅替代以控制预算与色差",
+   "silhouette": "扁平直线与圆点的组合 组件厚度约1.2~1.4 mm 戒面离肤高度不超过2.2 mm",
+   "motif": "切线圆点",
+   "rhythm": "一线一圆在中心或端点相切 以镜像或中轴对称呈现 不做密集重复 保持留白",
+   "structure": "玉点采用细边包镶或齐平镶 圆点底部做微弧台减重 耳钉低座结构 耳针0.8 mm 长度9.5~10 mm 项链使用1.2~1.4 mm细圆链 长度可调38~42 cm 各转环焊接为闭口结构以静音防勾丝",
+   "avoid": [
+    "大颗粒翡翠主石",
+    "厚重高台",
+    "尖爪镶与锐角",
+    "大面积镜面高抛光",
+    "宫廷或龙凤等繁复纹样",
+    "摇摆长度超过20 mm的下垂坠"
+   ],
+   "design_dna": [
+    "全系列以18K米色金为基底 玉或珐琅仅作小面积点睛",
+    "所有正面元素趋于平面化 侧视高度控制在2.2 mm以内",
+    "边缘倒角R0.15~0.25 mm 手感顺滑不勾衣物",
+    "项链链条线径统一为1.2~1.5 mm 配3.5 mm弹簧扣与延长环",
+    "耳饰以耳钉或短圈耳环为主 单边重量不超过1.8 g",
+    "戒指戒臂厚度1.2~1.4 mm 内侧微拱 提升舒适度",
+    "所有连接环闭口焊 合缝朝内 保持佩戴静音",
+    "表面以雾面为主 仅保留极细抛亮线作识别视觉"
+   ],
+   "concept_art": {
+    "form": "纤细直线与小圆的相切构图 留白充足的极简平面",
+    "motion": "像心跳般的轻微节拍 从中轴向两端缓慢扩散",
+    "material": "雾面金属与半透明青绿色薄层的对比",
+    "atmosphere": "安静 克制 都市清晨气息"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/ccb41f0c366d3bd12dac729d.png",
+     "hash": "ccb41f0c366d3bd12dac729d"
+    },
+    "motion": {
+     "url": "/samples/0900d10611c57545d71c16f0.png",
+     "hash": "0900d10611c57545d71c16f0"
+    },
+    "material": {
+     "url": "/samples/1c55f065d9590195982c84ee.png",
+     "hash": "1c55f065d9590195982c84ee"
+    },
+    "atmosphere": {
+     "url": "/samples/4548526bec9268e33d3f84ad.png",
+     "hash": "4548526bec9268e33d3f84ad"
+    }
+   },
+   "lineup": {
+    "url": "/samples/da65cfd2413b5c7441c8d942.png",
+    "hash": "da65cfd2413b5c7441c8d942"
+   }
+  },
+  {
+   "name": "Soft Grid",
+   "kind": "商业型",
+   "concept": "把硬朗网格圆角化与缩微化 用米色金与浅绿点缀打造亲和而有序的通勤日常。",
+   "story": "灵感来自方格纸与键盘键帽 将直角变为圆角 把理性秩序注入温柔触感。每件只容纳一到三个单元 易于叠戴与服饰融为一体。面向26至34岁亚洲女性 低饱和色与小体量让造型耐看不喧哗。",
+   "palette": [
+    "米色金",
+    "鼠尾草绿",
+    "奶油白",
+    "浅褐",
+    "石墨灰少量点缀"
+   ],
+   "metal": "18K米色金 偏暖中性 光泽度中等 不压肤色",
+   "surface": "正面丝绸向拉丝 方向统一 边缘保留窄亮边以增强精致度",
+   "stones": "和田玉圆片直径2.2~2.8 mm 或柔和鼠尾草绿色玻璃珐琅长条嵌片 与金面齐平",
+   "silhouette": "圆角矩形单元 角半径约0.8~1.2 mm 厚度1.2~1.5 mm",
+   "motif": "软格模块",
+   "rhythm": "一至三枚模块等距排布 成对对称或沿中轴对称 耳饰严格镜像",
+   "structure": "戒指为微型矩形牌面 内背轻中空减重 耳钉加大后托保持贴合 项链主件宽约10~14 mm 通过两个闭口环与1.2~1.4 mm链连接以抑制翻转",
+   "avoid": [
+    "过密工业网格",
+    "强对比黑白珐琅",
+    "过度logo化",
+    "未倒角的尖锐边",
+    "夸张的长垂坠"
+   ],
+   "design_dna": [
+    "模块化尺寸三档 小中大边长约6·9·12 mm 便于跨品类统一",
+    "所有角倒R不小于0.8 mm 呈圆润观感",
+    "低轮廓原则 单件最高点不超过2.3 mm",
+    "链条线径1.2~1.5 mm 采用细小圆环链或盒链 视觉干净",
+    "玉或珐琅嵌片与金面齐平 触感连续",
+    "表面拉丝方向在单件内保持一致 以减少视觉噪点",
+    "品牌印记隐于内壁或背面中部 仅在近看可见"
+   ],
+   "concept_art": {
+    "form": "圆角矩形的秩序化重复 留白形成温柔网格",
+    "motion": "节拍式推进 从左到右或自上而下的轻缓律动",
+    "material": "绸缎感雾面金属表面与浅绿半透明色块点缀",
+    "atmosphere": "理性 亲和 安静有序"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/6ef0195983fd90232f077b43.png",
+     "hash": "6ef0195983fd90232f077b43"
+    },
+    "motion": {
+     "url": "/samples/602ed70a39fdf830e34e8605.png",
+     "hash": "602ed70a39fdf830e34e8605"
+    },
+    "material": {
+     "url": "/samples/a20cac99985ed1eb2d7e5418.png",
+     "hash": "a20cac99985ed1eb2d7e5418"
+    },
+    "atmosphere": {
+     "url": "/samples/36b910cc0fd31c40f156b5d0.png",
+     "hash": "36b910cc0fd31c40f156b5d0"
+    }
+   },
+   "lineup": {
+    "url": "/samples/65d5b5df7d869e59290d24df.png",
+    "hash": "65d5b5df7d869e59290d24df"
+   }
+  },
+  {
+   "name": "Aperture Mist",
+   "kind": "实验型",
+   "concept": "以开窗般的椭圆孔洞与雾化渐变珐琅营造呼吸留白 在低体量中呈现诗意。",
+   "story": "灵感来自清晨雾气在窗沿的凝结 开口既是结构也是主题。开窗让手部与颈部的肤色参与构图 显得更轻盈。玉色以玻璃珐琅的浅到深渐变模拟水头 也可改为薄片和田玉以提升天然质感。",
+   "palette": [
+    "米色金",
+    "雾青绿渐变",
+    "乳白",
+    "轻雾灰"
+   ],
+   "metal": "18K米色金 以纤细线边勾勒轮廓 色相温暖",
+   "surface": "细珠砂雾面 内缘抛亮形成柔光晕",
+   "stones": "和田玉薄片厚约0.6~0.8 mm 形状椭圆 或在开口一侧以玻璃珐琅形成半透明渐变薄膜",
+   "silhouette": "椭圆与圆的开窗组合 线框厚约1.0~1.2 mm 总高度不超过2.0 mm",
+   "motif": "呼吸窗",
+   "rhythm": "大小椭圆一大一小相邻或轻度重叠 近似黄金分割 偏心对称",
+   "structure": "线框式结构 透空占主视面积的四成至六成 珐琅以内侧浅槽包覆成弧形薄层 戒指内侧设细桥肋抗形变 耳钉后座加大稳定 项链以双耳环连接1.2~1.3 mm链防翻滚",
+   "avoid": [
+    "全封闭厚片与无留白",
+    "高饱和荧光绿",
+    "大面积镜面",
+    "过长摇摆结构",
+    "锐利内角与薄弱尖点"
+   ],
+   "design_dna": [
+    "透空成为主要视觉元素 让皮肤参与构图",
+    "线框截面为圆角矩形 视觉轻而不刮手",
+    "玉片或珐琅与金边预留0.1~0.2 mm细缝 让光线渗入",
+    "元素数量不超过两枚 实与虚比例控制在六比四或七比三",
+    "耳饰总长不超过18 mm 以适配办公室穿戴",
+    "链条统一1.2~1.5 mm 并配置微型调节环",
+    "所有焊点抛顺 背面微拱贴肤 减少压痕"
+   ],
+   "concept_art": {
+    "form": "不同尺度椭圆空洞与细边框交叠 留白主导画面",
+    "motion": "如呼吸般的收放 渐变从中心向边缘散开",
+    "material": "雾面金属与半透明青绿玻璃薄膜相衬",
+    "atmosphere": "轻灵 静谧 含水清晨的柔光"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/2f892b474a0dcea53803a895.png",
+     "hash": "2f892b474a0dcea53803a895"
+    },
+    "motion": {
+     "url": "/samples/f0b936c37597ff3ce67cbabb.png",
+     "hash": "f0b936c37597ff3ce67cbabb"
+    },
+    "material": {
+     "url": "/samples/3b9335719eaf74b673a87821.png",
+     "hash": "3b9335719eaf74b673a87821"
+    },
+    "atmosphere": {
+     "url": "/samples/ab40da2ec75f31966e2b184e.png",
+     "hash": "ab40da2ec75f31966e2b184e"
+    }
+   },
+   "lineup": {
+    "url": "/samples/626272f54701d1100fffd6d7.png",
+    "hash": "626272f54701d1100fffd6d7"
+   }
+  },
+  {
+   "name": "Silk Fold",
+   "kind": "实验型",
+   "concept": "把丝绸褶皱转译为金属肌理 一道细窄玉色缝线贯穿 以柔性暗藏力量。",
+   "story": "源自折叠丝巾的褶痕 光在峰谷间游走。将褶痕抽象为方向性拉丝与细脊线 由米色金承载其温润。玉或珐琅被压成极细的嵌线 像缝合痕般低调而坚定 在会议室与下班后的场合都能自然过渡。",
+   "palette": [
+    "米色金",
+    "细玉绿",
+    "象牙白",
+    "温柔沙色"
+   ],
+   "metal": "18K米色金 偏暖中性 与亚洲肤色和谐不突兀",
+   "surface": "方向性丝绸拉丝与微脊线浮雕 局部点抛亮形成褶峰高光",
+   "stones": "和田玉微条嵌线宽约0.6~0.8 mm 或象牙白与玉绿玻璃珐琅线嵌 与金面齐平",
+   "silhouette": "细长条与折线的简约组合 组件纤薄 高度控制在2.0 mm以内",
+   "motif": "折绢褶痕",
+   "rhythm": "一条主褶配一条副褶 平行或轻微汇聚 形成方向一致的节律 耳饰以镜像对称呈现",
+   "structure": "金属基体先开浅凹沟 再嵌入玉或珐琅线并打磨齐平 端部以微型燕尾槽锁定防脱落 戒指为细条包覆式结构 开口留0.8~1.0 mm缓冲 耳钉横置或竖置条形 项链以细长条吊牌双点连至1.2~1.3 mm链条",
+   "avoid": [
+    "夸张的S形大波纹",
+    "易卷发的尖翘角",
+    "强对比拼色",
+    "过厚的聚焦台面"
+   ],
+   "design_dna": [
+    "线性主轴在三件中保持一致 褶痕方向统一",
+    "玉或珐琅嵌线宽不超过0.8 mm 且与金面齐平",
+    "所有边缘微倒角 不出现锐角翘边",
+    "单件长度控制在15~20 mm 适配办公室不抢镜",
+    "金属厚度1.1~1.3 mm 背面微中空减重",
+    "链条1.2~1.5 mm 连接点双环闭合防打转",
+    "拉丝方向顺佩戴方向延展 划痕不显",
+    "关键受力点做有限元简化校核 确保日常耐用"
+   ],
+   "concept_art": {
+    "form": "平行褶皱线条与一条细色带交汇的条形构图",
+    "motion": "沿褶痕方向的轻柔流动 如风拂丝绸",
+    "material": "绸缎般拉丝金属配半透明细色带",
+    "atmosphere": "内敛 触感导向 现代而优雅"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/3a037a186ab1bfdcf2eba5d3.png",
+     "hash": "3a037a186ab1bfdcf2eba5d3"
+    },
+    "motion": {
+     "url": "/samples/4afdb06e8b02d86f918436be.png",
+     "hash": "4afdb06e8b02d86f918436be"
+    },
+    "material": {
+     "url": "/samples/befa464b67363a0e3744acca.png",
+     "hash": "befa464b67363a0e3744acca"
+    },
+    "atmosphere": {
+     "url": "/samples/c6f6875bf64198c7ae9ec7b5.png",
+     "hash": "c6f6875bf64198c7ae9ec7b5"
+    }
+   },
+   "lineup": {
+    "url": "/samples/0213e0b74adbc10fac383496.png",
+    "hash": "0213e0b74adbc10fac383496"
+   }
+  }
+ ],
+ "sample": true,
+ "sampleTitle": "李娜 (China) · collection",
+ "savedAtISO": "2026-08-26T14:15:03.902Z"
+}

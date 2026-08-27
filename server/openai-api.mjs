@@ -13,8 +13,8 @@ import { tripoMultiview, tripoProbe, readModel } from './tripo-api.mjs'
 import { configureUnlocker, unlockerStatus, unlockerUsage } from './unlock.mjs'
 import { grabImage } from './grab.mjs'
 import { handleBoard } from './board-api.mjs'
-import { handleRuns } from './runs-api.mjs'
-import { resolveUser } from './host-auth.mjs'
+import { handleRuns, runsStats } from './runs-api.mjs'
+import { hostAuthStatus, resolveUser } from './host-auth.mjs'
 import { readMoodboard, readSeries, readUpload, storeUpload } from './uploads-api.mjs'
 import { mdReview } from './md-api.mjs'
 import { visionQa } from './vision-qa-api.mjs'
@@ -309,6 +309,9 @@ export async function handleApi(req, res) {
     const who = await resolveUser(req, url)
     return json(res, 200, {
       user: who ? { id: who.id, name: who.name } : null,
+      // 계정 확인을 어디에 물어보는지 · 연동이 어긋났을 때 이 한 줄이면 안다
+      hostAuth: hostAuthStatus(),
+      runs: runsStats(ROOT),
       // 자체 호스팅이 켜져 있으면 키가 없어도 이미지를 만들 수 있다 — 화면의 "키 없음" 안내가
       // 거짓이 되지 않도록 함께 본다.
       keyPresent: !!API_KEY || selfHostOn(), model: IMAGE_MODEL, cachedImages: n,

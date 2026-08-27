@@ -7,7 +7,7 @@ import type {
   AdoptionSignal, CollectionSet, CrawledProduct, DesignPair, PipelineEvent, Reference,
   RunParams, RunwayData, ShopCrawl, Stage, VariantKind,
 } from './types'
-import { ITEM_KO, VARIANTS_FOR, VARIANT_LABEL, regionsOf } from './types'
+import { ITEM_KO, clampSetCount, variantsFor, VARIANT_LABEL, regionsOf } from './types'
 import {
   fetchAdoption, fetchCompetitorCrawl, fetchForecast, fetchItemPrompt, fetchKeyword, fetchPrompts,
   fetchRefDna, fetchReferences, fetchRunway, fetchScores, fetchSets, fetchShops, fetchTrendReport,
@@ -226,7 +226,7 @@ async function runResearchAgent(params: RunParams, emit: Emit, stopped: () => bo
   // ── S4 + S5 · 레퍼런스별 DNA → 변형별 프롬프트 → 생성 ─────────────
   emit({ kind: 'stage-start', stage: 'S4' })
   emit({ kind: 'stage-start', stage: 'S5' })
-  const variants = VARIANTS_FOR[params.designCount]
+  const variants = variantsFor(params.designCount)
   log('S4', `${params.designCount} designs = 10 references × ${variants.length} variant kind(s): ${variants.map(v => VARIANT_LABEL[v]).join(', ')}`)
 
   const dnaCache = new Map<number, Record<string, unknown>>()
@@ -297,7 +297,13 @@ async function runCollection(params: RunParams, emit: Emit, stopped: () => boole
   emit({ kind: 'stage-start', stage: 'S2' })
   const setsRes = await fetchSets(params, insight)
   if (stopped()) return
-  const sets: CollectionSet[] = (setsRes.sets ?? []).slice(0, params.setCount)
+  // 세트 수는 화면이 주는 1/3/5 안에서만 쓴다. 계약 밖 값(저장본·API 직접 호출)이 들어오면
+  // 모델이 그 수만큼 만들지 않아 "고른 수와 나온 수가 다르다" 가 된다 — 실측으로 4를 받아 12개가 나왔다.
+  const wantSets = clampSetCount(params.setCount)
+  const sets: CollectionSet[] = (setsRes.sets ?? []).slice(0, wantSets)
+  if (sets.length < wantSets) {
+    log('S3', `Asked for ${wantSets} sets, got ${sets.length} · the rest could not be built from this keyword`)
+  }
   emit({ kind: 'sets', sets })
   log('S2', `${sets.length} set concept(s): ${sets.map(s => s.name).join(' / ')}`)
   emit({ kind: 'stage-done', stage: 'S2' })

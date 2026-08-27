@@ -2459,3 +2459,9 @@ input.bframe-t { border-bottom: 1px solid var(--accent); color: var(--text); }
 .sr-modmenu .on { color: var(--text); font-weight: 650; background: var(--surface-3); }
 .sr-modmenu .soon { color: var(--text-3); font-size: 12px; }
 @media (max-width: 1024px) { .sr-mod { display: none; } }
+
+/* 실행 전 검토 · 이 에이전트가 내놓는 것 */
+.rp-gives { list-style: none; margin: 12px 0 4px; display: flex; flex-direction: column; gap: 5px; }
+.rp-gives li { font-size: 12px; color: var(--text-2); padding-left: 14px; position: relative; line-height: 1.45; }
+.rp-gives li::before { content: '·'; position: absolute; left: 4px; color: var(--text-3); }
+.rp-gives li:last-child { color: var(--text-3); }

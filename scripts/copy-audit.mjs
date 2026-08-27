@@ -83,7 +83,9 @@ const samples = []
 {
   const dir = join(process.cwd(), 'src', 'samples')
   if (existsSync(dir)) {
-    for (const f of readdirSync(dir).filter(x => x.endsWith('.json'))) {
+    // 앱이 심는 데모 샘플만 본다 · QA 실행 산출물(persona_*)은 사용자가 친 문장이라
+    // 여기서 다듬을 대상이 아니다 (그 사람 말투가 그대로 들어 있다)
+    for (const f of readdirSync(dir).filter(x => x.startsWith('sample_') && x.endsWith('.json'))) {
       const st = JSON.parse(readFileSync(join(dir, f), 'utf8'))
       // 사람이 읽는 한국어 필드만 · 주소와 영문 프롬프트는 대상이 아니다
       const walk = (v, key = '') => {

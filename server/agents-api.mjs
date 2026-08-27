@@ -58,7 +58,7 @@ const CRAWL_ITEM = {
 }
 
 export async function agentCompetitorCrawl(apiKey, root, { brand, itemKo, country, langName, direction = '' }) {
-  const key = keyOf(['agc3', brand, itemKo, country, langName])
+  const key = keyOf(['agc4', brand, itemKo, country, langName])
   const hit = cached(root, key); if (hit) return hit
   const input = `당신은 주얼리 시장 조사원입니다. 웹 검색으로 사실만 수집하세요.
 
@@ -73,7 +73,9 @@ ${direction ? `조사 방향 참고: ${direction}` : ''}
 - new: 최근 6개월 이내 출시로 확인되는 제품
 
 규칙:
-- 실제로 검색해 확인한 제품만. 그룹당 8~16개, 전체 24~48개. 확인되는 만큼 최대한 채우되 지어내지는 마세요.
+- 실제로 검색해 확인한 제품만. 그룹당 20~40개, 전체 60~120개. 확인되는 만큼 최대한 채우되 지어내지는 마세요.
+- 표본이 적으면 뒤의 리포트가 "비중" 을 말할 수 없습니다. 한 페이지에서 끝내지 말고
+  공식몰 카테고리·리테일러·검색 결과를 여러 쪽 넘겨 가며 모으세요.
 - price 는 공식 표기 가격을 통화와 함께. 확인 못 하면 0 / 빈 통화.
 - best 는 출처가 "베스트셀러"라고 표기한 경우에만. 노출순위를 베스트로 바꿔 말하지 마세요.
 - image_url 은 이미지 파일 직접 주소만. 페이지 주소면 빈 문자열.
@@ -95,7 +97,7 @@ ${direction ? `조사 방향 참고: ${direction}` : ''}
 
 // ── (나) 편집샵 베스트 · 국가 기준 10곳 ───────────────────────────────
 export async function agentShops(apiKey, root, { itemKo, country, langName }) {
-  const key = keyOf(['ags3', itemKo, country, langName])
+  const key = keyOf(['ags4', itemKo, country, langName])
   const hit = cached(root, key); if (hit) return hit
   // ① 그 나라에서 실제 접근 가능한 주얼리 편집샵·멀티브랜드 리테일러 10곳
   const picked = await ask(apiKey, {
@@ -122,7 +124,7 @@ export async function agentShops(apiKey, root, { itemKo, country, langName }) {
 규칙:
 - 사이트가 "베스트셀러"나 판매순위를 공개하면 rank_basis 를 'official_best' 로, 순위 표기를 rank_note 에 그대로 적으세요.
 - 공개하지 않으면 rank_basis 를 'exposure' 로 두고, 노출·추천 순서라고 정직하게 적으세요. 노출을 판매로 바꿔 말하면 안 됩니다.
-- 8~16개. 가격은 표기 통화 그대로. image_url 은 이미지 파일 직접 주소만(아니면 빈 문자열). product_url 은 반드시 실제 상품 페이지 주소.
+- 20~40개. 가격은 표기 통화 그대로. image_url 은 이미지 파일 직접 주소만(아니면 빈 문자열). product_url 은 반드시 실제 상품 페이지 주소.
 - ${LANG_RULE(langName)}`,
     schema: {
       type: 'object', additionalProperties: false, required: ['items'],
@@ -196,7 +198,7 @@ export async function agentTrendReport(apiKey, root, { mode, itemKo, country, la
   // agr2 · 방향에 명시된 속성(무광 실버 같은)이 주류가 아니면 리포트에서 사라지던 것을
   // Gemini 감리가 잡았다 — 명시 속성 강제 취급 규칙이 프롬프트에 들어가며 버전을 올렸다
   // deep 이 키에 들어간다 · 얕게 돈 결과가 깊은 조사인 척 재사용되면 안 된다
-  const key = keyOf(['agr2', mode, itemKo, country, langName, direction, target, depth, deep])
+  const key = keyOf(['agr3', mode, itemKo, country, langName, direction, target, depth, deep])
   const hit = cached(root, key); if (hit) return hit
   // 같은 키의 계산이 이미 날고 있으면 거기에 합류한다.
   // 클라이언트가 타임아웃으로 끊겨도 서버는 계산을 계속하는데, 그 사이 재시도가 오면
@@ -272,7 +274,10 @@ ${frame}
     input: `아래 조사 결과만 근거로 ${itemKo} 트렌드를 축별로 정리하세요. 없는 내용을 만들지 마세요.
 축은 ${ELEMENT_AXES.join(', ')} 중 이 품목과 조사 결과에 실제로 해당하는 것만 남깁니다.
 mentions 는 서로 다른 출처 수입니다. 부풀리지 마세요. image_url 은 조사 결과에 있던 링크만.${deep
-    ? '\n깊은 조사입니다. 축마다 트렌드 3~5개, evidence 는 2~3문장으로 수치·브랜드·시점을 담아 구체적으로. summary 는 6~8문장.'
+    ? `
+깊은 조사입니다. 축마다 트렌드 3~5개, evidence 는 2~3문장으로 수치·브랜드·시점을 담아 구체적으로. summary 는 6~8문장.
+evidence 에는 가능하면 "몇 개 중 몇 개" 형태의 비중과 가격대 범위를 넣으세요 —
+"많이 보인다" 는 기획 회의에서 쓸 수 없습니다. 수집된 제품 목록에서 셀 수 있는 것은 세어서 쓰세요.`
     : ''}
 ${LANG_RULE(langName)}
 
@@ -574,7 +579,7 @@ const VARIANT_RULE = {
 export async function agentPrompts(apiKey, root, { mode, refId, variant, dna, trendCombo, itemEn, itemKo, target, country, langName }) {
   // agp4 · DNA 가 키에 들어갔다. 전에는 refId 만 보고 캐시해서, 사진을 못 본 고장 DNA 로
   // 만든 프롬프트가 DNA 를 고친 뒤에도 그대로 재사용됐다 (NFC 버그 복구 때 실제로 그랬다).
-  const key = keyOf(['agp4', mode, refId, variant, itemEn, target, trendCombo, langName, dna])
+  const key = keyOf(['agp5', mode, refId, variant, itemEn, target, trendCombo, langName, dna])
   const hit = cached(root, key); if (hit) return hit
   const isFashion = mode === 'fashion'
   const { data } = await ask(apiKey, {
@@ -592,8 +597,13 @@ ${JSON.stringify(dna, null, 1)}
    - Preserve 는 추상 원리만. Avoid 에는 DNA 의 avoid 항목을 반드시 반영.
    ${isFashion ? '- Complement: 이 주얼리가 그 착장에서 할 역할과, 네크라인·소매·헤어 볼륨 대비 가시성.' : ''}
    ${isFashion ? '- 의상을 축소한 미니어처 주얼리를 만들지 말 것.' : '- 레퍼런스의 윤곽·개구 위치·스톤 방향을 그대로 쓰지 말 것.'}
-2) final_prompt: 이미지 생성용 최종 프롬프트 (120~180 단어) · 반드시 ${langName} 로 씁니다.
-   "${itemKo}" 원본 디자인이라는 선언으로 시작. 금속·표면·스톤·세팅·구조를 구체적으로. 실제 벽두께·주조·세팅이 가능한 조형.
+2) final_prompt: 이미지 생성용 최종 프롬프트 (140~200 단어) · 반드시 ${langName} 로 씁니다.
+   **첫 두 줄에 반드시 지켜야 할 것만 명령형 짧은 절로 먼저 씁니다.**
+   금속 종류, 마감, 스톤 유무와 세팅 방식, 잠금·부속 종류(귀걸이 백·클래스프·베일), 금지 요소.
+   예: "18K 옐로골드. 베젤 세팅. 히든 베일. 라푸세트 백. 프롱·버터플라이 백 금지."
+   이미지 모델은 문장이 길어질수록 뒤쪽 지시를 흘린다 — 실측으로 클로저·베일이 설명과 다르게 나왔다.
+   그 다음에 "${itemKo}" 원본 디자인이라는 선언과 함께 형태·비례·구조를 서술합니다.
+   실제 벽두께·주조·세팅이 가능한 조형으로.
    스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 포토리얼 마무리 지시를 포함.
    마지막에 "완전히 새로운 디자인일 것. 다음을 재현하지 말 것: ..." 형태로 Avoid 를 명시.
 3) title: 이 디자인안을 부를 짧은 이름 (${langName}).
@@ -636,7 +646,13 @@ export async function agentKeyword(apiKey, root, { keyword, country, langName })
 조사: 기본 의미 / ${country} 문화적 의미 / 역사·신화·예술 배경 / 긍정·부정 상징 / 관련 감정 / 관련 색채 / 관련 소재 /
 형태적 특징 / 움직임·리듬 / 기존 주얼리의 흔한 표현 / 피해야 할 진부하거나 문화적으로 부적절한 표현.
 abstraction: 상징·감정·형태·움직임·구조·표면·소재·색채·리듬·이야기 10개 축으로 키워드를 분해합니다.
-${LANG_RULE(langName)}`,
+${LANG_RULE(langName)}
+제작 기준을 반드시 함께 적으세요 (없으면 이 디자인은 공방에서 쓸 수 없습니다):
+- 주요 치수 (mm) · 링 밴드 폭/두께, 귀걸이 길이, 체인 굵기 같은 그 품목의 핵심 수치
+- 예상 금속 중량 (g) · 소재와 볼륨에서 추정한 값. 범위로 적어도 됩니다
+- 소재 규격 · 합금(925/K10/18K 등), 도금 종류와 두께, 스톤 크기·컷
+- 사용자가 방향에 적은 수치(중량·가격대·규격)가 있으면 그 범위 안에서 설계하고,
+  범위를 벗어나야 한다면 왜 벗어나는지 한 줄로 밝히세요.`,
     schema: {
       type: 'object', additionalProperties: false,
       required: ['meaning', 'cultural', 'background', 'symbols', 'emotions', 'colors', 'materials', 'forms', 'motion', 'cliches', 'cautions', 'abstraction', 'sources'],
@@ -722,7 +738,7 @@ ${LANG_RULE(langName)} (concept_art 프롬프트만 영어)`,
 }
 
 export async function agentItemPrompt(apiKey, root, { setName, dna, avoid, item, itemEn, target, langName }) {
-  const key = keyOf(['agip2', setName, dna, item, target, langName])
+  const key = keyOf(['agip3', setName, dna, item, target, langName])
   const hit = cached(root, key); if (hit) return hit
   const { data } = await ask(apiKey, {
     input: `세트의 공통 Design DNA 를 ${item} (${itemEn}) 하나에 맞게 변환한 이미지 생성 프롬프트를 만듭니다. 웹 검색 없이.
@@ -735,7 +751,11 @@ ${dna.map(x => `- ${x}`).join('\n')}
 품목 고려: 반지=손가락 구조·착용 안정 / 귀걸이=무게·길이·얼굴 관계 / 목걸이=목선·체인·중심 무게 /
 펜던트=체인 연결·회전 방지 / 브레이슬릿=손목 움직임·잠금.
 
-final_prompt: ${langName} 120~170단어. "${item}" 원본 디자인 선언으로 시작, 마스터 모티프·금속 색감·표면·스톤 규칙을 세트 DNA 그대로 유지.
+final_prompt: ${langName} 140~190단어.
+**첫 두 줄에 반드시 지켜야 할 것만 명령형 짧은 절로 먼저 씁니다** — 금속, 마감, 스톤 유무와 세팅,
+잠금·부속(귀걸이 백·클래스프·베일), 금지 요소. 이미지 모델은 문장이 길어질수록 뒤쪽 지시를 흘린다
+(실측으로 클로저·베일이 설명과 다르게 나왔다).
+그 다음 "${item}" 원본 디자인 선언과 함께 마스터 모티프·금속 색감·표면·스톤 규칙을 세트 DNA 그대로 유지.
 실제 제조 가능한 벽두께·세팅. 스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 포토리얼 마무리 지시 포함.
 Avoid 명시. feature: 이 제품의 디자인 특징 한 문장. 모두 ${langName} 로.`,
     schema: {
@@ -755,6 +775,12 @@ export async function agentScore(apiKey, root, { mode, pairs, target, langName }
     input: `아래 디자인 프롬프트들을 평가하세요. 웹 검색 없이. 이미지는 없으므로 프롬프트와 방향 텍스트만 기준으로 합니다.
 항목: 트렌드 적합(25) 착장·맥락 조화(20) 품목 적합(15) 독창성(15) 착용성(10) 제조성(10) 타겟 적합(5) — 합계 100.
 타겟: ${target}. 점수는 보수적으로. ${LANG_RULE(langName)}
+제작 기준을 반드시 함께 적으세요 (없으면 이 디자인은 공방에서 쓸 수 없습니다):
+- 주요 치수 (mm) · 링 밴드 폭/두께, 귀걸이 길이, 체인 굵기 같은 그 품목의 핵심 수치
+- 예상 금속 중량 (g) · 소재와 볼륨에서 추정한 값. 범위로 적어도 됩니다
+- 소재 규격 · 합금(925/K10/18K 등), 도금 종류와 두께, 스톤 크기·컷
+- 사용자가 방향에 적은 수치(중량·가격대·규격)가 있으면 그 범위 안에서 설계하고,
+  범위를 벗어나야 한다면 왜 벗어나는지 한 줄로 밝히세요.
 
 ${pairs.map(p => `[${p.id}] ${p.prompt.slice(0, 500)}`).join('\n\n')}`,
     schema: {

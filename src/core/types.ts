@@ -88,6 +88,22 @@ export const VARIANTS_FOR: Record<DesignCount, VariantKind[]> = {
   30: ['base', 'commercial', 'form'],
   40: ['base', 'commercial', 'form', 'material'],
 }
+/** 고른 수량에 맞는 변형 목록 · 목록에 없는 수(저장본·API 직접 호출)에서도 죽지 않는다.
+ *  실측: designCount 6 이 들어오자 VARIANTS_FOR[6] 가 undefined 가 되어, 40분짜리 조사를
+ *  전부 끝낸 뒤 마지막 단계에서 통째로 날렸다. 가까운 아래 단계로 내려 잡는다. */
+export function variantsFor(count: number): VariantKind[] {
+  const steps: DesignCount[] = [10, 20, 30, 40]
+  const hit = [...steps].reverse().find(s => count >= s) ?? 10
+  return VARIANTS_FOR[hit]
+}
+
+/** 화면이 주는 세트 수는 1/3/5 뿐이다. 그 밖의 값이 들어오면 가까운 아래 값으로 잡는다.
+ *  실측: 4 가 들어오자 모델이 4세트를 만들지 않아 사용자가 고른 수와 결과가 어긋났다. */
+export function clampSetCount(n: number): SetCount {
+  const steps: SetCount[] = [1, 3, 5]
+  return [...steps].reverse().find(s => n >= s) ?? 1
+}
+
 export const VARIANT_LABEL: Record<VariantKind, string> = {
   base: 'Core design', commercial: 'Commercial variant', form: 'Form experiment', material: 'Material experiment',
 }

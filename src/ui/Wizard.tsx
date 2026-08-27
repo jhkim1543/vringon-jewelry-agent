@@ -24,6 +24,28 @@ const AGENT_DESC: Record<Mode, string> = {
   fashion: 'Reads the season\'s runway and its retail adoption, translates fashion looks into jewelry language, then designs from fashion references.',
   collection: 'Researches a keyword or story, abstracts it into design language, and builds jewelry sets that share one Design DNA across the items you pick.',
 }
+/** 모드별 산출물 · 화면이 약속하는 것과 실제로 나오는 것을 맞춘다 */
+const DELIVERABLES: Record<Mode, string[]> = {
+  competitor: [
+    'Competitor and select-shop product crawl',
+    'Trend report with sources',
+    'Next-season forecast',
+    'Ranked references, then designs with prompts',
+  ],
+  fashion: [
+    'Runway looks and their retail adoption',
+    'Trend report with sources',
+    'Next-season forecast',
+    'Fashion references, then designs with prompts',
+  ],
+  collection: [
+    'Keyword research: culture, symbols, forms, cliches to avoid',
+    'Sets that share one Design DNA',
+    'Concept art and a lineup image per set',
+    'No competitor crawl in this agent',
+  ],
+}
+
 const AGENT_ART: Record<Mode, string> = {
   competitor: 'agent-competitor.webp', fashion: 'agent-fashion.webp', collection: 'agent-collection.webp',
 }
@@ -449,6 +471,12 @@ export default function Wizard({ onStart }: { onStart: (p: RunParams) => void })
             <span> · </span>
             {tf('generation {a}~{b} min', { a: build.min, b: build.max })}
           </p>
+          {/* 이 에이전트가 무엇을 내놓는지 · 모드마다 산출물이 다르다.
+              QA 에서 컬렉션 사용자들이 "크롤링이 비어 있다" 고 감점했는데, 컬렉션은 원래
+              경쟁사 크롤을 하지 않는다 — 화면이 미리 말해 주지 않아 생긴 오해였다. */}
+          <ul className="rp-gives">
+            {DELIVERABLES[p.mode].map(k => <li key={k}>{t(k)}</li>)}
+          </ul>
           <div className="rp-rows">
             <div><span>{t('Agent')}</span><b>{t(MODE_LABEL[p.mode])}</b></div>
             <div><span>{t('Regions')}</span><b>{regions.map(regionLabel).join(', ') || '–'}</b></div>

@@ -175,9 +175,11 @@ export default function App() {
   return (
     <ErrorBoundary onReset={() => setView('create')}>
     <div className="app">
-      {/* VRINGON 안(iframe)에서는 이 앱의 상단바를 그리지 않는다 — 호스트 헤더가 이미 있어
-          로고와 언어·테마가 두 벌로 보이기 때문이다. 주소를 직접 열면 예전처럼 나온다. */}
-      <div className="topbar" hidden={host.framed}>
+      {/* VRINGON 안에서는 이 앱의 상단바를 그리지 않는다 — 호스트 헤더가 이미 있어
+          로고와 언어·테마가 두 벌로 보인다. 주소를 직접 열면 예전처럼 나온다.
+          hidden 속성은 .topbar 의 display:flex 에 밀려 먹지 않는다(실측) — 아예 렌더하지 않는다. */}
+      {!host.embedded && (
+      <div className="topbar">
         {/* 로고 = 처음으로 · 픽커부터 다시 시작한다 (재마운트로 agentPicked 초기화) */}
         <button className="brand" onClick={() => { setView('create'); setWizardKey(k => k + 1) }} title={t('Back to the start')}>
           <VringonLogo />
@@ -186,15 +188,13 @@ export default function App() {
         </button>
         {/* 상단에는 탭을 두지 않는다 · 분석 결과와 보드는 그 분석을 연 뒤에 고르는 것이라
             아래 상세 헤더의 세그먼트로 옮겼다. 이동은 왼쪽 레일이 맡는다. */}
-        {/* 언어·테마는 호스트(VRINGON)에서 한 번만 고른다 · Planning 으로 열렸으면 여기서는 감춘다.
-            주소를 직접 연 독립 데모에서는 예전처럼 이 앱이 스스로 고른다. */}
-        {!host.embedded && (
-          <div className="right">
-            <LangToggle />
-            <ThemeToggle theme={theme} onToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
-          </div>
-        )}
+        {/* 이 상단바는 독립 실행일 때만 그려진다 · 언어·테마도 그때만 이 앱이 고른다 */}
+        <div className="right">
+          <LangToggle />
+          <ThemeToggle theme={theme} onToggle={() => setTheme(theme === 'dark' ? 'light' : 'dark')} />
+        </div>
       </div>
+      )}
 
       <div className="main">
         <aside className="siderail">

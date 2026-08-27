@@ -1,0 +1,468 @@
+{
+ "algo": 2,
+ "params": {
+  "algo": 2,
+  "mode": "collection",
+  "countries": [
+   "Asia"
+  ],
+  "analysisLang": "en",
+  "direction": "태국 불교 건축물(사원)에서 영감을 받은 기하학적 형태의 황동 반지. 일상적인 캐주얼 룩에 성별 구분 없이 어울리는 1000바트 이하의 가격대.",
+  "itemType": "ring",
+  "items": [
+   "ring",
+   "pendant"
+  ],
+  "designCount": 6,
+  "setCount": 2,
+  "target": {
+   "ages": [
+    "22-25",
+    "26-29"
+   ],
+   "gender": "unisex"
+  },
+  "competitors": [],
+  "imageEngine": "fast"
+ },
+ "stageStatus": {
+  "S1": "done",
+  "S2": "done",
+  "S3": "done",
+  "S4": "done",
+  "S5": "done"
+ },
+ "logs": [
+  {
+   "stage": "S1",
+   "text": "Researching the keyword in Asia: culture, symbols, forms, colors, and the cliches to avoid",
+   "t": 1787784377939
+  },
+  {
+   "stage": "S1",
+   "text": "Insight ready · 10 abstraction axes, 6 cautions",
+   "t": 1787784641584
+  },
+  {
+   "stage": "S2",
+   "text": "2 set concept(s): Chedi Steps / Gable Line",
+   "t": 1787784769325
+  },
+  {
+   "stage": "S3",
+   "text": "Abstract concept images first, with no jewelry products yet, then one lineup image per set",
+   "t": 1787784769325
+  },
+  {
+   "stage": "S3",
+   "text": "Gable Line: 4/4 concept images + lineup",
+   "t": 1787784903242
+  },
+  {
+   "stage": "S3",
+   "text": "Chedi Steps: 4/4 concept images + lineup",
+   "t": 1787784910885
+  },
+  {
+   "stage": "S4",
+   "text": "4 designs = 2 set(s) × 2 item(s) · the set DNA stays locked, only the item changes",
+   "t": 1787784910886
+  },
+  {
+   "stage": "S5",
+   "text": "D01 generated (Chedi Steps · ring)",
+   "t": 1787784991516
+  },
+  {
+   "stage": "S5",
+   "text": "D02 generated (Chedi Steps · pendant)",
+   "t": 1787785023363
+  },
+  {
+   "stage": "S5",
+   "text": "D03 generated (Gable Line · ring)",
+   "t": 1787785049381
+  },
+  {
+   "stage": "S5",
+   "text": "D04 generated (Gable Line · pendant)",
+   "t": 1787785121700
+  }
+ ],
+ "references": [],
+ "pairs": [
+  {
+   "id": "D01",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "Chedi Steps",
+   "item": "ring",
+   "title": "Chedi Steps · 반지",
+   "prompt": "Ring original design declaration: a Chedi Steps band translating architecture-first steps and window voids into a low-profile form under 3 mm. Warm untreated brass (clear sealed) shows through, with satin-brushed planes contrasted by micro-blasted, darker recesses for depth. The master motif is a repeating three-level step rhythm wrapping 70% of the circumference, punctuated by narrow “window” channels; every outside edge has ~0.25 mm radius to feel soft yet catch light crisply. Unisex proportion: ~4.5 mm band width, stackable, with a comfort-fit inner curve. Real manufacturing specs: minimum wall 1.4 mm, flat top thickness 2.6–2.9 mm, inside chamfer for finger stability. One tiny 1.2 mm recycled-glass dot is flush-set, centered within a step plateau; optional micro enamel inlays sit 0.3 mm deep, no prongs, no multiple stones. Three-quarter product view, achromatic studio background, macro jewelry photo, photoreal realism, sharp focus, true brass color, soft diffused key light. Avoid: deity or head motifs, exotic or “Oriental” wording, amulet or power claims, overly ornate royal motifs, boho hammered texture cliches, gendered labels.",
+   "versions": [
+    {
+     "url": "/samples/2b63e998b30d2d60d80f4581.png",
+     "hash": "2b63e998b30d2d60d80f4581",
+     "prompt": "Ring original design declaration: a Chedi Steps band translating architecture-first steps and window voids into a low-profile form under 3 mm. Warm untreated brass (clear sealed) shows through, with satin-brushed planes contrasted by micro-blasted, darker recesses for depth. The master motif is a repeating three-level step rhythm wrapping 70% of the circumference, punctuated by narrow “window” channels; every outside edge has ~0.25 mm radius to feel soft yet catch light crisply. Unisex proportion: ~4.5 mm band width, stackable, with a comfort-fit inner curve. Real manufacturing specs: minimum wall 1.4 mm, flat top thickness 2.6–2.9 mm, inside chamfer for finger stability. One tiny 1.2 mm recycled-glass dot is flush-set, centered within a step plateau; optional micro enamel inlays sit 0.3 mm deep, no prongs, no multiple stones. Three-quarter product view, achromatic studio background, macro jewelry photo, photoreal realism, sharp focus, true brass color, soft diffused key light. Avoid: deity or head motifs, exotic or “Oriental” wording, amulet or power claims, overly ornate royal motifs, boho hammered texture cliches, gendered labels.",
+     "at": "2026-08-26T22:56:31.512Z"
+    }
+   ],
+   "feature": "Architectural three-step rhythm in warm sealed brass with softened edges, brushed planes, dark recesses, and a single 1.2 mm flush-set recycled-glass dot."
+  },
+  {
+   "id": "D02",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "Chedi Steps",
+   "item": "pendant",
+   "title": "Chedi Steps · 펜던트",
+   "prompt": "Pendant original design: Chedi Steps distilled into a three-tier stepped window motif, architecture-first and abstract. Warm raw brass is the master metal; planes are directional-brushed while recessed tiers are fine bead-blasted to read darker, all clear-sealed to preserve color and meet a sub‑1000 THB target, no plating. Unisex, moderate scale: 20 x 13 mm, profile 2.6–2.9 mm; edges eased 0.3 mm radius for comfort, crisp highlights; three-step grammar repeats. Manufacturable specs: minimum wall thickness 1.2–1.5 mm; recess depth 0.6–0.8 mm. Accent rule: one tiny 1.2 mm recycled-glass flush-set dot centered on the middle step or a 0.6 mm enamel line in the lowest recess; no multi-prong settings. Anti-rotation chain connection: twin hidden bails milled into the top step (1.5 mm slots) for a 1.2–1.5 mm cable chain; stable center of gravity; layers with other chains. Show in three-quarter product view, achromatic studio background, macro jewelry photo, shallow depth of field, photoreal finish. Avoid: deity heads, exotic/Oriental wording, amulet power claims, ornate royal motifs, boho hammered textures, gendered labels.",
+   "versions": [
+    {
+     "url": "/samples/b88df731e3736398b882a6ed.png",
+     "hash": "b88df731e3736398b882a6ed",
+     "prompt": "Pendant original design: Chedi Steps distilled into a three-tier stepped window motif, architecture-first and abstract. Warm raw brass is the master metal; planes are directional-brushed while recessed tiers are fine bead-blasted to read darker, all clear-sealed to preserve color and meet a sub‑1000 THB target, no plating. Unisex, moderate scale: 20 x 13 mm, profile 2.6–2.9 mm; edges eased 0.3 mm radius for comfort, crisp highlights; three-step grammar repeats. Manufacturable specs: minimum wall thickness 1.2–1.5 mm; recess depth 0.6–0.8 mm. Accent rule: one tiny 1.2 mm recycled-glass flush-set dot centered on the middle step or a 0.6 mm enamel line in the lowest recess; no multi-prong settings. Anti-rotation chain connection: twin hidden bails milled into the top step (1.5 mm slots) for a 1.2–1.5 mm cable chain; stable center of gravity; layers with other chains. Show in three-quarter product view, achromatic studio background, macro jewelry photo, shallow depth of field, photoreal finish. Avoid: deity heads, exotic/Oriental wording, amulet power claims, ornate royal motifs, boho hammered textures, gendered labels.",
+     "at": "2026-08-26T22:57:03.363Z"
+    }
+   ],
+   "feature": "Three-tier architectural window motif in raw brass with brushed planes, bead-blasted recesses, a single flush-set recycled-glass accent, and twin hidden bails to prevent rotation."
+  },
+  {
+   "id": "D03",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "Gable Line",
+   "item": "ring",
+   "title": "Gable Line · 반지",
+   "prompt": "반지 — Gable Line ring translating the set’s chevron grammar into a slim, stackable band with an open V center. Warm brass alloy, satin planes with polished edges; two nested chevrons only, the profile tapering gently toward the apex for lift. Smooth edges with 0.15–0.2 mm micro‑chamfers; comfort‑fit for pocket‑friendly wear. Fabrication: single‑piece laser‑cut blank (1.6 mm wall) formed and bent; minimal solder, one laser seam. Apex thickened to 1.8 mm for a 0.9 mm recessed seat holding one midnight‑blue enamel dot; all accents flush, no prongs. Band width 2.6 mm at shoulders tapering to 2.2 mm; span under 9 mm to keep medium scale and unisex stacking. Clear lacquer topcoat maintains a consistent warm brass tone. Three‑quarter view, neutral gray studio, macro photo, soft diffused light, photoreal. Avoid: Buddha head or sacred figure depiction, snake or dragon body references, touristy souvenir bling with heavy fake gold, lucky charm marketing claims, gendered naming such as ladies ring or mens pendant, neon color pops that break the temple palette.",
+   "versions": [
+    {
+     "url": "/samples/bd61f98a1bff6c21517013ca.png",
+     "hash": "bd61f98a1bff6c21517013ca",
+     "prompt": "반지 — Gable Line ring translating the set’s chevron grammar into a slim, stackable band with an open V center. Warm brass alloy, satin planes with polished edges; two nested chevrons only, the profile tapering gently toward the apex for lift. Smooth edges with 0.15–0.2 mm micro‑chamfers; comfort‑fit for pocket‑friendly wear. Fabrication: single‑piece laser‑cut blank (1.6 mm wall) formed and bent; minimal solder, one laser seam. Apex thickened to 1.8 mm for a 0.9 mm recessed seat holding one midnight‑blue enamel dot; all accents flush, no prongs. Band width 2.6 mm at shoulders tapering to 2.2 mm; span under 9 mm to keep medium scale and unisex stacking. Clear lacquer topcoat maintains a consistent warm brass tone. Three‑quarter view, neutral gray studio, macro photo, soft diffused light, photoreal. Avoid: Buddha head or sacred figure depiction, snake or dragon body references, touristy souvenir bling with heavy fake gold, lucky charm marketing claims, gendered naming such as ladies ring or mens pendant, neon color pops that break the temple palette.",
+     "at": "2026-08-26T22:57:29.381Z"
+    }
+   ],
+   "feature": "Slim tapered chevrons form an open‑center, stackable ring in warm lacquered brass with one midnight‑blue enamel accent set fully flush."
+  },
+  {
+   "id": "D04",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "Gable Line",
+   "item": "pendant",
+   "title": "Gable Line · 펜던트",
+   "prompt": "Pendant — original design declaration: A Gable Line chevron pendant translating the set’s master motif as a slim, continuous V with an open center for breath. The form gently tapers to the apex, with smooth edges and micro chamfers; mirror-polished bevels contrast satin planes. A single black accent—1.0 mm black spinel—sits flush at the apex; no prongs, channel/flush only. Size ~22 mm tall, medium scale, unisex, layers cleanly on a 1.2 mm cable chain. Anti-rotation via twin hidden shoulder eyelets balancing center weight. Fabrication: single-piece laser-cut, press-bent C260 brass, 1.2–1.4 mm thick; minimal solder; target under 1000 THB. Clear-lacquer sealed to preserve warm brass color. Visual rhythm: one nested chevron echo. Photography: 3/4 product view, macro jewelry, neutral monochrome studio background, soft diffused light, shallow depth of field, ultra photoreal, ray-traced reflections, no props. Avoid: Buddha head or sacred figures; snake/dragon body cues; touristy heavy fake-gold bling; lucky-charm claims; gendered naming (e.g., “ladies/men’s pendant”); neon pops outside the temple palette.",
+   "versions": [
+    {
+     "url": "/samples/3d70899ec4f70a0ab3747e2c.png",
+     "hash": "3d70899ec4f70a0ab3747e2c",
+     "prompt": "Pendant — original design declaration: A Gable Line chevron pendant translating the set’s master motif as a slim, continuous V with an open center for breath. The form gently tapers to the apex, with smooth edges and micro chamfers; mirror-polished bevels contrast satin planes. A single black accent—1.0 mm black spinel—sits flush at the apex; no prongs, channel/flush only. Size ~22 mm tall, medium scale, unisex, layers cleanly on a 1.2 mm cable chain. Anti-rotation via twin hidden shoulder eyelets balancing center weight. Fabrication: single-piece laser-cut, press-bent C260 brass, 1.2–1.4 mm thick; minimal solder; target under 1000 THB. Clear-lacquer sealed to preserve warm brass color. Visual rhythm: one nested chevron echo. Photography: 3/4 product view, macro jewelry, neutral monochrome studio background, soft diffused light, shallow depth of field, ultra photoreal, ray-traced reflections, no props. Avoid: Buddha head or sacred figures; snake/dragon body cues; touristy heavy fake-gold bling; lucky-charm claims; gendered naming (e.g., “ladies/men’s pendant”); neon pops outside the temple palette.",
+     "at": "2026-08-26T22:58:41.700Z"
+    }
+   ],
+   "feature": "Slim double-chevron pendant in warm lacquered brass, gently tapered with mirror/satin contrast, a single 1.0 mm black spinel flush-set at the apex, and hidden twin eyelets to prevent rotation."
+  }
+ ],
+ "searches": 16,
+ "finished": true,
+ "insight": {
+  "meaning": "A unisex brass ring that abstracts Thai Buddhist temple geometry into clean stacking, tapering and tiering suitable for everyday casual wear within a sub 1000 THB price point. The design language borrows from chedi stupa volumes that enshrine relics and symbolize enlightenment, and from Khmer derived prang towers adapted in Thailand, translated into simple stepped and fluted profiles rather than figurative motifs. ([thailandfoundation.or.th](https://thailandfoundation.or.th/th/understanding-thai-buddhist-architecture/?utm_source=openai))",
+  "cultural": "Asia focus with country notes · Thailand Chedi relic towers and prang towers are core silhouettes in Thai temple precincts and carry connotations of merit making, protection and cosmological order. Naga serpent balustrades mark thresholds and protection. Avoid casual use of Buddha images in fashion because many Thais view that as disrespectful. ([ora.ox.ac.uk](https://ora.ox.ac.uk/objects/uuid%3A8da96d37-deb8-4604-acb7-3574bd078ec7/files/dsb3979233?utm_source=openai)) · China Red and gold signal auspiciousness, celebration and status, which can be echoed through warm brass and small red accents. ([asia-archive.si.edu](https://asia-archive.si.edu/red/?utm_source=openai)) · Japan Vermilion architecture at temples and shrine gates is associated with protection and wood preservation through cinnabar pigment, and is culturally iconic. Use vermilion accents with restraint and avoid the manji swastika symbol in export facing visuals because it is easily misread in Western contexts. ([faq.japan-travel.jnto.go.jp](https://faq.japan-travel.jnto.go.jp/en/uk/inspiration/the-many-types-of-torii-in-japan/?utm_source=openai)) · Korea Dancheong temple painting uses five cardinal colors tied to yin yang and five elements; lotus and geometric borders are common. A restrained five color micro palette can reference this without pastiche. ([korea.net](https://www.korea.net/NewsFocus/Culture/view?articleId=191572&utm_source=openai)) · India and Sri Lanka Lotus purity and dharma wheel meaning are pan Buddhist; Sri Lankan Theravada stupas inform Thai chedi forms, so stacked lotus bases and bell domes read correctly across South and Southeast Asia. ([asia-archive.si.edu](https://asia-archive.si.edu/wp-content/uploads/2020/05/ArtofBuddhism1.pdf?utm_source=openai))",
+  "background": "Key temple forms to abstract · Chedi stupa bell or lotus bud domes on tiered bases to enshrine relics and commemorate enlightenment and the spread of the teaching. ([thailandfoundation.or.th](https://thailandfoundation.or.th/th/understanding-thai-buddhist-architecture/?utm_source=openai)) · Prang Khmer derived vertical tower later adapted in Sukhothai and Ayutthaya, often brick or laterite with stucco and niches. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Prang_%28architecture%29?utm_source=openai)) · Temple roof grammar multi tiered eaves with chofa finials and serrated bai raka along the gable; motifs reference Garuda and Naga. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Thai_temple_art_and_architecture?utm_source=openai)) · Surface culture mirrored glass and porcelain mosaic cladding on monuments like Wat Arun create rhythmic micro geometry that can inspire fine engraved or enamel tiles on metal. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Wat_Arun?utm_source=openai)) · Spatial ritual clockwise circumambulation around stupas suggests circular motion and repetition that can inform band rhythm. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Circumambulation?utm_source=openai)) · Dominant school Thai Buddhism is Theravada from a Sri Lankan lineage, explaining shared chedi profiles and lotus bases. ([smarthistory.org](https://smarthistory.org/thai-buddhist-monasteries/?utm_source=openai))",
+  "symbols": [
+   "Lotus purity and awakening",
+   "Dharmachakra eight spoke wheel of teaching",
+   "Naga protective threshold",
+   "Garuda royal power and sky",
+   "Bodhi leaf awakening and wisdom",
+   "Temple bell clarity and merit"
+  ],
+  "emotions": [
+   "Calm focus",
+   "Uplift and aspiration",
+   "Protection and groundedness",
+   "Reverence without overt religiosity",
+   "Everyday ease"
+  ],
+  "colors": [
+   "Warm brass gold to echo temple gilt and status cues",
+   "Saffron to ocher as an accent recalling monastic robes used cautiously",
+   "Vermilion red micro accents for protection and vitality",
+   "Emerald and jade greens to reference glass mosaic and the Emerald Buddha precinct surfaces",
+   "White and stone neutrals to signal purity and daily wear versatility"
+  ],
+  "materials": [
+   "Brass copper zinc alloy for golden tone and low cost",
+   "Clear lacquer or wax to slow tarnish and reduce skin staining",
+   "Optional thin PVD gold over brass for color hold at this price",
+   "Cold enamel or vitreous micro inlays for Wat Arun like tessera effects",
+   "Stainless or silver inner sleeve for sensitive skin insets if needed"
+  ],
+  "forms": [
+   "Stacked steps recalling stupa plinths and lotus bases",
+   "Tapering tower profile from prang verticals softened for comfort",
+   "Alternating polished and matte bands echoing glass mosaic and stucco fields",
+   "Fine sawtooth or scallop edge hinting at bai raka without depicting creatures",
+   "Shallow flutes or facets aligned to the eightfold symmetry of the dharma wheel"
+  ],
+  "motion": [
+   "Clockwise band rhythm with repeating step modules that invite thumb circling like circumambulation",
+   "Vertical thrust that resolves at a calm plateau top surface",
+   "Subtle alternating cadence of narrow wide grooves to mirror temple tiering"
+  ],
+  "cliches": [
+   "Literal Buddha head rings or pendants",
+   "Over ornate lotus petals copied directly from pedestals",
+   "Serpent coil rings with aggressive Naga heads",
+   "Mini chedi figurines as tourist souvenirs",
+   "Random Khmer or Pali scripts without meaning or authorization"
+  ],
+  "cautions": [
+   "Respect norms in Thailand Buddha images are sacred and casual decorative use on fashion items off body or on body is considered offensive by many. Favor abstract architecture instead of Buddha figures or scriptures. ([thailand.go.th](https://thailand.go.th/useful-information-detail/009_151?hl=en&utm_source=openai))",
+   "Avoid the manji swastika graphic in international packaging and ads even when intended as Buddhist because it is widely misread outside Asia. ([theguardian.com](https://www.theguardian.com/world/2016/jan/20/japan-to-drop-the-swastika-from-its-tourist-maps?utm_source=openai))",
+   "If referencing yantra geometry from Sak Yant traditions do not include mantras or magical diagrams out of context; consult cultural experts if any sacred text is proposed. ([thailandfoundation.or.th](https://www.thailandfoundation.or.th/yantra-from-sacred-geometry-to-sacred-tattoos/?utm_source=openai))",
+   "Color sensitivity saffron robe hues carry monastic association in Theravada contexts; use adjacent ochers rather than exact robe tones for branding or straps. ([bhikkhuni.net](https://www.bhikkhuni.net/wp-content/uploads/2020/07/Yavaprabhas_10050009_thesis.pdf?utm_source=openai))",
+   "Skin safety brass and other copper alloys can tarnish and cause green staining; some consumers react to nickel in platings or findings. Offer clear care guidance and avoid nickel releasing components per EU thresholds when exporting. ([edu.rsc.org](https://edu.rsc.org/everyday-chemistry/why-does-copper-jewellery-turn-your-skin-green/4020461.article?utm_source=openai))",
+   "Lead and nickel free claims must be verified with supplier specifications and migration tests when required. ([eur-lex.europa.eu](https://eur-lex.europa.eu/eli/reg/2006/1907/2024-06-06/eng?utm_source=openai))"
+  ],
+  "abstraction": [
+   {
+    "axis": "Symbol",
+    "notes": [
+     "Chedi as a universal relic form rather than a Thai only icon",
+     "Wheel of dharma eightfold symmetry to set flute counts",
+     "Bodhi leaf implied by heart shaped negative space"
+    ]
+   },
+   {
+    "axis": "Emotion",
+    "notes": [
+     "Quiet confidence for daily wear",
+     "Subtle protection theme via threshold motifs",
+     "Aspiration through upward taper"
+    ]
+   },
+   {
+    "axis": "Form",
+    "notes": [
+     "Tiered steps 2 to 4 tiers",
+     "Bell to bud transitions simplified to arcs",
+     "Prang inspired verticals reduced to flutes"
+    ]
+   },
+   {
+    "axis": "Motion",
+    "notes": [
+     "Clockwise groove sequence 8 or 16 repeats",
+     "Step up then rest plateau along circumference",
+     "Finger glide paths tuned to habit"
+    ]
+   },
+   {
+    "axis": "Structure",
+    "notes": [
+     "Comfort fit interior with stainless or silver sleeve optional",
+     "Wall 1.6 to 2.2 mm to balance weight price and durability",
+     "Break ring into modules for casting or machining efficiency"
+    ]
+   },
+   {
+    "axis": "Surface",
+    "notes": [
+     "Split finishes polish on ridges matte in recess",
+     "Micro tile enamel dots to echo porcelain mosaics",
+     "Lacquered interior to reduce skin contact with brass"
+    ]
+   },
+   {
+    "axis": "Material",
+    "notes": [
+     "Lead free brass grades e.g. C260 C268",
+     "Optional PVD light gold over brass",
+     "Renaissance style wax or clear lacquer with benzotriazole inhibitor"
+    ]
+   },
+   {
+    "axis": "Color",
+    "notes": [
+     "Warm brass as base gold",
+     "Tiny vermilion dot or line inside groove",
+     "Emerald or jade toned micro enamel tiles 1 to 2 accents max"
+    ]
+   },
+   {
+    "axis": "Rhythm",
+    "notes": [
+     "Eight beat module for dharma reference",
+     "Long short groove alternation like temple tiering",
+     "Quiet field interrupted by single merit bell notch"
+    ]
+   },
+   {
+    "axis": "Story",
+    "notes": [
+     "Ring as pocket stupa a daily reminder of calm",
+     "Steps mark small merits accumulated each day",
+     "A tower of light abstracted so anyone can wear it without declaring religion"
+    ]
+   }
+  ],
+  "sources": [
+   "Thailand Foundation Understanding Thai Buddhist Architecture",
+   "Oxford Research Archive study on Thai wat layouts",
+   "Britannica and academic PDFs on chedi and stupa origins",
+   "UNESCO and official Wat Arun pages describing prang and porcelain mosaic",
+   "Smarthistory overview of Thai Buddhist monasteries and Theravada lineage",
+   "Korea.net explanation of dancheong five color system",
+   "JNTO explanation of vermilion gates and preservation function",
+   "Smithsonian National Museum of Asian Art color essays on Chinese red and lotus symbolism across Asia",
+   "Royal Society of Chemistry on copper based green staining and patina",
+   "Copper Development Association on brass properties and lacquers",
+   "American Academy of Dermatology on nickel allergy in jewelry",
+   "EU REACH consolidated nickel release limits for skin contact articles",
+   "Peer reviewed and museum sources on Naga protective symbolism in Thai art",
+   "Rubin Museum and other references on circumambulation informing circular rhythm"
+  ],
+  "searches": 16,
+  "cached": false
+ },
+ "sets": [
+  {
+   "name": "Chedi Steps",
+   "kind": "Representative",
+   "concept": "Stepped geometry of Thai chedi tiers distilled into modular low profile brass forms for casual unisex wear priced under 1000 THB.",
+   "story": "The design captures the quiet rhythm of temple terraces rising from base to finial. Planes and shadows replace ornament to hint at gilded stupas without using sacred icons. Negative cuts recall lattice windows and tiled courtyards while preserving a calm graphic presence. The pieces stay slim and durable for everyday movement and suit ages twenty two to twenty nine across Asia.",
+   "palette": [
+    "warm brass gold",
+    "antique bronze patina brown",
+    "jade green micro inlay",
+    "charcoal black line",
+    "stone gray"
+   ],
+   "metal": "Lead free brass in a natural warm gold tone with optional antique patina in recesses.",
+   "surface": "Satin brushed planes with micro sandblasted steps and a clear lacquer or microcrystalline wax seal to slow tarnish.",
+   "stones": "No precious stones. Optional 1.5 mm round black glass cabochon or a 0.5 by 3 mm rectangular recycled green glass micro inlay set flush.",
+   "silhouette": "A low stepped trapezoid bar shared by ring top and a vertical pendant with a small apex notch.",
+   "motif": "A three level tiered chedi step module expressed as stacked planes.",
+   "rhythm": "Vertical mirror symmetry with a three step progression repeated one to three times and edges eased to a 0.3 mm radius for comfort.",
+   "structure": "Ring uses a hollow under gallery to reduce weight and a comfort band about 2.0 mm thick with an optional open end for size flexibility. Pendant is a vertical bar with a hidden jump ring channel behind the top step and works on cord or thin chain. Accent inlays sit in 0.6 mm deep channels or are flush set to avoid prongs. Total metal mass is kept light to meet the 1000 THB target.",
+   "avoid": [
+    "Buddha head or deity imagery",
+    "exotic or Oriental wording",
+    "amulet or sacred power claims",
+    "overly ornate royal motifs",
+    "boho hammered texture cliches",
+    "gendered labels such as for men only or for women only"
+   ],
+   "design_dna": [
+    "Architecture first not iconography so we abstract steps and windows rather than depict figures.",
+    "Profiles stay low under 3 mm so the pieces sit flat against skin and do not snag on clothes.",
+    "Every edge is softened with a small radius for comfort yet reads crisp in light.",
+    "Contrast finishing is mandatory brushed planes against darker recess to create depth without extra cost.",
+    "Unisex proportion means moderate widths and neutral scale that stack or layer easily.",
+    "Accents use enamel or recycled glass micro inlays or a single tiny flush set glass dot never multiple prongs.",
+    "Brass remains visible and untreated wherever possible with a clear seal to maintain color and meet the under 1000 THB price.",
+    "Visual rhythm follows a three level step grammar that repeats consistently across ring and pendant."
+   ],
+   "concept_art": {
+    "form": "Abstract composition of stacked trapezoids and stepped pyramids in frontal symmetry inspired by Thai temple chedi tiers crisp edges subtle bevels neutral backdrop high contrast light and shadow no jewelry",
+    "motion": "Ascending rhythm of layered plates slowly rising from base to apex with soft morning light sliding upward long shadows calm cadence architectural minimalism no jewelry",
+    "material": "Close up textures of brushed brass next to dark patina grooves and matte stone mosaic reflections realistic surface detail cinematic lighting no jewelry",
+    "atmosphere": "Quiet courtyard at dusk feeling warm gold glows beside cool shadow air serene contemplative stillness minimal palette no jewelry"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/bf27973f5a486f22760445b4.png",
+     "hash": "bf27973f5a486f22760445b4"
+    },
+    "motion": {
+     "url": "/samples/a47ba7bf2bbabc12996a6571.png",
+     "hash": "a47ba7bf2bbabc12996a6571"
+    },
+    "material": {
+     "url": "/samples/5583ba934458ddaa5169417e.png",
+     "hash": "5583ba934458ddaa5169417e"
+    },
+    "atmosphere": {
+     "url": "/samples/7a11445fed3cd4d57ecdf4c9.png",
+     "hash": "7a11445fed3cd4d57ecdf4c9"
+    }
+   },
+   "lineup": {
+    "url": "/samples/4e32590dbe1243376761891c.png",
+    "hash": "4e32590dbe1243376761891c"
+   }
+  },
+  {
+   "name": "Gable Line",
+   "kind": "Commercial",
+   "concept": "A soft chevron drawn from Thai temple gable and chofa lines turned into slim brass curves with optional black enamel or a tiny flush stone for easy unisex styling under 1000 THB.",
+   "story": "The set distills the sweeping roofline into a single nested V that feels graphic yet gentle. Curves skim the hand and chest so the pieces wear comfortably with tees and denim. Small accents echo lacquer and colored glass from temple facades while keeping the price approachable. The open geometry and adjustable options suit a wide size range for young urban wearers across Asia.",
+   "palette": [
+    "warm brass gold",
+    "matte black enamel",
+    "peacock blue accent",
+    "soft ivory",
+    "shadow gray"
+   ],
+   "metal": "Lead free brass with a warm gold tone sealed with clear lacquer for daily wear.",
+   "surface": "High polish on ridge lines and satin brush on inner fields with 0.6 mm enamel channels or micro blasted valleys.",
+   "stones": "Optional single round 1.3 to 1.5 mm onyx or hematite flush set at the chevron apex. Enamel linework can replace stones to control cost.",
+   "silhouette": "A shallow V chevron with a gentle arc and open center used for both ring and pendant.",
+   "motif": "Abstract gable apex line expressed as one or two nested chevrons.",
+   "rhythm": "Strict left right mirror symmetry with equal spacing between nested lines and a consistent line weight that thickens slightly toward the apex for lift.",
+   "structure": "Ring features a slim split shank merging into the V apex and offers an open end size flex option. Pendant has a hidden bail cavity behind the apex and hangs at a slight tilt to echo roof pitch. Enamel or the micro stone sits at the focus point in a flush seat to avoid snags. Metal thickness stays around 1.6 to 2.0 mm to keep weight and cost low.",
+   "avoid": [
+    "Buddha head or sacred figure depiction",
+    "snake or dragon body references",
+    "touristy souvenir bling with heavy fake gold",
+    "lucky charm marketing claims",
+    "gendered naming such as ladies ring or mens pendant",
+    "neon color pops that break the temple palette"
+   ],
+   "design_dna": [
+    "The chevron curve is the grammar every piece must reference with an open center that creates breath.",
+    "Line weight remains slim and continuous with a gentle taper toward the apex to suggest lift.",
+    "Edges are smooth and pocket friendly with micro chamfers for comfort.",
+    "Contrast is achieved through polish versus satin and a single black or blue accent delivered as enamel or one micro stone.",
+    "Pieces are stackable or layerable and never exceed medium scale to preserve unisex appeal.",
+    "Manufacturing favors single piece stamp or laser cut and bend operations with minimal solder joints to control price under 1000 THB.",
+    "All settings are flush or in channels no prongs to avoid snagging and to simplify maintenance.",
+    "Finish is sealed with lacquer to slow tarnish and maintain a consistent warm brass color.",
+    "Visual rhythm follows nested chevrons repeated once or twice only to keep the look clean for casual wear."
+   ],
+   "concept_art": {
+    "form": "Minimal nested chevrons and sweeping roof arcs arranged in balanced composition with generous negative space crisp silhouettes neutral background no jewelry",
+    "motion": "A calm upward glide traced by a single curve captured as long exposure light stroke gentle momentum architectural rhythm no jewelry",
+    "material": "Satin brass planes meeting glossy lacquer black lines with soft highlights realistic texture macro study no jewelry",
+    "atmosphere": "Fresh urban morning light grazing temple roof contours cool shadow warm glints quiet clean mood no jewelry"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/3adc317e7fcc6f53d70005cc.png",
+     "hash": "3adc317e7fcc6f53d70005cc"
+    },
+    "motion": {
+     "url": "/samples/5ce8494012fc3e45ddfd66cf.png",
+     "hash": "5ce8494012fc3e45ddfd66cf"
+    },
+    "material": {
+     "url": "/samples/419e492181c29cfca4879265.png",
+     "hash": "419e492181c29cfca4879265"
+    },
+    "atmosphere": {
+     "url": "/samples/47cd279c1867e0ec2d8a763a.png",
+     "hash": "47cd279c1867e0ec2d8a763a"
+    }
+   },
+   "lineup": {
+    "url": "/samples/2367d759e630ace64a46c387.png",
+    "hash": "2367d759e630ace64a46c387"
+   }
+  }
+ ],
+ "sample": true,
+ "sampleTitle": "Nattapong Srisuwan (Thailand) · collection",
+ "savedAtISO": "2026-08-26T22:58:41.701Z"
+}

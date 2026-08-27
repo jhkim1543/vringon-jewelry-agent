@@ -1,0 +1,1148 @@
+{
+ "algo": 2,
+ "params": {
+  "algo": 2,
+  "mode": "collection",
+  "countries": [
+   "Middle East"
+  ],
+  "analysisLang": "en",
+  "direction": "아라베스크 문양을 극도로 화려하게 푼 플래티넘과 에메랄드 소재의 볼드한 목걸이. 이브닝 가운에 어울리는 100,000 디르함 이상의 럭셔리 피스.",
+  "itemType": "necklace",
+  "items": [
+   "necklace",
+   "earrings",
+   "bracelet",
+   "ring",
+   "pendant"
+  ],
+  "designCount": 6,
+  "setCount": 5,
+  "target": {
+   "ages": [
+    "40-44",
+    "45-49",
+    "50-54"
+   ],
+   "gender": "female"
+  },
+  "competitors": [],
+  "imageEngine": "fast"
+ },
+ "stageStatus": {
+  "S1": "done",
+  "S2": "done",
+  "S3": "done",
+  "S4": "done",
+  "S5": "done"
+ },
+ "logs": [
+  {
+   "stage": "S1",
+   "text": "Researching the keyword in Middle East: culture, symbols, forms, colors, and the cliches to avoid",
+   "t": 1787785125659
+  },
+  {
+   "stage": "S1",
+   "text": "Insight ready · 10 abstraction axes, 4 cautions",
+   "t": 1787785514006
+  },
+  {
+   "stage": "S2",
+   "text": "5 set concept(s): Arabesque Opus / Emerald Courtyard / Calligraphic Current / Verdant Platinum / Aerial Mashrabiya",
+   "t": 1787785718242
+  },
+  {
+   "stage": "S3",
+   "text": "Abstract concept images first, with no jewelry products yet, then one lineup image per set",
+   "t": 1787785718242
+  },
+  {
+   "stage": "S3",
+   "text": "Emerald Courtyard: 4/4 concept images + lineup",
+   "t": 1787785874273
+  },
+  {
+   "stage": "S3",
+   "text": "Arabesque Opus: 4/4 concept images + lineup",
+   "t": 1787785881561
+  },
+  {
+   "stage": "S3",
+   "text": "Calligraphic Current: 4/4 concept images + lineup",
+   "t": 1787786017262
+  },
+  {
+   "stage": "S3",
+   "text": "Verdant Platinum: 4/4 concept images + lineup",
+   "t": 1787786033423
+  },
+  {
+   "stage": "S3",
+   "text": "Aerial Mashrabiya: 4/4 concept images + lineup",
+   "t": 1787786177214
+  },
+  {
+   "stage": "S4",
+   "text": "25 designs = 5 set(s) × 5 item(s) · the set DNA stays locked, only the item changes",
+   "t": 1787786177215
+  },
+  {
+   "stage": "S5",
+   "text": "D01 generated (Arabesque Opus · necklace)",
+   "t": 1787786284720
+  },
+  {
+   "stage": "S5",
+   "text": "D02 generated (Arabesque Opus · earrings)",
+   "t": 1787786286884
+  },
+  {
+   "stage": "S5",
+   "text": "D03 generated (Arabesque Opus · bracelet)",
+   "t": 1787786352747
+  },
+  {
+   "stage": "S5",
+   "text": "D04 generated (Arabesque Opus · ring)",
+   "t": 1787786370722
+  },
+  {
+   "stage": "S5",
+   "text": "D05 generated (Arabesque Opus · pendant)",
+   "t": 1787786413475
+  },
+  {
+   "stage": "S5",
+   "text": "D07 generated (Emerald Courtyard · earrings)",
+   "t": 1787786467911
+  },
+  {
+   "stage": "S5",
+   "text": "D06 generated (Emerald Courtyard · necklace)",
+   "t": 1787786476029
+  },
+  {
+   "stage": "S5",
+   "text": "D08 generated (Emerald Courtyard · bracelet)",
+   "t": 1787786510021
+  },
+  {
+   "stage": "S5",
+   "text": "D10 generated (Emerald Courtyard · pendant)",
+   "t": 1787786571967
+  },
+  {
+   "stage": "S5",
+   "text": "D11 generated (Calligraphic Current · necklace)",
+   "t": 1787786600107
+  },
+  {
+   "stage": "S5",
+   "text": "D09 generated (Emerald Courtyard · ring)",
+   "t": 1787786630450
+  },
+  {
+   "stage": "S5",
+   "text": "D12 generated (Calligraphic Current · earrings)",
+   "t": 1787786663973
+  },
+  {
+   "stage": "S5",
+   "text": "D13 generated (Calligraphic Current · bracelet)",
+   "t": 1787786676679
+  },
+  {
+   "stage": "S5",
+   "text": "D14 generated (Calligraphic Current · ring)",
+   "t": 1787786701407
+  },
+  {
+   "stage": "S5",
+   "text": "D15 generated (Calligraphic Current · pendant)",
+   "t": 1787786745203
+  },
+  {
+   "stage": "S5",
+   "text": "D16 generated (Verdant Platinum · necklace)",
+   "t": 1787786792531
+  },
+  {
+   "stage": "S5",
+   "text": "D18 generated (Verdant Platinum · bracelet)",
+   "t": 1787786815876
+  },
+  {
+   "stage": "S5",
+   "text": "D17 generated (Verdant Platinum · earrings)",
+   "t": 1787786845452
+  },
+  {
+   "stage": "S5",
+   "text": "D19 generated (Verdant Platinum · ring)",
+   "t": 1787786869780
+  },
+  {
+   "stage": "S5",
+   "text": "D21 generated (Aerial Mashrabiya · necklace)",
+   "t": 1787786935191
+  },
+  {
+   "stage": "S5",
+   "text": "D20 generated (Verdant Platinum · pendant)",
+   "t": 1787786971377
+  },
+  {
+   "stage": "S5",
+   "text": "D22 generated (Aerial Mashrabiya · earrings)",
+   "t": 1787786995646
+  },
+  {
+   "stage": "S5",
+   "text": "D24 generated (Aerial Mashrabiya · ring)",
+   "t": 1787787051837
+  },
+  {
+   "stage": "S5",
+   "text": "D23 generated (Aerial Mashrabiya · bracelet)",
+   "t": 1787787055034
+  },
+  {
+   "stage": "S5",
+   "text": "D25 generated (Aerial Mashrabiya · pendant)",
+   "t": 1787787108996
+  }
+ ],
+ "references": [],
+ "pairs": [
+  {
+   "id": "D01",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "Arabesque Opus",
+   "item": "necklace",
+   "title": "Arabesque Opus · 목걸이",
+   "prompt": "목걸이: Arabesque Opus necklace, master motif in continuous Pt950 scrollwork with a soft‑tapered arabesque slope that starts and resolves into a bead‑set diamond rim. All emeralds are framed by an even 0.4 mm platinum lip for crisp chroma contrast; negative-space wells within the scrolls are preserved to let light breathe at scale. Two-step pavé gradient (1.3 mm to 1.0 mm diamonds) radiates from center to edge. Structural walls 1.2–1.4 mm, bead seats 0.25 mm, secure micro‑grains; settings and prongs manufacturable and snag‑safe. Center medallion balanced to sit flat at the collarbone; 1.3 mm platinum rounded box chain. Clasp hides inside a repeating motif and closes with a soft tactile click. Mirror‑polished crown planes with satin recesses; emeralds matched, saturated green without neon. Three‑quarter product view, neutral monochrome studio background, macro jewelry photograph, shallow DOF, photoreal finish. Avoid: “Oriental” or “exotic” descriptors, Princess naming, religious symbols or mosque silhouettes, green enamel imitation of emerald, mixed‑tone gold that fights platinum clarity, overly thin filigree that snags, neon or uneven gemstone color.",
+   "versions": [
+    {
+     "url": "/samples/334c82640031909d563185b9.png",
+     "hash": "334c82640031909d563185b9",
+     "prompt": "목걸이: Arabesque Opus necklace, master motif in continuous Pt950 scrollwork with a soft‑tapered arabesque slope that starts and resolves into a bead‑set diamond rim. All emeralds are framed by an even 0.4 mm platinum lip for crisp chroma contrast; negative-space wells within the scrolls are preserved to let light breathe at scale. Two-step pavé gradient (1.3 mm to 1.0 mm diamonds) radiates from center to edge. Structural walls 1.2–1.4 mm, bead seats 0.25 mm, secure micro‑grains; settings and prongs manufacturable and snag‑safe. Center medallion balanced to sit flat at the collarbone; 1.3 mm platinum rounded box chain. Clasp hides inside a repeating motif and closes with a soft tactile click. Mirror‑polished crown planes with satin recesses; emeralds matched, saturated green without neon. Three‑quarter product view, neutral monochrome studio background, macro jewelry photograph, shallow DOF, photoreal finish. Avoid: “Oriental” or “exotic” descriptors, Princess naming, religious symbols or mosque silhouettes, green enamel imitation of emerald, mixed‑tone gold that fights platinum clarity, overly thin filigree that snags, neon or uneven gemstone color.",
+     "at": "2026-08-26T23:18:04.716Z"
+    }
+   ],
+   "feature": "Concealed motif-lock clasp and a two-step pavé fade from a platinum‑lipped emerald center keep the collarbone‑sitting necklace visually light yet securely balanced."
+  },
+  {
+   "id": "D02",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "Arabesque Opus",
+   "item": "earrings",
+   "title": "Arabesque Opus · 귀걸이",
+   "prompt": "Original earring design: Arabesque Opus left‑right mirrored pair translating the master scroll into formal wear. The arabesque slope begins and ends in a soft taper that meets a continuous bead‑set diamond rim; negative space within the scrolls is preserved as light wells. 950 platinum only, mirror‑polished; no mixed tones. One‑step pavé density grading from center to edge. Each earring centers a matched oval emerald, evenly saturated medium‑deep green, framed by a uniform 0.5 mm platinum lip for crisp chroma contrast. Manufacturable build: openwork walls min 1.2 mm, bead‑set melee 0.9–1.1 mm with secure beads; overall length ~32 mm, under 9 g each for comfort. Omega backs in platinum, hinge and catch hidden within a repeating motif, closing with a soft tactile click. Three‑quarter product view, neutral gray studio background, macro jewelry photo, photoreal finish. Avoid: “Oriental”/“exotic” terms, Arabian Nights clichés, princess naming, religious or mosque motifs, enamel faux emeralds, fragile filigree, mixed‑tone gold, neon or uneven greens.",
+   "versions": [
+    {
+     "url": "/samples/f20df6d36bead49bad42ec8d.png",
+     "hash": "f20df6d36bead49bad42ec8d",
+     "prompt": "Original earring design: Arabesque Opus left‑right mirrored pair translating the master scroll into formal wear. The arabesque slope begins and ends in a soft taper that meets a continuous bead‑set diamond rim; negative space within the scrolls is preserved as light wells. 950 platinum only, mirror‑polished; no mixed tones. One‑step pavé density grading from center to edge. Each earring centers a matched oval emerald, evenly saturated medium‑deep green, framed by a uniform 0.5 mm platinum lip for crisp chroma contrast. Manufacturable build: openwork walls min 1.2 mm, bead‑set melee 0.9–1.1 mm with secure beads; overall length ~32 mm, under 9 g each for comfort. Omega backs in platinum, hinge and catch hidden within a repeating motif, closing with a soft tactile click. Three‑quarter product view, neutral gray studio background, macro jewelry photo, photoreal finish. Avoid: “Oriental”/“exotic” terms, Arabian Nights clichés, princess naming, religious or mosque motifs, enamel faux emeralds, fragile filigree, mixed‑tone gold, neon or uneven greens.",
+     "at": "2026-08-26T23:18:06.884Z"
+    }
+   ],
+   "feature": "Platinum open‑scroll earrings with preserved light wells, a continuous bead‑set diamond rim, uniformly lipped emerald centers, one‑step pavé grading, and a hidden omega‑back closure that clicks softly."
+  },
+  {
+   "id": "D03",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "Arabesque Opus",
+   "item": "bracelet",
+   "title": "Arabesque Opus · 브레이슬릿",
+   "prompt": "브레이슬릿 — Original design declaration: Render the Arabesque Opus master scroll as a hinged platinum Pt950 bangle, the arabesque slope beginning and ending in soft tapers that meet a bead-set diamond rim. Preserve negative-space light wells within the scrolls so the piece breathes, with manufacturable walls 1.2–1.5 mm and comfort edges. Set emeralds of even saturation, each encircled by a uniform platinum lip ~0.35 mm for chroma contrast; no enamel. Apply a one-step pavé density grade: richer at the center, easing toward the edges. Use secure bead and micro-prong settings (seats ~0.3 mm), under-galleries polished. Compose as repeating motifs articulated for wrist movement, with a hidden tongue-box clasp within a motif and a soft click lock. Three-quarter product view, neutral studio background, photoreal macro lighting, high-polish platinum, gemstones. Avoid: Oriental or exotic descriptors, Arabian Nights clichés, princess naming, religious symbols or mosque silhouettes, green enamel imitation of emerald, overly thin snag-prone filigree, mixed-tone gold that fights platinum clarity, neon green or uneven gemstone color.",
+   "versions": [
+    {
+     "url": "/samples/e280c3146b4ea755246c632f.png",
+     "hash": "e280c3146b4ea755246c632f",
+     "prompt": "브레이슬릿 — Original design declaration: Render the Arabesque Opus master scroll as a hinged platinum Pt950 bangle, the arabesque slope beginning and ending in soft tapers that meet a bead-set diamond rim. Preserve negative-space light wells within the scrolls so the piece breathes, with manufacturable walls 1.2–1.5 mm and comfort edges. Set emeralds of even saturation, each encircled by a uniform platinum lip ~0.35 mm for chroma contrast; no enamel. Apply a one-step pavé density grade: richer at the center, easing toward the edges. Use secure bead and micro-prong settings (seats ~0.3 mm), under-galleries polished. Compose as repeating motifs articulated for wrist movement, with a hidden tongue-box clasp within a motif and a soft click lock. Three-quarter product view, neutral studio background, photoreal macro lighting, high-polish platinum, gemstones. Avoid: Oriental or exotic descriptors, Arabian Nights clichés, princess naming, religious symbols or mosque silhouettes, green enamel imitation of emerald, overly thin snag-prone filigree, mixed-tone gold that fights platinum clarity, neon green or uneven gemstone color.",
+     "at": "2026-08-26T23:19:12.747Z"
+    }
+   ],
+   "feature": "Hinged Pt950 platinum bangle with Arabesque Opus scrolls, platinum-lipped emeralds, a bead-set diamond rim, one-step graded pavé, preserved light wells, and a hidden repeating-motif clasp that closes with a soft click."
+  },
+  {
+   "id": "D04",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "Arabesque Opus",
+   "item": "ring",
+   "title": "Arabesque Opus · 반지",
+   "prompt": "Original ring design: Arabesque Opus ring translating the collection DNA into a wearable statement. The master arabesque scroll rises in a soft taper that begins and ends into a fine bead‑set diamond rim. Triple split shoulders converge and resolve into the scroll, with negative‑space light wells preserved so the piece breathes at scale. Crafted in high‑polish platinum only; all emeralds are collet‑set with a uniform 0.4 mm platinum lip to heighten chroma, even medium‑deep green. Micro‑pavé F‑G VS diamonds grade in one step, denser at the scroll nexus and lighter toward the shoulders. Real‑world build: comfort‑fit shank 2.0–2.2 mm; structural walls minimum 1.6 mm; head height under 7 mm; secure bead‑set seats; smooth undergallery for stability and snag resistance. Three‑quarter product view, neutral monochrome studio background, macro jewelry photo, softbox reflections, photoreal finish. Avoid: “Oriental” or “exotic” descriptors, Arabian Nights clichés, princess naming, religious symbols or mosque silhouettes, green enamel imitation of emerald, overly thin filigree that snags fabrics, mixed‑tone gold that fights platinum clarity, neon or uneven gemstone color.",
+   "versions": [
+    {
+     "url": "/samples/0df037a6df375fafdcd083be.png",
+     "hash": "0df037a6df375fafdcd083be",
+     "prompt": "Original ring design: Arabesque Opus ring translating the collection DNA into a wearable statement. The master arabesque scroll rises in a soft taper that begins and ends into a fine bead‑set diamond rim. Triple split shoulders converge and resolve into the scroll, with negative‑space light wells preserved so the piece breathes at scale. Crafted in high‑polish platinum only; all emeralds are collet‑set with a uniform 0.4 mm platinum lip to heighten chroma, even medium‑deep green. Micro‑pavé F‑G VS diamonds grade in one step, denser at the scroll nexus and lighter toward the shoulders. Real‑world build: comfort‑fit shank 2.0–2.2 mm; structural walls minimum 1.6 mm; head height under 7 mm; secure bead‑set seats; smooth undergallery for stability and snag resistance. Three‑quarter product view, neutral monochrome studio background, macro jewelry photo, softbox reflections, photoreal finish. Avoid: “Oriental” or “exotic” descriptors, Arabian Nights clichés, princess naming, religious symbols or mosque silhouettes, green enamel imitation of emerald, overly thin filigree that snags fabrics, mixed‑tone gold that fights platinum clarity, neon or uneven gemstone color.",
+     "at": "2026-08-26T23:19:30.722Z"
+    }
+   ],
+   "feature": "Triple split shoulders flow into a softly tapering arabesque master scroll with preserved light wells, a uniform platinum lip around rich emeralds, and a one‑step pavé gradient to a bead‑set diamond rim."
+  },
+  {
+   "id": "D05",
+   "refSlot": 1,
+   "variant": "base",
+   "setName": "Arabesque Opus",
+   "item": "pendant",
+   "title": "Arabesque Opus · 펜던트",
+   "prompt": "Pendant — original design for Arabesque Opus. Three‑quarter macro jewelry photograph, photoreal, on a gray studio backdrop with gradient. Solid 950 platinum body, mirror‑polished: the master arabesque scroll begins and ends in soft tapers that resolve into a continuous bead‑set diamond rim. Preserve negative spaces within the scroll as light wells. Central pear‑cut emerald, medium‑deep green, the emerald framed by an equal‑thickness 0.35 mm platinum lip for crisp chroma contrast; matched F‑G VS diamond melee in a single‑step pavé gradient from center toward edge. Real‑world build: minimum wall 1.2 mm, rim 1.3 mm, bead‑set seats for 1.0–1.2 mm melee with two beads per stone and bright‑cut borders; open gallery and cross‑bracing for rigidity. Integrated twin leaf‑loop bail sized for evening chains and crochet cords (4×8 mm clearance), anti‑rotation saddle, accommodates 2.5–3.5 mm chains. Hint of a 1.8 mm platinum chain. Avoid: Oriental/exotic descriptors, Arabian Nights clichés, Princess naming, religious symbols or mosque silhouettes, green enamel substitutes, overly thin filigree, mixed‑tone gold, neon or uneven emerald color.",
+   "versions": [
+    {
+     "url": "/samples/21c3a3e6a71aad47883cddb2.png",
+     "hash": "21c3a3e6a71aad47883cddb2",
+     "prompt": "Pendant — original design for Arabesque Opus. Three‑quarter macro jewelry photograph, photoreal, on a gray studio backdrop with gradient. Solid 950 platinum body, mirror‑polished: the master arabesque scroll begins and ends in soft tapers that resolve into a continuous bead‑set diamond rim. Preserve negative spaces within the scroll as light wells. Central pear‑cut emerald, medium‑deep green, the emerald framed by an equal‑thickness 0.35 mm platinum lip for crisp chroma contrast; matched F‑G VS diamond melee in a single‑step pavé gradient from center toward edge. Real‑world build: minimum wall 1.2 mm, rim 1.3 mm, bead‑set seats for 1.0–1.2 mm melee with two beads per stone and bright‑cut borders; open gallery and cross‑bracing for rigidity. Integrated twin leaf‑loop bail sized for evening chains and crochet cords (4×8 mm clearance), anti‑rotation saddle, accommodates 2.5–3.5 mm chains. Hint of a 1.8 mm platinum chain. Avoid: Oriental/exotic descriptors, Arabian Nights clichés, Princess naming, religious symbols or mosque silhouettes, green enamel substitutes, overly thin filigree, mixed‑tone gold, neon or uneven emerald color.",
+     "at": "2026-08-26T23:20:13.475Z"
+    }
+   ],
+   "feature": "Twin leaf-loop anti-rotation bail and light-well openwork frame a pear emerald with an even platinum lip and a single-step pavé gradient resolving into a continuous bead-set diamond rim."
+  },
+  {
+   "id": "D07",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "Emerald Courtyard",
+   "item": "earrings",
+   "title": "Emerald Courtyard · 귀걸이",
+   "prompt": "귀걸이 — A pair of 950 platinum stud-drops for the Emerald Courtyard set, repeating the master pointed-ovoid ratio in mirrored left/right modules. Mirror-bright borders frame concave satin interiors to express depth without extra stones. At each interlock node, a matched vivid emerald (~1.7 mm) in a low-profile bezel marks rhythm; halos use uniform micro pavé F–G VS diamonds at 0.9 mm with consistent 0.18 mm grains. Frames keep 1.3–1.5 mm wall thickness; pavé seats 0.35 mm deep with softened bead tips for snag-free wear. Overall drop 20 mm, under 5.5 g per side to flatter the face and avoid hair tangling. Stabilized omega backs with 0.9 mm posts center the pair. Photoreal macro jewelry photo, three-quarter product view of the mirrored earrings, neutral monochrome studio background, crisp reflections and satin bloom. Avoid: overload of micro details, literal oriental cues, princess/bridal tropes, mixed gold with platinum, excessive hanging lengths, aggressive prongs, and emerald beads of uneven color.",
+   "versions": [
+    {
+     "url": "/samples/0ce351697233c4240865c647.png",
+     "hash": "0ce351697233c4240865c647",
+     "prompt": "귀걸이 — A pair of 950 platinum stud-drops for the Emerald Courtyard set, repeating the master pointed-ovoid ratio in mirrored left/right modules. Mirror-bright borders frame concave satin interiors to express depth without extra stones. At each interlock node, a matched vivid emerald (~1.7 mm) in a low-profile bezel marks rhythm; halos use uniform micro pavé F–G VS diamonds at 0.9 mm with consistent 0.18 mm grains. Frames keep 1.3–1.5 mm wall thickness; pavé seats 0.35 mm deep with softened bead tips for snag-free wear. Overall drop 20 mm, under 5.5 g per side to flatter the face and avoid hair tangling. Stabilized omega backs with 0.9 mm posts center the pair. Photoreal macro jewelry photo, three-quarter product view of the mirrored earrings, neutral monochrome studio background, crisp reflections and satin bloom. Avoid: overload of micro details, literal oriental cues, princess/bridal tropes, mixed gold with platinum, excessive hanging lengths, aggressive prongs, and emerald beads of uneven color.",
+     "at": "2026-08-26T23:21:07.911Z"
+    }
+   ],
+   "feature": "Platinum stud-drop earrings repeating the pointed-ovoid master motif with mirror-bright frames, satin interiors, bezel-set emerald rhythm nodes, and uniform micro-pavé halos, stabilized by omega backs."
+  },
+  {
+   "id": "D06",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "Emerald Courtyard",
+   "item": "necklace",
+   "title": "Emerald Courtyard · 목걸이",
+   "prompt": "목걸이 — Original Emerald Courtyard necklace design. Interlocking pointed‑ovoid modules repeat the set ratio; mirror‑bright 950 platinum borders with satin interiors create depth without extra stones. At every interlock node, matched vivid‑green round emerald accents in low bezels mark the rhythm. Central ovoid adds a single micro‑pavé halo of 1.0 mm DEF diamonds with uniform four‑grain beads for consistent brilliance. Fabrication: 1.4 mm average wall, 0.6 mm minimum under‑gallery, radiused edges; secure pavé seats, softened grains. Detachable center pendant sits flat; one bail fits 2.5 mm silk cords and fine chains (oval ID ~4.5 × 2.8 mm) with anti‑twist keeper; 16–18 in adjustable chain; centered weight. 3/4 product view, achromatic studio background, macro jewelry photograph, photoreal rendering, true metal and gem optics. Avoid: Overload of micro details that complicate daily wear, Overly literal oriental wording, Princess or bridal tropes, Mixing rose or yellow alloys with platinum in a single piece, Hanging lengths that tangle with hair or veils, Aggressive prong tips that catch delicate couture, Emerald beads of uneven color.",
+   "versions": [
+    {
+     "url": "/samples/7351a38349594d35c71d3fc1.png",
+     "hash": "7351a38349594d35c71d3fc1",
+     "prompt": "목걸이 — Original Emerald Courtyard necklace design. Interlocking pointed‑ovoid modules repeat the set ratio; mirror‑bright 950 platinum borders with satin interiors create depth without extra stones. At every interlock node, matched vivid‑green round emerald accents in low bezels mark the rhythm. Central ovoid adds a single micro‑pavé halo of 1.0 mm DEF diamonds with uniform four‑grain beads for consistent brilliance. Fabrication: 1.4 mm average wall, 0.6 mm minimum under‑gallery, radiused edges; secure pavé seats, softened grains. Detachable center pendant sits flat; one bail fits 2.5 mm silk cords and fine chains (oval ID ~4.5 × 2.8 mm) with anti‑twist keeper; 16–18 in adjustable chain; centered weight. 3/4 product view, achromatic studio background, macro jewelry photograph, photoreal rendering, true metal and gem optics. Avoid: Overload of micro details that complicate daily wear, Overly literal oriental wording, Princess or bridal tropes, Mixing rose or yellow alloys with platinum in a single piece, Hanging lengths that tangle with hair or veils, Aggressive prong tips that catch delicate couture, Emerald beads of uneven color.",
+     "at": "2026-08-26T23:21:16.029Z"
+    }
+   ],
+   "feature": "Detachable pointed‑ovoid centerpiece with mirror‑bright platinum borders, satin interiors, emerald node accents, and a single consistent‑grain micro‑pavé halo, balanced to sit flat and compatible with silk cords and fine chains via one anti‑twist bail."
+  },
+  {
+   "id": "D08",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "Emerald Courtyard",
+   "item": "bracelet",
+   "title": "Emerald Courtyard · 브레이슬릿",
+   "prompt": "브레이슬릿 — original design for the Emerald Courtyard set: an articulated line bracelet built from repeating pointed ovoid modules in identical ratio, interlocking so the set reads at a glance. Platinum only, mirror-bright borders with recessed satin interiors to create depth without extra stones. Each interlock node carries a matched vivid-green emerald round (1.5 mm), color-consistent, marking the rhythm. A micro-pavé halo encircles each ovoid using 1.0 mm F–G VS diamonds with uniform 0.20 mm grains for consistent brilliance. Build: border wall thickness 1.2–1.5 mm; pavé seats leave 0.5 mm under-gallery; prong tips 0.25 mm, softened and snag-free; hinge pins 0.8 mm with bushings; articulation gaps 0.3–0.4 mm for fluid wrist movement; overall height under 4.5 mm. Underside comfort curve. Low-profile concealed box clasp with twin side pushers and internal safety. Three-quarter product view, macro jewelry photo on a neutral gray studio background, high-CRI lighting, photoreal render, focus on metal and emerald accents. Avoid micro-detail overload, literal oriental cues, princess/bridal tropes, mixed alloys, tangling lengths, sharp prongs, uneven emerald color.",
+   "versions": [
+    {
+     "url": "/samples/34c78521dff9f7f0b08d012e.png",
+     "hash": "34c78521dff9f7f0b08d012e",
+     "prompt": "브레이슬릿 — original design for the Emerald Courtyard set: an articulated line bracelet built from repeating pointed ovoid modules in identical ratio, interlocking so the set reads at a glance. Platinum only, mirror-bright borders with recessed satin interiors to create depth without extra stones. Each interlock node carries a matched vivid-green emerald round (1.5 mm), color-consistent, marking the rhythm. A micro-pavé halo encircles each ovoid using 1.0 mm F–G VS diamonds with uniform 0.20 mm grains for consistent brilliance. Build: border wall thickness 1.2–1.5 mm; pavé seats leave 0.5 mm under-gallery; prong tips 0.25 mm, softened and snag-free; hinge pins 0.8 mm with bushings; articulation gaps 0.3–0.4 mm for fluid wrist movement; overall height under 4.5 mm. Underside comfort curve. Low-profile concealed box clasp with twin side pushers and internal safety. Three-quarter product view, macro jewelry photo on a neutral gray studio background, high-CRI lighting, photoreal render, focus on metal and emerald accents. Avoid micro-detail overload, literal oriental cues, princess/bridal tropes, mixed alloys, tangling lengths, sharp prongs, uneven emerald color.",
+     "at": "2026-08-26T23:21:50.021Z"
+    }
+   ],
+   "feature": "Articulated platinum bracelet of repeating pointed ovoid modules with mirror-bright borders, satin interiors, emerald-accented interlocks, and uniform micro-pavé halos for consistent brilliance."
+  },
+  {
+   "id": "D10",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "Emerald Courtyard",
+   "item": "pendant",
+   "title": "Emerald Courtyard · 펜던트",
+   "prompt": "Pendant — original design for the Emerald Courtyard set, translating the master pointed ovoid interlock into a detachable centerpiece. Master motif: repeating pointed ovoids in identical ratio; emerald accents (1.3 mm, matched vivid green) placed at every interlock node to mark rhythm. Metal: Pt950 platinum only; borders mirror-bright, interiors fine satin to express depth without extra stones. Uniform halo: 1.0 mm F–G VS round diamonds in micro pavé with consistent 0.15 mm grain beads. Manufacture-ready: border wall 1.2 mm, interior ribs 0.8 mm, comfort fillets 0.25 mm, open gallery back; prongs and beads domed, snag-free. Scale kept within a clavicle drop; overall height ~26 mm. Universal, detachable bail: hidden hinge, oval ID 3.0 x 1.6 mm to accept 3 mm silk cords and 1.2 mm fine chains; anti-rotation saddle centers weight to prevent flipping. Three-quarter product view, neutral gray studio backdrop, macro jewelry photo, soft high-CRI lighting, razor-sharp photoreal finish, no props or text. Avoid: excessive micro-detail, overly literal ‘oriental’ wording, princess/bridal tropes, mixed alloys, hair/veil-tangling lengths, aggressive prongs, or uneven emerald color.",
+   "versions": [
+    {
+     "url": "/samples/eb040968271473d35134485a.png",
+     "hash": "eb040968271473d35134485a",
+     "prompt": "Pendant — original design for the Emerald Courtyard set, translating the master pointed ovoid interlock into a detachable centerpiece. Master motif: repeating pointed ovoids in identical ratio; emerald accents (1.3 mm, matched vivid green) placed at every interlock node to mark rhythm. Metal: Pt950 platinum only; borders mirror-bright, interiors fine satin to express depth without extra stones. Uniform halo: 1.0 mm F–G VS round diamonds in micro pavé with consistent 0.15 mm grain beads. Manufacture-ready: border wall 1.2 mm, interior ribs 0.8 mm, comfort fillets 0.25 mm, open gallery back; prongs and beads domed, snag-free. Scale kept within a clavicle drop; overall height ~26 mm. Universal, detachable bail: hidden hinge, oval ID 3.0 x 1.6 mm to accept 3 mm silk cords and 1.2 mm fine chains; anti-rotation saddle centers weight to prevent flipping. Three-quarter product view, neutral gray studio backdrop, macro jewelry photo, soft high-CRI lighting, razor-sharp photoreal finish, no props or text. Avoid: excessive micro-detail, overly literal ‘oriental’ wording, princess/bridal tropes, mixed alloys, hair/veil-tangling lengths, aggressive prongs, or uneven emerald color.",
+     "at": "2026-08-26T23:22:51.967Z"
+    }
+   ],
+   "feature": "Detachable platinum pendant repeating the set’s pointed ovoid interlock, marked by emerald nodes and stabilized by a universal anti-rotation bail for both silk cords and fine chains."
+  },
+  {
+   "id": "D11",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "Calligraphic Current",
+   "item": "necklace",
+   "title": "Calligraphic Current · 목걸이",
+   "prompt": "Necklace - Calligraphic Current master motif translated into a single flowing stroke: a tangential curve resolving to a soft zero-angle tail, never reading as a literal letter. Platinum 950 body with knife-polished visible edges with softened arris; satin hidden gallery. At the apex, a pear-cut emerald ~8 x 6 mm sits 0.4 mm proud in rounded 0.8 mm claw prongs; along the stroke, micro pave F-G VS diamonds grade from dense at the apex (1.3-1.1 mm) to sparse near the tail (1.0-0.8 mm). Structural wall 1.3-1.5 mm; minimum rim 0.9 mm around seats. Pendant approx. 30 mm high, 15 mm wide, balanced with a low center of gravity. Integrated fixed twin-anchor bail, articulation concealed beneath the diamond line, prevents rotation and distraction. 42 cm, 1.0 mm round cable with 40/45 cm adjuster. Three-quarter product view, neutral monochrome studio background; macro jewelry photo, soft top light, photoreal finish, no props. Avoid: literal letters or scripts, tassels >5 cm, excessive dangles, snagging sharp edges, overcrowded pave that steals focus from the emerald.",
+   "versions": [
+    {
+     "url": "/samples/b04b0befd42e6f1b347d114f.png",
+     "hash": "b04b0befd42e6f1b347d114f",
+     "prompt": "Necklace - Calligraphic Current master motif translated into a single flowing stroke: a tangential curve resolving to a soft zero-angle tail, never reading as a literal letter. Platinum 950 body with knife-polished visible edges with softened arris; satin hidden gallery. At the apex, a pear-cut emerald ~8 x 6 mm sits 0.4 mm proud in rounded 0.8 mm claw prongs; along the stroke, micro pave F-G VS diamonds grade from dense at the apex (1.3-1.1 mm) to sparse near the tail (1.0-0.8 mm). Structural wall 1.3-1.5 mm; minimum rim 0.9 mm around seats. Pendant approx. 30 mm high, 15 mm wide, balanced with a low center of gravity. Integrated fixed twin-anchor bail, articulation concealed beneath the diamond line, prevents rotation and distraction. 42 cm, 1.0 mm round cable with 40/45 cm adjuster. Three-quarter product view, neutral monochrome studio background; macro jewelry photo, soft top light, photoreal finish, no props. Avoid: literal letters or scripts, tassels >5 cm, excessive dangles, snagging sharp edges, overcrowded pave that steals focus from the emerald.",
+     "at": "2026-08-26T23:23:20.107Z"
+    }
+   ],
+   "feature": "A fluid single-stroke pendant with a proud-set pear emerald, graded diamond pave, knife-polished edges, and a concealed anti-rotation twin-anchor bail."
+  },
+  {
+   "id": "D09",
+   "refSlot": 2,
+   "variant": "base",
+   "setName": "Emerald Courtyard",
+   "item": "ring",
+   "title": "Emerald Courtyard · 반지",
+   "prompt": "Ring: original design declaration: Translate the Emerald Courtyard master motif into a ring that repeats the pointed ovoid ratio in interlocking modules. Mirror-bright platinum borders frame satin interiors to build depth without extra stones. Calibrated vivid green emerald accents sit at each interlock node in low bezels, color matched. A uniform micro pave halo traces the main ovoid with 1.0 mm F-G VS diamonds on 0.20 mm grains for consistent brilliance. Fabricate in Pt950 only; shank 2.4 mm wide, 1.8 mm thick with comfort fit and 0.3 mm edge radii. Top gallery walls 1.2 mm; pave seats 0.45 mm; bezel walls 0.6 mm; under-gallery bridges balance and prevent spin. Overall rise <= 6.8 mm above the finger for comfort. Protective rounded claws where required; no snagging. Three-quarter product view, monochrome studio background, macro jewelry photograph, photoreal, directional light revealing high polish borders against satin cores, shallow depth of field on the motif. Avoid: over-complex micro detail, literal oriental references, princess/bridal cues, mixing rose or yellow alloys with platinum, tangle-prone elements, sharp prong tips, uneven emerald color.",
+   "versions": [
+    {
+     "url": "/samples/0e9c0a55dff0f869c2e53363.png",
+     "hash": "0e9c0a55dff0f869c2e53363",
+     "prompt": "Ring: original design declaration: Translate the Emerald Courtyard master motif into a ring that repeats the pointed ovoid ratio in interlocking modules. Mirror-bright platinum borders frame satin interiors to build depth without extra stones. Calibrated vivid green emerald accents sit at each interlock node in low bezels, color matched. A uniform micro pave halo traces the main ovoid with 1.0 mm F-G VS diamonds on 0.20 mm grains for consistent brilliance. Fabricate in Pt950 only; shank 2.4 mm wide, 1.8 mm thick with comfort fit and 0.3 mm edge radii. Top gallery walls 1.2 mm; pave seats 0.45 mm; bezel walls 0.6 mm; under-gallery bridges balance and prevent spin. Overall rise <= 6.8 mm above the finger for comfort. Protective rounded claws where required; no snagging. Three-quarter product view, monochrome studio background, macro jewelry photograph, photoreal, directional light revealing high polish borders against satin cores, shallow depth of field on the motif. Avoid: over-complex micro detail, literal oriental references, princess/bridal cues, mixing rose or yellow alloys with platinum, tangle-prone elements, sharp prong tips, uneven emerald color.",
+     "at": "2026-08-26T23:23:50.450Z"
+    }
+   ],
+   "feature": "Interlocking pointed-ovoid platinum ring with mirror-bright borders, satin cores, and low-bezel emerald nodes kept under 6.8 mm rise for poised daily wear."
+  },
+  {
+   "id": "D12",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "Calligraphic Current",
+   "item": "earrings",
+   "title": "Calligraphic Current · 귀걸이",
+   "prompt": "Earrings — original design for the Calligraphic Current set: a pair of fluid, calligraphic S-curve drops in bright platinum, each curve beginning tangentially and resolving to a soft zero angle so the form reads as one gesture. At the apex, a matched pair of pear-cut emeralds (about 7×5 mm) sit 0.4 mm proud of their seats to catch top light, secured by four 0.9 mm talon prongs. Along the crest, micro-pavé white diamonds grade from dense to sparse toward the tapering tail; visible ridgelines are knife-polished with a softened apex, while pierced under-galleries carry a fine satin. A concealed micro-hinge sits beneath a continuous diamond line; a sculpted back plate and discreet counterweight balance a graceful swing. Manufacturable thicknesses: 1.2 mm minimum walls, 0.6 mm knife edge, pavé beads ~0.28 mm. Overall drop under 38 mm. Three-quarter product view, neutral studio background, macro jewelry photo, photoreal, soft diffused light, shallow depth of field. Avoid: literal letters or scripts, tassels >5 cm, noisy dangles, snagging sharp edges, overcrowded pavé, heavy unbalanced earrings.",
+   "versions": [
+    {
+     "url": "/samples/7bcacc306198aadee79119d4.png",
+     "hash": "7bcacc306198aadee79119d4",
+     "prompt": "Earrings — original design for the Calligraphic Current set: a pair of fluid, calligraphic S-curve drops in bright platinum, each curve beginning tangentially and resolving to a soft zero angle so the form reads as one gesture. At the apex, a matched pair of pear-cut emeralds (about 7×5 mm) sit 0.4 mm proud of their seats to catch top light, secured by four 0.9 mm talon prongs. Along the crest, micro-pavé white diamonds grade from dense to sparse toward the tapering tail; visible ridgelines are knife-polished with a softened apex, while pierced under-galleries carry a fine satin. A concealed micro-hinge sits beneath a continuous diamond line; a sculpted back plate and discreet counterweight balance a graceful swing. Manufacturable thicknesses: 1.2 mm minimum walls, 0.6 mm knife edge, pavé beads ~0.28 mm. Overall drop under 38 mm. Three-quarter product view, neutral studio background, macro jewelry photo, photoreal, soft diffused light, shallow depth of field. Avoid: literal letters or scripts, tassels >5 cm, noisy dangles, snagging sharp edges, overcrowded pavé, heavy unbalanced earrings.",
+     "at": "2026-08-26T23:24:23.973Z"
+    }
+   ],
+   "feature": "A single-gesture calligraphic S-curve drop with proud-set emeralds, graded pavé, knife-polished edges, satin galleries, and a concealed hinge plus counterweight for poised, quiet motion."
+  },
+  {
+   "id": "D13",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "Calligraphic Current",
+   "item": "bracelet",
+   "title": "Calligraphic Current · 브레이슬릿",
+   "prompt": "브레이슬릿 — Original design declaration: Calligraphic Current translated into an articulated line bracelet, a single flowing stroke whose curves start tangentially and dissolve to soft zero angles. Master motif: a tapered calligraphic wave in 18K white gold; visible edges knife‑polished, hidden galleries satin. Emeralds (graduated step‑cuts and pears) sit 0.3–0.5 mm proud of bezels/prongs to catch overhead light; pavé diamonds grade from bright at the apex to sparse toward the tail. Real build: walls 1.2–1.4 mm, prongs 0.9 mm tips, bezels 0.8–1.0 mm, under‑gallery 0.8 mm; inner edges softly rounded for comfort. Articulation flexes in one plane only; micro‑hinges and a flush box clasp are fully concealed beneath a continuous diamond line so mechanics never distract. No edges sharp enough to snag; profiles low and stable on the wrist. Three‑quarter product view, neutral monochrome studio background; macro jewelry photograph, photoreal finish, soft diffused lighting, extreme detail, true scale. Avoid: literal letters or scripts, tassels >5 cm, noisy dangles, overcrowded pavé, snagging edges, heavy earrings without counterbalance.",
+   "versions": [
+    {
+     "url": "/samples/0bc6770910e18f73c37f1615.png",
+     "hash": "0bc6770910e18f73c37f1615",
+     "prompt": "브레이슬릿 — Original design declaration: Calligraphic Current translated into an articulated line bracelet, a single flowing stroke whose curves start tangentially and dissolve to soft zero angles. Master motif: a tapered calligraphic wave in 18K white gold; visible edges knife‑polished, hidden galleries satin. Emeralds (graduated step‑cuts and pears) sit 0.3–0.5 mm proud of bezels/prongs to catch overhead light; pavé diamonds grade from bright at the apex to sparse toward the tail. Real build: walls 1.2–1.4 mm, prongs 0.9 mm tips, bezels 0.8–1.0 mm, under‑gallery 0.8 mm; inner edges softly rounded for comfort. Articulation flexes in one plane only; micro‑hinges and a flush box clasp are fully concealed beneath a continuous diamond line so mechanics never distract. No edges sharp enough to snag; profiles low and stable on the wrist. Three‑quarter product view, neutral monochrome studio background; macro jewelry photograph, photoreal finish, soft diffused lighting, extreme detail, true scale. Avoid: literal letters or scripts, tassels >5 cm, noisy dangles, overcrowded pavé, snagging edges, heavy earrings without counterbalance.",
+     "at": "2026-08-26T23:24:36.679Z"
+    }
+   ],
+   "feature": "An articulated, single-plane bracelet translating the Calligraphic Current into one flowing gesture, with emeralds set slightly proud, graded pavé, knife-polished edges over satin galleries, and mechanics hidden beneath a continuous diamond line."
+  },
+  {
+   "id": "D14",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "Calligraphic Current",
+   "item": "ring",
+   "title": "Calligraphic Current · 반지",
+   "prompt": "Ring — original design declaration: Translate the Calligraphic Current master motif into a single finger‑worn gesture, a continuous tangential sweep that resolves to a soft zero‑angle tail. Metal: 18k white gold or platinum; knife‑polished visible edges with a subtle 0.15 mm safety break; hidden galleries in satin. Stones: a step‑cut emerald at the apex, set 0.3–0.5 mm proud in fine talon prongs; micro‑pavé F–G VS diamonds grade from bright at the apex to sparse near the tail. Architecture: low inner arch for stability, rounded inner comfort fit; shank 1.8–2.0 mm at base, 2.3–2.6 mm at shoulders; protective under‑gallery rail. Craft realism: prongs 0.7 mm; pavé beads 0.25 mm; seat depth 0.35 mm; no exposed mechanics—any sizing rail concealed beneath a diamond line. Lighting/shot: three‑quarter macro product view, neutral achromatic studio background, soft top key to let the emerald catch motion light, photoreal finish, focus stacking, 100 mm macro look. Avoid: literal letters or scripts, tassels beyond 5 cm, noisy dangles, snagging sharp edges, overcrowded pavé, heavy earrings without counterbalance.",
+   "versions": [
+    {
+     "url": "/samples/8afeb85fef503077ef163b9d.png",
+     "hash": "8afeb85fef503077ef163b9d",
+     "prompt": "Ring — original design declaration: Translate the Calligraphic Current master motif into a single finger‑worn gesture, a continuous tangential sweep that resolves to a soft zero‑angle tail. Metal: 18k white gold or platinum; knife‑polished visible edges with a subtle 0.15 mm safety break; hidden galleries in satin. Stones: a step‑cut emerald at the apex, set 0.3–0.5 mm proud in fine talon prongs; micro‑pavé F–G VS diamonds grade from bright at the apex to sparse near the tail. Architecture: low inner arch for stability, rounded inner comfort fit; shank 1.8–2.0 mm at base, 2.3–2.6 mm at shoulders; protective under‑gallery rail. Craft realism: prongs 0.7 mm; pavé beads 0.25 mm; seat depth 0.35 mm; no exposed mechanics—any sizing rail concealed beneath a diamond line. Lighting/shot: three‑quarter macro product view, neutral achromatic studio background, soft top key to let the emerald catch motion light, photoreal finish, focus stacking, 100 mm macro look. Avoid: literal letters or scripts, tassels beyond 5 cm, noisy dangles, snagging sharp edges, overcrowded pavé, heavy earrings without counterbalance.",
+     "at": "2026-08-26T23:25:01.407Z"
+    }
+   ],
+   "feature": "A single calligraphic sweep ring with a proud emerald apex and graded diamond pavé, knife‑polished edges over satin galleries, stabilized by a low inner arch and comfort fit."
+  },
+  {
+   "id": "D15",
+   "refSlot": 3,
+   "variant": "base",
+   "setName": "Calligraphic Current",
+   "item": "pendant",
+   "title": "Calligraphic Current · 펜던트",
+   "prompt": "Pendant, original design for the Calligraphic Current set: a single flowing gesture; curves start tangentially and resolve to soft zero angles. In 18k white gold, knife-polished visible edges; satin hidden galleries. A bezel-lifted oval emerald (7×5 mm) sits 0.3 mm proud to catch overhead light. Micro pavé (1.0–1.2 mm) grades from bright apex to sparse tail, set with shared beads; wall thickness 1.2–1.6 mm, apex reinforced to 1.8 mm. The chain connects via twin concealed bails under a diamond line for a centered, anti-rotation hang; no visible mechanics. Slight convex back with piercings for cleaning and weight balance. Edges softly radiused to avoid snags; no tassels beyond 5 cm. Three-quarter view, neutral monochrome studio background, macro jewelry photo, photoreal metal, stones, reflections, crisp focus. Avoid: literal letters or scripts, tassels beyond 5 cm, overuse of dangles that create noisy movement, sharp edges that catch fabric or hair, overcrowded pavé that robs the emeralds of focus, heavy earrings without counterbalance.",
+   "versions": [
+    {
+     "url": "/samples/83c20b105dfbde7569c5681b.png",
+     "hash": "83c20b105dfbde7569c5681b",
+     "prompt": "Pendant, original design for the Calligraphic Current set: a single flowing gesture; curves start tangentially and resolve to soft zero angles. In 18k white gold, knife-polished visible edges; satin hidden galleries. A bezel-lifted oval emerald (7×5 mm) sits 0.3 mm proud to catch overhead light. Micro pavé (1.0–1.2 mm) grades from bright apex to sparse tail, set with shared beads; wall thickness 1.2–1.6 mm, apex reinforced to 1.8 mm. The chain connects via twin concealed bails under a diamond line for a centered, anti-rotation hang; no visible mechanics. Slight convex back with piercings for cleaning and weight balance. Edges softly radiused to avoid snags; no tassels beyond 5 cm. Three-quarter view, neutral monochrome studio background, macro jewelry photo, photoreal metal, stones, reflections, crisp focus. Avoid: literal letters or scripts, tassels beyond 5 cm, overuse of dangles that create noisy movement, sharp edges that catch fabric or hair, overcrowded pavé that robs the emeralds of focus, heavy earrings without counterbalance.",
+     "at": "2026-08-26T23:25:45.203Z"
+    }
+   ],
+   "feature": "Concealed twin bails beneath a diamond line keep the calligraphic pendant perfectly centered and rotation-free while preserving one continuous gesture."
+  },
+  {
+   "id": "D16",
+   "refSlot": 4,
+   "variant": "base",
+   "setName": "Verdant Platinum",
+   "item": "necklace",
+   "title": "Verdant Platinum · 목걸이",
+   "prompt": "목걸이 — Verdant Platinum master motif translated into a balanced necklace, preserving the set’s Design DNA. A graduated collar of bullnosed Pt950 holds buff‑top emerald calibres meeting at clean butt joints to read as a continuous river of green, ending in a centered cabochon pendant. All cabochons are bezel‑held with 1.0–1.2 mm walls and a 0.3 mm step; behind the center stone, a closed mirror back amplifies glow. Relief stays below the nearest cab’s diameter; all inner corners radiused. Alternating matte channels and selective gloss ridges keep a rhythm—never an all‑over mirror. Hidden double‑loop bail and low center of gravity prevent rotation; 42–45 cm Pt950 trace chain, 1.6 mm gauge. Three‑quarter product view, achromatic studio background, macro jewelry photograph, photoreal finish. Avoid: high mirror finish everywhere that flattens relief, overuse of micro pavé that obscures sculpted metal, green enamel as a substitute for carved emerald, sharp inner corners that collect debris, coatings that yellow the platinum tone, and too many competing motifs.",
+   "versions": [
+    {
+     "url": "/samples/d375fa0e5bb80e258b5285c7.png",
+     "hash": "d375fa0e5bb80e258b5285c7",
+     "prompt": "목걸이 — Verdant Platinum master motif translated into a balanced necklace, preserving the set’s Design DNA. A graduated collar of bullnosed Pt950 holds buff‑top emerald calibres meeting at clean butt joints to read as a continuous river of green, ending in a centered cabochon pendant. All cabochons are bezel‑held with 1.0–1.2 mm walls and a 0.3 mm step; behind the center stone, a closed mirror back amplifies glow. Relief stays below the nearest cab’s diameter; all inner corners radiused. Alternating matte channels and selective gloss ridges keep a rhythm—never an all‑over mirror. Hidden double‑loop bail and low center of gravity prevent rotation; 42–45 cm Pt950 trace chain, 1.6 mm gauge. Three‑quarter product view, achromatic studio background, macro jewelry photograph, photoreal finish. Avoid: high mirror finish everywhere that flattens relief, overuse of micro pavé that obscures sculpted metal, green enamel as a substitute for carved emerald, sharp inner corners that collect debris, coatings that yellow the platinum tone, and too many competing motifs.",
+     "at": "2026-08-26T23:26:32.531Z"
+    }
+   ],
+   "feature": "A continuous river of buff-top emerald calibres flows across a bullnosed platinum collar into a mirror-backed central cabochon that stays perfectly balanced without rotation."
+  },
+  {
+   "id": "D18",
+   "refSlot": 4,
+   "variant": "base",
+   "setName": "Verdant Platinum",
+   "item": "bracelet",
+   "title": "Verdant Platinum · 브레이슬릿",
+   "prompt": "브레이슬릿 — Verdant Platinum master motif rendered as an articulated river-link bracelet in 950 platinum. Relief height never exceeds the diameter of the nearest cabochon for comfort and balance. Emerald cabochons are bezel-held with a protected inner step (0.35 mm seat, 0.85–1.0 mm bezel lip) and micro-chamfered edges. Buff-top emerald calibres meet at clean butt joints to create uninterrupted green currents. Matte and gloss alternate in a predictable rhythm: satin planes framed by polished relief ribs. All bracelet edges are softly bullnosed; interior comfort curve. Structure uses open galleries to hide weight with 1.2–1.5 mm walls; low-profile piano hinges allow natural wrist movement; 0.8 mm hinge pins; integrated box clasp with twin side pushers and figure-eight safety. Three-quarter product view, neutral monochrome studio background; macro, photoreal jewelry photograph; soft diffused lighting, focus stacking, crisp gemstone clarity. Avoid: high mirror finish everywhere that flattens relief, overuse of micro pavé, green enamel substitutes for carved emerald, sharp inner corners, coatings that yellow the platinum tone, too many competing motifs.",
+   "versions": [
+    {
+     "url": "/samples/01e2f003f91b0373e3f84f4e.png",
+     "hash": "01e2f003f91b0373e3f84f4e",
+     "prompt": "브레이슬릿 — Verdant Platinum master motif rendered as an articulated river-link bracelet in 950 platinum. Relief height never exceeds the diameter of the nearest cabochon for comfort and balance. Emerald cabochons are bezel-held with a protected inner step (0.35 mm seat, 0.85–1.0 mm bezel lip) and micro-chamfered edges. Buff-top emerald calibres meet at clean butt joints to create uninterrupted green currents. Matte and gloss alternate in a predictable rhythm: satin planes framed by polished relief ribs. All bracelet edges are softly bullnosed; interior comfort curve. Structure uses open galleries to hide weight with 1.2–1.5 mm walls; low-profile piano hinges allow natural wrist movement; 0.8 mm hinge pins; integrated box clasp with twin side pushers and figure-eight safety. Three-quarter product view, neutral monochrome studio background; macro, photoreal jewelry photograph; soft diffused lighting, focus stacking, crisp gemstone clarity. Avoid: high mirror finish everywhere that flattens relief, overuse of micro pavé, green enamel substitutes for carved emerald, sharp inner corners, coatings that yellow the platinum tone, too many competing motifs.",
+     "at": "2026-08-26T23:26:55.876Z"
+    }
+   ],
+   "feature": "A continuous river of buff-top emerald calibres flows between securely stepped bezel-set cabochon hubs, framed by softly bullnosed 950 platinum with rhythmic matte-and-gloss relief."
+  },
+  {
+   "id": "D17",
+   "refSlot": 4,
+   "variant": "base",
+   "setName": "Verdant Platinum",
+   "item": "earrings",
+   "title": "Verdant Platinum · 귀걸이",
+   "prompt": "Pair of earrings — original design for the Verdant Platinum set. Pt950 in neutral white with alternating satin and gloss runs in a predictable rhythm. A central emerald cabochon is bezel held; 0.7–0.8 mm bezel wall with a 0.3 mm inner step, rising 1.0 mm above the crown; a closed mirror back beneath amplifies the green. Relief never exceeds the diameter of the adjacent cabochon. Buff‑top emerald calibres arc outward, meeting at clean butt joints to form continuous rivers of green. Bullnosed borders; weight relieved with open galleries; walls 1.2–1.5 mm. Proportions: length 30 mm, width 12 mm, under 7 g per side. Secure 0.9 mm post with hinged omega back; controlled swing parallel to jawline. Three‑quarter product view, monochrome studio background, macro photo, photoreal. Avoid: High mirror finish everywhere that flattens relief, Overuse of micro pave that obscures the sculpted metal, Green enamel substitutes for carved emerald, Sharp inner corners that collect debris, Coatings that yellow the platinum tone, Too many motifs competing in one piece.",
+   "versions": [
+    {
+     "url": "/samples/2add440ee686d837e597a41d.png",
+     "hash": "2add440ee686d837e597a41d",
+     "prompt": "Pair of earrings — original design for the Verdant Platinum set. Pt950 in neutral white with alternating satin and gloss runs in a predictable rhythm. A central emerald cabochon is bezel held; 0.7–0.8 mm bezel wall with a 0.3 mm inner step, rising 1.0 mm above the crown; a closed mirror back beneath amplifies the green. Relief never exceeds the diameter of the adjacent cabochon. Buff‑top emerald calibres arc outward, meeting at clean butt joints to form continuous rivers of green. Bullnosed borders; weight relieved with open galleries; walls 1.2–1.5 mm. Proportions: length 30 mm, width 12 mm, under 7 g per side. Secure 0.9 mm post with hinged omega back; controlled swing parallel to jawline. Three‑quarter product view, monochrome studio background, macro photo, photoreal. Avoid: High mirror finish everywhere that flattens relief, Overuse of micro pave that obscures the sculpted metal, Green enamel substitutes for carved emerald, Sharp inner corners that collect debris, Coatings that yellow the platinum tone, Too many motifs competing in one piece.",
+     "at": "2026-08-26T23:27:25.452Z"
+    }
+   ],
+   "feature": "A continuous river of buff-top emerald calibres flows from a bezel-set cabochon in alternating satin-and-gloss Pt950 with bullnosed edges and weight-balanced omega backs."
+  },
+  {
+   "id": "D19",
+   "refSlot": 4,
+   "variant": "base",
+   "setName": "Verdant Platinum",
+   "item": "ring",
+   "title": "Verdant Platinum · 반지",
+   "prompt": "Original ring design for the Verdant Platinum set: platinum river ring translating the set’s sculpted relief into a tapered shank that hides weight within open galleries. Relief height stays below the diameter of the adjacent cabochon for comfort and balance. A round emerald cabochon is bezel-held with a secure 0.25–0.30 mm inner step and a 0.8 mm protective lip; beneath it, a polished micro-mirror flange brightens the green while the gallery remains open. Buff-top emerald calibres flow along the shoulders in continuous rivers, meeting at clean butt joints. Surfaces alternate in a predictable rhythm: satin-matte relief ribs and selective glossy ridges; all edges softly bullnosed like polished stone. Manufacturable construction: platinum walls 1.3–1.6 mm, bezel floor 1.0 mm, comfort-fit inner radius, prong-free settings only. Three-quarter product view, neutral monochrome studio background, macro jewelry photo lighting, true-to-scale gemstone color, photoreal render, no hand model. Avoid: high mirror everywhere flattening relief, micro pavé overuse, green enamel in place of emerald, sharp inner corners, yellowing coatings, competing motifs.",
+   "versions": [
+    {
+     "url": "/samples/2ffa8f843a042bf1129e2a4c.png",
+     "hash": "2ffa8f843a042bf1129e2a4c",
+     "prompt": "Original ring design for the Verdant Platinum set: platinum river ring translating the set’s sculpted relief into a tapered shank that hides weight within open galleries. Relief height stays below the diameter of the adjacent cabochon for comfort and balance. A round emerald cabochon is bezel-held with a secure 0.25–0.30 mm inner step and a 0.8 mm protective lip; beneath it, a polished micro-mirror flange brightens the green while the gallery remains open. Buff-top emerald calibres flow along the shoulders in continuous rivers, meeting at clean butt joints. Surfaces alternate in a predictable rhythm: satin-matte relief ribs and selective glossy ridges; all edges softly bullnosed like polished stone. Manufacturable construction: platinum walls 1.3–1.6 mm, bezel floor 1.0 mm, comfort-fit inner radius, prong-free settings only. Three-quarter product view, neutral monochrome studio background, macro jewelry photo lighting, true-to-scale gemstone color, photoreal render, no hand model. Avoid: high mirror everywhere flattening relief, micro pavé overuse, green enamel in place of emerald, sharp inner corners, yellowing coatings, competing motifs.",
+     "at": "2026-08-26T23:27:49.780Z"
+    }
+   ],
+   "feature": "A tapered platinum river-ring with a bezel-set emerald cabochon and buff-top calibre rivers, alternating matte/gloss relief and bullnosed comfort edges over an open gallery to hide weight."
+  },
+  {
+   "id": "D21",
+   "refSlot": 5,
+   "variant": "base",
+   "setName": "Aerial Mashrabiya",
+   "item": "necklace",
+   "title": "Aerial Mashrabiya · 목걸이",
+   "prompt": "목걸이: Aerial Mashrabiya necklace translating the set’s lattice into a refined pendant. 18K yellow gold; ribs 1.0–1.2 mm thick with subtly thickened nodes at 1.8–2.0 mm, bounded by a smooth continuous 1.3 mm rounded rim for snag-free wear. Cell scale reduces by one third toward the central focus. Emerald apertures are open-backed green windows, each framed by a bright-polished 35-degree chamfer with a 0.7–0.8 mm bezel land. A tapering micro-pavé diamond spine (0.8–1.1 mm stones, shared prongs 0.7 mm high) arcs through the silhouette to guide the eye. Surface scheme: satin on lattice webs; mirror-polished chamfers, nodes, and rim. Balance and anti-rotation via dual hidden side lugs feeding a 1.2 mm rolo chain, 42 cm with 3 cm extender. Cast, hard-soldered, and hand-finished for manufacture; open galleries maximize light. Three-quarter product view, monochrome studio background, macro jewelry photo, softbox highlights, photoreal finish. Avoid religious symbols or inscriptions, literal buildings, overly thin ribs, star motifs, thick plates, clunky hinges.",
+   "versions": [
+    {
+     "url": "/samples/12d8cfb9be645cfdac6a8af8.png",
+     "hash": "12d8cfb9be645cfdac6a8af8",
+     "prompt": "목걸이: Aerial Mashrabiya necklace translating the set’s lattice into a refined pendant. 18K yellow gold; ribs 1.0–1.2 mm thick with subtly thickened nodes at 1.8–2.0 mm, bounded by a smooth continuous 1.3 mm rounded rim for snag-free wear. Cell scale reduces by one third toward the central focus. Emerald apertures are open-backed green windows, each framed by a bright-polished 35-degree chamfer with a 0.7–0.8 mm bezel land. A tapering micro-pavé diamond spine (0.8–1.1 mm stones, shared prongs 0.7 mm high) arcs through the silhouette to guide the eye. Surface scheme: satin on lattice webs; mirror-polished chamfers, nodes, and rim. Balance and anti-rotation via dual hidden side lugs feeding a 1.2 mm rolo chain, 42 cm with 3 cm extender. Cast, hard-soldered, and hand-finished for manufacture; open galleries maximize light. Three-quarter product view, monochrome studio background, macro jewelry photo, softbox highlights, photoreal finish. Avoid religious symbols or inscriptions, literal buildings, overly thin ribs, star motifs, thick plates, clunky hinges.",
+     "at": "2026-08-26T23:28:55.191Z"
+    }
+   ],
+   "feature": "A gradient Mashrabiya lattice with bright-chamfered emerald windows is unified by a single diamond spine and secured by dual hidden lugs that prevent rotation."
+  },
+  {
+   "id": "D20",
+   "refSlot": 4,
+   "variant": "base",
+   "setName": "Verdant Platinum",
+   "item": "pendant",
+   "title": "Verdant Platinum · 펜던트",
+   "prompt": "펜던트: Verdant Platinum master pendant translating the collection's relief-and-river motif into platinum. Platinum body with a softly bullnosed perimeter; alternating satin-matte runs and controlled gloss ribs in a predictable rhythm for cohesion. Center emerald cabochon bezel-held with a small inner security step; bezel wall 1.1-1.3 mm, lip 0.4-0.5 mm; relief height never exceeds the diameter of the adjacent cabochon. Flanking buff-top emerald calibres meet at clean butt joints to form a continuous river of green. Closed, mirror-polished backplate amplifies the emerald glow. Generously radiused interiors; minimum wall thickness 1.0 mm. Integrated fixed double bail at 10 and 2 o'clock prevents rotation; accepts a 1.2-1.5 mm platinum cable chain and keeps the pendant centered. Three-quarter product view, achromatic studio background, macro jewelry photograph, diffused reflections, photoreal finish.\n\nAvoid: High mirror finish everywhere that flattens relief; Overuse of micro pave that obscures the sculpted metal; Green enamel substitutes for carved emerald; Sharp inner corners that collect debris; Coatings that yellow the platinum tone; Too many motifs competing in one piece.",
+   "versions": [
+    {
+     "url": "/samples/b3f53efc9ad0f1618d3c0041.png",
+     "hash": "b3f53efc9ad0f1618d3c0041",
+     "prompt": "펜던트: Verdant Platinum master pendant translating the collection's relief-and-river motif into platinum. Platinum body with a softly bullnosed perimeter; alternating satin-matte runs and controlled gloss ribs in a predictable rhythm for cohesion. Center emerald cabochon bezel-held with a small inner security step; bezel wall 1.1-1.3 mm, lip 0.4-0.5 mm; relief height never exceeds the diameter of the adjacent cabochon. Flanking buff-top emerald calibres meet at clean butt joints to form a continuous river of green. Closed, mirror-polished backplate amplifies the emerald glow. Generously radiused interiors; minimum wall thickness 1.0 mm. Integrated fixed double bail at 10 and 2 o'clock prevents rotation; accepts a 1.2-1.5 mm platinum cable chain and keeps the pendant centered. Three-quarter product view, achromatic studio background, macro jewelry photograph, diffused reflections, photoreal finish.\n\nAvoid: High mirror finish everywhere that flattens relief; Overuse of micro pave that obscures the sculpted metal; Green enamel substitutes for carved emerald; Sharp inner corners that collect debris; Coatings that yellow the platinum tone; Too many motifs competing in one piece.",
+     "at": "2026-08-26T23:29:31.377Z"
+    }
+   ],
+   "feature": "A continuous river of butt-joined buff-top emerald calibres flanks a central bezel-set cabochon, framed by bullnosed platinum with alternating matte/gloss rhythm and a discreet anti-rotation double bail."
+  },
+  {
+   "id": "D22",
+   "refSlot": 5,
+   "variant": "base",
+   "setName": "Aerial Mashrabiya",
+   "item": "earrings",
+   "title": "Aerial Mashrabiya · 귀걸이",
+   "prompt": "귀걸이 — Original design translating the Aerial Mashrabiya DNA into a left-right mirrored pair of lightweight drop earrings. The master motif is a floating mashrabiya lattice in 18K yellow gold: ribs 1.0–1.2 mm thick, with every intersection subtly thickened to 1.4–1.6 mm as structural nodes. Cell scale reduces by one third toward the focal center. Emerald apertures are bezel windows framed by a bright polished chamfer and open backs to pass light through green windows, using 2–3 mm round emeralds; the remaining gold carries a fine satin sheen while chamfers and the continuous outer rim are mirror-polished snag-free. A single line of F–G VS diamonds (0.8–1.0 mm pavé) traces a graceful spine through each silhouette. Overall length 38 mm, max width 14 mm, under 6 g per ear; balanced 0.9 mm post with large comfort back. Three-quarter product view, neutral monochrome studio background, macro jewelry photography, photoreal rendering. Avoid religious symbols, literal buildings, star emblems, overly thin ribs, thick plates, or clunky hinges.",
+   "versions": [
+    {
+     "url": "/samples/6bdb79ffbe5c17f9b12614cd.png",
+     "hash": "6bdb79ffbe5c17f9b12614cd",
+     "prompt": "귀걸이 — Original design translating the Aerial Mashrabiya DNA into a left-right mirrored pair of lightweight drop earrings. The master motif is a floating mashrabiya lattice in 18K yellow gold: ribs 1.0–1.2 mm thick, with every intersection subtly thickened to 1.4–1.6 mm as structural nodes. Cell scale reduces by one third toward the focal center. Emerald apertures are bezel windows framed by a bright polished chamfer and open backs to pass light through green windows, using 2–3 mm round emeralds; the remaining gold carries a fine satin sheen while chamfers and the continuous outer rim are mirror-polished snag-free. A single line of F–G VS diamonds (0.8–1.0 mm pavé) traces a graceful spine through each silhouette. Overall length 38 mm, max width 14 mm, under 6 g per ear; balanced 0.9 mm post with large comfort back. Three-quarter product view, neutral monochrome studio background, macro jewelry photography, photoreal rendering. Avoid religious symbols, literal buildings, star emblems, overly thin ribs, thick plates, or clunky hinges.",
+     "at": "2026-08-26T23:29:55.646Z"
+    }
+   ],
+   "feature": "Gradient mashrabiya lattice in 18K yellow gold with chamfer-framed, open-back emerald windows and a diamond spine, finished by a polished continuous rim for snag-free comfort."
+  },
+  {
+   "id": "D24",
+   "refSlot": 5,
+   "variant": "base",
+   "setName": "Aerial Mashrabiya",
+   "item": "ring",
+   "title": "Aerial Mashrabiya · 반지",
+   "prompt": "반지 — Aerial Mashrabiya ring translating the set’s Design DNA into a balanced, wearable architecture. Lattice ribs thicken at every intersection to read as structural nodes; cell scale compresses by one third toward the central focal window. Apertures that host vivid emeralds are encircled by bright-polished chamfered bezels; a single diamond spine draws the eye through the silhouette. A smooth, continuous outer rim prevents snagging; the under-gallery mirrors the outer cell geometry and is open for light. 18K yellow gold with satin on web surfaces, mirror polish on chamfers and rim. Manufacturable specs: ribs 1.0–1.2 mm, nodes 1.6–2.0 mm, rim 1.2–1.4 mm; emerald seats 0.5 mm land with secure bezel walls; micro-pavé diamonds 1.0–1.2 mm on a low shared-prong rail; shank comfort-fit, 2.0 mm thick, tapered for finger stability and centered balance. Three-quarter product view, macro jewelry photograph, neutral monochrome studio background, soft diffused lighting, photoreal finish. Avoid religious symbols or sacred inscriptions, literal building silhouettes, overly thin ribs, star motifs, thick solid plates, clunky hinges.",
+   "versions": [
+    {
+     "url": "/samples/cf373dce16fb3e637e95656b.png",
+     "hash": "cf373dce16fb3e637e95656b",
+     "prompt": "반지 — Aerial Mashrabiya ring translating the set’s Design DNA into a balanced, wearable architecture. Lattice ribs thicken at every intersection to read as structural nodes; cell scale compresses by one third toward the central focal window. Apertures that host vivid emeralds are encircled by bright-polished chamfered bezels; a single diamond spine draws the eye through the silhouette. A smooth, continuous outer rim prevents snagging; the under-gallery mirrors the outer cell geometry and is open for light. 18K yellow gold with satin on web surfaces, mirror polish on chamfers and rim. Manufacturable specs: ribs 1.0–1.2 mm, nodes 1.6–2.0 mm, rim 1.2–1.4 mm; emerald seats 0.5 mm land with secure bezel walls; micro-pavé diamonds 1.0–1.2 mm on a low shared-prong rail; shank comfort-fit, 2.0 mm thick, tapered for finger stability and centered balance. Three-quarter product view, macro jewelry photograph, neutral monochrome studio background, soft diffused lighting, photoreal finish. Avoid religious symbols or sacred inscriptions, literal building silhouettes, overly thin ribs, star motifs, thick solid plates, clunky hinges.",
+     "at": "2026-08-26T23:30:51.837Z"
+    }
+   ],
+   "feature": "Gradient mashrabiya lattice with chamfer-framed emerald windows and a single diamond spine, finished by a mirrored under-gallery for light and stability in a comfort-fit 18K gold ring."
+  },
+  {
+   "id": "D23",
+   "refSlot": 5,
+   "variant": "base",
+   "setName": "Aerial Mashrabiya",
+   "item": "bracelet",
+   "title": "Aerial Mashrabiya · 브레이슬릿",
+   "prompt": "브레이슬릿 — Aerial Mashrabiya master motif translated into a wrist-hinged lattice bangle. Every lattice intersection subtly thickens as a structural node; ribs 1.1 mm rising to 1.7 mm at nodes form an airy field whose cell scale reduces by one third toward the top‑center focal window. Emerald apertures are ringed by 0.3 mm bright‑polished chamfers and open backs. A single line of brilliant diamonds draws a spine to guide the eye, micro‑prong set in a 1.2 mm rail. Edges resolve into a smooth continuous 1.4 mm rim so fabric cannot snag; the under‑gallery mirrors the geometry, with low‑profile contoured inner pads for comfort. Concealed box clasp integrated in the rim, micro‑hinge on a 0.9 mm pin with figure‑8 safeties, preserves the lattice. 18k yellow gold: silk‑matte lattice planes with high‑polish chamfers and rim for flashes. Three‑quarter product view, neutral monochrome studio background, macro jewelry photo, photoreal finish, diffused key and rim highlights. Avoid: Religious symbols or sacred inscriptions, literal building silhouettes, overly thin ribs, star motifs, thick solid plates, clunky hinges.",
+   "versions": [
+    {
+     "url": "/samples/573d72a25fc84c085744b52a.png",
+     "hash": "573d72a25fc84c085744b52a",
+     "prompt": "브레이슬릿 — Aerial Mashrabiya master motif translated into a wrist-hinged lattice bangle. Every lattice intersection subtly thickens as a structural node; ribs 1.1 mm rising to 1.7 mm at nodes form an airy field whose cell scale reduces by one third toward the top‑center focal window. Emerald apertures are ringed by 0.3 mm bright‑polished chamfers and open backs. A single line of brilliant diamonds draws a spine to guide the eye, micro‑prong set in a 1.2 mm rail. Edges resolve into a smooth continuous 1.4 mm rim so fabric cannot snag; the under‑gallery mirrors the geometry, with low‑profile contoured inner pads for comfort. Concealed box clasp integrated in the rim, micro‑hinge on a 0.9 mm pin with figure‑8 safeties, preserves the lattice. 18k yellow gold: silk‑matte lattice planes with high‑polish chamfers and rim for flashes. Three‑quarter product view, neutral monochrome studio background, macro jewelry photo, photoreal finish, diffused key and rim highlights. Avoid: Religious symbols or sacred inscriptions, literal building silhouettes, overly thin ribs, star motifs, thick solid plates, clunky hinges.",
+     "at": "2026-08-26T23:30:55.034Z"
+    }
+   ],
+   "feature": "A concealed rim‑integrated clasp and gradient Mashrabiya lattice with chamfer‑framed emerald windows and a diamond spine deliver airy strength and snag‑free comfort."
+  },
+  {
+   "id": "D25",
+   "refSlot": 5,
+   "variant": "base",
+   "setName": "Aerial Mashrabiya",
+   "item": "pendant",
+   "title": "Aerial Mashrabiya · 펜던트",
+   "prompt": "Pendant — original design. Aerial Mashrabiya lattice pendant in 18k yellow gold, honoring the set DNA: lattice intersections thicken as structural nodes; cell scale tightens by one third toward the center; emerald apertures ringed by a bright polished chamfer; a single diamond spine leading the eye. Smooth continuous rim (1.4 mm thick, 1.6 mm tall) prevents snagging. Lattice ribs 1.2–1.4 mm, swelling to 1.8–2.0 mm at nodes for durability. Open back “green windows” for light. Emeralds in open-back chamfered bezels; micro-prong/flush beads for secure manufacture. Diamonds (0.8–1.0 mm) trace a gentle spine curve. Anti-rotation twin side connectors integrated into the rim; low-profile oval links accept a fine 1.0 mm chain, balanced center of gravity. Three-quarter product view, monochrome studio background, macro jewelry photography, photorealistic finish, soft diffused lighting with crisp speculars on chamfers. Sophisticated, timeless, for women 40–54. Avoid: religious symbols or inscriptions, literal buildings, overly thin ribs, star emblems, thick solid plates, clunky hinges interrupting the lattice.",
+   "versions": [
+    {
+     "url": "/samples/e65cab07cda96a18df1f603d.png",
+     "hash": "e65cab07cda96a18df1f603d",
+     "prompt": "Pendant — original design. Aerial Mashrabiya lattice pendant in 18k yellow gold, honoring the set DNA: lattice intersections thicken as structural nodes; cell scale tightens by one third toward the center; emerald apertures ringed by a bright polished chamfer; a single diamond spine leading the eye. Smooth continuous rim (1.4 mm thick, 1.6 mm tall) prevents snagging. Lattice ribs 1.2–1.4 mm, swelling to 1.8–2.0 mm at nodes for durability. Open back “green windows” for light. Emeralds in open-back chamfered bezels; micro-prong/flush beads for secure manufacture. Diamonds (0.8–1.0 mm) trace a gentle spine curve. Anti-rotation twin side connectors integrated into the rim; low-profile oval links accept a fine 1.0 mm chain, balanced center of gravity. Three-quarter product view, monochrome studio background, macro jewelry photography, photorealistic finish, soft diffused lighting with crisp speculars on chamfers. Sophisticated, timeless, for women 40–54. Avoid: religious symbols or inscriptions, literal buildings, overly thin ribs, star emblems, thick solid plates, clunky hinges interrupting the lattice.",
+     "at": "2026-08-26T23:31:48.996Z"
+    }
+   ],
+   "feature": "Anti-rotation twin side connectors and a diamond spine animate a scale-tightening Mashrabiya lattice in 18k yellow gold with emerald-lit open windows and a smooth no-snag rim."
+  }
+ ],
+ "searches": 19,
+ "finished": true,
+ "insight": {
+  "meaning": "A bold platinum and emerald evening necklace built on highly elaborate arabesque vegetation expresses endless, interlacing growth and unity, the core sensibility of Islamic vegetal ornament where scrolls and leaves repeat as if to continue beyond the object’s edge. ([metmuseum.org](https://www.metmuseum.org/fr/essays/vegetal-patterns-in-islamic-art?utm_source=openai)) The platinum’s naturally white, enduring surface heightens emerald’s saturated green while carrying substantial weight suitable for a gala statement jewel. ([platinumguild.com](https://platinumguild.com/why-platinum/?utm_source=openai)) Assuming United Arab Emirates as the target within the Middle East because the brief sets a price in dirhams; 100,000 AED is roughly 27,200 USD at mid‑market rates on August 26, 2026. ([xe.com](https://www.xe.com/en-gb/currencyconverter/convert/?Amount=100000&From=AED&To=USD&utm_source=openai))",
+  "cultural": "UAE focus. Green resonates strongly through Qur’anic descriptions of Paradise that mention green garments and cushions, giving emerald a culturally positive, celebratory charge in formal settings. ([quran.com](https://quran.com/76%3A21?font=v1&translations=22&utm_source=openai)) The UAE flag places green among the pan‑Arab colors and links it with prosperity and growth, which aligns well with a lavish emerald centerpiece for national or regional galas. ([protocol.dubai.ae](https://www.protocol.dubai.ae/en/protocols-listing/protocols/the-united-arab-emirates-flag/?utm_source=openai)) Calligraphy and non‑figural ornament such as arabesque and geometry are esteemed visual languages, especially in religious contexts, making abstract vegetal motifs an elegant and respectful choice for high jewelry. ([metmuseum.org](https://www.metmuseum.org/fr/essays/calligraphy-in-islamic-art?utm_source=openai)) The Gulf is a vigorous luxury market and Dubai is a major jewelry and gems hub, so a six‑figure AED necklace fits regional appetite for statement pieces and premium stones. ([apnews.com](https://apnews.com/article/146e0833e20efded9b3cf772f6d2c722?utm_source=openai))",
+  "background": "Arabesque vegetal patterns in Islamic art draw on Late Antique Byzantine and Sasanian sources yet develop into infinitely extendable scrolls and palmettes that visually suggest boundlessness. ([metmuseum.org](https://www.metmuseum.org/fr/essays/vegetal-patterns-in-islamic-art?utm_source=openai)) Green’s prestige in Islam is textually anchored by verses such as 76:21 and 55:76, which depict Paradise in green attire and furnishings. ([quran.com](https://quran.com/76%3A21?font=v1&translations=22&utm_source=openai)) Emerald has deep regional ties from Egypt’s ancient Mons Smaragdus mines often linked to “Cleopatra’s” emeralds, to later Islamic courts. ([gia.edu](https://www.gia.edu/gia-news-research/historical-reading-ancient-emerald-mines-Egypt?utm_source=openai)) In the early modern Islamic world, especially Mughal India and the Ottoman sphere, large Colombian emeralds were carved with vegetal arabesques and pious inscriptions and mounted in sumptuous jewels, a precedent that naturally marries arabesque with emerald today. ([christies.com](https://www.christies.com/en/lot/lot-2729922?utm_source=openai))",
+  "symbols": [
+   "Vine scrolls and split palmettes that interlace without end to evoke unity and divine order. ([metmuseum.org](https://www.metmuseum.org/art/collection/search/448500?utm_source=openai))",
+   "Ottoman saz leaves with feathery, serrated contours for dynamic foliage. ([metmuseum.org](https://www.metmuseum.org/art/collection/search/453400?utm_source=openai))",
+   "Muqarnas and sebka lattices abstracted into three‑dimensional links or pierced elements for a honeycomb or net effect. ([islamicart.museumwnf.org](https://islamicart.museumwnf.org/exhibitions/ISL/geometric/introduction.php?utm_source=openai))",
+   "Eight‑point star frameworks or interlaced polygons as quiet geometric armatures for the vegetal work. ([metmuseum.org](https://www.metmuseum.org/it/essays/geometric-patterns-in-islamic-art?utm_source=openai))"
+  ],
+  "emotions": [
+   "Abundance",
+   "Serene luxury",
+   "Sacred joy",
+   "Composure",
+   "Confidence on stage",
+   "Rooted elegance"
+  ],
+  "colors": [
+   "Emerald green as the lead hue associated with Paradise and prosperity. ([quran.com](https://quran.com/76%3A21?font=v1&translations=22&utm_source=openai))",
+   "Platinum white to frame and cool the palette. ([platinumguild.com](https://platinumguild.com/why-platinum/?utm_source=openai))",
+   "Crystal diamond white for scintillation around the green core",
+   "Optional black onyx or enamel accents to sharpen negative space"
+  ],
+  "materials": [
+   "950 platinum for strength, natural whiteness and hypoallergenic wear in high jewelry. ([platinumguild.com](https://platinumguild.com/why-platinum/?utm_source=openai))",
+   "Fine emerald as center motif; respect its brittleness relative to inclusions and consider protective settings. ([gia.edu](https://www.gia.edu/emerald-quality-factor?epik=dj0yJnU9eVZsT0QyOTJRS3Nva0kzRmlrVEhCUHZBOU8xR0lPZVgmcD0wJm49ZzM4c1Z2RW1JdXNBSVZmVVdIWU53QSZ0PUFBQUFBR1l3alFZ&utm_source=openai))",
+   "Colorless diamonds for pavé and halos to intensify contrast",
+   "Optional emerald bead tassels referencing historic Mughal strands. ([christies.com.cn](https://www.christies.com.cn/en/stories/mughal-dynasty-jewels-dea634556d1647cf838025f374c9341b?utm_source=openai))"
+  ],
+  "forms": [
+   "Deeply carved or openworked arabesque scrolls with alternating split palmettes and saz leaves to create hierarchical foliage layers. ([metmuseum.org](https://www.metmuseum.org/art/collection/search/453400?utm_source=openai))",
+   "Girih‑informed geometric substructures that hold the vegetal tracery in balanced symmetry. ([metmuseum.org](https://www.metmuseum.org/it/essays/geometric-patterns-in-islamic-art?utm_source=openai))",
+   "Raised muqarnas‑like nodes at junctions as bead‑set diamond clusters. ([islamicart.museumwnf.org](https://islamicart.museumwnf.org/exhibitions/ISL/geometric/introduction.php?utm_source=openai))",
+   "Panel‑style rhythmical arrangements of vine scrolls repeated along the collar line. ([metmuseum.org](https://www.metmuseum.org/art/collection/search/448500?utm_source=openai))"
+  ],
+  "motion": [
+   "S‑curve sweeps that unfurl from a central emerald and seem to continue beyond the necklace’s edge, echoing arabesque’s visual infinity. ([resources.metmuseum.org](https://resources.metmuseum.org/resources/metpublications/pdf/Islamic_art_in_the_Metropolitan_Museum_the_historical_context.pdf?utm_source=openai))",
+   "Counter‑rotating scrolls that create a gentle ebb and flow rather than sharp directional thrusts, suited to evening poise. ([metmuseum.org](https://www.metmuseum.org/it/essays/geometric-patterns-in-islamic-art?utm_source=openai))"
+  ],
+  "cliches": [
+   "Literal crescent‑and‑star decals as a shorthand for Islam; the sign is historically Ottoman and not an official religious symbol across Islam, so using it as a default identity marker reads generic. ([edu.gov.mb.ca](https://www.edu.gov.mb.ca/k12/docs/support/world_religions/islam/foundational.pdf?utm_source=openai))",
+   "Touristic evil‑eye or hamsa charms dropped onto luxury pieces without narrative depth; both are complex regional amulets and can feel trite in haute contexts if unresearched. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Evil_eye?utm_source=openai))",
+   "Gibberish pseudo‑Arabic bands that only mimic Kufic; this has a documented history in European art but risks cultural insensitivity today. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Pseudo-Kufic?utm_source=openai))",
+   "“Arabian Nights” stereotypes like camels and dunes as surface graphics on fine jewelry, a known Orientalist trope to avoid in contemporary design language. ([khanacademy.org](https://www.khanacademy.org/humanities/becoming-modern/introduction-becoming-modern/issues-in-19th-century-art/a/orientalism?utm_source=openai))"
+  ],
+  "cautions": [
+   "Treat Qur’anic text and the Divine Name as sacred calligraphy rather than surface pattern; if used on body jewelry it demands high legibility and respectful contexts, so for party wear prefer non‑textual vegetal geometry instead. Inference based on the sacred status and communicative purpose of calligraphy in Islamic art. ([metmuseum.org](https://www.metmuseum.org/fr/essays/calligraphy-in-islamic-art?utm_source=openai))",
+   "Keep figural motifs out of designs intended for religious settings; while figuration flourished in secular Islamic arts, religious contexts tend toward aniconism. ([metmuseum.org](https://www.metmuseum.org/pt/essays/figural-representation-in-islamic-art?utm_source=openai))",
+   "Avoid star‑and‑crescent as a default cultural signifier for the region in fine jewelry branding to prevent flattening diverse identities. ([britishmuseum.org](https://www.britishmuseum.org/blog/introduction-orientalist-painting?utm_source=openai))",
+   "Engineer settings around emerald’s relative brittleness due to typical inclusions; favor bezels or scalloped collets, avoid ultrasonic cleaning, and plan for serviceability. ([gia.edu](https://www.gia.edu/emerald-quality-factor?epik=dj0yJnU9eVZsT0QyOTJRS3Nva0kzRmlrVEhCUHZBOU8xR0lPZVgmcD0wJm49ZzM4c1Z2RW1JdXNBSVZmVVdIWU53QSZ0PUFBQUFBR1l3alFZ&utm_source=openai))"
+  ],
+  "abstraction": [
+   {
+    "axis": "symbol",
+    "notes": [
+     "Endless vine scroll equals continuity and unity",
+     "Saz leaf equals vitality and courtly refinement",
+     "Eight‑point star grid equals order framing organic growth"
+    ]
+   },
+   {
+    "axis": "emotion",
+    "notes": [
+     "Quiet awe rather than flash",
+     "Assurance and grace for formal entrances"
+    ]
+   },
+   {
+    "axis": "form",
+    "notes": [
+     "Split‑palmette chains that thicken toward the center",
+     "Nested cartouches to host emerald plaques"
+    ]
+   },
+   {
+    "axis": "movement",
+    "notes": [
+     "Alternating S‑curves that breathe like arabesque recitation",
+     "Subtle outward radiation from the emerald boss"
+    ]
+   },
+   {
+    "axis": "structure",
+    "notes": [
+     "Girih polygon scaffolds to lock symmetry",
+     "Hidden hinge points at geometric nodes for drape"
+    ]
+   },
+   {
+    "axis": "surface",
+    "notes": [
+     "High‑polish platinum on crests and micro‑chased mattes in troughs",
+     "Selective frosting around diamond pavé to modulate sparkle"
+    ]
+   },
+   {
+    "axis": "material",
+    "notes": [
+     "950 platinum body for longevity",
+     "Emerald center stone or carved emerald plaques",
+     "Diamond pavé bridges",
+     "Optional onyx enamel to sharpen voids"
+    ]
+   },
+   {
+    "axis": "color",
+    "notes": [
+     "Primary emerald green with white light accents",
+     "Optional midnight accents to frame green micro‑gradations"
+    ]
+   },
+   {
+    "axis": "rhythm",
+    "notes": [
+     "Long‑short leaf cadences repeating in two or four counts",
+     "Quiet syncopation where geometry meets foliage"
+    ]
+   },
+   {
+    "axis": "story",
+    "notes": [
+     "From Egypt’s ancient emeralds to Mughal carved stones to today’s UAE galas, the piece narrates the Middle East’s emerald‑arabesque lineage in a modern platinum language. ([gia.edu](https://www.gia.edu/gia-news-research/historical-reading-ancient-emerald-mines-Egypt?utm_source=openai))"
+    ]
+   }
+  ],
+  "sources": [
+   "The Metropolitan Museum of Art essays and object records on Islamic vegetal patterns, geometry, figural representation and saz motifs. ([metmuseum.org](https://www.metmuseum.org/fr/essays/vegetal-patterns-in-islamic-art?utm_source=openai))",
+   "Victoria and Albert Museum on Islamic calligraphy and historic jewelry contexts. ([vam.ac.uk](https://www.vam.ac.uk/articles/calligraphy-in-islamic-art?utm_source=openai))",
+   "Museum With No Frontiers on muqarnas and geometric decoration. ([islamicart.museumwnf.org](https://islamicart.museumwnf.org/exhibitions/ISL/geometric/introduction.php?utm_source=openai))",
+   "Qur’anic verses referencing green in Paradise 76:21 and 55:76. ([quran.com](https://quran.com/76%3A21?font=v1&translations=22&utm_source=openai))",
+   "GIA on emerald durability and care. ([gia.edu](https://www.gia.edu/emerald-quality-factor?epik=dj0yJnU9eVZsT0QyOTJRS3Nva0kzRmlrVEhCUHZBOU8xR0lPZVgmcD0wJm49ZzM4c1Z2RW1JdXNBSVZmVVdIWU53QSZ0PUFBQUFBR1l3alFZ&utm_source=openai))",
+   "Christie’s and Qatar Museums on carved Mughal emeralds. ([christies.com](https://www.christies.com/en/lot/lot-2729922?utm_source=openai))",
+   "PGI on platinum’s jewelry attributes and UAE momentum. ([platinumguild.com](https://platinumguild.com/why-platinum/?utm_source=openai))",
+   "Dubai Protocol on UAE flag meanings. ([protocol.dubai.ae](https://www.protocol.dubai.ae/en/protocols-listing/protocols/the-united-arab-emirates-flag/?utm_source=openai))",
+   "AP and DMCC on Middle East luxury growth and Dubai’s gem trade scale. ([apnews.com](https://apnews.com/article/146e0833e20efded9b3cf772f6d2c722?utm_source=openai))",
+   "Cautions on pseudo‑Arabic use and Orientalist tropes. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Pseudo-Kufic?utm_source=openai))"
+  ],
+  "searches": 19,
+  "cached": false
+ },
+ "sets": [
+  {
+   "name": "Arabesque Opus",
+   "kind": "Representative",
+   "concept": "A gala-scale platinum and emerald suite that elevates the arabesque into illuminated architecture for evening gowns, headlined by a bold necklace priced above 100,000 dirhams.",
+   "story": "The design speaks in grand scrolls and palmette leaves that command the neckline. Platinum carries a crisp white glow while emeralds pour vivid green light through calibrated channels. Negative space is choreographed to feel airy despite the bold footprint. The hero necklace is built for the ballroom and priced above 100,000 dirhams.",
+   "palette": [
+    "Platinum white #E5E4E2",
+    "Emerald core green #009B77",
+    "Diamond ice #F5F6F7",
+    "Deep teal shadow #014D4E",
+    "Black rhodium gray #2E2E2E"
+   ],
+   "metal": "950 platinum in luminous cool white with selective black rhodium shading inside deep recesses",
+   "surface": "Hand mirror polish on crests, fine line engraving and milgrain on borders, frost satin in inner scrolls for tonal depth",
+   "stones": "Vivid emeralds in sugarloaf cabochon center, calibre baguettes, pear and marquise accents, with high colorless diamonds in micro pave and tapered baguette channels; discreet onyx knife-edge inlays to sharpen contours",
+   "silhouette": "Architectural collar with a central palmette drop for the necklace, chandelier earrings that taper from double scrolls, an articulated bracelet of interlocking arabesque links, a sculpted dome ring with split shoulders, and a pendant echo of the central drop",
+   "motif": "Double-scroll arabesque with palmette and split leaf transitions",
+   "rhythm": "Strict bilateral symmetry along a central axis with nested repeats that scale from small to grand using a one to 1.618 progression, perimeter milgrain as a steady visual metronome",
+   "structure": "A platinum exoskeleton carries a filigree lattice with laser welded bridges, calibre emeralds set in continuous channels, center stone in sculpted bezel with under gallery for light, micro pave executed with four claw micro prongs and raised protective rims",
+   "avoid": [
+    "Oriental or exotic as descriptors",
+    "Arabian Nights cliches",
+    "Princess naming",
+    "Religious symbols or mosque silhouettes",
+    "Green enamel imitation of emerald",
+    "Overly thin filigree that snags fabrics",
+    "Mixed tone gold that fights the platinum clarity",
+    "Neon green or uneven gemstone color"
+   ],
+   "design_dna": [
+    "The arabesque slope must begin and end in a soft taper that meets a bead set diamond rim.",
+    "All emeralds are framed by a platinum lip of equal thickness to ensure chroma contrast.",
+    "Negative space within scrolls is preserved as light wells so the pieces breathe at large scale.",
+    "Pave density grades from center to edge in two steps for the necklace and one step for other items.",
+    "Clasps hide within a repeating motif and lock with a soft tactile click.",
+    "Earring backs are omega style for stability and comfort on formal evenings.",
+    "Rings use a triple split shoulder that resolves into the master scroll.",
+    "Pendant bails are integrated leaf loops sized for evening chains and crochet cords."
+   ],
+   "concept_art": {
+    "form": "Cathedral-like cascades of interlocking arabesques that bloom from a central palmette",
+    "motion": "Slow ceremonial rise from center to edge with a gentle inward return",
+    "material": "Liquid bright platinum ribbing against velvet satin recesses with glassy emerald light",
+    "atmosphere": "Majestic, cool, luminous and composed for grand evening presence"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/0becca6abcc30e821cbc3b46.png",
+     "hash": "0becca6abcc30e821cbc3b46"
+    },
+    "motion": {
+     "url": "/samples/e77da97c6251245563858b1e.png",
+     "hash": "e77da97c6251245563858b1e"
+    },
+    "material": {
+     "url": "/samples/221971f14db0574e0ae3909a.png",
+     "hash": "221971f14db0574e0ae3909a"
+    },
+    "atmosphere": {
+     "url": "/samples/63145da33eff3f68ddd6be32.png",
+     "hash": "63145da33eff3f68ddd6be32"
+    }
+   },
+   "lineup": {
+    "url": "/samples/83c5c3a8124758baadccc4a1.png",
+    "hash": "83c5c3a8124758baadccc4a1"
+   }
+  },
+  {
+   "name": "Emerald Courtyard",
+   "kind": "Commercial",
+   "concept": "A versatile platinum and emerald suite that distills the arabesque into crisp modular cells for ease of wear, led by a statement necklace above 100,000 dirhams.",
+   "story": "Courtyard geometry becomes intimate and wearable through a family of pointed ovoid tiles. The vocabulary is clean, gleaming and generous with emerald highlights. Modularity supports mix and match across occasions without losing the evening aura. The hero necklace remains a luxurious centerpiece above 100,000 dirhams.",
+   "palette": [
+    "Platinum white #E6E6E6",
+    "Emerald green #007F66",
+    "Soft diamond white #FAFAFA",
+    "Mist silver #C9CED6",
+    "Shadow teal #0B3D3A"
+   ],
+   "metal": "950 platinum with bright polish on frames and silk satin within recesses",
+   "surface": "Mirror edges with micro chamfer, soft satin cores, restrained milgrain only at outer perimeters",
+   "stones": "Oval and round emeralds in bezel and shared prong settings, diamond halos in micro pave, calibre baguette diamond frames on the hero element",
+   "silhouette": "Graduated medallion necklace with a detachable central pendant, medium drop earrings from a single tile, a flexible bracelet of repeating lozenges, a low profile ring that nests the master cell, and a pendant that can sit alone on a chain",
+   "motif": "Pointed ovoid leaf cell interlocked with a gentle ogee curve",
+   "rhythm": "Even tessellation along the strand with mirrored pairs around center, one to one spacing for a calm commercial cadence",
+   "structure": "Hinged connectors with hidden barrels for flow, convertible pendant bails that dock into the necklace, secure box clasp with twin safety for the bracelet",
+   "avoid": [
+    "Overload of micro details that complicate daily wear",
+    "Overly literal oriental wording",
+    "Princess or bridal tropes",
+    "Mixing rose or yellow alloys with platinum in a single piece",
+    "Hanging lengths that tangle with hair or veils",
+    "Aggressive prong tips that catch delicate couture",
+    "Emerald beads of uneven color"
+   ],
+   "design_dna": [
+    "Every module repeats the same pointed ovoid ratio so sets match at a glance.",
+    "Borders are always mirror bright and interiors are satin to express depth without extra stones.",
+    "Emerald accents sit at the node of each interlock to mark rhythm.",
+    "Halos use the same micro pave grain size to keep brilliance consistent.",
+    "Ear pieces balance from omega backs or large friction discs to stabilize.",
+    "Rings remain under eight millimeters above the finger for comfort in social settings.",
+    "The detachable pendant must be wearable on both silk cords and fine chains with the same bail."
+   ],
+   "concept_art": {
+    "form": "Repeating courtyard cells with pointed ovoid windows",
+    "motion": "Measured pulse along a necklace line and quiet sway at the ears",
+    "material": "Bright platinum frames with satin cores and crystal green accents",
+    "atmosphere": "Refined, balanced, confident and travel ready for formal dinners"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/2bae8c47d6611a4e9323c8b6.png",
+     "hash": "2bae8c47d6611a4e9323c8b6"
+    },
+    "motion": {
+     "url": "/samples/835aaffe02fff82159348f14.png",
+     "hash": "835aaffe02fff82159348f14"
+    },
+    "material": {
+     "url": "/samples/3b3e0f0b27d61a9024920075.png",
+     "hash": "3b3e0f0b27d61a9024920075"
+    },
+    "atmosphere": {
+     "url": "/samples/ddf298a248225cb3fe68f379.png",
+     "hash": "ddf298a248225cb3fe68f379"
+    }
+   },
+   "lineup": {
+    "url": "/samples/23e6c70de3e21684d71af0c5.png",
+    "hash": "23e6c70de3e21684d71af0c5"
+   }
+  },
+  {
+   "name": "Calligraphic Current",
+   "kind": "Form and Motion",
+   "concept": "A kinetic platinum and emerald suite where the arabesque becomes a sweeping calligraphic current tailored for fluid movement with evening gowns, anchored by a hero necklace above 100,000 dirhams.",
+   "story": "Influenced by the gesture of ink across parchment, curves surge then soften into silence. Emeralds chase the motion as droplets and blades of green. Every articulation is tuned to sway rather than jangle. The collar commands attention while floating comfortably across the clavicle.",
+   "palette": [
+    "Platinum white #E5E4E2",
+    "Emerald glaze #008A6A",
+    "Graphite shadow #2C2C2C",
+    "Sea glass green #2BBE90",
+    "Moonlight silver #D7DFE7"
+   ],
+   "metal": "950 platinum, spring-tempered ribs for controlled flexibility with polished crests and soft brushed flanks",
+   "surface": "Mirror crests, directional brushing along flow lines, subtle planishing under surfaces to break glare",
+   "stones": "Marquise and tapered baguette emeralds that line the strokes in graduating sizes, select emerald briolettes at terminal points, colorless diamond micro pave that fades out toward the edges",
+   "silhouette": "A swept collar that arcs across the neckline with a streaming tail, S curve earrings of moderate length, a flexible wrap bracelet that crosses once, a bypass ring that mirrors the master stroke, and a comma pendant suspended from a slim chain",
+   "motif": "Elongated S stroke with a palmette flick at the climax of the curve",
+   "rhythm": "Asymmetric equilibrium with stone size and density increasing toward the apex then dissolving to quiet",
+   "structure": "Segmented platinum spines joined by pivoting knuckles, micro coil springs hidden beneath diamond pave to control return, reinforced end caps protecting briolettes",
+   "avoid": [
+    "Literal letters or scripts",
+    "Tassels that extend beyond five centimeters",
+    "Overuse of dangles that create noise during movement",
+    "Edges sharp enough to catch fine fabrics or hair",
+    "Overcrowded pave that robs the emeralds of focus",
+    "Heavy earrings without counterbalance"
+   ],
+   "design_dna": [
+    "Every curve begins tangentially and resolves into a soft zero angle so the pieces read as one gesture.",
+    "Emeralds sit slightly proud of the metal to catch light from above during motion.",
+    "Pave always grades from bright at the apex to sparse near the tail.",
+    "Visible metal edges are knife polished while hidden galleries are satin.",
+    "All moving joints are concealed under a diamond line so mechanics never distract.",
+    "Earrings are balanced by sculpted backs or small counterweights for graceful swing.",
+    "Bracelets flex in one plane only to avoid twisting on the wrist.",
+    "Rings feature a low inner arch for stability and a rounded inner comfort fit."
+   ],
+   "concept_art": {
+    "form": "Long sinuous strokes that swell then taper like a calligrapher’s flourish",
+    "motion": "Directional sweep with a decelerating glide at the finish",
+    "material": "Platinum ribbons with specular highlights and emerald droplets of light",
+    "atmosphere": "Fluid, poised, contemporary elegance tuned for motion"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/f35ae9c0aee920eae7bdc2ee.png",
+     "hash": "f35ae9c0aee920eae7bdc2ee"
+    },
+    "motion": {
+     "url": "/samples/76920c80b2046a29b71fc5ca.png",
+     "hash": "76920c80b2046a29b71fc5ca"
+    },
+    "material": {
+     "url": "/samples/1eb022e2dbab001cf9541571.png",
+     "hash": "1eb022e2dbab001cf9541571"
+    },
+    "atmosphere": {
+     "url": "/samples/2e7a52e88ecae9d1026badf4.png",
+     "hash": "2e7a52e88ecae9d1026badf4"
+    }
+   },
+   "lineup": {
+    "url": "/samples/eaad95ab4f33e5cae82fe9d5.png",
+    "hash": "eaad95ab4f33e5cae82fe9d5"
+   }
+  },
+  {
+   "name": "Verdant Platinum",
+   "kind": "Material and Surface",
+   "concept": "A tactile platinum and emerald suite that sculpts the arabesque into high relief planes and frosted valleys, conceived for opulent evening texture with a marquee necklace above 100,000 dirhams.",
+   "story": "Material speaks first in this suite. Frosted recesses and mirror spines create a quiet play of light that flatters skin tones under chandeliers. Emeralds arrive as bold masses carved and buff top to celebrate depth of color. The lead necklace crowns the set with museum scale presence.",
+   "palette": [
+    "Frosted platinum #D8DADB",
+    "Emerald core #008F6A",
+    "Diamond frost #F3F4F6",
+    "Shadow granite #3A3A3A",
+    "Seafoam highlight #6BC6A6"
+   ],
+   "metal": "950 platinum with frosted valleys, mirror ridges, and micro hammered accents for soft sparkle",
+   "surface": "Directional satin blasting within curls, chisel lapped facets on outer edges, fine milgrain only where shadow needs to break, interiors sealed with high polish to brighten emerald transmission",
+   "stones": "Sugarloaf and high dome cabochon emeralds for center masses, buff top calibre emeralds for borders, carved leaf emerald accents, diamond baguettes and carre cuts to trace structure",
+   "silhouette": "A broad collar of sculpted plaques that read as one continuous relief, medium length ear drops that showcase a single emerald dome in a carved cradle, a broad articulated bracelet with soft edges, a domed signet style ring, and a pendant that isolates the master plaque",
+   "motif": "Relief arabesque leaf swirl with spine over valley morphology",
+   "rhythm": "Alternation of matte then gloss then stone mass in a repeating three beat cycle around the contour",
+   "structure": "Robust platinum rails that rise above frosted channels, protective bezels around cabochons, floating galleries under large stones to lighten weight and rinse light",
+   "avoid": [
+    "High mirror finish everywhere that flattens relief",
+    "Overuse of micro pave that obscures the sculpted metal",
+    "Green enamel substitutes for carved emerald",
+    "Sharp inner corners that collect debris",
+    "Coatings that yellow the platinum tone",
+    "Too many motifs competing in one piece"
+   ],
+   "design_dna": [
+    "Relief height never exceeds the diameter of the adjacent cabochon for comfort and balance.",
+    "Cabochons are always bezel held with a small inner step for security.",
+    "Buff top calibres must meet at clean butt joints to form continuous rivers of green.",
+    "Alternating matte and gloss runs are kept in a predictable rhythm so pieces read cohesive.",
+    "Bracelet edges are softly bullnosed to feel like polished stone.",
+    "Rings taper under the finger and hide weight within open galleries.",
+    "Pendants keep a closed back polished mirror to amplify emerald glow."
+   ],
+   "concept_art": {
+    "form": "High relief leaves and scroll spines rising from frosted valleys",
+    "motion": "Slow undulation across broad planes that catch chandelier light",
+    "material": "Frosted platinum and mirror ridges meeting saturated emerald masses",
+    "atmosphere": "Textural, opulent, calm and confident under evening light"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/a511869a1d0a842d8095ba48.png",
+     "hash": "a511869a1d0a842d8095ba48"
+    },
+    "motion": {
+     "url": "/samples/3ad2f79e8063f6d0f604fe6a.png",
+     "hash": "3ad2f79e8063f6d0f604fe6a"
+    },
+    "material": {
+     "url": "/samples/22ff45b300c124f69191ca48.png",
+     "hash": "22ff45b300c124f69191ca48"
+    },
+    "atmosphere": {
+     "url": "/samples/759c3b3c2a339273f29fa571.png",
+     "hash": "759c3b3c2a339273f29fa571"
+    }
+   },
+   "lineup": {
+    "url": "/samples/f26836a7716205f9faec8bde.png",
+    "hash": "f26836a7716205f9faec8bde"
+   }
+  },
+  {
+   "name": "Aerial Mashrabiya",
+   "kind": "Structural Experimental",
+   "concept": "A future forward platinum and emerald suite that engineers the arabesque as a vaulted mashrabiya lattice with emerald apertures, centered on a breathable collar priced above 100,000 dirhams.",
+   "story": "The design treats pattern as architecture. Cellular ribs rise and fall like a lightweight vault that hugs the body without bulk. Emeralds punctuate the cells as windows of saturated green. The bold collar delivers volume with air and carries the luxury intent.",
+   "palette": [
+    "Platinum white #E6E7E8",
+    "Emerald window green #00A173",
+    "Soft shadow grey #6C6F73",
+    "Crystal highlight #FFFFFF",
+    "Nocturne teal #033E3C"
+   ],
+   "metal": "950 platinum with high polish on ribs and vapor blast micro matte in cell interiors",
+   "surface": "Mirror bright ridges, bead blasted inner walls, micro chamfers on apertures to catch light",
+   "stones": "Calibre emerald hexes and kites set as windows within cells, diamond micro lines along spine ribs",
+   "silhouette": "A wide collar that sits slightly high with graded lattice density, airy drop earrings from mini domes, a cuff bracelet that wraps with an open underside, a vaulted dome ring with anchored base, and a pendant that miniaturizes the dome",
+   "motif": "Parametric mashrabiya cell field woven from ogee curves and split leaves",
+   "rhythm": "Radial density near center that fades to open cells toward the edges, symmetric left to right but gradually lighter outward",
+   "structure": "Three dimensional lattice engineered with variable rib thickness to balance stiffness and weight, hidden tension cable across the collar back, stones held in recessed channels with micro bars, anti rotation tabs on the ring",
+   "avoid": [
+    "Religious symbols or sacred inscriptions",
+    "Literal building silhouettes",
+    "Overly thin ribs that deform under wear",
+    "Star motifs that read as national or sectarian emblems",
+    "Thick solid plates that kill the airy intent",
+    "Clunky hinges that interrupt the lattice"
+   ],
+   "design_dna": [
+    "Every lattice intersection thickens subtly to read as a structural node.",
+    "Apertures that receive emeralds are always framed by a bright polished chamfer.",
+    "The cell scale reduces by one third as it moves toward the center of a focal element.",
+    "Diamonds draw a single spine line that guides the eye through each silhouette.",
+    "Edges finish in a smooth continuous rim so fabric cannot snag.",
+    "Earrings and pendants use open backs to let light pass through green windows.",
+    "Cuffs and collars include contoured inner pads for pressure distribution.",
+    "Ring under galleries mirror the outer cell geometry to complete the architecture."
+   ],
+   "concept_art": {
+    "form": "Vaulted lattice of ogee cells forming a light dome",
+    "motion": "Air flowing through cells while the frame holds steady",
+    "material": "Platinum ribs polished like glass and matte inner walls with emerald windows",
+    "atmosphere": "Architectural clarity, airy grandeur, future classic"
+   },
+   "art": {
+    "form": {
+     "url": "/samples/fdae082f1f0fb738d81d164b.png",
+     "hash": "fdae082f1f0fb738d81d164b"
+    },
+    "motion": {
+     "url": "/samples/8870b418db8871191e2c874f.png",
+     "hash": "8870b418db8871191e2c874f"
+    },
+    "material": {
+     "url": "/samples/011fc7c7fdd95313933dc0d7.png",
+     "hash": "011fc7c7fdd95313933dc0d7"
+    },
+    "atmosphere": {
+     "url": "/samples/491b72552d7a34d737cc3573.png",
+     "hash": "491b72552d7a34d737cc3573"
+    }
+   },
+   "lineup": {
+    "url": "/samples/9755e5bfd4654580479fb1b7.png",
+    "hash": "9755e5bfd4654580479fb1b7"
+   }
+  }
+ ],
+ "sample": true,
+ "sampleTitle": "Fatima Al-Fassi (UAE) · collection",
+ "savedAtISO": "2026-08-26T23:31:48.997Z"
+}
