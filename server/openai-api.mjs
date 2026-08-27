@@ -137,6 +137,7 @@ function json(res, code, obj) {
 
 /** 생성 — 캐시 히트면 API를 호출하지 않는다 (재개 시 중복 과금 0건) */
 async function generate({ prompt, size = '1024x1024', engine = 'detail' }) {
+  const t0 = Date.now()
   const { model, quality } = pick(engine)
   const usedModel = selfHostOn() ? `self:${SELF_HOST_MODEL}`
     : (!GEMINI_FALLBACK_ONLY && engine === 'fast' && GEMINI_KEY) ? 'gemini' : model
@@ -174,6 +175,14 @@ async function generate({ prompt, size = '1024x1024', engine = 'detail' }) {
   const b64 = data?.data?.[0]?.b64_json
   if (!b64) throw new Error('OpenAI 응답에 이미지 없음')
   writeFileSync(file, Buffer.from(b64, 'base64'))
+  // 장부에 적는다 · 이미지도 토큰으로 값이 매겨진다 (출력 토큰이 곧 그림값이다).
+  // 화질·크기별 단가표를 옮겨 적는 대신 응답이 준 실제 토큰을 쓴다 — 표는 바뀌고 응답은 사실이다.
+  record(ROOT, {
+    route: `image:${engine}`, model,
+    inputTokens: data?.usage?.input_tokens ?? 0,
+    outputTokens: data?.usage?.output_tokens ?? 0,
+    ms: Date.now() - t0,
+  })
   return { hash, cached: false, model: usedModel }
 }
 

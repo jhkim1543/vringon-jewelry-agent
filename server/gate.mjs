@@ -11,19 +11,38 @@
    ALLOW_ANON=1 이면 1) 을 건너뛴다. 로그인 붙기 전의 데모·로컬 개발용이고,
    그때도 2) 는 살아 있다 — 열어 두더라도 한도 없이 열지는 않는다. */
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
 import { join } from 'node:path'
 import { resolveUser } from './host-auth.mjs'
 
+/* 설정은 다른 모듈과 같은 자리에서 읽는다 · .env 를 먼저, 진짜 환경변수를 나중에.
+   process.env 만 보다가 로컬 .env 의 ALLOW_ANON 이 먹히지 않아 내 측정 스크립트가
+   통째로 401 을 맞았다. 서버는 EB 환경변수로 오고 로컬은 .env 로 온다 — 둘 다 봐야 한다. */
+function loadEnv() {
+  const root = fileURLToPath(new URL('../', import.meta.url))
+  const out = {}
+  for (const f of ['.env.local', '.env']) {
+    const p = join(root, f)
+    if (!existsSync(p)) continue
+    for (const line of readFileSync(p, 'utf8').split(/\r?\n/)) {
+      const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/)
+      if (m && !out[m[1]]) out[m[1]] = m[2].replace(/^["']|["']$/g, '')
+    }
+  }
+  return out
+}
+const env = { ...loadEnv(), ...process.env }
+
 /** 하루 상한 · 사람마다. 실측(경쟁사 1회 ≈ 검색 488회)을 기준으로 잡았다. */
 export const DAILY = {
-  searches: Number(process.env.CAP_SEARCHES_PER_DAY || 3000),   // 경쟁사 기준 약 6회 실행
-  images: Number(process.env.CAP_IMAGES_PER_DAY || 200),        // 디자인 40장 실행 5회
-  calls: Number(process.env.CAP_CALLS_PER_DAY || 1500),
+  searches: Number(env.CAP_SEARCHES_PER_DAY || 3000),   // 경쟁사 기준 약 6회 실행
+  images: Number(env.CAP_IMAGES_PER_DAY || 200),        // 디자인 40장 실행 5회
+  calls: Number(env.CAP_CALLS_PER_DAY || 1500),
 }
-const ANON_OK = process.env.ALLOW_ANON === '1'
+const ANON_OK = env.ALLOW_ANON === '1'
 
 const fileOf = (root) => {
-  const d = process.env.SPEND_DIR || join(root, '.cache')
+  const d = env.SPEND_DIR || join(root, '.cache')
   mkdirSync(d, { recursive: true })
   return join(d, 'quota.json')
 }
