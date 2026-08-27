@@ -2,7 +2,10 @@
    목표 가격 표기는 사람이 자유롭게 쓰는 칸이라, 읽기 규칙이 조용히 틀리면
    "목표 안에 듭니다" 가 거짓말이 된다. 여기서 표기별로 못을 박아 둔다.
    실행: npx tsx scripts/cost-selftest.mts */
-import { checkTarget, dimText, estimateCost, metalKey, parsePriceTarget, stoneText, type MakeSpec } from '../src/core/cost'
+import {
+  checkTarget, currencyCode, dimText, estimateCost, marketBand, metalKey, parsePriceTarget, stoneText,
+  type MakeSpec,
+} from '../src/core/cost'
 
 let fail = 0
 const eq = (name: string, got: unknown, want: unknown) => {
@@ -107,6 +110,26 @@ eq('빈 칸은 구분자까지 지운다',
   stoneText({ type: '청록 사파이어', cut: '', mm: '2.3', count: 1 }), '청록 사파이어 · 2.3 mm · 1')
 eq('다 있으면 다 붙인다',
   stoneText({ type: 'CZ', cut: '라운드', mm: '1.2mm', count: 20 }), 'CZ · 라운드 · 1.2mm · 20')
+
+console.log('\n── 통화 읽기 ──')
+// 조사 모델은 통화 칸에 코드만 넣지 않는다. 코드만 받다가 실측으로 표본 41건 중
+// 31건("원" 31 · "€" 6 · "$" 6)을 버렸고, 남은 비싼 것들만으로 밴드가 왜곡됐다.
+eq('원은 KRW', currencyCode('원'), 'KRW')
+eq('₩도 KRW', currencyCode('₩'), 'KRW')
+eq('€는 EUR', currencyCode('€'), 'EUR')
+eq('£는 GBP', currencyCode('£'), 'GBP')
+eq('값이 섞여 와도 읽는다', currencyCode('12,000 원'), 'KRW')
+eq('모르면 빈 값 · 지어내지 않는다', currencyCode('알 수 없음'), '')
+
+console.log('\n── 시장 가격대 ──')
+{
+  const mk = (n: number, price: number, cur: string) =>
+    Array.from({ length: n }, () => ({ price, currency: cur }))
+  eq('표본 5개 미만이면 내지 않는다', marketBand(mk(4, 100, 'USD')), null)
+  const m = marketBand([...mk(5, 100, 'USD'), ...mk(5, 135000, '원')])
+  eq('기호 통화도 표본에 든다', m?.n, 10)
+  eq('통화를 모르는 것만 제외로 센다', marketBand([...mk(6, 100, 'USD'), ...mk(2, 100, '???')])?.skipped, 2)
+}
 
 console.log('\n── 목표 대비 판정 ──')
 // 원가 18.1~23.7 → DTC 3.2~4.2배 = 58~99달러

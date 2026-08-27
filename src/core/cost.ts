@@ -346,6 +346,33 @@ const FX_PER_USD: Record<string, number> = {
   CNY: 7.1, AED: 3.67, THB: 34, CAD: 1.36, AUD: 1.5, INR: 84,
 }
 
+/** 조사 모델은 통화 칸에 코드만 넣지 않는다 · 기호와 우리말이 섞여 온다.
+ *  코드만 받다가 실측으로 표본 41건 중 31건("원" 31 · "€" 6 · "$" 6)을 버리고 있었다.
+ *  네 건 중 세 건을 버린 "시장 가격대" 는 없느니만 못하다. */
+const CURRENCY_ALIAS: Record<string, string> = {
+  '원': 'KRW', '₩': 'KRW', '원화': 'KRW',
+  '$': 'USD', 'US$': 'USD', '달러': 'USD', 'USD$': 'USD',
+  '€': 'EUR', '유로': 'EUR',
+  '£': 'GBP', '파운드': 'GBP',
+  '¥': 'JPY', '엔': 'JPY', '円': 'JPY',
+  '元': 'CNY', '위안': 'CNY', 'RMB': 'CNY', '¥CN': 'CNY',
+  '฿': 'THB', 'د.إ': 'AED', 'DHS': 'AED', '₹': 'INR',
+}
+
+/** 통화 표기를 코드로 맞춘다 · 못 알아보면 빈 문자열 (지어내지 않는다) */
+export function currencyCode(raw?: string): string {
+  const v = String(raw ?? '').trim()
+  if (!v) return ''
+  const up = v.toUpperCase()
+  if (FX_PER_USD[up]) return up
+  if (CURRENCY_ALIAS[v]) return CURRENCY_ALIAS[v]
+  if (CURRENCY_ALIAS[up]) return CURRENCY_ALIAS[up]
+  // "12,000 원" 처럼 값이 섞여 온 것도 있다 · 아는 표기가 들어 있는지 본다
+  for (const [sym, code] of Object.entries(CURRENCY_ALIAS)) if (v.includes(sym)) return code
+  for (const code of Object.keys(FX_PER_USD)) if (up.includes(code)) return code
+  return ''
+}
+
 export interface MarketBand {
   n: number
   /** 통화를 몰라 뺀 것 · 숨기지 않는다 */
@@ -362,7 +389,7 @@ export function marketBand(items: Array<{ price?: number; currency?: string }>):
   let skipped = 0
   for (const it of items ?? []) {
     const p = Number(it.price) || 0
-    const fx = FX_PER_USD[String(it.currency ?? '').toUpperCase()]
+    const fx = FX_PER_USD[currencyCode(it.currency)]
     if (p <= 0) continue
     if (!fx) { skipped++; continue }
     usd.push(p / fx)
