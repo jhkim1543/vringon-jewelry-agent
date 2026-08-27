@@ -106,71 +106,7 @@
      "at": "2026-08-26T14:30:18.091Z"
     }
    ],
-   "feature": "Micro hoop da 13 mm in oro giallo 18K con ear jacket disco satinato martellato intercambiabile, perno 0,9 mm e tolleranze serrate per stabilità silenziosa e comfort.",
-   "spec": {
-    "dims": [
-     {
-      "name": "diametro esterno micro hoop",
-      "mm": "13"
-     },
-     {
-      "name": "diametro disco ear jacket modulare",
-      "mm": "16.0~18.0"
-     },
-     {
-      "name": "spessore parete",
-      "mm": "1.2~1.4"
-     },
-     {
-      "name": "perno orecchino diametro",
-      "mm": "0.9"
-     },
-     {
-      "name": "foro ovale invisibile su ear jacket",
-      "mm": "1.0×1.6"
-     },
-     {
-      "name": "raggiatura micro sugli spigoli",
-      "mm": "R0.15~0.2"
-     }
-    ],
-    "metal": "18K yellow",
-    "plating": "",
-    "stones": [
-     {
-      "type": "diamante",
-      "cut": "",
-      "mm": "1.1",
-      "count": 1
-     }
-    ],
-    "findings": [
-     {
-      "name": "perno",
-      "spec": "0.9 mm con tolleranze serrate su perno e sede per viaggi"
-     },
-     {
-      "name": "farfallina",
-      "spec": "sicura, seconda coppia di chiusure inclusa"
-     },
-     {
-      "name": "ear jacket disco modulare",
-      "spec": "foro ovale invisibile 1.0×1.6 mm, stabile senza giochi"
-     }
-    ],
-    "weight_g": {
-     "min": 2.8,
-     "max": 3.8
-    },
-    "process": [
-     "satinatura martellata uniforme",
-     "microsabbiatura dei contatti antiscivolo",
-     "incassatura a filo del micro diamante se presente",
-     "controllo qualità in luce naturale e artificiale"
-    ],
-    "note": "Metallo esplicitato nel prompt come oro giallo 18K pieno. Pietre opzionali: nessuna oppure un micro diamante 1.1 mm incassato a filo. Peso indicato per singolo orecchino e mantenuto sotto 3.8 g come da richiesta. Dotazione: seconda coppia di chiusure e panno satin con istruzioni di manutenzione minima. Evitare bling eccessivo, pavé integrale, tendenze usa e getta, perni 0.7 mm, placcatura ionica al posto dell’oro, loghi evidenti, dichiarazioni di zero manutenzione per sempre, mix vistoso con rodio nero o oro rosa, peso oltre 4 g, rumori meccanici.",
-    "cached": false
-   }
+   "feature": "Micro hoop da 13 mm in oro giallo 18K con ear jacket disco satinato martellato intercambiabile, perno 0,9 mm e tolleranze serrate per stabilità silenziosa e comfort."
   },
   {
    "id": "D01",
@@ -188,70 +124,7 @@
      "at": "2026-08-26T14:30:26.670Z"
     }
    ],
-   "feature": "Pendenti compatti Riva Aurea in oro giallo 18K riciclato con alternanza martellato/satinato, perno 0,9 mm La Poussette, incassi a filo o castoncino pieno senza griffe, peso bilanciato vicino al lobo per comfort e stabilità.",
-   "spec": {
-    "dims": [
-     {
-      "name": "lunghezza pendente",
-      "mm": "18~22"
-     },
-     {
-      "name": "spessore reale",
-      "mm": "0,6~0,8"
-     },
-     {
-      "name": "raggio bordo arrotondato",
-      "mm": "R0,2"
-     },
-     {
-      "name": "perno",
-      "mm": "0,9"
-     }
-    ],
-    "metal": "18K yellow",
-    "plating": "",
-    "stones": [
-     {
-      "type": "diamante naturale",
-      "cut": "rotondo brillante",
-      "mm": "1,3~1,5",
-      "count": 0
-     }
-    ],
-    "findings": [
-     {
-      "name": "perno",
-      "spec": "18K, diametro 0,9 mm"
-     },
-     {
-      "name": "chiusura La Poussette",
-      "spec": "18K, test trazione 2 kg"
-     },
-     {
-      "name": "anellini e giunti",
-      "spec": "chiusi e brasati ad alta temperatura"
-     },
-     {
-      "name": "cerniere",
-      "spec": "doppia brasatura"
-     }
-    ],
-    "weight_g": {
-     "min": 3.5,
-     "max": 5.4
-    },
-    "process": [
-     "martellatura fine a fasce",
-     "satinatura unidirezionale ripristinabile",
-     "micro sabbiatura sulle superfici a contatto",
-     "brasatura ad alta temperatura",
-     "doppia brasatura sulle cerniere",
-     "incassatura a filo o castoncino pieno",
-     "finitura lucidatura controllata"
-    ],
-    "note": "Design originale Riva Aurea in oro giallo 18K riciclato e non aranciato come da prompt. Le pietre sono piccoli brillanti rotondi qualità G~H VS senza griffe sporgenti. Il peso indicato è una stima per pezzo per la parte gioiello esclusi pietre e minuterie, mantenuto sotto i limiti richiesti nel prompt. Nessuna placcatura o vermeil. Specifiche dei giunti e delle brasature come da prompt. Il conteggio esatto dei brillanti non è indicato nel prompt e non è stato stimato.",
-    "cached": false
-   }
+   "feature": "Pendenti compatti Riva Aurea in oro giallo 18K riciclato con alternanza martellato/satinato, perno 0,9 mm La Poussette, incassi a filo o castoncino pieno senza griffe, peso bilanciato vicino al lobo per comfort e stabilità."
   },
   {
    "id": "D03",
@@ -269,54 +142,7 @@
      "at": "2026-08-26T14:30:42.192Z"
     }
    ],
-   "feature": "Orecchini Piega Aurea in oro giallo 18K con pieghe sottili, creste martellate e piani satinati, punto luce singolo a incasso a filo opzionale e struttura a micro elasticità controllata che segue il lobo con bordi smussati e micro sabbiati.",
-   "spec": {
-    "dims": [
-     {
-      "name": "spessore reale",
-      "mm": "1.0~1.2"
-     },
-     {
-      "name": "lunghezza totale",
-      "mm": "22"
-     }
-    ],
-    "metal": "18K yellow",
-    "plating": "",
-    "stones": [
-     {
-      "type": "diamante",
-      "cut": "",
-      "mm": "1.3~1.5",
-      "count": 2
-     }
-    ],
-    "findings": [
-     {
-      "name": "perno",
-      "spec": "18K yellow, chiusura a perno"
-     },
-     {
-      "name": "farfallina",
-      "spec": "18K yellow, coppia di serraggio limitata"
-     }
-    ],
-    "weight_g": {
-     "min": 4,
-     "max": 5.8
-    },
-    "process": [
-     "taglio laser per coerenza di coppia",
-     "martellatura fine a creste",
-     "satinatura su piani estesi",
-     "smussatura dei bordi e micro sabbiatura dei punti di contatto",
-     "rifinitura manuale",
-     "incassatura a filo con sede conica rinforzata per il diamante",
-     "test di vibrazione e cammino simulato 5 km"
-    ],
-    "note": "Due varianti di prodotto: senza pietre e con singolo punto luce a filo per orecchino. Peso indicato per la coppia stimato dal vincolo inferiore a 3 g per lato come da prompt. Finiture come da prompt: piani satinati, creste martellate, micro sabbiatura sui punti di contatto, tutti gli spigoli smussati. Chiusura a perno con coppie di serraggio limitate come specificato.",
-    "cached": false
-   }
+   "feature": "Orecchini Piega Aurea in oro giallo 18K con pieghe sottili, creste martellate e piani satinati, punto luce singolo a incasso a filo opzionale e struttura a micro elasticità controllata che segue il lobo con bordi smussati e micro sabbiati."
   }
  ],
  "searches": 15,

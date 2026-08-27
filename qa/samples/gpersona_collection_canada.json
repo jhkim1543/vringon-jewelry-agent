@@ -124,42 +124,55 @@
       "mm": "1.0"
      },
      {
-      "name": "edge radius minimum",
-      "mm": "0.3"
+      "name": "edge radius",
+      "mm": ">=0.3"
      },
      {
-      "name": "flush stone seat metal under-seat",
-      "mm": "0.6"
+      "name": "post length",
+      "mm": "10.5"
+     },
+     {
+      "name": "post gauge",
+      "mm": "0.8"
      }
     ],
     "metal": "925 sterling silver",
-    "plating": "satin baseline finish with light to medium silver oxide kept in lows, ridge tips brightened, oxide kept off skin-contact high points",
-    "stones": [],
+    "plating": "",
+    "stones": [
+     {
+      "type": "optional micro stone",
+      "cut": "round",
+      "mm": "0.8~1.0",
+      "count": 1
+     }
+    ],
     "findings": [
      {
-      "name": "ear post",
-      "spec": "recessed sterling silver post, hidden from front view"
+      "name": "earring post",
+      "spec": "925 silver post 0.8 mm gauge, recessed mount"
      },
      {
       "name": "clutch",
-      "spec": "recessed sterling silver friction clutch, hidden from front view"
+      "spec": "925 silver low profile butterfly clutch, recessed so not visible from front"
      }
     ],
     "weight_g": {
-     "min": 1.6,
+     "min": 1.8,
      "max": 2.8
     },
+    "weight_basis": "per pair including posts and clutches",
     "process": [
-     "precision casting in sterling silver",
-     "hand surfacing with softened edges and fine tool marks",
-     "satin finishing baseline planes",
-     "controlled oxidation to darken lows only",
-     "selective bright polish on ridge tips",
-     "optional micro flush setting in one pit",
-     "fit and secure recessed post and clutch",
-     "final clean with oxide kept off skin-contact high points"
+     "satin baseline finish",
+     "selective oxidation in low areas light to medium",
+     "brightened ridge tips",
+     "oxide kept off skin contact high points to avoid color transfer",
+     "edges softened to 0.3 mm radius or more, no snag points",
+     "recessed post and clutch so hardware is hidden from the front",
+     "surface shows honest heat bloom and fine tool marks suggesting weathered rock",
+     "left and right are subtly asymmetric aligned by ridge angle and a triad of shallow surface pits",
+     "single diagonal ridge and a small erosion notch as the master motif"
     ],
-    "note": "Metal alloy set to 925 sterling silver based on the prompt wording recycled sterling silver. Recycled content is assumed and does not alter the 925 specification. Visual weight stated under 3.0 g per pair, estimated metal weight provided as a pair. Optional micro flush stone 0.8~1.0 mm round is noted in the prompt but no stone type was specified so stones are left blank. All dimensions are taken directly from the prompt without adding standard values.",
+    "note": "Alloy set to 925 sterling silver inferred from the phrasing recycled sterling silver. Dimensions include standard values where the prompt did not specify, including post length and gauge. Visual weight was stated under 3.0 g per pair; metal weight range estimated accordingly. The micro flush stone is optional and material type was not specified in the prompt.",
     "cached": false
    }
   },
@@ -195,12 +208,8 @@
       "mm": "0.8~1.0"
      },
      {
-      "name": "rim bright-line bevel",
-      "mm": "~0.2"
-     },
-     {
       "name": "post diameter",
-      "mm": "~0.8"
+      "mm": "0.8"
      },
      {
       "name": "post length",
@@ -212,27 +221,29 @@
     "stones": [],
     "findings": [
      {
-      "name": "ear post",
-      "spec": "925 silver post centered on flat back, 0.8 mm diameter, 10~11 mm length"
+      "name": "earring post",
+      "spec": "925 silver straight post, 0.8 mm diameter, centered on flat back, soldered"
      },
      {
-      "name": "ear clutch",
-      "spec": "low-profile butterfly clutch, 925 silver or equivalent"
+      "name": "clutch",
+      "spec": "low-profile butterfly clutch, 925 silver"
      }
     ],
     "weight_g": {
-     "min": 1.8,
-     "max": 2.4
+     "min": 0.9,
+     "max": 1.2
     },
+    "weight_basis": "per earring, includes post and clutch",
     "process": [
-     "micro-hammered or fine sandblasted satin matte surface",
+     "doming to shallow pebble profile",
+     "press forming of shallow off-center dimple on upper third",
+     "micro-hammered or fine sandblasted satin matte finish",
      "light bevel polish on rim to create ~0.2 mm bright line",
-     "shallow press-formed dimple, no piercings",
-     "post soldering on flat back",
      "light passivation",
-     "final clean and soft polish"
+     "silver soldering of post",
+     "final clean"
     ],
-    "note": "Metal grade chosen as 925 sterling silver based on neutral silver hue with light passivation, this is an informed assumption. Target weight derived from prompt requirement under 1.2 g per earring. Maintain set scale rule for the collection noted but pendant not included here.",
+    "note": "Metal grade chosen as 925 sterling silver based on neutral silver hue with light passivation, this is an informed estimate from the prompt. No gemstones by design. Dimple is shallow, not pierced. Maintain set scale rule for the Drift Pebble set although the pendant is not shown.",
     "cached": false
    }
   },
@@ -257,7 +268,7 @@
     "dims": [
      {
       "name": "disc diameter",
-      "mm": "13"
+      "mm": "~13"
      },
      {
       "name": "dome height max",
@@ -268,16 +279,16 @@
       "mm": "0.8~1.0"
      },
      {
-      "name": "polished rim bevel width",
+      "name": "rim bevel width",
       "mm": "0.2"
      },
      {
-      "name": "tab bail thickness",
+      "name": "bail tab thickness",
       "mm": "0.9"
      },
      {
-      "name": "bail closed loop ID",
-      "mm": "1.2"
+      "name": "bail loop inner diameter",
+      "mm": "~1.2"
      }
     ],
     "metal": "925 sterling silver",
@@ -285,26 +296,26 @@
     "stones": [],
     "findings": [
      {
-      "name": "tab bail concealed behind top curve",
-      "spec": "925 silver, 0.9 mm thick, closed loop ID about 1.2 mm to pass 1.0 mm cable chain"
+      "name": "hidden tab bail",
+      "spec": "925 silver tab, 0.9 mm thick, concealed behind top curve, closed loop ID ~1.2 mm, sized to pass a 1.0 mm cable chain"
      },
      {
-      "name": "hidden anti-rotation connector",
-      "spec": "two-point figure-8 or twin eyelet in 925 silver, oriented to keep dimple upright"
+      "name": "anti-rotation connector",
+      "spec": "two-point hidden figure-8 or twin eyelet, 925 silver"
      }
     ],
     "weight_g": {
-     "min": 1.3,
-     "max": 2
+     "min": 1.2,
+     "max": 1.9
     },
+    "weight_basis": "one pendant including hidden bail · no chain",
     "process": [
-     "lost-wax casting or precision casting of low-dome disc",
-     "soldering of concealed tab bail and hidden two-point connector",
-     "fine sandblasting for satin matte surface",
-     "selective high polish on 0.2 mm rim bevel",
-     "final cleaning and quality control"
+     "fine sandblasting to satin matte finish",
+     "polished 0.2 mm rim bevel to create a subtle bright line",
+     "back face left flat for comfort",
+     "hand finishing and edge deburring"
     ],
-    "note": "Metal grade chosen as 925 sterling silver based on the prompt wording neutral-hue sterling silver. Weight estimated to comply with the prompt requirement total pendant mass under 2.0 g.",
+    "note": "No gemstones by design; visual interest is from light and texture. Total pendant mass must remain under 2.0 g per prompt. Neutral-hue sterling silver indicates 925 and no plating.",
     "cached": false
    }
   },
@@ -328,23 +339,23 @@
    "spec": {
     "dims": [
      {
-      "name": "footprint",
+      "name": "Footprint",
       "mm": "16×12"
      },
      {
-      "name": "ridge thickness",
+      "name": "Ridge thickness",
       "mm": "2.2~2.6"
      },
      {
-      "name": "minimum field thickness",
+      "name": "Field thickness minimum",
       "mm": "1.2"
      },
      {
-      "name": "edge radius",
+      "name": "Edge radius",
       "mm": "0.3 min"
      },
      {
-      "name": "rear tunnel bail interior",
+      "name": "Rear tunnel bail interior",
       "mm": "1.3×2.3"
      }
     ],
@@ -353,33 +364,35 @@
     "stones": [
      {
       "type": "lab sapphire",
-      "cut": "",
+      "cut": "round",
       "mm": "0.9",
       "count": 1
      }
     ],
     "findings": [
      {
-      "name": "integrated rear tunnel bail",
-      "spec": "interior 1.3×2.3 mm, off-center along ridge axis"
-     },
-     {
-      "name": "front-visible ring",
-      "spec": "none"
+      "name": "Integrated rear tunnel bail",
+      "spec": "interior 1.3×2.3 mm, off-center along ridge axis, no front-visible ring"
      }
     ],
     "weight_g": {
-     "min": 1.6,
+     "min": 1.8,
      "max": 2.4
     },
+    "weight_basis": "Single pendant basis, integrated tunnel bail included, chain excluded, stone excluded",
     "process": [
-     "lost-wax casting",
-     "satin body finish",
-     "light to medium oxidation in lows with oxide kept light at contact zones",
-     "bright-burnished ridge tips",
-     "micro flush setting 0.9 mm stone with 0.3 mm seat and 0.4 mm rim"
+     "Satin finish on body",
+     "Bright-burnished ridge tips",
+     "Light to medium oxidation in lows",
+     "Oxidation kept light at contact zones to minimize color transfer",
+     "Edges softened to 0.3 mm radius",
+     "Controlled asymmetry with one primary diagonal ridge and a small erosion notch",
+     "Triad of shallow pits",
+     "Retain heat and tool marks that evoke rock surfaces",
+     "Micro flush setting for 0.9 mm stone with 0.3 mm seat depth and 0.4 mm rim, no prongs",
+     "Hidden mechanics with integrated rear tunnel bail positioned off-center to resist rotation"
     ],
-    "note": "All dimensions and finishes follow the prompt. Metal is set to 925 sterling silver as the likely specification for recycled sterling silver. Stone is optional per prompt. Target weight kept under 2.5 g as specified; estimated range provided for costing.",
+    "note": "Alloy specified as 925 sterling silver based on recycled sterling silver in the prompt. Stone is optional. Weight estimated to remain under 2.5 g as directed in the prompt.",
     "cached": false
    }
   }

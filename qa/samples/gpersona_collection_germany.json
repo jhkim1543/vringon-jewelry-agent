@@ -142,56 +142,64 @@
    "spec": {
     "dims": [
      {
-      "name": "Band width",
+      "name": "band width",
       "mm": "7.0~8.0"
      },
      {
-      "name": "Inner diameter",
-      "mm": "17.0~18.0"
+      "name": "overall ring thickness",
+      "mm": "3.8~4.2"
      },
      {
-      "name": "Overall band thickness",
-      "mm": "2.6~3.0"
+      "name": "inner diameter",
+      "mm": "17.3"
      },
      {
-      "name": "Inner titanium comfort sleeve thickness",
+      "name": "titanium comfort sleeve thickness",
       "mm": "2.0~2.2"
      },
      {
-      "name": "Steel outer frame and rails thickness",
+      "name": "steel outer frame and rails thickness",
       "mm": "2.4"
      },
      {
-      "name": "Edge chamfer all edges",
+      "name": "edge chamfer",
       "mm": "0.3"
      }
     ],
     "metal": "316L stainless steel",
     "plating": "",
-    "stones": [],
+    "stones": [
+     {
+      "type": "ceramic inlay",
+      "cut": "square",
+      "mm": "1.5",
+      "count": 1
+     }
+    ],
     "findings": [
      {
-      "name": "Inner comfort sleeve",
-      "spec": "Grade 5 titanium, press-fit liner with underside lock"
+      "name": "press-fit liner",
+      "spec": "grade 5 titanium inner sleeve with underside mechanical lock"
      },
      {
-      "name": "Inlay",
-      "spec": "1.5 mm square ceramic or PVD inlay at one-third offset, under 10% visible area"
+      "name": "seam treatment",
+      "spec": "no front-visible seams, pins, or settings"
      }
     ],
     "weight_g": {
-     "min": 4,
-     "max": 6
+     "min": 5,
+     "max": 7.5
     },
+    "weight_basis": "one ring at inner diameter 17.3 mm, ceramic inlay variant",
     "process": [
-     "CNC machining of steel outer frame and orthogonal rails",
-     "CNC turning and fitting of Grade 5 titanium comfort sleeve",
-     "Press-fit assembly with underside mechanical lock",
-     "Precision chamfering 0.3 mm on all edges",
-     "Matte finishing on titanium and steel surfaces, no mirror polish",
-     "Installation of 1.5 mm square ceramic or PVD inlay"
+     "CNC machining for steel frame and rails",
+     "CNC turning and fitting of grade 5 titanium comfort sleeve",
+     "press-fit assembly with underside lock",
+     "all exposed edges chamfered 0.3 mm",
+     "uniform matte finish on titanium and steel surfaces",
+     "optional PVD-treated 1.5 mm square recess in lieu of ceramic inlay"
     ],
-    "note": "Mixed metals per prompt: matte Grade 5 titanium for all skin-touch surfaces and matte 316L steel for structural spans. Metal field lists the primary body material as 316L stainless steel by assumption. No faceted stones, no visible front seams, pins, or settings. Dimensions for band width, inner diameter, and overall band thickness are filled with standard values.",
+    "note": "Metals and finish per prompt: matte grade 5 titanium for all skin-touch surfaces and matte 316L steel for structural spans. A single 1.5 mm square ceramic or PVD accent is allowed and no faceted stones or mirror polish. Primary metal is listed as 316L stainless steel because the structural outer frame is steel; this is a pragmatic choice for cost basing and is noted as an assumption. Dimensions not fully specified in the prompt have been filled with standard ring values. Weight is estimated from a steel outer frame with titanium inner sleeve and will vary by size. Photographic brief and aesthetic constraints have been preserved conceptually; no luxury or ornate elements added.",
     "cached": false
    }
   },
@@ -215,12 +223,12 @@
    "spec": {
     "dims": [
      {
-      "name": "overall height",
-      "mm": "40"
+      "name": "overall length",
+      "mm": "30"
      },
      {
       "name": "overall width",
-      "mm": "16"
+      "mm": "12"
      },
      {
       "name": "overall thickness",
@@ -236,11 +244,7 @@
      },
      {
       "name": "minimum wall around apertures",
-      "mm": ">=1.0"
-     },
-     {
-      "name": "chain cable compatibility",
-      "mm": "1.3"
+      "mm": "≥1.0"
      }
     ],
     "metal": "316L stainless steel",
@@ -249,31 +253,32 @@
     "findings": [
      {
       "name": "dual hidden bails",
-      "spec": "matte titanium"
+      "spec": "matte titanium, concealed on back"
      },
      {
-      "name": "rear chain slots",
-      "spec": "concealed slots sized for 1.3 mm matte titanium cable"
+      "name": "chain interface slots",
+      "spec": "two rear slots sized for 1.3 mm matte titanium cable, spaced to prevent rotation"
      },
      {
-      "name": "backplate",
-      "spec": "matte titanium skin-contact backplate"
+      "name": "front-visible hardware",
+      "spec": "none"
      }
     ],
     "weight_g": {
      "min": 4,
-     "max": 6.5
+     "max": 7
     },
+    "weight_basis": "one pendant only · includes steel grid body and titanium backplate and bails · chain excluded",
     "process": [
-     "CNC machining or laser cutting of structural grid",
-     "micro bead blasting for all matte surfaces",
+     "CNC milling and profiling of planar grid in 316L steel",
+     "micro bead blasting on all surfaces for matte finish",
      "subtle straight-grain satin on top planes",
-     "0.3 mm edge chamfering for comfort",
-     "assembly with matte titanium backplate and hidden bails",
-     "flush-set accent inlay using enamel or PVD coating",
+     "small 0.3 mm edge chamfers for comfort",
+     "titanium backplate and concealed bails finished matte",
+     "flush-set accent inlay option: enamel fill or PVD color line or square, covers less than ten percent area",
      "no mirror polish"
     ],
-    "note": "Dimensions use standard values due to missing absolute x, y size in the prompt. Primary metal set to 316L stainless steel as the main structural grid; mixed metals are present but metal field follows the body material as a practical assumption.",
+    "note": "Dimensions are filled with standard values. Mixed materials specified in prompt; metal field lists the body alloy as 316L stainless steel by assumption consistent with the described structural grid. No faceted stones per prompt. Weight estimated from filled standard size, 2.6 mm thickness, and open-grid recesses with titanium backplate; range includes back hardware but excludes any chain.",
     "cached": false
    }
   },
@@ -297,16 +302,8 @@
    "spec": {
     "dims": [
      {
-      "name": "body length",
-      "mm": "24"
-     },
-     {
-      "name": "body width",
-      "mm": "16"
-     },
-     {
-      "name": "body thickness",
-      "mm": "3.2"
+      "name": "overall size",
+      "mm": "24 × 16 × 3.2"
      },
      {
       "name": "wall thickness",
@@ -317,7 +314,7 @@
       "mm": "R0.6"
      },
      {
-      "name": "slot bail opening",
+      "name": "integrated slot bail internal",
       "mm": "3.5 × 5.0"
      }
     ],
@@ -325,8 +322,8 @@
     "plating": "",
     "stones": [
      {
-      "type": "black spinel",
-      "cut": "round",
+      "type": "natural black spinel",
+      "cut": "round brilliant",
       "mm": "1.0",
       "count": 1
      }
@@ -334,22 +331,24 @@
     "findings": [
      {
       "name": "integrated slot bail",
-      "spec": "internal opening 3.5 × 5.0 mm, same metal"
+      "spec": "same metal · internal 3.5 × 5.0 mm · no jump ring"
      }
     ],
     "weight_g": {
      "min": 4.5,
      "max": 6.5
     },
+    "weight_basis": "One pendant only · chain not included · optional stone and color inlay excluded",
     "process": [
-     "single body casting or CNC",
-     "press fit color inlay enamel or PVD within central channel",
-     "flush set stone",
-     "satin linear grain finish low gloss",
-     "edge softening and deburring",
+     "single-body precision casting or CNC machining",
+     "satin linear grain finish low gloss across body and bail",
+     "edge softening with R0.6 fillets",
+     "flush setting seat for 1.0 mm stone centered in channel",
+     "press-fit color inlay enamel or PVD under 15 percent visible area",
+     "rear keel shaping on back for anti-rotation balance",
      "micro engraving on back under 1 mm"
     ],
-    "note": "Metal grade chosen as 316L stainless steel based on prompt options and is an assumption. Stone is optional per prompt. Color exists only as a narrow enamel or PVD infill inside the central channel under fifteen percent of visible area. Mass is balanced below the bail and a shallow rear keel is included to resist rotation. No screws. User tool free and jeweler serviceable. Finishes are specified to be repeatable to support the stated price target.",
+    "note": "Metal standard chosen as 316L based on the prompt’s neutral satin steel option and price target · inferred choice. Stone is optional per prompt; build supports zero or one stone flush set. No screws; user tool-free and jeweler-serviceable as described.",
     "cached": false
    }
   },
@@ -381,7 +380,7 @@
       "mm": "2.3"
      },
      {
-      "name": "minimum wall thickness",
+      "name": "minimum wall",
       "mm": "1.6"
      },
      {
@@ -397,11 +396,11 @@
       "mm": "0.3~0.5"
      }
     ],
-    "metal": "925",
+    "metal": "316L stainless steel",
     "plating": "",
     "stones": [
      {
-      "type": "CZ",
+      "type": "lab-grown clear stone",
       "cut": "round brilliant flush-set",
       "mm": "1.2",
       "count": 1
@@ -409,20 +408,18 @@
     ],
     "findings": [],
     "weight_g": {
-     "min": 4.5,
-     "max": 7
+     "min": 5,
+     "max": 6.5
     },
+    "weight_basis": "one ring basis · metal only · ceramic or enamel infill and any stone excluded",
     "process": [
-     "one-piece band by casting or CNC machining",
-     "precision milling of 2.0 x 0.6 mm central channel",
-     "edge softening to 0.3~0.5 mm radius",
-     "satin or matte finishing with consistent linear grain",
-     "press-fit ceramic or enamel infill in matte charcoal or ultramarine under 15 percent area",
-     "flush setting of 1.2 mm clear lab stone at center with no prongs",
-     "internal marks under 1 mm height",
-     "final matte finishing and quality control"
+     "satin brushing with consistent grain",
+     "press-fit ceramic or enamel infill in channel · matte charcoal or ultramarine",
+     "flush setting for 1.2 mm stone · no prongs",
+     "softened edges and deburring",
+     "interior marking under 1 mm high"
     ],
-    "note": "Metal set to 925 sterling silver inferred from the prompt wording matte silver; this is an assumption. The optional clear lab stone is specified here as CZ for a clear lab option; stone type is inferred. Color is only a thin infill within the channel under 15 percent area in matte charcoal or ultramarine ceramic or enamel. One-piece band with press-fit infill and no visible fasteners, designed to be jeweler-serviceable. Weight estimated for a typical unisex ring size; actual weight varies with finger size.",
+    "note": "Metal choice inferred from prompt options and set to 316L stainless steel to match satin stainless steel · this is a best-guess selection. Color infill is a thin insert within the channel under 15 percent area as specified. Stone is optional per prompt. One-piece band with no visible fasteners, jeweler-serviceable. The design avoids glossy, glitter, ornate, antique, vintage, baroque, boho, gem heavy, rose gold, oversized logo as specified.",
     "cached": false
    }
   },
@@ -458,16 +455,16 @@
       "mm": "1.5"
      },
      {
-      "name": "inlay pocket depth",
+      "name": "inlay size option A",
+      "mm": "3 × 3"
+     },
+     {
+      "name": "inlay size option B",
+      "mm": "6 × 2"
+     },
+     {
+      "name": "pocket depth for inlay",
       "mm": "0.4"
-     },
-     {
-      "name": "band width",
-      "mm": "12.0"
-     },
-     {
-      "name": "total length",
-      "mm": "180"
      }
     ],
     "metal": "316L stainless steel",
@@ -475,39 +472,36 @@
     "stones": [],
     "findings": [
      {
-      "name": "low‑profile right‑angle hinges",
-      "spec": "matte finish, geometry per prompt, material matched to adjacent links"
+      "name": "right-angle hinges",
+      "spec": "low-profile, 316L stainless steel outer spans with Grade 5 titanium inner interface"
      },
      {
-      "name": "flush hinge pins",
-      "spec": "1.5 mm, flush to surface, 316L on outer spans and Grade 5 titanium where skin‑touching, matte"
+      "name": "hinge pins",
+      "spec": "flush pins 1.5 mm, stainless steel"
      },
      {
       "name": "hidden box clasp",
-      "spec": "integrated on underside, skin‑touching parts in Grade 5 titanium, matte"
+      "spec": "integrated underside, Grade 5 titanium inner components"
      },
      {
-      "name": "push‑button release",
-      "spec": "edge‑actuated, invisible from front, Grade 5 titanium, matte"
-     },
-     {
-      "name": "accent inlay",
-      "spec": "one flush 3.0 mm square or 6×2 mm line, matte cobalt blue ceramic or enamel, seated in 0.4 mm deep pocket with crisp walls"
+      "name": "push-button release",
+      "spec": "edge-actuated, concealed from front view"
      }
     ],
     "weight_g": {
      "min": 12,
-     "max": 18
+     "max": 20
     },
+    "weight_basis": "One bracelet standard inner circumference 170 mm including integrated box clasp and hinges, ceramic or enamel inlay excluded",
     "process": [
-     "CNC milling of 316L body links and Grade 5 titanium inner cuff and clasp",
-     "0.3 mm micro‑chamfering on all exposed edges",
-     "Bead‑blasting to uniform matte on all metal surfaces",
-     "Precision hinge fitting with flush 1.5 mm pins",
-     "Setting the ceramic or enamel inlay flush within 0.4 mm pockets",
-     "Final assembly and functional testing of hidden box clasp and push‑button"
+     "precision machining and milling of segmented band in 1 to 2.5 rectangles with one-third offset rhythm",
+     "micro-chamfering on all edges",
+     "bead blasting matte finish on 316L steel outer spans",
+     "matte finishing on Grade 5 titanium inner cuff and clasp surfaces",
+     "pocket milling 0.4 mm deep with crisp walls for flush inlay",
+     "flush-setting of matte cobalt blue ceramic or enamel accent under ten percent of visible area"
     ],
-    "note": "Dimensions were filled with standard values. Mixed metals are specified in the prompt; metal field lists the primary body alloy only, chosen as 316L stainless steel based on the outer spans description and noted as an assumption. All surfaces to remain fully matte as stated in the prompt; no plating. No gemstones per prompt.",
+    "note": "Dimensions are filled with standard values. Mixed metals per prompt: outer spans in 316L stainless steel and all skin-touching inner cuff and clasp in Grade 5 titanium. Metal field lists the primary body alloy for costing comparability. No plating; fully matte surfaces as specified. No gemstones; geometry-only design with optional ceramic or enamel inlay.",
     "cached": false
    }
   },
@@ -532,7 +526,7 @@
     "dims": [
      {
       "name": "center plaque",
-      "mm": "24 × 8"
+      "mm": "24×8"
      },
      {
       "name": "wall thickness",
@@ -551,7 +545,7 @@
       "mm": "0.5"
      },
      {
-      "name": "overall bracelet length",
+      "name": "total length",
       "mm": "180"
      }
     ],
@@ -559,38 +553,39 @@
     "plating": "",
     "stones": [
      {
-      "type": "lab stone",
-      "cut": "",
+      "type": "lab-grown stone",
+      "cut": "round",
       "mm": "1.3",
       "count": 1
      }
     ],
     "findings": [
      {
-      "name": "low-profile box clasp with thumb tab (EU standard)",
-      "spec": "316L steel"
+      "name": "box clasp",
+      "spec": "EU-standard low-profile box clasp with thumb tab, tool-free serviceable"
      },
      {
-      "name": "captured spring pin",
-      "spec": "1.0 mm · steel"
+      "name": "spring pin",
+      "spec": "captured spring pin 1.0 mm"
      },
      {
-      "name": "slot bail on end link",
-      "spec": "1.8 mm · steel"
+      "name": "slot bail",
+      "spec": "discreet slot bail 1.8 mm at one end link"
      }
     ],
     "weight_g": {
-     "min": 8,
+     "min": 10,
      "max": 18
     },
+    "weight_basis": "One bracelet standard length 180 mm including center, side links and clasp, optional stone excluded",
     "process": [
-     "uniform linear brushing satin finish low sheen",
-     "matte enamel infill in channel under 15 percent visible area",
-     "flush setting for optional 1.3 mm stone",
-     "assembly with tool-free box clasp and captured spring pin",
-     "backside marks in shallow relief below 1 mm"
+     "uniform linear brushing",
+     "satin low-sheen finish",
+     "matte enamel infill in the channel",
+     "flush setting for 1.3 mm stone",
+     "marks on back only with relief below 1 mm"
     ],
-    "note": "Overall bracelet length is a standard value fill. Weight estimated from minimal steel construction center plaque, two side links, and clasp. All materials and finishes follow the prompt exactly; no plating. The stone is optional per prompt.",
+    "note": "Metal, finish, enamel, clasp type and stone option are taken directly from the prompt. Dimensions that were not provided were filled with standard values. No plating.",
     "cached": false
    }
   },
@@ -622,11 +617,11 @@
       "mm": "1.8~2.0"
      },
      {
-      "name": "inner diameter",
-      "mm": "18.0"
+      "name": "edge radius",
+      "mm": "0.15"
      },
      {
-      "name": "linear shuttle travel",
+      "name": "shuttle linear travel",
       "mm": "4.0"
      },
      {
@@ -634,8 +629,8 @@
       "mm": "0.1"
      },
      {
-      "name": "edge radius",
-      "mm": "0.15 R"
+      "name": "PTFE liner thickness",
+      "mm": "0.2"
      }
     ],
     "metal": "316L stainless steel",
@@ -643,29 +638,29 @@
     "stones": [],
     "findings": [
      {
-      "name": "PTFE liners",
-      "spec": "0.2 mm thickness"
+      "name": "micro screws",
+      "spec": "two internal hex-drive screws, stainless steel"
      },
      {
-      "name": "micro screws",
-      "spec": "two pieces, internal hex, stainless steel, hidden on inside of shank"
+      "name": "liners",
+      "spec": "PTFE liners 0.2 mm each side"
      }
     ],
     "weight_g": {
-     "min": 5.5,
+     "min": 5,
      "max": 7
     },
+    "weight_basis": "single ring basis, shuttle and guide structure included, screws and liners excluded",
     "process": [
-     "CNC milling of body and shuttle in 316L",
-     "Bead-blast matte finish",
-     "Dry-film graphite coating on guide interfaces",
-     "Install PTFE liners 0.2 mm",
-     "Blue enamel line 0.5 mm on shuttle",
-     "Deburr and soften edges to R0.15 while keeping crisp geometry",
-     "Assemble with hidden micro screws",
-     "Functional check for silent motion and seamless bar silhouette at rest"
+     "CNC milling",
+     "bead blasting fully matte",
+     "edge deburr to R0.15",
+     "install PTFE liners",
+     "dry-film graphite coat on sliding surfaces",
+     "blue enamel line 0.5 mm on shuttle",
+     "hidden screw assembly inside shank"
     ],
-    "note": "Dimensions were filled with standard values. Weight estimated from 316L and stated dimensions. No gemstones per prompt. Metal and finish follow the prompt exactly.",
+    "note": "No gemstones as specified. Plating not applied. Weight estimated from 316L body volume for unisex sizes.",
     "cached": false
    }
   },
@@ -697,12 +692,8 @@
       "mm": "1.6~1.8"
      },
      {
-      "name": "top module length",
-      "mm": "20"
-     },
-     {
-      "name": "top module height",
-      "mm": "3.2"
+      "name": "top module",
+      "mm": "20 x 3.2"
      },
      {
       "name": "slot width",
@@ -711,6 +702,10 @@
      {
       "name": "edge radius",
       "mm": "0.2~0.3"
+     },
+     {
+      "name": "inner circumference",
+      "mm": "170~190"
      }
     ],
     "metal": "316L stainless steel",
@@ -718,33 +713,33 @@
     "stones": [],
     "findings": [
      {
-      "name": "micro Torx screws",
-      "spec": "stainless steel hidden fasteners on the back"
+      "name": "slide-lock clasp",
+      "spec": "316L stainless steel, low-profile flush type"
      },
      {
-      "name": "slide-lock clasp",
-      "spec": "low-profile flush clasp on underside, stainless steel"
+      "name": "hidden fasteners",
+      "spec": "micro Torx screws, stainless steel"
      },
      {
       "name": "liners",
-      "spec": "PTFE and POM with dry-film coat, silent no-rattle interface"
+      "spec": "PTFE and POM with dry-film coat"
      }
     ],
     "weight_g": {
-     "min": 12,
-     "max": 18
+     "min": 10,
+     "max": 16
     },
+    "weight_basis": "One bracelet basis, excluding slide-lock clasp, liners and micro Torx screws",
     "process": [
-     "CNC machining for bangle and shuttle",
-     "Stamping where suitable for cost targets",
-     "Bead blasting for uniform matte finish",
-     "Edge deburring and forming 0.2~0.3 mm radius",
-     "Blue enamel inlay 0.5 mm line in shuttle",
-     "Dry-film coating application on liners",
-     "Assembly with micro Torx screws and slide-lock clasp",
-     "Functional QC for smooth 6 mm shuttle travel and no rattle"
+     "CNC machining or stamping to production-realistic geometry",
+     "bead-blasted matte finish on all visible faces",
+     "edge break and radius to 0.2~0.3 mm, deburr and clean",
+     "blue enamel line infill in shuttle about 0.5 mm and cure",
+     "dry-film coat applied to liners",
+     "assembly with hidden micro Torx screws",
+     "functional check for silent shuttle travel of 6 mm"
     ],
-    "note": "All specs follow the prompt including 316L matte bead-blasted body, no gemstones, and a single 0.5 mm blue enamel line. Weight is estimated from stainless volume and typical bangle size steps to meet the stated cost target and low-profile build. Size steps and inner circumference are design-dependent and not detailed in the prompt.",
+    "note": "Metal follows prompt. No gemstones per prompt. Dimensions include a standard inner circumference for unisex size steps. Dimensions are filled with standard values where not specified.",
     "cached": false
    }
   },
@@ -768,28 +763,28 @@
    "spec": {
     "dims": [
      {
-      "name": "overall body",
-      "mm": "30×6×3.5"
+      "name": "body length",
+      "mm": "30"
      },
      {
-      "name": "slot width",
-      "mm": "1.0"
+      "name": "body width",
+      "mm": "6"
      },
      {
-      "name": "minimum wall at slot",
-      "mm": "1.2"
+      "name": "body thickness",
+      "mm": "3.5"
      },
      {
-      "name": "enamel groove",
-      "mm": "0.25"
+      "name": "slot width · min wall",
+      "mm": "1.0 · 1.2"
      },
      {
       "name": "shuttle travel",
       "mm": "4"
      },
      {
-      "name": "bail channel for chain",
-      "mm": "1.4"
+      "name": "enamel groove width",
+      "mm": "0.25"
      }
     ],
     "metal": "316L stainless steel",
@@ -797,32 +792,33 @@
     "stones": [],
     "findings": [
      {
-      "name": "integrated rectangular bail with dual-channel anti-rotation",
-      "spec": "fits 1.4 mm matte box chain"
+      "name": "integrated rectangular bail",
+      "spec": "dual-channel anti-rotation for 1.4 mm matte box chain"
      },
      {
-      "name": "screws",
-      "spec": "two M1.2 Torx T4, stainless, hidden on back"
+      "name": "hidden screws",
+      "spec": "two M1.2 Torx T4 on back"
      },
      {
-      "name": "PTFE liners",
-      "spec": "0.1 mm per side, low-friction"
+      "name": "liners",
+      "spec": "PTFE 0.1 mm per side with dry-film lubricant"
      }
     ],
     "weight_g": {
-     "min": 4.2,
-     "max": 5.2
+     "min": 4.5,
+     "max": 6
     },
+    "weight_basis": "one pendant only · chain not included",
     "process": [
-     "CNC machining in 316L stainless steel",
-     "Deburr and edge break to specified geometry",
-     "Fine glass-bead matte blast finish",
-     "Machine enamel groove and fill with ultramarine enamel then cure",
-     "Install PTFE liners and apply dry-film lubricant",
-     "Assemble shuttle and secure with two M1.2 Torx T4 screws on back",
-     "Functional test for 4 mm travel without rattle"
+     "CNC machining of 316L body and shuttle",
+     "fine glass-bead matte blast overall",
+     "edge break to R0.2 mm",
+     "cut and fill ultramarine enamel groove 0.25 mm then cure",
+     "install PTFE liners and apply dry-film lubricant for no rattle",
+     "tap and assemble with hidden M1.2 Torx T4 screws on back",
+     "QC for 4 mm shuttle travel and forward-facing anti-rotation alignment"
     ],
-    "note": "No stones by design. No plating. Chain is not included and pendant is sized to run correctly on a 1.4 mm matte box chain. All specifications are transcribed directly from the provided prompt without redesign.",
+    "note": "All metal, finish, and components follow the prompt. No plating. No stones. Weight estimated from the 30 × 6 × 3.5 mm 316L body minus slot volume and including shuttle, screws, and integrated bail. Chain is not included.",
     "cached": false
    }
   }

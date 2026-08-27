@@ -123,39 +123,41 @@
       "mm": "1.4"
      },
      {
-      "name": "edge radius on outside edges",
+      "name": "outside edge radius",
       "mm": "~0.25"
      },
      {
-      "name": "micro enamel inlay recess depth",
-      "mm": "0.3"
+      "name": "overall profile height",
+      "mm": "<3.0"
      }
     ],
     "metal": "brass",
-    "plating": "clear sealed brass · satin-brushed planes · micro-blasted recesses",
+    "plating": "",
     "stones": [
      {
       "type": "recycled glass",
-      "cut": "round flush-set dot",
+      "cut": "",
       "mm": "1.2",
       "count": 1
      }
     ],
     "findings": [],
     "weight_g": {
-     "min": 4,
+     "min": 3.5,
      "max": 5.5
     },
+    "weight_basis": "one ring basis, assumed size US 7 comfort fit, recycled-glass dot and clear sealant excluded",
     "process": [
-     "CAD modeling of repeating three-level step motif covering ~70 percent circumference",
-     "casting in brass",
-     "CNC or hand inside chamfer and comfort-fit inner curve",
-     "satin brushing on primary planes",
-     "micro blasting on recessed areas for contrast",
-     "flush setting of 1.2 mm recycled-glass dot",
-     "clear sealing of brass surface"
+     "CNC milling and engraving of repeating three-level step rhythm wrapping ~70 percent of circumference with narrow window channels",
+     "satin-brushed planes",
+     "micro-blasted recesses for darker contrast",
+     "comfort-fit inner curve",
+     "inside chamfer for finger stability",
+     "flush setting for 1.2 mm recycled-glass dot",
+     "optional micro enamel inlays recessed 0.3 mm deep",
+     "clear seal on untreated warm brass"
     ],
-    "note": "",
+    "note": "Metal spec set to brass inferred from warm untreated brass with clear seal. Ring size assumed US 7 for weight estimation. Dimensions were filled with standard values only where missing; all other dimensions follow the prompt exactly. Optional enamel not included in weight.",
     "cached": false
    }
   },
@@ -195,12 +197,12 @@
       "mm": "0.3"
      },
      {
-      "name": "minimum wall thickness",
-      "mm": "1.2~1.5"
-     },
-     {
       "name": "recess depth",
       "mm": "0.6~0.8"
+     },
+     {
+      "name": "min wall thickness",
+      "mm": "1.2~1.5"
      }
     ],
     "metal": "brass",
@@ -208,30 +210,32 @@
     "stones": [
      {
       "type": "recycled glass",
-      "cut": "round flush-set",
+      "cut": "round",
       "mm": "1.2",
       "count": 1
      }
     ],
     "findings": [
      {
-      "name": "twin hidden bails",
-      "spec": "milled slots 1.5 mm for 1.2~1.5 mm cable chain, anti-rotation layout"
+      "name": "bails",
+      "spec": "twin hidden bails milled into top step, 1.5 mm slots, fits 1.2~1.5 mm cable chain"
      }
     ],
     "weight_g": {
-     "min": 3.5,
+     "min": 4,
      "max": 5.5
     },
+    "weight_basis": "pendant only, no chain",
     "process": [
-     "CNC milling of stepped motif and twin hidden bails",
      "directional brushing on planes",
      "fine bead blasting on recessed tiers",
-     "edge easing to 0.3 mm radius",
-     "clear seal coat to preserve brass color",
-     "flush setting of 1.2 mm recycled-glass dot or 0.6 mm enamel line in lowest recess"
+     "clear sealing to preserve raw brass color",
+     "edges eased to 0.3 mm radius for comfort and crisp highlights",
+     "flush setting for the recycled glass accent",
+     "optional enamel line 0.6 mm in the lowest recess",
+     "anti-rotation chain connection via twin hidden bails milled into top step"
     ],
-    "note": "Master metal is warm raw brass, clear sealed per prompt, with no plating. Accent is either one 1.2 mm recycled-glass flush-set dot centered on the middle step or a 0.6 mm enamel line in the lowest recess, with no multi-prong settings. Weight estimated from 20 x 13 x approximately 2.7 mm profile with recessed tiers. Metal alloy specification is inferred as brass based on the prompt.",
+    "note": "Metal grade is assumed as generic brass based on the prompt’s warm raw brass wording. Accent rule offers either one 1.2 mm recycled-glass flush-set dot centered on the middle step or a 0.6 mm enamel line in the lowest recess as specified in the prompt.",
     "cached": false
    }
   },
@@ -267,37 +271,39 @@
       "mm": "1.6"
      },
      {
-      "name": "apex thickened section",
+      "name": "apex thickness",
       "mm": "1.8"
      },
      {
-      "name": "recessed seat depth for enamel dot",
-      "mm": "0.9"
+      "name": "micro‑chamfer",
+      "mm": "0.15~0.2"
      },
      {
-      "name": "inner diameter (assumed US 7)",
-      "mm": "17.3"
+      "name": "chevron front span",
+      "mm": "<9"
      }
     ],
     "metal": "brass",
-    "plating": "clear lacquer topcoat 0.5~1.0 micrometer; satin planes with polished edges",
+    "plating": "",
     "stones": [],
     "findings": [],
     "weight_g": {
-     "min": 2.5,
-     "max": 4
+     "min": 2,
+     "max": 3.5
     },
+    "weight_basis": "single ring basis · size US 7 equivalent · enamel excluded",
     "process": [
-     "single-piece laser-cut blank",
-     "precision forming and bending",
+     "single‑piece laser‑cut blank",
+     "formed and bent shank",
      "minimal solder with one laser seam",
-     "micro-chamfers 0.15~0.2 mm and comfort-fit interior",
-     "satin finish planes with polished edges",
-     "recessed enamel dot set flush",
-     "clear lacquer coating"
+     "satin planes",
+     "polished edges",
+     "comfort‑fit inner profile",
+     "0.9 mm recessed seat for enamel dot · flush",
+     "clear lacquer topcoat"
     ],
-    "note": "Metal is listed as brass and is an informed assumption based on the prompt’s warm brass alloy phrasing. No stones are used; one midnight-blue enamel dot is recessed and flush. Chevron span kept under 9 mm per prompt. Ring size is not specified, so inner diameter is filled with a standard size for estimation; dimensions are partly filled with standard values. Weight range estimated from dimensions and brass density.",
-    "cached": false
+    "note": "Metal grade assumed from the prompt wording warm brass alloy. Dimensions are filled with standard values for size reference where unspecified, and weight is estimated on a US 7 sample.",
+    "cached": true
    }
   },
   {
@@ -320,7 +326,7 @@
    "spec": {
     "dims": [
      {
-      "name": "total height",
+      "name": "overall height",
       "mm": "~22"
      },
      {
@@ -328,19 +334,19 @@
       "mm": "1.2~1.4"
      },
      {
-      "name": "overall width",
-      "mm": "~18"
+      "name": "max width",
+      "mm": "~16"
      },
      {
-      "name": "arm width",
-      "mm": "~2.2"
+      "name": "eyelet inner diameter",
+      "mm": "~1.5"
      }
     ],
     "metal": "C260 brass",
-    "plating": "clear lacquer seal",
+    "plating": "",
     "stones": [
      {
-      "type": "Black spinel",
+      "type": "black spinel",
       "cut": "round",
       "mm": "1.0",
       "count": 1
@@ -349,24 +355,25 @@
     "findings": [
      {
       "name": "twin hidden shoulder eyelets",
-      "spec": "integral C260 brass, anti-rotation, no bail"
+      "spec": "integrated C260 brass, internal ID ~1.5 mm"
      }
     ],
     "weight_g": {
-     "min": 1,
-     "max": 2.5
+     "min": 2,
+     "max": 4
     },
+    "weight_basis": "one pendant only, no chain; stone and integrated eyelets included",
     "process": [
      "laser cutting",
      "press bending",
      "micro chamfering",
-     "satin finish on planes",
+     "satin finish on main planes",
      "mirror polish on bevels",
-     "flush setting for 1.0 mm stone",
+     "flush setting for stone",
      "minimal soldering",
-     "clear lacquer coating"
+     "clear lacquer sealing"
     ],
-    "note": "Some dimensions are filled with standard values. No prongs per prompt. Chain not included. Target cost under 1000 THB per prompt.",
+    "note": "Dimensions not provided were filled with standard values for width and eyelet ID. Height and thickness follow the prompt. No prongs per prompt. Clear lacquer is a sealant, not plating.",
     "cached": false
    }
   }
