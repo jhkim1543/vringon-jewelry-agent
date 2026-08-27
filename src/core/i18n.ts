@@ -1368,4 +1368,7 @@ const KO: Record<string, string> = {
   'Above market': '시장 상단 밖',
   'Below market': '시장 하단 밖',
   'Calculation basis is folded here to fit one page. The full breakdown is on screen.': '한 장에 맞추려고 계산 근거는 접었습니다. 전체 내역은 화면에서 볼 수 있습니다.',
+  'Collected price distribution': '수집된 가격 분포',
+  'Median by brand': '브랜드별 중앙값',
+  'quartiles': '하위 25 / 50 / 75%',
 }

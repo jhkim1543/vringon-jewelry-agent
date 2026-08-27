@@ -6,7 +6,7 @@ import { t, tf } from '../core/i18n'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { DesignPair, MakeSpec, PromptDirection, RunState, Stage } from '../core/types'
 import { TechPack } from './TechPack'
-import { estimateCost, marketBand } from '../core/cost'
+import { estimateCost, marketBand, priceStats } from '../core/cost'
 import type { MarketBand } from '../core/cost'
 import {
   BASIS_LABEL, GENDER_LABEL, ITEM_LABEL, MODE_LABEL, STAGE_LABELS, VARIANT_LABEL,
@@ -42,6 +42,39 @@ function Bars({ rows }: { rows: { label: string; n: number }[] }) {
           <b>{r.n}</b>
         </div>
       ))}
+    </div>
+  )
+}
+
+/** 수집 가격 분포 · 눈금은 로그다. 등간격으로 자르면 11달러와 5136달러가 한 칸에 들어가
+ *  76건 중 64건이 첫 칸에 몰린다 — 그런 그래프는 아무것도 말해 주지 않는다. */
+function PriceDist({ s }: { s: NonNullable<ReturnType<typeof priceStats>> }) {
+  const usd = (n: number) => `$${n < 10 ? n.toFixed(1) : Math.round(n)}`
+  const max = Math.max(1, ...s.bins.map(b => b.n))
+  return (
+    <div className="pdist">
+      <div className="pd-head">
+        <b>{t('Collected price distribution')}</b>
+        <span className="hint">
+          {t('n =')} {s.n}
+          {s.skipped ? ` · ${s.skipped} ${t('skipped for unknown currency')}` : ''}
+          {' · '}{t('quartiles')} {usd(s.band.p25)} / {usd(s.band.p50)} / {usd(s.band.p75)}
+        </span>
+      </div>
+      <div className="bars">
+        {s.bins.map((b, i) => (
+          <div className="bar-row" key={i}>
+            <span className="bar-l">{usd(b.from)}–{usd(b.to)}</span>
+            <span className="bar-track"><i style={{ width: `${(b.n / max) * 100}%` }} /></span>
+            <b>{b.n}</b>
+          </div>
+        ))}
+      </div>
+      {!!s.byGroup.length && (
+        <p className="hint pd-groups">
+          {t('Median by brand')} · {s.byGroup.slice(0, 8).map(g => `${g.name} ${usd(g.median)} (${g.n})`).join(' · ')}
+        </p>
+      )}
     </div>
   )
 }
@@ -113,6 +146,11 @@ export default function RunView({ st, progress, onOpenBoard, onPairUpdate, onSco
   const tkDeck = useMemo(() => techPackDeckHtml(st), [st.pairs])
   // 같은 실행에서 모은 실제 판매가 · 원가가 시장 어디에 앉는지 견주는 데 쓴다
   const market = useMemo(() => marketBand((st.shops ?? []).flatMap(x => x.items)), [st.shops])
+  // 수집한 값을 직접 센 가격 분포 · "비중과 히스토그램을 달라" 가 되풀이된 요구였다.
+  // 모델에게 세어 달라고 하면 "많이 보인다" 가 돌아온다.
+  const prices = useMemo(
+    () => priceStats([...(st.crawl ?? []).flatMap(c => c.items), ...(st.shops ?? []).flatMap(x => x.items)]),
+    [st.crawl, st.shops])
 
   const p = st.params
   const pairsDone = st.pairs.filter(x => x.versions.length > 0).length
@@ -232,6 +270,7 @@ export default function RunView({ st, progress, onOpenBoard, onPairUpdate, onSco
               {p.mode === 'collection' && <div><b>{st.sets?.length ?? 0}</b><span>{t('Sets')}</span></div>}
             </div>
             {hubRows.length > 0 && <Bars rows={hubRows} />}
+            {prices && <PriceDist s={prices} />}
             <p className="hint">{t('These numbers are counted from what was actually collected. None of this is generated art.')}</p>
           </div>
         </section>

@@ -438,3 +438,70 @@ export function placeInMarket(retail: [number, number], m: MarketBand): MarketVe
   if (mid > m.p75) return 'above'
   return 'inside'
 }
+
+// ── 수집 가격 분포 ───────────────────────────────────────────────────
+// "상위 비중과 가격 히스토그램을 달라" 는 요구가 되풀이됐다. 모델에게 세어 달라고 하면
+// "많이 보인다" 가 돌아온다 — 세는 것은 코드가 할 일이다.
+// 원가 엔진과 같은 원칙: 수집된 값에서 계산만 하고, 못 세는 것은 안 세었다고 말한다.
+
+export interface PriceBin { from: number; to: number; n: number }
+export interface PriceStats {
+  n: number
+  skipped: number
+  min: number
+  max: number
+  band: MarketBand
+  bins: PriceBin[]
+  /** 브랜드·샵별 중앙값 · 표본 3개 미만은 넣지 않는다 */
+  byGroup: Array<{ name: string; n: number; median: number }>
+}
+
+/** 수집된 제품에서 가격 분포를 낸다 · 달러로 맞춘 뒤 센다 */
+export function priceStats(
+  items: Array<{ price?: number; currency?: string; brand?: string; shopName?: string }>,
+  bins = 6,
+): PriceStats | null {
+  const rows: Array<{ usd: number; group: string }> = []
+  let skipped = 0
+  for (const it of items ?? []) {
+    const p = Number(it.price) || 0
+    const fx = FX_PER_USD[currencyCode(it.currency)]
+    if (p <= 0) continue
+    if (!fx) { skipped++; continue }
+    rows.push({ usd: p / fx, group: it.brand || it.shopName || '' })
+  }
+  const band = marketBand(items)
+  if (!band || rows.length < 5) return null
+
+  const usd = rows.map(r => r.usd).sort((a, b) => a - b)
+  const min = usd[0], max = usd[usd.length - 1]
+  // 로그 눈금으로 나눈다. 등간격으로 자르면 11달러부터 5136달러까지가 한 구간에 들어가
+  // 76건 중 64건이 첫 칸에 몰린다 — 그런 그래프는 아무것도 말해 주지 않는다.
+  // 주얼리 가격은 몇 배씩 뛰지 몇 달러씩 뛰지 않는다.
+  const lo = Math.log(Math.max(1, min)), hi = Math.log(Math.max(min + 1, max))
+  const step = (hi - lo) / bins
+  const out: PriceBin[] = Array.from({ length: bins }, (_, i) => ({
+    from: Math.exp(lo + step * i), to: Math.exp(lo + step * (i + 1)), n: 0,
+  }))
+  out[bins - 1].to = max
+  for (const v of usd) {
+    const i = Math.min(bins - 1, Math.max(0, Math.floor((Math.log(Math.max(1, v)) - lo) / step)))
+    out[i].n++
+  }
+
+  const groups = new Map<string, number[]>()
+  for (const r of rows) {
+    if (!r.group) continue
+    if (!groups.has(r.group)) groups.set(r.group, [])
+    groups.get(r.group)!.push(r.usd)
+  }
+  const byGroup = [...groups.entries()]
+    .filter(([, v]) => v.length >= 3)
+    .map(([name, v]) => {
+      const s = [...v].sort((a, b) => a - b)
+      return { name, n: s.length, median: s[Math.floor(s.length / 2)] }
+    })
+    .sort((a, b) => b.n - a.n)
+
+  return { n: rows.length, skipped, min, max, band, bins: out, byGroup }
+}

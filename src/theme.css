@@ -2487,3 +2487,7 @@ input.bframe-t { border-bottom: 1px solid var(--accent); color: var(--text); }
 .tp-verdict.inside b { background: color-mix(in srgb, var(--ok) 18%, transparent); color: var(--ok); }
 .tp-verdict.over b, .tp-verdict.under b { background: color-mix(in srgb, var(--warn) 18%, transparent); color: var(--warn); }
 .tp-basis { margin: -2px 0 8px; font-size: 11px; }
+.pdist { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
+.pd-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
+.pd-head b { font-size: 12px; }
+.pd-groups { margin-top: 8px; line-height: 1.6; }

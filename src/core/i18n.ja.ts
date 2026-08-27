@@ -1300,4 +1300,7 @@ export const JA: Record<string, string> = {
   'Above market': '市場上限より上',
   'Below market': '市場下限より下',
   'Calculation basis is folded here to fit one page. The full breakdown is on screen.': '1ページに収めるため計算根拠は折りたたみました。全内訳は画面で確認できます。',
+  'Collected price distribution': '収集した価格分布',
+  'Median by brand': 'ブランド別中央値',
+  'quartiles': '下位 25 / 50 / 75%',
 }
