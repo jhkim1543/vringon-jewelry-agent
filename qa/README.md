@@ -17,3 +17,19 @@ GPT·Gemini 로 만들고, 그 사람들이 고른 설정 그대로 파이프라
 - 채점·토론 결과는 `.personaqa/` 로 나간다 (gitignore)
 
 제품 데모로 쓰는 샘플은 `src/samples/sample_*.json` 여섯 개뿐이다.
+
+## 사진은 추적하지 않는다
+
+`public/samples/` 에는 실행마다 생성 이미지가 쌓인다. 실측으로 디스크에 1227장이
+있었는데 데모가 실제로 쓰는 것은 95장뿐이었고, 234장은 QA 실행본이, 나머지 898장은
+아무 데서도 참조하지 않는 취소·실패 실행의 찌꺼기였다.
+
+그래서 `public/samples/*` 는 gitignore 하고, `demo_images.txt` 에 적힌 95장만
+강제로 추적한다. 데모 샘플을 새로 구우면 그 목록을 다시 만들어야 한다:
+
+```
+python -c "import io,glob,re;d=set();[d.update(re.findall(r'/samples/([0-9a-f]{16,}\.\w+)',io.open(f,encoding='utf-8').read())) for f in glob.glob('src/samples/sample_*.json')];io.open('demo_images.txt','w',encoding='utf-8',newline='\n').write('\n'.join(sorted(d))+'\n')"
+```
+
+`qa/samples/*.json` 이 가리키는 사진은 저장소에 없다. QA 기록은 수치와 판정을 보는
+것이지 사진을 다시 보는 것이 아니고, 416MB 를 히스토리에 넣을 값어치가 없다.
