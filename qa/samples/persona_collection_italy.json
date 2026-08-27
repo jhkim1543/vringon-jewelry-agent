@@ -106,7 +106,74 @@
      "at": "2026-08-26T14:30:18.091Z"
     }
    ],
-   "feature": "Micro hoop da 13 mm in oro giallo 18K con ear jacket disco satinato martellato intercambiabile, perno 0,9 mm e tolleranze serrate per stabilità silenziosa e comfort."
+   "feature": "Micro hoop da 13 mm in oro giallo 18K con ear jacket disco satinato martellato intercambiabile, perno 0,9 mm e tolleranze serrate per stabilità silenziosa e comfort.",
+   "spec": {
+    "dims": [
+     {
+      "name": "diametro micro hoop",
+      "mm": "13"
+     },
+     {
+      "name": "diametro ear jacket disco modulare",
+      "mm": "16~18"
+     },
+     {
+      "name": "spessore parete",
+      "mm": "1,2~1,4"
+     },
+     {
+      "name": "perno",
+      "mm": "0,9"
+     },
+     {
+      "name": "foro ovale ear jacket",
+      "mm": "1,0×1,6"
+     },
+     {
+      "name": "micro raggiatura spigoli",
+      "mm": "R0,15~0,2"
+     }
+    ],
+    "metal": "18K oro giallo",
+    "plating": "",
+    "stones": [
+     {
+      "type": "diamante",
+      "cut": "",
+      "mm": "1,1",
+      "count": 1
+     }
+    ],
+    "findings": [
+     {
+      "name": "perno",
+      "spec": "0,9 mm in oro 18K con tolleranze serrate su perno e sede per viaggi"
+     },
+     {
+      "name": "farfallina di sicurezza",
+      "spec": "oro 18K, accoppiamento stabile e antigioco"
+     },
+     {
+      "name": "ear jacket disco modulare",
+      "spec": "foro ovale invisibile 1,0×1,6 mm, stabilità senza giochi"
+     }
+    ],
+    "weight_g": {
+     "min": 2.8,
+     "max": 3.7
+    },
+    "weight_basis": "per orecchino completo di ear jacket e chiusura, pietre escluse",
+    "process": [
+     "finitura satinata martellata uniforme",
+     "microsabbiatura antiscivolo sui contatti",
+     "incasso a filo per micro diamante 1,1 mm quando presente",
+     "micro raggiatura spigoli R0,15~0,2 mm",
+     "controllo qualità in luce naturale e artificiale",
+     "tolleranze serrate su perno e sede"
+    ],
+    "note": "Pietra opzionale come da prompt: nessuna pietra oppure 1 micro diamante 1,1 mm incassato a filo. Dotazione prevista: seconda coppia di chiusure e panno satin con istruzioni di manutenzione minima. Evitare bling eccessivo, pavé integrale, perni 0,7 mm, placcature, loghi evidenti, mix con rodio nero o oro rosé, peso oltre 4 g e rumori meccanici.",
+    "cached": false
+   }
   },
   {
    "id": "D01",
@@ -124,7 +191,69 @@
      "at": "2026-08-26T14:30:26.670Z"
     }
    ],
-   "feature": "Pendenti compatti Riva Aurea in oro giallo 18K riciclato con alternanza martellato/satinato, perno 0,9 mm La Poussette, incassi a filo o castoncino pieno senza griffe, peso bilanciato vicino al lobo per comfort e stabilità."
+   "feature": "Pendenti compatti Riva Aurea in oro giallo 18K riciclato con alternanza martellato/satinato, perno 0,9 mm La Poussette, incassi a filo o castoncino pieno senza griffe, peso bilanciato vicino al lobo per comfort e stabilità.",
+   "spec": {
+    "dims": [
+     {
+      "name": "lunghezza pendente",
+      "mm": "18~22"
+     },
+     {
+      "name": "spessore reale",
+      "mm": "0,6~0,8"
+     },
+     {
+      "name": "perno",
+      "mm": "0,9"
+     },
+     {
+      "name": "raggio bordo arrotondato",
+      "mm": "0,2"
+     }
+    ],
+    "metal": "oro giallo 18K riciclato",
+    "plating": "",
+    "stones": [
+     {
+      "type": "diamante naturale",
+      "cut": "rotondo brillante",
+      "mm": "1,3~1,5",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "perno",
+      "spec": "oro giallo 18K, diametro 0,9 mm, test trazione 2 kg"
+     },
+     {
+      "name": "chiusura La Poussette",
+      "spec": "oro giallo 18K"
+     },
+     {
+      "name": "anellini e giunti chiusi",
+      "spec": "brasatura ad alta temperatura, completamente chiusi"
+     },
+     {
+      "name": "cerniere",
+      "spec": "doppia brasatura"
+     }
+    ],
+    "weight_g": {
+     "min": 5,
+     "max": 9
+    },
+    "weight_basis": "per paio completo, include pendente e testina con chiusura La Poussette",
+    "process": [
+     "martellatura fine a fasce alternate",
+     "satinatura unidirezionale riparabile",
+     "micro sabbiatura sulle superfici a contatto",
+     "incassatura a filo oppure castoncino pieno senza griffe sporgenti",
+     "brasatura ad alta temperatura di giunti e anellini, doppia brasatura sulle cerniere"
+    ],
+    "note": "Brillanti rotondi G, H VS per lato, numero non specificato nel prompt. Massa raccolta vicino al lobo. Oro giallo 18K esplicitamente indicato come non aranciato. Pesi guida del prompt: pendente meno di 3,5 g per pezzo e testina meno di 2 g per pezzo; la stima di peso sopra è per il paio finito.",
+    "cached": true
+   }
   },
   {
    "id": "D03",
@@ -142,7 +271,63 @@
      "at": "2026-08-26T14:30:42.192Z"
     }
    ],
-   "feature": "Orecchini Piega Aurea in oro giallo 18K con pieghe sottili, creste martellate e piani satinati, punto luce singolo a incasso a filo opzionale e struttura a micro elasticità controllata che segue il lobo con bordi smussati e micro sabbiati."
+   "feature": "Orecchini Piega Aurea in oro giallo 18K con pieghe sottili, creste martellate e piani satinati, punto luce singolo a incasso a filo opzionale e struttura a micro elasticità controllata che segue il lobo con bordi smussati e micro sabbiati.",
+   "spec": {
+    "dims": [
+     {
+      "name": "Lunghezza totale",
+      "mm": "22"
+     },
+     {
+      "name": "Spessore reale della lamina",
+      "mm": "1.0~1.2"
+     },
+     {
+      "name": "Diametro del perno",
+      "mm": "0.8~0.9"
+     },
+     {
+      "name": "Lunghezza del perno",
+      "mm": "10~12"
+     },
+     {
+      "name": "Diamante punto luce a filo",
+      "mm": "1.3~1.5"
+     }
+    ],
+    "metal": "oro giallo 18K",
+    "plating": "",
+    "stones": [
+     {
+      "type": "diamante",
+      "cut": "",
+      "mm": "1.3~1.5",
+      "count": 2
+     }
+    ],
+    "findings": [
+     {
+      "name": "chiusura a perno",
+      "spec": "oro giallo 18K, accoppiamento a pressione controllata"
+     }
+    ],
+    "weight_g": {
+     "min": 2,
+     "max": 2.9
+    },
+    "weight_basis": "per lato, variante senza pietre, perno incluso",
+    "process": [
+     "taglio laser per coerenza di coppia",
+     "rifinitura manuale",
+     "smussatura di tutti i bordi a contatto",
+     "micro sabbiatura ai punti di contatto",
+     "satinatura su piani ampi",
+     "martellatura fine per creste",
+     "test di vibrazione e cammino simulato 5 km"
+    ],
+    "note": "Due varianti come da testo originale senza pietre oppure con singolo punto luce a filo per lato. Le dimensioni del perno sono state compilate con valori standard. Il conteggio diamanti è per un paio una pietra per lato. Nessuna placcatura, solo finiture di superficie come da processo.",
+    "cached": true
+   }
   }
  ],
  "searches": 15,

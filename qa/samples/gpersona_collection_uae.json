@@ -231,7 +231,83 @@
      "at": "2026-08-26T23:18:04.716Z"
     }
    ],
-   "feature": "Concealed motif-lock clasp and a two-step pavé fade from a platinum‑lipped emerald center keep the collarbone‑sitting necklace visually light yet securely balanced."
+   "feature": "Concealed motif-lock clasp and a two-step pavé fade from a platinum‑lipped emerald center keep the collarbone‑sitting necklace visually light yet securely balanced.",
+   "spec": {
+    "dims": [
+     {
+      "name": "structural wall thickness",
+      "mm": "1.2~1.4"
+     },
+     {
+      "name": "platinum lip around emeralds",
+      "mm": "0.4"
+     },
+     {
+      "name": "pavé diamond sizes center to edge",
+      "mm": "1.3~1.0"
+     },
+     {
+      "name": "bead seat depth",
+      "mm": "0.25"
+     },
+     {
+      "name": "rounded box chain thickness",
+      "mm": "1.3"
+     },
+     {
+      "name": "chain length",
+      "mm": "450"
+     }
+    ],
+    "metal": "Pt950",
+    "plating": "",
+    "stones": [
+     {
+      "type": "diamond",
+      "cut": "round brilliant pavé",
+      "mm": "1.3",
+      "count": 0
+     },
+     {
+      "type": "diamond",
+      "cut": "round brilliant pavé",
+      "mm": "1.0",
+      "count": 0
+     },
+     {
+      "type": "emerald",
+      "cut": "faceted",
+      "mm": "unspecified",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "rounded box chain",
+      "spec": "Pt950 · 1.3 mm"
+     },
+     {
+      "name": "integrated motif clasp with soft tactile click",
+      "spec": "Pt950"
+     }
+    ],
+    "weight_g": {
+     "min": 9,
+     "max": 14
+    },
+    "weight_basis": "One necklace including 45 cm chain, stones and clasp",
+    "process": [
+     "precision bead setting",
+     "two step pavé gradient from center to edge",
+     "micro grain setting for snag safe beads",
+     "mirror polished crown planes",
+     "satin finished recesses",
+     "concealed clasp fit and click mechanism",
+     "negative space wells preserved in scrollwork"
+    ],
+    "note": "Dimensions were filled with standard values. Stone counts and exact emerald sizes were not specified in the prompt, so counts are left unspecified. No plating is applied since the piece is platinum with finish specified as polish and satin.",
+    "cached": false
+   }
   },
   {
    "id": "D02",
@@ -249,7 +325,64 @@
      "at": "2026-08-26T23:18:06.884Z"
     }
    ],
-   "feature": "Platinum open‑scroll earrings with preserved light wells, a continuous bead‑set diamond rim, uniformly lipped emerald centers, one‑step pavé grading, and a hidden omega‑back closure that clicks softly."
+   "feature": "Platinum open‑scroll earrings with preserved light wells, a continuous bead‑set diamond rim, uniformly lipped emerald centers, one‑step pavé grading, and a hidden omega‑back closure that clicks softly.",
+   "spec": {
+    "dims": [
+     {
+      "name": "overall length",
+      "mm": "~32"
+     },
+     {
+      "name": "openwork wall thickness min",
+      "mm": "1.2"
+     },
+     {
+      "name": "bead‑set melee diameter",
+      "mm": "0.9~1.1"
+     },
+     {
+      "name": "platinum lip framing center stone",
+      "mm": "0.5"
+     }
+    ],
+    "metal": "Platinum 950",
+    "plating": "",
+    "stones": [
+     {
+      "type": "diamond",
+      "cut": "round brilliant melee, bead set continuous rim",
+      "mm": "0.9~1.1",
+      "count": 0
+     },
+     {
+      "type": "natural emerald",
+      "cut": "oval, matched pair center stones",
+      "mm": "",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "Omega backs with hidden hinge and catch",
+      "spec": "Platinum 950, integrated within repeating motif"
+     }
+    ],
+    "weight_g": {
+     "min": 7.5,
+     "max": 8.9
+    },
+    "weight_basis": "per earring one piece, omega back included",
+    "process": [
+     "mirror polish",
+     "pavé bead setting with one‑step density grading from center to edge",
+     "openwork construction with preserved negative space light wells",
+     "secure bead setting for melee",
+     "integrated hinge and catch tuned for soft tactile click",
+     "uniform 0.5 mm lip framing the center emeralds"
+    ],
+    "note": "Left‑right mirrored pair as described. Metal and finish follow prompt exactly with no mixed tones. Weight estimated to remain under 9 g per earring as specified. Stone counts and exact center‑stone dimensions were not provided in the prompt and are therefore left unspecified.",
+    "cached": false
+   }
   },
   {
    "id": "D03",
@@ -267,7 +400,80 @@
      "at": "2026-08-26T23:19:12.747Z"
     }
    ],
-   "feature": "Hinged Pt950 platinum bangle with Arabesque Opus scrolls, platinum-lipped emeralds, a bead-set diamond rim, one-step graded pavé, preserved light wells, and a hidden repeating-motif clasp that closes with a soft click."
+   "feature": "Hinged Pt950 platinum bangle with Arabesque Opus scrolls, platinum-lipped emeralds, a bead-set diamond rim, one-step graded pavé, preserved light wells, and a hidden repeating-motif clasp that closes with a soft click.",
+   "spec": {
+    "dims": [
+     {
+      "name": "inner circumference",
+      "mm": "165~170"
+     },
+     {
+      "name": "bangle inner diameter (approx)",
+      "mm": "56~58"
+     },
+     {
+      "name": "band width",
+      "mm": "6.0~7.5"
+     },
+     {
+      "name": "wall thickness",
+      "mm": "1.2~1.5"
+     },
+     {
+      "name": "platinum lip around emeralds",
+      "mm": "~0.35"
+     },
+     {
+      "name": "stone seat depth for pavé and micro-prong",
+      "mm": "~0.3"
+     }
+    ],
+    "metal": "Pt950",
+    "plating": "",
+    "stones": [
+     {
+      "type": "diamond",
+      "cut": "round pavé, bead set and micro-prong",
+      "mm": "",
+      "count": 0
+     },
+     {
+      "type": "emerald",
+      "cut": "faceted, bezel-lipped",
+      "mm": "",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "hinges",
+      "spec": "Pt950 articulated links for wrist movement"
+     },
+     {
+      "name": "hidden tongue-box clasp",
+      "spec": "Pt950 integrated within a motif, soft click lock"
+     }
+    ],
+    "weight_g": {
+     "min": 16,
+     "max": 28
+    },
+    "weight_basis": "One piece basis hinged bangle body only, stones and findings excluded",
+    "process": [
+     "high polish platinum finish",
+     "preserved negative-space light wells within scrolls",
+     "comfort edges throughout",
+     "manufacturable walls held at 1.2~1.5 mm",
+     "emeralds encircled by uniform platinum lip ~0.35 mm, no enamel",
+     "one-step pavé density richer at center easing toward edges",
+     "secure bead and micro-prong settings with seats ~0.3 mm",
+     "under-galleries fully polished",
+     "repeating motifs articulated for wrist movement",
+     "hidden tongue-box clasp integrated in motif with soft click lock"
+    ],
+    "note": "Dimensions filled with standard values. 치수는 표준값으로 채웠습니다. Stone sizes and counts were not specified in the prompt, so they are left unspecified rather than invented.",
+    "cached": false
+   }
   },
   {
    "id": "D04",
@@ -285,7 +491,59 @@
      "at": "2026-08-26T23:19:30.722Z"
     }
    ],
-   "feature": "Triple split shoulders flow into a softly tapering arabesque master scroll with preserved light wells, a uniform platinum lip around rich emeralds, and a one‑step pavé gradient to a bead‑set diamond rim."
+   "feature": "Triple split shoulders flow into a softly tapering arabesque master scroll with preserved light wells, a uniform platinum lip around rich emeralds, and a one‑step pavé gradient to a bead‑set diamond rim.",
+   "spec": {
+    "dims": [
+     {
+      "name": "comfort-fit shank width",
+      "mm": "2.0~2.2"
+     },
+     {
+      "name": "structural wall thickness minimum",
+      "mm": "≥1.6"
+     },
+     {
+      "name": "head height",
+      "mm": "under 7.0"
+     },
+     {
+      "name": "collet lip for emeralds",
+      "mm": "0.4"
+     }
+    ],
+    "metal": "Platinum Pt950 (high polish)",
+    "plating": "",
+    "stones": [
+     {
+      "type": "Natural diamond F, G VS micro pavé",
+      "cut": "round brilliant",
+      "mm": "graded mix, not specified in prompt",
+      "count": 0
+     },
+     {
+      "type": "Natural emerald, medium, deep green, collet-set",
+      "cut": "",
+      "mm": "not specified in prompt",
+      "count": 0
+     }
+    ],
+    "findings": [],
+    "weight_g": {
+     "min": 5,
+     "max": 7
+    },
+    "weight_basis": "one ring basis · stones excluded",
+    "process": [
+     "high polish finish",
+     "micro pavé setting for F, G VS diamonds with density graded higher at scroll nexus and lighter toward shoulders",
+     "secure bead setting for bead-set diamond rim",
+     "collet setting for emeralds with uniform 0.4 mm platinum lip",
+     "smooth undergallery finishing for stability and snag resistance",
+     "preserved negative-space light wells"
+    ],
+    "note": "Metal alloy standard chosen as Pt950 based on high-polish platinum description; this is an assumption. Weight estimated for a single ring in Pt950 at standard size. 치수는 표준값으로 채웠습니다",
+    "cached": false
+   }
   },
   {
    "id": "D05",
@@ -303,7 +561,78 @@
      "at": "2026-08-26T23:20:13.475Z"
     }
    ],
-   "feature": "Twin leaf-loop anti-rotation bail and light-well openwork frame a pear emerald with an even platinum lip and a single-step pavé gradient resolving into a continuous bead-set diamond rim."
+   "feature": "Twin leaf-loop anti-rotation bail and light-well openwork frame a pear emerald with an even platinum lip and a single-step pavé gradient resolving into a continuous bead-set diamond rim.",
+   "spec": {
+    "dims": [
+     {
+      "name": "overall height including bail",
+      "mm": "28~32"
+     },
+     {
+      "name": "max width",
+      "mm": "16~20"
+     },
+     {
+      "name": "body thickness",
+      "mm": "3.0~3.5"
+     },
+     {
+      "name": "minimum wall",
+      "mm": "1.2"
+     },
+     {
+      "name": "rim thickness",
+      "mm": "1.3"
+     },
+     {
+      "name": "emerald framing lip",
+      "mm": "0.35"
+     },
+     {
+      "name": "bail clearance",
+      "mm": "4 x 8"
+     }
+    ],
+    "metal": "Platinum 950",
+    "plating": "",
+    "stones": [
+     {
+      "type": "emerald",
+      "cut": "pear",
+      "mm": "",
+      "count": 1
+     },
+     {
+      "type": "natural diamond F, G VS melee",
+      "cut": "round brilliant",
+      "mm": "1.0~1.2",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "integrated twin leaf-loop bail",
+      "spec": "clearance 4 x 8 mm, anti-rotation saddle, fits 2.5~3.5 mm chains"
+     }
+    ],
+    "weight_g": {
+     "min": 3.5,
+     "max": 5.5
+    },
+    "weight_basis": "one pendant only, chain not included",
+    "process": [
+     "mirror polish",
+     "bead setting two beads per stone",
+     "bright-cut borders",
+     "single-step pavé gradient from center toward edge",
+     "open gallery",
+     "internal cross-bracing",
+     "preserved negative spaces as light wells",
+     "anti-rotation saddle at bail"
+    ],
+    "note": "Dimensions are filled with standard values. Diamond melee count is not specified in the prompt, so count is left unspecified. Chain is shown as a 1.8 mm hint only and is not included.",
+    "cached": false
+   }
   },
   {
    "id": "D07",
@@ -321,7 +650,67 @@
      "at": "2026-08-26T23:21:07.911Z"
     }
    ],
-   "feature": "Platinum stud-drop earrings repeating the pointed-ovoid master motif with mirror-bright frames, satin interiors, bezel-set emerald rhythm nodes, and uniform micro-pavé halos, stabilized by omega backs."
+   "feature": "Platinum stud-drop earrings repeating the pointed-ovoid master motif with mirror-bright frames, satin interiors, bezel-set emerald rhythm nodes, and uniform micro-pavé halos, stabilized by omega backs.",
+   "spec": {
+    "dims": [
+     {
+      "name": "overall drop length",
+      "mm": "20"
+     },
+     {
+      "name": "frame wall thickness",
+      "mm": "1.3~1.5"
+     },
+     {
+      "name": "pavé seat depth",
+      "mm": "0.35"
+     },
+     {
+      "name": "post diameter",
+      "mm": "0.9"
+     }
+    ],
+    "metal": "Platinum 950",
+    "plating": "",
+    "stones": [
+     {
+      "type": "emerald",
+      "cut": "",
+      "mm": "~1.7",
+      "count": 2
+     },
+     {
+      "type": "natural diamond",
+      "cut": "",
+      "mm": "0.9",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "post",
+      "spec": "Pt950 · 0.9 mm diameter"
+     },
+     {
+      "name": "omega back",
+      "spec": "Pt950 · stabilized"
+     }
+    ],
+    "weight_g": {
+     "min": 4.2,
+     "max": 5
+    },
+    "weight_basis": "per side basis · findings and stones excluded",
+    "process": [
+     "mirror-bright high polish borders",
+     "concave satin interior finish",
+     "low-profile bezel setting for emeralds",
+     "uniform micro pavé setting for diamonds with ~0.18 mm beads",
+     "bead tips softened for snag-free wear"
+    ],
+    "note": "Dimensions and features taken directly from the prompt. Diamond color and clarity F to G VS as specified. Weight estimated from 20 mm drop, Pt950, and wall thickness; kept below the stated under 5.5 g per side when including findings. Count for diamonds not specified in prompt, so left unspecified.",
+    "cached": false
+   }
   },
   {
    "id": "D06",
@@ -339,7 +728,76 @@
      "at": "2026-08-26T23:21:16.029Z"
     }
    ],
-   "feature": "Detachable pointed‑ovoid centerpiece with mirror‑bright platinum borders, satin interiors, emerald node accents, and a single consistent‑grain micro‑pavé halo, balanced to sit flat and compatible with silk cords and fine chains via one anti‑twist bail."
+   "feature": "Detachable pointed‑ovoid centerpiece with mirror‑bright platinum borders, satin interiors, emerald node accents, and a single consistent‑grain micro‑pavé halo, balanced to sit flat and compatible with silk cords and fine chains via one anti‑twist bail.",
+   "spec": {
+    "dims": [
+     {
+      "name": "chain length",
+      "mm": "406~457"
+     },
+     {
+      "name": "average wall thickness",
+      "mm": "1.4"
+     },
+     {
+      "name": "minimum under‑gallery thickness",
+      "mm": "0.6"
+     },
+     {
+      "name": "bail oval ID",
+      "mm": "4.5 x 2.8"
+     },
+     {
+      "name": "cord compatibility",
+      "mm": "2.5"
+     },
+     {
+      "name": "chain gauge",
+      "mm": "1.0~1.2"
+     }
+    ],
+    "metal": "950 platinum",
+    "plating": "",
+    "stones": [
+     {
+      "type": "natural emerald",
+      "cut": "round brilliant",
+      "mm": "",
+      "count": 0
+     },
+     {
+      "type": "natural diamond DEF",
+      "cut": "round brilliant micro pavé",
+      "mm": "1.0",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "bail with anti‑twist keeper",
+      "spec": "oval ID 4.5 x 2.8 mm, fits 2.5 mm silk cords and fine chains"
+     },
+     {
+      "name": "adjustable chain",
+      "spec": "16~18 in total length, fine chain"
+     }
+    ],
+    "weight_g": {
+     "min": 9,
+     "max": 15
+    },
+    "weight_basis": "complete necklace including detachable center pendant and adjustable chain",
+    "process": [
+     "mirror‑bright polish on borders",
+     "satin interior finish",
+     "radiused edges",
+     "secure pavé seats",
+     "micro pavé halo with uniform four‑grain beads",
+     "softened bead grains"
+    ],
+    "note": "Dimensions are filled with standard values where the prompt did not specify. No plating is applied. Stones are listed per prompt; emerald accent sizes and counts are not given in the prompt and are therefore left unspecified.",
+    "cached": false
+   }
   },
   {
    "id": "D08",
@@ -357,7 +815,75 @@
      "at": "2026-08-26T23:21:50.021Z"
     }
    ],
-   "feature": "Articulated platinum bracelet of repeating pointed ovoid modules with mirror-bright borders, satin interiors, emerald-accented interlocks, and uniform micro-pavé halos for consistent brilliance."
+   "feature": "Articulated platinum bracelet of repeating pointed ovoid modules with mirror-bright borders, satin interiors, emerald-accented interlocks, and uniform micro-pavé halos for consistent brilliance.",
+   "spec": {
+    "dims": [
+     {
+      "name": "overall length",
+      "mm": "180"
+     },
+     {
+      "name": "overall height",
+      "mm": "≤4.5"
+     },
+     {
+      "name": "border wall thickness",
+      "mm": "1.2~1.5"
+     },
+     {
+      "name": "pavé under‑gallery clearance",
+      "mm": "0.5"
+     },
+     {
+      "name": "hinge pin diameter",
+      "mm": "0.8"
+     },
+     {
+      "name": "articulation gap",
+      "mm": "0.3~0.4"
+     }
+    ],
+    "metal": "Platinum PT950",
+    "plating": "",
+    "stones": [
+     {
+      "type": "natural emerald",
+      "cut": "round",
+      "mm": "1.5",
+      "count": 0
+     },
+     {
+      "type": "natural diamond F, G VS",
+      "cut": "micro pavé round",
+      "mm": "1.0",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "concealed box clasp with twin side pushers and internal safety",
+      "spec": "Platinum PT950"
+     },
+     {
+      "name": "hinge pins with bushings",
+      "spec": "Platinum PT950 pins with integrated bushings"
+     }
+    ],
+    "weight_g": {
+     "min": 12,
+     "max": 18
+    },
+    "weight_basis": "one piece length 18.0 cm standard fit, includes articulated links and concealed clasp, excludes stones",
+    "process": [
+     "mirror‑bright high polish on borders",
+     "recessed satin interior finish",
+     "micro pavé setting with uniform 0.20 mm grain size",
+     "articulated link construction with bushings",
+     "underside comfort curve machining"
+    ],
+    "note": "Dimensions such as overall length are filled with standard values. Metal grade set to PT950 as a reasonable assumption from the prompt wording Platinum only. Stone counts are not specified in the prompt so left unspecified for costing and setout by layout at production.",
+    "cached": false
+   }
   },
   {
    "id": "D10",
@@ -375,7 +901,68 @@
      "at": "2026-08-26T23:22:51.967Z"
     }
    ],
-   "feature": "Detachable platinum pendant repeating the set’s pointed ovoid interlock, marked by emerald nodes and stabilized by a universal anti-rotation bail for both silk cords and fine chains."
+   "feature": "Detachable platinum pendant repeating the set’s pointed ovoid interlock, marked by emerald nodes and stabilized by a universal anti-rotation bail for both silk cords and fine chains.",
+   "spec": {
+    "dims": [
+     {
+      "name": "overall height",
+      "mm": "~26"
+     },
+     {
+      "name": "border wall thickness",
+      "mm": "1.2"
+     },
+     {
+      "name": "interior rib thickness",
+      "mm": "0.8"
+     },
+     {
+      "name": "comfort fillet radius",
+      "mm": "0.25"
+     },
+     {
+      "name": "bail inner oval ID",
+      "mm": "3.0 x 1.6"
+     }
+    ],
+    "metal": "Pt950 platinum",
+    "plating": "",
+    "stones": [
+     {
+      "type": "emerald",
+      "cut": "round brilliant",
+      "mm": "1.3",
+      "count": 0
+     },
+     {
+      "type": "diamond",
+      "cut": "round brilliant micro pavé F, G VS",
+      "mm": "1.0",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "detachable bail with hidden hinge",
+      "spec": "oval ID 3.0 x 1.6 mm with anti-rotation saddle · Pt950"
+     }
+    ],
+    "weight_g": {
+     "min": 3.5,
+     "max": 6
+    },
+    "weight_basis": "single pendant basis · bail included · chain excluded",
+    "process": [
+     "mirror-bright border polish",
+     "fine satin interior finish",
+     "micro pavé setting with ~0.15 mm grain beads",
+     "open gallery back",
+     "snag-free domed prongs and beads",
+     "comfort fillets on edges"
+    ],
+    "note": "All metal, finishes, stone sizes, and functional details were copied directly from the prompt. Diamond quality F, G VS and bead size ~0.15 mm are preserved as specified. Stone counts were not stated in the prompt, so counts are left unspecified. Weight is estimated for a Pt950 pendant of this scale and construction, bail included, chain excluded.",
+    "cached": false
+   }
   },
   {
    "id": "D11",
@@ -393,7 +980,76 @@
      "at": "2026-08-26T23:23:20.107Z"
     }
    ],
-   "feature": "A fluid single-stroke pendant with a proud-set pear emerald, graded diamond pave, knife-polished edges, and a concealed anti-rotation twin-anchor bail."
+   "feature": "A fluid single-stroke pendant with a proud-set pear emerald, graded diamond pave, knife-polished edges, and a concealed anti-rotation twin-anchor bail.",
+   "spec": {
+    "dims": [
+     {
+      "name": "Pendant height",
+      "mm": "~30"
+     },
+     {
+      "name": "Pendant width",
+      "mm": "~15"
+     },
+     {
+      "name": "Structural wall thickness",
+      "mm": "1.3~1.5"
+     },
+     {
+      "name": "Minimum rim around seats",
+      "mm": "0.9"
+     },
+     {
+      "name": "Pear emerald",
+      "mm": "~8 x ~6"
+     },
+     {
+      "name": "Chain length and thickness",
+      "mm": "420.0 x 1.0"
+     }
+    ],
+    "metal": "Platinum 950",
+    "plating": "",
+    "stones": [
+     {
+      "type": "emerald",
+      "cut": "pear",
+      "mm": "~8 x ~6",
+      "count": 1
+     },
+     {
+      "type": "natural diamond F-G VS",
+      "cut": "round brilliant micro pave",
+      "mm": "1.3~0.8",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "bail",
+      "spec": "Integrated fixed twin-anchor, articulation concealed beneath the diamond line, rotation preventing"
+     },
+     {
+      "name": "chain",
+      "spec": "Round cable 1.0 mm, 42 cm with 40 cm and 45 cm adjuster positions"
+     }
+    ],
+    "weight_g": {
+     "min": 8,
+     "max": 14
+    },
+    "weight_basis": "Pendant plus chain included 42 cm with 40 cm and 45 cm adjuster positions, gemstones excluded",
+    "process": [
+     "Knife-polished visible edges with softened arris",
+     "Satin finish on hidden gallery",
+     "Micro pave diamond setting graded dense at apex to sparse near tail",
+     "Rounded prong setting for pear emerald with ~0.8 mm claws",
+     "Emerald set to sit ~0.4 mm proud",
+     "Integrated twin-anchor bail construction"
+    ],
+    "note": "Chain material is assumed to match the body as Platinum 950 based on the prompt. Weight is estimated from pendant dimensions and a 1.0 mm platinum cable chain.",
+    "cached": false
+   }
   },
   {
    "id": "D09",
@@ -411,7 +1067,73 @@
      "at": "2026-08-26T23:23:50.450Z"
     }
    ],
-   "feature": "Interlocking pointed-ovoid platinum ring with mirror-bright borders, satin cores, and low-bezel emerald nodes kept under 6.8 mm rise for poised daily wear."
+   "feature": "Interlocking pointed-ovoid platinum ring with mirror-bright borders, satin cores, and low-bezel emerald nodes kept under 6.8 mm rise for poised daily wear.",
+   "spec": {
+    "dims": [
+     {
+      "name": "shank width",
+      "mm": "2.4"
+     },
+     {
+      "name": "shank thickness",
+      "mm": "1.8"
+     },
+     {
+      "name": "edge radius",
+      "mm": "0.3"
+     },
+     {
+      "name": "top gallery wall thickness",
+      "mm": "1.2"
+     },
+     {
+      "name": "pave seat thickness",
+      "mm": "0.45"
+     },
+     {
+      "name": "bezel wall thickness",
+      "mm": "0.6"
+     },
+     {
+      "name": "overall rise above finger max",
+      "mm": "6.8"
+     }
+    ],
+    "metal": "Pt950",
+    "plating": "",
+    "stones": [
+     {
+      "type": "emerald",
+      "cut": "",
+      "mm": "",
+      "count": 0
+     },
+     {
+      "type": "diamond F, G VS",
+      "cut": "",
+      "mm": "1.0",
+      "count": 0
+     }
+    ],
+    "findings": [],
+    "weight_g": {
+     "min": 4.5,
+     "max": 6
+    },
+    "weight_basis": "one ring basis, gemstones excluded",
+    "process": [
+     "mirror-bright high polish borders",
+     "satin interior finish",
+     "uniform micro pave halo with 1.0 mm diamonds on 0.20 mm grains",
+     "low bezel settings for calibrated emerald accents, color matched",
+     "comfort fit shank with 0.3 mm edge radii",
+     "under-gallery bridges to balance and prevent spin",
+     "protective rounded claws where required",
+     "overall rise limited to 6.8 mm"
+    ],
+    "note": "Fabricate in Pt950 only per prompt. Dimensions use standard defaults where unspecified. Stone counts are not specified in the prompt and are therefore left undefined.",
+    "cached": false
+   }
   },
   {
    "id": "D12",
@@ -429,7 +1151,80 @@
      "at": "2026-08-26T23:24:23.973Z"
     }
    ],
-   "feature": "A single-gesture calligraphic S-curve drop with proud-set emeralds, graded pavé, knife-polished edges, satin galleries, and a concealed hinge plus counterweight for poised, quiet motion."
+   "feature": "A single-gesture calligraphic S-curve drop with proud-set emeralds, graded pavé, knife-polished edges, satin galleries, and a concealed hinge plus counterweight for poised, quiet motion.",
+   "spec": {
+    "dims": [
+     {
+      "name": "overall drop length",
+      "mm": "under 38"
+     },
+     {
+      "name": "minimum wall thickness",
+      "mm": "1.2"
+     },
+     {
+      "name": "knife edge thickness",
+      "mm": "0.6"
+     },
+     {
+      "name": "pavé bead diameter",
+      "mm": "~0.28"
+     },
+     {
+      "name": "talon prong thickness",
+      "mm": "0.9"
+     }
+    ],
+    "metal": "Platinum 950",
+    "plating": "",
+    "stones": [
+     {
+      "type": "emerald",
+      "cut": "pear",
+      "mm": "~7x5",
+      "count": 2
+     },
+     {
+      "type": "white diamond",
+      "cut": "round micro-pavé",
+      "mm": "",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "concealed micro-hinge",
+      "spec": "located beneath a continuous diamond line"
+     },
+     {
+      "name": "talon prongs",
+      "spec": "four per emerald · 0.9 mm"
+     },
+     {
+      "name": "sculpted back plate",
+      "spec": "solid platinum back plate"
+     },
+     {
+      "name": "discreet counterweight",
+      "spec": "integrated for balanced swing"
+     }
+    ],
+    "weight_g": {
+     "min": 6,
+     "max": 10
+    },
+    "weight_basis": "per pair including emeralds, micro-pavé diamonds, hinge, back plate and counterweight",
+    "process": [
+     "micro-pavé diamond setting graded from dense to sparse toward the tail",
+     "knife polishing on visible ridgelines with a softened apex",
+     "pierced under-galleries with fine satin finish",
+     "prong setting using four talon prongs per emerald",
+     "assembly of concealed micro-hinge beneath continuous diamond line",
+     "sculpted back plate fabrication and balancing counterweight"
+    ],
+    "note": "Metal grade is inferred from the phrase bright platinum. Diamonds are specified only as white micro-pavé in the prompt, so size and count are not added. No plating is specified in the prompt.",
+    "cached": false
+   }
   },
   {
    "id": "D13",
@@ -447,7 +1242,89 @@
      "at": "2026-08-26T23:24:36.679Z"
     }
    ],
-   "feature": "An articulated, single-plane bracelet translating the Calligraphic Current into one flowing gesture, with emeralds set slightly proud, graded pavé, knife-polished edges over satin galleries, and mechanics hidden beneath a continuous diamond line."
+   "feature": "An articulated, single-plane bracelet translating the Calligraphic Current into one flowing gesture, with emeralds set slightly proud, graded pavé, knife-polished edges over satin galleries, and mechanics hidden beneath a continuous diamond line.",
+   "spec": {
+    "dims": [
+     {
+      "name": "wall thickness",
+      "mm": "1.2~1.4"
+     },
+     {
+      "name": "prong tip diameter",
+      "mm": "0.9"
+     },
+     {
+      "name": "bezel wall thickness",
+      "mm": "0.8~1.0"
+     },
+     {
+      "name": "under‑gallery thickness",
+      "mm": "0.8"
+     },
+     {
+      "name": "stone proud above settings",
+      "mm": "0.3~0.5"
+     },
+     {
+      "name": "overall length",
+      "mm": "175~180"
+     }
+    ],
+    "metal": "18K white gold",
+    "plating": "",
+    "stones": [
+     {
+      "type": "Emerald",
+      "cut": "graduated step‑cuts",
+      "mm": "",
+      "count": 0
+     },
+     {
+      "type": "Emerald",
+      "cut": "pear",
+      "mm": "",
+      "count": 0
+     },
+     {
+      "type": "Diamond",
+      "cut": "round brilliant pavé graded dense to sparse",
+      "mm": "",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "micro‑hinges",
+      "spec": "concealed, single‑plane articulation, 18K white gold"
+     },
+     {
+      "name": "flush box clasp",
+      "spec": "fully concealed beneath continuous diamond line, 18K white gold"
+     },
+     {
+      "name": "safety",
+      "spec": "none specified"
+     }
+    ],
+    "weight_g": {
+     "min": 10,
+     "max": 16
+    },
+    "weight_basis": "one bracelet standard length including hinges, clasp, and stones",
+    "process": [
+     "knife polish on visible edges",
+     "satin finish on hidden galleries",
+     "softly rounded inner edges for comfort",
+     "pavé setting graded from apex bright to tail sparse",
+     "prong setting with 0.9 mm tips",
+     "bezel setting 0.8~1.0 mm walls",
+     "assembly of single‑plane micro‑hinged articulation",
+     "integration of fully concealed flush box clasp",
+     "profile control to avoid snagging and keep low stable wrist height"
+    ],
+    "note": "Dimensions for overall length were filled with standard values. Counts and exact sizes of stones were not provided in the prompt so left unspecified without inventing numbers. Weight estimated from 18K white gold articulated build with given wall sections and stone presence.",
+    "cached": false
+   }
   },
   {
    "id": "D14",
@@ -465,7 +1342,70 @@
      "at": "2026-08-26T23:25:01.407Z"
     }
    ],
-   "feature": "A single calligraphic sweep ring with a proud emerald apex and graded diamond pavé, knife‑polished edges over satin galleries, stabilized by a low inner arch and comfort fit."
+   "feature": "A single calligraphic sweep ring with a proud emerald apex and graded diamond pavé, knife‑polished edges over satin galleries, stabilized by a low inner arch and comfort fit.",
+   "spec": {
+    "dims": [
+     {
+      "name": "shank width at base",
+      "mm": "1.8~2.0"
+     },
+     {
+      "name": "shank width at shoulders",
+      "mm": "2.3~2.6"
+     },
+     {
+      "name": "prong thickness",
+      "mm": "0.7"
+     },
+     {
+      "name": "pavé bead diameter",
+      "mm": "0.25"
+     },
+     {
+      "name": "stone seat depth",
+      "mm": "0.35"
+     },
+     {
+      "name": "emerald set proud of bezel",
+      "mm": "0.3~0.5"
+     }
+    ],
+    "metal": "18K white gold",
+    "plating": "",
+    "stones": [
+     {
+      "type": "Emerald",
+      "cut": "Step cut",
+      "mm": "not specified",
+      "count": 1
+     },
+     {
+      "type": "Diamond F, G VS",
+      "cut": "Round micro pavé",
+      "mm": "not specified",
+      "count": 0
+     }
+    ],
+    "findings": [],
+    "weight_g": {
+     "min": 2.8,
+     "max": 4.2
+    },
+    "weight_basis": "one ring standard size US 6 to 7 stones excluded",
+    "process": [
+     "knife polished visible edges with 0.15 mm safety break",
+     "hidden galleries in satin finish",
+     "fine talon prong setting for the emerald",
+     "micro pavé diamond setting grading from bright at apex to sparse near tail",
+     "low inner arch for stability",
+     "rounded inner comfort fit interior",
+     "protective under gallery rail",
+     "any sizing rail concealed beneath a diamond line",
+     "no exposed mechanics"
+    ],
+    "note": "Metal was offered as 18k white gold or platinum; chosen as 18K white gold as a reasonable assumption. Ring size not specified so dimensions and weight are based on standard ring size; measurements provided are only those stated in the prompt. Plating is none since finishes are achieved via polishing and satin texturing. Photography and avoid directives are excluded from manufacturing specs. Size related values not given in the prompt were left as not specified rather than invented. 치수는 표준값으로 채웠습니다.",
+    "cached": false
+   }
   },
   {
    "id": "D15",
@@ -483,7 +1423,73 @@
      "at": "2026-08-26T23:25:45.203Z"
     }
    ],
-   "feature": "Concealed twin bails beneath a diamond line keep the calligraphic pendant perfectly centered and rotation-free while preserving one continuous gesture."
+   "feature": "Concealed twin bails beneath a diamond line keep the calligraphic pendant perfectly centered and rotation-free while preserving one continuous gesture.",
+   "spec": {
+    "dims": [
+     {
+      "name": "overall height",
+      "mm": "25~30"
+     },
+     {
+      "name": "overall width",
+      "mm": "10~14"
+     },
+     {
+      "name": "wall thickness",
+      "mm": "1.2~1.6"
+     },
+     {
+      "name": "apex reinforcement thickness",
+      "mm": "1.8"
+     },
+     {
+      "name": "oval emerald size",
+      "mm": "7×5"
+     },
+     {
+      "name": "bezel lift above rim",
+      "mm": "0.3"
+     }
+    ],
+    "metal": "18K white gold",
+    "plating": "",
+    "stones": [
+     {
+      "type": "emerald",
+      "cut": "oval",
+      "mm": "7×5",
+      "count": 1
+     },
+     {
+      "type": "natural diamond",
+      "cut": "round brilliant",
+      "mm": "1.0~1.2",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "bails",
+      "spec": "twin concealed bails integrated in 18K white gold"
+     }
+    ],
+    "weight_g": {
+     "min": 3.8,
+     "max": 5
+    },
+    "weight_basis": "One pendant only, chain not included, stones weight excluded",
+    "process": [
+     "knife-polished visible edges",
+     "satin finish on hidden galleries",
+     "micro pavé with shared beads grading from apex to tail",
+     "bezel setting with stone lifted 0.3 mm proud",
+     "slightly convex back with piercings for cleaning and balance",
+     "soft edge radiusing to avoid snags",
+     "centered anti-rotation hang via twin concealed bails"
+    ],
+    "note": "Dimensions are filled with standard values for a pendant of this style.",
+    "cached": false
+   }
   },
   {
    "id": "D16",
@@ -501,7 +1507,74 @@
      "at": "2026-08-26T23:26:32.531Z"
     }
    ],
-   "feature": "A continuous river of buff-top emerald calibres flows across a bullnosed platinum collar into a mirror-backed central cabochon that stays perfectly balanced without rotation."
+   "feature": "A continuous river of buff-top emerald calibres flows across a bullnosed platinum collar into a mirror-backed central cabochon that stays perfectly balanced without rotation.",
+   "spec": {
+    "dims": [
+     {
+      "name": "chain length",
+      "mm": "420~450"
+     },
+     {
+      "name": "trace chain gauge",
+      "mm": "1.6"
+     },
+     {
+      "name": "bezel wall thickness",
+      "mm": "1.0~1.2"
+     },
+     {
+      "name": "bezel step",
+      "mm": "0.3"
+     },
+     {
+      "name": "center cabochon approx diameter",
+      "mm": "10.0"
+     }
+    ],
+    "metal": "Pt950",
+    "plating": "",
+    "stones": [
+     {
+      "type": "emerald",
+      "cut": "buff-top calibre, graduated, butt-jointed",
+      "mm": "",
+      "count": 0
+     },
+     {
+      "type": "emerald",
+      "cut": "cabochon center stone",
+      "mm": "~10.0",
+      "count": 1
+     }
+    ],
+    "findings": [
+     {
+      "name": "trace chain",
+      "spec": "Pt950, 42~45 cm, 1.6 mm gauge"
+     },
+     {
+      "name": "bail",
+      "spec": "hidden double-loop, Pt950, low center of gravity"
+     }
+    ],
+    "weight_g": {
+     "min": 9,
+     "max": 16
+    },
+    "weight_basis": "one piece basis including 42~45 cm Pt950 trace chain, stones excluded",
+    "process": [
+     "graduated bullnosed collar fabrication in Pt950",
+     "buff-top emerald calibres fitted with clean butt joints for continuous green read",
+     "bezel setting for all cabochons with 1.0~1.2 mm walls and 0.3 mm step",
+     "closed mirror back behind center cabochon to amplify glow",
+     "relief kept below nearest cabochon diameter",
+     "all inner corners radiused",
+     "alternating matte channels and selective gloss ridges, never full mirror",
+     "hidden double-loop bail integrated to prevent rotation"
+    ],
+    "note": "Dimensions are filled with standard values. Stone counts and most stone sizes are not specified in the prompt so only the center cabochon is approximated. Metal weight is estimated from alloy and dimensions, stones excluded.",
+    "cached": false
+   }
   },
   {
    "id": "D18",
@@ -519,7 +1592,80 @@
      "at": "2026-08-26T23:26:55.876Z"
     }
    ],
-   "feature": "A continuous river of buff-top emerald calibres flows between securely stepped bezel-set cabochon hubs, framed by softly bullnosed 950 platinum with rhythmic matte-and-gloss relief."
+   "feature": "A continuous river of buff-top emerald calibres flows between securely stepped bezel-set cabochon hubs, framed by softly bullnosed 950 platinum with rhythmic matte-and-gloss relief.",
+   "spec": {
+    "dims": [
+     {
+      "name": "bracelet length",
+      "mm": "170~180"
+     },
+     {
+      "name": "band width",
+      "mm": "8.0~12.0"
+     },
+     {
+      "name": "body thickness",
+      "mm": "2.5~3.2"
+     },
+     {
+      "name": "gallery wall thickness",
+      "mm": "1.2~1.5"
+     },
+     {
+      "name": "hinge pin diameter",
+      "mm": "0.8"
+     },
+     {
+      "name": "bezel lip thickness",
+      "mm": "0.85~1.0"
+     }
+    ],
+    "metal": "Platinum 950",
+    "plating": "",
+    "stones": [
+     {
+      "type": "Emerald",
+      "cut": "Cabochon",
+      "mm": "",
+      "count": 0
+     },
+     {
+      "type": "Emerald",
+      "cut": "Buff-top calibre",
+      "mm": "",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "Low-profile piano hinges",
+      "spec": "integrated between links"
+     },
+     {
+      "name": "Box clasp with twin side pushers",
+      "spec": "integrated clasp in Platinum 950"
+     },
+     {
+      "name": "Figure-eight safety",
+      "spec": "secondary safety latch"
+     }
+    ],
+    "weight_g": {
+     "min": 14,
+     "max": 20
+    },
+    "weight_basis": "One piece standard length 18 cm · stones excluded",
+    "process": [
+     "Articulated river-link construction",
+     "Bezel setting with protected inner step and 0.35 mm seat",
+     "Micro-chamfered edges",
+     "Satin planes framed by polished relief ribs",
+     "Soft bullnosed outer edges and interior comfort curve",
+     "Open galleries to reduce weight"
+    ],
+    "note": "Dimensions are filled with standard values. Relief height does not exceed the nearest cabochon diameter as specified in the prompt. No plating; finishes are satin and high polish as described.",
+    "cached": false
+   }
   },
   {
    "id": "D17",
@@ -537,7 +1683,81 @@
      "at": "2026-08-26T23:27:25.452Z"
     }
    ],
-   "feature": "A continuous river of buff-top emerald calibres flows from a bezel-set cabochon in alternating satin-and-gloss Pt950 with bullnosed edges and weight-balanced omega backs."
+   "feature": "A continuous river of buff-top emerald calibres flows from a bezel-set cabochon in alternating satin-and-gloss Pt950 with bullnosed edges and weight-balanced omega backs.",
+   "spec": {
+    "dims": [
+     {
+      "name": "overall length",
+      "mm": "30"
+     },
+     {
+      "name": "overall width",
+      "mm": "12"
+     },
+     {
+      "name": "structural wall thickness",
+      "mm": "1.2~1.5"
+     },
+     {
+      "name": "central bezel wall thickness",
+      "mm": "0.7~0.8"
+     },
+     {
+      "name": "central bezel rise above crown",
+      "mm": "1.0"
+     },
+     {
+      "name": "bezel inner step",
+      "mm": "0.3"
+     },
+     {
+      "name": "post diameter",
+      "mm": "0.9"
+     }
+    ],
+    "metal": "Pt950",
+    "plating": "",
+    "stones": [
+     {
+      "type": "emerald",
+      "cut": "cabochon",
+      "mm": "",
+      "count": 1
+     },
+     {
+      "type": "emerald",
+      "cut": "buff-top calibres",
+      "mm": "",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "post",
+      "spec": "Pt950 · 0.9 mm diameter"
+     },
+     {
+      "name": "hinged omega back",
+      "spec": "Pt950"
+     }
+    ],
+    "weight_g": {
+     "min": 5,
+     "max": 7
+    },
+    "weight_basis": "per side including post and hinged omega back",
+    "process": [
+     "alternating satin and gloss finishes in a regular rhythm",
+     "bezel setting for central cabochon with closed mirror back",
+     "calibre emerald setting with clean butt joints forming continuous arcs",
+     "bullnosed borders",
+     "open gallery construction to relieve weight",
+     "controlled swing engineered to hang parallel to the jawline",
+     "final hand polish on gloss areas, directional satin on matte runs"
+    ],
+    "note": "Relief does not exceed the diameter of the adjacent cabochon. No plating or coatings that yellow the platinum tone. Emerald enamel substitutes and excessive micro pave are intentionally avoided as specified.",
+    "cached": false
+   }
   },
   {
    "id": "D19",
@@ -555,7 +1775,68 @@
      "at": "2026-08-26T23:27:49.780Z"
     }
    ],
-   "feature": "A tapered platinum river-ring with a bezel-set emerald cabochon and buff-top calibre rivers, alternating matte/gloss relief and bullnosed comfort edges over an open gallery to hide weight."
+   "feature": "A tapered platinum river-ring with a bezel-set emerald cabochon and buff-top calibre rivers, alternating matte/gloss relief and bullnosed comfort edges over an open gallery to hide weight.",
+   "spec": {
+    "dims": [
+     {
+      "name": "Shank wall thickness",
+      "mm": "1.3~1.6"
+     },
+     {
+      "name": "Bezel floor thickness",
+      "mm": "1.0"
+     },
+     {
+      "name": "Inner step for bezel",
+      "mm": "0.25~0.30"
+     },
+     {
+      "name": "Bezel protective lip",
+      "mm": "0.8"
+     },
+     {
+      "name": "Shank width base to shoulder taper",
+      "mm": "2.5~4.5"
+     },
+     {
+      "name": "Comfort-fit inner radius (approx)",
+      "mm": "0.6~0.9"
+     }
+    ],
+    "metal": "Platinum PT950",
+    "plating": "",
+    "stones": [
+     {
+      "type": "Natural emerald",
+      "cut": "Round cabochon",
+      "mm": "6.0",
+      "count": 1
+     },
+     {
+      "type": "Natural emerald",
+      "cut": "Buff-top calibre",
+      "mm": "1.5×3.0",
+      "count": 16
+     }
+    ],
+    "findings": [],
+    "weight_g": {
+     "min": 5,
+     "max": 9
+    },
+    "weight_basis": "One ring, size US 6.5 equivalent, stones excluded",
+    "process": [
+     "Open galleries with tapered shank hiding weight",
+     "Bezel setting with inner step and protective lip",
+     "Polished micro-mirror flange under center cabochon",
+     "Prong-free settings only",
+     "Alternating finishes: satin-matte relief ribs and selective glossy ridges",
+     "All edges softly bullnosed",
+     "Comfort-fit interior"
+    ],
+    "note": "Dimensions are filled with standard values where the prompt did not specify exact sizes. Stone sizes and counts are estimated to match the described construction. Metal grade PT950 is an assumption based on the prompt specifying platinum without an alloy designation.",
+    "cached": false
+   }
   },
   {
    "id": "D21",
@@ -573,7 +1854,76 @@
      "at": "2026-08-26T23:28:55.191Z"
     }
    ],
-   "feature": "A gradient Mashrabiya lattice with bright-chamfered emerald windows is unified by a single diamond spine and secured by dual hidden lugs that prevent rotation."
+   "feature": "A gradient Mashrabiya lattice with bright-chamfered emerald windows is unified by a single diamond spine and secured by dual hidden lugs that prevent rotation.",
+   "spec": {
+    "dims": [
+     {
+      "name": "lattice rib thickness",
+      "mm": "1.0~1.2"
+     },
+     {
+      "name": "node thickening diameter",
+      "mm": "1.8~2.0"
+     },
+     {
+      "name": "outer rim round width",
+      "mm": "1.3"
+     },
+     {
+      "name": "micro-pavé diamond size",
+      "mm": "0.8~1.1"
+     },
+     {
+      "name": "bezel land around emerald apertures",
+      "mm": "0.7~0.8"
+     },
+     {
+      "name": "shared prong height",
+      "mm": "0.7"
+     }
+    ],
+    "metal": "18K yellow gold",
+    "plating": "",
+    "stones": [
+     {
+      "type": "diamond",
+      "cut": "",
+      "mm": "0.8~1.1",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "dual hidden side lugs",
+      "spec": "18K yellow gold"
+     },
+     {
+      "name": "rolo chain",
+      "spec": "18K yellow gold · 1.2 mm gauge · 42 cm length with 3 cm extender"
+     },
+     {
+      "name": "extender section",
+      "spec": "18K yellow gold · 3 cm"
+     }
+    ],
+    "weight_g": {
+     "min": 5,
+     "max": 9
+    },
+    "weight_basis": "chain included · 42 cm main length plus 3 cm extender",
+    "process": [
+     "casting",
+     "hard soldering",
+     "hand finishing",
+     "satin finish on lattice webs",
+     "mirror polish on chamfers nodes and rim",
+     "bright-polished 35-degree chamfers around green apertures",
+     "micro-pavé setting with shared prongs 0.7 mm high",
+     "open galleries to maximize light"
+    ],
+    "note": "Metal grade follows prompt. No plating. Emerald apertures are open-backed windows, not stones. Weight estimated from openwork 18K pendant and 1.2 mm rolo chain included.",
+    "cached": false
+   }
   },
   {
    "id": "D20",
@@ -591,7 +1941,72 @@
      "at": "2026-08-26T23:29:31.377Z"
     }
    ],
-   "feature": "A continuous river of butt-joined buff-top emerald calibres flanks a central bezel-set cabochon, framed by bullnosed platinum with alternating matte/gloss rhythm and a discreet anti-rotation double bail."
+   "feature": "A continuous river of butt-joined buff-top emerald calibres flanks a central bezel-set cabochon, framed by bullnosed platinum with alternating matte/gloss rhythm and a discreet anti-rotation double bail.",
+   "spec": {
+    "dims": [
+     {
+      "name": "overall height",
+      "mm": "22~26"
+     },
+     {
+      "name": "overall width",
+      "mm": "14~18"
+     },
+     {
+      "name": "overall thickness at highest relief",
+      "mm": "3.0~4.0"
+     },
+     {
+      "name": "bezel wall thickness",
+      "mm": "1.1~1.3"
+     },
+     {
+      "name": "bezel lip thickness",
+      "mm": "0.4~0.5"
+     },
+     {
+      "name": "bail inner clearance for chain",
+      "mm": "1.2~1.5"
+     }
+    ],
+    "metal": "950 platinum",
+    "plating": "",
+    "stones": [
+     {
+      "type": "emerald",
+      "cut": "cabochon",
+      "mm": "",
+      "count": 1
+     },
+     {
+      "type": "emerald",
+      "cut": "buff-top calibre",
+      "mm": "",
+      "count": 2
+     }
+    ],
+    "findings": [
+     {
+      "name": "integrated fixed double bail",
+      "spec": "platinum body, placed at 10 and 2 o'clock, fits 1.2~1.5 mm cable chain"
+     }
+    ],
+    "weight_g": {
+     "min": 4.5,
+     "max": 7
+    },
+    "weight_basis": "one pendant only, chain not included",
+    "process": [
+     "soft bullnose perimeter shaping",
+     "relief sculpting with alternating satin-matte runs and controlled gloss ribs",
+     "closed backplate mirror polish",
+     "bezel setting with inner security step",
+     "generous interior radiusing, minimum wall thickness 1.0 mm",
+     "final finishing with diffused gloss on ribs and satin matte on relieved fields"
+    ],
+    "note": "Dimensions were filled with standard values. Metal alloy grade is inferred from the prompt context. Exact count and sizes of buff-top emerald calibres are not specified in the prompt; count 2 is a placeholder to represent flanking stones.",
+    "cached": false
+   }
   },
   {
    "id": "D22",
@@ -609,7 +2024,71 @@
      "at": "2026-08-26T23:29:55.646Z"
     }
    ],
-   "feature": "Gradient mashrabiya lattice in 18K yellow gold with chamfer-framed, open-back emerald windows and a diamond spine, finished by a polished continuous rim for snag-free comfort."
+   "feature": "Gradient mashrabiya lattice in 18K yellow gold with chamfer-framed, open-back emerald windows and a diamond spine, finished by a polished continuous rim for snag-free comfort.",
+   "spec": {
+    "dims": [
+     {
+      "name": "overall length",
+      "mm": "38"
+     },
+     {
+      "name": "max width",
+      "mm": "14"
+     },
+     {
+      "name": "lattice rib thickness",
+      "mm": "1.0~1.2"
+     },
+     {
+      "name": "node thickness at intersections",
+      "mm": "1.4~1.6"
+     },
+     {
+      "name": "earpost diameter",
+      "mm": "0.9"
+     }
+    ],
+    "metal": "18K yellow gold",
+    "plating": "",
+    "stones": [
+     {
+      "type": "emerald",
+      "cut": "round",
+      "mm": "2.0~3.0",
+      "count": 0
+     },
+     {
+      "type": "diamond F, G VS",
+      "cut": "round brilliant pavé",
+      "mm": "0.8~1.0",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "earpost",
+      "spec": "18K yellow gold post 0.9 mm"
+     },
+     {
+      "name": "comfort back",
+      "spec": "large 18K yellow gold clutch"
+     }
+    ],
+    "weight_g": {
+     "min": 4,
+     "max": 5.8
+    },
+    "weight_basis": "per ear including post and comfort back",
+    "process": [
+     "bezel windows with bright polished chamfer and open backs for emerald apertures",
+     "fine satin finish on remaining gold surfaces",
+     "mirror polish on chamfers and continuous outer rim, snag free",
+     "pavé setting for diamonds forming a single spine line",
+     "left and right mirrored pair construction"
+    ],
+    "note": "",
+    "cached": false
+   }
   },
   {
    "id": "D24",
@@ -627,7 +2106,67 @@
      "at": "2026-08-26T23:30:51.837Z"
     }
    ],
-   "feature": "Gradient mashrabiya lattice with chamfer-framed emerald windows and a single diamond spine, finished by a mirrored under-gallery for light and stability in a comfort-fit 18K gold ring."
+   "feature": "Gradient mashrabiya lattice with chamfer-framed emerald windows and a single diamond spine, finished by a mirrored under-gallery for light and stability in a comfort-fit 18K gold ring.",
+   "spec": {
+    "dims": [
+     {
+      "name": "Lattice ribs thickness",
+      "mm": "1.0~1.2"
+     },
+     {
+      "name": "Structural node diameter",
+      "mm": "1.6~2.0"
+     },
+     {
+      "name": "Outer rim thickness",
+      "mm": "1.2~1.4"
+     },
+     {
+      "name": "Shank thickness, comfort-fit",
+      "mm": "2.0"
+     },
+     {
+      "name": "Micro pavé diamond size",
+      "mm": "1.0~1.2"
+     },
+     {
+      "name": "Emerald seat land",
+      "mm": "0.5"
+     }
+    ],
+    "metal": "18K yellow gold",
+    "plating": "",
+    "stones": [
+     {
+      "type": "Emerald",
+      "cut": "",
+      "mm": "",
+      "count": 0
+     },
+     {
+      "type": "Diamond",
+      "cut": "round brilliant micro pavé",
+      "mm": "1.0~1.2",
+      "count": 0
+     }
+    ],
+    "findings": [],
+    "weight_g": {
+     "min": 3,
+     "max": 5
+    },
+    "weight_basis": "One ring basis · stones excluded",
+    "process": [
+     "Satin finish on web surfaces",
+     "Mirror polish on chamfers and rim",
+     "Bright-polished chamfered bezels for emerald apertures",
+     "Micro pavé setting on a low shared-prong rail",
+     "Open under-gallery mirroring outer cell geometry",
+     "Comfort-fit shank with tapered balance"
+    ],
+    "note": "",
+    "cached": false
+   }
   },
   {
    "id": "D23",
@@ -645,7 +2184,74 @@
      "at": "2026-08-26T23:30:55.034Z"
     }
    ],
-   "feature": "A concealed rim‑integrated clasp and gradient Mashrabiya lattice with chamfer‑framed emerald windows and a diamond spine deliver airy strength and snag‑free comfort."
+   "feature": "A concealed rim‑integrated clasp and gradient Mashrabiya lattice with chamfer‑framed emerald windows and a diamond spine deliver airy strength and snag‑free comfort.",
+   "spec": {
+    "dims": [
+     {
+      "name": "Inner oval size",
+      "mm": "58 x 48"
+     },
+     {
+      "name": "Inner circumference",
+      "mm": "170"
+     },
+     {
+      "name": "Lattice rib thickness",
+      "mm": "1.1~1.7"
+     },
+     {
+      "name": "Continuous rim thickness",
+      "mm": "1.4"
+     },
+     {
+      "name": "Diamond rail width",
+      "mm": "1.2"
+     },
+     {
+      "name": "Hinge pin diameter",
+      "mm": "0.9"
+     }
+    ],
+    "metal": "18K yellow gold",
+    "plating": "",
+    "stones": [
+     {
+      "type": "diamond",
+      "cut": "brilliant",
+      "mm": "",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "Concealed box clasp integrated in rim",
+      "spec": "18K yellow gold"
+     },
+     {
+      "name": "Figure-8 safety clasps",
+      "spec": "18K yellow gold, pair"
+     },
+     {
+      "name": "Micro hinge pin",
+      "spec": "0.9 mm, 18K yellow gold"
+     }
+    ],
+    "weight_g": {
+     "min": 12,
+     "max": 18
+    },
+    "weight_basis": "One piece standard size hinged bangle, clasp and safeties included",
+    "process": [
+     "Silk-matte finish on lattice planes",
+     "High-polish chamfers 0.3 mm and high-polish rim",
+     "Micro-prong diamond setting in 1.2 mm rail",
+     "Open backs for emerald apertures",
+     "Under-gallery mirrors geometry with contoured inner pads",
+     "Concealed box clasp integration with figure-8 safeties"
+    ],
+    "note": "Overall bracelet dimensions are filled with standard values. Stones described as brilliant diamonds only, size and count not specified in the prompt.",
+    "cached": false
+   }
   },
   {
    "id": "D25",
@@ -663,7 +2269,76 @@
      "at": "2026-08-26T23:31:48.996Z"
     }
    ],
-   "feature": "Anti-rotation twin side connectors and a diamond spine animate a scale-tightening Mashrabiya lattice in 18k yellow gold with emerald-lit open windows and a smooth no-snag rim."
+   "feature": "Anti-rotation twin side connectors and a diamond spine animate a scale-tightening Mashrabiya lattice in 18k yellow gold with emerald-lit open windows and a smooth no-snag rim.",
+   "spec": {
+    "dims": [
+     {
+      "name": "overall width",
+      "mm": "22"
+     },
+     {
+      "name": "overall height",
+      "mm": "22"
+     },
+     {
+      "name": "rim thickness",
+      "mm": "1.4"
+     },
+     {
+      "name": "rim height",
+      "mm": "1.6"
+     },
+     {
+      "name": "lattice rib width",
+      "mm": "1.2~1.4"
+     },
+     {
+      "name": "node thickness at intersections",
+      "mm": "1.8~2.0"
+     }
+    ],
+    "metal": "18K yellow gold",
+    "plating": "",
+    "stones": [
+     {
+      "type": "emerald",
+      "cut": "not specified",
+      "mm": "not specified},{",
+      "count": 0
+     },
+     {
+      "type": "diamond",
+      "cut": "not specified",
+      "mm": "0.8~1.0}],",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "twin side connectors",
+      "spec": "integrated into the rim, anti-rotation"
+     },
+     {
+      "name": "oval links",
+      "spec": "low-profile, accept 1.0 mm chain"
+     }
+    ],
+    "weight_g": {
+     "min": 3.5,
+     "max": 5.5
+    },
+    "weight_basis": "One pendant basis, chain not included",
+    "process": [
+     "Bright polish on chamfers",
+     "High polish overall",
+     "Open-back bezel construction for emeralds",
+     "Micro-prong or flush bead stone setting",
+     "Deburring and smoothing to prevent snagging",
+     "Integrated anti-rotation twin side connectors"
+    ],
+    "note": "Dimensions are filled with standard values. Metal is exactly as specified in the prompt. No chain included. Avoidances noted in the prompt are respected.",
+    "cached": false
+   }
   }
  ],
  "searches": 19,

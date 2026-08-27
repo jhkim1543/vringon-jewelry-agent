@@ -139,7 +139,76 @@
      "at": "2026-08-26T23:46:28.388Z"
     }
    ],
-   "feature": "A pure lancet silhouette framing a single sapphire, traced by an unbroken calibré-sapphire arc with crisp milgrain and concealed ear mechanics for balanced all-evening wear."
+   "feature": "A pure lancet silhouette framing a single sapphire, traced by an unbroken calibré-sapphire arc with crisp milgrain and concealed ear mechanics for balanced all-evening wear.",
+   "spec": {
+    "dims": [
+     {
+      "name": "total height",
+      "mm": "34"
+     },
+     {
+      "name": "total width",
+      "mm": "13"
+     },
+     {
+      "name": "structural wall thickness",
+      "mm": "1.2~1.4"
+     },
+     {
+      "name": "seat thickness",
+      "mm": "0.6"
+     },
+     {
+      "name": "bezel thickness for center sapphire",
+      "mm": "0.7"
+     },
+     {
+      "name": "apex radius",
+      "mm": "0.25"
+     }
+    ],
+    "metal": "950 platinum",
+    "plating": "",
+    "stones": [
+     {
+      "type": "sapphire",
+      "cut": "",
+      "mm": "",
+      "count": 2
+     },
+     {
+      "type": "calibré-cut sapphires",
+      "cut": "calibré",
+      "mm": "",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "ear post",
+      "spec": "hidden post, 950 platinum"
+     },
+     {
+      "name": "omega back",
+      "spec": "hinged, 950 platinum"
+     }
+    ],
+    "weight_g": {
+     "min": 4,
+     "max": 5.8
+    },
+    "weight_basis": "per ear including post and hinged omega back, stones excluded",
+    "process": [
+     "bright polish",
+     "0.15 mm milgrain along lancet edges",
+     "channel setting for calibré-cut sapphires",
+     "bezel setting for center sapphire",
+     "concealed gallery",
+     "hand finishing"
+    ],
+    "note": "Center sapphire bezel-set and calibré-cut sapphires in an unbroken channel arc as specified. Post positioned at the upper third for comfort. Stone sizes and counts for the calibré arc are not provided in the prompt so they are left unspecified. Weight estimated from given dimensions and 950 platinum geometry, kept under the stated 6.5 g per ear target.",
+    "cached": true
+   }
   },
   {
    "id": "D02",
@@ -157,7 +226,69 @@
      "at": "2026-08-26T23:46:50.176Z"
     }
    ],
-   "feature": "A precise lancet frame presents a single sapphire with an unbroken calibre-sapphire arc, crisp milgrain, open spandrels, and a hidden gallery preserving a pure, touch-safe silhouette."
+   "feature": "A precise lancet frame presents a single sapphire with an unbroken calibre-sapphire arc, crisp milgrain, open spandrels, and a hidden gallery preserving a pure, touch-safe silhouette.",
+   "spec": {
+    "dims": [
+     {
+      "name": "shank width (comfort inner-court)",
+      "mm": "2.2"
+     },
+     {
+      "name": "shank thickness",
+      "mm": "1.8"
+     },
+     {
+      "name": "head wall thickness",
+      "mm": "1.0"
+     },
+     {
+      "name": "channel wall thickness",
+      "mm": "0.8"
+     },
+     {
+      "name": "edge milgrain bead",
+      "mm": "0.25"
+     },
+     {
+      "name": "apex tip radius (touch-safe)",
+      "mm": "0.3"
+     }
+    ],
+    "metal": "PT950 platinum",
+    "plating": "",
+    "stones": [
+     {
+      "type": "sapphire",
+      "cut": "feature stone framed within lancet outline",
+      "mm": "",
+      "count": 1
+     },
+     {
+      "type": "sapphire",
+      "cut": "matched hand-cut calibre for continuous channel arc",
+      "mm": "",
+      "count": 0
+     }
+    ],
+    "findings": [],
+    "weight_g": {
+     "min": 4,
+     "max": 6
+    },
+    "weight_basis": "one ring, standard finger size assumption, stones excluded",
+    "process": [
+     "mirror polish",
+     "hand-applied crisp 0.25 mm milgrain on all edges",
+     "channel setting for calibre sapphires forming unbroken arc",
+     "open spandrels for lightness and shadow",
+     "hidden under-gallery to preserve outline",
+     "low-profile build",
+     "comfort inner-court finishing",
+     "hand finishing emphasis over mass production"
+    ],
+    "note": "Metal chosen as PT950 platinum inferred from 'platinum or rhodium-white gold'. No rhodium plating applied due to platinum choice. Finger size not specified so a standard size was assumed for weight estimation. Only dimensions explicitly given in the prompt are listed; unspecified dimensions remain standard.",
+    "cached": false
+   }
   },
   {
    "id": "D01",
@@ -175,7 +306,75 @@
      "at": "2026-08-26T23:47:17.766Z"
     }
    ],
-   "feature": "A lancet-arched platinum pendant that frames a single vivid sapphire with unbroken calibre-sapphire arcs, crisp milgrain, open spandrels, and hidden twin bails that prevent rotation."
+   "feature": "A lancet-arched platinum pendant that frames a single vivid sapphire with unbroken calibre-sapphire arcs, crisp milgrain, open spandrels, and hidden twin bails that prevent rotation.",
+   "spec": {
+    "dims": [
+     {
+      "name": "overall length",
+      "mm": "28"
+     },
+     {
+      "name": "overall width",
+      "mm": "10.8"
+     },
+     {
+      "name": "bezel width",
+      "mm": "1.0~1.2"
+     },
+     {
+      "name": "channel width for calibre sapphires",
+      "mm": "0.7"
+     },
+     {
+      "name": "apex micro‑chamfer",
+      "mm": "0.25"
+     },
+     {
+      "name": "edge milgrain",
+      "mm": "0.2"
+     }
+    ],
+    "metal": "Platinum 950",
+    "plating": "",
+    "stones": [
+     {
+      "type": "sapphire",
+      "cut": "precision‑cut center stone",
+      "mm": "",
+      "count": 1
+     },
+     {
+      "type": "sapphire",
+      "cut": "hand‑cut calibre along arcs, channel‑set",
+      "mm": "sized to 0.7 mm channel",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "hidden twin bails",
+      "spec": "integrated bails in Platinum 950, behind springing points"
+     }
+    ],
+    "weight_g": {
+     "min": 4.8,
+     "max": 6.8
+    },
+    "weight_basis": "one pendant head only; chain not included; stones excluded; includes integrated twin bails and underside keel",
+    "process": [
+     "hand cutting of calibre sapphires",
+     "channel setting with seats at approximately 45 percent depth",
+     "precision bezel setting for center sapphire",
+     "0.2 mm edge milgrain",
+     "0.25 mm apex micro‑chamfer",
+     "open spandrels for shadow and weight relief",
+     "fabricated underside keel to prevent rotation",
+     "platinum mirror polish finish",
+     "hand finishing throughout"
+    ],
+    "note": "All specifications taken directly from the prompt. No plating is used; finish is mirror polish in Platinum 950. Center sapphire specified as 1.6~2.0 ct royal blue; exact millimeter size and calibre stone count are not provided in the prompt.",
+    "cached": false
+   }
   },
   {
    "id": "D04",
@@ -193,7 +392,79 @@
      "at": "2026-08-26T23:48:19.943Z"
     }
    ],
-   "feature": "A single platinum arch with a low‑bezel sapphire and even step baguette accents, stabilized by twin pass‑through bails and a 45 cm adjustable slider chain."
+   "feature": "A single platinum arch with a low‑bezel sapphire and even step baguette accents, stabilized by twin pass‑through bails and a 45 cm adjustable slider chain.",
+   "spec": {
+    "dims": [
+     {
+      "name": "overall drop",
+      "mm": "~27"
+     },
+     {
+      "name": "overall width",
+      "mm": "~13"
+     },
+     {
+      "name": "arch wall thickness",
+      "mm": "1.2~1.4"
+     },
+     {
+      "name": "bezel height",
+      "mm": "0.9"
+     },
+     {
+      "name": "bezel seat height",
+      "mm": "~0.6"
+     },
+     {
+      "name": "chain thickness",
+      "mm": "~0.9"
+     }
+    ],
+    "metal": "Platinum Pt950",
+    "plating": "",
+    "stones": [
+     {
+      "type": "Sapphire",
+      "cut": "",
+      "mm": "",
+      "count": 1
+     },
+     {
+      "type": "Sapphire",
+      "cut": "Baguette",
+      "mm": "",
+      "count": 4
+     }
+    ],
+    "findings": [
+     {
+      "name": "Bail",
+      "spec": "Twin lateral pass-through integrated at shoulders"
+     },
+     {
+      "name": "Chain",
+      "spec": "Platinum cable 45 cm adjustable ~0.9 mm with discreet slider"
+     },
+     {
+      "name": "Slider",
+      "spec": "Platinum inline bead adjuster"
+     }
+    ],
+    "weight_g": {
+     "min": 3.8,
+     "max": 5.2
+    },
+    "weight_basis": "Pendant only, chain excluded",
+    "process": [
+     "Bezel setting for center sapphire with 0.9 mm bezel and ~0.6 mm seat",
+     "Channel setting flush for matched baguette sapphires in even ~0.4 mm rise steps",
+     "Interior soft brush finish",
+     "Exterior high polish mirror finish with crisp edges",
+     "Integrated twin lateral pass-through bails for anti-rotation and balanced hang"
+    ],
+    "note": "Platinum alloy specified as Pt950 based on prompt wording, this is an assumption. All dimensions are taken directly from the prompt. Chain is specified in the prompt but pendant weight excludes the chain. Sapphire tone specified as royal to cornflower blue; stone sizes are not provided in the prompt and are therefore not assumed.",
+    "cached": false
+   }
   },
   {
    "id": "D05",
@@ -211,7 +482,64 @@
      "at": "2026-08-26T23:48:53.701Z"
     }
    ],
-   "feature": "A PT950 platinum ring built around a single clean arch, with a low-bezel vivid royal-blue sapphire and even stepped baguette accents, brushed inner rail, and crisp outer edges for poised, snag-free comfort."
+   "feature": "A PT950 platinum ring built around a single clean arch, with a low-bezel vivid royal-blue sapphire and even stepped baguette accents, brushed inner rail, and crisp outer edges for poised, snag-free comfort.",
+   "spec": {
+    "dims": [
+     {
+      "name": "oval comfort shank width",
+      "mm": "2.0~2.3"
+     },
+     {
+      "name": "bezel wall thickness",
+      "mm": "0.9~1.0"
+     },
+     {
+      "name": "bezel seat thickness",
+      "mm": "0.6"
+     },
+     {
+      "name": "channel bearing thickness",
+      "mm": "0.3"
+     },
+     {
+      "name": "precision fit tolerance",
+      "mm": "0.05"
+     }
+    ],
+    "metal": "PT950 platinum",
+    "plating": "",
+    "stones": [
+     {
+      "type": "sapphire",
+      "cut": "not specified",
+      "mm": "",
+      "count": 1
+     },
+     {
+      "type": "unspecified",
+      "cut": "baguette",
+      "mm": "",
+      "count": 0
+     }
+    ],
+    "findings": [],
+    "weight_g": {
+     "min": 4.5,
+     "max": 7
+    },
+    "weight_basis": "one ring basis · size US 6 assumed · stones excluded",
+    "process": [
+     "full bezel setting for center sapphire set low",
+     "channel setting for baguette accents",
+     "precision fit to 0.05 mm tolerance",
+     "micro chamfer on edges to prevent snagging",
+     "inner finger rail soft brushed finish",
+     "outer edges high polish reflective",
+     "under gallery relief for clean through access"
+    ],
+    "note": "Dimensions not stated in the prompt beyond those listed were left to standard values. Weight estimated from PT950 ring with low bezel and oval comfort shank. No plating specified and none applied.",
+    "cached": false
+   }
   },
   {
    "id": "D06",
@@ -229,7 +557,66 @@
      "at": "2026-08-26T23:49:12.460Z"
     }
    ],
-   "feature": "A single, uninterrupted platinum arch cradles a low-bezel sapphire, with even channel-set baguette steps that never break the contour."
+   "feature": "A single, uninterrupted platinum arch cradles a low-bezel sapphire, with even channel-set baguette steps that never break the contour.",
+   "spec": {
+    "dims": [
+     {
+      "name": "arch ribbon width",
+      "mm": "1.8~2.0"
+     },
+     {
+      "name": "drop length hinge to tip",
+      "mm": "28"
+     },
+     {
+      "name": "sapphire bezel wall",
+      "mm": "0.9"
+     },
+     {
+      "name": "sapphire bezel seat",
+      "mm": "0.25"
+     },
+     {
+      "name": "diamond channel wall",
+      "mm": "0.8"
+     }
+    ],
+    "metal": "platinum 950",
+    "plating": "",
+    "stones": [
+     {
+      "type": "sapphire",
+      "cut": "",
+      "mm": "",
+      "count": 2
+     },
+     {
+      "type": "diamond",
+      "cut": "baguette",
+      "mm": "",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "lever-back with hidden latch",
+      "spec": "platinum 950 low-profile"
+     }
+    ],
+    "weight_g": {
+     "min": 5.5,
+     "max": 7.5
+    },
+    "weight_basis": "one pair basis · lever-backs included · gemstones excluded",
+    "process": [
+     "outer edges high polish",
+     "inner surfaces soft brushed",
+     "full bezel setting for sapphires",
+     "channel setting for baguette diamonds"
+    ],
+    "note": "",
+    "cached": false
+   }
   },
   {
    "id": "D07",
@@ -247,7 +634,75 @@
      "at": "2026-08-26T23:50:28.266Z"
     }
    ],
-   "feature": "Lancet-profile openwork pendant featuring a light-to-dark blue calibre-cut sapphire gradient, hidden dual-bail anti-roll gallery, and micro-beveled platinum edges that allow gentle, breath-like articulation."
+   "feature": "Lancet-profile openwork pendant featuring a light-to-dark blue calibre-cut sapphire gradient, hidden dual-bail anti-roll gallery, and micro-beveled platinum edges that allow gentle, breath-like articulation.",
+   "spec": {
+    "dims": [
+     {
+      "name": "overall height",
+      "mm": "26"
+     },
+     {
+      "name": "overall width",
+      "mm": "11"
+     },
+     {
+      "name": "body thickness",
+      "mm": "2.0"
+     },
+     {
+      "name": "frame thickness",
+      "mm": "1.1~1.3"
+     },
+     {
+      "name": "minimum web",
+      "mm": "0.9"
+     },
+     {
+      "name": "micro-bevel at skin contact",
+      "mm": "0.2"
+     }
+    ],
+    "metal": "Platinum 950",
+    "plating": "",
+    "stones": [
+     {
+      "type": "Natural sapphire",
+      "cut": "calibre-cut gradient from ice blue at base to midnight blue at apex",
+      "mm": "varied, seats approx 0.8 mm depth",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "hidden dual rear bails",
+      "spec": "integrated Pt950"
+     },
+     {
+      "name": "slim concealed hinge",
+      "spec": "integrated Pt950"
+     },
+     {
+      "name": "rear balance gallery",
+      "spec": "integrated structure in Pt950"
+     }
+    ],
+    "weight_g": {
+     "min": 4.2,
+     "max": 5.2
+    },
+    "weight_basis": "Pendant only · includes hidden dual rear bails, concealed hinge and balance gallery · no chain",
+    "process": [
+     "hand-fitted calibre-cut layout and selection",
+     "precision channel setting into Pt950 frame and ribs",
+     "crisp edges with 0.2 mm micro-bevel at skin contact",
+     "mirror polish on external arrises",
+     "soft satin finish inside tracery",
+     "rear balance gallery machining and finishing",
+     "hidden dual rear bails and slim concealed hinge integration"
+    ],
+    "note": "Dimensions are filled with standard values. Metal grade Pt950 is inferred from the prompt mentioning a platinum frame and ribs. Openwork meets at least fifty percent negative space with internal ribs subtly shifting while the outer lancet remains legible. No visible prongs, screws or fasteners as specified.",
+    "cached": false
+   }
   },
   {
    "id": "D08",
@@ -265,7 +720,60 @@
      "at": "2026-08-26T23:50:59.909Z"
     }
    ],
-   "feature": "Platinum lancet silhouette with breathing openwork ribs and a shank-to-apex blue sapphire gradient, stabilized by a concealed under-gallery weight and softened micro-bevels."
+   "feature": "Platinum lancet silhouette with breathing openwork ribs and a shank-to-apex blue sapphire gradient, stabilized by a concealed under-gallery weight and softened micro-bevels.",
+   "spec": {
+    "dims": [
+     {
+      "name": "Structural band thickness",
+      "mm": "2.0"
+     },
+     {
+      "name": "Rib thickness",
+      "mm": "1.2~1.4"
+     },
+     {
+      "name": "Head length",
+      "mm": "18"
+     },
+     {
+      "name": "Head width",
+      "mm": "10"
+     },
+     {
+      "name": "Micro-bevel on skin-contact edges",
+      "mm": "0.2"
+     }
+    ],
+    "metal": "950 platinum",
+    "plating": "",
+    "stones": [
+     {
+      "type": "Blue sapphire",
+      "cut": "hand-cut calibre",
+      "mm": "channel seat 0.8~1.0",
+      "count": 0
+     }
+    ],
+    "findings": [],
+    "weight_g": {
+     "min": 4.5,
+     "max": 7.5
+    },
+    "weight_basis": "Single ring standard size stones excluded",
+    "process": [
+     "Mirror-polished display planes",
+     "Soft satin inner surfaces",
+     "0.2 mm micro-bevel on all skin-contact edges",
+     "Channel setting on concealed bridges",
+     "Color grading from pale ice at shank to deep midnight at apex",
+     "Openwork approximately 60 percent negative space",
+     "Concealed under-gallery weight",
+     "Comfort-fit oval inner profile",
+     "Hidden hinge within the gallery allowing sub-millimeter sway of inner ribs"
+    ],
+    "note": "",
+    "cached": false
+   }
   },
   {
    "id": "D09",
@@ -283,7 +791,70 @@
      "at": "2026-08-26T23:51:39.527Z"
     }
    ],
-   "feature": "A legible lancet silhouette with at least 50% negative space and a light-to-dark blue calibre-sapphire gradient, balanced to breathe via hidden articulation with no visible fasteners."
+   "feature": "A legible lancet silhouette with at least 50% negative space and a light-to-dark blue calibre-sapphire gradient, balanced to breathe via hidden articulation with no visible fasteners.",
+   "spec": {
+    "dims": [
+     {
+      "name": "drop length",
+      "mm": "40"
+     },
+     {
+      "name": "overall width",
+      "mm": "11"
+     },
+     {
+      "name": "structural wall thickness min",
+      "mm": "1.1~1.2"
+     },
+     {
+      "name": "post diameter",
+      "mm": "0.9"
+     },
+     {
+      "name": "skin-side bevel",
+      "mm": "0.15"
+     },
+     {
+      "name": "stone seat depth",
+      "mm": "0.35"
+     }
+    ],
+    "metal": "950 platinum",
+    "plating": "",
+    "stones": [
+     {
+      "type": "natural sapphire",
+      "cut": "calibre-cut",
+      "mm": "1.3~1.8",
+      "count": 0
+     }
+    ],
+    "findings": [
+     {
+      "name": "post",
+      "spec": "0.9 mm platinum post with hidden omega guard"
+     },
+     {
+      "name": "concealed micro link",
+      "spec": "platinum, allows approximately 5~7 degrees swing"
+     }
+    ],
+    "weight_g": {
+     "min": 4,
+     "max": 6
+    },
+    "weight_basis": "per single earring · structural body including rear galleries, counterweight, post and concealed link · stones excluded",
+    "process": [
+     "high polish",
+     "micro beveling 0.15 mm on skin side",
+     "channel setting into low shared rails",
+     "hidden construction of channels and galleries",
+     "articulated micro link behind the stud",
+     "rear gallery fabrication and counterweight balancing"
+    ],
+    "note": "Metal, finish, stones, settings, dimensions, articulation and visibility constraints are taken directly from the prompt. Stone color grade from pale ice at lobe to deep navy at apex per the all-blue calibre-sapphire rule. Stone count was not specified in the prompt so it is left unspecified.",
+    "cached": false
+   }
   }
  ],
  "searches": 19,
