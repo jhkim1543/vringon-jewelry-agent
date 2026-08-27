@@ -437,7 +437,9 @@ export function techPackDeckHtml(st: RunState): { title: string; html: string } 
             ${/* 결론을 먼저 둔다 · 자리가 모자라면 밀려 잘리는 것은 세부 내역이어야 한다.
                  전에는 순서가 반대여서 "견적 필요" 와 목표 대비 판정이 페이지 밖으로 나갔다. */ ''}
             ${c.ok ? `<p class="tk-big">${money(c.low)} – ${money(c.high)}</p>` : ''}
-            ${s.weight_basis?.trim() ? `<p class="tk-basis">${esc(s.weight_basis)}</p>` : ''}
+            ${(s.weight_basis?.trim() || c.pair) ? `<p class="tk-basis">${
+              c.pair ? `<b>${esc(t('per pair'))}</b> · ` : ''}${esc(s.weight_basis ?? '')}${
+              c.pair ? ` · ${esc(t('The spec weight is per piece, so this was doubled for the pair.'))}` : ''}</p>` : ''}
             ${c.ok ? `<p class="tk-sug">${esc(t('Suggested DTC price'))} ${money(rLo)} – ${money(rHi)}</p>` : ''}
             ${(() => { const v = checkTarget(c, priceTarget); return v.verdict === 'unknown' ? ''
               : `<p class="tk-v ${v.verdict}">${esc(v.note)}</p>` })()}

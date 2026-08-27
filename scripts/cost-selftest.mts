@@ -4,7 +4,8 @@
    실행: npx tsx scripts/cost-selftest.mts */
 import {
   GOLD_24K_USD_G, METAL_USD_G,
-  checkTarget, currencyCode, dimText, estimateCost, marketBand, metalBasis, metalKey, parsePriceTarget, stoneText,
+  checkTarget, currencyCode, dimText, estimateCost, marketBand, metalBasis, metalKey, parsePriceTarget,
+  stoneKey, stoneText,
   type MakeSpec,
 } from '../src/core/cost'
 
@@ -123,6 +124,53 @@ eq('빈 칸은 구분자까지 지운다',
   stoneText({ type: '청록 사파이어', cut: '', mm: '2.3', count: 1 }), '청록 사파이어 · 2.3 mm · 1')
 eq('다 있으면 다 붙인다',
   stoneText({ type: 'CZ', cut: '라운드', mm: '1.2mm', count: 20 }), 'CZ · 라운드 · 1.2mm · 20')
+
+console.log('\n── 재측정에서 나온 것 ──')
+// 페르소나 열 명이 같은 결과를 다시 보고 짚은 것들 · 전부 계산이 실제로 틀렸다
+{
+  const base: MakeSpec = { ...ring, findings: [], process: [] }
+
+  // ① 공정이 CNC·프레스인데 주조비가 붙었다 (독일·태국이 각각 짚음)
+  const cnc = estimateCost({ ...base, process: ['CNC milling and profiling of planar grid in 316L'] })
+  eq('CNC 공정에 주조비를 안 매긴다', cnc.lines.some(l => l.label === '주조'), false)
+  eq('절삭 가공으로 매긴다', cnc.lines.some(l => l.label === '절삭 가공'), true)
+  const press = estimateCost({ ...base, process: ['doming to shallow pebble profile press forming'] })
+  eq('프레스는 성형으로 매긴다', press.lines.some(l => l.label === '성형·가공'), true)
+  eq('금형비는 견적으로 넘긴다', press.quotes.some(q => q.includes('금형비')), true)
+  const cast = estimateCost({ ...base, process: ['로스트왁스 주조', '연마'] })
+  eq('주조라고 적히면 주조로', cast.lines.some(l => l.label === '주조'), true)
+  const blank = estimateCost({ ...base, process: ['표면 마감'] })
+  eq('성형 방식이 없으면 주조로 보되 그렇다고 밝힌다',
+    blank.lines.find(l => l.label === '주조')?.how.includes('적혀 있지 않아'), true)
+
+  // ② 일본어 스톤 이름을 못 읽어 가장 싼 값으로 떨어졌다 (다이아 세 알이 15센트)
+  eq('가타카나 다이아를 읽는다', stoneKey('ダイヤモンド'), 'natural')
+  eq('가타카나 지르코니아를 읽는다', stoneKey('ジルコニア'), 'cz')
+  eq('중국어 钻石을 읽는다', stoneKey('钻石'), 'natural')
+  eq('모르는 이름은 빈 값', stoneKey('未指定'), '')
+  const unknown = estimateCost({ ...base, stones: [{ type: '未指定', cut: '', mm: '1.2mm', count: 3 }] })
+  eq('모르는 스톤은 싸게 매기지 않고 견적으로', unknown.quotes.some(q => q.includes('읽지 못해')), true)
+  eq('모르는 스톤에 원가 줄을 세우지 않는다', unknown.lines.some(l => l.label.startsWith('스톤 ·')), false)
+
+  // ③ 깎아 낸 형상을 사 오는 부속으로 계상했다 ("chain interface slots" → 체인 3.5달러)
+  const slots = estimateCost({ ...base, findings: [{ name: 'chain interface slots', spec: 'machined into body' }] })
+  eq('일체형 가공 형상은 부속이 아니다', slots.lines.some(l => l.label.startsWith('부속')), false)
+  const realChain = estimateCost({ ...base, findings: [{ name: '체인', spec: '1.0mm 커팅 아즈키 45cm' }] })
+  eq('진짜 체인은 부속으로 센다', realChain.lines.some(l => l.label.startsWith('부속')), true)
+
+  // ④ 귀걸이 한 쌍을 한 짝 값으로 냈다 (파는 단위와 어긋나 마진이 두 배로 부풀어 보인다)
+  const one = estimateCost({
+    ...base, weight_basis: '한 짝 기준 · 이어백 제외',
+    findings: [{ name: 'earring post', spec: '0.9mm' }, { name: 'clutch', spec: '표준' }],
+  })
+  eq('한 짝 기준이면 한 쌍으로 올린다', one.pair, true)
+  const both = estimateCost({
+    ...base, weight_basis: '한 쌍 기준',
+    findings: [{ name: 'earring post', spec: '0.9mm' }, { name: 'clutch', spec: '표준' }],
+  })
+  eq('이미 한 쌍 기준이면 그대로', both.pair, false)
+  eq('두 배가 실제로 반영된다', Math.round(one.low) === Math.round(both.low * 2), true)
+}
 
 console.log('\n── 금 단가는 한 곳에서 유도한다 ──')
 // "18K 가 24K 보다 비싸다" 는 지적이 나왔다 · 합금값을 따로 적어 두면 이런 표가 나온다

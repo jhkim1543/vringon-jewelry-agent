@@ -70,7 +70,11 @@ export function TechPack({ spec, priceTarget, market }: {
           <h5>{t('Estimated unit cost')}</h5>
           {c.ok ? (<>
             <p className="tp-big">{usd(c.low)} – {usd(c.high)}</p>
-            {spec.weight_basis?.trim() && <p className="hint tp-basis">{spec.weight_basis}</p>}
+            <p className="hint tp-basis">
+              {c.pair && <b>{t('per pair')} · </b>}
+              {spec.weight_basis?.trim()}
+              {c.pair && ` · ${t('The spec weight is per piece, so this was doubled for the pair.')}`}
+            </p>
             <table className="tp-tab">
               <tbody>
                 {c.lines.map((l, i) => (

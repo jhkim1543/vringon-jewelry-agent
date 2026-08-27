@@ -1371,4 +1371,6 @@ const KO: Record<string, string> = {
   'Collected price distribution': '수집된 가격 분포',
   'Median by brand': '브랜드별 중앙값',
   'quartiles': '하위 25 / 50 / 75%',
+  'per pair': '한 쌍 기준',
+  'The spec weight is per piece, so this was doubled for the pair.': '사양의 중량이 한 짝 기준이라 한 쌍으로 두 배 올렸습니다',
 }

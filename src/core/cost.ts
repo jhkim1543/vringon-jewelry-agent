@@ -104,16 +104,20 @@ const STONE_FLOOR: Record<string, number> = {
 }
 export function stoneKey(type: string): keyof typeof STONE_BASE_3MM | 'natural' | '' {
   const s = type.toLowerCase().replace(/\s/g, '')
-  if (/cz|큐빅|지르코|zirconia/.test(s)) return 'cz'
-  if (/moissan|모아사|모이사/.test(s)) return 'moissanite'
-  // 합성석인지 먼저 본다 · "랩 그로운 사파이어" 가 천연으로 잡혀 견적으로 넘어가고 있었다.
-  // lab 은 라틴자로만 오지 않는다 — 랩·랩그로운·양식·인공도 같은 말이다.
-  const grown = /lab|랩|양식|인공|합성|배양|created|synthetic|cultured/.test(s)
-  if (grown && /diamond|다이아/.test(s)) return 'labdiamond'
-  if (grown && /sapph|사파|ruby|루비|emerald|에메|spinel|스피넬/.test(s)) return 'labsapphire'
-  if (/pearl|진주/.test(s)) return grown ? 'pearl' : 'pearl'
-  if (/diamond|다이아|sapph|사파|ruby|루비|emerald|에메/.test(s)) return 'natural'
-  return 'cz'                                   // 종류를 안 적었으면 가장 싼 것으로 잡는다
+  // 조사·설계가 어느 언어로든 나온다. 일본어 가타카나를 못 읽어 "ダイヤモンド" 가
+  // 가장 싼 CZ(개당 0.05달러)로 떨어졌다 — 다이아 세 알이 15센트로 계산됐다.
+  if (/cz|큐빅|지르코|zirconia|ジルコニア|锆石|锆/.test(s)) return 'cz'
+  if (/moissan|모아사|모이사|モアッサ|モアサ|莫桑/.test(s)) return 'moissanite'
+  const grown = /lab|랩|양식|인공|합성|배양|created|synthetic|cultured|ラボ|人工|合成|培養|培育|实验室/.test(s)
+  const dia = /diamond|다이아|ダイヤ|钻石|鑽石/.test(s)
+  const col = /sapph|사파|ruby|루비|emerald|에메|spinel|스피넬|サファイア|ルビー|エメラルド|スピネル|蓝宝|红宝|祖母绿|尖晶/.test(s)
+  if (grown && dia) return 'labdiamond'
+  if (grown && col) return 'labsapphire'
+  if (/pearl|진주|パール|真珠|珍珠/.test(s)) return 'pearl'
+  if (dia || col) return 'natural'
+  // 못 알아보는 이름은 가장 싼 것으로 떨어뜨리지 않는다 · 조용히 원가를 줄여 버린다.
+  // "未指定"(미지정) 같은 것도 여기로 온다 — 모르면 모른다고 하고 견적으로 넘긴다.
+  return ''
 }
 
 /** 진짜 도금인가 · "细砂雾面(고운 무광)" 같은 표면 마감이 plating 칸에 적혀 오는 일이 있다.
@@ -125,23 +129,44 @@ const NONE_RX = /없음|해당\s*없|not\s*applicable|^n\/?a$|none|불요|불필
 
 /** 부속 단가 (USD/개) · 은·황동 기준. 금은 금속값이 따로 붙는다. */
 const FINDING_USD: Array<[RegExp, number]> = [
-  [/클래스프|clasp|lobster|잠금|toggle/i, 2.2],
-  [/이어.*백|earring back|butterfly|라푸세트|push.?back/i, 0.6],
-  [/베일|bail/i, 1.1],
+  [/클래스프|clasp|lobster|잠금|toggle|クラスプ|留め具/i, 2.2],
+  [/이어.*백|earring back|butterfly|라푸세트|push.?back|clutch|キャッチ|ピアスキャッチ/i, 0.6],
+  [/베일|bail|バチカン/i, 1.1],
   [/점프.*링|jump ?ring|오링/i, 0.15],
-  [/체인|chain/i, 3.5],
-  [/포스트|post|귀걸이.*침/i, 0.5],
+  [/체인|chain|チェーン/i, 3.5],
+  [/포스트|post|귀걸이.*침|ポスト/i, 0.5],
   [/후프|hoop|힌지|hinge/i, 1.8],
 ]
 
+/** 사서 붙이는 부속이 아니라 몸체에 깎아 낸 형상 · 값을 따로 매기면 안 된다.
+ *  실측: "chain interface slots"(체인이 걸리는 홈)가 체인 부속 3.5달러로 계산됐다. */
+const INTEGRATED_RX = /slot|interface|integrated|일체|일체형|통짜|machined|성형|홈|groove|한몸|一体/i
+
 /** 공임 (USD) · 소량 생산 기준. 대량이면 내려가지만 그건 발주 조건이라 여기서 모른다. */
 const LABOR = {
-  casting: 9,           // 주조 · 왁스 소각까지
   polishing: 5,         // 연마·마무리
   settingProng: 1.6,    // 스톤 한 알당 · 프롱
   settingBezel: 2.6,    // 스톤 한 알당 · 베젤·파베
   plating: 4.5,         // 도금 한 번
   assembly: 2,          // 부속 조립
+}
+
+/** 성형 방식 · 공정에 적힌 대로 값을 매긴다.
+ *  전에는 무엇을 쓰든 "주조 9달러" 를 얹었다. 공정이 "CNC milling" 인데 주조비가 붙고,
+ *  "press forming" 인데 주조비가 붙었다 — 독일·태국 두 사람이 각각 그 모순을 짚었다. */
+const FORMING: Array<[RegExp, { label: string; usd: number; how: string }]> = [
+  [/cnc|밀링|milling|절삭|선반|turning|machin|加工|切削/i,
+    { label: '절삭 가공', usd: 14, how: 'CNC · 소량 기준 · 셋업 별도' }],
+  [/레이저|laser|판금|sheet|절곡|bend|프레스|press|스탬핑|stamping|도밍|doming|打刻|冲压/i,
+    { label: '성형·가공', usd: 5, how: '프레스·레이저 · 금형비는 별도 견적' }],
+  [/주조|캐스팅|casting|로스트왁스|lost.?wax|鋳造|铸造/i,
+    { label: '주조', usd: 9, how: '로스트왁스 · 소량 생산 기준 · 왁스 소각 포함' }],
+]
+/** 공정 글에서 성형 방식을 고른다 · 아무것도 못 찾으면 주조로 본다(주얼리에서 가장 흔하다) */
+function formingOf(process: string[]): { label: string; usd: number; how: string; guessed: boolean } {
+  const text = (process ?? []).join(' ')
+  for (const [rx, v] of FORMING) if (rx.test(text)) return { ...v, guessed: false }
+  return { label: '주조', usd: 9, how: '로스트왁스 · 소량 생산 기준', guessed: true }
 }
 
 /** 금속 손실률 · 주조(3~6%)와 연마·마무리(1~3%)에서 깎여 나가는 몫을 합쳐 잡은 값.
@@ -160,6 +185,8 @@ export interface CostEstimate {
   lines: CostLine[]
   /** 견적을 따로 받아야 하는 항목 · 천연석 등 */
   quotes: string[]
+  /** 한 쌍 기준으로 두 배 올렸는가 (귀걸이) */
+  pair?: boolean
   pricedAt: string
 }
 
@@ -231,6 +258,10 @@ export function estimateCost(spec: MakeSpec | undefined, metalUsdG = METAL_USD_G
       natural.push(`${st.type} ${dimText(st.mm)} ${n}알`)
       continue
     }
+    if (!k) {
+      quotes.push(`${st.type || '종류 미상'} ${dimText(st.mm)} ${n}알 · 종류를 읽지 못해 값을 매기지 않았습니다`)
+      continue
+    }
     const mm = mmOf(st.mm) || 3
     const each = Math.max(STONE_FLOOR[k], STONE_BASE_3MM[k] * Math.pow(mm / 3, 3))
     add(`스톤 · ${st.type} ${st.mm}`, each * n, each * n * 1.4,
@@ -245,6 +276,7 @@ export function estimateCost(spec: MakeSpec | undefined, metalUsdG = METAL_USD_G
   for (const f of spec.findings ?? []) {
     const text = `${f.name} ${f.spec}`
     if (NONE_RX.test(text)) continue
+    if (INTEGRATED_RX.test(text)) continue      // 깎아 낸 형상은 사 오는 부속이 아니다
     const hit = FINDING_USD.find(([rx]) => rx.test(text))
     if (!hit) continue
     fittedFindings++
@@ -252,8 +284,12 @@ export function estimateCost(spec: MakeSpec | undefined, metalUsdG = METAL_USD_G
   }
 
   // ── 공임 ──
-  add('주조', LABOR.casting, LABOR.casting * 1.3, '소량 생산 기준 · 왁스 소각 포함')
+  const form = formingOf(spec.process)
+  add(form.label, form.usd, form.usd * 1.3,
+    form.how + (form.guessed ? ' · 공정에 성형 방식이 적혀 있지 않아 주조로 봤습니다' : ''))
   add('연마·마무리', LABOR.polishing, LABOR.polishing * 1.3, '')
+  if (/프레스|press|스탬핑|stamping|도밍|doming|冲压/i.test((spec.process ?? []).join(' ')))
+    quotes.push('프레스·성형 금형비는 수량에 따라 갈려 여기 넣지 않았습니다 · 별도 견적이 필요합니다')
   if (stoneCount) {
     // 세팅 방식은 cut 칸에만 적히지 않는다 · 공정과 스톤 설명 전체에서 찾는다.
     // 전에는 cut 만 봐서, 플러시·채널·에나멜 인레이인 디자인이 전부 프롱으로 잡혔다.
@@ -273,7 +309,19 @@ export function estimateCost(spec: MakeSpec | undefined, metalUsdG = METAL_USD_G
   if (natural.length)
     quotes.unshift(`${natural.join(' · ')} · 천연석은 등급으로 값이 갈려 견적이 필요합니다`)
 
-  return { ok: true, blocked: '', low, high, lines, quotes, pricedAt: PRICED_AT }
+  // 귀걸이는 한 쌍이 파는 단위다. 사양의 중량 기준이 "한 짝" 이면 여기서 두 배로 올린다 —
+  // 안 그러면 한 짝 원가를 한 쌍 판매가와 견주게 되어 마진이 두 배로 부풀어 보인다.
+  // 실측: 이어 포스트와 클러치가 한 개 값으로만 잡혀 있었다.
+  const isEarring = (spec.findings ?? []).some(f => /이어|귀걸이|earring|post|clutch|ピアス|イヤ/i.test(`${f.name} ${f.spec}`))
+  const perPiece = /한\s*짝|낱개|single|per piece|片方|각 한 개|one earring/i.test(spec.weight_basis ?? '')
+  let pair = false
+  if (isEarring && perPiece) {
+    pair = true
+    low *= 2; high *= 2
+    for (const l of lines) { l.lo *= 2; l.hi *= 2 }
+  }
+
+  return { ok: true, blocked: '', low, high, lines, quotes, pair, pricedAt: PRICED_AT }
 }
 
 /** 판매가 제안 · 유통 방식마다 배수가 다르다. 원가에 곱하기만 한다. */

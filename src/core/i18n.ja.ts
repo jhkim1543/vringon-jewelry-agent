@@ -1303,4 +1303,6 @@ export const JA: Record<string, string> = {
   'Collected price distribution': '収集した価格分布',
   'Median by brand': 'ブランド別中央値',
   'quartiles': '下位 25 / 50 / 75%',
+  'per pair': '一対あたり',
+  'The spec weight is per piece, so this was doubled for the pair.': '仕様の重量が片方基準のため、一対として二倍にしました',
 }
