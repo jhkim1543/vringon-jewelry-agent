@@ -396,9 +396,21 @@ export function techPackDeckHtml(st: RunState): { title: string; html: string } 
       ...(s.stones ?? []).map(x => [t('Stone'), stoneText(x)] as [string, string]),
     ])
     const finds = rowsOf((s.findings ?? []).map(f => [f.name, f.spec] as [string, string]))
+    // 한 장(297×210mm)을 넘기면 넘친 내용은 조용히 잘린다 — 하필 잘리는 것이
+    // "견적이 필요합니다" 같은 단서다. 내역이 길면 두 단으로 나눠 높이를 반으로 접는다.
+    // 계산 근거(how)는 줄마다 두어 줄을 더 쓴다. 줄이 많으면 한 장에 안 들어가고,
+    // 안 들어간 부분은 조용히 잘린다 — 잘린 표는 검산할 수 없어 없느니만 못하다.
+    // 그래서 인쇄본에서는 줄이 많을 때 근거를 접고, 접었다고 밝힌다. 화면에는 늘 다 있다.
+    const showHow = c.lines.length <= 6
+    const costRow = (l: typeof c.lines[number]) =>
+      `<tr><th>${esc(l.label)}</th><td>${l.lo === l.hi ? money(l.lo) : `${money(l.lo)} – ${money(l.hi)}`}${
+        (showHow && l.how) ? `<em>${esc(l.how)}</em>` : ''}</td></tr>`
+    const costTable = (rows: typeof c.lines) => `<table class="tk-t">${rows.map(costRow).join('')}</table>`
     const costRows = c.ok
-      ? `<table class="tk-t">${c.lines.map(l =>
-        `<tr><th>${esc(l.label)}</th><td>${l.lo === l.hi ? money(l.lo) : `${money(l.lo)} – ${money(l.hi)}`}${l.how ? `<em>${esc(l.how)}</em>` : ''}</td></tr>`).join('')}</table>`
+      ? (c.lines.length > 6
+        ? `<div class="tk-two">${costTable(c.lines.slice(0, Math.ceil(c.lines.length / 2)))}${
+          costTable(c.lines.slice(Math.ceil(c.lines.length / 2)))}</div>`
+        : costTable(c.lines))
       : `<p class="tk-none">${esc(t('Cost not calculated'))} · ${esc(c.blocked)}</p>`
 
     return slide({
@@ -414,15 +426,18 @@ export function techPackDeckHtml(st: RunState): { title: string; html: string } 
           ${s.process?.length ? `<p class="tk-proc"><b>${esc(t('Process'))}</b> ${esc(s.process.join(' → '))}</p>` : ''}
           ${s.note?.trim() ? `<p class="tk-note">${esc(s.note)}</p>` : ''}
         </div>
-        <div class="tk-r">
+        <div class="tk-m">
           <div class="tk-box"><h4>${esc(t('Dimensions'))}</h4>${dims}</div>
           <div class="tk-box"><h4>${esc(t('Materials'))}</h4>${mats}</div>
           <div class="tk-box"><h4>${esc(t('Findings'))}</h4>${finds}</div>
+        </div>
+        <div class="tk-r">
           <div class="tk-box tk-cost">
             <h4>${esc(t('Estimated unit cost'))}</h4>
+            ${/* 결론을 먼저 둔다 · 자리가 모자라면 밀려 잘리는 것은 세부 내역이어야 한다.
+                 전에는 순서가 반대여서 "견적 필요" 와 목표 대비 판정이 페이지 밖으로 나갔다. */ ''}
             ${c.ok ? `<p class="tk-big">${money(c.low)} – ${money(c.high)}</p>` : ''}
             ${s.weight_basis?.trim() ? `<p class="tk-basis">${esc(s.weight_basis)}</p>` : ''}
-            ${costRows}
             ${c.ok ? `<p class="tk-sug">${esc(t('Suggested DTC price'))} ${money(rLo)} – ${money(rHi)}</p>` : ''}
             ${(() => { const v = checkTarget(c, priceTarget); return v.verdict === 'unknown' ? ''
               : `<p class="tk-v ${v.verdict}">${esc(v.note)}</p>` })()}
@@ -432,6 +447,8 @@ export function techPackDeckHtml(st: RunState): { title: string; html: string } 
                 money(market.p25)} / ${money(market.p50)} / ${money(market.p75)} · ${esc(t('n ='))} ${market.n}</p>`
             })() : ''}
             ${c.quotes.length ? `<p class="tk-q">${c.quotes.map(q => esc(q)).join('<br/>')}</p>` : ''}
+            <div class="tk-detail">${costRows}${
+              showHow ? '' : `<p class="tk-none">${esc(t('Calculation basis is folded here to fit one page. The full breakdown is on screen.'))}</p>`}</div>
           </div>
         </div>
       </div>`,

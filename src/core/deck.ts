@@ -190,14 +190,17 @@ export const DECK_CSS = `
 
   /* ── 테크팩 · 왼쪽 사진, 오른쪽 사양·원가 ─────────────────────────── */
   .tk { display: flex; gap: 8mm; height: 100%; min-height: 0; }
-  .tk-l { flex: 0 0 38%; display: flex; flex-direction: column; min-width: 0; }
+  .tk-l { flex: 0 0 28%; display: flex; flex-direction: column; min-width: 0; }
   .tk-l img { width: 100%; height: 62mm; object-fit: contain; background: #F4F1EA; border-radius: 2mm; }
   .tk-l h3 { font-size: 13pt; margin: 4mm 0 1mm; line-height: 1.2; }
   .tk-sub { font-size: 8pt; color: #6B675C; margin: 0; }
   .tk-proc { font-size: 8pt; margin: 4mm 0 0; line-height: 1.5; }
   .tk-proc b { letter-spacing: .08em; text-transform: uppercase; font-size: 7pt; color: #6B675C; display: block; }
   .tk-note { font-size: 8pt; margin: 3mm 0 0; padding-left: 2mm; border-left: .4mm solid #C9C4B6; color: #55524A; line-height: 1.5; }
-  .tk-r { flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 5mm; min-width: 0; }
+  /* 사진 · 사양 · 원가 세 단. 전에는 원가가 사양과 한 격자를 나눠 써서,
+     치수가 여섯 줄만 되어도 원가 내역이 페이지 밖으로 밀려 잘렸다. */
+  .tk-m { flex: 0 0 30%; display: flex; flex-direction: column; gap: 4mm; min-width: 0; }
+  .tk-r { flex: 1; min-width: 0; display: flex; flex-direction: column; }
   .tk-box { min-width: 0; }
   .tk-box h4 { font-size: 7pt; letter-spacing: .16em; text-transform: uppercase; color: #6B675C; margin: 0 0 2mm; font-weight: 700; }
   .tk-t { width: 100%; border-collapse: collapse; font-size: 8pt; }
@@ -205,7 +208,7 @@ export const DECK_CSS = `
   .tk-t td { padding: .8mm 0; vertical-align: top; }
   .tk-t em { display: block; font-style: normal; font-size: 7pt; color: #8A8579; }
   .tk-none { font-size: 8pt; color: #8A8579; margin: 0; }
-  .tk-cost { grid-column: 1 / -1; border-top: .3mm solid #C9C4B6; padding-top: 3mm; }
+  .tk-cost { border-left: .3mm solid #C9C4B6; padding-left: 6mm; height: 100%; display: flex; flex-direction: column; min-height: 0; }
   .tk-big { font-size: 16pt; font-weight: 800; margin: 0 0 2mm; letter-spacing: -.01em; }
   .tk-sug { font-size: 8pt; margin: 2mm 0 0; color: #55524A; }
   .tk-q { font-size: 7.5pt; margin: 2mm 0 0; color: #8A5A2B; line-height: 1.5; }
@@ -213,6 +216,11 @@ export const DECK_CSS = `
   .tk-v.inside { background: #E7EFE6; color: #2F5D3A; }
   .tk-v.over, .tk-v.under { background: #F6EAE0; color: #8A5A2B; }
   .tk-basis { font-size: 7.5pt; color: #6B675C; margin: -1mm 0 2mm; }
+  .tk-cost .tk-t th { padding-top: .5mm; padding-bottom: .5mm; }
+  .tk-cost .tk-t em { line-height: 1.35; }
+  .tk-detail { flex: 1; min-height: 0; overflow: hidden; margin-top: 2mm;
+    border-top: .2mm solid #E3DFD4; padding-top: 2mm; }
+  .tk-two { display: grid; grid-template-columns: 1fr 1fr; gap: 0 5mm; align-items: start; }
 `
 
 /** 슬라이드 한 장 */

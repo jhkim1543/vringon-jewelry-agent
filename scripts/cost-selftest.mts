@@ -94,6 +94,18 @@ console.log('\n── 현장 지적으로 넣은 것 ──')
   const real = estimateCost({ ...ring, plating: '로듐 도금 0.15μm' })
   eq('진짜 도금에는 매긴다', real.lines.some(l => l.label === '도금'), true)
 
+  // "랩 그로운 사파이어" 가 천연으로 잡혀 견적으로 넘어가고 있었다 (인쇄본 실측에서 발견)
+  const grown = estimateCost({ ...ring, stones: [{ type: '랩 그로운 사파이어 블루', cut: '라운드', mm: '1.1mm', count: 14 }] })
+  eq('랩 그로운은 합성석으로 값이 매겨진다', grown.quotes.length, 0)
+  eq('랩 그로운에 원가 줄이 선다', grown.lines.some(l => l.label.startsWith('스톤 ·')), true)
+
+  const many = estimateCost({ ...ring, stones: [
+    { type: '천연 사파이어 블루', cut: '라운드', mm: '1.1mm', count: 14 },
+    { type: '천연 사파이어 핑크', cut: '라운드', mm: '1.1mm', count: 14 },
+    { type: '천연 사파이어 아쿠아', cut: '라운드', mm: '1.1mm', count: 14 },
+  ] })
+  eq('천연석 견적은 한 줄로 묶인다', many.quotes.length, 1)
+
   const enamel = estimateCost({
     ...ring, stones: [{ type: 'CZ', cut: '베젤', mm: '2mm', count: 2 }], process: ['에나멜 소성'],
   })

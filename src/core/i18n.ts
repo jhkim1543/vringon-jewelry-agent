@@ -1367,4 +1367,5 @@ const KO: Record<string, string> = {
   'Mid-market': '시장 중간대',
   'Above market': '시장 상단 밖',
   'Below market': '시장 하단 밖',
+  'Calculation basis is folded here to fit one page. The full breakdown is on screen.': '한 장에 맞추려고 계산 근거는 접었습니다. 전체 내역은 화면에서 볼 수 있습니다.',
 }

@@ -87,9 +87,12 @@ export function stoneKey(type: string): keyof typeof STONE_BASE_3MM | 'natural' 
   const s = type.toLowerCase().replace(/\s/g, '')
   if (/cz|큐빅|지르코|zirconia/.test(s)) return 'cz'
   if (/moissan|모아사|모이사/.test(s)) return 'moissanite'
-  if (/lab.*diamond|랩.*다이아|합성다이아/.test(s)) return 'labdiamond'
-  if (/lab.*(sapph|ruby|emerald)|합성(사파|루비|에메)/.test(s)) return 'labsapphire'
-  if (/pearl|진주/.test(s)) return 'pearl'
+  // 합성석인지 먼저 본다 · "랩 그로운 사파이어" 가 천연으로 잡혀 견적으로 넘어가고 있었다.
+  // lab 은 라틴자로만 오지 않는다 — 랩·랩그로운·양식·인공도 같은 말이다.
+  const grown = /lab|랩|양식|인공|합성|배양|created|synthetic|cultured/.test(s)
+  if (grown && /diamond|다이아/.test(s)) return 'labdiamond'
+  if (grown && /sapph|사파|ruby|루비|emerald|에메|spinel|스피넬/.test(s)) return 'labsapphire'
+  if (/pearl|진주/.test(s)) return grown ? 'pearl' : 'pearl'
   if (/diamond|다이아|sapph|사파|ruby|루비|emerald|에메/.test(s)) return 'natural'
   return 'cz'                                   // 종류를 안 적었으면 가장 싼 것으로 잡는다
 }
@@ -177,6 +180,8 @@ export function estimateCost(spec: MakeSpec | undefined, metalUsdG = METAL_USD_G
 
   const lines: CostLine[] = []
   const quotes: string[] = []
+  // 천연석은 한 줄에 모은다 · 알마다 같은 문장을 되풀이하면 인쇄본에서 넘쳐 잘린다
+  const natural: string[] = []
   let low = 0, high = 0
   // 줄마다 범위를 그대로 남긴다. 전에는 줄에 중간값을 적고 합계만 범위로 냈는데,
   // 그러면 "금속 $722 · 합계 $557~922" 처럼 한 줄이 합계 하한을 넘는 표가 나온다.
@@ -201,7 +206,7 @@ export function estimateCost(spec: MakeSpec | undefined, metalUsdG = METAL_USD_G
     stoneCount += n
     const k = stoneKey(st.type)
     if (k === 'natural') {
-      quotes.push(`${st.type} ${dimText(st.mm)} ${n}알 · 등급에 따라 값이 크게 달라 견적이 필요합니다`)
+      natural.push(`${st.type} ${dimText(st.mm)} ${n}알`)
       continue
     }
     const mm = mmOf(st.mm) || 3
@@ -242,6 +247,9 @@ export function estimateCost(spec: MakeSpec | undefined, metalUsdG = METAL_USD_G
   if (plating && PLATING_RX.test(plating) && !NONE_RX.test(plating))
     add('도금', LABOR.plating, LABOR.plating * 1.4, plating)
   if (fittedFindings) add('조립', LABOR.assembly, LABOR.assembly * 1.3, `부속 ${fittedFindings}종`)
+
+  if (natural.length)
+    quotes.unshift(`${natural.join(' · ')} · 천연석은 등급으로 값이 갈려 견적이 필요합니다`)
 
   return { ok: true, blocked: '', low, high, lines, quotes, pricedAt: PRICED_AT }
 }
