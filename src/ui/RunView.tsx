@@ -4,7 +4,9 @@
 // 실행이 끝나기 전에도 도착한 산출물부터 보인다.
 import { t, tf } from '../core/i18n'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import type { DesignPair, PromptDirection, RunState, Stage } from '../core/types'
+import type { DesignPair, MakeSpec, PromptDirection, RunState, Stage } from '../core/types'
+import { TechPack } from './TechPack'
+import { estimateCost } from '../core/cost'
 import {
   BASIS_LABEL, GENDER_LABEL, ITEM_LABEL, MODE_LABEL, STAGE_LABELS, VARIANT_LABEL,
   estimateMinutes, estimateStages, regionsLabel,
@@ -15,7 +17,7 @@ import { shotUrl } from '../core/agents'
 import { DeckViewer } from './DeckViewer'
 import { downloadDeck, printDeck } from '../core/deck'
 import {
-  adoptionDeckHtml, competitorDeckHtml, keywordDeckHtml, runwayDeckHtml, shopsDeckHtml, trendDeckHtml,
+  adoptionDeckHtml, competitorDeckHtml, keywordDeckHtml, runwayDeckHtml, shopsDeckHtml, techPackDeckHtml, trendDeckHtml,
 } from '../core/agentDeck'
 import { Collapse, Tag } from './bits'
 
@@ -106,6 +108,8 @@ export default function RunView({ st, progress, onOpenBoard, onPairUpdate, onSco
   const adDeck = useMemo(() => st.adoption?.length ? adoptionDeckHtml(st) : null, [st.adoption])
   const trDeck = useMemo(() => st.trendReport ? trendDeckHtml(st) : null, [st.trendReport])
   const kwDeck = useMemo(() => st.insight ? keywordDeckHtml(st) : null, [st.insight])
+  // 테크팩은 디자인이 다 나온 뒤에 만든다 · 사양이 붙은 쌍만 들어간다
+  const tkDeck = useMemo(() => techPackDeckHtml(st), [st.pairs])
 
   const p = st.params
   const pairsDone = st.pairs.filter(x => x.versions.length > 0).length
@@ -236,6 +240,7 @@ export default function RunView({ st, progress, onOpenBoard, onPairUpdate, onSco
         {p.mode === 'fashion' && deckBlock(adDeck, 'deck-adoption')}
         {p.mode === 'collection' && deckBlock(kwDeck, 'deck-keyword')}
         {p.mode !== 'collection' && deckBlock(trDeck, 'deck-trend')}
+        {deckBlock(tkDeck, 'deck-techpack')}
 
         {/* ── 컬렉션 · 세트 콘셉트 ───────────────────────────────── */}
         {p.mode === 'collection' && (st.sets?.length ?? 0) > 0 && (
@@ -307,6 +312,14 @@ export default function RunView({ st, progress, onOpenBoard, onPairUpdate, onSco
 }
 
 /** 접힘 요약은 펼쳤을 때 실제로 보이는 축만 센다 · Complement 는 패션 모드에만 채워진다 */
+/** 접힌 줄에 보일 한 줄 · 원가가 계산됐으면 그것부터 보여 준다 */
+function specSummary(spec: MakeSpec): string {
+  const c = estimateCost(spec)
+  const w = spec.weight_g?.min ? `${spec.weight_g.min}~${spec.weight_g.max}g` : ''
+  const cost = c.ok ? `$${Math.round(c.low)}~${Math.round(c.high)}` : c.blocked
+  return [spec.metal, w, cost].filter(Boolean).join(' · ')
+}
+
 function axisSummary(d: PromptDirection): string {
   return ['Preserve', 'Transform', 'Replace', 'Combine',
     ...(d.complement ? ['Complement'] : []), 'Avoid'].join(' · ')
@@ -374,6 +387,11 @@ function PairRow({ st, pair, onPairUpdate }: {
           <textarea className="input pr-edit" rows={7} value={draft} onChange={e => setDraft(e.target.value)} />
         ) : (
           <pre className="pr-prompt">{pair.prompt || t('No prompt. This one failed before the prompt stage.')}</pre>
+        )}
+        {pair.spec && (
+          <Collapse title={t('Tech pack and cost')} summary={specSummary(pair.spec)}>
+            <TechPack spec={pair.spec} priceTarget={st.params.collectionAdv?.priceTarget || st.params.direction} />
+          </Collapse>
         )}
         {pair.feature && <p className="hint">{pair.feature}</p>}
         {pair.scoreNote && <p className="hint">{pair.scoreNote}</p>}

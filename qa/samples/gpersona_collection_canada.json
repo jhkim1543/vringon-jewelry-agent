@@ -108,7 +108,60 @@
      "at": "2026-08-26T17:51:52.140Z"
     }
    ],
-   "feature": "Compact 12 mm recycled sterling-silver studs with one primary diagonal ridge, a subtle erosion notch, and a triad of pits, finished satin with bright ridge tips and light oxide, asymmetrically paired with a front-clean hidden post."
+   "feature": "Compact 12 mm recycled sterling-silver studs with one primary diagonal ridge, a subtle erosion notch, and a triad of pits, finished satin with bright ridge tips and light oxide, asymmetrically paired with a front-clean hidden post.",
+   "spec": {
+    "dims": [
+     {
+      "name": "body max dimension",
+      "mm": "12"
+     },
+     {
+      "name": "average wall thickness",
+      "mm": "1.2"
+     },
+     {
+      "name": "local minimum wall",
+      "mm": "1.0"
+     },
+     {
+      "name": "edge radius minimum",
+      "mm": "0.3"
+     },
+     {
+      "name": "flush stone seat metal under-seat",
+      "mm": "0.6"
+     }
+    ],
+    "metal": "925 sterling silver",
+    "plating": "satin baseline finish with light to medium silver oxide kept in lows, ridge tips brightened, oxide kept off skin-contact high points",
+    "stones": [],
+    "findings": [
+     {
+      "name": "ear post",
+      "spec": "recessed sterling silver post, hidden from front view"
+     },
+     {
+      "name": "clutch",
+      "spec": "recessed sterling silver friction clutch, hidden from front view"
+     }
+    ],
+    "weight_g": {
+     "min": 1.6,
+     "max": 2.8
+    },
+    "process": [
+     "precision casting in sterling silver",
+     "hand surfacing with softened edges and fine tool marks",
+     "satin finishing baseline planes",
+     "controlled oxidation to darken lows only",
+     "selective bright polish on ridge tips",
+     "optional micro flush setting in one pit",
+     "fit and secure recessed post and clutch",
+     "final clean with oxide kept off skin-contact high points"
+    ],
+    "note": "Metal alloy set to 925 sterling silver based on the prompt wording recycled sterling silver. Recycled content is assumed and does not alter the 925 specification. Visual weight stated under 3.0 g per pair, estimated metal weight provided as a pair. Optional micro flush stone 0.8~1.0 mm round is noted in the prompt but no stone type was specified so stones are left blank. All dimensions are taken directly from the prompt without adding standard values.",
+    "cached": false
+   }
   },
   {
    "id": "D03",
@@ -126,7 +179,62 @@
      "at": "2026-08-26T17:53:00.423Z"
     }
    ],
-   "feature": "Symmetric pebble-disc stud earrings in neutral silver with a shallow upper-third dimple, satin-matte micro-hammered surface and a bright beveled rim, kept under 1.2 g each for easy all-day wear."
+   "feature": "Symmetric pebble-disc stud earrings in neutral silver with a shallow upper-third dimple, satin-matte micro-hammered surface and a bright beveled rim, kept under 1.2 g each for easy all-day wear.",
+   "spec": {
+    "dims": [
+     {
+      "name": "disc diameter",
+      "mm": "~11"
+     },
+     {
+      "name": "dome height",
+      "mm": "<=2.5"
+     },
+     {
+      "name": "thinnest wall",
+      "mm": "0.8~1.0"
+     },
+     {
+      "name": "rim bright-line bevel",
+      "mm": "~0.2"
+     },
+     {
+      "name": "post diameter",
+      "mm": "~0.8"
+     },
+     {
+      "name": "post length",
+      "mm": "10~11"
+     }
+    ],
+    "metal": "925 sterling silver",
+    "plating": "",
+    "stones": [],
+    "findings": [
+     {
+      "name": "ear post",
+      "spec": "925 silver post centered on flat back, 0.8 mm diameter, 10~11 mm length"
+     },
+     {
+      "name": "ear clutch",
+      "spec": "low-profile butterfly clutch, 925 silver or equivalent"
+     }
+    ],
+    "weight_g": {
+     "min": 1.8,
+     "max": 2.4
+    },
+    "process": [
+     "micro-hammered or fine sandblasted satin matte surface",
+     "light bevel polish on rim to create ~0.2 mm bright line",
+     "shallow press-formed dimple, no piercings",
+     "post soldering on flat back",
+     "light passivation",
+     "final clean and soft polish"
+    ],
+    "note": "Metal grade chosen as 925 sterling silver based on neutral silver hue with light passivation, this is an informed assumption. Target weight derived from prompt requirement under 1.2 g per earring. Maintain set scale rule for the collection noted but pendant not included here.",
+    "cached": false
+   }
   },
   {
    "id": "D04",
@@ -144,7 +252,61 @@
      "at": "2026-08-26T17:53:40.098Z"
     }
    ],
-   "feature": "Satin‑matte sterling pebble disc with an upper‑third dimple and a hidden anti‑rotation tab bail, edged by a fine polished bevel."
+   "feature": "Satin‑matte sterling pebble disc with an upper‑third dimple and a hidden anti‑rotation tab bail, edged by a fine polished bevel.",
+   "spec": {
+    "dims": [
+     {
+      "name": "disc diameter",
+      "mm": "13"
+     },
+     {
+      "name": "dome height max",
+      "mm": "2.3"
+     },
+     {
+      "name": "wall thickness",
+      "mm": "0.8~1.0"
+     },
+     {
+      "name": "polished rim bevel width",
+      "mm": "0.2"
+     },
+     {
+      "name": "tab bail thickness",
+      "mm": "0.9"
+     },
+     {
+      "name": "bail closed loop ID",
+      "mm": "1.2"
+     }
+    ],
+    "metal": "925 sterling silver",
+    "plating": "",
+    "stones": [],
+    "findings": [
+     {
+      "name": "tab bail concealed behind top curve",
+      "spec": "925 silver, 0.9 mm thick, closed loop ID about 1.2 mm to pass 1.0 mm cable chain"
+     },
+     {
+      "name": "hidden anti-rotation connector",
+      "spec": "two-point figure-8 or twin eyelet in 925 silver, oriented to keep dimple upright"
+     }
+    ],
+    "weight_g": {
+     "min": 1.3,
+     "max": 2
+    },
+    "process": [
+     "lost-wax casting or precision casting of low-dome disc",
+     "soldering of concealed tab bail and hidden two-point connector",
+     "fine sandblasting for satin matte surface",
+     "selective high polish on 0.2 mm rim bevel",
+     "final cleaning and quality control"
+    ],
+    "note": "Metal grade chosen as 925 sterling silver based on the prompt wording neutral-hue sterling silver. Weight estimated to comply with the prompt requirement total pendant mass under 2.0 g.",
+    "cached": false
+   }
   },
   {
    "id": "D02",
@@ -162,7 +324,64 @@
      "at": "2026-08-26T17:53:54.800Z"
     }
    ],
-   "feature": "Integrated rear tunnel bail aligned with the diagonal ridge prevents spin while keeping the erosion notch and triad of pits as the quiet focal signature."
+   "feature": "Integrated rear tunnel bail aligned with the diagonal ridge prevents spin while keeping the erosion notch and triad of pits as the quiet focal signature.",
+   "spec": {
+    "dims": [
+     {
+      "name": "footprint",
+      "mm": "16×12"
+     },
+     {
+      "name": "ridge thickness",
+      "mm": "2.2~2.6"
+     },
+     {
+      "name": "minimum field thickness",
+      "mm": "1.2"
+     },
+     {
+      "name": "edge radius",
+      "mm": "0.3 min"
+     },
+     {
+      "name": "rear tunnel bail interior",
+      "mm": "1.3×2.3"
+     }
+    ],
+    "metal": "925 sterling silver",
+    "plating": "",
+    "stones": [
+     {
+      "type": "lab sapphire",
+      "cut": "",
+      "mm": "0.9",
+      "count": 1
+     }
+    ],
+    "findings": [
+     {
+      "name": "integrated rear tunnel bail",
+      "spec": "interior 1.3×2.3 mm, off-center along ridge axis"
+     },
+     {
+      "name": "front-visible ring",
+      "spec": "none"
+     }
+    ],
+    "weight_g": {
+     "min": 1.6,
+     "max": 2.4
+    },
+    "process": [
+     "lost-wax casting",
+     "satin body finish",
+     "light to medium oxidation in lows with oxide kept light at contact zones",
+     "bright-burnished ridge tips",
+     "micro flush setting 0.9 mm stone with 0.3 mm seat and 0.4 mm rim"
+    ],
+    "note": "All dimensions and finishes follow the prompt. Metal is set to 925 sterling silver as the likely specification for recycled sterling silver. Stone is optional per prompt. Target weight kept under 2.5 g as specified; estimated range provided for costing.",
+    "cached": false
+   }
   }
  ],
  "searches": 12,

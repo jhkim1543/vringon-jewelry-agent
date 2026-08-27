@@ -21,6 +21,7 @@ import { visionQa } from './vision-qa-api.mjs'
 import {
   agentAdoption, agentCompetitorCrawl, agentForecast, agentItemPrompt, agentKeyword, agentPrompts,
   agentRefDna, agentReferences, agentRunway, agentScore, agentSets, agentShops, agentTrendReport,
+  agentSpecFrom,
 } from './agents-api.mjs'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
@@ -430,6 +431,7 @@ export async function handleApi(req, res) {
     '/api/agent/sets': agentSets,
     '/api/agent/itemprompt': agentItemPrompt,
     '/api/agent/score': agentScore,
+    '/api/agent/specfrom': agentSpecFrom,
   }
   if (AGENT_ROUTES[path] && req.method === 'POST') {
     try {

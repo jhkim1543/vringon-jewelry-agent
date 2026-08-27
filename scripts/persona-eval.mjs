@@ -8,6 +8,8 @@ import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { join } from 'node:path'
 import { ask } from '../server/research-api.mjs'
+// 화면이 쓰는 것과 같은 계산기 · 평가에 다른 숫자를 보여 주면 재측정이 성립하지 않는다
+import { checkTarget, dimText, estimateCost, retailBand, stoneText } from '../src/core/cost.ts'
 
 const ROOT = fileURLToPath(new URL('../', import.meta.url))
 const OUT = join(ROOT, '.personaqa')
@@ -50,6 +52,30 @@ function imagesOf(st, max = 3) {
 /** 결과에서 사람이 판단할 재료만 추린다 (원본은 수 MB 다).
  *  필드 이름은 실제 저장 구조를 그대로 따라야 한다 — 처음에 trendReport.axes / insight.summary 로
  *  잘못 읽어 "조사가 비어 있다" 는 왜곡된 평가를 만들었다. */
+/** 테크팩 한 장에 실제로 찍히는 것 · 화면과 같은 계산기를 쓴다 */
+function specDigest(spec, st) {
+  const c = estimateCost(spec)
+  const target = st.params.collectionAdv?.priceTarget || st.params.direction
+  const v = checkTarget(c, target)
+  const money = (n) => `${n < 10 ? n.toFixed(1) : Math.round(n)}`
+  return {
+    dims: (spec.dims ?? []).map(d => `${d.name} ${dimText(d.mm)}`),
+    metal: spec.metal, plating: spec.plating || null,
+    stones: (spec.stones ?? []).map(stoneText),
+    findings: (spec.findings ?? []).map(f => `${f.name}: ${f.spec}`),
+    weight_g: spec.weight_g, process: spec.process,
+    note: spec.note || null,
+    cost: c.ok ? {
+      unit: `${money(c.low)} ~ ${money(c.high)}`,
+      breakdown: c.lines.map(l => `${l.label} ${money(l.usd)}${l.how ? ` (${l.how})` : ''}`),
+      suggestedRetail: (() => { const [a, b] = retailBand(c); return `${money(a)} ~ ${money(b)}` })(),
+      needsQuote: c.quotes,
+      pricedAt: c.pricedAt,
+      vsTarget: v.verdict === 'unknown' ? null : `${v.verdict} · ${v.note}`,
+    } : { blocked: c.blocked },
+  }
+}
+
 function digest(st) {
   const d = { mode: st.params.mode, searches: st.searches, finished: st.finished }
   d.crawl = (st.crawl ?? []).map(c => ({ brand: c.brand, items: c.items.length,
@@ -105,6 +131,9 @@ function digest(st) {
     direction: p.direction ?? null,
     dna: p.dna ? JSON.stringify(p.dna).slice(0, 300) : null,
     prompt: (p.prompt ?? '').slice(0, 500),
+    // 제작 사양과 계산된 원가 · 이것을 안 보여 주면 "원가를 알 수 없다" 는 지적이
+    // 고친 뒤에도 그대로 나온다. 화면에서 테크팩으로 보이는 것과 같은 내용이다.
+    techPack: p.spec ? specDigest(p.spec, st) : null,
   }))
   d.failedNote = st.failedNote ?? null
   return d
@@ -156,7 +185,7 @@ async function evaluate() {
     const cfg = JSON.parse(readFileSync(join(ROOT, '.sampleruns', cf), 'utf8'))
     const slug = cfg.name
     if (done.has(slug)) { console.log(`= ${slug} 이미 평가됨`); continue }
-    const f = join(ROOT, 'src', 'samples', `${slug}.json`)
+    const f = join(ROOT, 'qa', 'samples', `${slug}.json`)
     if (!existsSync(f)) { console.log(`… ${slug} 결과 없음 · 건너뜀`); continue }
     const st = JSON.parse(readFileSync(f, 'utf8'))
     const p = cfg.persona
@@ -173,6 +202,8 @@ ${JSON.stringify(cfg.params, null, 1)}
 ${JSON.stringify(digest(st), null, 1)}
 
 첨부한 이미지는 이 실행이 실제로 만들어 낸 디자인입니다(있으면).
+각 디자인의 techPack 에는 치수·소재·부속·공정과 계산된 개당 원가가 들어 있습니다.
+원가는 AI 가 답한 값이 아니라 그 사양에서 계산한 값이고, 무엇을 곱했는지 breakdown 에 남아 있습니다.
 
 당신의 일로 돌아가서 냉정하게 평가하세요.
  · 당신이 넣은 구체 조건(소재·중량·가격대·규격·지역·연령)이 조사와 디자인에 실제로 반영됐습니까?
@@ -204,6 +235,89 @@ ${JSON.stringify(digest(st), null, 1)}
     }
   }
   save('reviews.json', { reviews })
+}
+
+// ── 재측정 · 자기가 blocker 라고 쓴 것이 닫혔는지 본인이 본다 ────────
+const RECHECK_SCHEMA = {
+  type: 'object', additionalProperties: false,
+  required: ['items', 'scores', 'metExpectation', 'wouldUseAgain', 'remaining'],
+  properties: {
+    items: {
+      type: 'array', minItems: 1, maxItems: 5,
+      items: {
+        type: 'object', additionalProperties: false,
+        required: ['fix', 'status', 'why'],
+        properties: {
+          fix: { type: 'string', description: '전에 내가 요구한 것 (원문 그대로)' },
+          status: { type: 'string', enum: ['resolved', 'partly', 'not'], description: '지금 결과 기준으로' },
+          why: { type: 'string', description: '무엇을 보고 그렇게 판단했는지 · 구체적으로' },
+        },
+      },
+    },
+    scores: {
+      type: 'object', additionalProperties: false,
+      required: ['researchDepth', 'inputReflection', 'designFit', 'usability', 'trustworthiness'],
+      properties: {
+        researchDepth: { type: 'integer', minimum: 1, maximum: 5 },
+        inputReflection: { type: 'integer', minimum: 1, maximum: 5 },
+        designFit: { type: 'integer', minimum: 1, maximum: 5 },
+        usability: { type: 'integer', minimum: 1, maximum: 5 },
+        trustworthiness: { type: 'integer', minimum: 1, maximum: 5 },
+      },
+    },
+    metExpectation: { type: 'boolean' },
+    wouldUseAgain: { type: 'string', enum: ['yes', 'maybe', 'no'] },
+    remaining: { type: 'array', maxItems: 3, items: { type: 'string' }, description: '아직 남은 것 · 없으면 빈 배열' },
+  },
+}
+
+async function recheck() {
+  const { readdirSync } = await import('node:fs')
+  const { reviews } = load('reviews.json')
+  const prev = existsSync(join(OUT, 'recheck.json')) ? load('recheck.json').rechecks : []
+  const done = new Set(prev.map(r => r.slug))
+  const rechecks = [...prev]
+  for (const r of reviews) {
+    if (done.has(r.slug)) { console.log(`= ${r.slug} 이미 재측정됨`); continue }
+    const cf = join(ROOT, '.sampleruns', `${r.slug}.cfg.json`)
+    const f = join(ROOT, 'qa', 'samples', `${r.slug}.json`)
+    if (!existsSync(cf) || !existsSync(f)) { console.log(`… ${r.slug} 자료 없음`); continue }
+    const cfg = JSON.parse(readFileSync(cf, 'utf8'))
+    const st = JSON.parse(readFileSync(f, 'utf8'))
+    const p = cfg.persona
+    const imgs = imagesOf(st)
+    const text = `당신은 ${p.country} 의 ${p.role}, ${p.name} 입니다.
+성공 기준(당신이 미리 적은 것): ${p.successLooksLike}
+
+지난번에 이 도구를 쓰고 당신이 이렇게 평가했습니다:
+${JSON.stringify(r.review, null, 1)}
+
+그 뒤 도구가 고쳐졌습니다. 같은 실행에 대해 지금 나오는 결과는 아래와 같습니다.
+바뀐 것은 각 디자인에 techPack (치수·소재·부속·공정과 계산된 개당 원가) 이 붙은 것,
+그리고 조사·프롬프트 규칙이 바뀐 것입니다. 사진과 조사 자체는 그때 그대로입니다.
+
+${JSON.stringify(digest(st), null, 1)}
+
+당신이 지난번에 적은 topFixes 를 하나씩 다시 보세요.
+ · 지금 결과로 그 요구가 해결됐습니까? resolved / partly / not 중 하나로 판정하고,
+   무엇을 보고 그렇게 판단했는지 구체적으로 적으세요 (필드 이름·숫자를 대세요).
+ · 고쳐진 척만 하고 실제로는 안 된 것이 있으면 그렇게 적으세요. 후하게 봐주지 마세요.
+ · 원가는 AI 가 답한 값이 아니라 사양에서 계산한 값입니다. 계산 근거가 breakdown 에 있습니다.
+   그 근거가 당신 현장 감각과 맞는지도 보세요 — 틀렸으면 틀렸다고 하세요.
+ · 마지막으로 지금 기준의 점수와 재사용 의향을 다시 매기세요.`
+    const input = imgs.length
+      ? [{ role: 'user', content: [{ type: 'input_text', text }, ...imgs.map(i => ({ type: 'input_image', image_url: i.dataUrl }))] }]
+      : text
+    process.stdout.write(`재측정 ${r.slug} (${p.name}) … `)
+    try {
+      const { data } = await ask(KEY, { input, schema: RECHECK_SCHEMA, name: 'recheck', web: false })
+      rechecks.push({ slug: r.slug, persona: r.persona, before: r.review.scores, after: data })
+      const n = data.items.filter(i => i.status === 'resolved').length
+      console.log(`해결 ${n}/${data.items.length} · ${data.wouldUseAgain} · ${data.metExpectation ? '충족' : '미충족'}`)
+      save('recheck.json', { rechecks })
+    } catch (e) { console.log('실패: ' + e.message.slice(0, 80)) }
+  }
+  save('recheck.json', { rechecks })
 }
 
 const VERDICT_SCHEMA = {
@@ -251,5 +365,6 @@ ${JSON.stringify(reviews, null, 1)}
 
 const step = process.argv[2]
 if (step === 'evaluate') await evaluate()
+else if (step === 'recheck') await recheck()
 else if (step === 'debate') await debate()
-else { console.error('evaluate | debate'); process.exit(1) }
+else { console.error('evaluate | recheck | debate'); process.exit(1) }

@@ -12,3 +12,5 @@ dist
 *.state.json
 deploy/eb-stage
 deploy/eb-bundle.zip
+.personaqa/
+.sampleruns/

@@ -6,6 +6,7 @@ import type {
   RunParams, RunwayData, ShopCrawl, TrendReportData, VariantKind,
 } from './types'
 import { ANALYSIS_LANG_NAME, ITEM_EN, ITEM_KO, regionsOf, targetText } from './types'
+import type { MakeSpec } from './cost'
 import { apiUrl } from './api'
 
 async function post<T>(url: string, body: unknown): Promise<T> {
@@ -78,10 +79,13 @@ export const fetchRefDna = (p: RunParams, refId: string, imageUrl: string, sourc
   })
 
 export const fetchPrompts = (p: RunParams, refId: string, variant: VariantKind, dna: Record<string, unknown>, trendCombo: string[]) =>
-  post<{ title: string; direction: PromptDirection; final_prompt: string }>('/api/agent/prompts', {
+  post<{ title: string; direction: PromptDirection; final_prompt: string; spec: MakeSpec }>('/api/agent/prompts', {
     mode: p.mode, refId, variant, dna, trendCombo,
     itemEn: ITEM_EN[p.itemType], itemKo: ITEM_KO[p.itemType],
     target: targetText(p.target), country: regionsText(p), langName: langOf(p),
+    // 사용자가 방향에 적은 수치(중량·가격대·금속 규격)를 제작 사양이 지켜야 한다.
+    // 이것을 안 넘기면 모델이 제 마음대로 18K 를 골라 원가가 목표의 세 배가 된다.
+    brief: p.direction,
   })
 
 // ── 에이전트 3 · 컬렉션 ──────────────────────────────────────────────
@@ -106,10 +110,13 @@ export const fetchSets = (p: RunParams, insight: KeywordInsight) => {
 }
 
 export const fetchItemPrompt = (p: RunParams, set: CollectionSet, item: string) =>
-  post<{ final_prompt: string; feature: string }>('/api/agent/itemprompt', {
+  post<{ final_prompt: string; feature: string; spec: MakeSpec }>('/api/agent/itemprompt', {
     setName: set.name, dna: set.design_dna, avoid: set.avoid,
     item: ITEM_KO[item], itemEn: ITEM_EN[item],
     target: targetText(p.target), langName: langOf(p),
+    brief: [p.collectionAdv?.priceTarget && `목표 가격대 ${p.collectionAdv.priceTarget}`,
+      p.collectionAdv?.metalsPrefer && `선호 금속 ${p.collectionAdv.metalsPrefer}`,
+      p.collectionAdv?.manufacturing && `제조 방식 ${p.collectionAdv.manufacturing}`].filter(Boolean).join(' · '),
   })
 
 // ── 사전 평가 (텍스트 기준 · 비전 아님) ──────────────────────────────

@@ -141,7 +141,66 @@
      "at": "2026-08-26T17:38:31.204Z"
     }
    ],
-   "feature": "Twin hidden stabilizing bails behind the crest prevent rotation while preserving a continuous silhouette."
+   "feature": "Twin hidden stabilizing bails behind the crest prevent rotation while preserving a continuous silhouette.",
+   "spec": {
+    "dims": [
+     {
+      "name": "overall height",
+      "mm": "22"
+     },
+     {
+      "name": "overall width",
+      "mm": "18"
+     },
+     {
+      "name": "overall profile thickness",
+      "mm": "3.2"
+     },
+     {
+      "name": "body wall thickness",
+      "mm": "1.4~1.6"
+     },
+     {
+      "name": "edge radius",
+      "mm": "R0.3+"
+     },
+     {
+      "name": "chain fit",
+      "mm": "1.2~1.6"
+     }
+    ],
+    "metal": "925 sterling silver",
+    "plating": "",
+    "stones": [
+     {
+      "type": "stone",
+      "cut": "round flush set in smooth bezel",
+      "mm": "2.5~3.0",
+      "count": 1
+     }
+    ],
+    "findings": [
+     {
+      "name": "bail x2",
+      "spec": "twin low-profile hidden bails behind upper ridge at about 10 and 2 o'clock, fits 1.2~1.6 mm chain"
+     }
+    ],
+    "weight_g": {
+     "min": 3,
+     "max": 5
+    },
+    "process": [
+     "mirror polish on ridges",
+     "micro bead-blast in hollows to soft mineral finish",
+     "no rhodium plating to retain warm natural tone",
+     "flush-set round stone with seat depth about 0.3 mm and bezel lip about 0.5 mm, snag-free",
+     "edges softened to R0.3 or greater",
+     "use master Crest Aperture slightly rotated and scaled for pendant",
+     "hidden anti-rotation twin bails to keep pendant centered as one continuous form"
+    ],
+    "note": "치수는 표준값으로 채웠습니다",
+    "cached": false
+   }
   },
   {
    "id": "D03",
@@ -159,7 +218,65 @@
      "at": "2026-08-26T17:39:06.658Z"
     }
    ],
-   "feature": "Mirrored huggie earrings in recycled 925 silver with a 30-35% Crest Aperture cutout, glossy ridges and micro bead-blasted hollows, sub-3.5 mm profile, and a concealed hinge for a seamless silhouette."
+   "feature": "Mirrored huggie earrings in recycled 925 silver with a 30-35% Crest Aperture cutout, glossy ridges and micro bead-blasted hollows, sub-3.5 mm profile, and a concealed hinge for a seamless silhouette.",
+   "spec": {
+    "dims": [
+     {
+      "name": "Ovoid plate length",
+      "mm": "17"
+     },
+     {
+      "name": "Negative space ratio",
+      "mm": "30~35 %"
+     },
+     {
+      "name": "Profile height max",
+      "mm": "3.2"
+     },
+     {
+      "name": "Edge radius min",
+      "mm": "0.35"
+     },
+     {
+      "name": "Wall thickness",
+      "mm": "1.2~1.4"
+     },
+     {
+      "name": "Ridge cap thickness",
+      "mm": "2.6~3.0"
+     }
+    ],
+    "metal": "925 sterling silver",
+    "plating": "",
+    "stones": [],
+    "findings": [
+     {
+      "name": "Integrated hinged huggie",
+      "spec": "925 sterling silver body with hidden closure"
+     },
+     {
+      "name": "Earwire",
+      "spec": "0.9 mm 925 sterling silver"
+     },
+     {
+      "name": "Snap latch",
+      "spec": "Rear mounted integrated latch mechanism"
+     }
+    ],
+    "weight_g": {
+     "min": 2,
+     "max": 3.5
+    },
+    "process": [
+     "Precision casting in 925 sterling silver",
+     "Hinge fabrication and assembly with snap latch",
+     "Mirror polish on crest ridges",
+     "Micro bead blasting in hollows for soft mineral finish",
+     "Final finishing and QC, unplated with no rhodium"
+    ],
+    "note": "Optional stone is omitted per image. Hidden closure reads continuous from the front and is designed for day-long comfort, unisex styling.",
+    "cached": false
+   }
   },
   {
    "id": "D01",
@@ -177,7 +294,54 @@
      "at": "2026-08-26T17:39:28.027Z"
     }
    ],
-   "feature": "Low-profile Crest Aperture ring in warm recycled sterling silver, combining mirror-polished ridges, mineral-matte hollows, and a 30% negative window with an optional fully flush bezel stone."
+   "feature": "Low-profile Crest Aperture ring in warm recycled sterling silver, combining mirror-polished ridges, mineral-matte hollows, and a 30% negative window with an optional fully flush bezel stone.",
+   "spec": {
+    "dims": [
+     {
+      "name": "band width",
+      "mm": "4"
+     },
+     {
+      "name": "profile height",
+      "mm": "up to 3.3"
+     },
+     {
+      "name": "minimum wall thickness",
+      "mm": "1.4"
+     },
+     {
+      "name": "edge radius",
+      "mm": "≥0.3"
+     }
+    ],
+    "metal": "925 sterling silver",
+    "plating": "",
+    "stones": [
+     {
+      "type": "Unspecified",
+      "cut": "round",
+      "mm": "1.8~2.0",
+      "count": 1
+     }
+    ],
+    "findings": [],
+    "weight_g": {
+     "min": 3.2,
+     "max": 5
+    },
+    "process": [
+     "mirror-gloss polish on ridges",
+     "micro bead-blast matte in hollows",
+     "unplated finish with no rhodium",
+     "comfort-fit interior shaping",
+     "hidden seam on continuous shank",
+     "minimal inside hallmark",
+     "integrated smooth bezel for fully flush setting",
+     "inner rib beneath aperture for stability"
+    ],
+    "note": "Recycled silver per prompt. Default presentation is without stone; stone is optional. Dimensions use standard defaults where not specified, including assumed average ring size. Metal spec chosen directly from prompt as 925 sterling silver. Weight estimated from the stated dimensions and aperture negative space at about thirty percent.",
+    "cached": false
+   }
   },
   {
    "id": "D04",
@@ -195,7 +359,60 @@
      "at": "2026-08-26T17:40:01.135Z"
     }
    ],
-   "feature": "A bright-finish recycled 925 silver band defined by one 1 mm groove with optional seafoam/coral/sand bio‑enamel or a single 1.2 mm flush‑set stone, sized to stack with a comfort‑fit and inner micro‑bevels."
+   "feature": "A bright-finish recycled 925 silver band defined by one 1 mm groove with optional seafoam/coral/sand bio‑enamel or a single 1.2 mm flush‑set stone, sized to stack with a comfort‑fit and inner micro‑bevels.",
+   "spec": {
+    "dims": [
+     {
+      "name": "band width face",
+      "mm": "3.0"
+     },
+     {
+      "name": "band width palm",
+      "mm": "2.4"
+     },
+     {
+      "name": "band thickness crown",
+      "mm": "2.0"
+     },
+     {
+      "name": "band thickness palm",
+      "mm": "1.8"
+     },
+     {
+      "name": "groove width",
+      "mm": "0.9~1.1"
+     },
+     {
+      "name": "groove depth",
+      "mm": "0.3~0.5"
+     }
+    ],
+    "metal": "925 silver",
+    "plating": "",
+    "stones": [
+     {
+      "type": "lab-grown diamond",
+      "cut": "round brilliant flush set",
+      "mm": "1.2",
+      "count": 1
+     }
+    ],
+    "findings": [],
+    "weight_g": {
+     "min": 2.8,
+     "max": 4.2
+    },
+    "process": [
+     "bright polishing on recycled 925 silver",
+     "single continuous groove cut 0.9~1.1 mm wide 0.3~0.5 mm deep with 0.1 mm eased edges",
+     "interior comfort finishing with 0.2~0.3 mm micro bevels and softened outer edges for stacking",
+     "bio-based cold enamel fill options seafoam coral sand or no color silver",
+     "flush setting for 1.2 mm lab-grown diamond seat depth about 0.6 mm",
+     "logos and hallmarks applied on inner face only"
+    ],
+    "note": "Stone is an optional upsell with one 1.2 mm round lab-grown diamond flush set at the groove apex. Color variants use bio-based cold enamel in seafoam, coral, or sand, plus a no-color silver version. Weight estimated for typical ring sizes and solid 925 silver body. No plating. Quiet unisex exterior per prompt; avoid nautical and beach tropes as specified.",
+    "cached": false
+   }
   },
   {
    "id": "D05",
@@ -213,7 +430,72 @@
      "at": "2026-08-26T17:40:36.497Z"
     }
    ],
-   "feature": "Twin hidden bails and a single shoreline‑echo groove with an optional flush‑set dot stone define a bright‑finish 925 silver pendant that hangs upright and layers cleanly."
+   "feature": "Twin hidden bails and a single shoreline‑echo groove with an optional flush‑set dot stone define a bright‑finish 925 silver pendant that hangs upright and layers cleanly.",
+   "spec": {
+    "dims": [
+     {
+      "name": "pendant plaque length",
+      "mm": "18"
+     },
+     {
+      "name": "pendant plaque width",
+      "mm": "12"
+     },
+     {
+      "name": "pendant thickness",
+      "mm": "2.0"
+     },
+     {
+      "name": "single groove width",
+      "mm": "0.8~1.2"
+     },
+     {
+      "name": "single groove depth",
+      "mm": "0.3~0.5"
+     },
+     {
+      "name": "minimum wall around groove and bails",
+      "mm": "≥1.2"
+     }
+    ],
+    "metal": "925 silver",
+    "plating": "",
+    "stones": [
+     {
+      "type": "lab diamond",
+      "cut": "round brilliant flush set",
+      "mm": "1.3~1.5",
+      "count": 1
+     },
+     {
+      "type": "white topaz",
+      "cut": "round brilliant flush set",
+      "mm": "1.3~1.5",
+      "count": 1
+     }
+    ],
+    "findings": [
+     {
+      "name": "twin hidden bails on reverse",
+      "spec": "integrated silver bails, fit chains 1.0~1.6 mm; anti-rotation massing"
+     }
+    ],
+    "weight_g": {
+     "min": 4.2,
+     "max": 5.2
+    },
+    "process": [
+     "precision machining or casting to plaque size with flat back",
+     "micro-bevel edges",
+     "CNC or rotary cut single continuous groove to spec",
+     "mirror polish bright finish",
+     "optional bio-based cold enamel infill in seafoam, coral, or sand and cure",
+     "flush setting of single round stone when upsell is selected",
+     "laser hallmark and logo on inner back"
+    ],
+    "note": "Recycled 925 silver per prompt. Base version is no stone. Upsell adds one 1.3~1.5 mm round flush-set stone in the lower third of the groove, either lab diamond or white topaz, leaving at least 1.2 mm seat metal. Twin hidden bails on reverse prevent rotation and fit 1.0~1.6 mm chains. Hallmarks and logo on the inner back. Weight estimated from 18 x 12 x 2.0 mm silver plaque with groove and integrated bails.",
+    "cached": false
+   }
   },
   {
    "id": "D06",
@@ -231,7 +513,70 @@
      "at": "2026-08-26T17:41:00.839Z"
     }
    ],
-   "feature": "Compact unisex hinged huggies defined by a single 0.8-1.2 mm groove, stackable, with seafoam/coral/sand enamel options and an optional one-dot flush stone."
+   "feature": "Compact unisex hinged huggies defined by a single 0.8-1.2 mm groove, stackable, with seafoam/coral/sand enamel options and an optional one-dot flush stone.",
+   "spec": {
+    "dims": [
+     {
+      "name": "outer diameter",
+      "mm": "12~14"
+     },
+     {
+      "name": "section thickness",
+      "mm": "~2.2"
+     },
+     {
+      "name": "minimum wall",
+      "mm": "~1.1"
+     },
+     {
+      "name": "outer groove width",
+      "mm": "0.8~1.2"
+     },
+     {
+      "name": "outer groove depth",
+      "mm": "0.3~0.5"
+     },
+     {
+      "name": "hinge post diameter",
+      "mm": "0.9"
+     },
+     {
+      "name": "metal under flush-set stone",
+      "mm": ">=0.4"
+     }
+    ],
+    "metal": "925 silver",
+    "plating": "",
+    "stones": [],
+    "findings": [
+     {
+      "name": "hinge",
+      "spec": "integrated hinged huggie mechanism in 925 silver"
+     },
+     {
+      "name": "post",
+      "spec": "hinged post 0.9 mm in 925 silver"
+     },
+     {
+      "name": "latch",
+      "spec": "huggie click-in latch in 925 silver"
+     }
+    ],
+    "weight_g": {
+     "min": 1.6,
+     "max": 2.4
+    },
+    "process": [
+     "bright polish finish",
+     "bio-based cold enamel application in seafoam, coral, sand or no-color silver core",
+     "flush setting for optional apex dot",
+     "micro-beveling of interior comfort edges",
+     "inner-face logo and hallmark marking",
+     "hinge assembly and tuning"
+    ],
+    "note": "Metal per prompt is recycled 925 silver with bright finish. Base version carries no stones. Upsell adds one 1.2~1.5 mm round flush-set stone at the front apex with at least 0.4 mm of metal left beneath the seat. Comfort interiors with micro bevels and logos and hallmarks are on the inner faces only. Pair is mirrored left and right and balanced on face for stacking proportions. Weight range shown is per earring and excludes stones and findings. No plating specified. Bio-based cold enamel colorways per prompt are seafoam, coral, sand, plus a no-color silver core.",
+    "cached": false
+   }
   },
   {
    "id": "D07",
@@ -249,7 +594,58 @@
      "at": "2026-08-26T17:41:36.029Z"
     }
    ],
-   "feature": "Voronoi reef‑lattice ring in recycled 925 silver with oxidized gradient, translucent microbubble resin in 20~30% of cells, hidden flexible bridge links, and a sub‑4 mm rise for unisex daily wear."
+   "feature": "Voronoi reef‑lattice ring in recycled 925 silver with oxidized gradient, translucent microbubble resin in 20~30% of cells, hidden flexible bridge links, and a sub‑4 mm rise for unisex daily wear.",
+   "spec": {
+    "dims": [
+     {
+      "name": "Lattice wall thickness",
+      "mm": "1.2~2.0"
+     },
+     {
+      "name": "Cell diameter",
+      "mm": "2~6"
+     },
+     {
+      "name": "Ring top rise",
+      "mm": "0~4.0"
+     },
+     {
+      "name": "Band width with gentle taper",
+      "mm": "3.5~6.0"
+     },
+     {
+      "name": "Inner diameter standard sample size",
+      "mm": "17.3"
+     },
+     {
+      "name": "Resin inlay recess below surface",
+      "mm": "0~0.1"
+     }
+    ],
+    "metal": "925 silver",
+    "plating": "Oxidation gradient patina darkest in recesses, brightest on polished nodes",
+    "stones": [],
+    "findings": [
+     {
+      "name": "Flexible bridge links underside x2",
+      "spec": "Integrated 925 silver slim links for soft motion without snagging"
+     }
+    ],
+    "weight_g": {
+     "min": 3,
+     "max": 5
+    },
+    "process": [
+     "Casting",
+     "Hand finishing and comfort-fit interior rounding",
+     "Oxidation gradient patination darkest in recesses",
+     "Polishing of nodes to bright finish",
+     "Translucent ocean-tinted resin inlay with preserved microbubbles flush to recessed up to 0.1 mm",
+     "Deburr and edge-softening for snag-free wear"
+    ],
+    "note": "Metal set as 925 silver based on the prompt specifying recycled 925 silver; alloy choice recorded as 925 silver and treated as a reasoned assumption. Only 20~30 percent of cells receive the translucent ocean-tinted resin inlay with preserved microbubbles. Non-mirrored silhouette and gentle taper retained for stability. Dimensions are filled with standard values where absent.",
+    "cached": false
+   }
   },
   {
    "id": "D08",
@@ -267,7 +663,62 @@
      "at": "2026-08-26T17:42:03.702Z"
     }
    ],
-   "feature": "Asymmetrical dual-node micro-bridge bail prevents rotation and adds soft ripple motion, keeping the oxidized Voronoi lattice and surf-bubble resin accents centered on the neck."
+   "feature": "Asymmetrical dual-node micro-bridge bail prevents rotation and adds soft ripple motion, keeping the oxidized Voronoi lattice and surf-bubble resin accents centered on the neck.",
+   "spec": {
+    "dims": [
+     {
+      "name": "overall height",
+      "mm": "30"
+     },
+     {
+      "name": "max width",
+      "mm": "22"
+     },
+     {
+      "name": "overall thickness",
+      "mm": "4.0"
+     },
+     {
+      "name": "lattice wall thickness",
+      "mm": "1.2~2.0"
+     },
+     {
+      "name": "cell diameter range",
+      "mm": "2~6"
+     },
+     {
+      "name": "bail inner clearance",
+      "mm": "2.0"
+     }
+    ],
+    "metal": "925 silver",
+    "plating": "oxidized silver patina gradient, darkest in recesses and brightest on exposed nodes",
+    "stones": [],
+    "findings": [
+     {
+      "name": "bail",
+      "spec": "asymmetrical dual-node micro-bridge bail with micro-flex links to reduce rotation"
+     },
+     {
+      "name": "chain compatibility",
+      "spec": "fine 1.3 mm oxidized cable chain referenced in design for stability; chain not included by default"
+     }
+    ],
+    "weight_g": {
+     "min": 3.5,
+     "max": 5.5
+    },
+    "process": [
+     "CAD Voronoi lattice modeling",
+     "lost-wax casting in 925 silver",
+     "hand finishing with radiused edges and back relief",
+     "patina oxidation gradient application",
+     "translucent aqua resin inlay with sparse microbubbles in 20~30 percent of cells",
+     "final sanding and selective polish"
+    ],
+    "note": "Dimensions are filled with standard values. Chain is referenced for fit and anti-rotation behavior but the product scope is the pendant only.",
+    "cached": false
+   }
   },
   {
    "id": "D09",
@@ -285,7 +736,59 @@
      "at": "2026-08-26T17:42:53.028Z"
     }
    ],
-   "feature": "Unisex stud‑drop earrings translating the Pelagic Lattice Voronoi Reef cells into recycled oxidized 925 silver with translucent surf‑bubble resin, 1.2~2.0 mm walls and a micro‑hinged bridge for rippling motion under 6 g each."
+   "feature": "Unisex stud‑drop earrings translating the Pelagic Lattice Voronoi Reef cells into recycled oxidized 925 silver with translucent surf‑bubble resin, 1.2~2.0 mm walls and a micro‑hinged bridge for rippling motion under 6 g each.",
+   "spec": {
+    "dims": [
+     {
+      "name": "Lattice wall thickness",
+      "mm": "1.2~2.0"
+     },
+     {
+      "name": "Cell diameter",
+      "mm": "2.0~6.0"
+     },
+     {
+      "name": "Overall length",
+      "mm": "32.0~38.0"
+     },
+     {
+      "name": "Post diameter",
+      "mm": "0.9"
+     }
+    ],
+    "metal": "925 silver",
+    "plating": "Oxidation gradient patina, darkest in recesses, brightest on nodes",
+    "stones": [],
+    "findings": [
+     {
+      "name": "Ear post, low profile",
+      "spec": "925 silver, 0.9 mm"
+     },
+     {
+      "name": "Clutch, slim",
+      "spec": "925 silver"
+     },
+     {
+      "name": "Micro hinge or flexible bridge link",
+      "spec": "925 silver"
+     }
+    ],
+    "weight_g": {
+     "min": 3.8,
+     "max": 5.8
+    },
+    "process": [
+     "CAD modeling of Voronoi lattice and tapering silhouettes",
+     "Lost wax casting in recycled 925 silver",
+     "Edge radiusing and safety deburring",
+     "Controlled oxidation gradient patination",
+     "Translucent resin inlay with sea‑glass tint and microbubbles, filling 20~30 percent of cells",
+     "Polishing to highlight nodes while keeping recess patina",
+     "Assembly of micro hinge or flexible bridge link, post soldering and clutch fitting"
+    ],
+    "note": "Metal is specified as recycled 925 silver in the prompt; recorded as 925 silver for the alloy spec. Finish is an oxidation gradient patina as described. The two pieces are cousins, not mirror twins, and silhouettes taper with safe radiused edges and no snagging features. Translucent resin inlay with sea‑glass tint fills about 20~30 percent of cells with microbubbles. Weight is estimated per earring for the cast body and excludes findings, kept under 6 g as required by the prompt.",
+    "cached": false
+   }
   }
  ],
  "searches": 17,

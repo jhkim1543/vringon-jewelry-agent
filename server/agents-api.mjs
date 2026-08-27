@@ -569,6 +569,54 @@ ${direction ? `조사 방향: ${direction}` : ''}
 }
 
 // ── 2·3단계 · 방향(P/T/R/C(+Complement)/A) + 최종 이미지 프롬프트 ─────
+/* 제작 사양 · 원가 계산과 테크팩이 이 필드를 먹는다.
+   글로 "치수를 적어 주세요" 하면 흘리지만, 필드로 받으면 스키마가 빈 값을 거부한다.
+   weight_g 가 원가 계산의 유일한 입력이라 범위로 받는다 — 한 값으로 받으면
+   추정이라는 사실이 화면에서 사라진다. */
+const SPEC_SCHEMA = {
+  type: 'object', additionalProperties: false,
+  required: ['dims', 'metal', 'plating', 'stones', 'findings', 'weight_g', 'process', 'note'],
+  properties: {
+    dims: {
+      type: 'array', description: '그 품목의 핵심 치수 3~6개',
+      items: {
+        type: 'object', additionalProperties: false, required: ['name', 'mm'],
+        properties: {
+          name: { type: 'string', description: '밴드 폭 · 두께 · 총 길이 · 체인 굵기 등' },
+          mm: { type: 'string', description: 'mm 단위 수치. 범위면 "2.0~2.4"' },
+        },
+      },
+    },
+    metal: { type: 'string', description: '합금 규격 · 925 / K10 / 14K / 18K yellow / brass 등' },
+    plating: { type: 'string', description: '도금 종류와 두께(마이크로미터). 없으면 빈 문자열' },
+    stones: {
+      type: 'array', description: '스톤이 없으면 빈 배열',
+      items: {
+        type: 'object', additionalProperties: false, required: ['type', 'cut', 'mm', 'count'],
+        properties: {
+          type: { type: 'string', description: 'CZ · 모아사나이트 · 랩다이아 · 천연석 종류' },
+          cut: { type: 'string' }, mm: { type: 'string' },
+          count: { type: 'number', description: '개수' },
+        },
+      },
+    },
+    findings: {
+      type: 'array', description: '부속 · 클래스프, 이어링 백, 베일, 점프링 등',
+      items: {
+        type: 'object', additionalProperties: false, required: ['name', 'spec'],
+        properties: { name: { type: 'string' }, spec: { type: 'string', description: '규격·재질' } },
+      },
+    },
+    weight_g: {
+      type: 'object', additionalProperties: false, required: ['min', 'max'],
+      description: '소재와 볼륨에서 추정한 금속 중량 범위(g). 스톤·부속 제외',
+      properties: { min: { type: 'number' }, max: { type: 'number' } },
+    },
+    process: { type: 'array', items: { type: 'string' }, description: '주조·세팅·연마·도금 등 주요 공정' },
+    note: { type: 'string', description: '사용자가 적은 수치 범위를 벗어났다면 그 이유. 없으면 빈 문자열' },
+  },
+}
+
 const VARIANT_RULE = {
   base: '레퍼런스의 핵심 DNA 와 트렌드 대표성을 우선한 기본안.',
   commercial: '상업적 변형안. 크기·무게 감소, 공정 단순화, 안정적 세팅, 데일리 착용. 색만 바꾸지 말고 크기·구조·착용·공정 중 두 가지 이상을 바꿀 것.',
@@ -576,10 +624,10 @@ const VARIANT_RULE = {
   material: '소재·구조 실험안. 혼합 금속·표면 대비·탈착 가변·모듈형·새로운 세팅. 소량 생산 가능한 실험적 제작법.',
 }
 
-export async function agentPrompts(apiKey, root, { mode, refId, variant, dna, trendCombo, itemEn, itemKo, target, country, langName }) {
+export async function agentPrompts(apiKey, root, { mode, refId, variant, dna, trendCombo, itemEn, itemKo, target, country, langName, brief }) {
   // agp4 · DNA 가 키에 들어갔다. 전에는 refId 만 보고 캐시해서, 사진을 못 본 고장 DNA 로
   // 만든 프롬프트가 DNA 를 고친 뒤에도 그대로 재사용됐다 (NFC 버그 복구 때 실제로 그랬다).
-  const key = keyOf(['agp5', mode, refId, variant, itemEn, target, trendCombo, langName, dna])
+  const key = keyOf(['agp6', mode, refId, variant, itemEn, target, trendCombo, langName, dna, brief])
   const hit = cached(root, key); if (hit) return hit
   const isFashion = mode === 'fashion'
   const { data } = await ask(apiKey, {
@@ -587,6 +635,8 @@ export async function agentPrompts(apiKey, root, { mode, refId, variant, dna, tr
 
 품목: ${itemKo} (${itemEn})
 타겟 고객: ${target} · 시장: ${country}
+${brief ? `사용자가 적은 조건: """${String(brief).slice(0, 600)}"""
+  여기에 금속 규격·중량·가격대 같은 수치가 있으면 spec 이 반드시 그 범위를 지켜야 합니다.` : ''}
 변형 종류: ${VARIANT_RULE[variant] ?? VARIANT_RULE.base}
 트렌드 조합: ${trendCombo.join(' + ')}
 
@@ -607,11 +657,18 @@ ${JSON.stringify(dna, null, 1)}
    스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 포토리얼 마무리 지시를 포함.
    마지막에 "완전히 새로운 디자인일 것. 다음을 재현하지 말 것: ..." 형태로 Avoid 를 명시.
 3) title: 이 디자인안을 부를 짧은 이름 (${langName}).
+4) spec: 이 디자인을 벤치에 올릴 수 있는 제작 사양. 프롬프트에 쓴 형태와 일치해야 합니다.
+   - dims 는 그 품목의 핵심 치수만 (반지=밴드 폭·두께·링 사이즈 / 귀걸이=총 길이·모티프 폭·포스트 굵기 /
+     목걸이=체인 길이·굵기·펜던트 크기 / 브레이슬릿=둘레·폭).
+   - weight_g 는 그 치수와 금속에서 추정한 실제 값. 지어내지 말고 볼륨을 어림해서 범위로.
+   - findings 에 잠금·백·베일을 빠짐없이. 프롬프트 첫 두 줄에 쓴 것과 같아야 합니다.
+   - 사용자가 방향에 중량·가격대·규격을 적었으면 그 범위 안에서 설계하고,
+     벗어나야 한다면 note 에 한 줄로 이유를 적으세요.
 
 direction·title·final_prompt 모두 ${langName} 로 씁니다. 고유명사·보석 용어는 원어를 병기해도 됩니다.`,
     schema: {
       type: 'object', additionalProperties: false,
-      required: ['title', 'direction', 'final_prompt'],
+      required: ['title', 'direction', 'final_prompt', 'spec'],
       properties: {
         title: { type: 'string' },
         direction: {
@@ -624,6 +681,7 @@ direction·title·final_prompt 모두 ${langName} 로 씁니다. 고유명사·�
           },
         },
         final_prompt: { type: 'string' },
+        spec: SPEC_SCHEMA,
       },
     },
     name: 'agent_prompts', web: false,
@@ -635,7 +693,7 @@ direction·title·final_prompt 모두 ${langName} 로 씁니다. 고유명사·�
 // 3) 주얼리 컬렉션 · 키워드 조사 → 추상화 → 세트 콘셉트 → 품목 프롬프트
 // ════════════════════════════════════════════════════════════════════
 export async function agentKeyword(apiKey, root, { keyword, country, langName }) {
-  const key = keyOf(['agk1', keyword, country, langName])
+  const key = keyOf(['agk2', keyword, country, langName])
   const hit = cached(root, key); if (hit) return hit
   const { data, searches } = await ask(apiKey, {
     input: `키워드/스토리를 주얼리 디자인 관점에서 조사하세요. 웹 검색으로 확인한 사실 기반으로.
@@ -646,13 +704,7 @@ export async function agentKeyword(apiKey, root, { keyword, country, langName })
 조사: 기본 의미 / ${country} 문화적 의미 / 역사·신화·예술 배경 / 긍정·부정 상징 / 관련 감정 / 관련 색채 / 관련 소재 /
 형태적 특징 / 움직임·리듬 / 기존 주얼리의 흔한 표현 / 피해야 할 진부하거나 문화적으로 부적절한 표현.
 abstraction: 상징·감정·형태·움직임·구조·표면·소재·색채·리듬·이야기 10개 축으로 키워드를 분해합니다.
-${LANG_RULE(langName)}
-제작 기준을 반드시 함께 적으세요 (없으면 이 디자인은 공방에서 쓸 수 없습니다):
-- 주요 치수 (mm) · 링 밴드 폭/두께, 귀걸이 길이, 체인 굵기 같은 그 품목의 핵심 수치
-- 예상 금속 중량 (g) · 소재와 볼륨에서 추정한 값. 범위로 적어도 됩니다
-- 소재 규격 · 합금(925/K10/18K 등), 도금 종류와 두께, 스톤 크기·컷
-- 사용자가 방향에 적은 수치(중량·가격대·규격)가 있으면 그 범위 안에서 설계하고,
-  범위를 벗어나야 한다면 왜 벗어나는지 한 줄로 밝히세요.`,
+${LANG_RULE(langName)}`,
     schema: {
       type: 'object', additionalProperties: false,
       required: ['meaning', 'cultural', 'background', 'symbols', 'emotions', 'colors', 'materials', 'forms', 'motion', 'cliches', 'cautions', 'abstraction', 'sources'],
@@ -737,8 +789,8 @@ ${LANG_RULE(langName)} (concept_art 프롬프트만 영어)`,
   return save(root, key, { ...data, insight_note: insightNote })
 }
 
-export async function agentItemPrompt(apiKey, root, { setName, dna, avoid, item, itemEn, target, langName }) {
-  const key = keyOf(['agip3', setName, dna, item, target, langName])
+export async function agentItemPrompt(apiKey, root, { setName, dna, avoid, item, itemEn, target, langName, brief }) {
+  const key = keyOf(['agip4', setName, dna, item, target, langName, brief])
   const hit = cached(root, key); if (hit) return hit
   const { data } = await ask(apiKey, {
     input: `세트의 공통 Design DNA 를 ${item} (${itemEn}) 하나에 맞게 변환한 이미지 생성 프롬프트를 만듭니다. 웹 검색 없이.
@@ -748,6 +800,7 @@ export async function agentItemPrompt(apiKey, root, { setName, dna, avoid, item,
 ${dna.map(x => `- ${x}`).join('\n')}
 피해야 할 표현: ${avoid.join(', ')}
 타겟 고객: ${target}
+${brief ? `사용자가 적은 조건: ${brief} — spec 이 반드시 이 범위를 지켜야 합니다.` : ''}
 품목 고려: 반지=손가락 구조·착용 안정 / 귀걸이=무게·길이·얼굴 관계 / 목걸이=목선·체인·중심 무게 /
 펜던트=체인 연결·회전 방지 / 브레이슬릿=손목 움직임·잠금.
 
@@ -757,10 +810,14 @@ final_prompt: ${langName} 140~190단어.
 (실측으로 클로저·베일이 설명과 다르게 나왔다).
 그 다음 "${item}" 원본 디자인 선언과 함께 마스터 모티프·금속 색감·표면·스톤 규칙을 세트 DNA 그대로 유지.
 실제 제조 가능한 벽두께·세팅. 스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 포토리얼 마무리 지시 포함.
-Avoid 명시. feature: 이 제품의 디자인 특징 한 문장. 모두 ${langName} 로.`,
+Avoid 명시. feature: 이 제품의 디자인 특징 한 문장. 모두 ${langName} 로.
+spec: 이 디자인을 벤치에 올릴 제작 사양. 프롬프트에 쓴 형태와 일치해야 합니다.
+dims 는 그 품목의 핵심 치수만, weight_g 는 그 치수와 금속에서 어림한 실제 범위,
+findings 에 잠금·백·베일을 빠짐없이 — 프롬프트 첫 두 줄에 쓴 것과 같아야 합니다.
+세트 안의 품목들은 같은 금속·도금 규격을 공유해야 합니다.`,
     schema: {
-      type: 'object', additionalProperties: false, required: ['final_prompt', 'feature'],
-      properties: { final_prompt: { type: 'string' }, feature: { type: 'string' } },
+      type: 'object', additionalProperties: false, required: ['final_prompt', 'feature', 'spec'],
+      properties: { final_prompt: { type: 'string' }, feature: { type: 'string' }, spec: SPEC_SCHEMA },
     },
     name: 'agent_item_prompt', web: false,
   })
@@ -769,18 +826,12 @@ Avoid 명시. feature: 이 제품의 디자인 특징 한 문장. 모두 ${langN
 
 // ── 사전 평가 · 프롬프트·DNA 텍스트 기준 (비전 아님을 화면에 명시할 것) ──
 export async function agentScore(apiKey, root, { mode, pairs, target, langName }) {
-  const key = keyOf(['agsc1', mode, pairs.map(p => p.id + p.prompt.slice(0, 80)), target])
+  const key = keyOf(['agsc2', mode, pairs.map(p => p.id + p.prompt.slice(0, 80)), target])
   const hit = cached(root, key); if (hit) return hit
   const { data } = await ask(apiKey, {
     input: `아래 디자인 프롬프트들을 평가하세요. 웹 검색 없이. 이미지는 없으므로 프롬프트와 방향 텍스트만 기준으로 합니다.
 항목: 트렌드 적합(25) 착장·맥락 조화(20) 품목 적합(15) 독창성(15) 착용성(10) 제조성(10) 타겟 적합(5) — 합계 100.
 타겟: ${target}. 점수는 보수적으로. ${LANG_RULE(langName)}
-제작 기준을 반드시 함께 적으세요 (없으면 이 디자인은 공방에서 쓸 수 없습니다):
-- 주요 치수 (mm) · 링 밴드 폭/두께, 귀걸이 길이, 체인 굵기 같은 그 품목의 핵심 수치
-- 예상 금속 중량 (g) · 소재와 볼륨에서 추정한 값. 범위로 적어도 됩니다
-- 소재 규격 · 합금(925/K10/18K 등), 도금 종류와 두께, 스톤 크기·컷
-- 사용자가 방향에 적은 수치(중량·가격대·규격)가 있으면 그 범위 안에서 설계하고,
-  범위를 벗어나야 한다면 왜 벗어나는지 한 줄로 밝히세요.
 
 ${pairs.map(p => `[${p.id}] ${p.prompt.slice(0, 500)}`).join('\n\n')}`,
     schema: {
@@ -795,6 +846,34 @@ ${pairs.map(p => `[${p.id}] ${p.prompt.slice(0, 500)}`).join('\n\n')}`,
       },
     },
     name: 'agent_score', web: false,
+  })
+  return save(root, key, data)
+}
+
+/** 이미 만들어진 프롬프트에서 제작 사양을 읽어 낸다.
+ *  옛 저장본과 데모 샘플에는 spec 이 없다. 새로 지어내면 이미 생성된 사진과 어긋나므로,
+ *  프롬프트에 적힌 것만 읽고 적히지 않은 것은 그 품목의 표준값으로 채운 뒤 그렇다고 밝힌다. */
+export async function agentSpecFrom(apiKey, root, { prompt, itemKo, langName }) {
+  const key = keyOf(['agsf2', prompt.slice(0, 400), itemKo])
+  const hit = cached(root, key); if (hit) return hit
+  const { data } = await ask(apiKey, {
+    input: `아래는 이미 생성이 끝난 주얼리 디자인 프롬프트입니다. 여기에 적힌 내용만으로 제작 사양을 정리하세요.
+웹 검색 없이. 새로 설계하지 마세요 — 사진이 이미 이 프롬프트로 만들어졌으므로 어긋나면 안 됩니다.
+
+품목: ${itemKo}
+프롬프트: """${String(prompt).slice(0, 1800)}"""
+
+- 프롬프트에 적힌 금속·마감·스톤·부속을 그대로 옮깁니다.
+- 치수와 중량은 프롬프트에 없으면 그 품목의 표준 치수로 어림하고, note 에 "치수는 표준값으로 채웠습니다" 라고 적으세요.
+- weight_g 는 반드시 0 보다 큰 값이어야 합니다. 프롬프트에 없더라도 치수와 금속에서 부피를 어림해
+  범위로 채우세요. 0 으로 두면 원가를 계산할 수 없어 이 사양은 쓸모가 없어집니다.
+  참고 범위 · 반지 2~6g / 귀걸이 한 짝 1~4g / 펜던트 2~6g / 목걸이 체인 포함 5~12g / 브레이슬릿 6~20g.
+- metal 은 합금 규격 하나로 적으세요. "미정" 이나 빈 값을 두지 말고, 프롬프트의 색·마감에서
+  가장 그럴듯한 규격을 고른 뒤 note 에 추정이라고 밝히세요. 여러 소재가 섞이면 몸체 소재를 적습니다.
+- 프롬프트가 "없음" 이라고 한 부속은 없음으로 적습니다. 없는 것을 만들어 넣지 마세요.
+${LANG_RULE(langName)}`,
+    // 옮겨 적는 일이라 추론을 낮춰 부른다 · 실측으로 high 는 한 건에 몇 분이 걸렸다
+    schema: SPEC_SCHEMA, name: 'agent_spec_from', web: false, effort: 'low',
   })
   return save(root, key, data)
 }

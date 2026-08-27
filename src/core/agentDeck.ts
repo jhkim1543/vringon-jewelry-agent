@@ -10,6 +10,7 @@
 import type { CrawledProduct, RunState } from './types'
 import { BASIS_LABEL, CONFIDENCE_LABEL, ITEM_KO, regionsLabel, regionsOf } from './types'
 import { esc, slide } from './deck'
+import { checkTarget, dimText, estimateCost, retailBand, stoneText } from './cost'
 import { shotUrl } from './agents'
 import { t } from './i18n'
 
@@ -363,4 +364,72 @@ export function keywordDeckHtml(st: RunState): { title: string; html: string } {
     </div></section>`)
   }
   return { title: t('Keyword insight'), html: out.join('') }
+}
+
+// ── 테크팩 덱 · 디자인 한 점을 공방에 넘길 한 장 ─────────────────────
+// 페르소나 QA 에서 "이미지는 예쁘지만 이대로는 벤치에 못 올린다"(5명) 와
+// "이 가격에 만들 수 있는지 모르겠다"(9명)가 함께 나왔다. 둘은 같은 결핍이다 —
+// 화면에 치수·소재·부속·원가가 없으면 디자인이 아니라 그림이다.
+// 원가는 estimateCost 가 계산한다. 모델에게 묻지 않으므로 같은 사양이면 같은 값이다.
+export function techPackDeckHtml(st: RunState): { title: string; html: string } | null {
+  const pairs = (st.pairs ?? []).filter(p => p.spec && p.versions.length)
+  if (!pairs.length) return null
+
+  // 컬렉션은 전용 칸이 있고, 나머지 두 에이전트는 사용자가 조사 방향에 적어 둔다
+  const priceTarget = st.params.collectionAdv?.priceTarget || st.params.direction
+  const money = (n: number) => `$${n < 10 ? n.toFixed(1) : Math.round(n)}`
+  const rowsOf = (rows: Array<[string, string]>) => rows.length
+    ? `<table class="tk-t">${rows.map(([k, v]) => `<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`).join('')}</table>`
+    : `<p class="tk-none">${esc(t('Not specified'))}</p>`
+
+  const html = pairs.map((p, i) => {
+    const s = p.spec!
+    const c = estimateCost(s)
+    const shot = p.versions[p.versions.length - 1]
+    const [rLo, rHi] = retailBand(c)
+
+    const dims = rowsOf((s.dims ?? []).map(d => [d.name, dimText(d.mm)] as [string, string]))
+    const mats = rowsOf([
+      [t('Metal'), s.metal || '—'],
+      ...(s.plating?.trim() ? [[t('Plating'), s.plating] as [string, string]] : []),
+      ...(s.stones ?? []).map(x => [t('Stone'), stoneText(x)] as [string, string]),
+    ])
+    const finds = rowsOf((s.findings ?? []).map(f => [f.name, f.spec] as [string, string]))
+    const costRows = c.ok
+      ? `<table class="tk-t">${c.lines.map(l =>
+        `<tr><th>${esc(l.label)}</th><td>${money(l.usd)}${l.how ? `<em>${esc(l.how)}</em>` : ''}</td></tr>`).join('')}</table>`
+      : `<p class="tk-none">${esc(t('Cost not calculated'))} · ${esc(c.blocked)}</p>`
+
+    return slide({
+      eyebrow: 'TECH PACK',
+      tag: p.id,
+      page: i + 1,
+      foot: t('Cost is computed from the spec on this sheet using reference rates. Replace them with your own supplier quotes.'),
+      body: `<div class="tk">
+        <div class="tk-l">
+          ${shot ? `<img src="${esc(shot.url)}"/>` : ''}
+          <h3>${esc(p.title)}</h3>
+          <p class="tk-sub">${esc([st.params.mode === 'collection' ? p.setName : '', p.item ?? st.params.itemType].filter(Boolean).join(' · '))}</p>
+          ${s.process?.length ? `<p class="tk-proc"><b>${esc(t('Process'))}</b> ${esc(s.process.join(' → '))}</p>` : ''}
+          ${s.note?.trim() ? `<p class="tk-note">${esc(s.note)}</p>` : ''}
+        </div>
+        <div class="tk-r">
+          <div class="tk-box"><h4>${esc(t('Dimensions'))}</h4>${dims}</div>
+          <div class="tk-box"><h4>${esc(t('Materials'))}</h4>${mats}</div>
+          <div class="tk-box"><h4>${esc(t('Findings'))}</h4>${finds}</div>
+          <div class="tk-box tk-cost">
+            <h4>${esc(t('Estimated unit cost'))}</h4>
+            ${c.ok ? `<p class="tk-big">${money(c.low)} – ${money(c.high)}</p>` : ''}
+            ${costRows}
+            ${c.ok ? `<p class="tk-sug">${esc(t('Suggested DTC price'))} ${money(rLo)} – ${money(rHi)}</p>` : ''}
+            ${(() => { const v = checkTarget(c, priceTarget); return v.verdict === 'unknown' ? ''
+              : `<p class="tk-v ${v.verdict}">${esc(v.note)}</p>` })()}
+            ${c.quotes.length ? `<p class="tk-q">${c.quotes.map(q => esc(q)).join('<br/>')}</p>` : ''}
+          </div>
+        </div>
+      </div>`,
+    })
+  }).join('')
+
+  return { title: t('Tech pack and cost'), html }
 }

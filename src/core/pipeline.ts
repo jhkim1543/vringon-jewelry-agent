@@ -15,6 +15,10 @@ import {
 } from './agents'
 import type { RefCandidate } from './agents'
 
+/** 레퍼런스 슬롯 수 · 디자인 수량이 이 값의 배수로 정해진다.
+ *  전에는 10 이 코드 세 곳에 흩어져 있어서, 실제로 8개만 뽑혔는데도 로그는 10 이라고 찍었다. */
+const REF_SLOTS = 10
+
 export type Emit = (e: PipelineEvent) => void
 
 export interface PipelineHandle { cancel: () => void }
@@ -208,7 +212,7 @@ async function runResearchAgent(params: RunParams, emit: Emit, stopped: () => bo
   // Map 키와 코드포인트가 달라 조회가 빗나가고, 그 레퍼런스는 제목·사진·출처를 통째로 잃는다.
   // (실제로 편집샵 레퍼런스 8/10 이 이렇게 비었다.) NFC 로 맞춰 찾는다.
   const nfcIndex = new Map([...candidateIndex].map(([k, v]) => [k.normalize('NFC'), v]))
-  const references: Reference[] = (sel.picks ?? []).slice(0, 10).map(p => {
+  const references: Reference[] = (sel.picks ?? []).slice(0, REF_SLOTS).map(p => {
     const c = candidateIndex.get(p.candidate_id) ?? nfcIndex.get(String(p.candidate_id).normalize('NFC'))
     return {
       slot: p.slot, candidateId: p.candidate_id,
@@ -218,8 +222,29 @@ async function runResearchAgent(params: RunParams, emit: Emit, stopped: () => bo
       price: c?.price, currency: c?.currency,
     }
   })
+  // 모델이 10개를 채우지 못할 때가 있다. 그러면 디자인 수가 조용히 줄어든다 —
+  // 20개를 고른 사람이 14개를 받고, 그런데 로그는 계속 "10 references" 라고 찍혔다.
+  // 모자란 슬롯은 아직 안 쓴 후보로 채운다. 사진이 있는 것을 먼저 쓴다.
+  const picked = references.length
+  if (picked < REF_SLOTS) {
+    const used = new Set(references.map(r => r.candidateId))
+    const spare = candidates
+      .filter(c => !used.has(c.id))
+      .sort((a, b) => (b.image_url ? 1 : 0) - (a.image_url ? 1 : 0))
+    for (const c of spare.slice(0, REF_SLOTS - picked)) {
+      const info = candidateIndex.get(c.id)
+      references.push({
+        slot: references.length + 1, candidateId: c.id,
+        title: info?.title ?? c.title, subtitle: info?.subtitle ?? c.subtitle, trendCombo: [],
+        reason: 'Auto-filled · the research agent returned fewer picks than there were slots, so this candidate was added to keep the design count.',
+        imageUrl: info?.imageUrl ?? c.image_url, sourceUrl: info?.sourceUrl ?? '',
+        price: info?.price, currency: info?.currency,
+      })
+    }
+    log('S3', `The research agent picked only ${picked} of ${REF_SLOTS} references · ${references.length - picked} slot(s) auto-filled from the remaining candidates so the design count still holds`)
+  }
   emit({ kind: 'references', references })
-  log('S3', `10 references picked, each slot by a different trend combination · ${references.filter(r => r.imageUrl).length} carry a real photo`)
+  log('S3', `${references.length} references picked, each slot by a different trend combination · ${references.filter(r => r.imageUrl).length} carry a real photo`)
   emit({ kind: 'stage-done', stage: 'S3' })
   if (stopped()) return
 
@@ -227,7 +252,7 @@ async function runResearchAgent(params: RunParams, emit: Emit, stopped: () => bo
   emit({ kind: 'stage-start', stage: 'S4' })
   emit({ kind: 'stage-start', stage: 'S5' })
   const variants = variantsFor(params.designCount)
-  log('S4', `${params.designCount} designs = 10 references × ${variants.length} variant kind(s): ${variants.map(v => VARIANT_LABEL[v]).join(', ')}`)
+  log('S4', `${references.length * variants.length} designs = ${references.length} references × ${variants.length} variant kind(s): ${variants.map(v => VARIANT_LABEL[v]).join(', ')}`)
 
   const dnaCache = new Map<number, Record<string, unknown>>()
   const jobs: { ref: Reference; variant: VariantKind; n: number }[] = []
@@ -256,7 +281,7 @@ async function runResearchAgent(params: RunParams, emit: Emit, stopped: () => bo
       if (stopped()) return
       const pair: DesignPair = {
         id, refSlot: ref.slot, variant, title: pr.title,
-        dna, direction: pr.direction, prompt: pr.final_prompt, versions: [],
+        dna, direction: pr.direction, prompt: pr.final_prompt, versions: [], spec: pr.spec,
       }
       emit({ kind: 'pair', pair })
       const img = await generateImage(pr.final_prompt, params.imageEngine)
@@ -359,7 +384,7 @@ async function runCollection(params: RunParams, emit: Emit, stopped: () => boole
       if (stopped()) return
       const pair: DesignPair = {
         id, refSlot: setIdx, variant: 'base', setName: set.name, item,
-        title: `${set.name} · ${ITEM_KO[item]}`, prompt: pr.final_prompt, versions: [], feature: pr.feature,
+        title: `${set.name} · ${ITEM_KO[item]}`, prompt: pr.final_prompt, versions: [], feature: pr.feature, spec: pr.spec,
       }
       emit({ kind: 'pair', pair })
       const img = await generateImage(pr.final_prompt, params.imageEngine)

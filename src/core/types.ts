@@ -5,6 +5,9 @@
 // 레퍼런스 DNA 와 프롬프트 쌍에서 나오고, 근거는 조사 산출물에 남는다.
 
 import { t } from './i18n'
+import type { MakeSpec } from './cost'
+
+export type { MakeSpec } from './cost'
 
 export type Mode = 'competitor' | 'fashion' | 'collection'
 
@@ -288,6 +291,9 @@ export interface DesignPair {
   scoreNote?: string
   error?: string
   feature?: string              // 컬렉션 · 한 문장 특징
+  /** 제작 사양 · 원가 계산과 테크팩이 이것을 먹는다.
+   *  옛 저장본에는 없다 — 화면은 없을 때를 처리해야 한다. */
+  spec?: MakeSpec
 }
 
 // ── 실행 상태 ────────────────────────────────────────────────────────
