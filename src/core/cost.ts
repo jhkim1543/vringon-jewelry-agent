@@ -312,7 +312,11 @@ export function estimateCost(spec: MakeSpec | undefined, metalUsdG = METAL_USD_G
   // 귀걸이는 한 쌍이 파는 단위다. 사양의 중량 기준이 "한 짝" 이면 여기서 두 배로 올린다 —
   // 안 그러면 한 짝 원가를 한 쌍 판매가와 견주게 되어 마진이 두 배로 부풀어 보인다.
   // 실측: 이어 포스트와 클러치가 한 개 값으로만 잡혀 있었다.
-  const isEarring = (spec.findings ?? []).some(f => /이어|귀걸이|earring|post|clutch|ピアス|イヤ/i.test(`${f.name} ${f.spec}`))
+  // 부속 이름은 그 나라 말로 온다. 라틴자 post 만 보다가 한글 "포스트" 를 놓쳐
+  // 귀걸이 한 쌍이 한 짝 값으로 나갔다 — 화면 실측에서 걸렸다.
+  const EARRING_RX = /이어|귀걸이|귀고리|포스트|클러치|라푸세트|나비|earring|ear ?post|post|clutch|butterfly|ピアス|イヤ|ポスト|キャッチ|耳/i
+  const isEarring = (spec.findings ?? []).some(f => EARRING_RX.test(`${f.name} ${f.spec}`))
+    || EARRING_RX.test(spec.weight_basis ?? '')
   const perPiece = /한\s*짝|낱개|single|per piece|片方|각 한 개|one earring/i.test(spec.weight_basis ?? '')
   let pair = false
   if (isEarring && perPiece) {

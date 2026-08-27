@@ -251,7 +251,13 @@ const RECHECK_SCHEMA = {
         required: ['fix', 'status', 'why'],
         properties: {
           fix: { type: 'string', description: '전에 내가 요구한 것 (원문 그대로)' },
-          status: { type: 'string', enum: ['resolved', 'partly', 'not'], description: '지금 결과 기준으로' },
+          status: {
+            type: 'string', enum: ['resolved', 'partly', 'not', 'frozen', 'outofscope'],
+            description: 'resolved/partly/not 은 지금 자료로 판정한 것. '
+              + 'frozen 은 이 실행의 사진·조사가 그때 그대로라 판단할 수 없는 것 '
+              + '(예: 렌더 이미지가 사양과 맞는지). '
+              + 'outofscope 는 이 도구가 하는 일이 아닌 것 (1:1 도면·공차, 마케팅 소재 제작, 공급사 인증 검증).',
+          },
           why: { type: 'string', description: '무엇을 보고 그렇게 판단했는지 · 구체적으로' },
         },
       },
@@ -301,8 +307,14 @@ ${JSON.stringify(r.review, null, 1)}
 ${JSON.stringify(digest(st), null, 1)}
 
 당신이 지난번에 적은 topFixes 를 하나씩 다시 보세요.
- · 지금 결과로 그 요구가 해결됐습니까? resolved / partly / not 중 하나로 판정하고,
+ · 지금 결과로 그 요구가 해결됐습니까? 다섯 중 하나로 판정하고,
    무엇을 보고 그렇게 판단했는지 구체적으로 적으세요 (필드 이름·숫자를 대세요).
+   resolved / partly / not — 지금 자료로 판정이 되는 것
+   frozen — 이 실행의 사진과 조사는 그때 그대로라 판단할 수 없는 것.
+     렌더 이미지가 사양과 맞는지, 크롤이 채워졌는지 같은 것이 여기 해당합니다.
+     "안 고쳐졌다" 가 아니라 "이 자료로는 알 수 없다" 입니다. 억지로 not 을 주지 마세요.
+   outofscope — 이 도구가 하는 일이 아닌 것.
+     1:1 치수 도면과 공차, 마케팅 소재 제작, 공급사 인증 검증 같은 것.
  · 고쳐진 척만 하고 실제로는 안 된 것이 있으면 그렇게 적으세요. 후하게 봐주지 마세요.
  · 원가는 AI 가 답한 값이 아니라 사양에서 계산한 값입니다. 계산 근거가 breakdown 에 있습니다.
    그 근거가 당신 현장 감각과 맞는지도 보세요 — 틀렸으면 틀렸다고 하세요.

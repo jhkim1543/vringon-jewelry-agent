@@ -170,6 +170,14 @@ console.log('\n── 재측정에서 나온 것 ──')
   })
   eq('이미 한 쌍 기준이면 그대로', both.pair, false)
   eq('두 배가 실제로 반영된다', Math.round(one.low) === Math.round(both.low * 2), true)
+  // 부속 이름이 한글로 오면 못 알아봤다 (화면 실측에서 걸렸다)
+  const ko = estimateCost({
+    ...base, weight_basis: '한 짝 기준 · 스톤과 부속 포함',
+    findings: [{ name: '포스트', spec: 'Ø0.8mm' }, { name: '인비저블 힌지 클릭러', spec: '락 간극 0.07mm' }],
+  })
+  eq('한글 부속 이름으로도 귀걸이를 알아본다', ko.pair, true)
+  const ring2 = estimateCost({ ...base, weight_basis: '한 개 기준', findings: [{ name: '없음', spec: '반지' }] })
+  eq('반지는 두 배로 올리지 않는다', ring2.pair, false)
 }
 
 console.log('\n── 금 단가는 한 곳에서 유도한다 ──')
