@@ -3,7 +3,8 @@
    "목표 안에 듭니다" 가 거짓말이 된다. 여기서 표기별로 못을 박아 둔다.
    실행: npx tsx scripts/cost-selftest.mts */
 import {
-  checkTarget, currencyCode, dimText, estimateCost, marketBand, metalKey, parsePriceTarget, stoneText,
+  GOLD_24K_USD_G, METAL_USD_G,
+  checkTarget, currencyCode, dimText, estimateCost, marketBand, metalBasis, metalKey, parsePriceTarget, stoneText,
   type MakeSpec,
 } from '../src/core/cost'
 
@@ -122,6 +123,21 @@ eq('빈 칸은 구분자까지 지운다',
   stoneText({ type: '청록 사파이어', cut: '', mm: '2.3', count: 1 }), '청록 사파이어 · 2.3 mm · 1')
 eq('다 있으면 다 붙인다',
   stoneText({ type: 'CZ', cut: '라운드', mm: '1.2mm', count: 20 }), 'CZ · 라운드 · 1.2mm · 20')
+
+console.log('\n── 금 단가는 한 곳에서 유도한다 ──')
+// "18K 가 24K 보다 비싸다" 는 지적이 나왔다 · 합금값을 따로 적어 두면 이런 표가 나온다
+{
+  const g = METAL_USD_G
+  eq('18K > 14K > 10K', g.gold18k > g.gold14k && g.gold14k > g.gold10k, true)
+  eq('어느 합금도 24K 를 넘지 않는다', g.gold18k <= GOLD_24K_USD_G, true)
+  eq('근거가 화면에 나간다', metalBasis('gold18k').includes('24K'), true)
+  eq('비금속은 근거 문구가 없다', metalBasis('brass'), '')
+  const gold = estimateCost({
+    dims: [], metal: '18K yellow gold', plating: '', stones: [], findings: [],
+    weight_g: { min: 4, max: 6 }, process: [], note: '',
+  })
+  eq('금속 줄에 유도 근거가 붙는다', gold.lines[0].how.includes('순도'), true)
+}
 
 console.log('\n── 통화 읽기 ──')
 // 조사 모델은 통화 칸에 코드만 넣지 않는다. 코드만 받다가 실측으로 표본 41건 중

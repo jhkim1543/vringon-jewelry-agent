@@ -16,6 +16,16 @@ export const PRICED_AT = '2026-08'
 
 /** 금속 단가 (USD/g) · 합금 함량과 정련비를 반영한 지금 시세의 어림값.
  *  실제 거래처 매입가로 바꿔 쓰는 것이 맞다 — 시세는 매일 움직인다. */
+/** 순금(24K) 시세 · 금 합금은 전부 여기서 유도한다.
+ *  값을 따로 적어 두다가 "18K 가 24K 보다 비싸다" 같은 앞뒤 안 맞는 표가 나왔다.
+ *  하나만 고치면 10K·14K·18K 가 함께 움직인다. 거래처 시세로 바꿔 쓰는 자리다. */
+export const GOLD_24K_USD_G = 105
+
+/** 합금 함량 · 세공 프리미엄(정련·압연·손실 관리) 15% 를 얹는다 */
+const KARAT = { gold10k: 0.417, gold14k: 0.585, gold18k: 0.75 } as const
+const FABRICATION = 1.15
+const goldAt = (k: keyof typeof KARAT) => Math.round(GOLD_24K_USD_G * KARAT[k] * FABRICATION)
+
 export const METAL_USD_G: Record<string, number> = {
   // 패션 주얼리는 귀금속만 쓰지 않는다. 스틸·티타늄이 빠져 있어서
   // 실측으로 데모 샘플 두 건이 "금속 규격을 읽지 못했습니다" 로 막혔다.
@@ -23,10 +33,19 @@ export const METAL_USD_G: Record<string, number> = {
   titanium: 0.06,
   brass: 0.03,
   silver925: 1.25,
-  gold10k: 46,
-  gold14k: 64,
-  gold18k: 82,
+  gold10k: goldAt('gold10k'),
+  gold14k: goldAt('gold14k'),
+  gold18k: goldAt('gold18k'),
   platinum950: 38,
+}
+
+/** 이 금속값이 어디서 나왔는지 한 줄 · 화면에 그대로 띄운다 */
+export function metalBasis(key: string): string {
+  if (key in KARAT) {
+    const k = key as keyof typeof KARAT
+    return `24K ${GOLD_24K_USD_G}달러/g × 순도 ${Math.round(KARAT[k] * 1000)}/1000 × 세공 ${Math.round((FABRICATION - 1) * 100)}%`
+  }
+  return ''
 }
 
 /** 사양의 금속 표기를 위 표의 열쇠로 맞춘다 · 표기가 제각각이라 넉넉히 받는다 */
@@ -125,8 +144,9 @@ const LABOR = {
   assembly: 2,          // 부속 조립
 }
 
-/** 금속 손실률 · 주조·연마에서 깎여 나가는 몫 */
-const SCRAP = 0.1
+/** 금속 손실률 · 주조(3~6%)와 연마·마무리(1~3%)에서 깎여 나가는 몫을 합쳐 잡은 값.
+ *  회수·재정련을 하면 실질은 이보다 낮다 — 거래처 조건에 맞춰 고칠 자리다. */
+const SCRAP = 0.08
 
 /** 원가 한 줄 · 반드시 범위로 남긴다. 줄의 합이 곧 전체 범위여야 표를 믿을 수 있다. */
 export interface CostLine { label: string; lo: number; hi: number; how: string }
@@ -195,8 +215,10 @@ export function estimateCost(spec: MakeSpec | undefined, metalUsdG = METAL_USD_G
   const g = metalUsdG[mk]
   const mLo = wMin * g * (1 + SCRAP)
   const mHi = wMax * g * (1 + SCRAP)
+  const basis = metalBasis(mk)
   add('금속', mLo, mHi,
-    `${spec.metal} ${wMin === wMax ? `${wMin}g` : `${wMin}~${wMax}g`} × ${g}달러/g · 손실 ${SCRAP * 100}% 포함`)
+    `${spec.metal} ${wMin === wMax ? `${wMin}g` : `${wMin}~${wMax}g`} × ${g}달러/g${
+      basis ? ` (${basis})` : ''} · 주조·연마 손실 ${Math.round(SCRAP * 100)}% 포함`)
 
   // ── 스톤 ──
   let stoneCount = 0

@@ -67,7 +67,9 @@ function specDigest(spec, st) {
     note: spec.note || null,
     cost: c.ok ? {
       unit: `${money(c.low)} ~ ${money(c.high)}`,
-      breakdown: c.lines.map(l => `${l.label} ${money(l.usd)}${l.how ? ` (${l.how})` : ''}`),
+      // 줄마다 범위다 · 여기서 단일값을 읽다가 전 항목이 NaN 으로 나갔고,
+      // 평가자 두 사람이 그걸 보고 "산식이 비어 있다" 고 판정했다. 하네스가 만든 오판이다.
+      breakdown: c.lines.map(l => `${l.label} ${l.lo === l.hi ? money(l.lo) : `${money(l.lo)}~${money(l.hi)}`}${l.how ? ` (${l.how})` : ''}`),
       suggestedRetail: (() => { const [a, b] = retailBand(c); return `${money(a)} ~ ${money(b)}` })(),
       needsQuote: c.quotes,
       pricedAt: c.pricedAt,
