@@ -238,7 +238,7 @@ ${frame}
       type: 'object', additionalProperties: false, required: ['questions'],
       properties: { questions: { type: 'array', items: { type: 'string' } } },
     },
-    name: 'agent_plan',
+    name: 'agent_plan', root,
   })
   const qs = (planned.data.questions ?? []).slice(0, depth)
   let searches = planned.searches
@@ -260,7 +260,7 @@ ${frame}
         image_urls: { type: 'array', items: { type: 'string' } },
       },
     },
-    name: 'agent_sub', deep, deepModel,
+    name: 'agent_sub', root, deep, deepModel,
   })))
   const findings = []
   settled.forEach((r, i) => {
@@ -284,7 +284,7 @@ ${LANG_RULE(langName)}
 --- 조사 결과 ---
 ${digest}
 --- 끝 ---`,
-    schema: TREND_SCHEMA, name: 'agent_trend', web: false, deep, deepModel,
+    schema: TREND_SCHEMA, name: 'agent_trend', root, web: false, deep, deepModel,
   })
   searches += rep.searches
   return save(root, key, { ...rep.data, sub_questions: qs, searches, collected_at: new Date().toISOString().slice(0, 10) })
@@ -332,7 +332,7 @@ ${direction ? `유저의 조사 방향: "${direction}" — 예측도 이 방향�
 - predictions 는 6~10개, 축(${ELEMENT_AXES.join(', ')})별로 겹치지 않게.
 - 예측은 예측입니다. call 은 단정이 아니라 전망 문장으로, confidence 를 정직하게.
 - ${LANG_RULE(langName)}`,
-    schema: FORECAST_SCHEMA, name: 'agent_forecast', deep, deepModel,
+    schema: FORECAST_SCHEMA, name: 'agent_forecast', root, deep, deepModel,
   })
   return save(root, key, { ...data, searches })
 }
@@ -375,7 +375,7 @@ image_url 은 이미지 파일 직접 주소만, 아니면 빈 문자열. 출시
         sources: { type: 'array', items: { type: 'string' } },
       },
     },
-    name: 'agent_runway',
+    name: 'agent_runway', root,
   })
   return save(root, key, { ...data, searches })
 }
@@ -407,7 +407,7 @@ official_best(공식 베스트셀러) / exposure(사이트 노출순위) / edito
         sources: { type: 'array', items: { type: 'string' } },
       },
     },
-    name: 'agent_adoption',
+    name: 'agent_adoption', root,
   })
   return save(root, key, { ...data, searches })
 }
@@ -465,7 +465,7 @@ ${list}`,
         },
       },
     },
-    name: 'agent_refs', web: false,
+    name: 'agent_refs', root, web: false,
   })
   return save(root, key, { ...data, searches })
 }
@@ -569,64 +569,6 @@ ${direction ? `조사 방향: ${direction}` : ''}
 }
 
 // ── 2·3단계 · 방향(P/T/R/C(+Complement)/A) + 최종 이미지 프롬프트 ─────
-/* 제작 사양 · 원가 계산과 테크팩이 이 필드를 먹는다.
-   글로 "치수를 적어 주세요" 하면 흘리지만, 필드로 받으면 스키마가 빈 값을 거부한다.
-   weight_g 가 원가 계산의 유일한 입력이라 범위로 받는다 — 한 값으로 받으면
-   추정이라는 사실이 화면에서 사라진다. */
-const SPEC_SCHEMA = {
-  type: 'object', additionalProperties: false,
-  required: ['dims', 'metal', 'plating', 'stones', 'findings', 'weight_g', 'weight_basis', 'process', 'note'],
-  properties: {
-    dims: {
-      type: 'array', description: '그 품목의 핵심 치수 3~6개',
-      items: {
-        type: 'object', additionalProperties: false, required: ['name', 'mm'],
-        properties: {
-          name: { type: 'string', description: '밴드 폭 · 두께 · 총 길이 · 체인 굵기 등' },
-          mm: { type: 'string', description: 'mm 단위 수치. 범위면 "2.0~2.4"' },
-        },
-      },
-    },
-    metal: { type: 'string', description: '합금 규격 · 925 / K10 / 14K / 18K yellow / brass 등' },
-    plating: {
-      type: 'string',
-      description: '도금 종류와 두께(마이크로미터)만. 도금을 하지 않으면 빈 문자열로 두세요. '
-        + '"고운 무광" · "새틴 마감" 같은 표면 가공은 도금이 아니므로 여기 적지 말고 process 에 적으세요.',
-    },
-    stones: {
-      type: 'array', description: '스톤이 없으면 빈 배열',
-      items: {
-        type: 'object', additionalProperties: false, required: ['type', 'cut', 'mm', 'count'],
-        properties: {
-          type: { type: 'string', description: 'CZ · 모아사나이트 · 랩다이아 · 천연석 종류' },
-          cut: { type: 'string' }, mm: { type: 'string' },
-          count: { type: 'number', description: '개수' },
-        },
-      },
-    },
-    findings: {
-      type: 'array', description: '부속 · 클래스프, 이어링 백, 베일, 점프링 등',
-      items: {
-        type: 'object', additionalProperties: false, required: ['name', 'spec'],
-        properties: { name: { type: 'string' }, spec: { type: 'string', description: '규격·재질' } },
-      },
-    },
-    weight_g: {
-      type: 'object', additionalProperties: false, required: ['min', 'max'],
-      description: '소재와 볼륨에서 추정한 금속 중량 범위(g). 스톤·부속 제외',
-      properties: { min: { type: 'number' }, max: { type: 'number' } },
-    },
-    weight_basis: {
-      type: 'string',
-      description: '위 중량이 무엇을 재는 값인가. 귀걸이는 "한 짝 기준" 인지 "한 쌍 기준" 인지, '
-        + '목걸이는 체인을 포함하는지, 무엇이 빠졌는지 한 줄로. 안 밝히면 원가를 비교할 수 없다. '
-        + '예: "한 짝 기준 · 이어백 제외" / "펜던트 + 체인 45cm 포함"',
-    },
-    process: { type: 'array', items: { type: 'string' }, description: '주조·세팅·연마·도금 등 주요 공정' },
-    note: { type: 'string', description: '사용자가 적은 수치 범위를 벗어났다면 그 이유. 없으면 빈 문자열' },
-  },
-}
-
 const VARIANT_RULE = {
   base: '레퍼런스의 핵심 DNA 와 트렌드 대표성을 우선한 기본안.',
   commercial: '상업적 변형안. 크기·무게 감소, 공정 단순화, 안정적 세팅, 데일리 착용. 색만 바꾸지 말고 크기·구조·착용·공정 중 두 가지 이상을 바꿀 것.',
@@ -634,7 +576,7 @@ const VARIANT_RULE = {
   material: '소재·구조 실험안. 혼합 금속·표면 대비·탈착 가변·모듈형·새로운 세팅. 소량 생산 가능한 실험적 제작법.',
 }
 
-export async function agentPrompts(apiKey, root, { mode, refId, variant, dna, trendCombo, itemEn, itemKo, target, country, langName, brief }) {
+export async function agentPrompts(apiKey, root, { mode, refId, variant, dna, trendCombo, itemEn, itemKo, target, country, langName, brief, effort }) {
   // agp4 · DNA 가 키에 들어갔다. 전에는 refId 만 보고 캐시해서, 사진을 못 본 고장 DNA 로
   // 만든 프롬프트가 DNA 를 고친 뒤에도 그대로 재사용됐다 (NFC 버그 복구 때 실제로 그랬다).
   const key = keyOf(['agp7', mode, refId, variant, itemEn, target, trendCombo, langName, dna, brief])
@@ -667,19 +609,11 @@ ${JSON.stringify(dna, null, 1)}
    스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 포토리얼 마무리 지시를 포함.
    마지막에 "완전히 새로운 디자인일 것. 다음을 재현하지 말 것: ..." 형태로 Avoid 를 명시.
 3) title: 이 디자인안을 부를 짧은 이름 (${langName}).
-4) spec: 이 디자인을 벤치에 올릴 수 있는 제작 사양. 프롬프트에 쓴 형태와 일치해야 합니다.
-   - dims 는 그 품목의 핵심 치수만 (반지=밴드 폭·두께·링 사이즈 / 귀걸이=총 길이·모티프 폭·포스트 굵기 /
-     목걸이=체인 길이·굵기·펜던트 크기 / 브레이슬릿=둘레·폭).
-   - weight_g 는 그 치수와 금속에서 추정한 실제 값. 지어내지 말고 볼륨을 어림해서 범위로.
-   - weight_basis 에 그 중량이 무엇을 재는 값인지 반드시 적으세요 (한 짝/한 쌍, 체인 포함 여부).
-   - findings 에 잠금·백·베일을 빠짐없이. 프롬프트 첫 두 줄에 쓴 것과 같아야 합니다.
-   - 사용자가 방향에 중량·가격대·규격을 적었으면 그 범위 안에서 설계하고,
-     벗어나야 한다면 note 에 한 줄로 이유를 적으세요.
 
 direction·title·final_prompt 모두 ${langName} 로 씁니다. 고유명사·보석 용어는 원어를 병기해도 됩니다.`,
     schema: {
       type: 'object', additionalProperties: false,
-      required: ['title', 'direction', 'final_prompt', 'spec'],
+      required: ['title', 'direction', 'final_prompt'],
       properties: {
         title: { type: 'string' },
         direction: {
@@ -692,10 +626,9 @@ direction·title·final_prompt 모두 ${langName} 로 씁니다. 고유명사·�
           },
         },
         final_prompt: { type: 'string' },
-        spec: SPEC_SCHEMA,
       },
     },
-    name: 'agent_prompts', web: false,
+    name: 'agent_prompts', root, web: false, ...(effort ? { effort } : {}),
   })
   return save(root, key, data)
 }
@@ -738,7 +671,7 @@ ${LANG_RULE(langName)}`,
         sources: { type: 'array', items: { type: 'string' } },
       },
     },
-    name: 'agent_keyword',
+    name: 'agent_keyword', root,
   })
   return save(root, key, { ...data, searches })
 }
@@ -794,7 +727,7 @@ ${LANG_RULE(langName)} (concept_art 프롬프트만 영어)`,
         },
       },
     },
-    name: 'agent_sets', web: false,
+    name: 'agent_sets', root, web: false,
   })
   const insightNote = `${insight?.meaning ?? ''} · 주의: ${(insight?.cautions ?? []).join(', ')}`
   return save(root, key, { ...data, insight_note: insightNote })
@@ -826,16 +759,12 @@ final_prompt: ${langName} 140~190단어.
 (실측으로 클로저·베일이 설명과 다르게 나왔다).
 그 다음 "${item}" 원본 디자인 선언과 함께 마스터 모티프·금속 색감·표면·스톤 규칙을 세트 DNA 그대로 유지.
 실제 제조 가능한 벽두께·세팅. 스리쿼터 제품 뷰, 무채색 스튜디오 배경, 매크로 주얼리 사진, 포토리얼 마무리 지시 포함.
-Avoid 명시. feature: 이 제품의 디자인 특징 한 문장. 모두 ${langName} 로.
-spec: 이 디자인을 벤치에 올릴 제작 사양. 프롬프트에 쓴 형태와 일치해야 합니다.
-dims 는 그 품목의 핵심 치수만, weight_g 는 그 치수와 금속에서 어림한 실제 범위,
-findings 에 잠금·백·베일을 빠짐없이 — 프롬프트 첫 두 줄에 쓴 것과 같아야 합니다.
-세트 안의 품목들은 같은 금속·도금 규격을 공유해야 합니다.`,
+Avoid 명시. feature: 이 제품의 디자인 특징 한 문장. 모두 ${langName} 로.`,
     schema: {
-      type: 'object', additionalProperties: false, required: ['final_prompt', 'feature', 'spec'],
-      properties: { final_prompt: { type: 'string' }, feature: { type: 'string' }, spec: SPEC_SCHEMA },
+      type: 'object', additionalProperties: false, required: ['final_prompt', 'feature'],
+      properties: { final_prompt: { type: 'string' }, feature: { type: 'string' } },
     },
-    name: 'agent_item_prompt', web: false,
+    name: 'agent_item_prompt', root, web: false,
   })
   return save(root, key, data)
 }
@@ -861,38 +790,8 @@ ${pairs.map(p => `[${p.id}] ${p.prompt.slice(0, 500)}`).join('\n\n')}`,
         },
       },
     },
-    name: 'agent_score', web: false,
+    name: 'agent_score', root, web: false,
   })
   return save(root, key, data)
 }
 
-/** 이미 만들어진 프롬프트에서 제작 사양을 읽어 낸다.
- *  옛 저장본과 데모 샘플에는 spec 이 없다. 새로 지어내면 이미 생성된 사진과 어긋나므로,
- *  프롬프트에 적힌 것만 읽고 적히지 않은 것은 그 품목의 표준값으로 채운 뒤 그렇다고 밝힌다. */
-export async function agentSpecFrom(apiKey, root, { prompt, itemKo, langName }) {
-  const key = keyOf(['agsf3', prompt.slice(0, 400), itemKo])
-  const hit = cached(root, key); if (hit) return hit
-  const { data } = await ask(apiKey, {
-    input: `아래는 이미 생성이 끝난 주얼리 디자인 프롬프트입니다. 여기에 적힌 내용만으로 제작 사양을 정리하세요.
-웹 검색 없이. 새로 설계하지 마세요 — 사진이 이미 이 프롬프트로 만들어졌으므로 어긋나면 안 됩니다.
-
-품목: ${itemKo}
-프롬프트: """${String(prompt).slice(0, 1800)}"""
-
-- 프롬프트에 적힌 금속·마감·스톤·부속을 그대로 옮깁니다.
-- 치수와 중량은 프롬프트에 없으면 그 품목의 표준 치수로 어림하고, note 에 "치수는 표준값으로 채웠습니다" 라고 적으세요.
-- weight_g 는 반드시 0 보다 큰 값이어야 합니다. 프롬프트에 없더라도 치수와 금속에서 부피를 어림해
-  범위로 채우세요. 0 으로 두면 원가를 계산할 수 없어 이 사양은 쓸모가 없어집니다.
-  참고 범위 · 반지 2~6g / 귀걸이 한 짝 1~4g / 펜던트 2~6g / 목걸이 체인 포함 5~12g / 브레이슬릿 6~20g.
-- weight_basis 를 반드시 적으세요. 귀걸이면 한 짝인지 한 쌍인지, 목걸이면 체인을 포함하는지.
-  이것이 없으면 원가를 다른 디자인과 견줄 수 없습니다.
-- plating 은 진짜 도금일 때만. 표면 마감(무광·새틴·헤어라인)은 process 에 적으세요.
-- metal 은 합금 규격 하나로 적으세요. "미정" 이나 빈 값을 두지 말고, 프롬프트의 색·마감에서
-  가장 그럴듯한 규격을 고른 뒤 note 에 추정이라고 밝히세요. 여러 소재가 섞이면 몸체 소재를 적습니다.
-- 프롬프트가 "없음" 이라고 한 부속은 없음으로 적습니다. 없는 것을 만들어 넣지 마세요.
-${LANG_RULE(langName)}`,
-    // 옮겨 적는 일이라 추론을 낮춰 부른다 · 실측으로 high 는 한 건에 몇 분이 걸렸다
-    schema: SPEC_SCHEMA, name: 'agent_spec_from', web: false, effort: 'low',
-  })
-  return save(root, key, data)
-}

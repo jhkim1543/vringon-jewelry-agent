@@ -4,13 +4,11 @@
 // 실행이 끝나기 전에도 도착한 산출물부터 보인다.
 import { t, tf } from '../core/i18n'
 import { useEffect, useMemo, useRef, useState } from 'react'
-import type { DesignPair, MakeSpec, PromptDirection, RunState, Stage } from '../core/types'
-import { TechPack } from './TechPack'
-import { currencyFor, estimateCost, marketBand, moneyIn, priceStats } from '../core/cost'
-import type { MarketBand } from '../core/cost'
+import type { DesignPair, PromptDirection, RunState, Stage } from '../core/types'
+import { dnaDrift } from '../core/dna'
 import {
   BASIS_LABEL, GENDER_LABEL, ITEM_LABEL, MODE_LABEL, STAGE_LABELS, VARIANT_LABEL,
-  estimateMinutes, estimateStages, regionsLabel, regionsOf,
+  estimateMinutes, estimateStages, regionsLabel,
   agesOf,
 } from '../core/types'
 import { detectRuntime } from '../core/runtime'
@@ -18,7 +16,7 @@ import { shotUrl } from '../core/agents'
 import { DeckViewer } from './DeckViewer'
 import { downloadDeck, printDeck } from '../core/deck'
 import {
-  adoptionDeckHtml, competitorDeckHtml, keywordDeckHtml, runwayDeckHtml, shopsDeckHtml, techPackDeckHtml, trendDeckHtml,
+  adoptionDeckHtml, competitorDeckHtml, keywordDeckHtml, runwayDeckHtml, shopsDeckHtml, trendDeckHtml,
 } from '../core/agentDeck'
 import { Collapse, Tag } from './bits'
 
@@ -42,39 +40,6 @@ function Bars({ rows }: { rows: { label: string; n: number }[] }) {
           <b>{r.n}</b>
         </div>
       ))}
-    </div>
-  )
-}
-
-/** 수집 가격 분포 · 눈금은 로그다. 등간격으로 자르면 11달러와 5136달러가 한 칸에 들어가
- *  76건 중 64건이 첫 칸에 몰린다 — 그런 그래프는 아무것도 말해 주지 않는다. */
-function PriceDist({ s, currency }: { s: NonNullable<ReturnType<typeof priceStats>>; currency: string }) {
-  const usd = moneyIn(currency)
-  const max = Math.max(1, ...s.bins.map(b => b.n))
-  return (
-    <div className="pdist">
-      <div className="pd-head">
-        <b>{t('Collected price distribution')}</b>
-        <span className="hint">
-          {t('n =')} {s.n}
-          {s.skipped ? ` · ${s.skipped} ${t('skipped for unknown currency')}` : ''}
-          {' · '}{t('quartiles')} {usd(s.band.p25)} / {usd(s.band.p50)} / {usd(s.band.p75)}
-        </span>
-      </div>
-      <div className="bars">
-        {s.bins.map((b, i) => (
-          <div className="bar-row" key={i}>
-            <span className="bar-l">{usd(b.from)}–{usd(b.to)}</span>
-            <span className="bar-track"><i style={{ width: `${(b.n / max) * 100}%` }} /></span>
-            <b>{b.n}</b>
-          </div>
-        ))}
-      </div>
-      {!!s.byGroup.length && (
-        <p className="hint pd-groups">
-          {t('Median by brand')} · {s.byGroup.slice(0, 8).map(g => `${g.name} ${usd(g.median)} (${g.n})`).join(' · ')}
-        </p>
-      )}
     </div>
   )
 }
@@ -142,15 +107,6 @@ export default function RunView({ st, progress, onOpenBoard, onPairUpdate, onSco
   const adDeck = useMemo(() => st.adoption?.length ? adoptionDeckHtml(st) : null, [st.adoption])
   const trDeck = useMemo(() => st.trendReport ? trendDeckHtml(st) : null, [st.trendReport])
   const kwDeck = useMemo(() => st.insight ? keywordDeckHtml(st) : null, [st.insight])
-  // 테크팩은 디자인이 다 나온 뒤에 만든다 · 사양이 붙은 쌍만 들어간다
-  const tkDeck = useMemo(() => techPackDeckHtml(st), [st.pairs])
-  // 같은 실행에서 모은 실제 판매가 · 원가가 시장 어디에 앉는지 견주는 데 쓴다
-  const market = useMemo(() => marketBand((st.shops ?? []).flatMap(x => x.items)), [st.shops])
-  // 수집한 값을 직접 센 가격 분포 · "비중과 히스토그램을 달라" 가 되풀이된 요구였다.
-  // 모델에게 세어 달라고 하면 "많이 보인다" 가 돌아온다.
-  const prices = useMemo(
-    () => priceStats([...(st.crawl ?? []).flatMap(c => c.items), ...(st.shops ?? []).flatMap(x => x.items)]),
-    [st.crawl, st.shops])
 
   const p = st.params
   const pairsDone = st.pairs.filter(x => x.versions.length > 0).length
@@ -270,7 +226,6 @@ export default function RunView({ st, progress, onOpenBoard, onPairUpdate, onSco
               {p.mode === 'collection' && <div><b>{st.sets?.length ?? 0}</b><span>{t('Sets')}</span></div>}
             </div>
             {hubRows.length > 0 && <Bars rows={hubRows} />}
-            {prices && <PriceDist s={prices} currency={currencyFor(regionsOf(p))} />}
             <p className="hint">{t('These numbers are counted from what was actually collected. None of this is generated art.')}</p>
           </div>
         </section>
@@ -282,7 +237,6 @@ export default function RunView({ st, progress, onOpenBoard, onPairUpdate, onSco
         {p.mode === 'fashion' && deckBlock(adDeck, 'deck-adoption')}
         {p.mode === 'collection' && deckBlock(kwDeck, 'deck-keyword')}
         {p.mode !== 'collection' && deckBlock(trDeck, 'deck-trend')}
-        {deckBlock(tkDeck, 'deck-techpack')}
 
         {/* ── 컬렉션 · 세트 콘셉트 ───────────────────────────────── */}
         {p.mode === 'collection' && (st.sets?.length ?? 0) > 0 && (
@@ -343,7 +297,7 @@ export default function RunView({ st, progress, onOpenBoard, onPairUpdate, onSco
             <p className="hint">{t('Edit a prompt and regenerate. Only that design gets a new version, everything else stays.')}</p>
             <div className="pairlist">
               {[...st.pairs].sort((a, b) => a.id.localeCompare(b.id)).map(pair => (
-                <PairRow key={pair.id} st={st} pair={pair} onPairUpdate={onPairUpdate} market={market} />
+                <PairRow key={pair.id} st={st} pair={pair} onPairUpdate={onPairUpdate} />
               ))}
             </div>
           </section>
@@ -354,25 +308,14 @@ export default function RunView({ st, progress, onOpenBoard, onPairUpdate, onSco
 }
 
 /** 접힘 요약은 펼쳤을 때 실제로 보이는 축만 센다 · Complement 는 패션 모드에만 채워진다 */
-/** 접힌 줄에 보일 한 줄 · 원가가 계산됐으면 그것부터 보여 준다 */
-function specSummary(spec: MakeSpec, currency: string): string {
-  const m = moneyIn(currency)
-  const c = estimateCost(spec, m)
-  const w = spec.weight_g?.min ? `${spec.weight_g.min}~${spec.weight_g.max}g` : ''
-  const cost = c.ok ? `${m(c.low)}~${m(c.high)}` : c.blocked
-  return [spec.metal, w, cost].filter(Boolean).join(' · ')
-}
-
 function axisSummary(d: PromptDirection): string {
   return ['Preserve', 'Transform', 'Replace', 'Combine',
     ...(d.complement ? ['Complement'] : []), 'Avoid'].join(' · ')
 }
 
 // ── 쌍 한 줄 · 프롬프트 편집과 개별 재생성 ───────────────────────────
-function PairRow({ st, pair, onPairUpdate, market }: {
+function PairRow({ st, pair, onPairUpdate }: {
   st: RunState; pair: DesignPair; onPairUpdate: (p: DesignPair) => void
-  /** 같은 실행에서 모은 실제 판매가 · 원가가 시장 어디에 앉는지 견준다 */
-  market: MarketBand | null
 }) {
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState(pair.prompt)
@@ -433,13 +376,16 @@ function PairRow({ st, pair, onPairUpdate, market }: {
         ) : (
           <pre className="pr-prompt">{pair.prompt || t('No prompt. This one failed before the prompt stage.')}</pre>
         )}
-        {pair.spec && (
-          <Collapse title={t('Tech pack and cost')} summary={specSummary(pair.spec, currencyFor(regionsOf(st.params)))}>
-            <TechPack spec={pair.spec} priceTarget={st.params.collectionAdv?.priceTarget || st.params.direction}
-              market={market} currency={currencyFor(regionsOf(st.params))}
-              set={st.sets?.find(x => x.name === pair.setName)} />
-          </Collapse>
-        )}
+        {(() => {
+          // 세트가 정한 금속·스톤과 어긋나면 그 자리에서 알린다 · 컬렉션의 약속이 깨지는 지점이다
+          const drift = dnaDrift(pair.prompt, st.sets?.find(x => x.name === pair.setName))
+          return drift.length ? (
+            <div className="pr-drift">
+              <b>{t('Does not match the set')}</b>
+              {drift.map((d, i) => <p key={i}>{d.field} · {t('set')}: {d.set}</p>)}
+            </div>
+          ) : null
+        })()}
         {pair.feature && <p className="hint">{pair.feature}</p>}
         {pair.scoreNote && <p className="hint">{pair.scoreNote}</p>}
         {pair.error && <p className="hint" style={{ color: 'var(--warn)' }}>{pair.error}</p>}

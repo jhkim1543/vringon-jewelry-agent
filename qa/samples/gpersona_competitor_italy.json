@@ -416,55 +416,7 @@
      "prompt": "Design originale di '귀걸이', paio di orecchini mini per uso quotidiano. Forma: mini ovale schiacciato aperto lateralmente (non a C), sezione a D semibombata; larghezza 2,0 mm, dimensione circa 14 × 12 mm. Metallo: 18 kt in metalli misti (oro giallo per bordo esterno e lato pelle; oro bianco per fascia frontale rigata; oro rosa per fascia inferiore liscia). Superficie: rigatura grosgrain sulla fascia in oro bianco a passo 0,20 mm, creste lucidate e solchi con PVD brown; campi in oro giallo e rosa lisci lucidati a specchio. Nessuna gemma, nessuna incassatura. Struttura: tubo leggero a parete 0,35–0,45 mm con estremità rinforzate; perno saldato su nucleo massiccio; chiusura a perno con farfallina 18 kt. Produzione: microfusione, brasatura laser, lucidatura speculare; PVD bruno solo nei solchi in oro bianco (mai sull’oro giallo). Vista a tre quarti, sfondo studio neutro, macro, luce radente, resa fotorealistica. Design completamente nuovo. Non riprodurre: sagoma/posizione apertura della referenza; pietre; loghi; cerniere complesse/scatti interni; spessori >2,5 mm; righe troppo profonde; rivestimenti che alterano il tono dell’oro giallo; colori multipli che imitano la referenza.",
      "at": "2026-08-27T01:46:24.483Z"
     }
-   ],
-   "spec": {
-    "dims": [
-     {
-      "name": "larghezza sezione a D semibombata",
-      "mm": "2,0"
-     },
-     {
-      "name": "dimensione ovale complessiva",
-      "mm": "14 × 12"
-     },
-     {
-      "name": "spessore parete del tubo",
-      "mm": "0,35~0,45"
-     },
-     {
-      "name": "apertura laterale non a C",
-      "mm": ","
-     }
-    ],
-    "metal": "oro 18 kt (corpo base in oro giallo)",
-    "plating": "PVD bruno nei solchi sulla fascia in oro bianco, 0,2~0,5 µm",
-    "stones": [],
-    "findings": [
-     {
-      "name": "perno",
-      "spec": "oro 18 kt saldato su nucleo massiccio"
-     },
-     {
-      "name": "farfallina",
-      "spec": "oro 18 kt"
-     }
-    ],
-    "weight_g": {
-     "min": 1.6,
-     "max": 2.6
-    },
-    "weight_basis": "peso stimato per un paio inclusi perni e farfalline",
-    "process": [
-     "microfusione",
-     "brasatura laser",
-     "rigatura grosgrain passo 0,20 mm solo sulla fascia in oro bianco",
-     "lucidatura a specchio su oro giallo e oro rosa, creste lucidate",
-     "PVD bruno applicato solo nei solchi della fascia in oro bianco, mai sull’oro giallo",
-     "rinforzo delle estremità del tubo"
-    ],
-    "note": "Metalli misti specificati nel prompt: oro giallo per bordo esterno e lato pelle, oro bianco per fascia frontale rigata, oro rosa per fascia inferiore liscia. La voce metal indica il corpo base in oro giallo come assunzione coerente con i campi principali del design. Nessuna gemma e nessuna incassatura come da prompt. Il peso è una stima basata su tubo leggero con parete 0,35~0,45 mm e dimensioni 14 × 12 mm.",
-    "cached": false
-   }
+   ]
   },
   {
    "id": "D02",
@@ -519,61 +471,7 @@
      "prompt": "Disegno originale di un paio di orecchini. Coppia di huggie compatti per uso quotidiano: cerchio leggermente ovale con punto di apertura inclinato sul lato interno inferiore (non frontale), diametro esterno 10-11 mm, sezione tubolare rotonda da 2.2 mm, parete 0.6-0.7 mm, interno liscio. Metallo: vermeil oro giallo 18K (placcatura 2.5-3 micron) su argento 925. Superficie: torsione elicoidale continua, creste arrotondate raggio 0.2 mm e gole poco profonde per evitare impigli; lucidatura morbida che esalta il calore dell’oro. Pietre: nessuna. Incassature/setting: assenti. Struttura: corpo cavo microfuso con rinforzo pieno in zona cerniera; cerniera ribassata integrata con chiusura a scatto incernierata, perno 0.8 mm dorato, scatto sicuro; tolleranze per allineamento invisibile. Inquadratura: vista tre quarti del prodotto, coppia mostrata macro su fondo studio neutro grigio; un orecchino chiuso e uno aperto per mostrare la cerniera; luce morbida diffusa, riflessi controllati, fotografia macro, resa fotorealistica, profondità di campo ridotta. Nuovo. Non riprodurre: loghi/codici, diametri oltre 12 mm, peso eccessivo, spigoli vivi, placcature economiche se dichiarato oro massiccio, texture profonda, chiusure complesse, pietre o pendenti, contorno/posizione apertura/orientamento pietre del riferimento.",
      "at": "2026-08-27T01:46:28.558Z"
     }
-   ],
-   "spec": {
-    "dims": [
-     {
-      "name": "diametro esterno ovale",
-      "mm": "10~11"
-     },
-     {
-      "name": "sezione tubolare circolare",
-      "mm": "2.2"
-     },
-     {
-      "name": "spessore parete tubolare",
-      "mm": "0.6~0.7"
-     },
-     {
-      "name": "raggio creste elicoidali",
-      "mm": "0.2"
-     },
-     {
-      "name": "perno chiusura",
-      "mm": "0.8"
-     }
-    ],
-    "metal": "Argento 925",
-    "plating": "Vermeil oro giallo 18K 2.5~3 micron",
-    "stones": [],
-    "findings": [
-     {
-      "name": "cerniera integrata ribassata",
-      "spec": "argento 925 con rinforzo pieno locale"
-     },
-     {
-      "name": "chiusura a scatto incernierata",
-      "spec": "allineamento invisibile"
-     },
-     {
-      "name": "perno",
-      "spec": "ø 0.8 mm, argento 925 placcato oro 18K"
-     }
-    ],
-    "weight_g": {
-     "min": 1.8,
-     "max": 2.4
-    },
-    "weight_basis": "coppia di orecchini huggie, include cerniera e perno",
-    "process": [
-     "corpo cavo microfuso con rinforzo pieno in zona cerniera",
-     "torsione elicoidale continua con gole poco profonde e creste arrotondate",
-     "lucidatura morbida per enfatizzare il calore dell’oro",
-     "tolleranze di allineamento invisibile su chiusura a scatto"
-    ],
-    "note": "Nessuna pietra né incassature secondo prompt. Apertura inclinata sul lato interno inferiore. Stima peso ricavata dalla geometria dichiarata del corpo cavo con rinforzo locale e dall’uso di argento 925; il contributo di massa della placcatura vermeil è trascurabile.",
-    "cached": false
-   }
+   ]
   },
   {
    "id": "D01",
@@ -630,54 +528,7 @@
      "prompt": "Design originale di un paio di orecchini a cerchio. Creola tubolare a curva continua, anni Novanta in chiave compatta e corposa; oro giallo 18K (Au 750‰) anallergico. Struttura: tubo semicavo da fusione, sezione rotonda Ø 1,8 mm, diametro esterno 16 mm ciascuno, parete 0,40 mm; peso coppia 1,4–1,8 g. Superficie: lucidatura a specchio; torsione delicata su tutta la circonferenza con passo fine e costante (circa 6 mm), modellata per riflessi pieni senza spigoli vivi. Pietre: assenti. Setting: non applicabile. Chiusura: cerniera a scatto integrata a filo tubo con perno diritto Ø 0,8 mm e innesto invisibile; sede smussata per comfort. Vibe: statement anni Novanta ma indossabilità daily, equilibrio tra volume visivo e leggerezza. Ripresa: vista tre quarti della coppia, sfondo studio neutro grigio, macro, luce morbida diffusa, riflessi controllati, resa fotorealistica. Completamente nuovo. Non riprodurre: logo/marchio in vista; rimandi a Prisma di Bottega Veneta; volumi oversize; placcatura al posto di oro 18K; torsione troppo profonda; chiusure o pin sporgenti; pendenti o pavé; spigoli vivi o sezione irregolare; profilo/apertura del riferimento o orientazioni di pietre.",
      "at": "2026-08-27T01:47:28.770Z"
     }
-   ],
-   "spec": {
-    "dims": [
-     {
-      "name": "Sezione tubo rotonda",
-      "mm": "1,8"
-     },
-     {
-      "name": "Diametro esterno cerchio",
-      "mm": "16"
-     },
-     {
-      "name": "Spessore parete",
-      "mm": "0,40"
-     },
-     {
-      "name": "Perno Ø",
-      "mm": "0,8"
-     }
-    ],
-    "metal": "18K yellow gold (Au 750‰) anallergico",
-    "plating": "",
-    "stones": [],
-    "findings": [
-     {
-      "name": "Chiusura a cerniera a scatto integrata",
-      "spec": "allineata a filo del tubo con innesto invisibile, sede smussata per comfort, in oro 18K"
-     },
-     {
-      "name": "Perno",
-      "spec": "perno diritto Ø 0,8 mm in oro 18K"
-     }
-    ],
-    "weight_g": {
-     "min": 1.4,
-     "max": 1.8
-    },
-    "weight_basis": "Coppia completa di orecchini; sistema di chiusura integrato incluso",
-    "process": [
-     "fusione tubo semicavo",
-     "lucidatura a specchio",
-     "torsione delicata a passo fine e costante ~6 mm su tutta la circonferenza",
-     "modellata per riflessi pieni senza spigoli vivi",
-     "sede smussata per comfort"
-    ],
-    "note": "Scheda compilata fedelmente al prompt. Nessuna pietra. Nessuna placcatura o rivestimento galvanico.",
-    "cached": false
-   }
+   ]
   },
   {
    "id": "D04",
@@ -736,74 +587,7 @@
      "prompt": "귀걸이 원본 디자인: Paio di orecchini a cerchio per uso quotidiano, reinterpretati con creola ovale compatta da 16 mm (varianti 14–20 mm), sezione tubolare 1,8 mm con parete 0,35 mm, costruzione semitubo saldato, peso circa 1,4 g ciascuno. Metallo: oro giallo 18K riciclato, lucidatura a specchio. Superficie: micro-torsione elicoidale progressiva sul terzo frontale (circa 120°), creste lucidate e gole con satinatura fine; interno perfettamente liscio. Pietre: 4–5 gemme multicolore taglio brillante 1,3 mm (zaffiro, tsavorite, rubino rosa, ametista, citrino) in gradiente soft. Settaggio: incassatura a bezel continua ribassata, parete 0,35–0,40 mm, sporgenza max 0,30 mm, spaziatura 2,2 mm, bordi lucidati a raggio dolce. Struttura: cerniera latero-superiore a click interno, perno Ø0,8 mm, battuta invisibile, puntale arrotondato; tolleranze 0,05–0,10 mm per chiusura silenziosa. Inquadratura: vista prodotto a tre quarti, fotografia macro di gioielleria su fondo studio grigio neutro, luce softbox diffusa, profondità di campo ridotta, resa fotorealistica. Sarà un design completamente nuovo. Non riprodurre: loghi/brand, griffe sporgenti, twist troppo profondo/tagliente, diametri >22 mm, spessori <1,2 mm, placcatura invece di oro 18K, arcobaleno troppo saturo, pietre su tutta la circonferenza, chiusure rumorose o lente, castoni >0,6 mm, profilo/apertura/orientamento pietre del riferimento.",
      "at": "2026-08-27T01:48:21.469Z"
     }
-   ],
-   "spec": {
-    "dims": [
-     {
-      "name": "asse maggiore ovale",
-      "mm": "16"
-     },
-     {
-      "name": "variante asse maggiore",
-      "mm": "14~20"
-     },
-     {
-      "name": "sezione tubolare",
-      "mm": "1.8"
-     },
-     {
-      "name": "spessore parete tubo",
-      "mm": "0.35"
-     },
-     {
-      "name": "settore torsione frontale",
-      "mm": "circa 120°"
-     },
-     {
-      "name": "perno",
-      "mm": "0.8"
-     }
-    ],
-    "metal": "18K oro giallo riciclato",
-    "plating": "",
-    "stones": [
-     {
-      "type": "gemme multicolore miste zaffiro·tsavorite·rubino rosa·ametista·citrino",
-      "cut": "brillante",
-      "mm": "1.3",
-      "count": 5
-     }
-    ],
-    "findings": [
-     {
-      "name": "cerniera latero-superiore a click interno",
-      "spec": "tolleranze 0.05~0.10 mm per chiusura silenziosa"
-     },
-     {
-      "name": "perno",
-      "spec": "Ø0.8 mm in oro 18K puntale arrotondato"
-     },
-     {
-      "name": "battuta",
-      "spec": "invisibile integrata nella creola"
-     }
-    ],
-    "weight_g": {
-     "min": 1.3,
-     "max": 1.5
-    },
-    "weight_basis": "peso per singolo orecchino senza considerare eventuali differenze tra varianti 14~20 mm",
-    "process": [
-     "costruzione semitubo saldato",
-     "lucidatura a specchio su creste e bordi a raggio dolce",
-     "micro torsione elicoidale progressiva sul terzo frontale",
-     "satinatura fine nelle gole della torsione",
-     "interno perfettamente liscio",
-     "incassatura a bezel continua ribassata parete 0.35~0.40 mm sporgenza massima 0.30 mm spaziatura 2.2 mm"
-    ],
-    "note": "Conteggio gemme previsto 4~5 in gradiente soft. In stones è indicato 5 come caso massimo conforme al prompt.",
-    "cached": false
-   }
+   ]
   },
   {
    "id": "D05",
@@ -860,58 +644,7 @@
      "prompt": "귀걸이 — design originale di un paio di orecchini huggie minimal per uso quotidiano. Metallo: oro giallo 18K lega 2N–3N, tono caldo e luminoso, preferibilmente riciclato. Struttura: tubolare in oro tirato e curvato, sezione a goccia/ellisse leggermente torsionata, un solo passo di torsione; diametro esterno 14 mm; larghezza 2,0 mm; spessore parete 0,35 mm; peso paio 1,6–2,2 g. Chiusura: cerniera a scatto invisibile con perno integrato, tolleranza 0,05–0,1 mm; alternativa perno diritto con farfallina. Superficie: lucidatura a specchio morbida; micro-satinatura discreta nelle gole; profilo bombato anti-impiglio; bordo interno lucidato comfort. Pietre e castoni: assenti. Ritmo: asimmetria controllata con progressione sottile–pieno–sottile; coppia speculare. Ripresa: vista a tre quarti su fondo studio neutro in scala di grigi, macro gioiello; obiettivo 100 mm, DOF ridotta; mostrare fronte, profilo e un riquadro del meccanismo; fotorealistico. Completamente nuovo: non riprodurre la goccia piena e la curva specifica della reference; niente twist profondi/fitti; diametro ≤16 mm; peso ≤2,5 g; nessuno spigolo vivo; no finiture miste troppo contrastate; no chiusure complesse; no loghi o segni proprietari; non copiare profilo, posizione dell’apertura o orientamento pietre della reference.",
      "at": "2026-08-27T01:48:35.418Z"
     }
-   ],
-   "spec": {
-    "dims": [
-     {
-      "name": "diametro esterno",
-      "mm": "14"
-     },
-     {
-      "name": "larghezza sezione",
-      "mm": "2,0"
-     },
-     {
-      "name": "spessore parete",
-      "mm": "0,35"
-     },
-     {
-      "name": "sezione a goccia ellittica con lieve torsione, un solo passo",
-      "mm": ""
-     }
-    ],
-    "metal": "18K yellow gold 3N",
-    "plating": "",
-    "stones": [],
-    "findings": [
-     {
-      "name": "cerniera a scatto invisibile con perno integrato",
-      "spec": "tolleranza 0,05~0,1 mm"
-     },
-     {
-      "name": "perno diritto con farfallina",
-      "spec": "alternativa alla cerniera"
-     }
-    ],
-    "weight_g": {
-     "min": 1.6,
-     "max": 2.2
-    },
-    "weight_basis": "per coppia, include cerniera a scatto invisibile con perno integrato",
-    "process": [
-     "trafilatura del tubo in oro",
-     "curvatura",
-     "torsione leggera un solo passo",
-     "assemblaggio e saldatura della cerniera",
-     "lucidatura a specchio morbida",
-     "micro-satinatura discreta nelle gole",
-     "profilo bombato anti impiglio",
-     "bordo interno lucidato comfort",
-     "controllo tolleranze 0,05~0,1 mm"
-    ],
-    "note": "lega specifica selezionata 18K 3N come stima coerente con l’indicazione 2N~3N e il tono caldo e luminoso, preferibilmente oro riciclato. nessuna pietra né castone. coppia speculare con asimmetria controllata sottile pieno sottile.",
-    "cached": false
-   }
+   ]
   },
   {
    "id": "D06",
@@ -970,64 +703,7 @@
      "prompt": "Design originale di «귀걸이» (paio di orecchini). Huggie compatti diametro 15 mm, profilo tubolare esterno 1,9 mm con sezione a goccia per un drop leggero ottico. Metallo: oro giallo 18K riciclato, tono caldo tipo vermeil, cavo con parete 0,35–0,40 mm; peso coppia 2,8–3,3 g. Superficie: torciglione fine passo 4 mm, creste lucidate a specchio e valli morbide arrotondate. Pietre: nessuna. Setting: assenza di castoni; chiusura a scatto integrata invisibile con perno 0,8 mm, cerniera in microtubo e sede rinforzata, bordo interno liscio vicino al lobo. Struttura e processo: tubo trafilato in 18K ritorto su anima rimovibile, ricottura leggera, calibrazione, giunto saldato laser e finitura con vibro + ruota di cotone. Vista prodotto a tre quarti, macro still-life in studio su sfondo neutro grigio caldo; luce radente che esalta il rilievo, resa fotorealistica, profondità di campo ridotta, nessun modello. Deve essere un design completamente nuovo. Non riprodurre: drop a corda stratificata; pietre/pavé/smalti; galvanica su vermeil; texture troppo profonda; spigoli vivi; diametri >25 mm; peso >4,0 g; chiusura a farfalla; intrecci multipli; loghi; silhouette, posizione apertura o orientamento pietre del reference.",
      "at": "2026-08-27T01:50:19.464Z"
     }
-   ],
-   "spec": {
-    "dims": [
-     {
-      "name": "diametro esterno huggie",
-      "mm": "15"
-     },
-     {
-      "name": "profilo tubolare esterno",
-      "mm": "1,9"
-     },
-     {
-      "name": "spessore parete tubo",
-      "mm": "0,35~0,40"
-     },
-     {
-      "name": "perno chiusura",
-      "mm": "0,8"
-     },
-     {
-      "name": "passo torciglione superficiale",
-      "mm": "4"
-     }
-    ],
-    "metal": "18K yellow gold",
-    "plating": "",
-    "stones": [],
-    "findings": [
-     {
-      "name": "chiusura a scatto integrata invisibile",
-      "spec": "18K yellow gold · sede rinforzata, bordo interno liscio lato lobo"
-     },
-     {
-      "name": "perno",
-      "spec": "18K yellow gold · diametro 0,8 mm"
-     },
-     {
-      "name": "cerniera in microtubo",
-      "spec": "18K yellow gold · microtubo calibrato"
-     }
-    ],
-    "weight_g": {
-     "min": 2.8,
-     "max": 3.3
-    },
-    "weight_basis": "coppia completa inclusi perno, cerniera e meccanismo di scatto",
-    "process": [
-     "tubo trafilato in 18K attorcigliato su anima rimovibile",
-     "ricottura leggera",
-     "calibrazione",
-     "giunto saldato a laser",
-     "finitura con vibro",
-     "lucidatura con ruota di cotone",
-     "creste lucidate a specchio e valli morbide arrotondate"
-    ],
-    "note": "Design conforme al prompt: nessuna pietra, nessun pavé o smalto, nessuna galvanica, nessuna farfalla. Oro giallo 18K riciclato come indicato dal prompt. Peso espresso per la coppia come da specifica.",
-    "cached": false
-   }
+   ]
   },
   {
    "id": "D08",
@@ -1083,62 +759,7 @@
      "prompt": "귀걸이 – design originale di un paio asimmetrico: un micro‑huggie ellittico forato e un ear cuff senza foro coordinato, pensati per layering immediato. Micro‑huggie in argento 925 massiccio con struttura a microtubo; parete 0,6 mm; sezione 1,8 mm arrotondata con interno leggermente piatto; ellisse 12 x 10,5 mm; finitura lucida a specchio; twist fine a passo lungo solo sul tratto superiore esterno; bordi smussati 0,2 mm; chiusura clicker invisibile con apertura nel quadrante infero‑interno. Il cuff, in argento 925 lucido, profilo ellittico 13 x 11 mm, gap 3,5 mm, terminali arrotondati; pressione controllata senza cerniere; superficie liscia (senza twist) per contrasto; nessuna pietra, nessuna incassatura. Vista a tre quarti del paio affiancato su fondo studio neutro grigio chiaro; macro fotografia di gioiello con luci softbox; resa fotorealistica. Design completamente nuovo. Non riprodurre: loghi, twist troppo fitto o decorativo, spigoli vivi, diametri >20 mm, chiusure a farfalla esterne, placcature al posto di oro 18K, finiture satinate o martellate, pietre, smalti o pendenti.",
      "at": "2026-08-27T01:51:38.844Z"
     }
-   ],
-   "spec": {
-    "dims": [
-     {
-      "name": "Micro‑huggie ellittico esterno × interno",
-      "mm": "12 × 10,5"
-     },
-     {
-      "name": "Sezione microtubo huggie",
-      "mm": "Ø 1,8 con interno lievemente piatto"
-     },
-     {
-      "name": "Spessore parete microtubo huggie",
-      "mm": "0,6"
-     },
-     {
-      "name": "Smusso bordi huggie",
-      "mm": "0,2"
-     },
-     {
-      "name": "Ear cuff ellittico esterno × interno",
-      "mm": "13 × 11"
-     },
-     {
-      "name": "Gap ear cuff",
-      "mm": "3,5"
-     }
-    ],
-    "metal": "Argento 925",
-    "plating": "",
-    "stones": [],
-    "findings": [
-     {
-      "name": "Chiusura clicker invisibile per micro‑huggie",
-      "spec": "integrata in argento 925, apertura nel quadrante infero‑interno"
-     },
-     {
-      "name": "Ear cuff senza cerniere",
-      "spec": "pressione controllata, terminali arrotondati, argento 925"
-     }
-    ],
-    "weight_g": {
-     "min": 1.6,
-     "max": 2
-    },
-    "weight_basis": "peso stimato per il paio completo, un micro‑huggie con clicker e un ear cuff, senza pietre né componenti esterni aggiuntivi",
-    "process": [
-     "Lucidatura a specchio",
-     "Smussatura bordi 0,2 mm sul micro‑huggie",
-     "Torsione fine a passo lungo sul solo tratto superiore esterno del micro‑huggie",
-     "Montaggio e regolazione chiusura clicker invisibile",
-     "Regolazione pressione ear cuff a terminali arrotondati"
-    ],
-    "note": "Nessuna pietra e nessuna incassatura come da prompt. Placcature assenti. Il peso è una stima volumetrica basata su micro‑huggie in microtubo sezione Ø 1,8 con parete 0,6 e ear cuff coordinato di profilo 13 × 11 con gap 3,5; la sezione del cuff non è specificata nel prompt ed è stata assunta come standard per il calcolo del peso. Le dimensioni riportate provengono dal prompt.",
-    "cached": false
-   }
+   ]
   },
   {
    "id": "D07",
@@ -1192,61 +813,7 @@
      "prompt": "귀걸이, design originale di orecchini: coppia mini huggie per uso quotidiano. Struttura tubolare compatta in oro giallo 18K riciclato, sezione 1,8 mm; tubo cavo con parete 0,35–0,40 mm, rinforzo pieno attorno a cerniera e scatto. Profilo ellittico 12 × 10 mm con twist morbido e creste arrotondate; superfici lucidate a specchio per brillantezza controllata. Chiusura hinged click con perno integrato Ø0,8 mm e scatto percepibile, senza bimetallo a vista; bordi smussati anti-impiglio. Accento di incassatura micro pavé a grana condivisa su fascia di 80–90° lungo il bordo esterno superiore: 10 diamanti lab-grown GH–SI taglio brillante Ø0,8 mm per orecchino, sedi fresate profondità 0,6 mm, 2 grane condivise per pietra. Produzione: fusione a cera persa, poi microfresatura delle sedi, lucidatura finale speculare. Vista prodotto a tre quarti macro, sfondo neutro grigio, luce morbida uniforme; dettaglio cerniera; resa fotorealistica ad alta definizione, nessun testo o logo. Sarà un design completamente nuovo. Non riprodurre: contorni, posizione dell’apertura o orientamento delle pietre del riferimento; diametri medi o grandi; twist profondo o spigoloso; chiusure a farfalla; pavé esteso; spigoli vivi; bimetallo visibile; sezioni troppo sottili.",
      "at": "2026-08-27T01:51:52.218Z"
     }
-   ],
-   "spec": {
-    "dims": [
-     {
-      "name": "sezione tubo",
-      "mm": "1,8"
-     },
-     {
-      "name": "spessore parete tubo",
-      "mm": "0,35~0,40"
-     },
-     {
-      "name": "profilo ellittico",
-      "mm": "12 x 10"
-     },
-     {
-      "name": "perno integrato",
-      "mm": "0,8"
-     },
-     {
-      "name": "profondità sedi pavé",
-      "mm": "0,6"
-     }
-    ],
-    "metal": "18K oro giallo riciclato",
-    "plating": "",
-    "stones": [
-     {
-      "type": "diamanti lab-grown GH, SI",
-      "cut": "brillante",
-      "mm": "0,8",
-      "count": 20
-     }
-    ],
-    "findings": [
-     {
-      "name": "cerniera huggie con scatto",
-      "spec": "perno integrato Ø0,8 mm, rinforzo pieno attorno a cerniera e scatto, bordi smussati anti-impiglio"
-     }
-    ],
-    "weight_g": {
-     "min": 2.4,
-     "max": 3.4
-    },
-    "weight_basis": "coppia, solo corpo tubo cavo con rinforzi, esclusi pietre e componenti di cerniera e perno",
-    "process": [
-     "fusione a cera persa",
-     "microfresatura delle sedi per pavé",
-     "incassatura micro pavé a grana condivisa",
-     "lucidatura a specchio",
-     "smussatura dei bordi anti-impiglio"
-    ],
-    "note": "Accento pavé disposto su fascia di circa 80~90 gradi lungo il bordo esterno superiore. Nessun bimetallo visibile. Chiusura hinged click con scatto percepibile.",
-    "cached": false
-   }
+   ]
   },
   {
    "id": "D09",
@@ -1302,61 +869,7 @@
      "prompt": "Design originale di un paio di orecchini: cerchi minimal in oro giallo 18K lucido, lega nickel free conforme alle norme europee, da oro riciclato. Cerchio compatto con sezione tonda 1,6–2,0 mm; diametri 12/16/20 mm. Texture twisted tipo corda fine su tutta la circonferenza, passo 1,5–2,5 mm, creste lucidate a specchio; ritmo continuo con un punto calmo vicino alla chiusura. Nessuna pietra né incastonatura, estetica anni Novanta pulita. Struttura in tubo microcavo con parete 0,25–0,30 mm (filo massiccio leggero per S), peso paio 1,8–2,8 g; terminali microfusi che integrano una chiusura a clicker con cerniera invisibile ribassata e perno elastico 0,8 mm; spigoli addolciti. Integra una micro‑firma iconica non logotipica: un piccolo rilievo tonale allineato alla cerniera, coerente con la torsione. Vista prodotto a tre quarti, sfondo studio in scala di grigi, fotografia macro con luce softbox e riflessi, resa fotorealistica. Design inedito. Non riprodurre: loghi o monogrammi riconoscibili; diametri >25 mm; spessori >2,2 mm; pendenti/charms/smalti/pietre; chiusure a farfalla; mix di metalli o placcature; satinature profonde; codici di marchi noti; silhouette o posizione apertura o orientamento di pietre del riferimento.",
      "at": "2026-08-27T01:53:47.526Z"
     }
-   ],
-   "spec": {
-    "dims": [
-     {
-      "name": "sezione tonda del cerchio",
-      "mm": "1,6~2,0"
-     },
-     {
-      "name": "diametro esterno cerchio",
-      "mm": "12/16/20"
-     },
-     {
-      "name": "spessore parete del tubo",
-      "mm": "0,25~0,30"
-     },
-     {
-      "name": "passo della torsione tipo corda",
-      "mm": "1,5~2,5"
-     }
-    ],
-    "metal": "18K yellow gold",
-    "plating": "",
-    "stones": [],
-    "findings": [
-     {
-      "name": "chiusura a clicker con cerniera invisibile ribassata",
-      "spec": "18K yellow gold"
-     },
-     {
-      "name": "perno elastico",
-      "spec": "18K yellow gold · ø 0,8 mm"
-     },
-     {
-      "name": "terminali microfusi integrati",
-      "spec": "18K yellow gold"
-     }
-    ],
-    "weight_g": {
-     "min": 1.8,
-     "max": 2.8
-    },
-    "weight_basis": "paio completo con chiusura integrata · varianti diametro 12 o 16 o 20 mm",
-    "process": [
-     "tubo microcavo",
-     "microfusione terminali",
-     "torsione tipo corda su tutta la circonferenza con creste lucidate",
-     "lucidatura a specchio",
-     "assemblaggio chiusura clicker con cerniera invisibile ribassata",
-     "smussatura spigoli",
-     "micro firma in rilievo allineata alla cerniera",
-     "ritmo continuo della torsione con punto calmo vicino alla chiusura"
-    ],
-    "note": "Lega nickel free conforme alle norme europee e oro riciclato come da prompt. Nessuna pietra né incastonatura. Estetica anni Novanta pulita. Per la taglia S è previsto filo massiccio leggero in alternativa al tubo microcavo.",
-    "cached": false
-   }
+   ]
   },
   {
    "id": "D10",
@@ -1413,63 +926,7 @@
      "prompt": "Design originale di '귀걸이' (coppia di orecchini). Semi-hoop ellittici 14,8 × 15,6 mm, sezione tonda Ø1,4 mm, arco biomorfico ispirato all’anatomia ma non letterale, con torsione assiale continua (passo 1,6–2,0 mm) e lieve fuori-rotondità. Metallo: oro giallo 18K europeo nickel free; peso target 1,2–1,6 g per pezzo. Struttura: tubo lavorato a torsione/microfusione con parete 0,35–0,40 mm, giunto posteriore invisibile; durezza adeguata per evitare deformazioni. Chiusura: perno Ø0,8 mm saldato a 90° con farfalla; apertura ruotata di ~20° rispetto al verticale per distinguere il profilo. Superficie: micro-twist tipo corda; satinatura vellutata sulle creste, lucidatura selettiva nelle valli; micro-sabbiatura 700 grit localizzata. Pietre: nessuna nella base; opzione charm rimovibile con UNA micro perla barocca 2,5–3,0 mm su anellino saldato Ø0,8 mm con contromolla o vite nascosta, venduta a parte. Inquadratura: vista tre quarti macro, sfondo studio neutro grigio caldo, luce laterale morbida, resa fotorealistica. Completamente nuovo. Non riprodurre: silhouette del riferimento, posizione apertura, orientamento pietre; bimetallo argento-oro; pendenti multipli di perle; texture granulosa pesante; Ø >25 mm; chiusure complesse; loghi visibili; superfici troppo ruvide; peso >3,5 g/paio; asimmetria marcata tra i due.",
      "at": "2026-08-27T01:54:56.175Z"
     }
-   ],
-   "spec": {
-    "dims": [
-     {
-      "name": "ellisse semi-hoop",
-      "mm": "14.8 × 15.6"
-     },
-     {
-      "name": "sezione tonda",
-      "mm": "Ø1.4"
-     },
-     {
-      "name": "spessore parete tubo",
-      "mm": "0.35~0.40"
-     },
-     {
-      "name": "passo torsione assiale",
-      "mm": "1.6~2.0"
-     },
-     {
-      "name": "perno",
-      "mm": "Ø0.8"
-     }
-    ],
-    "metal": "18K oro giallo nickel free europeo",
-    "plating": "",
-    "stones": [],
-    "findings": [
-     {
-      "name": "perno con farfalla",
-      "spec": "perno Ø0.8 mm in 18K oro giallo, farfalla in 18K oro giallo"
-     },
-     {
-      "name": "giunto posteriore invisibile",
-      "spec": "struttura in 18K oro giallo"
-     },
-     {
-      "name": "anellino per charm rimovibile",
-      "spec": "anellino saldato Ø0.8 mm con contromolla o vite nascosta, opzionale venduto a parte"
-     }
-    ],
-    "weight_g": {
-     "min": 1.2,
-     "max": 1.6
-    },
-    "weight_basis": "per pezzo singolo compresi perno e farfalla, senza charm rimovibile",
-    "process": [
-     "tubo lavorato a torsione",
-     "microfusione",
-     "saldatura perno a 90 gradi",
-     "satinatura vellutata sulle creste",
-     "lucidatura selettiva nelle valli",
-     "micro-sabbiatura localizzata 700 grit"
-    ],
-    "note": "Apertura ruotata di circa 20 gradi rispetto al verticale per distinguere il profilo. Nessuna pietra nella base. Opzione charm rimovibile con una micro perla barocca 2.5~3.0 mm venduta a parte.",
-    "cached": false
-   }
+   ]
   }
  ],
  "searches": 525,

@@ -2466,32 +2466,9 @@ input.bframe-t { border-bottom: 1px solid var(--accent); color: var(--text); }
 .rp-gives li::before { content: '·'; position: absolute; left: 4px; color: var(--text-3); }
 .rp-gives li:last-child { color: var(--text-3); }
 
-/* ── 테크팩 · 디자인 한 점의 제작 사양과 계산된 원가 ────────────────── */
-.tp { display: grid; gap: 10px; }
-.tp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
-.tp-grid > section { min-width: 0; }
-.tp h5 { margin: 0 0 6px; font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
-.tp-tab { width: 100%; border-collapse: collapse; font-size: 12px; }
-.tp-tab th { text-align: left; font-weight: 500; color: var(--muted); padding: 3px 8px 3px 0; vertical-align: top; white-space: nowrap; }
-.tp-tab td { padding: 3px 0; vertical-align: top; word-break: break-word; }
-.tp-how { display: block; color: var(--muted); font-size: 11px; font-style: normal; margin-top: 1px; }
-.tp-cost { border-left: 1px solid var(--line); padding-left: 12px; }
-.tp-big { margin: 0 0 6px; font-size: 20px; font-weight: 650; letter-spacing: -.01em; }
-.tp-src, .tp-note { margin: 6px 0 0; line-height: 1.5; }
-.tp-proc { margin: 6px 0 0; }
-.tp-note { border-left: 2px solid var(--border-selected); padding-left: 8px; }
-@media (max-width: 720px) { .tp-cost { border-left: 0; padding-left: 0; border-top: 1px solid var(--line); padding-top: 10px; } }
-.tp-verdict { display: flex; gap: 8px; align-items: baseline; margin: 6px 0 0; font-size: 12px; flex-wrap: wrap; }
-.tp-verdict b { padding: 1px 7px; border-radius: 999px; font-size: 11px; font-weight: 600; white-space: nowrap; }
-.tp-verdict span { color: var(--muted); }
-.tp-verdict.inside b { background: color-mix(in srgb, var(--ok) 18%, transparent); color: var(--ok); }
-.tp-verdict.over b, .tp-verdict.under b { background: color-mix(in srgb, var(--warn) 18%, transparent); color: var(--warn); }
-.tp-basis { margin: -2px 0 8px; font-size: 11px; }
-.pdist { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); }
-.pd-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
-.pd-head b { font-size: 12px; }
-.pd-groups { margin-top: 8px; line-height: 1.6; }
-.tp-drift { margin-top: 10px; padding: 8px 10px; border-radius: 6px; font-size: 12px;
+
+/* 세트와 어긋난 디자인 · 컬렉션의 약속이 깨지는 지점을 그 자리에서 알린다 */
+.pr-drift { margin: 8px 0 0; padding: 8px 10px; border-radius: 6px; font-size: 12px;
   background: color-mix(in srgb, var(--warn) 10%, transparent); border-left: 2px solid var(--warn); }
-.tp-drift b { display: block; color: var(--warn); font-size: 11px; margin-bottom: 3px; }
-.tp-drift p { margin: 2px 0; color: var(--muted); }
+.pr-drift b { display: block; color: var(--warn); font-size: 11px; margin-bottom: 3px; }
+.pr-drift p { margin: 2px 0; color: var(--muted); }

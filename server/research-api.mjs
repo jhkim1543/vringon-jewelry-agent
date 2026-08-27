@@ -2,9 +2,9 @@
 // 사용자가 입력한 경쟁사를 실제로 검색해서 최근 제품과 인기 근거를 수집한다.
 // 판매 프록시는 여기서 만들지 않는다. 1회 검색으로는 시계열이 성립하지 않기 때문이다.
 import { createHash } from 'node:crypto'
+import { record } from './spend.mjs'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { researchDossier } from './dossier-api.mjs'
 
 export const RESEARCH_MODEL = 'gpt-5'
 // ── 깊은 조사 모델 ──────────────────────────────────────────────────
@@ -231,7 +231,8 @@ const RETRY_STATUS = new Set([408, 429, 500, 502, 503, 504])
 // web 옵션이 false 면 검색 도구를 아예 붙이지 않는다.
 // 무드보드 판독은 "올린 파일만 근거로 쓴다"가 계약인데, 도구가 붙어 있으면
 // 모델이 문서 밖에서 답을 가져와도 막을 방법이 없다. 계약을 코드로 강제한다.
-export async function ask(apiKey, { input, schema, name, tries = 3, web = true, deep = false, deepModel = DEEP_MODEL_DEFAULT, effort = 'high' }) {
+export async function ask(apiKey, { input, schema, name, tries = 3, web = true, deep = false, deepModel = DEEP_MODEL_DEFAULT, effort = 'high', root = '.' }) {
+  const t0 = Date.now()
   let lastErr
   for (let attempt = 1; attempt <= tries; attempt++) {
     try {
@@ -263,6 +264,12 @@ export async function ask(apiKey, { input, schema, name, tries = 3, web = true, 
       const text = msg?.content?.[0]?.text
       if (!text) throw new Error('리서치 응답이 비어 있습니다')
       const searches = (j.output ?? []).filter(o => o.type === 'web_search_call').length
+      // 장부에 적는다 · 캐시로 막힌 호출은 여기 오지 않으므로 남는 것이 실제로 나간 돈이다
+      record(root, {
+        route: name, model: j.model ?? (deep ? deepModel : RESEARCH_MODEL),
+        inputTokens: j.usage?.input_tokens ?? 0, outputTokens: j.usage?.output_tokens ?? 0,
+        searches, ms: Date.now() - t0, effort,
+      })
       return { data: JSON.parse(text), searches }
     } catch (e) {
       lastErr = e
@@ -588,7 +595,3 @@ ${dr.text.slice(0, 120_000)}
 }
 
 
-/** 시즌 도시에 · MICAM 형식. ask()를 주입해 dossier-api가 같은 검색 경로를 쓰게 한다. */
-export async function researchSeasonDossier(apiKey, root, opts) {
-  return researchDossier({ ask: (a) => ask(apiKey, a) }, root, opts)
-}

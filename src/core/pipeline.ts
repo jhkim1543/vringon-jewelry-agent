@@ -281,7 +281,7 @@ async function runResearchAgent(params: RunParams, emit: Emit, stopped: () => bo
       if (stopped()) return
       const pair: DesignPair = {
         id, refSlot: ref.slot, variant, title: pr.title,
-        dna, direction: pr.direction, prompt: pr.final_prompt, versions: [], spec: pr.spec,
+        dna, direction: pr.direction, prompt: pr.final_prompt, versions: [],
       }
       emit({ kind: 'pair', pair })
       const img = await generateImage(pr.final_prompt, params.imageEngine)
@@ -419,7 +419,7 @@ async function runCollection(params: RunParams, emit: Emit, stopped: () => boole
       if (stopped()) return
       const pair: DesignPair = {
         id, refSlot: setIdx, variant: 'base', setName: set.name, item,
-        title: `${set.name} · ${ITEM_KO[item]}`, prompt: pr.final_prompt, versions: [], feature: pr.feature, spec: pr.spec,
+        title: `${set.name} · ${ITEM_KO[item]}`, prompt: pr.final_prompt, versions: [], feature: pr.feature,
       }
       emit({ kind: 'pair', pair })
       const img = await generateImage(pr.final_prompt, params.imageEngine)

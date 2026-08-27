@@ -6,7 +6,6 @@ import type {
   RunParams, RunwayData, ShopCrawl, TrendReportData, VariantKind,
 } from './types'
 import { ANALYSIS_LANG_NAME, ITEM_EN, ITEM_KO, regionsOf, targetText } from './types'
-import type { MakeSpec } from './cost'
 import { apiUrl } from './api'
 
 async function post<T>(url: string, body: unknown): Promise<T> {
@@ -79,7 +78,7 @@ export const fetchRefDna = (p: RunParams, refId: string, imageUrl: string, sourc
   })
 
 export const fetchPrompts = (p: RunParams, refId: string, variant: VariantKind, dna: Record<string, unknown>, trendCombo: string[]) =>
-  post<{ title: string; direction: PromptDirection; final_prompt: string; spec: MakeSpec }>('/api/agent/prompts', {
+  post<{ title: string; direction: PromptDirection; final_prompt: string }>('/api/agent/prompts', {
     mode: p.mode, refId, variant, dna, trendCombo,
     itemEn: ITEM_EN[p.itemType], itemKo: ITEM_KO[p.itemType],
     target: targetText(p.target), country: regionsText(p), langName: langOf(p),
@@ -110,7 +109,7 @@ export const fetchSets = (p: RunParams, insight: KeywordInsight) => {
 }
 
 export const fetchItemPrompt = (p: RunParams, set: CollectionSet, item: string) =>
-  post<{ final_prompt: string; feature: string; spec: MakeSpec }>('/api/agent/itemprompt', {
+  post<{ final_prompt: string; feature: string }>('/api/agent/itemprompt', {
     setName: set.name, dna: set.design_dna, avoid: set.avoid,
     // 세트가 정한 금속·스톤을 그대로 실어 보낸다. design_dna 안에 녹아 있으리라 믿고
     // 안 보냈더니, 한 세트 25개 중 9개가 950 플래티넘에서 18K 로 갈아탔다.

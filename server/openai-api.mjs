@@ -5,23 +5,19 @@ import { createHash } from 'node:crypto'
 import { existsSync, mkdirSync, readFileSync, writeFileSync, readdirSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { createMiroBoard, planMiroBoard } from './miro-api.mjs'
-import { DEEP_MODEL_DEFAULT, researchCompetitors, researchTrends, researchSeasonDossier } from './research-api.mjs'
+import { record, ledger } from './spend.mjs'
+import { guard, spend, quotaStatus } from './gate.mjs'
+import { DEEP_MODEL_DEFAULT } from './research-api.mjs'
 import { geminiEdit, geminiGenerate, geminiProbe, geminiShotPlan } from './gemini-api.mjs'
-import { compositeLogo, logoAvailable } from './logo-api.mjs'
-import { tripoMultiview, tripoProbe, readModel } from './tripo-api.mjs'
 import { configureUnlocker, unlockerStatus, unlockerUsage } from './unlock.mjs'
 import { grabImage } from './grab.mjs'
 import { handleBoard } from './board-api.mjs'
 import { handleRuns, runsStats } from './runs-api.mjs'
 import { hostAuthStatus, resolveUser } from './host-auth.mjs'
 import { readMoodboard, readSeries, readUpload, storeUpload } from './uploads-api.mjs'
-import { mdReview } from './md-api.mjs'
-import { visionQa } from './vision-qa-api.mjs'
 import {
   agentAdoption, agentCompetitorCrawl, agentForecast, agentItemPrompt, agentKeyword, agentPrompts,
   agentRefDna, agentReferences, agentRunway, agentScore, agentSets, agentShops, agentTrendReport,
-  agentSpecFrom,
 } from './agents-api.mjs'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
@@ -63,7 +59,6 @@ function loadEnv() {
 const env = { ...loadEnv(), ...process.env }
 configureUnlocker(env)          // 유료 언블로커도 .env 에서 키를 읽는다
 const API_KEY = env.OPENAI_API_KEY || ''
-const MIRO_TOKEN = env.MIRO_ACCESS_TOKEN || ''
 // Gemini 키가 있으면 "빠른 모델"이 그쪽으로 간다. 없으면 OpenAI 경로를 유지한다.
 const GEMINI_KEY = env.GEMINI_API_KEY || env.GOOGLE_API_KEY || ''
 // 딥리서치는 같은 키를 쓴다. 계정에서 열린 뒤 이 값을 1로 두면 켜진다.
@@ -73,7 +68,6 @@ const DEEP_KEY = env.OPENAI_DEEP_RESEARCH_KEY || env.OPENAI_API_KEY || ''
 const DEEP_MODEL = env.OPENAI_DEEP_RESEARCH_MODEL || DEEP_MODEL_DEFAULT
 
 // Tripo · 멀티뷰에서 3D 모델을 만든다
-const TRIPO_KEY = env.TRIPO_API_KEY || ''
 
 // ── 자체 호스팅 이미지 모델 ────────────────────────────────────────
 // 이 파일이 부르는 것은 원래부터 OpenAI 이미지 API 의 형태(/v1/images/generations,
@@ -317,10 +311,10 @@ export async function handleApi(req, res) {
       // 거짓이 되지 않도록 함께 본다.
       keyPresent: !!API_KEY || selfHostOn(), model: IMAGE_MODEL, cachedImages: n,
       selfHosted: selfHostOn(),
-      miroConnected: !!MIRO_TOKEN,
       deepResearch: DEEP_RESEARCH, deepModel: DEEP_MODEL,
+      spend: ledger(ROOT),
+      quota: quotaStatus(ROOT, who?.id),
       geminiConnected: !!GEMINI_KEY,
-      tripoConnected: !!TRIPO_KEY,
       // 유료 언블로커 · 켜져 있으면 오늘 쓴 건수를 함께 준다 (요금 감시용)
       unlocker: { ...unlockerStatus(), usage: unlockerUsage(ROOT) },
       engines: { fast: ENGINE.fast.model, detail: ENGINE.detail.model },
@@ -406,16 +400,7 @@ export async function handleApi(req, res) {
     return json(res, 200, out)
   }
 
-  // 비전 QA · 실제로 만든 컷이 스펙대로 나왔는지 사진으로 확인한다
-  if (path === '/api/vision/qa' && req.method === 'POST') {
-    try {
-      if (!API_KEY) throw new Error('OPENAI_API_KEY 미설정')
-      const body = await readBody(req)
-      return json(res, 200, await visionQa(API_KEY, ROOT, body))
-    } catch (e) { return json(res, 500, { error: String(e.message || e) }) }
-  }
 
-  // MD 페르소나 리뷰 · 셀렉 후보를 사진과 스펙으로 평가한다
   // ── 3-에이전트 조사 계층 · 전부 POST + 캐시 ─────────────────────
   const AGENT_ROUTES = {
     '/api/agent/competitor/crawl': agentCompetitorCrawl,
@@ -431,127 +416,34 @@ export async function handleApi(req, res) {
     '/api/agent/sets': agentSets,
     '/api/agent/itemprompt': agentItemPrompt,
     '/api/agent/score': agentScore,
-    '/api/agent/specfrom': agentSpecFrom,
   }
   if (AGENT_ROUTES[path] && req.method === 'POST') {
     try {
       if (!API_KEY) throw new Error('OPENAI_API_KEY 미설정')
+      // 조사는 호출마다 값이 나간다 · 사용자를 확인하고 그 사람 몫의 하루치를 본다
+      const g = await guard(req, url, ROOT)
+      if (!g.ok) return json(res, g.status, { error: g.error })
       const body = await readBody(req)
       // 깊은 조사 스위치는 서버가 쥔다 · 화면이 켜고 끄는 값이 아니다.
       // 켜져 있으면 전용 키로, 없으면 메인 키로 간다.
       const deep = DEEP_RESEARCH && (path === '/api/agent/trendreport' || path === '/api/agent/forecast')
       const key = deep ? DEEP_KEY : API_KEY
-      return json(res, 200, await AGENT_ROUTES[path](key, ROOT, { ...body, ...(deep ? { deep: true, deepModel: DEEP_MODEL } : {}) }))
+      const out = await AGENT_ROUTES[path](key, ROOT, { ...body, ...(deep ? { deep: true, deepModel: DEEP_MODEL } : {}) })
+      spend(ROOT, g.id, { searches: Number(out?.searches) || 0 })
+      return json(res, 200, out)
     } catch (e) { return json(res, 500, { error: String(e.message || e) }) }
   }
 
-  if (path === '/api/md/review' && req.method === 'POST') {
-    try {
-      if (!API_KEY) throw new Error('OPENAI_API_KEY 미설정')
-      const body = await readBody(req)
-      return json(res, 200, await mdReview(API_KEY, ROOT, body))
-    } catch (e) { return json(res, 500, { error: String(e.message || e) }) }
-  }
 
-  if (path === '/api/research/competitors' && req.method === 'POST') {
-    try {
-      if (!API_KEY) throw new Error('OPENAI_API_KEY 미설정')
-      const body = await readBody(req)
-      return json(res, 200, await researchCompetitors(API_KEY, ROOT, body))
-    } catch (e) { return json(res, 500, { error: String(e.message || e) }) }
-  }
 
-  if (path === '/api/research/trends' && req.method === 'POST') {
-    try {
-      if (!API_KEY) throw new Error('OPENAI_API_KEY 미설정')
-      const body = await readBody(req)
-      // 딥리서치를 켜면 전용 키로 넘긴다
-      return json(res, 200, await researchTrends(DEEP_RESEARCH ? DEEP_KEY : API_KEY, ROOT, {
-        ...body,
-        deep: DEEP_RESEARCH,
-        deepModel: DEEP_MODEL,
-      }))
-    } catch (e) { return json(res, 500, { error: String(e.message || e) }) }
-  }
 
   // 시즌 도시에 · MICAM 형식의 구조화된 트렌드 자료
-  if (path === '/api/research/dossier' && req.method === 'POST') {
-    try {
-      const b = await readBody(req)
-      return json(res, 200, await researchSeasonDossier(DEEP_RESEARCH ? DEEP_KEY : API_KEY, ROOT, {
-        categoryEn: b.categoryEn, typeEn: b.typeEn, season: b.season, priceBand: b.priceBand,
-        brands: b.brands ?? [], deep: DEEP_RESEARCH, langName: b.langName,
-        metalProgram: b.metalProgram, stoneProgram: b.stoneProgram,
-      }))
-    } catch (e) { return json(res, 500, { error: String(e.message || e) }) }
-  }
 
   // 브랜드 로고를 생성 이미지 위에 실제로 얹는다 (프롬프트로 그리지 않는다)
-  if (path === '/api/image/logo' && req.method === 'POST') {
-    try {
-      const b = await readBody(req)
-      const r = await compositeLogo(CACHE_DIR, b)
-      return json(res, 200, { ...r, url: `/api/image/file/${r.hash}.png` })
-    } catch (e) { return json(res, 500, { error: String(e.message || e) }) }
-  }
 
-  // 3D 모델 · 이미 만들어 둔 멀티뷰를 Tripo에 넘긴다
-  if (path === '/api/model/probe') {
-    return json(res, 200, await tripoProbe(TRIPO_KEY))
-  }
 
-  if (path === '/api/model/generate' && req.method === 'POST') {
-    try {
-      const b = await readBody(req)
-      const hashes = Array.isArray(b.hashes) ? b.hashes.filter(h => /^[a-f0-9]{8,64}$/.test(h)) : []
-      if (!hashes.length) return json(res, 400, { error: 'no view hashes given' })
 
-      const views = hashes.map(h => {
-        const p = join(CACHE_DIR, `${h}.png`)
-        return existsSync(p) ? { buf: readFileSync(p), name: `${h}.png` } : null
-      }).filter(Boolean)
-      if (!views.length) return json(res, 404, { error: 'none of those views are in the cache' })
 
-      const r = await tripoMultiview(ROOT, TRIPO_KEY, { views })
-      return json(res, 200, { ...r, url: `/api/model/file/${r.hash}.${r.format}` })
-    } catch (e) { return json(res, 500, { error: String(e.message || e) }) }
-  }
-
-  if (path.startsWith('/api/model/file/')) {
-    const raw = path.slice('/api/model/file/'.length)
-    if (!/^[a-f0-9]{8,64}\.(glb|gltf)$/.test(raw)) { res.statusCode = 400; return res.end('bad name') }
-    const buf = readModel(ROOT, raw)
-    if (!buf) { res.statusCode = 404; return res.end('not found') }
-    res.setHeader('Content-Type', 'model/gltf-binary')
-    res.setHeader('Cache-Control', 'public, max-age=31536000, immutable')
-    return res.end(buf)
-  }
-
-  if (path === '/api/miro/export' && req.method === 'POST') {
-    try {
-      const b = await readBody(req)
-      const { model, meta } = b
-      // 형태가 어긋나면 planMiroBoard 안에서 TypeError 가 나 원인이 안 보인다
-      if (!model || !Array.isArray(model.columns) || !Array.isArray(model.nodes)) {
-        return json(res, 400, { error: 'board model must have columns[] and nodes[]' })
-      }
-      const plan = planMiroBoard(model, meta ?? { name: 'VRINGON 품평 보드', description: '' })
-      // 사용자마다 자기 Miro 계정 토큰을 쓴다. 브라우저에만 저장되고 서버는 중계만 한다.
-      const userToken = typeof b.miroToken === 'string' && b.miroToken.trim() ? b.miroToken.trim() : ''
-      const MTOKEN = userToken || MIRO_TOKEN
-      if (!MTOKEN) {
-        return json(res, 200, {
-          mode: 'plan',
-          plan,
-          hint: 'MIRO_ACCESS_TOKEN을 .env에 넣으면 보드를 바로 생성합니다. 지금은 생성 계획만 반환했습니다.',
-        })
-      }
-      const out = await createMiroBoard(MTOKEN, plan)
-      return json(res, 200, { mode: 'created', ...out })
-    } catch (e) {
-      return json(res, 500, { error: String(e.message || e) })
-    }
-  }
 
   // 개발용 · 지금 실행한 Run을 예시 샘플로 굳힌다.
   // 참조된 이미지는 캐시에서 public/samples 로 복사해, 캐시를 지워도 샘플이 살아 있게 한다.
@@ -586,14 +478,6 @@ export async function handleApi(req, res) {
   }
 
   // 무드보드 · 올린 PDF 를 실제로 읽어 신호를 뽑는다
-  if (path === '/api/moodboard/read' && req.method === 'POST') {
-    if (!API_KEY) return json(res, 400, { error: 'OPENAI_API_KEY 미설정' })
-    try {
-      const b = await readBody(req)
-      const r = await readMoodboard(API_KEY, ROOT, b)
-      return json(res, 200, { ...r.data, searches: r.searches })
-    } catch (e) { return json(res, 500, { error: String(e.message || e) }) }
-  }
 
   if (path === '/api/dev/save-sample' && req.method === 'POST') {
     try {
@@ -651,19 +535,17 @@ export async function handleApi(req, res) {
   if (req.method !== 'POST') { res.statusCode = 405; return res.end('method not allowed') }
 
   try {
+    // 이미지 생성도 장당 값이 나간다 · 조사와 같은 문지기를 통과해야 한다
+    const g = await guard(req, url, ROOT, { images: 1 })
+    if (!g.ok) return json(res, g.status, { error: g.error })
     const body = await readBody(req)
-    if (path === '/api/image/generate') {
-      const { hash, cached, model } = await generate(body)
-      return json(res, 200, { url: `/api/image/file/${hash}.png`, hash, cached, model })
+    const done = (r) => {
+      // 캐시로 나온 것은 값이 안 나갔으니 한도에서도 빼지 않는다
+      if (!r.cached) spend(ROOT, g.id, { images: 1 })
+      return json(res, 200, { url: `/api/image/file/${r.hash}.png`, hash: r.hash, cached: r.cached, model: r.model })
     }
-    if (path === '/api/image/edit') {
-      const { hash, cached, model } = await edit(body)
-      return json(res, 200, { url: `/api/image/file/${hash}.png`, hash, cached, model })
-    }
-    if (path === '/api/image/refshot') {
-      const { hash, cached, model } = await refshot(body)
-      return json(res, 200, { url: `/api/image/file/${hash}.png`, hash, cached, model })
-    }
+    if (path === '/api/image/generate') return done(await generate(body))
+    if (path === '/api/image/refshot') return done(await refshot(body))
   } catch (e) {
     return json(res, 500, { error: String(e.message || e) })
   }

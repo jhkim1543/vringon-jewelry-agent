@@ -107,59 +107,7 @@
      "at": "2026-08-26T22:56:31.512Z"
     }
    ],
-   "feature": "Architectural three-step rhythm in warm sealed brass with softened edges, brushed planes, dark recesses, and a single 1.2 mm flush-set recycled-glass dot.",
-   "spec": {
-    "dims": [
-     {
-      "name": "band width",
-      "mm": "~4.5"
-     },
-     {
-      "name": "flat top thickness",
-      "mm": "2.6~2.9"
-     },
-     {
-      "name": "minimum wall thickness",
-      "mm": "1.4"
-     },
-     {
-      "name": "outside edge radius",
-      "mm": "~0.25"
-     },
-     {
-      "name": "overall profile height",
-      "mm": "<3.0"
-     }
-    ],
-    "metal": "brass",
-    "plating": "",
-    "stones": [
-     {
-      "type": "recycled glass",
-      "cut": "",
-      "mm": "1.2",
-      "count": 1
-     }
-    ],
-    "findings": [],
-    "weight_g": {
-     "min": 3.5,
-     "max": 5.5
-    },
-    "weight_basis": "one ring basis, assumed size US 7 comfort fit, recycled-glass dot and clear sealant excluded",
-    "process": [
-     "CNC milling and engraving of repeating three-level step rhythm wrapping ~70 percent of circumference with narrow window channels",
-     "satin-brushed planes",
-     "micro-blasted recesses for darker contrast",
-     "comfort-fit inner curve",
-     "inside chamfer for finger stability",
-     "flush setting for 1.2 mm recycled-glass dot",
-     "optional micro enamel inlays recessed 0.3 mm deep",
-     "clear seal on untreated warm brass"
-    ],
-    "note": "Metal spec set to brass inferred from warm untreated brass with clear seal. Ring size assumed US 7 for weight estimation. Dimensions were filled with standard values only where missing; all other dimensions follow the prompt exactly. Optional enamel not included in weight.",
-    "cached": false
-   }
+   "feature": "Architectural three-step rhythm in warm sealed brass with softened edges, brushed planes, dark recesses, and a single 1.2 mm flush-set recycled-glass dot."
   },
   {
    "id": "D02",
@@ -177,67 +125,7 @@
      "at": "2026-08-26T22:57:03.363Z"
     }
    ],
-   "feature": "Three-tier architectural window motif in raw brass with brushed planes, bead-blasted recesses, a single flush-set recycled-glass accent, and twin hidden bails to prevent rotation.",
-   "spec": {
-    "dims": [
-     {
-      "name": "overall height",
-      "mm": "20"
-     },
-     {
-      "name": "overall width",
-      "mm": "13"
-     },
-     {
-      "name": "profile thickness",
-      "mm": "2.6~2.9"
-     },
-     {
-      "name": "edge radius",
-      "mm": "0.3"
-     },
-     {
-      "name": "recess depth",
-      "mm": "0.6~0.8"
-     },
-     {
-      "name": "min wall thickness",
-      "mm": "1.2~1.5"
-     }
-    ],
-    "metal": "brass",
-    "plating": "",
-    "stones": [
-     {
-      "type": "recycled glass",
-      "cut": "round",
-      "mm": "1.2",
-      "count": 1
-     }
-    ],
-    "findings": [
-     {
-      "name": "bails",
-      "spec": "twin hidden bails milled into top step, 1.5 mm slots, fits 1.2~1.5 mm cable chain"
-     }
-    ],
-    "weight_g": {
-     "min": 4,
-     "max": 5.5
-    },
-    "weight_basis": "pendant only, no chain",
-    "process": [
-     "directional brushing on planes",
-     "fine bead blasting on recessed tiers",
-     "clear sealing to preserve raw brass color",
-     "edges eased to 0.3 mm radius for comfort and crisp highlights",
-     "flush setting for the recycled glass accent",
-     "optional enamel line 0.6 mm in the lowest recess",
-     "anti-rotation chain connection via twin hidden bails milled into top step"
-    ],
-    "note": "Metal grade is assumed as generic brass based on the prompt’s warm raw brass wording. Accent rule offers either one 1.2 mm recycled-glass flush-set dot centered on the middle step or a 0.6 mm enamel line in the lowest recess as specified in the prompt.",
-    "cached": false
-   }
+   "feature": "Three-tier architectural window motif in raw brass with brushed planes, bead-blasted recesses, a single flush-set recycled-glass accent, and twin hidden bails to prevent rotation."
   },
   {
    "id": "D03",
@@ -255,56 +143,7 @@
      "at": "2026-08-26T22:57:29.381Z"
     }
    ],
-   "feature": "Slim tapered chevrons form an open‑center, stackable ring in warm lacquered brass with one midnight‑blue enamel accent set fully flush.",
-   "spec": {
-    "dims": [
-     {
-      "name": "band width at shoulders",
-      "mm": "2.6"
-     },
-     {
-      "name": "band width at apex",
-      "mm": "2.2"
-     },
-     {
-      "name": "wall thickness",
-      "mm": "1.6"
-     },
-     {
-      "name": "apex thickness",
-      "mm": "1.8"
-     },
-     {
-      "name": "micro‑chamfer",
-      "mm": "0.15~0.2"
-     },
-     {
-      "name": "chevron front span",
-      "mm": "<9"
-     }
-    ],
-    "metal": "brass",
-    "plating": "",
-    "stones": [],
-    "findings": [],
-    "weight_g": {
-     "min": 2,
-     "max": 3.5
-    },
-    "weight_basis": "single ring basis · size US 7 equivalent · enamel excluded",
-    "process": [
-     "single‑piece laser‑cut blank",
-     "formed and bent shank",
-     "minimal solder with one laser seam",
-     "satin planes",
-     "polished edges",
-     "comfort‑fit inner profile",
-     "0.9 mm recessed seat for enamel dot · flush",
-     "clear lacquer topcoat"
-    ],
-    "note": "Metal grade assumed from the prompt wording warm brass alloy. Dimensions are filled with standard values for size reference where unspecified, and weight is estimated on a US 7 sample.",
-    "cached": true
-   }
+   "feature": "Slim tapered chevrons form an open‑center, stackable ring in warm lacquered brass with one midnight‑blue enamel accent set fully flush."
   },
   {
    "id": "D04",
@@ -322,60 +161,7 @@
      "at": "2026-08-26T22:58:41.700Z"
     }
    ],
-   "feature": "Slim double-chevron pendant in warm lacquered brass, gently tapered with mirror/satin contrast, a single 1.0 mm black spinel flush-set at the apex, and hidden twin eyelets to prevent rotation.",
-   "spec": {
-    "dims": [
-     {
-      "name": "overall height",
-      "mm": "~22"
-     },
-     {
-      "name": "thickness",
-      "mm": "1.2~1.4"
-     },
-     {
-      "name": "max width",
-      "mm": "~16"
-     },
-     {
-      "name": "eyelet inner diameter",
-      "mm": "~1.5"
-     }
-    ],
-    "metal": "C260 brass",
-    "plating": "",
-    "stones": [
-     {
-      "type": "black spinel",
-      "cut": "round",
-      "mm": "1.0",
-      "count": 1
-     }
-    ],
-    "findings": [
-     {
-      "name": "twin hidden shoulder eyelets",
-      "spec": "integrated C260 brass, internal ID ~1.5 mm"
-     }
-    ],
-    "weight_g": {
-     "min": 2,
-     "max": 4
-    },
-    "weight_basis": "one pendant only, no chain; stone and integrated eyelets included",
-    "process": [
-     "laser cutting",
-     "press bending",
-     "micro chamfering",
-     "satin finish on main planes",
-     "mirror polish on bevels",
-     "flush setting for stone",
-     "minimal soldering",
-     "clear lacquer sealing"
-    ],
-    "note": "Dimensions not provided were filled with standard values for width and eyelet ID. Height and thickness follow the prompt. No prongs per prompt. Clear lacquer is a sealant, not plating.",
-    "cached": false
-   }
+   "feature": "Slim double-chevron pendant in warm lacquered brass, gently tapered with mirror/satin contrast, a single 1.0 mm black spinel flush-set at the apex, and hidden twin eyelets to prevent rotation."
   }
  ],
  "searches": 16,
