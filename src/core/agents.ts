@@ -112,6 +112,9 @@ export const fetchSets = (p: RunParams, insight: KeywordInsight) => {
 export const fetchItemPrompt = (p: RunParams, set: CollectionSet, item: string) =>
   post<{ final_prompt: string; feature: string; spec: MakeSpec }>('/api/agent/itemprompt', {
     setName: set.name, dna: set.design_dna, avoid: set.avoid,
+    // 세트가 정한 금속·스톤을 그대로 실어 보낸다. design_dna 안에 녹아 있으리라 믿고
+    // 안 보냈더니, 한 세트 25개 중 9개가 950 플래티넘에서 18K 로 갈아탔다.
+    setMetal: set.metal, setStones: set.stones,
     item: ITEM_KO[item], itemEn: ITEM_EN[item],
     target: targetText(p.target), langName: langOf(p),
     brief: [p.collectionAdv?.priceTarget && `목표 가격대 ${p.collectionAdv.priceTarget}`,

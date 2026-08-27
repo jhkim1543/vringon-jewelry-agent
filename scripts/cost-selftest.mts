@@ -5,7 +5,7 @@
 import {
   GOLD_24K_USD_G, METAL_USD_G,
   checkTarget, currencyCode, dimText, estimateCost, marketBand, metalBasis, metalKey, parsePriceTarget,
-  currencyFor, moneyIn, stoneKey, stoneText,
+  currencyFor, dnaDrift, moneyIn, stoneKey, stoneText,
   type MakeSpec,
 } from '../src/core/cost'
 
@@ -213,6 +213,26 @@ console.log('\n── 시장 가격대 ──')
   const m = marketBand([...mk(5, 100, 'USD'), ...mk(5, 135000, '원')])
   eq('기호 통화도 표본에 든다', m?.n, 10)
   eq('통화를 모르는 것만 제외로 센다', marketBand([...mk(6, 100, 'USD'), ...mk(2, 100, '???')])?.skipped, 2)
+}
+
+console.log('\n── 세트 DNA 이탈 ──')
+// 컬렉션의 약속은 "하나의 DNA 를 공유하는 세트" 인데, 한 세트 25개 중 9개가
+// 950 플래티넘에서 18K 로 갈아탔다. 세 사람이 각각 짚었다.
+{
+  const noStone = { metal: '950 platinum with high polish', stones: 'None. No gemstone.' }
+  const ok = dnaDrift({ ...ring, metal: 'Pt950', stones: [] }, noStone)
+  eq('표기가 달라도 같은 소재면 넘어간다', ok.length, 0)
+  const off = dnaDrift({ ...ring, metal: '18K yellow gold', stones: [] }, noStone)
+  eq('금속이 갈아타면 잡는다', off.map(d => d.field), ['금속'])
+  const withStone = dnaDrift(
+    { ...ring, metal: 'Pt950', stones: [{ type: 'CZ', cut: '라운드', mm: '2mm', count: 4 }] }, noStone)
+  eq('무보석 세트에 스톤이 들어가면 잡는다', withStone.map(d => d.field), ['스톤'])
+  // 세트가 두 금속을 함께 쓰면 그중 하나이기만 하면 된다 (오탐이 났던 자리)
+  const two = { metal: 'SV925 블랙 로듐 베이스, 18K 옐로 골드 악센트', stones: '' }
+  eq('베이스를 골라도 이탈이 아니다', dnaDrift({ ...ring, metal: '925 실버' }, two).length, 0)
+  eq('악센트를 골라도 이탈이 아니다', dnaDrift({ ...ring, metal: '18K yellow' }, two).length, 0)
+  eq('둘 다 아니면 이탈', dnaDrift({ ...ring, metal: '316L 스테인리스' }, two).map(d => d.field), ['금속'])
+  eq('세트가 없으면 판정하지 않는다', dnaDrift(ring, undefined).length, 0)
 }
 
 console.log('\n── 화면 통화 ──')

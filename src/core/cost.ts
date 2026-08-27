@@ -64,6 +64,17 @@ const METAL_WORDS: Array<[RegExp, keyof typeof METAL_USD_G]> = [
   [/골드|gold|금/g, 'gold14k'],
 ]
 
+/** 그 글에 나오는 금속을 전부 모은다 · 세트는 두 금속을 함께 쓰기도 한다
+ *  ("SV925 블랙 로듐 베이스, 18K 옐로 골드 악센트"). 첫 하나만 보면 악센트를 쓴
+ *  품목이 전부 이탈로 잡힌다 — 실측으로 오탐이 났다. */
+export function metalKeysIn(text: string): Array<keyof typeof METAL_USD_G> {
+  const s = String(text ?? '').toLowerCase()
+    .replace(/(골드|실버|로듐|로즈골드|gold|silver|rhodium)\s*(도금|코팅|plated|plating|coating|vermeil|버메일)/g, ' ')
+  const out = new Set<keyof typeof METAL_USD_G>()
+  for (const [rx, key] of METAL_WORDS) { rx.lastIndex = 0; if (rx.test(s)) out.add(key) }
+  return [...out]
+}
+
 /** 사양의 금속 표기에서 몸체 소재를 읽는다.
  *
  *  두 가지가 조용히 틀렸다:
@@ -603,4 +614,37 @@ export function moneyIn(code: string): Money {
   fn.code = code
   fn.note = code === 'USD' ? '' : `1 USD = ${fx.toLocaleString()} ${code}`
   return fn
+}
+
+// ── 세트 DNA 이탈 검사 ───────────────────────────────────────────────
+// 컬렉션 에이전트의 약속은 "하나의 Design DNA 를 공유하는 세트" 다.
+// 그런데 세트가 950 플래티넘·무보석이라고 정해 놓아도 개별 품목 사양이 18K·유보석으로
+// 나갔다 — 실측으로 한 세트 25개 중 9개가 금속을 갈아탔다. 세 사람이 각각 짚었다.
+// 프롬프트로 부탁하는 것만으로는 안 지켜진다. 어긋나면 화면에 드러낸다.
+
+export interface DnaDrift { field: string; set: string; design: string }
+
+/** 세트가 정한 것과 이 디자인의 사양이 어긋난 곳 · 없으면 빈 배열 */
+export function dnaDrift(
+  spec: MakeSpec | undefined,
+  set: { metal?: string; stones?: string } | undefined,
+): DnaDrift[] {
+  if (!spec || !set) return []
+  const out: DnaDrift[] = []
+
+  // 금속 · 표기가 달라도 같은 소재면 넘어간다 (Pt950 / 950 platinum / 백금).
+  // 세트가 여러 금속을 쓰면 그중 하나이기만 하면 된다 — 베이스와 악센트를 함께 쓰는
+  // 세트에서 악센트 쪽을 고른 품목이 전부 이탈로 잡히던 오탐이 있었다.
+  const allowed = metalKeysIn(set.metal ?? '')
+  const got = metalKey(spec.metal ?? '')
+  if (allowed.length && got && !allowed.includes(got))
+    out.push({ field: '금속', set: set.metal ?? '', design: spec.metal ?? '' })
+
+  // 무보석 규칙 · 세트가 "없음" 이라고 했는데 사양에 스톤이 들어갔는가
+  const noStone = /^(no|none)\b|없음|무보석|no gemstone|no stone/i.test((set.stones ?? '').trim())
+  const has = (spec.stones ?? []).filter(s => (Number(s.count) || 0) > 0 && !NONE_RX.test(`${s.type} ${s.cut}`))
+  if (noStone && has.length)
+    out.push({ field: '스톤', set: set.stones ?? '', design: has.map(stoneText).join(' · ') })
+
+  return out
 }

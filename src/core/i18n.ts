@@ -1373,4 +1373,7 @@ const KO: Record<string, string> = {
   'quartiles': '하위 25 / 50 / 75%',
   'per pair': '한 쌍 기준',
   'The spec weight is per piece, so this was doubled for the pair.': '사양의 중량이 한 짝 기준이라 한 쌍으로 두 배 올렸습니다',
+  'Does not match the set': '세트와 어긋납니다',
+  'set': '세트',
+  'this design': '이 디자인',
 }

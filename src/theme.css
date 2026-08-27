@@ -2491,3 +2491,7 @@ input.bframe-t { border-bottom: 1px solid var(--accent); color: var(--text); }
 .pd-head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; margin-bottom: 8px; }
 .pd-head b { font-size: 12px; }
 .pd-groups { margin-top: 8px; line-height: 1.6; }
+.tp-drift { margin-top: 10px; padding: 8px 10px; border-radius: 6px; font-size: 12px;
+  background: color-mix(in srgb, var(--warn) 10%, transparent); border-left: 2px solid var(--warn); }
+.tp-drift b { display: block; color: var(--warn); font-size: 11px; margin-bottom: 3px; }
+.tp-drift p { margin: 2px 0; color: var(--muted); }

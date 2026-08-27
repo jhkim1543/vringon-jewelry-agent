@@ -800,13 +800,18 @@ ${LANG_RULE(langName)} (concept_art 프롬프트만 영어)`,
   return save(root, key, { ...data, insight_note: insightNote })
 }
 
-export async function agentItemPrompt(apiKey, root, { setName, dna, avoid, item, itemEn, target, langName, brief }) {
-  const key = keyOf(['agip5', setName, dna, item, target, langName, brief])
+export async function agentItemPrompt(apiKey, root, { setName, dna, avoid, item, itemEn, target, langName, brief, setMetal, setStones }) {
+  const key = keyOf(['agip6', setName, dna, item, target, langName, brief, setMetal, setStones])
   const hit = cached(root, key); if (hit) return hit
   const { data } = await ask(apiKey, {
     input: `세트의 공통 Design DNA 를 ${item} (${itemEn}) 하나에 맞게 변환한 이미지 생성 프롬프트를 만듭니다. 웹 검색 없이.
 
 세트: ${setName}
+세트가 정한 금속: ${setMetal || '(지정 없음)'}
+세트가 정한 스톤: ${setStones || '(지정 없음)'}
+  ↑ 이 둘은 세트 안 모든 품목이 똑같이 지켜야 합니다. spec.metal 은 위 금속과 같은 소재여야 하고,
+  스톤이 "없음" 이면 spec.stones 를 빈 배열로 두세요. 품목이 다르다고 소재를 갈아타면
+  하나의 컬렉션이 아니게 됩니다.
 공통 Design DNA:
 ${dna.map(x => `- ${x}`).join('\n')}
 피해야 할 표현: ${avoid.join(', ')}

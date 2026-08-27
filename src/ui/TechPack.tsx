@@ -6,14 +6,16 @@
    원가는 estimateCost() 가 계산한다 — 모델에게 묻지 않는다.
    그래서 같은 사양이면 늘 같은 값이 나오고, 무엇을 곱해서 나왔는지 줄마다 남는다. */
 import {
-  checkTarget, dimText, estimateCost, moneyIn, placeInMarket, retailBand, stoneText,
+  checkTarget, dimText, dnaDrift, estimateCost, moneyIn, placeInMarket, retailBand, stoneText,
   type MakeSpec, type MarketBand,
 } from '../core/cost'
 import { t } from '../core/i18n'
 
 
-export function TechPack({ spec, priceTarget, market, currency = 'USD' }: {
+export function TechPack({ spec, priceTarget, market, currency = 'USD', set }: {
   spec?: MakeSpec; priceTarget?: string
+  /** 이 디자인이 속한 세트 · 정해 놓은 금속·스톤과 어긋나면 그 자리에서 알린다 */
+  set?: { metal?: string; stones?: string }
   /** 같은 실행에서 수집한 실제 판매가 · 없으면 대조를 띄우지 않는다 */
   market?: MarketBand | null
   /** 화면에 찍을 통화 · 계산은 달러로 하고 여기서 환산한다 */
@@ -21,6 +23,7 @@ export function TechPack({ spec, priceTarget, market, currency = 'USD' }: {
 }) {
   const usd = moneyIn(currency)
   const c = estimateCost(spec, usd)
+  const drift = dnaDrift(spec, set)
   if (!spec) return null
 
   const [rLo, rHi] = retailBand(c)
@@ -119,6 +122,14 @@ export function TechPack({ spec, priceTarget, market, currency = 'USD' }: {
           )}
         </section>
       </div>
+      {!!drift.length && (
+        <div className="tp-drift">
+          <b>{t('Does not match the set')}</b>
+          {drift.map((d, i) => (
+            <p key={i}>{d.field} · {t('set')}: {d.set} → {t('this design')}: {d.design}</p>
+          ))}
+        </div>
+      )}
       {spec.note?.trim() && <p className="hint tp-note">{spec.note}</p>}
     </div>
   )

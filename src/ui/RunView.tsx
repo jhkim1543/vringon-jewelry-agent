@@ -436,7 +436,8 @@ function PairRow({ st, pair, onPairUpdate, market }: {
         {pair.spec && (
           <Collapse title={t('Tech pack and cost')} summary={specSummary(pair.spec, currencyFor(regionsOf(st.params)))}>
             <TechPack spec={pair.spec} priceTarget={st.params.collectionAdv?.priceTarget || st.params.direction}
-              market={market} currency={currencyFor(regionsOf(st.params))} />
+              market={market} currency={currencyFor(regionsOf(st.params))}
+              set={st.sets?.find(x => x.name === pair.setName)} />
           </Collapse>
         )}
         {pair.feature && <p className="hint">{pair.feature}</p>}

@@ -1305,4 +1305,7 @@ export const JA: Record<string, string> = {
   'quartiles': '下位 25 / 50 / 75%',
   'per pair': '一対あたり',
   'The spec weight is per piece, so this was doubled for the pair.': '仕様の重量が片方基準のため、一対として二倍にしました',
+  'Does not match the set': 'セットと食い違います',
+  'set': 'セット',
+  'this design': 'このデザイン',
 }
