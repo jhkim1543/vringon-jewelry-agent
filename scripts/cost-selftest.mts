@@ -65,6 +65,38 @@ eq('금속을 못 읽으면 계산하지 않는다',
 eq('천연석은 견적으로 넘긴다',
   estimateCost({ ...ring, stones: [{ type: '천연 다이아몬드', cut: '라운드', mm: '3mm', count: 1 }] }).quotes.length, 1)
 
+console.log('\n── 표가 스스로 앞뒤가 맞는가 ──')
+// 공방 오너와 컨설턴트가 같은 것을 잡았다: "금속 $722 인데 합계 $557~922".
+// 줄에 중간값을 적고 합계만 범위로 내면 이런 표가 나온다 — 그러면 표 전체를 못 믿는다.
+{
+  const sumLo = c.lines.reduce((a, l) => a + l.lo, 0)
+  const sumHi = c.lines.reduce((a, l) => a + l.hi, 0)
+  eq('줄의 합 = 전체 하한', Math.round(sumLo * 100) / 100, Math.round(c.low * 100) / 100)
+  eq('줄의 합 = 전체 상한', Math.round(sumHi * 100) / 100, Math.round(c.high * 100) / 100)
+  eq('어떤 줄도 전체 하한을 넘지 않는다', c.lines.every(l => l.lo <= c.low + 1e-9), true)
+}
+
+console.log('\n── 현장 지적으로 넣은 것 ──')
+{
+  const withStone = estimateCost({ ...ring, stones: [{ type: '랩 다이아몬드', cut: '라운드', mm: '1.1mm', count: 6 }] })
+  const line = withStone.lines.find(l => l.label.startsWith('스톤 ·'))
+  eq('작은 알에 최저 단가가 적용된다', !!line && line.lo / 6 >= 4, true)
+
+  const flush = estimateCost({ ...ring, stones: [{ type: 'CZ', cut: '플러시', mm: '2mm', count: 4 }] })
+  eq('플러시도 프롱보다 비싸게', !!flush.lines.find(l => l.how.includes('베젤·파베·채널')), true)
+
+  const finish = estimateCost({ ...ring, plating: '고운 무광 새틴 마감' })
+  eq('표면 마감은 도금 공임이 아니다', finish.lines.some(l => l.label === '도금'), false)
+
+  const real = estimateCost({ ...ring, plating: '로듐 도금 0.15μm' })
+  eq('진짜 도금에는 매긴다', real.lines.some(l => l.label === '도금'), true)
+
+  const enamel = estimateCost({
+    ...ring, stones: [{ type: 'CZ', cut: '베젤', mm: '2mm', count: 2 }], process: ['에나멜 소성'],
+  })
+  eq('에나멜은 견적으로 넘긴다', enamel.quotes.some(q => q.includes('에나멜')), true)
+}
+
 console.log('\n── 표기 ──')
 // 덱 실측에서 "1.2 이상 mm" 와 "청록 사파이어 ·  · 2.3 · 1" 이 그대로 인쇄됐다
 eq('숫자로 끝나면 mm 를 붙인다', dimText('2.0~2.2'), '2.0~2.2 mm')

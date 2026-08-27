@@ -6,7 +6,8 @@ import { t, tf } from '../core/i18n'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { DesignPair, MakeSpec, PromptDirection, RunState, Stage } from '../core/types'
 import { TechPack } from './TechPack'
-import { estimateCost } from '../core/cost'
+import { estimateCost, marketBand } from '../core/cost'
+import type { MarketBand } from '../core/cost'
 import {
   BASIS_LABEL, GENDER_LABEL, ITEM_LABEL, MODE_LABEL, STAGE_LABELS, VARIANT_LABEL,
   estimateMinutes, estimateStages, regionsLabel,
@@ -110,6 +111,8 @@ export default function RunView({ st, progress, onOpenBoard, onPairUpdate, onSco
   const kwDeck = useMemo(() => st.insight ? keywordDeckHtml(st) : null, [st.insight])
   // 테크팩은 디자인이 다 나온 뒤에 만든다 · 사양이 붙은 쌍만 들어간다
   const tkDeck = useMemo(() => techPackDeckHtml(st), [st.pairs])
+  // 같은 실행에서 모은 실제 판매가 · 원가가 시장 어디에 앉는지 견주는 데 쓴다
+  const market = useMemo(() => marketBand((st.shops ?? []).flatMap(x => x.items)), [st.shops])
 
   const p = st.params
   const pairsDone = st.pairs.filter(x => x.versions.length > 0).length
@@ -235,7 +238,7 @@ export default function RunView({ st, progress, onOpenBoard, onPairUpdate, onSco
 
         {/* ── 2·3·4 · 덱들 (모드별) ──────────────────────────────── */}
         {p.mode === 'competitor' && deckBlock(compDeck, 'deck-competitor')}
-        {p.mode === 'competitor' && deckBlock(shopDeck, 'deck-shops')}
+        {deckBlock(shopDeck, 'deck-shops')}
         {p.mode === 'fashion' && deckBlock(rwDeck, 'deck-runway')}
         {p.mode === 'fashion' && deckBlock(adDeck, 'deck-adoption')}
         {p.mode === 'collection' && deckBlock(kwDeck, 'deck-keyword')}
@@ -301,7 +304,7 @@ export default function RunView({ st, progress, onOpenBoard, onPairUpdate, onSco
             <p className="hint">{t('Edit a prompt and regenerate. Only that design gets a new version, everything else stays.')}</p>
             <div className="pairlist">
               {[...st.pairs].sort((a, b) => a.id.localeCompare(b.id)).map(pair => (
-                <PairRow key={pair.id} st={st} pair={pair} onPairUpdate={onPairUpdate} />
+                <PairRow key={pair.id} st={st} pair={pair} onPairUpdate={onPairUpdate} market={market} />
               ))}
             </div>
           </section>
@@ -326,8 +329,10 @@ function axisSummary(d: PromptDirection): string {
 }
 
 // ── 쌍 한 줄 · 프롬프트 편집과 개별 재생성 ───────────────────────────
-function PairRow({ st, pair, onPairUpdate }: {
+function PairRow({ st, pair, onPairUpdate, market }: {
   st: RunState; pair: DesignPair; onPairUpdate: (p: DesignPair) => void
+  /** 같은 실행에서 모은 실제 판매가 · 원가가 시장 어디에 앉는지 견준다 */
+  market: MarketBand | null
 }) {
   const [editing, setEditing] = useState(false)
   const [draft, setDraft] = useState(pair.prompt)
@@ -390,7 +395,7 @@ function PairRow({ st, pair, onPairUpdate }: {
         )}
         {pair.spec && (
           <Collapse title={t('Tech pack and cost')} summary={specSummary(pair.spec)}>
-            <TechPack spec={pair.spec} priceTarget={st.params.collectionAdv?.priceTarget || st.params.direction} />
+            <TechPack spec={pair.spec} priceTarget={st.params.collectionAdv?.priceTarget || st.params.direction} market={market} />
           </Collapse>
         )}
         {pair.feature && <p className="hint">{pair.feature}</p>}

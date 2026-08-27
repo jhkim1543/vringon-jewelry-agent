@@ -1290,4 +1290,13 @@ export const JA: Record<string, string> = {
   'Computed from the spec above using reference prices from': '上の仕様と次の時点の参考相場で計算しました:',
   'Metal weight is an estimate, so the cost is a range. Replace the rates with your own supplier quotes.': '地金重量が推定値のため原価も幅で出ます。取引先の見積もりで単価を置き換えてください。',
   'Cost is computed from the spec on this sheet using reference rates. Replace them with your own supplier quotes.': 'このシートの仕様と参考相場で計算した値です。取引先の見積もりに置き換えてください。',
+
+  // ── 시장 가격 대조 ──
+  'Collected prices': '収集した販売価格',
+  'n =': '標本',
+  '25/50/75th percentile of': '下位25/50/75% · 標本',
+  'skipped for unknown currency': '件は通貨不明のため除外',
+  'Mid-market': '市場中間帯',
+  'Above market': '市場上限より上',
+  'Below market': '市場下限より下',
 }

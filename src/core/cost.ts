@@ -78,6 +78,11 @@ const STONE_BASE_3MM: Record<string, number> = {
   labsapphire: 4,
   pearl: 3,
 }
+/** 알이 작아도 이 아래로는 안 내려간다 · 지름 세제곱만 쓰면 1mm 짜리가 1센트가 된다.
+ *  작은 멜레는 재료비가 아니라 절삭·선별·취급비가 값을 정한다 (현장 지적으로 넣었다). */
+const STONE_FLOOR: Record<string, number> = {
+  cz: 0.05, moissanite: 3, labdiamond: 4, labsapphire: 0.8, pearl: 0.5,
+}
 export function stoneKey(type: string): keyof typeof STONE_BASE_3MM | 'natural' | '' {
   const s = type.toLowerCase().replace(/\s/g, '')
   if (/cz|큐빅|지르코|zirconia/.test(s)) return 'cz'
@@ -88,6 +93,10 @@ export function stoneKey(type: string): keyof typeof STONE_BASE_3MM | 'natural' 
   if (/diamond|다이아|sapph|사파|ruby|루비|emerald|에메/.test(s)) return 'natural'
   return 'cz'                                   // 종류를 안 적었으면 가장 싼 것으로 잡는다
 }
+
+/** 진짜 도금인가 · "细砂雾面(고운 무광)" 같은 표면 마감이 plating 칸에 적혀 오는 일이 있다.
+ *  그것까지 도금 공임을 매기면 없는 공정에 값이 붙는다 (현장 지적). */
+const PLATING_RX = /도금|plated|plating|코팅|coating|ip|pvd|로듐|rhodium|vermeil|버메일|镀|금장|은장/i
 
 /** 해당 없음 표기 · 모델이 빈 칸을 지우는 대신 이렇게 적는다 */
 const NONE_RX = /없음|해당\s*없|not\s*applicable|^n\/?a$|none|불요|불필요/i
@@ -116,7 +125,8 @@ const LABOR = {
 /** 금속 손실률 · 주조·연마에서 깎여 나가는 몫 */
 const SCRAP = 0.1
 
-export interface CostLine { label: string; usd: number; how: string }
+/** 원가 한 줄 · 반드시 범위로 남긴다. 줄의 합이 곧 전체 범위여야 표를 믿을 수 있다. */
+export interface CostLine { label: string; lo: number; hi: number; how: string }
 export interface CostEstimate {
   /** 계산이 가능했는가 · 사양이 비면 false */
   ok: boolean
@@ -139,6 +149,10 @@ export interface MakeSpec {
   stones: SpecStone[]
   findings: SpecFinding[]
   weight_g: { min: number; max: number }
+  /** 그 중량이 무엇을 포함하는가 · "한 짝 기준, 이어백 제외" 처럼.
+   *  귀걸이가 낱개인지 쌍인지, 목걸이가 체인을 포함하는지 안 밝히면 원가를 비교할 수 없다.
+   *  공방 오너가 실제로 이것 때문에 "비교 불가" 판정을 냈다. */
+  weight_basis?: string
   process: string[]
   note: string
 }
@@ -164,9 +178,12 @@ export function estimateCost(spec: MakeSpec | undefined, metalUsdG = METAL_USD_G
   const lines: CostLine[] = []
   const quotes: string[] = []
   let low = 0, high = 0
+  // 줄마다 범위를 그대로 남긴다. 전에는 줄에 중간값을 적고 합계만 범위로 냈는데,
+  // 그러면 "금속 $722 · 합계 $557~922" 처럼 한 줄이 합계 하한을 넘는 표가 나온다.
+  // 원가표에서 줄이 합계와 안 맞으면 그 표는 통째로 못 믿는다 — 실제로 그 지적을 받았다.
   const add = (label: string, lo: number, hi: number, how: string) => {
     low += lo; high += hi
-    lines.push({ label, usd: (lo + hi) / 2, how })
+    lines.push({ label, lo, hi, how })
   }
 
   // ── 금속 ──
@@ -184,13 +201,14 @@ export function estimateCost(spec: MakeSpec | undefined, metalUsdG = METAL_USD_G
     stoneCount += n
     const k = stoneKey(st.type)
     if (k === 'natural') {
-      quotes.push(`${st.type} ${st.mm} ${n}알 · 등급에 따라 값이 크게 달라 견적이 필요합니다`)
+      quotes.push(`${st.type} ${dimText(st.mm)} ${n}알 · 등급에 따라 값이 크게 달라 견적이 필요합니다`)
       continue
     }
     const mm = mmOf(st.mm) || 3
-    const each = STONE_BASE_3MM[k] * Math.pow(mm / 3, 3)
+    const each = Math.max(STONE_FLOOR[k], STONE_BASE_3MM[k] * Math.pow(mm / 3, 3))
     add(`스톤 · ${st.type} ${st.mm}`, each * n, each * n * 1.4,
-      `${n}알 × ${each.toFixed(2)}달러 (3mm ${STONE_BASE_3MM[k]}달러 기준, 지름 세제곱)`)
+      `${n}알 × ${each.toFixed(2)}달러 (3mm ${STONE_BASE_3MM[k]}달러 기준, 지름 세제곱${
+        each === STONE_FLOOR[k] ? ` · 작은 알 최저 ${STONE_FLOOR[k]}달러 적용` : ''})`)
   }
 
   // ── 부속 ──
@@ -210,12 +228,19 @@ export function estimateCost(spec: MakeSpec | undefined, metalUsdG = METAL_USD_G
   add('주조', LABOR.casting, LABOR.casting * 1.3, '소량 생산 기준 · 왁스 소각 포함')
   add('연마·마무리', LABOR.polishing, LABOR.polishing * 1.3, '')
   if (stoneCount) {
-    const bezel = (spec.stones ?? []).some(s => /베젤|bezel|파베|pave/i.test(s.cut))
-    const rate = bezel ? LABOR.settingBezel : LABOR.settingProng
+    // 세팅 방식은 cut 칸에만 적히지 않는다 · 공정과 스톤 설명 전체에서 찾는다.
+    // 전에는 cut 만 봐서, 플러시·채널·에나멜 인레이인 디자인이 전부 프롱으로 잡혔다.
+    const setText = [...(spec.stones ?? []).map(s => `${s.cut} ${s.type}`), ...(spec.process ?? [])].join(' ')
+    const hard = /베젤|bezel|파베|pave|채널|channel|플러시|flush|집시|gypsy|마이크로|micro/i.test(setText)
+    const rate = hard ? LABOR.settingBezel : LABOR.settingProng
     add('스톤 세팅', rate * stoneCount, rate * stoneCount * 1.3,
-      `${stoneCount}알 × ${rate}달러 (${bezel ? '베젤·파베' : '프롱'})`)
+      `${stoneCount}알 × ${rate}달러 (${hard ? '베젤·파베·채널' : '프롱'})`)
+    if (/에나멜|enamel|칠보|법랑|珐琅/i.test(setText))
+      quotes.push('에나멜 공정이 있습니다 · 소성 횟수와 불량률에 따라 값이 달라져 견적이 필요합니다')
   }
-  if (spec.plating?.trim()) add('도금', LABOR.plating, LABOR.plating * 1.4, spec.plating)
+  const plating = spec.plating?.trim() ?? ''
+  if (plating && PLATING_RX.test(plating) && !NONE_RX.test(plating))
+    add('도금', LABOR.plating, LABOR.plating * 1.4, plating)
   if (fittedFindings) add('조립', LABOR.assembly, LABOR.assembly * 1.3, `부속 ${fittedFindings}종`)
 
   return { ok: true, blocked: '', low, high, lines, quotes, pricedAt: PRICED_AT }
@@ -308,4 +333,51 @@ export function stoneText(s: SpecStone): string {
   const size = dimText(s.mm)
   return [s.type, s.cut, size, s.count ? `${s.count}` : '']
     .map(x => String(x ?? '').trim()).filter(Boolean).join(' · ')
+}
+
+// ── 시장 가격 대조 ───────────────────────────────────────────────────
+// 원가를 내고 판매가를 제안해도, 그 값이 시장에서 어느 자리인지 모르면 판단이 안 된다.
+// 페르소나 재측정에서 다섯 사람이 같은 것을 다시 요구했다.
+// 수집된 실제 판매가를 그대로 줄 세워 사분위를 낸다 — 모델에게 묻지 않는다.
+
+/** 참고 환율 · 금속 시세와 같은 성격이라 같은 자리에 둔다 */
+const FX_PER_USD: Record<string, number> = {
+  USD: 1, KRW: KRW_PER_USD, EUR: EUR_PER_USD, JPY: 150, GBP: 0.79,
+  CNY: 7.1, AED: 3.67, THB: 34, CAD: 1.36, AUD: 1.5, INR: 84,
+}
+
+export interface MarketBand {
+  n: number
+  /** 통화를 몰라 뺀 것 · 숨기지 않는다 */
+  skipped: number
+  p25: number
+  p50: number
+  p75: number
+}
+
+/** 수집된 제품 가격을 달러로 모아 사분위를 낸다. 표본이 5개 미만이면 내지 않는다 —
+ *  세 개짜리 "시장 가격대" 는 없느니만 못하다. */
+export function marketBand(items: Array<{ price?: number; currency?: string }>): MarketBand | null {
+  const usd: number[] = []
+  let skipped = 0
+  for (const it of items ?? []) {
+    const p = Number(it.price) || 0
+    const fx = FX_PER_USD[String(it.currency ?? '').toUpperCase()]
+    if (p <= 0) continue
+    if (!fx) { skipped++; continue }
+    usd.push(p / fx)
+  }
+  if (usd.length < 5) return null
+  usd.sort((a, b) => a - b)
+  const at = (q: number) => usd[Math.min(usd.length - 1, Math.floor(usd.length * q))]
+  return { n: usd.length, skipped, p25: at(0.25), p50: at(0.5), p75: at(0.75) }
+}
+
+export type MarketVerdict = 'below' | 'inside' | 'above'
+/** 계산된 제안가가 시장 어디에 앉는가 */
+export function placeInMarket(retail: [number, number], m: MarketBand): MarketVerdict {
+  const mid = (retail[0] + retail[1]) / 2
+  if (mid < m.p25) return 'below'
+  if (mid > m.p75) return 'above'
+  return 'inside'
 }

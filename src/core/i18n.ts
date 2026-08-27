@@ -1358,4 +1358,13 @@ const KO: Record<string, string> = {
   'Computed from the spec above using reference prices from': '위 사양과 다음 시점 기준 시세로 계산했습니다:',
   'Metal weight is an estimate, so the cost is a range. Replace the rates with your own supplier quotes.': '금속 중량이 추정값이라 원가도 범위로 나옵니다. 거래처 견적으로 단가를 바꿔 쓰세요.',
   'Cost is computed from the spec on this sheet using reference rates. Replace them with your own supplier quotes.': '이 장의 사양과 기준 시세로 계산한 값입니다. 거래처 견적으로 바꿔 쓰세요.',
+
+  // ── 시장 가격 대조 ──
+  'Collected prices': '수집된 판매가',
+  'n =': '표본',
+  '25/50/75th percentile of': '하위 25/50/75% · 표본',
+  'skipped for unknown currency': '건은 통화를 몰라 제외',
+  'Mid-market': '시장 중간대',
+  'Above market': '시장 상단 밖',
+  'Below market': '시장 하단 밖',
 }

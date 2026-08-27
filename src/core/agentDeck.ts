@@ -10,7 +10,7 @@
 import type { CrawledProduct, RunState } from './types'
 import { BASIS_LABEL, CONFIDENCE_LABEL, ITEM_KO, regionsLabel, regionsOf } from './types'
 import { esc, slide } from './deck'
-import { checkTarget, dimText, estimateCost, retailBand, stoneText } from './cost'
+import { checkTarget, dimText, estimateCost, marketBand, placeInMarket, retailBand, stoneText } from './cost'
 import { shotUrl } from './agents'
 import { t } from './i18n'
 
@@ -377,6 +377,7 @@ export function techPackDeckHtml(st: RunState): { title: string; html: string } 
 
   // 컬렉션은 전용 칸이 있고, 나머지 두 에이전트는 사용자가 조사 방향에 적어 둔다
   const priceTarget = st.params.collectionAdv?.priceTarget || st.params.direction
+  const market = marketBand((st.shops ?? []).flatMap(x => x.items))
   const money = (n: number) => `$${n < 10 ? n.toFixed(1) : Math.round(n)}`
   const rowsOf = (rows: Array<[string, string]>) => rows.length
     ? `<table class="tk-t">${rows.map(([k, v]) => `<tr><th>${esc(k)}</th><td>${esc(v)}</td></tr>`).join('')}</table>`
@@ -397,7 +398,7 @@ export function techPackDeckHtml(st: RunState): { title: string; html: string } 
     const finds = rowsOf((s.findings ?? []).map(f => [f.name, f.spec] as [string, string]))
     const costRows = c.ok
       ? `<table class="tk-t">${c.lines.map(l =>
-        `<tr><th>${esc(l.label)}</th><td>${money(l.usd)}${l.how ? `<em>${esc(l.how)}</em>` : ''}</td></tr>`).join('')}</table>`
+        `<tr><th>${esc(l.label)}</th><td>${l.lo === l.hi ? money(l.lo) : `${money(l.lo)} – ${money(l.hi)}`}${l.how ? `<em>${esc(l.how)}</em>` : ''}</td></tr>`).join('')}</table>`
       : `<p class="tk-none">${esc(t('Cost not calculated'))} · ${esc(c.blocked)}</p>`
 
     return slide({
@@ -420,10 +421,16 @@ export function techPackDeckHtml(st: RunState): { title: string; html: string } 
           <div class="tk-box tk-cost">
             <h4>${esc(t('Estimated unit cost'))}</h4>
             ${c.ok ? `<p class="tk-big">${money(c.low)} – ${money(c.high)}</p>` : ''}
+            ${s.weight_basis?.trim() ? `<p class="tk-basis">${esc(s.weight_basis)}</p>` : ''}
             ${costRows}
             ${c.ok ? `<p class="tk-sug">${esc(t('Suggested DTC price'))} ${money(rLo)} – ${money(rHi)}</p>` : ''}
             ${(() => { const v = checkTarget(c, priceTarget); return v.verdict === 'unknown' ? ''
               : `<p class="tk-v ${v.verdict}">${esc(v.note)}</p>` })()}
+            ${(c.ok && market) ? (() => {
+              const w = placeInMarket([rLo, rHi], market)
+              return `<p class="tk-v ${w === 'inside' ? 'inside' : 'over'}">${esc(t('Collected prices'))} ${
+                money(market.p25)} / ${money(market.p50)} / ${money(market.p75)} · ${esc(t('n ='))} ${market.n}</p>`
+            })() : ''}
             ${c.quotes.length ? `<p class="tk-q">${c.quotes.map(q => esc(q)).join('<br/>')}</p>` : ''}
           </div>
         </div>

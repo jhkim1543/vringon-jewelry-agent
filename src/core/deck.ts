@@ -212,6 +212,7 @@ export const DECK_CSS = `
   .tk-v { font-size: 8pt; margin: 2mm 0 0; padding: 1mm 2mm; border-radius: 1mm; display: inline-block; }
   .tk-v.inside { background: #E7EFE6; color: #2F5D3A; }
   .tk-v.over, .tk-v.under { background: #F6EAE0; color: #8A5A2B; }
+  .tk-basis { font-size: 7.5pt; color: #6B675C; margin: -1mm 0 2mm; }
 `
 
 /** 슬라이드 한 장 */

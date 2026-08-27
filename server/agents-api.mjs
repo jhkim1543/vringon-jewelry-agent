@@ -575,7 +575,7 @@ ${direction ? `조사 방향: ${direction}` : ''}
    추정이라는 사실이 화면에서 사라진다. */
 const SPEC_SCHEMA = {
   type: 'object', additionalProperties: false,
-  required: ['dims', 'metal', 'plating', 'stones', 'findings', 'weight_g', 'process', 'note'],
+  required: ['dims', 'metal', 'plating', 'stones', 'findings', 'weight_g', 'weight_basis', 'process', 'note'],
   properties: {
     dims: {
       type: 'array', description: '그 품목의 핵심 치수 3~6개',
@@ -588,7 +588,11 @@ const SPEC_SCHEMA = {
       },
     },
     metal: { type: 'string', description: '합금 규격 · 925 / K10 / 14K / 18K yellow / brass 등' },
-    plating: { type: 'string', description: '도금 종류와 두께(마이크로미터). 없으면 빈 문자열' },
+    plating: {
+      type: 'string',
+      description: '도금 종류와 두께(마이크로미터)만. 도금을 하지 않으면 빈 문자열로 두세요. '
+        + '"고운 무광" · "새틴 마감" 같은 표면 가공은 도금이 아니므로 여기 적지 말고 process 에 적으세요.',
+    },
     stones: {
       type: 'array', description: '스톤이 없으면 빈 배열',
       items: {
@@ -612,6 +616,12 @@ const SPEC_SCHEMA = {
       description: '소재와 볼륨에서 추정한 금속 중량 범위(g). 스톤·부속 제외',
       properties: { min: { type: 'number' }, max: { type: 'number' } },
     },
+    weight_basis: {
+      type: 'string',
+      description: '위 중량이 무엇을 재는 값인가. 귀걸이는 "한 짝 기준" 인지 "한 쌍 기준" 인지, '
+        + '목걸이는 체인을 포함하는지, 무엇이 빠졌는지 한 줄로. 안 밝히면 원가를 비교할 수 없다. '
+        + '예: "한 짝 기준 · 이어백 제외" / "펜던트 + 체인 45cm 포함"',
+    },
     process: { type: 'array', items: { type: 'string' }, description: '주조·세팅·연마·도금 등 주요 공정' },
     note: { type: 'string', description: '사용자가 적은 수치 범위를 벗어났다면 그 이유. 없으면 빈 문자열' },
   },
@@ -627,7 +637,7 @@ const VARIANT_RULE = {
 export async function agentPrompts(apiKey, root, { mode, refId, variant, dna, trendCombo, itemEn, itemKo, target, country, langName, brief }) {
   // agp4 · DNA 가 키에 들어갔다. 전에는 refId 만 보고 캐시해서, 사진을 못 본 고장 DNA 로
   // 만든 프롬프트가 DNA 를 고친 뒤에도 그대로 재사용됐다 (NFC 버그 복구 때 실제로 그랬다).
-  const key = keyOf(['agp6', mode, refId, variant, itemEn, target, trendCombo, langName, dna, brief])
+  const key = keyOf(['agp7', mode, refId, variant, itemEn, target, trendCombo, langName, dna, brief])
   const hit = cached(root, key); if (hit) return hit
   const isFashion = mode === 'fashion'
   const { data } = await ask(apiKey, {
@@ -661,6 +671,7 @@ ${JSON.stringify(dna, null, 1)}
    - dims 는 그 품목의 핵심 치수만 (반지=밴드 폭·두께·링 사이즈 / 귀걸이=총 길이·모티프 폭·포스트 굵기 /
      목걸이=체인 길이·굵기·펜던트 크기 / 브레이슬릿=둘레·폭).
    - weight_g 는 그 치수와 금속에서 추정한 실제 값. 지어내지 말고 볼륨을 어림해서 범위로.
+   - weight_basis 에 그 중량이 무엇을 재는 값인지 반드시 적으세요 (한 짝/한 쌍, 체인 포함 여부).
    - findings 에 잠금·백·베일을 빠짐없이. 프롬프트 첫 두 줄에 쓴 것과 같아야 합니다.
    - 사용자가 방향에 중량·가격대·규격을 적었으면 그 범위 안에서 설계하고,
      벗어나야 한다면 note 에 한 줄로 이유를 적으세요.
@@ -790,7 +801,7 @@ ${LANG_RULE(langName)} (concept_art 프롬프트만 영어)`,
 }
 
 export async function agentItemPrompt(apiKey, root, { setName, dna, avoid, item, itemEn, target, langName, brief }) {
-  const key = keyOf(['agip4', setName, dna, item, target, langName, brief])
+  const key = keyOf(['agip5', setName, dna, item, target, langName, brief])
   const hit = cached(root, key); if (hit) return hit
   const { data } = await ask(apiKey, {
     input: `세트의 공통 Design DNA 를 ${item} (${itemEn}) 하나에 맞게 변환한 이미지 생성 프롬프트를 만듭니다. 웹 검색 없이.
@@ -854,7 +865,7 @@ ${pairs.map(p => `[${p.id}] ${p.prompt.slice(0, 500)}`).join('\n\n')}`,
  *  옛 저장본과 데모 샘플에는 spec 이 없다. 새로 지어내면 이미 생성된 사진과 어긋나므로,
  *  프롬프트에 적힌 것만 읽고 적히지 않은 것은 그 품목의 표준값으로 채운 뒤 그렇다고 밝힌다. */
 export async function agentSpecFrom(apiKey, root, { prompt, itemKo, langName }) {
-  const key = keyOf(['agsf2', prompt.slice(0, 400), itemKo])
+  const key = keyOf(['agsf3', prompt.slice(0, 400), itemKo])
   const hit = cached(root, key); if (hit) return hit
   const { data } = await ask(apiKey, {
     input: `아래는 이미 생성이 끝난 주얼리 디자인 프롬프트입니다. 여기에 적힌 내용만으로 제작 사양을 정리하세요.
@@ -868,6 +879,9 @@ export async function agentSpecFrom(apiKey, root, { prompt, itemKo, langName }) 
 - weight_g 는 반드시 0 보다 큰 값이어야 합니다. 프롬프트에 없더라도 치수와 금속에서 부피를 어림해
   범위로 채우세요. 0 으로 두면 원가를 계산할 수 없어 이 사양은 쓸모가 없어집니다.
   참고 범위 · 반지 2~6g / 귀걸이 한 짝 1~4g / 펜던트 2~6g / 목걸이 체인 포함 5~12g / 브레이슬릿 6~20g.
+- weight_basis 를 반드시 적으세요. 귀걸이면 한 짝인지 한 쌍인지, 목걸이면 체인을 포함하는지.
+  이것이 없으면 원가를 다른 디자인과 견줄 수 없습니다.
+- plating 은 진짜 도금일 때만. 표면 마감(무광·새틴·헤어라인)은 process 에 적으세요.
 - metal 은 합금 규격 하나로 적으세요. "미정" 이나 빈 값을 두지 말고, 프롬프트의 색·마감에서
   가장 그럴듯한 규격을 고른 뒤 note 에 추정이라고 밝히세요. 여러 소재가 섞이면 몸체 소재를 적습니다.
 - 프롬프트가 "없음" 이라고 한 부속은 없음으로 적습니다. 없는 것을 만들어 넣지 마세요.

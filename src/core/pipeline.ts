@@ -316,6 +316,41 @@ async function runCollection(params: RunParams, emit: Emit, stopped: () => boole
   addSearches(insight.searches)
   emit({ kind: 'insight', insight })
   log('S1', `Insight ready · ${insight.abstraction.length} abstraction axes, ${insight.cautions.length} cautions`)
+
+  // ── S1b 시장 가격 대조 ────────────────────────────────────────────
+  // 컬렉션은 원래 크롤을 하지 않았다. 그런데 페르소나 재측정에서 다섯 사람이
+  // 같은 것을 다시 요구했다 — "원가는 나오는데 그 값이 시장에서 맞는 자리인지 모르겠다".
+  // 경쟁사를 훑는 것이 아니라, 같은 품목·같은 지역의 실제 판매가를 모아
+  // 계산된 제안가를 견줄 수 있게만 한다. 실패해도 컬렉션은 계속 간다.
+  const shopsAll: ShopCrawl[] = []
+  await pool(regionsOf(params), 2, async (region) => {
+    if (stopped()) return
+    try {
+      const s = await fetchShops(params, region)
+      addSearches(s.searches)
+      for (const sh of s.shops ?? []) {
+        const shName = (sh.name.split('·')[0].trim() || sh.name.trim())
+        shopsAll.push({
+          name: shName, url: sh.url, note: sh.note, failed: sh.failed, region,
+          items: (sh.items ?? []).map((x, k) => ({
+            id: `sh-${region}-${shName}-${k}`, source: 'shop' as const, brand: x.brand, shopName: shName,
+            name: x.name, rankBasis: x.rank_basis, rankNote: x.rank_note,
+            price: x.price, currency: x.currency, imageUrl: x.image_url, productUrl: x.product_url,
+          })),
+        })
+      }
+    } catch (e) {
+      log('S1', `${region}: price benchmark could not be collected · ${String((e as Error).message).slice(0, 90)}`)
+    }
+  })
+  if (stopped()) return
+  if (shopsAll.length) {
+    emit({ kind: 'shops', shops: shopsAll })
+    const n = shopsAll.reduce((a, s) => a + s.items.length, 0)
+    log('S1', `Price benchmark · ${shopsAll.length} shops, ${n} comparable items · the tech pack compares your computed price against these`)
+  } else {
+    log('S1', 'No price benchmark collected · the tech pack will show cost without a market comparison')
+  }
   emit({ kind: 'stage-done', stage: 'S1' })
 
   // ── S2 세트 콘셉트 ────────────────────────────────────────────────

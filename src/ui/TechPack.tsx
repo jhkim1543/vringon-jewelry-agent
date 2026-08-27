@@ -5,12 +5,19 @@
 
    원가는 estimateCost() 가 계산한다 — 모델에게 묻지 않는다.
    그래서 같은 사양이면 늘 같은 값이 나오고, 무엇을 곱해서 나왔는지 줄마다 남는다. */
-import { checkTarget, dimText, estimateCost, retailBand, stoneText, type MakeSpec } from '../core/cost'
+import {
+  checkTarget, dimText, estimateCost, placeInMarket, retailBand, stoneText,
+  type MakeSpec, type MarketBand,
+} from '../core/cost'
 import { t } from '../core/i18n'
 
 const usd = (n: number) => `$${n < 10 ? n.toFixed(1) : Math.round(n)}`
 
-export function TechPack({ spec, priceTarget }: { spec?: MakeSpec; priceTarget?: string }) {
+export function TechPack({ spec, priceTarget, market }: {
+  spec?: MakeSpec; priceTarget?: string
+  /** 같은 실행에서 수집한 실제 판매가 · 없으면 대조를 띄우지 않는다 */
+  market?: MarketBand | null
+}) {
   const c = estimateCost(spec)
   if (!spec) return null
 
@@ -63,10 +70,11 @@ export function TechPack({ spec, priceTarget }: { spec?: MakeSpec; priceTarget?:
           <h5>{t('Estimated unit cost')}</h5>
           {c.ok ? (<>
             <p className="tp-big">{usd(c.low)} – {usd(c.high)}</p>
+            {spec.weight_basis?.trim() && <p className="hint tp-basis">{spec.weight_basis}</p>}
             <table className="tp-tab">
               <tbody>
                 {c.lines.map((l, i) => (
-                  <tr key={i}><th>{l.label}</th><td>{usd(l.usd)}{l.how && <em className="tp-how">{l.how}</em>}</td></tr>
+                  <tr key={i}><th>{l.label}</th><td>{l.lo === l.hi ? usd(l.lo) : `${usd(l.lo)} – ${usd(l.hi)}`}{l.how && <em className="tp-how">{l.how}</em>}</td></tr>
                 ))}
               </tbody>
             </table>
@@ -77,6 +85,19 @@ export function TechPack({ spec, priceTarget }: { spec?: MakeSpec; priceTarget?:
                 <span>{tgt.note}</span>
               </p>
             )}
+            {c.ok && market && (() => {
+              const where = placeInMarket([rLo, rHi], market)
+              return (
+                <p className={`tp-verdict ${where === 'inside' ? 'inside' : 'over'}`}>
+                  <b>{t(where === 'inside' ? 'Mid-market' : where === 'above' ? 'Above market' : 'Below market')}</b>
+                  <span>
+                    {t('Collected prices')} {usd(market.p25)} / {usd(market.p50)} / {usd(market.p75)}
+                    {' '}({t('25/50/75th percentile of')} {market.n}
+                    {market.skipped ? `, ${market.skipped} ${t('skipped for unknown currency')}` : ''})
+                  </span>
+                </p>
+              )
+            })()}
             {!!c.quotes.length && (
               <p className="hint" style={{ color: 'var(--warn)' }}>
                 {c.quotes.map((q, i) => <span key={i}>{q}<br /></span>)}
