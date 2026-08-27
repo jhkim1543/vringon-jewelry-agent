@@ -2,7 +2,7 @@
    들어가는 것: dist/(프로덕션 빌드) · server/ · package.json(런타임 의존성만) · Procfile
    안 들어가는 것: .env · docs/ · public/ 원본 · scripts/ · node_modules · .git
    실행:  npm run build  →  node deploy/eb-bundle.mjs  →  deploy/eb-bundle.zip */
-import { cpSync, mkdirSync, rmSync, writeFileSync, existsSync, readFileSync } from 'node:fs'
+import { cpSync, mkdirSync, readdirSync, rmSync, statSync, writeFileSync, existsSync, readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { join } from 'node:path'
 import { execFileSync } from 'node:child_process'
@@ -21,6 +21,39 @@ rmSync(ZIP, { force: true })
 mkdirSync(STAGE, { recursive: true })
 
 cpSync(join(ROOT, 'dist'), join(STAGE, 'dist'), { recursive: true })
+
+/* dist/samples 는 빌드가 public/ 을 통째로 복사해 오는 자리다. 실행을 돌릴 때마다
+   생성 이미지가 그 폴더에 쌓이는데, 배포에 필요한 것은 데모 샘플이 실제로 가리키는
+   몇 장뿐이다. 그냥 두었더니 번들이 716MB 가 되어 EB 상한(500MB)에 막혔다.
+   런타임 생성 이미지는 별도 캐시로 가므로 여기서 걷어내도 화면은 그대로다. */
+{
+  const sdir = join(STAGE, 'dist', 'samples')
+  if (existsSync(sdir)) {
+    // 데모 샘플 JSON 은 src/samples 에 있고 빌드 때 JS 청크로 들어간다 —
+    // dist/samples 에는 사진만 있으므로 참조 목록은 원본에서 읽어야 한다.
+    // (여기를 dist/samples 에서 찾다가 "0개 남기고 1227개 뺐다" 가 나왔다. 그대로 나갔으면
+    //  데모 사진이 전부 깨진다.)
+    const want = new Set()
+    const srcDir = join(ROOT, 'src', 'samples')
+    const live = new Set(
+      [...readFileSync(join(ROOT, 'src', 'core', 'sampleRun.ts'), 'utf8')
+        .matchAll(/'(sample_[a-z_]+)'/g)].map(m => `${m[1]}.json`))
+    for (const f of readdirSync(srcDir).filter(x => live.has(x))) {
+      const body = readFileSync(join(srcDir, f), 'utf8')
+      for (const m of body.matchAll(/\/samples\/([\w.-]+\.(?:png|jpe?g|webp|glb))/g)) want.add(m[1])
+    }
+    if (!want.size) { console.error('데모 샘플이 가리키는 사진을 하나도 못 찾았다 — 중단'); process.exit(1) }
+    let kept = 0, dropped = 0, freed = 0
+    for (const f of readdirSync(sdir)) {
+      if (f.endsWith('.json') || want.has(f)) { kept++; continue }
+      const p2 = join(sdir, f)
+      freed += statSync(p2).size
+      rmSync(p2, { force: true, recursive: true })
+      dropped++
+    }
+    console.log(`샘플 이미지 ${kept}개 남기고 ${dropped}개 뺐다 (${(freed / 1e6).toFixed(0)} MB)`)
+  }
+}
 /* PPT 라이브러리는 브라우저 번들에 넣지 않고 이 서버가 내준다
    (번들러가 Node 모듈을 끌고 들어가려다 실패한다 · VRINGON dev 가 실제로 이걸로 죽었다) */
 mkdirSync(join(STAGE, 'dist', 'vendor'), { recursive: true })
