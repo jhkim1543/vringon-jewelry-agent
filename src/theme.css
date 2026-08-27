@@ -160,7 +160,7 @@ button { cursor: pointer; background: none; border: none; }
 }
 .wcol { min-width: 0; }
 
-/* 안내 배너 · 큐브 일러스트는 OpenAI 이미지 API로 만든 것이다.
+/* 안내 배너 · 큐브 일러스트는 이미지 생성으로 만든 것이다.
    어느 테마에서든 어두운 면 위에 얹혀야 그림이 산다. 그래서 배너만
    라이트에서도 짙은 남색을 유지하고, 안쪽 글자는 항상 밝은 색을 쓴다. */
 .staticnote {

@@ -564,15 +564,15 @@
  "searches": 16,
  "finished": true,
  "insight": {
-  "meaning": "제주 바다의 조수 간만은 혼합조형 가운데 반일주 경향이 뚜렷하며 하루에 두 차례 고조와 저조가 나타난다. 2011년 제주 조위 관측 자료의 조석형 수는 약 0.42로 분류상 혼합 반일주에 해당하고, 평균 춘조 조차는 약 1.87 m로 제시된다. 이는 서해의 큰 조차에 비해 작지만 해안 지형과 생활 리듬을 형성할 만큼 분명한 변화다. ([jkscoe.or.kr](https://www.jkscoe.or.kr/upload/pdf/jkscoe-25-6-365.pdf)) 제주 해안의 기반암은 현무암으로, 용암의 냉각 수축에 따른 주상절리가 널리 발달하고 파랑의 해식 작용과 조류가 이를 지속적으로 마모하며 파식대와 해식애의 표면 결을 강조한다. ([agupubs.onlinelibrary.wiley.com](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2007jb005018?utm_source=openai))",
-  "cultural": "Korea 시장에서 제주 바다는 어머니 바다·공동체·지속가능 어업의 상징으로 소비자 정서에 깊게 각인되어 있다. 제주 해녀 문화는 2016년에 유네스코 인류무형문화유산 대표목록에 등재되었고 물때를 기준으로 공동 작업을 조직하는 지식과 관습이 핵심으로 전승된다. ([ich.unesco.org](https://ich.unesco.org/en/RL/culture-of-jeju-haenyeo-women-divers-01068?lang=en&utm_source=openai)) 음력 2월의 칠머리당 영등굿은 바다의 평온과 풍어를 비는 대표적 해양 신앙으로 해녀 공동체 정체성과 연결된다. ([visitjeju.net](https://www.visitjeju.net/kr/themtour/view?contentsid=CNTS_300000000013312&utm_source=openai)) 제주 상징물인 돌하르방과 검은 돌담은 다공질 현무암으로 만들어져 섬의 풍토·보호·환대 이미지를 강화한다. ([korea.net](https://www.korea.net/NewsFocus/Sci-Tech/view?articleId=123366&utm_source=openai))",
-  "background": "제주는 2007년 유네스코 세계자연유산으로 등재된 화산섬이며 한라산·성산일출봉·거문오름 용암동굴계가 대표 지질 유산이다. ([whc.unesco.org](https://whc.unesco.org/en/list/1264?utm_source=openai)) 중문·대포 해안의 주상절리대는 높이 약 30~40 m·연장 약 1 km로 한국 최대급이며 해안 절벽에서 파랑이 치며 물보라가 수십 미터까지 치솟기도 한다. ([visitjeju.net](https://www.visitjeju.net/en/detail/view?contentsid=CNTS_000000000020476&menuId=DOM_700000000010778&utm_source=openai)) 주상절리는 용암의 냉각 전선이 진행하며 다각형 기둥과 기둥면의 세로 스트리아가 형성되는 물리 과정을 거친다. ([agupubs.onlinelibrary.wiley.com](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2007jb005018?utm_source=openai)) 용머리 해안은 응회암층과 평행층리·타포니가 발달하여 파랑·염풍화의 벌집무늬 표면을 관찰할 수 있다. ([jst.re.kr](https://jst.re.kr/upload/pdf/RC00093771.pdf?utm_source=openai)) 학술 연구는 제주 연안 조석이 반일주 성격을 지니며 평균 조차가 약 1.7 m인 사례를 제시해 현장 체감 리듬을 뒷받침한다. ([researchgate.net](https://www.researchgate.net/publication/331536899_Volcaniclastic_tide-modulated_tempestite_in_a_coastal_tuff_ring_Jeju_Island_Korea/fulltext/5c7f173f458515831f87a117/Volcaniclastic-tide-modulated-tempestite-in-a-coastal-tuff-ring-Jeju-Island-Korea.pdf?utm_source=openai))",
+  "meaning": "제주 바다의 조수 간만은 혼합조형 가운데 반일주 경향이 뚜렷하며 하루에 두 차례 고조와 저조가 나타난다. 2011년 제주 조위 관측 자료의 조석형 수는 약 0.42로 분류상 혼합 반일주에 해당하고, 평균 춘조 조차는 약 1.87 m로 제시된다. 이는 서해의 큰 조차에 비해 작지만 해안 지형과 생활 리듬을 형성할 만큼 분명한 변화다. ([jkscoe.or.kr](https://www.jkscoe.or.kr/upload/pdf/jkscoe-25-6-365.pdf)) 제주 해안의 기반암은 현무암으로, 용암의 냉각 수축에 따른 주상절리가 널리 발달하고 파랑의 해식 작용과 조류가 이를 지속적으로 마모하며 파식대와 해식애의 표면 결을 강조한다. ([agupubs.onlinelibrary.wiley.com](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2007jb005018))",
+  "cultural": "Korea 시장에서 제주 바다는 어머니 바다·공동체·지속가능 어업의 상징으로 소비자 정서에 깊게 각인되어 있다. 제주 해녀 문화는 2016년에 유네스코 인류무형문화유산 대표목록에 등재되었고 물때를 기준으로 공동 작업을 조직하는 지식과 관습이 핵심으로 전승된다. ([ich.unesco.org](https://ich.unesco.org/en/RL/culture-of-jeju-haenyeo-women-divers-01068?lang=en)) 음력 2월의 칠머리당 영등굿은 바다의 평온과 풍어를 비는 대표적 해양 신앙으로 해녀 공동체 정체성과 연결된다. ([visitjeju.net](https://www.visitjeju.net/kr/themtour/view?contentsid=CNTS_300000000013312)) 제주 상징물인 돌하르방과 검은 돌담은 다공질 현무암으로 만들어져 섬의 풍토·보호·환대 이미지를 강화한다. ([korea.net](https://www.korea.net/NewsFocus/Sci-Tech/view?articleId=123366))",
+  "background": "제주는 2007년 유네스코 세계자연유산으로 등재된 화산섬이며 한라산·성산일출봉·거문오름 용암동굴계가 대표 지질 유산이다. ([whc.unesco.org](https://whc.unesco.org/en/list/1264)) 중문·대포 해안의 주상절리대는 높이 약 30~40 m·연장 약 1 km로 한국 최대급이며 해안 절벽에서 파랑이 치며 물보라가 수십 미터까지 치솟기도 한다. ([visitjeju.net](https://www.visitjeju.net/en/detail/view?contentsid=CNTS_000000000020476&menuId=DOM_700000000010778)) 주상절리는 용암의 냉각 전선이 진행하며 다각형 기둥과 기둥면의 세로 스트리아가 형성되는 물리 과정을 거친다. ([agupubs.onlinelibrary.wiley.com](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2007jb005018)) 용머리 해안은 응회암층과 평행층리·타포니가 발달하여 파랑·염풍화의 벌집무늬 표면을 관찰할 수 있다. ([jst.re.kr](https://jst.re.kr/upload/pdf/RC00093771.pdf)) 학술 연구는 제주 연안 조석이 반일주 성격을 지니며 평균 조차가 약 1.7 m인 사례를 제시해 현장 체감 리듬을 뒷받침한다. ([researchgate.net](https://www.researchgate.net/publication/331536899_Volcaniclastic_tide-modulated_tempestite_in_a_coastal_tuff_ring_Jeju_Island_Korea/fulltext/5c7f173f458515831f87a117/Volcaniclastic-tide-modulated-tempestite-in-a-coastal-tuff-ring-Jeju-Island-Korea.pdf))",
   "symbols": [
-   "어머니 바다·공동체·숨비소리라는 생명 확인의 호흡 소리. ([inmun360.culture.go.kr](https://inmun360.culture.go.kr/content/382.do?cid=103653&mode=view&utm_source=openai))",
-   "해녀의 물때 지식·상군과 하군 체계·공동체 어장. ([ncms.nculture.org](https://ncms.nculture.org/fisheries/story/10821?utm_source=openai))",
-   "주상절리의 육각 기둥과 세로 결·검은 현무암의 공극. ([agupubs.onlinelibrary.wiley.com](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2007jb005018?utm_source=openai))",
-   "영등할망 신앙과 칠머리당 영등굿. ([visitjeju.net](https://www.visitjeju.net/kr/themtour/view?contentsid=CNTS_300000000013312&utm_source=openai))",
-   "돌하르방과 현무암 돌담이 주는 수호·환대의 상징. ([korea.net](https://www.korea.net/NewsFocus/Sci-Tech/view?articleId=123366&utm_source=openai))"
+   "어머니 바다·공동체·숨비소리라는 생명 확인의 호흡 소리. ([inmun360.culture.go.kr](https://inmun360.culture.go.kr/content/382.do?cid=103653&mode=view))",
+   "해녀의 물때 지식·상군과 하군 체계·공동체 어장. ([ncms.nculture.org](https://ncms.nculture.org/fisheries/story/10821))",
+   "주상절리의 육각 기둥과 세로 결·검은 현무암의 공극. ([agupubs.onlinelibrary.wiley.com](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2007jb005018))",
+   "영등할망 신앙과 칠머리당 영등굿. ([visitjeju.net](https://www.visitjeju.net/kr/themtour/view?contentsid=CNTS_300000000013312))",
+   "돌하르방과 현무암 돌담이 주는 수호·환대의 상징. ([korea.net](https://www.korea.net/NewsFocus/Sci-Tech/view?articleId=123366))"
   ],
   "emotions": [
    "고요와 격정의 공존",
@@ -583,7 +583,7 @@
   ],
   "colors": [
    "현무암 블랙·차콜 그레이",
-   "바다색 그라데이션 에메랄드 그린에서 코발트 블루까지. ([korea.kr](https://www.korea.kr/goNewsRes/attaches/2019.05/23/363_20111016_144469290.pdf?utm_source=openai))",
+   "바다색 그라데이션 에메랄드 그린에서 코발트 블루까지. ([korea.kr](https://www.korea.kr/goNewsRes/attaches/2019.05/23/363_20111016_144469290.pdf))",
    "포말의 백색·소금빛",
    "조간대의 녹갈색 해조 톤",
    "해질녘 주상절리의 적갈·구리빛 반사"
@@ -593,32 +593,32 @@
    "재활용 금·은·백금",
    "소금 결정 인클루전 레진·유리 에나멜로 바다색 레이어 구현",
    "솔트 앤 페퍼 다이아몬드·흑다이아·블랙 스피넬로 조석의 반짝임 표현",
-   "천연 현무암의 직접 채취·반출은 법적 제약과 환경 훼손 소지가 크므로 금지·지양 권고. ([yna.co.kr](https://www.yna.co.kr/amp/view/AKR20231012116800056?utm_source=openai))"
+   "천연 현무암의 직접 채취·반출은 법적 제약과 환경 훼손 소지가 크므로 금지·지양 권고. ([yna.co.kr](https://www.yna.co.kr/amp/view/AKR20231012116800056))"
   ],
   "forms": [
    "육각·오각 기둥의 단면 배열과 기둥면의 세로 홈 스트리아",
-   "수평 파식대와 해식애 경계의 얇은 단차·낮은 테라스 형태. ([yeosu.go.kr](https://www.yeosu.go.kr/contents/55/topic_1_1.pdf?utm_source=openai))",
-   "공극·벌집무늬 타포니·소용돌이식 미세 결. ([jst.re.kr](https://jst.re.kr/upload/pdf/RC00093771.pdf?utm_source=openai))",
+   "수평 파식대와 해식애 경계의 얇은 단차·낮은 테라스 형태. ([yeosu.go.kr](https://www.yeosu.go.kr/contents/55/topic_1_1.pdf))",
+   "공극·벌집무늬 타포니·소용돌이식 미세 결. ([jst.re.kr](https://jst.re.kr/upload/pdf/RC00093771.pdf))",
    "용암동굴 유선형 내부·적층된 용암 껍질의 파상면",
    "파도에 깎인 모서리의 둥근 에지와 파편성 단면"
   ],
   "motion": [
    "조수 간만의 규칙성 하루 두 차례 상승과 하강·혼합 반일주 리듬. ([jkscoe.or.kr](https://www.jkscoe.or.kr/upload/pdf/jkscoe-25-6-365.pdf))",
    "춘초·하지·추분을 따라 변하는 조차 폭과 파랑 에너지 변화",
-   "큰 너울이 주상절리 절벽에 부딪혀 위로 솟구치는 분사·포말의 상승과 낙하. ([visitjeju.net](https://www.visitjeju.net/en/detail/view?contentsid=CNTS_000000000020476&menuId=DOM_700000000010778&utm_source=openai))",
-   "해녀의 잠수 주기 숨비소리로 이어지는 짧게 내쉼과 깊게 들이쉼의 반복. ([inmun360.culture.go.kr](https://inmun360.culture.go.kr/content/382.do?cid=103653&mode=view&utm_source=openai))"
+   "큰 너울이 주상절리 절벽에 부딪혀 위로 솟구치는 분사·포말의 상승과 낙하. ([visitjeju.net](https://www.visitjeju.net/en/detail/view?contentsid=CNTS_000000000020476&menuId=DOM_700000000010778))",
+   "해녀의 잠수 주기 숨비소리로 이어지는 짧게 내쉼과 깊게 들이쉼의 반복. ([inmun360.culture.go.kr](https://inmun360.culture.go.kr/content/382.do?cid=103653&mode=view))"
   ],
   "cliches": [
    "주상절리를 단순 육각 프레임 펜던트 하나로만 치환한 디자인",
    "돌하르방 얼굴이나 해녀 실루엣을 단순 캐리커처로 새긴 장식",
    "바다색을 과장한 합성 터키석만 반복 사용",
-   "무심한 헥사곤 링크 체인으로만 제주를 표현하는 방식. 한국 및 글로벌 시장에서 헥사곤 모티프는 이미 매우 보편적이다. ([wooing-official.com](https://wooing-official.com/products/iced-hexagon-chain-necklace?utm_source=openai))"
+   "무심한 헥사곤 링크 체인으로만 제주를 표현하는 방식. 한국 및 글로벌 시장에서 헥사곤 모티프는 이미 매우 보편적이다. ([wooing-official.com](https://wooing-official.com/products/iced-hexagon-chain-necklace))"
   ],
   "cautions": [
-   "제주 해안에서 현무암·모래·조개 등을 채취하거나 외부 반출하는 행위는 공유수면법·제주특별법 등에 따라 금지되며 단속 대상이 될 수 있다. 합법적 대체 소재를 사용한다. ([yna.co.kr](https://www.yna.co.kr/amp/view/AKR20231012116800056?utm_source=openai))",
-   "해녀 문화와 영등굿 등 신앙 요소는 유네스코 인류무형문화유산으로 존중이 요구된다. 상업화 과정에서 대상화·성적 이미지화·낭만화의 과장 표현을 피한다. ([ich.unesco.org](https://ich.unesco.org/en/RL/culture-of-jeju-haenyeo-women-divers-01068?lang=en&utm_source=openai))",
-   "돌하르방은 지역 수호 상징으로 경박한 희화화나 종교적 의미 오독을 피한다. ([korea.net](https://www.korea.net/NewsFocus/Sci-Tech/view?articleId=123366&utm_source=openai))",
-   "주상절리 형성과정을 파도 침식으로만 설명하는 오류를 피하고 용암 냉각 수축의 과학적 기반을 준수한다. ([agupubs.onlinelibrary.wiley.com](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2007jb005018?utm_source=openai))"
+   "제주 해안에서 현무암·모래·조개 등을 채취하거나 외부 반출하는 행위는 공유수면법·제주특별법 등에 따라 금지되며 단속 대상이 될 수 있다. 합법적 대체 소재를 사용한다. ([yna.co.kr](https://www.yna.co.kr/amp/view/AKR20231012116800056))",
+   "해녀 문화와 영등굿 등 신앙 요소는 유네스코 인류무형문화유산으로 존중이 요구된다. 상업화 과정에서 대상화·성적 이미지화·낭만화의 과장 표현을 피한다. ([ich.unesco.org](https://ich.unesco.org/en/RL/culture-of-jeju-haenyeo-women-divers-01068?lang=en))",
+   "돌하르방은 지역 수호 상징으로 경박한 희화화나 종교적 의미 오독을 피한다. ([korea.net](https://www.korea.net/NewsFocus/Sci-Tech/view?articleId=123366))",
+   "주상절리 형성과정을 파도 침식으로만 설명하는 오류를 피하고 용암 냉각 수축의 과학적 기반을 준수한다. ([agupubs.onlinelibrary.wiley.com](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2007jb005018))"
   ],
   "abstraction": [
    {
@@ -648,7 +648,7 @@
    {
     "axis": "구조",
     "notes": [
-     "냉각 전선에 수직인 균열·기둥 간 경계의 패싯·층리와 절리 교차. ([agupubs.onlinelibrary.wiley.com](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2007jb005018?utm_source=openai))"
+     "냉각 전선에 수직인 균열·기둥 간 경계의 패싯·층리와 절리 교차. ([agupubs.onlinelibrary.wiley.com](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2007jb005018))"
     ]
    },
    {
@@ -678,21 +678,21 @@
    {
     "axis": "이야기",
     "notes": [
-     "물때를 읽는 지혜·해녀 공동체의 연대·영등굿의 기원과 송별·세계자연유산의 보전과 관람 윤리. ([ncms.nculture.org](https://ncms.nculture.org/fisheries/story/10821?utm_source=openai))"
+     "물때를 읽는 지혜·해녀 공동체의 연대·영등굿의 기원과 송별·세계자연유산의 보전과 관람 윤리. ([ncms.nculture.org](https://ncms.nculture.org/fisheries/story/10821))"
     ]
    }
   ],
   "sources": [
    "Statistical Characteristics of Hourly Tidal Levels around the Korean Peninsula JKSCOE 2012. 제주의 혼합 반일주 경향과 춘조 조차 수치. ([jkscoe.or.kr](https://www.jkscoe.or.kr/upload/pdf/jkscoe-25-6-365.pdf))",
-   "UNESCO World Heritage Centre. Jeju Volcanic Island and Lava Tubes 2007 등재. ([whc.unesco.org](https://whc.unesco.org/en/list/1264?utm_source=openai))",
-   "UNESCO ICH. Culture of Jeju Haenyeo 2016 등재. ([ich.unesco.org](https://ich.unesco.org/en/RL/culture-of-jeju-haenyeo-women-divers-01068?lang=en&utm_source=openai))",
-   "Goehring 2008 JGR. 주상절리와 스트리아 형성 메커니즘. ([agupubs.onlinelibrary.wiley.com](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2007jb005018?utm_source=openai))",
-   "Visit Jeju. 대포 주상절리대 규모·고파랑 물보라 관찰. ([visitjeju.net](https://www.visitjeju.net/en/detail/view?contentsid=CNTS_000000000020476&menuId=DOM_700000000010778&utm_source=openai))",
-   "JST 자료. 산방산·용머리 지질탐방로의 타포니·층리 설명. ([jst.re.kr](https://jst.re.kr/upload/pdf/RC00093771.pdf?utm_source=openai))",
-   "영등굿 안내 Visit Jeju. 음력 2월 해양신앙 의례. ([visitjeju.net](https://www.visitjeju.net/kr/themtour/view?contentsid=CNTS_300000000013312&utm_source=openai))",
-   "Korea.net. 돌하르방과 현무암 돌담이 현무암 기반임. ([korea.net](https://www.korea.net/NewsFocus/Sci-Tech/view?articleId=123366&utm_source=openai))",
-   "연합뉴스. 해변 돌·송이 반출 금지 및 관련 법령. ([yna.co.kr](https://www.yna.co.kr/amp/view/AKR20231012116800056?utm_source=openai))",
-   "Songaksan 연구. 제주 연안의 반일주 조석과 약 1.7 m 조차 사례. ([researchgate.net](https://www.researchgate.net/publication/331536899_Volcaniclastic_tide-modulated_tempestite_in_a_coastal_tuff_ring_Jeju_Island_Korea/fulltext/5c7f173f458515831f87a117/Volcaniclastic-tide-modulated-tempestite-in-a-coastal-tuff-ring-Jeju-Island-Korea.pdf?utm_source=openai))"
+   "UNESCO World Heritage Centre. Jeju Volcanic Island and Lava Tubes 2007 등재. ([whc.unesco.org](https://whc.unesco.org/en/list/1264))",
+   "UNESCO ICH. Culture of Jeju Haenyeo 2016 등재. ([ich.unesco.org](https://ich.unesco.org/en/RL/culture-of-jeju-haenyeo-women-divers-01068?lang=en))",
+   "Goehring 2008 JGR. 주상절리와 스트리아 형성 메커니즘. ([agupubs.onlinelibrary.wiley.com](https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2007jb005018))",
+   "Visit Jeju. 대포 주상절리대 규모·고파랑 물보라 관찰. ([visitjeju.net](https://www.visitjeju.net/en/detail/view?contentsid=CNTS_000000000020476&menuId=DOM_700000000010778))",
+   "JST 자료. 산방산·용머리 지질탐방로의 타포니·층리 설명. ([jst.re.kr](https://jst.re.kr/upload/pdf/RC00093771.pdf))",
+   "영등굿 안내 Visit Jeju. 음력 2월 해양신앙 의례. ([visitjeju.net](https://www.visitjeju.net/kr/themtour/view?contentsid=CNTS_300000000013312))",
+   "Korea.net. 돌하르방과 현무암 돌담이 현무암 기반임. ([korea.net](https://www.korea.net/NewsFocus/Sci-Tech/view?articleId=123366))",
+   "연합뉴스. 해변 돌·송이 반출 금지 및 관련 법령. ([yna.co.kr](https://www.yna.co.kr/amp/view/AKR20231012116800056))",
+   "Songaksan 연구. 제주 연안의 반일주 조석과 약 1.7 m 조차 사례. ([researchgate.net](https://www.researchgate.net/publication/331536899_Volcaniclastic_tide-modulated_tempestite_in_a_coastal_tuff_ring_Jeju_Island_Korea/fulltext/5c7f173f458515831f87a117/Volcaniclastic-tide-modulated-tempestite-in-a-coastal-tuff-ring-Jeju-Island-Korea.pdf))"
   ],
   "searches": 16,
   "cached": true

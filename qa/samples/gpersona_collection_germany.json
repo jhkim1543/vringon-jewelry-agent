@@ -826,14 +826,14 @@
  "searches": 11,
  "finished": true,
  "insight": {
-  "meaning": "A linear minimal pendant that translates core Bauhaus ideas into jewelry using honest industrial materials titanium and matte stainless steel with visible logic of construction and no superfluous ornament. It targets smart casual outfits and sits at an accessible retail band near €150 in Europe. ([moma.org](https://www.moma.org/calendar/galleries/5388?utm_source=openai))",
-  "cultural": "Europe associates Bauhaus with functional clarity social progress and the unity of art craft and industry that still shapes everyday objects and visual culture. The movement was born in Germany in 1919 and spread across Europe through designers and museums then re-entered policy discourse via the New European Bauhaus which links design to sustainability and inclusion. For European consumers a Bauhaus inflected pendant signals rational taste quiet modernity and cross border design heritage rather than regional ornament. ([metmuseum.org](https://www.metmuseum.org/de/essays/the-bauhaus-1919-1933?utm_source=openai))",
-  "background": "Bauhaus education combined formal studies of space color and composition with applied workshops in metalwork cabinetmaking weaving and typography under figures such as Walter Gropius László Moholy Nagy Paul Klee and Wassily Kandinsky. The metal workshop in Weimar and Dessau produced prototypes for modern living and influenced jewelry scale metalwork including work by Naum Slutzky often characterized by geometric reduction and function driven construction. ([moma.org](https://www.moma.org/calendar/galleries/5388?utm_source=openai))",
+  "meaning": "A linear minimal pendant that translates core Bauhaus ideas into jewelry using honest industrial materials titanium and matte stainless steel with visible logic of construction and no superfluous ornament. It targets smart casual outfits and sits at an accessible retail band near €150 in Europe. ([moma.org](https://www.moma.org/calendar/galleries/5388))",
+  "cultural": "Europe associates Bauhaus with functional clarity social progress and the unity of art craft and industry that still shapes everyday objects and visual culture. The movement was born in Germany in 1919 and spread across Europe through designers and museums then re-entered policy discourse via the New European Bauhaus which links design to sustainability and inclusion. For European consumers a Bauhaus inflected pendant signals rational taste quiet modernity and cross border design heritage rather than regional ornament. ([metmuseum.org](https://www.metmuseum.org/de/essays/the-bauhaus-1919-1933))",
+  "background": "Bauhaus education combined formal studies of space color and composition with applied workshops in metalwork cabinetmaking weaving and typography under figures such as Walter Gropius László Moholy Nagy Paul Klee and Wassily Kandinsky. The metal workshop in Weimar and Dessau produced prototypes for modern living and influenced jewelry scale metalwork including work by Naum Slutzky often characterized by geometric reduction and function driven construction. ([moma.org](https://www.moma.org/calendar/galleries/5388))",
   "symbols": [
-   "Positive functional clarity form follows function social good via good design. ([sothebys.com](https://www.sothebys.com/en/art-movements/bauhaus?utm_source=openai))",
-   "Positive democratization of culture and everyday impact. ([oeil.europarl.europa.eu](https://oeil.europarl.europa.eu/oeil/en/procedure-file/pdf?reference=2021%2F2255%28INI%29&utm_source=openai))",
-   "Positive honesty of materials and industrial craft lineage. ([metmuseum.org](https://www.metmuseum.org/de/essays/the-bauhaus-1919-1933?utm_source=openai))",
-   "Negative can feel austere or impersonal if abstract geometry is used without functional rationale. ([goethe.de](https://www.goethe.de/ins/mm/en/kul/mag/21412385.html?utm_source=openai))"
+   "Positive functional clarity form follows function social good via good design. ([sothebys.com](https://www.sothebys.com/en/art-movements/bauhaus))",
+   "Positive democratization of culture and everyday impact. ([oeil.europarl.europa.eu](https://oeil.europarl.europa.eu/oeil/en/procedure-file/pdf?reference=2021%2F2255%28INI%29))",
+   "Positive honesty of materials and industrial craft lineage. ([metmuseum.org](https://www.metmuseum.org/de/essays/the-bauhaus-1919-1933))",
+   "Negative can feel austere or impersonal if abstract geometry is used without functional rationale. ([goethe.de](https://www.goethe.de/ins/mm/en/kul/mag/21412385.html))"
   ],
   "emotions": [
    "calm",
@@ -847,34 +847,34 @@
   ],
   "colors": [
    "Core neutrals titanium grey steel grey graphite black to emphasize structure and surface",
-   "Optional micro accents in primary colors red yellow blue derived from Bauhaus color form studies used sparingly along edges screws or cord terminations. ([bauhaus.de](https://www.bauhaus.de/en/sammlung/highlights/204_unterricht/444?utm_source=openai))"
+   "Optional micro accents in primary colors red yellow blue derived from Bauhaus color form studies used sparingly along edges screws or cord terminations. ([bauhaus.de](https://www.bauhaus.de/en/sammlung/highlights/204_unterricht/444))"
   ],
   "materials": [
-   "Titanium for low weight corrosion resistance and high biocompatibility generally hypoallergenic. ([bluenile.com](https://www.bluenile.com/education/metal/titanium?utm_source=openai))",
-   "316L stainless steel for durable matte structures low nickel release when correctly specified and finished. ([bssa.org.uk](https://bssa.org.uk/bssa_articles/selection-and-use-of-stainless-steels-for-skin-contact-and-body-piercing-jewellery-applications/?utm_source=openai))",
-   "Surface treatments brushed satin or bead blasted to lower reflectivity and reveal linear grain or soft non directional texture. ([worldstainless.org](https://worldstainless.org/about-stainless/process-and-production/surface-treatment/?utm_source=openai))",
-   "Optional anodized titanium accents that create stable interference colors without dyes when used on small planes or fasteners. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Anodizing?utm_source=openai))"
+   "Titanium for low weight corrosion resistance and high biocompatibility generally hypoallergenic. ([bluenile.com](https://www.bluenile.com/education/metal/titanium))",
+   "316L stainless steel for durable matte structures low nickel release when correctly specified and finished. ([bssa.org.uk](https://bssa.org.uk/bssa_articles/selection-and-use-of-stainless-steels-for-skin-contact-and-body-piercing-jewellery-applications/))",
+   "Surface treatments brushed satin or bead blasted to lower reflectivity and reveal linear grain or soft non directional texture. ([worldstainless.org](https://worldstainless.org/about-stainless/process-and-production/surface-treatment/))",
+   "Optional anodized titanium accents that create stable interference colors without dyes when used on small planes or fasteners. ([en.wikipedia.org](https://en.wikipedia.org/wiki/Anodizing))"
   ],
   "forms": [
    "Rectilinear bars plates channels or slim extrusions with clear edge breaks and radii sized for comfort",
    "Geometric primitives circle square triangle referenced only when they support structure or clasp geometry",
    "Proportional modules that read as grid units for example equal bar segments or stepped volumes echoing workshop prototypes",
-   "Joints designed as honest details tiny screws tubes or rivets visible and aligned with the form axis rather than hidden decoration. ([metmuseum.org](https://www.metmuseum.org/de/essays/the-bauhaus-1919-1933?utm_source=openai))"
+   "Joints designed as honest details tiny screws tubes or rivets visible and aligned with the form axis rather than hidden decoration. ([metmuseum.org](https://www.metmuseum.org/de/essays/the-bauhaus-1919-1933))"
   ],
   "motion": [
    "Rhythm by repetition of equal or alternating linear units building quiet pulse along the pendant axis following Klee’s basic rhythm studies",
-   "Balanced tensions between vertical and horizontal reads using spacing rather than curvature to create visual movement. ([openendedgroup.com](https://openendedgroup.com/field2/assets/Klee_Paul_Pedagogical_Sketchbook_1960.pdf?utm_source=openai))"
+   "Balanced tensions between vertical and horizontal reads using spacing rather than curvature to create visual movement. ([openendedgroup.com](https://openendedgroup.com/field2/assets/Klee_Paul_Pedagogical_Sketchbook_1960.pdf))"
   ],
   "cliches": [
-   "Triad of red yellow blue slapped on generic shapes without functional reason avoid it or it reads as superficial Bauhaus cosplay. ([velvetmatter.art](https://velvetmatter.art/journal/bauhaus-in-jewellery-and-object-design-a-visual-guide/?utm_source=openai))",
+   "Triad of red yellow blue slapped on generic shapes without functional reason avoid it or it reads as superficial Bauhaus cosplay. ([velvetmatter.art](https://velvetmatter.art/journal/bauhaus-in-jewellery-and-object-design-a-visual-guide/))",
    "Random triangles circles squares with no connection to clasp mechanics or wearability",
-   "Over polishing that contradicts utilitarian intent when the design concept calls for matte functional surfaces. ([worldstainless.org](https://worldstainless.org/about-stainless/process-and-production/surface-treatment/?utm_source=openai))"
+   "Over polishing that contradicts utilitarian intent when the design concept calls for matte functional surfaces. ([worldstainless.org](https://worldstainless.org/about-stainless/process-and-production/surface-treatment/))"
   ],
   "cautions": [
-   "EU nickel release law applies to jewelry in prolonged skin contact so components must meet EN 1811 migration limits 0.5 microgram per square centimeter per week for most items and 0.2 for posts. Market claims like nickel free are insufficient without release testing. ([eur-lex.europa.eu](https://eur-lex.europa.eu/legal-content/EN/TXT/?qid=1724082961094&uri=CELEX%3A02006R1907-20240606&utm_source=openai))",
-   "Use grade appropriate stainless non free machining sulfur rich grades can exceed nickel release thresholds. ([outokumpu.com](https://www.outokumpu.com/en/sustainability/-/media/files/sustainability/outokumpu-eu-safety-information-sheet-stainless-steel-2023.pdf?modified=20230705085841&revision=466ad64b-bfe7-4302-b6d2-383ba574fde7&utm_source=openai))",
-   "Price positioning around €150 should be justified through material choice and finishing quality comparable EU retail shows titanium or stainless pendants in roughly €110 to €190 which supports a €150 target. ([schmuckwerk-shop.com](https://www.schmuckwerk-shop.com/pendants/pendants-stainless-steel-titanium.html?utm_source=openai))",
-   "Respect the term Bauhaus. Use inspired by rather than implying institutional endorsement and anchor any visual references in functional choices drawn from workshop practice. ([metmuseum.org](https://www.metmuseum.org/de/essays/the-bauhaus-1919-1933?utm_source=openai))"
+   "EU nickel release law applies to jewelry in prolonged skin contact so components must meet EN 1811 migration limits 0.5 microgram per square centimeter per week for most items and 0.2 for posts. Market claims like nickel free are insufficient without release testing. ([eur-lex.europa.eu](https://eur-lex.europa.eu/legal-content/EN/TXT/?qid=1724082961094&uri=CELEX%3A02006R1907-20240606))",
+   "Use grade appropriate stainless non free machining sulfur rich grades can exceed nickel release thresholds. ([outokumpu.com](https://www.outokumpu.com/en/sustainability/-/media/files/sustainability/outokumpu-eu-safety-information-sheet-stainless-steel-2023.pdf?modified=20230705085841&revision=466ad64b-bfe7-4302-b6d2-383ba574fde7))",
+   "Price positioning around €150 should be justified through material choice and finishing quality comparable EU retail shows titanium or stainless pendants in roughly €110 to €190 which supports a €150 target. ([schmuckwerk-shop.com](https://www.schmuckwerk-shop.com/pendants/pendants-stainless-steel-titanium.html))",
+   "Respect the term Bauhaus. Use inspired by rather than implying institutional endorsement and anchor any visual references in functional choices drawn from workshop practice. ([metmuseum.org](https://www.metmuseum.org/de/essays/the-bauhaus-1919-1933))"
   ],
   "abstraction": [
    {
@@ -920,7 +920,7 @@
     "notes": [
      "Directional brushed No.4 for linear read",
      "Bead blasted matte for soft non directional planes",
-     "Local high polish only where friction demands it like screw heads. ([worldstainless.org](https://worldstainless.org/about-stainless/process-and-production/surface-treatment/?utm_source=openai))"
+     "Local high polish only where friction demands it like screw heads. ([worldstainless.org](https://worldstainless.org/about-stainless/process-and-production/surface-treatment/))"
     ]
    },
    {
@@ -928,14 +928,14 @@
     "notes": [
      "Titanium body elements for weight and skin safety",
      "316L stainless inserts or frames for crisp edges and cost control",
-     "Optional small anodized titanium color chips for signal accents. ([bluenile.com](https://www.bluenile.com/education/metal/titanium?utm_source=openai))"
+     "Optional small anodized titanium color chips for signal accents. ([bluenile.com](https://www.bluenile.com/education/metal/titanium))"
     ]
    },
    {
     "axis": "color",
     "notes": [
      "Neutral base titanium grey steel grey black",
-     "Micro accents in red yellow blue only where they mark function for example alignment dot or screw seat. ([bauhaus.de](https://www.bauhaus.de/en/sammlung/highlights/204_unterricht/444?utm_source=openai))"
+     "Micro accents in red yellow blue only where they mark function for example alignment dot or screw seat. ([bauhaus.de](https://www.bauhaus.de/en/sammlung/highlights/204_unterricht/444))"
     ]
    },
    {
@@ -949,21 +949,21 @@
     "axis": "story",
     "notes": [
      "From Bauhaus workshops to today the piece treats a pendant as a small industrial object built for daily European life",
-     "It pairs with smart casual wardrobes without shouting carrying forward a century old ideal that good design serves everyday use. ([metmuseum.org](https://www.metmuseum.org/de/essays/the-bauhaus-1919-1933?utm_source=openai))"
+     "It pairs with smart casual wardrobes without shouting carrying forward a century old ideal that good design serves everyday use. ([metmuseum.org](https://www.metmuseum.org/de/essays/the-bauhaus-1919-1933))"
     ]
    }
   ],
   "sources": [
-   "MoMA gallery text 519 Bauhaus and Beyond, The Museum of Modern Art ([moma.org](https://www.moma.org/calendar/galleries/5388?utm_source=openai))",
-   "The Bauhaus 1919~1933, The Metropolitan Museum of Art ([metmuseum.org](https://www.metmuseum.org/de/essays/the-bauhaus-1919-1933?utm_source=openai))",
-   "EU REACH Annex XVII nickel release limits, EUR Lex consolidated text as of June 6 2024 ([eur-lex.europa.eu](https://eur-lex.europa.eu/legal-content/EN/TXT/?qid=1724082961094&uri=CELEX%3A02006R1907-20240606&utm_source=openai))",
-   "British Stainless Steel Association guidance on stainless grades and nickel release testing EN 1811 ([bssa.org.uk](https://bssa.org.uk/bssa_articles/selection-and-use-of-stainless-steels-for-skin-contact-and-body-piercing-jewellery-applications/?utm_source=openai))",
-   "World Stainless overview of brushed satin bead blasted finishes for low reflectivity surfaces ([worldstainless.org](https://worldstainless.org/about-stainless/process-and-production/surface-treatment/?utm_source=openai))",
-   "Blue Nile titanium education page hypoallergenic corrosion resistant ([bluenile.com](https://www.bluenile.com/education/metal/titanium?utm_source=openai))",
-   "Rio Grande reactive metals white paper titanium properties and anodizing notes ([riogrande.com](https://www.riogrande.com/globalassets/knowledge-hub/properties-reactive-metals-wp.pdf?utm_source=openai))",
-   "Bauhaus metal workshop context Bauhaus Kooperation and Met Museum essay plus Naum Slutzky as Bauhaus jeweler ([bauhauskooperation.com](https://bauhauskooperation.com/knowledge/the-bauhaus/training/workshops/metal/?utm_source=openai))",
-   "Paul Klee Pedagogical Sketchbook rhythm and movement studies ([openendedgroup.com](https://openendedgroup.com/field2/assets/Klee_Paul_Pedagogical_Sketchbook_1960.pdf?utm_source=openai))",
-   "European retail benchmarks for titanium and stainless pendants Boccia Titanium and Schmuckwerk listings €110 to €194 range ([idealo.de](https://www.idealo.de/preisvergleich/Liste/122742201/boccia-titanium-anhaenger.html?utm_source=openai))"
+   "MoMA gallery text 519 Bauhaus and Beyond, The Museum of Modern Art ([moma.org](https://www.moma.org/calendar/galleries/5388))",
+   "The Bauhaus 1919~1933, The Metropolitan Museum of Art ([metmuseum.org](https://www.metmuseum.org/de/essays/the-bauhaus-1919-1933))",
+   "EU REACH Annex XVII nickel release limits, EUR Lex consolidated text as of June 6 2024 ([eur-lex.europa.eu](https://eur-lex.europa.eu/legal-content/EN/TXT/?qid=1724082961094&uri=CELEX%3A02006R1907-20240606))",
+   "British Stainless Steel Association guidance on stainless grades and nickel release testing EN 1811 ([bssa.org.uk](https://bssa.org.uk/bssa_articles/selection-and-use-of-stainless-steels-for-skin-contact-and-body-piercing-jewellery-applications/))",
+   "World Stainless overview of brushed satin bead blasted finishes for low reflectivity surfaces ([worldstainless.org](https://worldstainless.org/about-stainless/process-and-production/surface-treatment/))",
+   "Blue Nile titanium education page hypoallergenic corrosion resistant ([bluenile.com](https://www.bluenile.com/education/metal/titanium))",
+   "Rio Grande reactive metals white paper titanium properties and anodizing notes ([riogrande.com](https://www.riogrande.com/globalassets/knowledge-hub/properties-reactive-metals-wp.pdf))",
+   "Bauhaus metal workshop context Bauhaus Kooperation and Met Museum essay plus Naum Slutzky as Bauhaus jeweler ([bauhauskooperation.com](https://bauhauskooperation.com/knowledge/the-bauhaus/training/workshops/metal/))",
+   "Paul Klee Pedagogical Sketchbook rhythm and movement studies ([openendedgroup.com](https://openendedgroup.com/field2/assets/Klee_Paul_Pedagogical_Sketchbook_1960.pdf))",
+   "European retail benchmarks for titanium and stainless pendants Boccia Titanium and Schmuckwerk listings €110 to €194 range ([idealo.de](https://www.idealo.de/preisvergleich/Liste/122742201/boccia-titanium-anhaenger.html))"
   ],
   "searches": 11,
   "cached": false

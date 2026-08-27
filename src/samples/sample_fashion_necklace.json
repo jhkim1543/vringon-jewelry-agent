@@ -143,7 +143,7 @@
    "slot": 1,
    "candidateId": "lk-1",
    "title": "Prada · Fall 2026 Ready-to-Wear",
-   "subtitle": "Autumn/Winter 2026 (Autunno/Inverno 2026~2027 · Fall/Winter 2026/27) · Look 6; 쇼 2026-02-26 Milano, Fondazione Prada Deposito. 공식 보도자료에 레이어링 콘셉트와 장소·캐스팅 명시. ([pradagroup.com](https://www.pradagroup.com/en/news-media/news-section/26-02-26-prada-fw-26-womenswear-show.html?utm_source=openai))",
+   "subtitle": "Autumn/Winter 2026 (Autunno/Inverno 2026~2027 · Fall/Winter 2026/27) · Look 6; 쇼 2026-02-26 Milano, Fondazione Prada Deposito. 공식 보도자료에 레이어링 콘셉트와 장소·캐스팅 명시. ([pradagroup.com](https://www.pradagroup.com/en/news-media/news-section/26-02-26-prada-fw-26-womenswear-show.html))",
    "trendCombo": [
     "거시 트렌드 레이어드와 볼드 링크의 공존",
     "금속 색감 혼메탈 레이어 실버 톤 중심 옐로 골드 보조",
@@ -159,7 +159,7 @@
    "slot": 2,
    "candidateId": "lk-2",
    "title": "Saint Laurent · Fall 2026 Ready-to-Wear",
-   "subtitle": "Autumn/Winter 2026 (Automne-Hiver 2026/27 · Fall/Winter 2026/27) · Look 14; 쇼 2026-03-03 20:00 CET, Paris(파리 패션위크 공식 캘린더). 스모킹·레이스, ‘bijoux XXL’ 키워드가 리뷰에 명기. ([fhcm.paris](https://www.fhcm.paris/sites/default/files/w/files/paris-fashion-week-r-official-calendar-womenswear-fw26-27_7_0.pdf?utm_source=openai))",
+   "subtitle": "Autumn/Winter 2026 (Automne-Hiver 2026/27 · Fall/Winter 2026/27) · Look 14; 쇼 2026-03-03 20:00 CET, Paris(파리 패션위크 공식 캘린더). 스모킹·레이스, ‘bijoux XXL’ 키워드가 리뷰에 명기. ([fhcm.paris](https://www.fhcm.paris/sites/default/files/w/files/paris-fashion-week-r-official-calendar-womenswear-fw26-27_7_0.pdf))",
    "trendCombo": [
     "거시 트렌드 볼드 링크와 센터피스 전면",
     "금속 색감 옐로 골드 톤 하이폴리시",
@@ -226,7 +226,7 @@
    "slot": 6,
    "candidateId": "lk-6",
    "title": "Burberry · Fall 2026 Ready-to-Wear",
-   "subtitle": "Autumn/Winter 2026 (Autumn/Winter 2026/27 · Fall/Winter 2026/27) · Look 26; 쇼 2026-02-24 London, Old Billingsgate(19:00 쇼). 아이보리·미드나잇 블루·틸 등 다양한 트렌치, 맵-엠보 가죽 트렌치가 리뷰에 기재. ([lfw-assets.ams3.digitaloceanspaces.com](https://lfw-assets.ams3.digitaloceanspaces.com/schedule/pdf/038b28b5-3ebe-4112-942a-d6ff6203e289.pdf?utm_source=openai))",
+   "subtitle": "Autumn/Winter 2026 (Autumn/Winter 2026/27 · Fall/Winter 2026/27) · Look 26; 쇼 2026-02-24 London, Old Billingsgate(19:00 쇼). 아이보리·미드나잇 블루·틸 등 다양한 트렌치, 맵-엠보 가죽 트렌치가 리뷰에 기재. ([lfw-assets.ams3.digitaloceanspaces.com](https://lfw-assets.ams3.digitaloceanspaces.com/schedule/pdf/038b28b5-3ebe-4112-942a-d6ff6203e289.pdf))",
    "trendCombo": [
     "구조 디테일 트렌치 하드웨어와 토글에서 착안",
     "센터피스 패드락 또는 토글 전면 노출",
@@ -243,7 +243,7 @@
    "slot": 7,
    "candidateId": "lk-7",
    "title": "Christian Dior · Fall 2026 Ready-to-Wear",
-   "subtitle": "Autumn/Winter 2026 (Automne-Hiver 2026/27 · Fall/Winter 2026/27) · Look 8; 쇼 2026-03-03 Paris, Tuileries Garden(야외). 워터 릴리 모티프·정원 연출이 리뷰/보도에 언급. ([vogue.com](https://www.vogue.com/fashion-shows/fall-2026-ready-to-wear/christian-dior?utm_source=openai))",
+   "subtitle": "Autumn/Winter 2026 (Automne-Hiver 2026/27 · Fall/Winter 2026/27) · Look 8; 쇼 2026-03-03 Paris, Tuileries Garden(야외). 워터 릴리 모티프·정원 연출이 리뷰/보도에 언급. ([vogue.com](https://www.vogue.com/fashion-shows/fall-2026-ready-to-wear/christian-dior))",
    "trendCombo": [
     "착용 환경 코트와 드레스의 U·V 경계가 명확",
     "길이 초커와 미디 병치",
@@ -277,7 +277,7 @@
    "slot": 9,
    "candidateId": "lk-9",
    "title": "Prada · Spring 2027 Menswear",
-   "subtitle": "Spring/Summer 2027 (Primavera/Estate 2027 · Spring/Summer 2027) · Look 5; 쇼 2026-06-21 Milano, Fondazione Prada. 스키니한 실루엣·데님·티셔츠·진 재킷 중심의 절제된 구성. ([vogue.it](https://www.vogue.it/article/sfilata-prada-uomo-milano-fashion-week-uomo-primavera-estate-2027-skinny-clarity?utm_source=openai))",
+   "subtitle": "Spring/Summer 2027 (Primavera/Estate 2027 · Spring/Summer 2027) · Look 5; 쇼 2026-06-21 Milano, Fondazione Prada. 스키니한 실루엣·데님·티셔츠·진 재킷 중심의 절제된 구성. ([vogue.it](https://www.vogue.it/article/sfilata-prada-uomo-milano-fashion-week-uomo-primavera-estate-2027-skinny-clarity))",
    "trendCombo": [
     "시장 적합성 유럽 25~34 일상 착장 기반",
     "금속 색감 실버 톤 중심",
@@ -1689,8 +1689,8 @@
  "searches": 185,
  "finished": true,
  "runway": {
-  "season_now": "Europe 기준 현재 시즌: Fall/Winter 2026 (Automne-Hiver / Autunno-Inverno 2026/27 · Fall/Winter 2026/27). 밀라노(2026-02-24~03-02), 런던(2026-02-19~02-23), 파리(예: Saint Laurent 2026-03-03 20:00 CET)에서 여성복 컬렉션 공개, 오트 쿠튀르 AW26은 2026-07-06 Schiaparelli 등 파리에서 공개. ([cameramoda.it](https://www.cameramoda.it/en/milano-moda-donna/calendar/?utm_source=openai))",
-  "season_next": "공개된 차기 시즌: Spring/Summer 2027 (Printemps-Été / Primavera-Estate 2027 · Spring/Summer 2027). 남성복은 2026-06-21 Milano(PRADA)·2026-06-23 Paris(Louis Vuitton)로 이미 공개, 북유럽 여성복은 Copenhagen SS27이 2026-08-05 개막(예: Stine Goya). 일부 브랜드는 Resort 2027 룩북도 공개됨(예: Ganni). ([vogue.it](https://www.vogue.it/article/sfilata-prada-uomo-milano-fashion-week-uomo-primavera-estate-2027-skinny-clarity?utm_source=openai))",
+  "season_now": "Europe 기준 현재 시즌: Fall/Winter 2026 (Automne-Hiver / Autunno-Inverno 2026/27 · Fall/Winter 2026/27). 밀라노(2026-02-24~03-02), 런던(2026-02-19~02-23), 파리(예: Saint Laurent 2026-03-03 20:00 CET)에서 여성복 컬렉션 공개, 오트 쿠튀르 AW26은 2026-07-06 Schiaparelli 등 파리에서 공개. ([cameramoda.it](https://www.cameramoda.it/en/milano-moda-donna/calendar/))",
+  "season_next": "공개된 차기 시즌: Spring/Summer 2027 (Printemps-Été / Primavera-Estate 2027 · Spring/Summer 2027). 남성복은 2026-06-21 Milano(PRADA)·2026-06-23 Paris(Louis Vuitton)로 이미 공개, 북유럽 여성복은 Copenhagen SS27이 2026-08-05 개막(예: Stine Goya). 일부 브랜드는 Resort 2027 룩북도 공개됨(예: Ganni). ([vogue.it](https://www.vogue.it/article/sfilata-prada-uomo-milano-fashion-week-uomo-primavera-estate-2027-skinny-clarity))",
   "looks": [
    {
     "brand": "Bottega Veneta",
@@ -1722,7 +1722,7 @@
     "brand": "Prada",
     "collection": "Fall 2026 Ready-to-Wear",
     "season": "Autumn/Winter 2026 (Autunno/Inverno 2026~2027 · Fall/Winter 2026/27)",
-    "look_note": "Look 6; 쇼 2026-02-26 Milano, Fondazione Prada Deposito. 공식 보도자료에 레이어링 콘셉트와 장소·캐스팅 명시. ([pradagroup.com](https://www.pradagroup.com/en/news-media/news-section/26-02-26-prada-fw-26-womenswear-show.html?utm_source=openai))",
+    "look_note": "Look 6; 쇼 2026-02-26 Milano, Fondazione Prada Deposito. 공식 보도자료에 레이어링 콘셉트와 장소·캐스팅 명시. ([pradagroup.com](https://www.pradagroup.com/en/news-media/news-section/26-02-26-prada-fw-26-womenswear-show.html))",
     "image_url": "",
     "source_url": "https://www.prada.com/us/en/pradasphere/fashion-shows/2026/fw-womenswear.html",
     "colors": [
@@ -1747,7 +1747,7 @@
     "brand": "Saint Laurent",
     "collection": "Fall 2026 Ready-to-Wear",
     "season": "Autumn/Winter 2026 (Automne-Hiver 2026/27 · Fall/Winter 2026/27)",
-    "look_note": "Look 14; 쇼 2026-03-03 20:00 CET, Paris(파리 패션위크 공식 캘린더). 스모킹·레이스, ‘bijoux XXL’ 키워드가 리뷰에 명기. ([fhcm.paris](https://www.fhcm.paris/sites/default/files/w/files/paris-fashion-week-r-official-calendar-womenswear-fw26-27_7_0.pdf?utm_source=openai))",
+    "look_note": "Look 14; 쇼 2026-03-03 20:00 CET, Paris(파리 패션위크 공식 캘린더). 스모킹·레이스, ‘bijoux XXL’ 키워드가 리뷰에 명기. ([fhcm.paris](https://www.fhcm.paris/sites/default/files/w/files/paris-fashion-week-r-official-calendar-womenswear-fw26-27_7_0.pdf))",
     "image_url": "",
     "source_url": "https://www.ysl.com/en-en/collections/2026-fashion-shows",
     "colors": [
@@ -1840,7 +1840,7 @@
     "brand": "Burberry",
     "collection": "Fall 2026 Ready-to-Wear",
     "season": "Autumn/Winter 2026 (Autumn/Winter 2026/27 · Fall/Winter 2026/27)",
-    "look_note": "Look 26; 쇼 2026-02-24 London, Old Billingsgate(19:00 쇼). 아이보리·미드나잇 블루·틸 등 다양한 트렌치, 맵-엠보 가죽 트렌치가 리뷰에 기재. ([lfw-assets.ams3.digitaloceanspaces.com](https://lfw-assets.ams3.digitaloceanspaces.com/schedule/pdf/038b28b5-3ebe-4112-942a-d6ff6203e289.pdf?utm_source=openai))",
+    "look_note": "Look 26; 쇼 2026-02-24 London, Old Billingsgate(19:00 쇼). 아이보리·미드나잇 블루·틸 등 다양한 트렌치, 맵-엠보 가죽 트렌치가 리뷰에 기재. ([lfw-assets.ams3.digitaloceanspaces.com](https://lfw-assets.ams3.digitaloceanspaces.com/schedule/pdf/038b28b5-3ebe-4112-942a-d6ff6203e289.pdf))",
     "image_url": "",
     "source_url": "https://www.vogue.com/fashion-shows/fall-2026-ready-to-wear/burberry-prorsum",
     "colors": [
@@ -1867,7 +1867,7 @@
     "brand": "Christian Dior",
     "collection": "Fall 2026 Ready-to-Wear",
     "season": "Autumn/Winter 2026 (Automne-Hiver 2026/27 · Fall/Winter 2026/27)",
-    "look_note": "Look 8; 쇼 2026-03-03 Paris, Tuileries Garden(야외). 워터 릴리 모티프·정원 연출이 리뷰/보도에 언급. ([vogue.com](https://www.vogue.com/fashion-shows/fall-2026-ready-to-wear/christian-dior?utm_source=openai))",
+    "look_note": "Look 8; 쇼 2026-03-03 Paris, Tuileries Garden(야외). 워터 릴리 모티프·정원 연출이 리뷰/보도에 언급. ([vogue.com](https://www.vogue.com/fashion-shows/fall-2026-ready-to-wear/christian-dior))",
     "image_url": "",
     "source_url": "https://www.vogue.com/fashion-shows/fall-2026-ready-to-wear/christian-dior",
     "colors": [
@@ -1915,7 +1915,7 @@
     "brand": "Prada",
     "collection": "Spring 2027 Menswear",
     "season": "Spring/Summer 2027 (Primavera/Estate 2027 · Spring/Summer 2027)",
-    "look_note": "Look 5; 쇼 2026-06-21 Milano, Fondazione Prada. 스키니한 실루엣·데님·티셔츠·진 재킷 중심의 절제된 구성. ([vogue.it](https://www.vogue.it/article/sfilata-prada-uomo-milano-fashion-week-uomo-primavera-estate-2027-skinny-clarity?utm_source=openai))",
+    "look_note": "Look 5; 쇼 2026-06-21 Milano, Fondazione Prada. 스키니한 실루엣·데님·티셔츠·진 재킷 중심의 절제된 구성. ([vogue.it](https://www.vogue.it/article/sfilata-prada-uomo-milano-fashion-week-uomo-primavera-estate-2027-skinny-clarity))",
     "image_url": "",
     "source_url": "https://www.prada.com/ww/en/pradasphere/fashion-shows/2027/ss-menswear.html",
     "colors": [
@@ -2015,7 +2015,7 @@
   {
    "label": "British Vogue: SS26/ AW26 이후 ‘Chunky Necklace’가 여름 주얼리 핵심 트렌드로 부상",
    "basis": "editorial",
-   "evidence": "2026-04-11 기사에서 ‘Chunky Necklace’가 여름의 키 트렌드로 명시되며 Valentino·Chopova Lowena·Givenchy 등에서 XXL 펄·체인메일·굵은 체인으로 구현, 런웨이의 ‘모두 얹기’(maximal) 레이어드 무드를 목으로 옮기는 흐름을 포착. ([vogue.co.uk](https://www.vogue.co.uk/article/article/chunky-necklace-trend?utm_source=openai))",
+   "evidence": "2026-04-11 기사에서 ‘Chunky Necklace’가 여름의 키 트렌드로 명시되며 Valentino·Chopova Lowena·Givenchy 등에서 XXL 펄·체인메일·굵은 체인으로 구현, 런웨이의 ‘모두 얹기’(maximal) 레이어드 무드를 목으로 옮기는 흐름을 포착. ([vogue.co.uk](https://www.vogue.co.uk/article/article/chunky-necklace-trend))",
    "source_url": "https://www.vogue.co.uk/article/article/chunky-necklace-trend",
    "image_url": "https://www.vogue.co.uk/article/article/chunky-necklace-trend",
    "region": "Europe"
@@ -2023,7 +2023,7 @@
   {
    "label": "British Vogue: 6 Necklace Trends SS26 중 ‘The chunky necklace’로 적층·볼륨 권장",
    "basis": "editorial",
-   "evidence": "2026-05-01 ‘6 Necklace Trends’ 기사에서 ‘The chunky necklace’ 항목을 별도로 제시, 여름 스타일링에서 굵은 네크리스의 적층(pile-up)을 권장. ([vogue.co.uk](https://www.vogue.co.uk/article/necklace-trends-ss26?utm_source=openai))",
+   "evidence": "2026-05-01 ‘6 Necklace Trends’ 기사에서 ‘The chunky necklace’ 항목을 별도로 제시, 여름 스타일링에서 굵은 네크리스의 적층(pile-up)을 권장. ([vogue.co.uk](https://www.vogue.co.uk/article/necklace-trends-ss26))",
    "source_url": "https://www.vogue.co.uk/article/necklace-trends-ss26",
    "image_url": "https://www.vogue.co.uk/article/necklace-trends-ss26",
    "region": "Europe"
@@ -2031,7 +2031,7 @@
   {
    "label": "British Vogue: SS26 런웨이 ‘의상 위로 주얼리 레이어드’가 즉시 전이 가능한 스타일로 지목",
    "basis": "editorial",
-   "evidence": "SS26 캣워크 쥬얼리 트렌드 리포트에서 ‘의상 위로 주얼리 레이어드’가 가장 ‘바로 실천 가능한’ 스타일로 언급, 런웨이의 레이어링이 목걸이 스타일링으로 직접 전이되는 근거. ([vogue.co.uk](https://www.vogue.co.uk/article/ss26-catwalk-jewellery-trends?utm_source=openai))",
+   "evidence": "SS26 캣워크 쥬얼리 트렌드 리포트에서 ‘의상 위로 주얼리 레이어드’가 가장 ‘바로 실천 가능한’ 스타일로 언급, 런웨이의 레이어링이 목걸이 스타일링으로 직접 전이되는 근거. ([vogue.co.uk](https://www.vogue.co.uk/article/ss26-catwalk-jewellery-trends))",
    "source_url": "https://www.vogue.co.uk/article/ss26-catwalk-jewellery-trends",
    "image_url": "https://www.vogue.co.uk/article/ss26-catwalk-jewellery-trends",
    "region": "Europe"
@@ -2039,7 +2039,7 @@
   {
    "label": "British Vogue: T-Bar Necklaces Are Trending, 빅토리안 체인의 현대적(종종 chunky) 재해석",
    "basis": "editorial",
-   "evidence": "2026-04-25 기사에서 현대 T-bar 네크리스가 ‘chunky’한 빅토리안 워치 체인에서 영감받았다고 설명, 굵은 링크의 회귀를 뒷받침. ([vogue.co.uk](https://www.vogue.co.uk/article/t-bar-necklace-trend?utm_source=openai))",
+   "evidence": "2026-04-25 기사에서 현대 T-bar 네크리스가 ‘chunky’한 빅토리안 워치 체인에서 영감받았다고 설명, 굵은 링크의 회귀를 뒷받침. ([vogue.co.uk](https://www.vogue.co.uk/article/t-bar-necklace-trend))",
    "source_url": "https://www.vogue.co.uk/article/t-bar-necklace-trend",
    "image_url": "https://www.vogue.co.uk/article/t-bar-necklace-trend",
    "region": "Europe"
@@ -2055,7 +2055,7 @@
   {
    "label": "Mytheresa EU 카테고리 상단 노출: Saint Laurent ‘Cassandre chain necklace’",
    "basis": "exposure",
-   "evidence": "2026-07~08 기준 EU 사이트 ‘Necklaces’ 기본 정렬(Recommendation) 첫 화면 상단에 ‘Saint Laurent Cassandre chain necklace’가 신상 배지와 함께 노출, 카테고리 상위 노출 신호. (노출=판매 아님) ([mytheresa.com](https://www.mytheresa.com/euro/en/women/jewelry/necklaces?utm_source=openai))",
+   "evidence": "2026-07~08 기준 EU 사이트 ‘Necklaces’ 기본 정렬(Recommendation) 첫 화면 상단에 ‘Saint Laurent Cassandre chain necklace’가 신상 배지와 함께 노출, 카테고리 상위 노출 신호. (노출=판매 아님) ([mytheresa.com](https://www.mytheresa.com/euro/en/women/jewelry/necklaces))",
    "source_url": "https://www.mytheresa.com/euro/en/women/jewelry/necklaces",
    "image_url": "https://www.mytheresa.com/euro/en/women/jewelry/necklaces",
    "region": "Europe"
@@ -2063,7 +2063,7 @@
   {
    "label": "Mytheresa EU 카테고리 상단 노출: Chloé ‘Laiton chain necklace’",
    "basis": "exposure",
-   "evidence": "동일 카테고리에서 ‘Chloé Laiton chain necklace’가 첫 화면권(상단 1~2열)에 반복 노출, 굵은 링크 체인의 프론트 노출이 이어짐. (노출=판매 아님) ([mytheresa.com](https://www.mytheresa.com/euro/en/women/jewelry/fashion-jewelry/necklaces?saleStatus=none&utm_source=openai))",
+   "evidence": "동일 카테고리에서 ‘Chloé Laiton chain necklace’가 첫 화면권(상단 1~2열)에 반복 노출, 굵은 링크 체인의 프론트 노출이 이어짐. (노출=판매 아님) ([mytheresa.com](https://www.mytheresa.com/euro/en/women/jewelry/fashion-jewelry/necklaces?saleStatus=none))",
    "source_url": "https://www.mytheresa.com/euro/en/women/jewelry/fashion-jewelry/necklaces?saleStatus=none",
    "image_url": "https://www.mytheresa.com/euro/en/women/jewelry/fashion-jewelry/necklaces?saleStatus=none",
    "region": "Europe"
@@ -2071,7 +2071,7 @@
   {
    "label": "Farfetch Men 카테고리 ‘Recommendations’에 체인 중심 카드 다수",
    "basis": "exposure",
-   "evidence": "남성 ‘Necklaces’ 카테고리 추천 리스트에서 ‘Tom Wood Snake Chain Slim silver necklace’ 등이 상시 추천 카드(12개) 내에 포함되어 체인 노출 밀도가 높음. (노출=판매 아님) ([farfetch.com](https://www.farfetch.com/in/shopping/men/necklaces-2/items.aspx?utm_source=openai))",
+   "evidence": "남성 ‘Necklaces’ 카테고리 추천 리스트에서 ‘Tom Wood Snake Chain Slim silver necklace’ 등이 상시 추천 카드(12개) 내에 포함되어 체인 노출 밀도가 높음. (노출=판매 아님) ([farfetch.com](https://www.farfetch.com/in/shopping/men/necklaces-2/items.aspx))",
    "source_url": "https://www.farfetch.com/in/shopping/men/necklaces-2/items.aspx",
    "image_url": "https://www.farfetch.com/in/shopping/men/necklaces-2/items.aspx",
    "region": "Europe"
@@ -2079,7 +2079,7 @@
   {
    "label": "ASOS 여성 네크리스 리스트에 체인 ‘Selling fast’ 배지 노출",
    "basis": "exposure",
-   "evidence": "ASOS ‘ASOS jewellery’ 내 ‘chain necklace with knot detail’ 상품에 ‘Selling fast’ 표기, 플랫폼 상의 가시성·가속 신호. (노출=판매 아님) ([content.asos-media.com](https://content.asos-media.com/women/jewellery/asos-jewellery/cat/?cid=10240&utm_source=openai))",
+   "evidence": "ASOS ‘ASOS jewellery’ 내 ‘chain necklace with knot detail’ 상품에 ‘Selling fast’ 표기, 플랫폼 상의 가시성·가속 신호. (노출=판매 아님) ([content.asos-media.com](https://content.asos-media.com/women/jewellery/asos-jewellery/cat/?cid=10240))",
    "source_url": "https://content.asos-media.com/women/jewellery/asos-jewellery/cat/?cid=10240",
    "image_url": "https://content.asos-media.com/women/jewellery/asos-jewellery/cat/?cid=10240",
    "region": "Europe"
@@ -2087,7 +2087,7 @@
   {
    "label": "Missoma(UK) 공식: ‘best selling Chunky T-Bar Chain Necklace’ 명시(레이어드 세트)",
    "basis": "official_best",
-   "evidence": "‘The Andy Pearl Necklace Set’ 페이지 복수 문구에 ‘best selling Chunky T-Bar Chain Necklace’라고 직접 표기, 브랜드 공식 베스트셀러 체인임을 시사(레이어드 제안 포함). ([missoma.com](https://www.missoma.com/products/the-andy-pearl-necklace-set-18ct-gold-plated-pearl?utm_source=openai))",
+   "evidence": "‘The Andy Pearl Necklace Set’ 페이지 복수 문구에 ‘best selling Chunky T-Bar Chain Necklace’라고 직접 표기, 브랜드 공식 베스트셀러 체인임을 시사(레이어드 제안 포함). ([missoma.com](https://www.missoma.com/products/the-andy-pearl-necklace-set-18ct-gold-plated-pearl))",
    "source_url": "https://www.missoma.com/products/the-andy-pearl-necklace-set-18ct-gold-plated-pearl",
    "image_url": "https://www.missoma.com/products/the-andy-pearl-necklace-set-18ct-gold-plated-pearl",
    "region": "Europe"
@@ -2095,7 +2095,7 @@
   {
    "label": "NET‑A‑PORTER ‘Necklaces’ Bestsellers에 T‑bar 체인 포함",
    "basis": "official_best",
-   "evidence": "NET‑A‑PORTER 베스트셀러(Necklaces) 섹션에 ‘Lucy Delius Baby T‑Bar 14‑karat gold diamond necklace’가 BESTSELLER로 표기, 굵은 링크·T‑bar 코드의 상위 랭크 신호. ([net-a-porter.com](https://www.net-a-porter.com/en-us/shop/edit/bestsellers/jewelry-and-watches/necklaces?utm_source=openai))",
+   "evidence": "NET‑A‑PORTER 베스트셀러(Necklaces) 섹션에 ‘Lucy Delius Baby T‑Bar 14‑karat gold diamond necklace’가 BESTSELLER로 표기, 굵은 링크·T‑bar 코드의 상위 랭크 신호. ([net-a-porter.com](https://www.net-a-porter.com/en-us/shop/edit/bestsellers/jewelry-and-watches/necklaces))",
    "source_url": "https://www.net-a-porter.com/en-us/shop/edit/bestsellers/jewelry-and-watches/necklaces",
    "image_url": "https://www.net-a-porter.com/en-us/shop/edit/bestsellers/jewelry-and-watches/necklaces",
    "region": "Europe"
@@ -2103,7 +2103,7 @@
   {
    "label": "Pandora DE 공식 ‘BESTSELLER’에 체인(Ankerhalskette) 포함",
    "basis": "official_best",
-   "evidence": "Pandora 독일 공식 ‘BESTSELLER’ 페이지에 ‘Ankerhalskette(앵커 체인)’가 베스트셀러로 노출, 메가 리테일의 체인 수요 신호. ([de.pandora.net](https://de.pandora.net/de/bestseller/?utm_source=openai))",
+   "evidence": "Pandora 독일 공식 ‘BESTSELLER’ 페이지에 ‘Ankerhalskette(앵커 체인)’가 베스트셀러로 노출, 메가 리테일의 체인 수요 신호. ([de.pandora.net](https://de.pandora.net/de/bestseller/))",
    "source_url": "https://de.pandora.net/de/bestseller/",
    "image_url": "https://de.pandora.net/de/bestseller/",
    "region": "Europe"
@@ -2119,7 +2119,7 @@
   {
    "label": "Paris Couture FW26 스트리트: 샤넬 쇼 외부, ‘gold large chain necklaces’ 다중 레이어",
    "basis": "street",
-   "evidence": "2026-07-07 파리(샤넬) 외부 스냅에 ‘gold large chain necklaces’ 레이어 착용이 명시, 의상 위 목걸이 다중 적층을 직접 확인. ([gettyimages.ie](https://www.gettyimages.ie/detail/news-photo/guest-wears-long-straight-brown-hair-a-black-button-up-news-photo/2285220323?slot=54&utm_source=openai))",
+   "evidence": "2026-07-07 파리(샤넬) 외부 스냅에 ‘gold large chain necklaces’ 레이어 착용이 명시, 의상 위 목걸이 다중 적층을 직접 확인. ([gettyimages.ie](https://www.gettyimages.ie/detail/news-photo/guest-wears-long-straight-brown-hair-a-black-button-up-news-photo/2285220323?slot=54))",
    "source_url": "https://www.gettyimages.ie/detail/news-photo/guest-wears-long-straight-brown-hair-a-black-button-up-news-photo/2285220323",
    "image_url": "https://www.gettyimages.ie/detail/news-photo/guest-wears-long-straight-brown-hair-a-black-button-up-news-photo/2285220323",
    "region": "Europe"
@@ -2127,7 +2127,7 @@
   {
    "label": "Paris Couture FW26 스트리트: Peet Dullaert 외부, 실버 체인 펜던트 착용",
    "basis": "street",
-   "evidence": "2026-07-09 파리(꾸뛰르) 데이4, 실버 체인 펜던트 네크리스 착용 컷, 남녀 불문 체인 노출 빈도 확인. ([gettyimages.ie](https://www.gettyimages.ie/detail/news-photo/guest-wears-long-straight-brown-hair-black-sunglasses-a-news-photo/2285472162?slot=44&utm_source=openai))",
+   "evidence": "2026-07-09 파리(꾸뛰르) 데이4, 실버 체인 펜던트 네크리스 착용 컷, 남녀 불문 체인 노출 빈도 확인. ([gettyimages.ie](https://www.gettyimages.ie/detail/news-photo/guest-wears-long-straight-brown-hair-black-sunglasses-a-news-photo/2285472162?slot=44))",
    "source_url": "https://www.gettyimages.ie/detail/news-photo/guest-wears-long-straight-brown-hair-black-sunglasses-a-news-photo/2285472162",
    "image_url": "https://www.gettyimages.ie/detail/news-photo/guest-wears-long-straight-brown-hair-black-sunglasses-a-news-photo/2285472162",
    "region": "Europe"
@@ -2135,7 +2135,7 @@
   {
    "label": "Copenhagen SS27 스트리트: Jeanette Madsen의 ‘chunky gold chain necklace’ 노출",
    "basis": "street",
-   "evidence": "2026-08-03 코펜하겐 SS27 Day 1 스트리트 포토에서 ‘chunky gold chain necklace’ 명시, 북유럽 스트리트에서도 굵은 링크 가시화. ([elle.com.au](https://www.elle.com.au/fashion/copenhagen-fashion-week-ss-27-street-style/?utm_source=openai))",
+   "evidence": "2026-08-03 코펜하겐 SS27 Day 1 스트리트 포토에서 ‘chunky gold chain necklace’ 명시, 북유럽 스트리트에서도 굵은 링크 가시화. ([elle.com.au](https://www.elle.com.au/fashion/copenhagen-fashion-week-ss-27-street-style/))",
    "source_url": "https://www.elle.com.au/fashion/copenhagen-fashion-week-ss-27-street-style/",
    "image_url": "https://www.elle.com.au/fashion/copenhagen-fashion-week-ss-27-street-style/",
    "region": "Europe"
@@ -2143,7 +2143,7 @@
   {
    "label": "Copenhagen SS27 스트리트: Evi Wave, Tiffany & Co. 골드 체인 착용",
    "basis": "street",
-   "evidence": "2026-08-07 코펜하겐 SS27 데이5 컷, Tiffany & Co. 골드 체인 네크리스 착용 캡션으로 확인(게티 이미지). ([gettyimages.fi](https://www.gettyimages.fi/detail/uutiskuva/evi-wave-is-seen-wearing-an-oversized-white-cable-knit-uutiskuva/2289519133?slot=3&utm_source=openai))",
+   "evidence": "2026-08-07 코펜하겐 SS27 데이5 컷, Tiffany & Co. 골드 체인 네크리스 착용 캡션으로 확인(게티 이미지). ([gettyimages.fi](https://www.gettyimages.fi/detail/uutiskuva/evi-wave-is-seen-wearing-an-oversized-white-cable-knit-uutiskuva/2289519133?slot=3))",
    "source_url": "https://www.gettyimages.fi/detail/uutiskuva/evi-wave-is-seen-wearing-an-oversized-white-cable-knit-uutiskuva/2289519133",
    "image_url": "https://www.gettyimages.fi/detail/uutiskuva/evi-wave-is-seen-wearing-an-oversized-white-cable-knit-uutiskuva/2289519133",
    "region": "Europe"
@@ -2162,7 +2162,7 @@
       "mentions": 2,
       "source_urls": [
        "https://www.chanel.com/fr/mode/p/ABI044B26180UD830/collier-metal/",
-       "https://www.igi.org/wp-content/uploads/2026/04/Dorigin_Oct-Nov-2025.pdf?utm_source=openai"
+       "https://www.igi.org/wp-content/uploads/2026/04/Dorigin_Oct-Nov-2025.pdf"
       ],
       "image_url": "https://www.chanel.com/images/as///c_crop%2Cw_1600%2Cg_north%2Cf_auto%2Cq_auto%3Agood%2Cdpr_1.1/w_3200/-83543949.jpg%203200w"
      },
@@ -2193,8 +2193,8 @@
       "evidence": "SS26~FW26 표본에서 체인 목걸이의 주류는 반사 메탈로 요약되며 건메탈·산화·빈티지 톤은 광범위 채택으로 보기 어렵다.",
       "mentions": 2,
       "source_urls": [
-       "https://www.igi.org/wp-content/uploads/2026/04/Dorigin_Oct-Nov-2025.pdf?utm_source=openai",
-       "https://www.pradagroup.com/content/dam/pradagroup/documents/2026/Febbraio/Sfilata-Prada-Donna-Autunno-Inverno-2026-CS.pdf?utm_source=openai"
+       "https://www.igi.org/wp-content/uploads/2026/04/Dorigin_Oct-Nov-2025.pdf",
+       "https://www.pradagroup.com/content/dam/pradagroup/documents/2026/Febbraio/Sfilata-Prada-Donna-Autunno-Inverno-2026-CS.pdf"
       ],
       "image_url": ""
      }
@@ -2208,7 +2208,7 @@
       "evidence": "SS26 종합 리포트에서 반사 메탈이 강세로 관찰되었고 Chanel AW 2026 프리-콜렉션의 실버 체인도 고광택 표면을 보여준다.",
       "mentions": 2,
       "source_urls": [
-       "https://www.igi.org/wp-content/uploads/2026/04/Dorigin_Oct-Nov-2025.pdf?utm_source=openai",
+       "https://www.igi.org/wp-content/uploads/2026/04/Dorigin_Oct-Nov-2025.pdf",
        "https://www.chanel.com/fr/mode/p/ABI044B26180UD830/collier-metal/"
       ],
       "image_url": "https://www.chanel.com/images/as///c_crop%2Cw_1600%2Cg_north%2Cf_auto%2Cq_auto%3Agood%2Cdpr_1.1/w_3200/-83543949.jpg%203200w"
@@ -2232,7 +2232,7 @@
       "evidence": "SS26~FW26 관찰에서 보석 과다 세팅보다 메탈 볼륨을 강조하는 경향이 보고되었다.",
       "mentions": 1,
       "source_urls": [
-       "https://www.igi.org/wp-content/uploads/2026/04/Dorigin_Oct-Nov-2025.pdf?utm_source=openai"
+       "https://www.igi.org/wp-content/uploads/2026/04/Dorigin_Oct-Nov-2025.pdf"
       ],
       "image_url": ""
      },
@@ -2328,7 +2328,7 @@
       "evidence": "Chloé AW 2026 룩에서 ‘Mini Paddington necklace’가 목 중앙의 자물쇠 하드웨어로 사용되었다.",
       "mentions": 1,
       "source_urls": [
-       "https://www.chloe.com/en-ie/p/fall-26/26A-look-20.html?utm_source=openai"
+       "https://www.chloe.com/en-ie/p/fall-26/26A-look-20.html"
       ],
       "image_url": ""
      },
@@ -2369,7 +2369,7 @@
       "evidence": "Chloé 패드락 네크리스와 Louis Vuitton의 스터드 칼라형이 ‘잠금장치 자체를 오브제’로 전면화했다.",
       "mentions": 2,
       "source_urls": [
-       "https://www.chloe.com/en-ie/p/fall-26/26A-look-20.html?utm_source=openai",
+       "https://www.chloe.com/en-ie/p/fall-26/26A-look-20.html",
        "https://nowfashion.com/media/louis-vuitton-ready-to-wear-fall-winter-2026-paris-fashion-week-runway-005"
       ],
       "image_url": ""
@@ -2483,17 +2483,17 @@
    "https://www.vogue.co.uk/article/article/chunky-necklace-trend",
    "https://www.vogue.nl/fashion/accessoires/chunky-kettingen/",
    "https://www.iodonna.it/moda/tendenze/2025/09/25/tendenze-gioielli-primavera-estate-2026-sfilate-milano-fashion-week/",
-   "https://www.chloe.com/en-ie/p/fall-26/26A-look-20.html?utm_source=openai",
+   "https://www.chloe.com/en-ie/p/fall-26/26A-look-20.html",
    "https://nowfashion.com/media/louis-vuitton-ready-to-wear-fall-winter-2026-paris-fashion-week-runway-005",
    "https://www.chanel.com/fr/mode/p/ABI044B26180UD830/collier-metal/",
    "https://www.versace.com/qa/en/stories/advertising-campaigns/versace-fw-2026.html",
-   "https://www.igi.org/wp-content/uploads/2026/04/Dorigin_Oct-Nov-2025.pdf?utm_source=openai",
+   "https://www.igi.org/wp-content/uploads/2026/04/Dorigin_Oct-Nov-2025.pdf",
    "https://www.gettyimages.com.au/detail/news-photo/model-jewelry-detail-walks-the-runway-during-the-chanel-news-photo/2273559474",
    "https://www.missoma.com/blogs/the-chain/mixed-metals-jewellery-guide",
    "https://www.missoma.com/blogs/the-chain/your-guide-to-t-bar-jewellery-with-a-twist?page=3",
    "https://www.net-a-porter.com/en-gb/porter/article-16bd543850789c70/jewelry-watches/fine-jewelry/%252Fporter%252Farticle-16bd543850789c70",
    "https://www.vogue.fr/article/pendentifs-discrets-collier-massif",
-   "https://www.pradagroup.com/content/dam/pradagroup/documents/2026/Febbraio/Sfilata-Prada-Donna-Autunno-Inverno-2026-CS.pdf?utm_source=openai"
+   "https://www.pradagroup.com/content/dam/pradagroup/documents/2026/Febbraio/Sfilata-Prada-Donna-Autunno-Inverno-2026-CS.pdf"
   ],
   "sub_questions": [
    "최근 12개월(2025-08-26~2026-08-25) 유럽 런웨이·컬렉션·룩북에서 ‘레이어드 목걸이’가 어떻게 구성되었는가? 레이어 수(2중/3중+), 길이 조합(초커·프린세스·마티네·오페라), 의상 노출부(하이넥·보트넥·딥 V 등)별 착용 위치 패턴을 브랜드 사례로 확인하고, 이를 목걸이 디자인으로 번역해 실루엣/볼륨·비례(예: 굵기 비율, 드레이프 폭)와 권장 세트 길이(예: 36/45/60cm) 가이드로 제시하라.",

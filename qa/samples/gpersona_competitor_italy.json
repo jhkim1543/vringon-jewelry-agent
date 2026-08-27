@@ -2671,7 +2671,7 @@
   {
    "name": "NET-A-PORTER",
    "url": "https://www.net-a-porter.com",
-   "note": "ecommerce di lusso con ampia selezione di gioielli e orologi da designer affermati e indipendenti. ([net-a-porter.com](https://www.net-a-porter.com/en-us/shop/jewelry-and-watches?cm_sp=homepage-_-midpage-_-campaign-denimanddiamonds-x-midpagebanner-all-global-web-_-1-12-25&pageNumber=19&utm_source=openai))",
+   "note": "ecommerce di lusso con ampia selezione di gioielli e orologi da designer affermati e indipendenti. ([net-a-porter.com](https://www.net-a-porter.com/en-us/shop/jewelry-and-watches?cm_sp=homepage-_-midpage-_-campaign-denimanddiamonds-x-midpagebanner-all-global-web-_-1-12-25&pageNumber=19))",
    "region": "Europe",
    "items": [
     {
@@ -2800,7 +2800,7 @@
   {
    "name": "Mytheresa",
    "url": "https://www.mytheresa.com",
-   "note": "retailer tedesco di moda di lusso con reparto gioielli curato e marchi internazionali. ([mytheresa.com](https://www.mytheresa.com/us/en/women/jewelry?saleStatus=none&utm_source=openai))",
+   "note": "retailer tedesco di moda di lusso con reparto gioielli curato e marchi internazionali. ([mytheresa.com](https://www.mytheresa.com/us/en/women/jewelry?saleStatus=none))",
    "region": "Europe",
    "items": [
     {
@@ -3004,7 +3004,7 @@
   {
    "name": "LuisaViaRoma",
    "url": "https://www.luisaviaroma.com",
-   "note": "storico retailer fiorentino multibrand con ampia sezione gioielli dallo stile fashion ai pezzi preziosi. ([luisaviaroma.com](https://www.luisaviaroma.com/en-ca/shop/women/jewelry?lvrid=_gw_i101&utm_source=openai))",
+   "note": "storico retailer fiorentino multibrand con ampia sezione gioielli dallo stile fashion ai pezzi preziosi. ([luisaviaroma.com](https://www.luisaviaroma.com/en-ca/shop/women/jewelry?lvrid=_gw_i101))",
    "region": "Europe",
    "items": [
     {
@@ -3069,7 +3069,7 @@
      "shopName": "LuisaViaRoma",
      "name": "Medals drop earrings",
      "rankBasis": "exposure",
-     "rankNote": "ordine di esposizione nella pagina Jewelry di Chloé. Fonti pagina brand e pagina prodotto. ([luisaviaroma.com](https://www.luisaviaroma.com/en-us/shop/women/chlo%C3%A9/jewelry?lvrid=_gw_d266_i101&utm_source=openai))",
+     "rankNote": "ordine di esposizione nella pagina Jewelry di Chloé. Fonti pagina brand e pagina prodotto. ([luisaviaroma.com](https://www.luisaviaroma.com/en-us/shop/women/chlo%C3%A9/jewelry?lvrid=_gw_d266_i101))",
      "price": 750,
      "currency": "$",
      "imageUrl": "",
@@ -3082,7 +3082,7 @@
      "shopName": "LuisaViaRoma",
      "name": "Uzu square stud earrings",
      "rankBasis": "exposure",
-     "rankNote": "ordine di esposizione nella pagina Earrings donna. Fonte pagina prodotto. ([luisaviaroma.com](https://www.luisaviaroma.com/en-us/p/louis-abel/women/83I-SWO004?utm_source=openai))",
+     "rankNote": "ordine di esposizione nella pagina Earrings donna. Fonte pagina prodotto. ([luisaviaroma.com](https://www.luisaviaroma.com/en-us/p/louis-abel/women/83I-SWO004))",
      "price": 350,
      "currency": "$",
      "imageUrl": "",
@@ -3095,7 +3095,7 @@
      "shopName": "LuisaViaRoma",
      "name": "Large Birgit hoop earrings",
      "rankBasis": "exposure",
-     "rankNote": "ordine di esposizione nella pagina Jewelry di Annagreta. Fonti pagina brand e pagina prodotto. ([luisaviaroma.com](https://www.luisaviaroma.com/en-us/shop/women/annagreta/jewelry?lvrid=_gw_dxn9_i101&utm_source=openai))",
+     "rankNote": "ordine di esposizione nella pagina Jewelry di Annagreta. Fonti pagina brand e pagina prodotto. ([luisaviaroma.com](https://www.luisaviaroma.com/en-us/shop/women/annagreta/jewelry?lvrid=_gw_dxn9_i101))",
      "price": 165,
      "currency": "$",
      "imageUrl": "",
@@ -3121,7 +3121,7 @@
      "shopName": "LuisaViaRoma",
      "name": "Crystal hoop earrings",
      "rankBasis": "exposure",
-     "rankNote": "ordine di esposizione nella pagina brand di Rabanne. Fonte pagina prodotto. ([luisaviaroma.com](https://www.luisaviaroma.com/en-us/p/rabanne/women/83I-G2J007?utm_source=openai))",
+     "rankNote": "ordine di esposizione nella pagina brand di Rabanne. Fonte pagina prodotto. ([luisaviaroma.com](https://www.luisaviaroma.com/en-us/p/rabanne/women/83I-G2J007))",
      "price": 590,
      "currency": "$",
      "imageUrl": "",
@@ -3134,7 +3134,7 @@
      "shopName": "LuisaViaRoma",
      "name": "Small hoop earrings",
      "rankBasis": "exposure",
-     "rankNote": "ordine di esposizione nella pagina Earrings donna. Fonte pagina prodotto. ([luisaviaroma.com](https://www.luisaviaroma.com/en-us/p/jil-sander/women/80I-G24010?utm_source=openai))",
+     "rankNote": "ordine di esposizione nella pagina Earrings donna. Fonte pagina prodotto. ([luisaviaroma.com](https://www.luisaviaroma.com/en-us/p/jil-sander/women/80I-G24010))",
      "price": 380,
      "currency": "$",
      "imageUrl": "",
@@ -3145,7 +3145,7 @@
   {
    "name": "24S",
    "url": "https://www.24s.com",
-   "note": "ecommerce parigino del gruppo LVMH con selezione di gioielli dei principali designer contemporanei. ([24s.com](https://www.24s.com/en-us/women/the-expert-edit/jewelry?utm_source=openai))",
+   "note": "ecommerce parigino del gruppo LVMH con selezione di gioielli dei principali designer contemporanei. ([24s.com](https://www.24s.com/en-us/women/the-expert-edit/jewelry))",
    "region": "Europe",
    "items": [
     {
@@ -3321,7 +3321,7 @@
   {
    "name": "Browns Fashion",
    "url": "https://www.brownsfashion.com",
-   "note": "boutique londinese multibrand con curata selezione di gioielli moda e preziosi da brand di ricerca. ([brownsfashion.com](https://brownsfashion.com/collections/man-jewellery-designer-jewellery?utm_source=openai))",
+   "note": "boutique londinese multibrand con curata selezione di gioielli moda e preziosi da brand di ricerca. ([brownsfashion.com](https://brownsfashion.com/collections/man-jewellery-designer-jewellery))",
    "region": "Europe",
    "items": [
     {
@@ -3469,7 +3469,7 @@
   {
    "name": "Wolf & Badger",
    "url": "https://www.wolfandbadger.com",
-   "note": "marketplace per brand indipendenti con ampia offerta di gioielli artigianali e design originale. ([wolfandbadger.com](https://www.wolfandbadger.com/us/features/jewellery-shop/?utm_source=openai))",
+   "note": "marketplace per brand indipendenti con ampia offerta di gioielli artigianali e design originale. ([wolfandbadger.com](https://www.wolfandbadger.com/us/features/jewellery-shop/))",
    "region": "Europe",
    "items": [
     {
@@ -3516,7 +3516,7 @@
   {
    "name": "Finematter",
    "url": "https://finematter.com",
-   "note": "piattaforma curata che connette clienti a gioiellieri indipendenti per acquisto di pezzi preziosi e progetti su misura. ([finematter.com](https://finematter.com/en-us/?utm_source=openai))",
+   "note": "piattaforma curata che connette clienti a gioiellieri indipendenti per acquisto di pezzi preziosi e progetti su misura. ([finematter.com](https://finematter.com/en-us/))",
    "region": "Europe",
    "items": [
     {
@@ -3720,7 +3720,7 @@
   {
    "name": "The Jewellery Room",
    "url": "https://thejewelleryroom.com",
-   "note": "marketplace nordico che riunisce designer indipendenti di gioielli con showroom a Copenhagen e ampia offerta online. ([thejewelleryroom.com](https://thejewelleryroom.com/en-us?utm_source=openai))",
+   "note": "marketplace nordico che riunisce designer indipendenti di gioielli con showroom a Copenhagen e ampia offerta online. ([thejewelleryroom.com](https://thejewelleryroom.com/en-us))",
    "region": "Europe",
    "items": [
     {
@@ -3868,7 +3868,7 @@
   {
    "name": "Liberty London",
    "url": "https://www.libertylondon.com",
-   "note": "grande magazzino londinese con Jewellery Hall e marchi di gioielli come Dinny Hall, Maria Tash e Polly Wales. ([libertylondon.com](https://www.libertylondon.com/us/department/jewellery/categories/?utm_source=openai))",
+   "note": "grande magazzino londinese con Jewellery Hall e marchi di gioielli come Dinny Hall, Maria Tash e Polly Wales. ([libertylondon.com](https://www.libertylondon.com/us/department/jewellery/categories/))",
    "region": "Europe",
    "items": [
     {
@@ -4058,7 +4058,7 @@
   {
    "name": "Dover Street Market London",
    "url": "https://shop.doverstreetmarket.com",
-   "note": "concept store multibrand con Jewellery Space e selezione di gioielli contemporanei disponibile nel suo e shop. ([shop.doverstreetmarket.com](https://shop.doverstreetmarket.com/index.html?utm_source=openai))",
+   "note": "concept store multibrand con Jewellery Space e selezione di gioielli contemporanei disponibile nel suo e shop. ([shop.doverstreetmarket.com](https://shop.doverstreetmarket.com/index.html))",
    "region": "Europe",
    "items": [
     {
@@ -4679,75 +4679,75 @@
  },
  "forecast": {
   "horizon": "Autunno Inverno 2027 Europa",
-  "thesis": "Per il segmento orecchini daily delle donne 26-34 in Europa sotto 500 euro, prevediamo continuità nell’uso di 18 carati con progettazione più leggera e ingegnerizzata per far convivere prezzo, comfort e conformità normativa. La cornice macro resta di elevata volatilità dell’oro dopo i massimi storici di inizio 2026 e un raffreddamento a metà anno, fattori che comprimono l’accessibilità della gioielleria e spingono a ridurre grammature e a ricorrere a alternative come lavorazioni cave e assortimenti a valore percepito più alto. Quadro consumi: fiducia dei consumatori stabile in area euro e inflazione in lieve risalita nel luglio 2026, con BCE prudente sui tassi, perciò i marchi tenderanno a proteggere i price point entry mantenendo estetiche minimali con piccoli upgrade tattili. Sul fronte stile, le passerelle AW26 e SS26 mostrano voglia di pezzi più visibili e brooch revival, ma sull’orecchino da tutti i giorni la domanda rimane per huggie compatti, texture discrete e soluzioni pratiche di chiusura. La compliance REACH su nichel, piombo e cadmio resta driver di preferenza per leghe nobili e rivestimenti durevoli, elemento chiave per i marchi europei che presidiano il day-to-day wear. In parallelo, tracciabilità e metalli riciclati diventano claim espliciti anche nel prezzo sotto 500 euro, supportati da investimenti e annunci dei grandi gruppi e dei player demi-fine. ([gold.org](https://www.gold.org/goldhub/research/gold-mid-year-outlook-2026?utm_source=openai))",
+  "thesis": "Per il segmento orecchini daily delle donne 26-34 in Europa sotto 500 euro, prevediamo continuità nell’uso di 18 carati con progettazione più leggera e ingegnerizzata per far convivere prezzo, comfort e conformità normativa. La cornice macro resta di elevata volatilità dell’oro dopo i massimi storici di inizio 2026 e un raffreddamento a metà anno, fattori che comprimono l’accessibilità della gioielleria e spingono a ridurre grammature e a ricorrere a alternative come lavorazioni cave e assortimenti a valore percepito più alto. Quadro consumi: fiducia dei consumatori stabile in area euro e inflazione in lieve risalita nel luglio 2026, con BCE prudente sui tassi, perciò i marchi tenderanno a proteggere i price point entry mantenendo estetiche minimali con piccoli upgrade tattili. Sul fronte stile, le passerelle AW26 e SS26 mostrano voglia di pezzi più visibili e brooch revival, ma sull’orecchino da tutti i giorni la domanda rimane per huggie compatti, texture discrete e soluzioni pratiche di chiusura. La compliance REACH su nichel, piombo e cadmio resta driver di preferenza per leghe nobili e rivestimenti durevoli, elemento chiave per i marchi europei che presidiano il day-to-day wear. In parallelo, tracciabilità e metalli riciclati diventano claim espliciti anche nel prezzo sotto 500 euro, supportati da investimenti e annunci dei grandi gruppi e dei player demi-fine. ([gold.org](https://www.gold.org/goldhub/research/gold-mid-year-outlook-2026))",
   "predictions": [
    {
     "axis": "metallo",
     "call": "È probabile che l’oro 18 carati rimanga il riferimento per i cerchi daily sotto 500 euro, ma con grammature ridotte e componenti più sottili per centrare il prezzo al dettaglio.",
-    "why": "Nel 2026 l’oro ha toccato record e poi corretto, mantenendo alta la media dei prezzi e comprimendo la domanda di gioielleria per accessibilità, con i brand che compensano alleggerendo i prodotti. Ci aspettiamo continuità di questo approccio nel 2027. ([gold.org](https://www.gold.org/goldhub/research/gold-mid-year-outlook-2026?utm_source=openai))",
+    "why": "Nel 2026 l’oro ha toccato record e poi corretto, mantenendo alta la media dei prezzi e comprimendo la domanda di gioielleria per accessibilità, con i brand che compensano alleggerendo i prodotti. Ci aspettiamo continuità di questo approccio nel 2027. ([gold.org](https://www.gold.org/goldhub/research/gold-mid-year-outlook-2026))",
     "confidence": "medium",
     "watch": "LBMA Gold Price medio e volatilità H2 2026-H1 2027, report World Gold Council trimestrali su domanda gioielleria."
    },
    {
     "axis": "colore del metallo",
     "call": "Prevediamo che il giallo saturo resti dominante, affiancato da più proposte bicolore giallo e bianco per favorire mix di metalli e aggiornare l’estetica senza snaturare l’identità 18 carati.",
-    "why": "Nel 2026 editor e buyer segnalano un ritorno di argento e mix di metalli, spesso motivato dai prezzi dell’oro, tendenza che può tradursi in piccoli inserti o contrasti cromatici anche su orecchini compatti. ([vogue.co.uk](https://www.vogue.co.uk/article/2026-jewellery-trends?utm_source=openai))",
+    "why": "Nel 2026 editor e buyer segnalano un ritorno di argento e mix di metalli, spesso motivato dai prezzi dell’oro, tendenza che può tradursi in piccoli inserti o contrasti cromatici anche su orecchini compatti. ([vogue.co.uk](https://www.vogue.co.uk/article/2026-jewellery-trends))",
     "confidence": "medium",
     "watch": "Quota di SKU bimetal nelle nuove uscite AW26-SS27 sui principali e-tailer europei e nelle vetrine multibrand."
    },
    {
     "axis": "superficie",
     "call": "È verosimile un rafforzamento di texture twisted e rope in scala sottile su mini e medi cerchi, come cifra tattile per distinguere il basico lucido.",
-    "why": "La grammatica del twist è ben presente nelle collezioni moda e nei cataloghi di alta gamma, inclusi modelli di cerchi con silhouette intrecciata che fanno da segnale per l’estetica 2027. ([bottegaveneta.com](https://www.bottegaveneta.com/en-us/twist-hoop-earrings-white-844758VBOB69000.html?utm_source=openai))",
+    "why": "La grammatica del twist è ben presente nelle collezioni moda e nei cataloghi di alta gamma, inclusi modelli di cerchi con silhouette intrecciata che fanno da segnale per l’estetica 2027. ([bottegaveneta.com](https://www.bottegaveneta.com/en-us/twist-hoop-earrings-white-844758VBOB69000.html))",
     "confidence": "high",
     "watch": "Dettagli intreccio su lookbook SS27 durante Milano e Parigi, presenza del motivo rope nelle capsule pre-spring dei brand accessibili europei."
    },
    {
     "axis": "pietre",
     "call": "Nel prezzo sotto 500 euro ci aspettiamo prevalenza di modelli senza pietre e, quando presente, micro pavé discreto con diamanti creati in laboratorio per aggiungere brillantezza a costi contenuti.",
-    "why": "I prezzi all’ingrosso dei diamanti lab-grown hanno continuato a scendere nel 2026 e i brand stanno ampliando la distribuzione in Europa, aprendo spazio a micro-accenti sostenibili anche su orecchini entry. ([aidi.org](https://aidi.org/lab-grown-diamond-wholesale-prices-fall-14-in-q1-2026-edahn-golan-report/?utm_source=openai))",
+    "why": "I prezzi all’ingrosso dei diamanti lab-grown hanno continuato a scendere nel 2026 e i brand stanno ampliando la distribuzione in Europa, aprendo spazio a micro-accenti sostenibili anche su orecchini entry. ([aidi.org](https://aidi.org/lab-grown-diamond-wholesale-prices-fall-14-in-q1-2026-edahn-golan-report/))",
     "confidence": "medium",
     "watch": "Listini LGD Q4 2026-Q1 2027, assortimento di micro pavé su linee demi-fine in Italia, Spagna, Francia."
    },
    {
     "axis": "forma pietre",
     "call": "Se inserite, prevediamo soprattutto micro rotondi taglio brillante montati a grana o canale lungo il profilo del cerchio, raramente tagli fantasia.",
-    "why": "Il mercato 2026 mostra stabilità relativa sui round in certe classi e un uso standardizzato del brillante per micro pavé, soluzione più efficiente per produzioni in serie sotto 500 euro. ([diamondmirror.net](https://www.diamondmirror.net/news/TopStories/lgd_wholesale_price_q2_2026.html?utm_source=openai))",
+    "why": "Il mercato 2026 mostra stabilità relativa sui round in certe classi e un uso standardizzato del brillante per micro pavé, soluzione più efficiente per produzioni in serie sotto 500 euro. ([diamondmirror.net](https://www.diamondmirror.net/news/TopStories/lgd_wholesale_price_q2_2026.html))",
     "confidence": "low",
     "watch": "Analisi di prodotto dei retailer su micro-pavé per orecchini huggie, mix di tagli usati sotto 0,03 ct."
    },
    {
     "axis": "silhouette",
     "call": "Gli huggie 8-12 mm con chiusura a scatto continueranno a guidare l’uso quotidiano per comfort e sicurezza, con varianti leggermente più larghe per chi desidera maggiore presenza.",
-    "why": "Le descrizioni prodotto dei best seller evidenziano il clicker come standard per l’indosso continuo e l’uso in stack, segnalando una norma d’uso consolidata nel segmento giovane. ([mejuri.com](https://mejuri.com/gb/en/products/chunky-huggie-hoops?utm_source=openai))",
+    "why": "Le descrizioni prodotto dei best seller evidenziano il clicker come standard per l’indosso continuo e l’uso in stack, segnalando una norma d’uso consolidata nel segmento giovane. ([mejuri.com](https://mejuri.com/gb/en/products/chunky-huggie-hoops))",
     "confidence": "high",
     "watch": "Tasso di reso e recensioni su tenuta delle cerniere, diffusione di set multipli 8-10-12 mm per curated ear."
    },
    {
     "axis": "struttura",
     "call": "Prevediamo più largo impiego di tubolare cavo ed elettroformatura in oro 18 carati, con pareti ottimizzate per ridurre peso e mantenere rigidità, soprattutto su diametri oltre 12 mm.",
-    "why": "Il distretto di Arezzo è specializzato in orecchini ultraleggeri a tubo cavo 18 kt ed esistono fornitori e tecnologie di elettroformatura dedicati, segnali di un’offerta pronta ad assorbire la domanda value-driven. ([falcoarezzo.it](https://www.falcoarezzo.it/en/?utm_source=openai))",
+    "why": "Il distretto di Arezzo è specializzato in orecchini ultraleggeri a tubo cavo 18 kt ed esistono fornitori e tecnologie di elettroformatura dedicati, segnali di un’offerta pronta ad assorbire la domanda value-driven. ([falcoarezzo.it](https://www.falcoarezzo.it/en/))",
     "confidence": "high",
     "watch": "Fiere di filiera 2026-2027, lead time e MOQs su componenti hollow 18 kt, incidenza di ammaccature in post-vendita."
    },
    {
     "axis": "concetto",
     "call": "È probabile una maggiore esplicitazione a scaffale di tracciabilità e metalli riciclati, con card e claim chiari anche su orecchini sotto 500 euro.",
-    "why": "I grandi gruppi e player di massa hanno già portato in scala metalli riciclati e stanno introducendo oro tracciabile, creando aspettative trasversali di responsabilità anche nel prezzo accessibile. ([pandoragroup.com](https://www.pandoragroup.com/media/press-releases/pandora-now-crafts-its-jewellery-with-100-percent-recycled-silver-and-gold?utm_source=openai))",
+    "why": "I grandi gruppi e player di massa hanno già portato in scala metalli riciclati e stanno introducendo oro tracciabile, creando aspettative trasversali di responsabilità anche nel prezzo accessibile. ([pandoragroup.com](https://www.pandoragroup.com/media/press-releases/pandora-now-crafts-its-jewellery-with-100-percent-recycled-silver-and-gold))",
     "confidence": "high",
     "watch": "Comparsa di passaporti materiali o QR code di tracciabilità su linee entry, menzioni RJC e SBGA nei PDP dei retailer europei."
    },
    {
     "axis": "modalità di indosso",
     "call": "Lo stacking essenziale, uno o due cerchi più un ear cuff, dovrebbe restare lo styling dominante per il target 26-34, con mix di superfici lisce e twisted.",
-    "why": "Nel 2026 si registra spinta all’ear cuff come accessorio immediato e alla costruzione di curated ear stack nei consigli editoriali e retail, adattabile al daily wear. ([scmp.com](https://www.scmp.com/magazines/style/luxury/jewellery/article/3349502/rise-ear-cuff-painless-statement-accessory?utm_source=openai))",
+    "why": "Nel 2026 si registra spinta all’ear cuff come accessorio immediato e alla costruzione di curated ear stack nei consigli editoriali e retail, adattabile al daily wear. ([scmp.com](https://www.scmp.com/magazines/style/luxury/jewellery/article/3349502/rise-ear-cuff-painless-statement-accessory))",
     "confidence": "high",
     "watch": "Ricerche Pinterest su ear cuff no piercing e set di huggie multipli, lookbook dei retailer europei AW27."
    },
    {
     "axis": "mood",
     "call": "Ci aspettiamo un equilibrio tra quiet stacking quotidiano e accenti appena più vistosi, influenzati dal ritorno di statement jewels sulle passerelle senza però sostituire i mini cerchi day-to-day.",
-    "why": "AW26 e SS26 hanno rilanciato gioielli più scenografici, inclusi maxi orecchini e spille, ma la spinta al quotidiano pratico rimane forte nel canale retail. È plausibile che il mood 2027 assorba solo in parte quel linguaggio nel segmento under 500. ([vogue.co.uk](https://www.vogue.co.uk/article/london-fashion-week-jewellery-trends-aw26?utm_source=openai))",
+    "why": "AW26 e SS26 hanno rilanciato gioielli più scenografici, inclusi maxi orecchini e spille, ma la spinta al quotidiano pratico rimane forte nel canale retail. È plausibile che il mood 2027 assorba solo in parte quel linguaggio nel segmento under 500. ([vogue.co.uk](https://www.vogue.co.uk/article/london-fashion-week-jewellery-trends-aw26))",
     "confidence": "medium",
     "watch": "Street style SS27 in Europa e mix prodotto dei multibrand tra basi minimal e limited bolder."
    }
