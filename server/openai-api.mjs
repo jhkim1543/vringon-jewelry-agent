@@ -68,8 +68,6 @@ const DEEP_KEY = env.OPENAI_DEEP_RESEARCH_KEY || env.OPENAI_API_KEY || ''
 const { model: DEEP_MODEL, note: DEEP_MODEL_NOTE } = resolveDeepModel(env.OPENAI_DEEP_RESEARCH_MODEL)
 if (DEEP_MODEL_NOTE) console.log('[deep] ' + DEEP_MODEL_NOTE)
 
-// Tripo · 멀티뷰에서 3D 모델을 만든다
-
 // ── 자체 호스팅 이미지 모델 ────────────────────────────────────────
 // 이 파일이 부르는 것은 원래부터 OpenAI 이미지 API 의 형태(/v1/images/generations,
 // /v1/images/edits · b64_json 응답)다. 같은 형태로 서빙하는 서버(vLLM-Omni 등)를
