@@ -7,7 +7,7 @@ import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { record, ledger } from './spend.mjs'
 import { guard, spend, quotaStatus } from './gate.mjs'
-import { DEEP_MODEL_DEFAULT } from './research-api.mjs'
+import { DEEP_MODEL_DEFAULT, resolveDeepModel } from './research-api.mjs'
 import { geminiEdit, geminiGenerate, geminiProbe, geminiShotPlan } from './gemini-api.mjs'
 import { configureUnlocker, unlockerStatus, unlockerUsage } from './unlock.mjs'
 import { grabImage } from './grab.mjs'
@@ -65,7 +65,8 @@ const GEMINI_KEY = env.GEMINI_API_KEY || env.GOOGLE_API_KEY || ''
 const DEEP_RESEARCH = env.OPENAI_DEEP_RESEARCH === '1'
 // 딥리서치는 전용 키가 있으면 그쪽을 쓴다 (조직 인증이 끝난 프로젝트 키)
 const DEEP_KEY = env.OPENAI_DEEP_RESEARCH_KEY || env.OPENAI_API_KEY || ''
-const DEEP_MODEL = env.OPENAI_DEEP_RESEARCH_MODEL || DEEP_MODEL_DEFAULT
+const { model: DEEP_MODEL, note: DEEP_MODEL_NOTE } = resolveDeepModel(env.OPENAI_DEEP_RESEARCH_MODEL)
+if (DEEP_MODEL_NOTE) console.log('[deep] ' + DEEP_MODEL_NOTE)
 
 // Tripo · 멀티뷰에서 3D 모델을 만든다
 
@@ -321,6 +322,7 @@ export async function handleApi(req, res) {
       keyPresent: !!API_KEY || selfHostOn(), model: IMAGE_MODEL, cachedImages: n,
       selfHosted: selfHostOn(),
       deepResearch: DEEP_RESEARCH, deepModel: DEEP_MODEL,
+      deepModelNote: DEEP_MODEL_NOTE || undefined,
       spend: ledger(ROOT),
       quota: quotaStatus(ROOT, who?.id),
       geminiConnected: !!GEMINI_KEY,
@@ -337,7 +339,7 @@ export async function handleApi(req, res) {
   if (path === '/api/research/deep-check') {
     if (!DEEP_KEY) return json(res, 200, { available: false, reason: '딥리서치 키 미설정' })
     const today = new Date().toISOString().slice(0, 10)
-    const candidates = [...new Set([DEEP_MODEL, 'gpt-5-pro', 'o3-deep-research'])]
+    const candidates = [...new Set([DEEP_MODEL, DEEP_MODEL_DEFAULT, 'gpt-5'])]
     const tried = []
     for (const m of candidates) {
       try {
@@ -373,7 +375,7 @@ export async function handleApi(req, res) {
     return json(res, 200, {
       available: false, enabledInEnv: DEEP_RESEARCH, tried,
       hint: dead.length
-        ? `권한 문제가 아닙니다. ${dead.map(d => `${d.model}(종료 ${d.shutdownDate})`).join(', ')} 은 서비스가 끝난 모델입니다. OPENAI_DEEP_RESEARCH_MODEL 을 살아 있는 모델(gpt-5-pro)로 바꾸세요.`
+        ? `권한 문제가 아닙니다. ${dead.map(d => `${d.model}(종료 ${d.shutdownDate})`).join(', ')} 은 서비스가 끝난 모델입니다. OPENAI_DEEP_RESEARCH_MODEL 을 살아 있는 모델로 바꾸세요.`
         : '프로젝트의 모델 권한을 확인하세요 (platform.openai.com → Project → Limits).',
     })
   }

@@ -18,8 +18,28 @@ export const RESEARCH_MODEL = 'gpt-5'
 //   gpt-5.2    10초 · 검색 1회        ← 지금 기본
 // 속도가 빠른 만큼 한 번에 훑는 폭은 좁다. 그래서 깊이는 모델이 아니라 하위 질문 수(depth)로
 // 만든다 — agentTrendReport 가 deep 일 때 depth 를 올리는 구조는 그대로 둔다.
-// 더 깊게 가야 하면 .env 의 OPENAI_DEEP_RESEARCH_MODEL 로 gpt-5-pro 를 되돌릴 수 있다.
+// 더 깊게 가야 하면 하위 질문 수(depth)를 올린다. pro 계열은 쓰지 않는다 — 아래 BANNED 참고.
 export const DEEP_MODEL_DEFAULT = 'gpt-5.2'
+
+/** 쓰지 않기로 한 모델 · 호출당 값이 너무 크다 (gpt-5-pro 는 $15/$120 per 1M,
+ *  gpt-5.2 의 8.6배다). 코드 기본값을 바꿔 놨는데도 EB 환경변수가 덮어써서
+ *  운영이 계속 pro 로 돌고 있었다 — 설정 하나로 되돌아오지 않게 여기서 막는다. */
+const BANNED = /(^|[-_.])pro($|[-_.])/i
+
+/** 설정에서 온 모델 이름을 쓸 수 있는 것으로 정리한다.
+ *  막힌 모델이면 기본값으로 내리고, 왜 내렸는지 함께 돌려준다 — 조용히 바꾸면
+ *  "왜 설정대로 안 도는가" 를 다음 사람이 알 수 없다. */
+export function resolveDeepModel(requested) {
+  const want = String(requested || '').trim()
+  if (!want) return { model: DEEP_MODEL_DEFAULT, note: '' }
+  if (BANNED.test(want)) {
+    return {
+      model: DEEP_MODEL_DEFAULT,
+      note: `${want} 는 쓰지 않기로 한 모델입니다 (호출당 값이 너무 큽니다). ${DEEP_MODEL_DEFAULT} 로 돌립니다.`,
+    }
+  }
+  return { model: want, note: '' }
+}
 const DEEP_POLL_MS = 10_000
 const DEEP_MAX_WAIT_MS = 15 * 60 * 1000
 
