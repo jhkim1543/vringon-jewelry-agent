@@ -95,13 +95,17 @@ ${direction ? `조사 방향 참고: ${direction}` : ''}
   return save(root, key, { brand, ...data, searches })
 }
 
-// ── (나) 편집샵 베스트 · 국가 기준 10곳 ───────────────────────────────
+// ── (나) 편집샵 베스트 · 사용자가 고른 지역마다 5곳 ──────────────────
+// 10곳이던 것을 5곳으로 줄였다. 실측으로 이 경로 하나가 실행 비용의 35% 였다 —
+// 호출 20번에 입력 235만 토큰, 검색 618회, $12.36. 경쟁사 크롤 4개 브랜드($3.68)의 3배다.
+// 편집샵은 지역마다 도는데 상위 5곳이면 그 시장의 주류는 잡힌다.
 export async function agentShops(apiKey, root, { itemKo, country, langName }) {
-  const key = keyOf(['ags4', itemKo, country, langName])
+  const key = keyOf(['ags5', itemKo, country, langName])
   const hit = cached(root, key); if (hit) return hit
-  // ① 그 나라에서 실제 접근 가능한 주얼리 편집샵·멀티브랜드 리테일러 10곳
+  // ① 그 나라에서 실제 접근 가능한 주얼리 편집샵·멀티브랜드 리테일러 5곳
   const picked = await ask(apiKey, {
-    input: `${country} 소비자가 실제로 이용하는 주얼리 편집샵·멀티브랜드 리테일러(온라인 포함) 10곳을 웹 검색으로 확인해 고르세요.
+    input: `${country} 소비자가 실제로 이용하는 주얼리 편집샵·멀티브랜드 리테일러(온라인 포함) 5곳을 웹 검색으로 확인해 고르세요.
+그 시장에서 실제로 크고 자주 쓰이는 곳부터. 다섯 곳뿐이니 변두리가 아니라 주류를 고르세요.
 실존하는 곳만. 각각 이름과 대표 URL, 한 줄 성격을 적으세요. ${LANG_RULE(langName)}`,
     schema: {
       type: 'object', additionalProperties: false, required: ['shops'],
@@ -116,7 +120,7 @@ export async function agentShops(apiKey, root, { itemKo, country, langName }) {
     },
     name: 'shop_pick',
   })
-  const shops = (picked.data.shops ?? []).slice(0, 10)
+  const shops = (picked.data.shops ?? []).slice(0, 5)
   let searches = picked.searches
   // ② 샵별 베스트 수집 · 병렬
   const settled = await Promise.allSettled(shops.map(s => ask(apiKey, {
