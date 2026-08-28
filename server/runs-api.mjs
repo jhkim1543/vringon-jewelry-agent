@@ -4,7 +4,7 @@
 //
 // 저장 구조:  .cache/runs/<userKey>/<runId>.json   +  <userKey>/index.json
 //   userKey  = 사용자 식별자의 해시 (이메일·id 를 파일명으로 쓰지 않는다)
-//   index    = 목록 화면이 쓰는 가벼운 요약 (제목·썸네일·즐겨찾기·시각)
+//   index    = 목록 화면이 쓰는 가벼운 요약 (제목·썸네일·시각)
 //   본문     = 실행 상태 전체 (분석 결과 화면이 쓰는 것)
 //
 // 사용자 확인은 host-auth 가 한다. 확인이 안 되면 저장하지 않고 401 을 준다 —
@@ -87,35 +87,17 @@ export async function handleRuns(req, res, url, ROOT) {
     const id = safeId(body.id)
     if (!id || !body.state) { json(res, 400, { error: 'id/state 없음' }); return true }
     const rec = {
-      id, savedAt: body.savedAt ?? Date.now(), favorite: !!body.favorite,
+      id, savedAt: body.savedAt ?? Date.now(),
       title: String(body.title ?? '').slice(0, 200), thumb: body.thumb ?? null, state: body.state,
     }
     writeFileSync(join(dir, `${id}.json`), JSON.stringify(rec))
     const rows = readIndex(dir).filter(r => r.id !== id)
-    rows.unshift({ id, savedAt: rec.savedAt, favorite: rec.favorite, title: rec.title, thumb: rec.thumb })
+    rows.unshift({ id, savedAt: rec.savedAt, title: rec.title, thumb: rec.thumb })
     writeIndex(dir, rows)
     json(res, 200, { ok: true, id })
     return true
   }
 
-  // 즐겨찾기 토글 · 본문은 건드리지 않는다
-  if (path.startsWith('/api/runs/') && path.endsWith('/favorite') && req.method === 'POST') {
-    const id = safeId(path.slice('/api/runs/'.length, -'/favorite'.length))
-    const body = await readBody(req)
-    const rows = readIndex(dir)
-    const row = rows.find(r => r.id === id)
-    if (!row) { json(res, 404, { error: 'not found' }); return true }
-    row.favorite = !!body.favorite
-    writeIndex(dir, rows)
-    const f = join(dir, `${id}.json`)
-    if (existsSync(f)) {
-      const rec = JSON.parse(readFileSync(f, 'utf8'))
-      rec.favorite = row.favorite
-      writeFileSync(f, JSON.stringify(rec))
-    }
-    json(res, 200, { ok: true })
-    return true
-  }
 
   // 지우기
   if (path.startsWith('/api/runs/') && req.method === 'DELETE') {

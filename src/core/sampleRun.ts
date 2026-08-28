@@ -47,7 +47,6 @@ export async function ensureSampleRuns() {
       saveRun({
         id,
         savedAt: fileAt || Date.now(),
-        favorite: false,
         title: st.sampleTitle ?? 'Sample run',
         thumb: firstThumb(st),
         state: st,

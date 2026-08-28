@@ -763,12 +763,6 @@ table.mini td b { color: var(--text); font-weight: 600; }
 .lc-tags { display: flex; gap: 4px; align-items: center; flex-wrap: wrap; margin-top: 0px; }
 .lc-date { margin-left: auto; font-size: 11px; color: var(--text-3); }
 .lc-acts { display: flex; gap: 4px; align-items: center; margin-top: 4px; }
-.starbtn {
-  width: 28px; height: 26px; display: grid; place-items: center; border-radius: var(--r-6);
-  border: 1px solid var(--line-2); color: var(--text-3);
-}
-.starbtn:hover { color: var(--text-2); border-color: var(--surface-4); }
-.starbtn.on { color: var(--accent-hi); border-color: rgba(93,108,250,.55); }
 
 /* ── 렌더 오류 안내 ── */
 .errpane { position: fixed; inset: 0; display: grid; place-items: center; padding: 32px; background: var(--bg); z-index: 200; }
@@ -2346,9 +2340,6 @@ input.bframe-t { border-bottom: 1px solid var(--accent); color: var(--text); }
 .lc-link { font-size: 13px; font-weight: 650; color: var(--text-2); padding: 4px 10px; border-radius: 8px; }
 .lc-link:hover { background: var(--surface-3); color: var(--text); }
 .lc-gap { flex: 1; }
-.starbtn { width: 30px; height: 30px; border-radius: 8px; display: grid; place-items: center; color: var(--text-3); }
-.starbtn:hover { background: var(--surface-3); }
-.starbtn.on { color: var(--accent); }
 .lc-more { position: relative; }
 .lc-morebtn { width: 30px; height: 30px; border-radius: 8px; color: var(--text-3); font-weight: 800; }
 .lc-morebtn:hover { background: var(--surface-3); color: var(--text); }

@@ -1,13 +1,12 @@
-// ── Run 저장소 · 실행 이력과 즐겨찾기를 라이브러리처럼 다룬다 ──────────
+// ── Run 저장소 · 실행 이력을 라이브러리처럼 다룬다 ─────────────────────
 // 진행 중인 Run도 계속 저장한다. 새로고침이나 렌더 오류로 화면이 날아가도
 // 결과를 잃지 않게 하기 위한 것이다.
 import type { RunParams, RunState } from './types'
-import { pushDelete, pushFavorite, pushRun } from './account'
+import { pushDelete, pushRun } from './account'
 
 export interface RunRecord {
   id: string
   savedAt: number
-  favorite: boolean
   title: string
   /** 목록 썸네일 · 첫 디자인 이미지 */
   thumb?: string
@@ -57,10 +56,8 @@ export function getRun(id: string): RunRecord | undefined {
 export function saveRun(rec: RunRecord) {
   const all = read<RunRecord[]>(KEY, []).filter(r => r.id !== rec.id)
   all.unshift(rec)
-  // 즐겨찾기는 지우지 않고, 나머지만 오래된 순으로 정리한다
-  const favs = all.filter(r => r.favorite)
-  const rest = all.filter(r => !r.favorite).slice(0, MAX - favs.length)
-  write(KEY, [...favs, ...rest])
+  // 오래된 것부터 정리한다 · 최근 MAX 개만 남긴다
+  write(KEY, all.slice(0, MAX))
   pushRun(rec)                      // 로그인 상태면 계정에도 남는다
 }
 
@@ -69,15 +66,6 @@ export function deleteRun(id: string) {
   pushDelete(id)
 }
 
-export function toggleFavorite(id: string): boolean {
-  const all = read<RunRecord[]>(KEY, [])
-  const r = all.find(x => x.id === id)
-  if (!r) return false
-  r.favorite = !r.favorite
-  write(KEY, all)
-  pushFavorite(id, r.favorite)
-  return r.favorite
-}
 
 /** 계정 동기화가 쓰는 통로 · 화면은 여전히 위의 동기 함수만 쓴다 */
 export function readAllRuns(): RunRecord[] { return read<RunRecord[]>(KEY, []) }

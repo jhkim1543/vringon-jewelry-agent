@@ -11,7 +11,7 @@ import type { PipelineHandle } from './core/pipeline'
 import Wizard from './ui/Wizard'
 import RunView from './ui/RunView'
 import Board from './ui/Board'
-import { IcClock, IcPen, IcStar } from './ui/icons'
+import { IcClock, IcPen } from './ui/icons'
 import { ThemeToggle, VringonLogo, LangToggle } from './ui/bits'
 import { useTheme } from './ui/useTheme'
 import Library from './ui/Library'
@@ -23,7 +23,7 @@ import { pushShareTarget, readShareTarget } from './core/share'
 import { hostInfo } from './core/host'
 import { detectAccount, pullRuns } from './core/account'
 
-type View = 'create' | 'run' | 'board' | 'library' | 'starred'
+type View = 'create' | 'run' | 'board' | 'library'
 
 export default function App() {
   useLang()
@@ -134,7 +134,7 @@ export default function App() {
     saveCurrent(runIdRef.current, st)
     if (st.finished) {
       saveRun({
-        id: runIdRef.current, savedAt: Date.now(), favorite: false,
+        id: runIdRef.current, savedAt: Date.now(),
         title: `${MODE_LABEL[st.params.mode]} · ${st.params.mode === 'collection'
           ? st.params.direction.slice(0, 24)
           : (ITEM_LABEL[st.params.itemType] ?? st.params.itemType)}`,
@@ -220,9 +220,6 @@ export default function App() {
             <button className={`sr-i ${view === 'library' || view === 'run' || view === 'board' ? 'on' : ''}`} title={t('History')} aria-label={t('History')} onClick={() => setView('library')}>
               <IcClock /> <span>{t('History')}</span>
             </button>
-            <button className={`sr-i ${view === 'starred' ? 'on' : ''}`} title={t('Starred')} aria-label={t('Starred')} onClick={() => setView('starred')}>
-              <IcStar /> <span>{t('Starred')}</span>
-            </button>
           </nav>
         </aside>
 
@@ -272,11 +269,8 @@ export default function App() {
           </div>
         )}
         {(view === 'run' || view === 'board') && !st && !remoteBoard && <div className="empty">{t('No run open. Start one from Run setup.')}</div>}
-        {/* Library 에 key 를 붙여 뷰가 바뀔 때 다시 마운트한다 · Library 는 filter 를
-            useState 의 초기값으로만 읽어서, 같은 인스턴스가 남으면 상단의 "즐겨찾기" 를
-            눌러도 목록이 그대로였다 */}
-        {(view === 'library' || view === 'starred') && (
-          <Library key={`${view}-${synced}`} filter={view === 'starred' ? 'favorite' as const : 'all'}
+        {view === 'library' && (
+          <Library key={`library-${synced}`}
             onCreate={() => { setView('create'); setWizardKey(k => k + 1) }}
             account={account}
             running={st && !st.finished ? st : null}

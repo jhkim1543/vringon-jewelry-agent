@@ -101,9 +101,3 @@ export function pushDelete(id: string) {
     .catch(() => undefined)
 }
 
-export function pushFavorite(id: string, favorite: boolean) {
-  if (!account) return
-  fetch(apiUrl(`/api/runs/${encodeURIComponent(id)}/favorite`), {
-    method: 'POST', headers: headers(), body: JSON.stringify({ favorite }),
-  }).catch(() => undefined)
-}

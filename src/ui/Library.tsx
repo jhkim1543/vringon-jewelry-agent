@@ -5,11 +5,10 @@
 import { t, tf } from '../core/i18n'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { RunRecord } from '../core/store'
-import { deleteRun, listRuns, toggleFavorite } from '../core/store'
+import { deleteRun, listRuns } from '../core/store'
 import type { RunState, Stage } from '../core/types'
 import { agesOf, ITEM_LABEL, MODE_LABEL, STAGE_LABELS, regionsLabel } from '../core/types'
 
-type Filter = 'all' | 'favorite'
 
 const STAGES: Stage[] = ['S1', 'S2', 'S3', 'S4', 'S5']
 
@@ -52,23 +51,21 @@ function RunningCard({ st, onOpen }: { st: RunState; onOpen: () => void }) {
   )
 }
 
-export default function Library({ onOpen, onCreate, account, filter: initial = 'all', running, onOpenRunning }: {
+export default function Library({ onOpen, onCreate, account, running, onOpenRunning }: {
   onOpen: (rec: RunRecord, view: 'run' | 'board') => void
   /** 맨 앞의 "새로 만들기" 카드 · 레일의 새로 만들기와 같은 일을 한다 */
   onCreate: () => void
   /** 로그인한 계정 · 있으면 이 사람 것으로 서버에 남는다는 사실을 밝힌다 */
   account?: { id: string; name?: string } | null
-  filter?: Filter
   /** 지금 돌고 있는 실행 · 있으면 맨 앞에 진행 카드가 선다 */
   running?: RunState | null
   onOpenRunning?: () => void
 }) {
   const [tick, setTick] = useState(0)
-  const [filter, setFilter] = useState<Filter>(initial)
   const [menuFor, setMenuFor] = useState<string | null>(null)
   const menuRef = useRef<HTMLDivElement>(null)
   const runs = useMemo(() => listRuns(), [tick])
-  const shown = filter === 'favorite' ? runs.filter(r => r.favorite) : runs
+  const shown = runs
 
   // 바깥 클릭으로 ⋯ 메뉴 닫기
   useEffect(() => {
@@ -91,14 +88,6 @@ export default function Library({ onOpen, onCreate, account, filter: initial = '
             {t('Every analysis you have run. Open one to see its result and board.')}
             {account && <em className="lib-acct">{tf('Saved to {name}', { name: account.name ?? account.id })}</em>}
           </p>
-        </div>
-        <div className="chiprow" style={{ flex: 'none' }}>
-          <button className={`pick sm ${filter === 'all' ? 'on' : ''}`} onClick={() => setFilter('all')}>
-            {tf('All {n}', { n: runs.length })}
-          </button>
-          <button className={`pick sm ${filter === 'favorite' ? 'on' : ''}`} onClick={() => setFilter('favorite')}>
-            {tf('Starred {n}', { n: runs.filter(r => r.favorite).length })}
-          </button>
         </div>
       </div>
 
@@ -140,14 +129,6 @@ export default function Library({ onOpen, onCreate, account, filter: initial = '
                     <button className="lc-link" onClick={() => onOpen(r, 'run')}>{t('Analysis')}</button>
                     <button className="lc-link" onClick={() => onOpen(r, 'board')}>{t('Board')}</button>
                     <span className="lc-gap" />
-                    <button className={`starbtn ${r.favorite ? 'on' : ''}`}
-                      title={r.favorite ? t('Remove star') : t('Star')}
-                      onClick={() => { toggleFavorite(r.id); setTick(v => v + 1) }}>
-                      <svg viewBox="0 0 20 20" width="15" height="15"
-                        fill={r.favorite ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round">
-                        <path d="M10 2.6l2.3 4.7 5.2.8-3.8 3.6.9 5.1-4.6-2.4-4.6 2.4.9-5.1L2.5 8.1l5.2-.8z" />
-                      </svg>
-                    </button>
                     <div className="lc-more" ref={menuFor === r.id ? menuRef : undefined}>
                       <button className="lc-morebtn" aria-label={t('More')}
                         onClick={() => setMenuFor(m => m === r.id ? null : r.id)}>⋯</button>

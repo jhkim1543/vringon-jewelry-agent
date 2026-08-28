@@ -360,7 +360,6 @@ const KO: Record<string, string> = {
   'Run setup': '분석 설정',
   'Run Setup': '분석 설정',
   'History': '분석 내역',
-  'Starred': '즐겨찾기',
   'Library': '라이브러리',
   'Set up brand': '브랜드 설정',
   'Reset': '되돌리기',
@@ -371,8 +370,6 @@ const KO: Record<string, string> = {
   'Continue': '계속',
   'Reload': '새로고침',
   'Back to setup': '설정으로 돌아가기',
-  'Star': '즐겨찾기',
-  'Remove star': '즐겨찾기 해제',
   'Sample': '샘플',
   'All': '전체',
   'On': '켬',
@@ -471,7 +468,7 @@ const KO: Record<string, string> = {
 
   // ── 라이브러리 ──────────────────────────────────────────────────
   'Past runs, with their boards. Star the ones worth keeping.':
-    '지난 분석과 그 보드입니다. 남겨둘 것은 즐겨찾기해 두세요.',
+    '지난 분석과 그 보드입니다.',
   'Run the agent once and it will show up here.': '에이전트를 한 번 돌리면 여기에 쌓입니다.',
   'No finished runs yet.': '아직 완료된 분석이 없습니다.',
   'passed': '통과',
@@ -969,8 +966,6 @@ const KO: Record<string, string> = {
   'oauth token': 'oauth 토큰',
   'Details disagree between views on this one. The gap survived a regeneration and is left visible.':
     '이 안은 뷰마다 디테일이 어긋납니다. 다시 생성해도 남아서 그대로 보여 둡니다.',
-  'All {n}': '전체 {n}',
-  'Starred {n}': '즐겨찾기 {n}',
   'No image': '이미지 없음',
   '{n} passed': '{n}건 통과',
   '{n} approved': '{n}건 승인',

@@ -38,7 +38,6 @@ export const IcBrooch = () => <I><path d="M10.4 3.2l1.8 4.8 4.8 1.8-4.8 1.8-1.8 
 export const IcClock = () => <I><circle cx="12" cy="12" r="8.4" /><path d="M12 7.2V12l3.2 2" /></I>
 /** 새로 만들기 · 연필 */
 export const IcPen = () => <I><path d="M16.4 3.6a2.3 2.3 0 0 1 3.2 3.2L8.4 18l-4.2 1.4L5.6 15.2z" /><path d="M14.6 5.4l3.2 3.2" /></I>
-export const IcStar = () => <I><path d="M12 3.8l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z" /></I>
 export const IcArrow = () => <I><path d="M4.4 12h14.4M13.2 6.4l5.6 5.6-5.6 5.6" /></I>
 export const IcExternal = () => <I><path d="M13.6 4.4H19.6V10.4" /><path d="M19.6 4.4L11.2 12.8" /><path d="M18 13.8v4.4a1.6 1.6 0 0 1-1.6 1.6H5.8a1.6 1.6 0 0 1-1.6-1.6V7.6A1.6 1.6 0 0 1 5.8 6h4.4" /></I>
 export const IcReport = () => <I><path d="M6.4 3.6h8.2l4.2 4.2v12.6a1.4 1.4 0 0 1-1.4 1.4H6.4A1.4 1.4 0 0 1 5 20.4V5a1.4 1.4 0 0 1 1.4-1.4z" /><path d="M14.4 3.6v4.4h4.4" /><path d="M8.4 12.6h7M8.4 16.2h4.6" /></I>
