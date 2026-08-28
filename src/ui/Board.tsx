@@ -6,8 +6,8 @@
 //  · 발표 모드는 캔버스 위에서부터 순서대로 카드를 한 장씩 확대한다
 // 서버가 없으면(정적 배포) 이 브라우저 안에서만 동작하고, 그렇게 말해 준다.
 import { t, tf } from '../core/i18n'
-import { apiUrl } from '../core/api'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import type { ReactNode } from 'react'
 import {
   ReactFlow, ReactFlowProvider, ViewportPortal, useReactFlow, applyNodeChanges,
 } from '@xyflow/react'
@@ -34,32 +34,6 @@ function Img({ remote, page, shot, className }: { remote?: string; page?: string
     onError={e => { (e.currentTarget as HTMLImageElement).style.visibility = 'hidden' }} />
 }
 
-/** 발표용 레퍼런스 이미지 · 크롤 썸네일은 발표 크기로 키우면 뭉개져서,
- *  같은 제품의 AI 재현 스튜디오 컷을 서버에 청해 바꿔 끼운다(캐시라 재과금 없음).
- *  서버가 없거나(정적 배포) 실패하면 원본 그대로 두고, 배지는 재현이 실제로 떴을 때만 붙는다. */
-function PresentRefImg({ remote, shot }: { remote?: string; shot?: string }) {
-  const [ai, setAi] = useState<string | null>(null)
-  const askSrc = shot || remote
-  useEffect(() => {
-    if (!askSrc) return
-    let dead = false
-    fetch(apiUrl('/api/image/refshot'), {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ src: askSrc }),
-    })
-      .then(r => (r.ok ? r.json() : null))
-      .then(j => { if (!dead && j?.url) setAi(j.url) })
-      .catch(() => undefined)
-    return () => { dead = true }
-  }, [askSrc])
-  return (
-    <span className="pr-wrap">
-      {ai ? <img src={ai} alt="" /> : <Img remote={remote} shot={shot} />}
-      {ai && <i className="pr-ai">{t('AI render')}</i>}
-    </span>
-  )
-}
-
 /** 디자인 방향 다섯 줄 · 축마다 짧은 아이콘과 첫 구절만 */
 // Record<string,string> 주석을 붙이면 i18n 감사가 SVG 경로를 문구로 오인한다 · as const 로 둔다
 const AXIS_GLYPH = {
@@ -81,7 +55,10 @@ function firstClause(s?: string, max = 34): string {
   return head.slice(0, Math.max(16, brk)).replace(/[,·\s]+$/, '')
 }
 
-export function SlideView({ slide, present = false }: { slide: SlidePayload; present?: boolean }) {
+/** 카드 한 장 · 보드와 발표가 완전히 같은 것을 그린다.
+ *  전에는 발표에서만 레퍼런스 사진을 AI 재현본으로 바꿔 끼웠는데, 그러면
+ *  "보드에서 본 것" 과 "발표에서 보이는 것" 이 달라진다. 발표는 확대일 뿐이어야 한다. */
+export function SlideView({ slide }: { slide: SlidePayload }) {
   const [showPrompt, setShowPrompt] = useState(false)
   if (slide.type === 'cover') {
     return (
@@ -103,7 +80,7 @@ export function SlideView({ slide, present = false }: { slide: SlidePayload; pre
           {slide.cells.map(c => (
             <div className="sl-refcell" key={c.slot}>
               <span className="n">#{c.slot}</span>
-              {present ? <PresentRefImg remote={c.imageUrl} shot={c.shot} /> : <Img remote={c.imageUrl} shot={c.shot} />}
+              <Img remote={c.imageUrl} shot={c.shot} />
               <b>{c.title}</b>
               <span className="s">{c.subtitle}</span>
               <span className="p">{c.price ? `${c.price.toLocaleString()} ${c.currency ?? ''}` : t('price unconfirmed')}</span>
@@ -193,6 +170,40 @@ export function SlideView({ slide, present = false }: { slide: SlidePayload; pre
         <span className="sl-dna">{slide.dna.slice(0, 3).join(' · ')}</span>
         <span className="sl-story">{slide.story.slice(0, 160)}</span>
       </footer>
+    </div>
+  )
+}
+
+/** 발표 무대 · 안쪽은 보드에서 쓰던 크기 그대로 그리고, 바깥에서 화면에 맞게 배율만 준다.
+ *  이렇게 해야 글자·사진·여백의 비율이 보드와 똑같이 유지된다. 무대를 늘리고 안을
+ *  그대로 두면 사진만 커지고 글씨는 그대로라, 발표에서 글씨가 유난히 작아 보인다. */
+function PresentStage({ w, h, children }: { w: number; h: number; children: ReactNode }) {
+  const box = useRef<HTMLDivElement>(null)
+  const [k, setK] = useState(1)
+  useEffect(() => {
+    const el = box.current
+    if (!el) return
+    const fit = () => {
+      const r = el.getBoundingClientRect()
+      // 열리는 순간에는 아직 0 일 수 있다 · 그때 1 로 굳으면 확대가 안 된 채로 남는다
+      if (!r.width || !r.height) return
+      setK(Math.min(r.width / w, r.height / h))
+    }
+    fit()
+    const ro = new ResizeObserver(fit)
+    ro.observe(el)
+    // 창 크기가 바뀌어도 다시 맞춘다 (ResizeObserver 가 못 잡는 경우가 있다)
+    window.addEventListener('resize', fit)
+    // 첫 그림 뒤 한 번 더 · 레이아웃이 잡히기 전에 잰 값을 바로잡는다
+    const raf = requestAnimationFrame(fit)
+    return () => { ro.disconnect(); window.removeEventListener('resize', fit); cancelAnimationFrame(raf) }
+  }, [w, h])
+  return (
+    <div className="present-fit" ref={box}>
+      <div className="present-frame"
+        style={{ width: w, height: h, transform: `scale(${k})` }}>
+        {children}
+      </div>
     </div>
   )
 }
@@ -518,10 +529,10 @@ function BoardInner({ st, runId }: { st: RunState | null; runId: string }) {
   // ── 발표 모드 · 캔버스 위에서 아래로, 왼쪽에서 오른쪽으로 ───────────
   const presentOrder = useMemo(() => {
     const pos = docRef.current.pos
-    const entries: { id: string; y: number; x: number; slide?: SlidePayload; u?: UserNode }[] = []
+    const entries: { id: string; y: number; x: number; slide?: SlidePayload; tone?: string; u?: UserNode }[] = []
     slideNodes.forEach((n, i) => {
       const p = pos[n.id] ?? { x: (n.column ?? i % 3) * (CARD_W + GAP), y: (n.row ?? Math.floor(i / 3)) * (CARD_H + GAP) }
-      entries.push({ id: n.id, x: p.x, y: p.y, slide: n.slide })
+      entries.push({ id: n.id, x: p.x, y: p.y, slide: n.slide, tone: n.tone })
     })
     for (const u of Object.values(docRef.current.unodes)) {
       if (u.kind === 'pin') continue           // 핀은 주석이다 · 발표에 끼우지 않는다
@@ -723,12 +734,17 @@ function BoardInner({ st, runId }: { st: RunState | null; runId: string }) {
         <div className="present" role="dialog" aria-label={t('Presentation')}>
           {/* 우측 상단 닫기 · Esc 와 같은 일 */}
           <button className="present-x" onClick={() => setPresent(false)} aria-label={t('Close')}>✕</button>
-          <div className="present-stage">
-            {cur.slide && <SlideView slide={cur.slide} present />}
+          {/* 보드에 있는 프레임을 그대로 확대한다 · 안쪽은 캔버스와 같은 크기로 그리고
+              바깥에서 배율만 준다. 무대만 늘리고 안은 그대로 두면 글씨는 그대로인데
+              사진만 커져서, 발표에서 글씨가 유난히 작아 보인다. */}
+          <PresentStage w={cur.u ? (cur.u.w ?? CARD_W) : CARD_W} h={cur.u ? (cur.u.h ?? CARD_H) : CARD_H}>
+            {cur.slide && <div className={`slidecard tone-${cur.tone ?? 'neutral'}`} style={{ width: CARD_W, height: CARD_H }}>
+              <SlideView slide={cur.slide} />
+            </div>}
             {cur.u?.kind === 'note' && <div className="present-note" style={{ background: cur.u.color ?? '#FBE89C' }}><p>{cur.u.text}</p><span>{cur.u.author}</span></div>}
             {cur.u?.kind === 'text' && <div className="present-text"><p>{cur.u.text}</p></div>}
             {cur.u?.kind === 'image' && cur.u.url && <img className="present-img" src={cur.u.url} alt="" />}
-          </div>
+          </PresentStage>
           <button className="present-nav left" disabled={idx === 0} onClick={() => goTo(idx - 1)} aria-label={t('Previous')}>‹</button>
           <button className="present-nav right" disabled={idx === presentOrder.length - 1} onClick={() => goTo(idx + 1)} aria-label={t('Next')}>›</button>
           <div className="present-foot">

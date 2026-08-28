@@ -1889,8 +1889,15 @@ table.mini td b { color: var(--text); font-weight: 600; }
 /* ── 발표 모드 · PPT 쇼 ── */
 .present { position: fixed; inset: 0; z-index: 200; background: rgba(4, 6, 10, .96);
   display: flex; align-items: center; justify-content: center; }
-.present-stage { width: min(92vw, calc(88vh * 16 / 9)); aspect-ratio: 16 / 9;
-  background: var(--panel); border-radius: 14px; overflow: hidden; box-shadow: 0 20px 80px rgba(0, 0, 0, .5); }
+/* 무대는 자리만 잡는다 · 실제 배율은 안쪽 프레임이 받는다.
+   전에는 무대를 화면 크기로 늘리고 안은 카드 크기 그대로 두어서, 사진만 커지고
+   글씨는 그대로였다 — 그래서 발표에서 글씨가 유난히 작아 보였다. */
+.present-fit { width: 92vw; height: 84vh; display: flex; align-items: center; justify-content: center; }
+.present-frame { transform-origin: center center; flex: 0 0 auto;
+  background: var(--panel); border-radius: 14px; overflow: hidden;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, .5); }
+/* 확대해도 사진이 뭉개지지 않게 · 축소·확대 모두 부드럽게 */
+.present-frame img { image-rendering: auto; }
 .present-nav { position: absolute; top: 50%; transform: translateY(-50%); width: 48px; height: 48px;
   border-radius: 99px; background: rgba(16, 16, 20, .8); color: #fff; font-size: 26px; z-index: 2; }
 .present-nav.left { left: 18px; }
@@ -1907,19 +1914,6 @@ table.mini td b { color: var(--text); font-weight: 600; }
   border-radius: 99px; background: rgba(16, 16, 20, .8); color: #fff; font-size: 18px; }
 .present-x:hover { background: rgba(255, 255, 255, .18); }
 
-/* 발표모드 · 레퍼런스가 무대를 채운다 — 카드용 고정 150px 그대로 키우면 상단에 조그맣게 뜬다 */
-.present-stage .sl-refs header { font-size: 24px; margin-bottom: 18px; }
-.present-stage .sl-refrow { gap: 18px; }
-.present-stage .sl-refcell { gap: 6px; }
-.present-stage .sl-refcell .pr-wrap { position: relative; display: flex; flex: 1; min-height: 0; }
-.present-stage .sl-refcell img { height: 100%; flex: 1; min-height: 0; border-radius: 10px; }
-.present-stage .sl-refcell .n { font-size: 13px; top: 8px; left: 8px; padding: 2px 8px; }
-.present-stage .sl-refcell b { font-size: 15px; }
-.present-stage .sl-refcell .s { font-size: 12.5px; }
-.present-stage .sl-refcell .p { font-size: 13.5px; }
-.pr-ai { position: absolute; right: 8px; bottom: 8px; font-style: normal; font-size: 11px; font-weight: 700;
-  color: #fff; background: rgba(16, 16, 20, .72); border-radius: 99px; padding: 2px 9px; backdrop-filter: blur(4px); }
-
 /* 반응형 보완 · 새 화면 */
 @media (max-width: 760px) {
   .pairrow { grid-template-columns: 1fr; }
@@ -1927,7 +1921,7 @@ table.mini td b { color: var(--text); font-weight: 600; }
   .sl-3col { grid-template-columns: 1fr; }
   .sl-refrow { grid-template-columns: repeat(2, 1fr); }
   .sl-setitems { grid-template-columns: repeat(2, 1fr); grid-column: auto; }
-  .present-stage { width: 96vw; }
+  .present-fit { width: 96vw; height: 80vh; }
   .bar-row { grid-template-columns: 100px 1fr 30px; }
 }
 
