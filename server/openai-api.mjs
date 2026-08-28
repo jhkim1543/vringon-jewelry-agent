@@ -312,23 +312,29 @@ export async function handleApi(req, res) {
     const n = readdirSync(CACHE_DIR).filter(f => f.endsWith('.png')).length
     // 호스트 토큰이 함께 왔으면 누구인지 알려 준다 · 화면은 이걸 보고 계정 저장을 켠다
     const who = await resolveUser(req, url)
+    // 익명에게는 화면이 실제로 쓰는 다섯 필드만 준다 (runtime.ts 참고).
+    // 전에는 지출 장부·언블로커 존·모델 구성까지 통째로 나갔다 — 공개 주소에서
+    // 내부 운영 정보를 읽게 두는 것이고, 공급사명 노출 금지 원칙에도 어긋난다.
+    // 진단이 필요한 정보는 로그인한 사용자에게만 붙인다.
     return json(res, 200, {
       user: who ? { id: who.id, name: who.name } : null,
-      // 계정 확인을 어디에 물어보는지 · 연동이 어긋났을 때 이 한 줄이면 안다
-      hostAuth: hostAuthStatus(),
-      runs: runsStats(ROOT),
       // 자체 호스팅이 켜져 있으면 키가 없어도 이미지를 만들 수 있다 — 화면의 "키 없음" 안내가
       // 거짓이 되지 않도록 함께 본다.
-      keyPresent: !!API_KEY || selfHostOn(), model: IMAGE_MODEL, cachedImages: n,
+      keyPresent: !!API_KEY || selfHostOn(), cachedImages: n,
       selfHosted: selfHostOn(),
       deepResearch: DEEP_RESEARCH, deepModel: DEEP_MODEL,
-      deepModelNote: DEEP_MODEL_NOTE || undefined,
-      spend: ledger(ROOT),
-      quota: quotaStatus(ROOT, who?.id),
-      geminiConnected: !!GEMINI_KEY,
-      // 유료 언블로커 · 켜져 있으면 오늘 쓴 건수를 함께 준다 (요금 감시용)
-      unlocker: { ...unlockerStatus(), usage: unlockerUsage(ROOT) },
-      engines: { fast: ENGINE.fast.model, detail: ENGINE.detail.model },
+      ...(who ? {
+        // 계정 확인을 어디에 물어보는지 · 연동이 어긋났을 때 이 한 줄이면 안다
+        hostAuth: hostAuthStatus(),
+        runs: runsStats(ROOT),
+        deepModelNote: DEEP_MODEL_NOTE || undefined,
+        spend: ledger(ROOT),
+        quota: quotaStatus(ROOT, who.id),
+        geminiConnected: !!GEMINI_KEY,
+        // 유료 언블로커 · 켜져 있으면 오늘 쓴 건수를 함께 준다 (요금 감시용)
+        unlocker: { ...unlockerStatus(), usage: unlockerUsage(ROOT) },
+        engines: { fast: ENGINE.fast.model, detail: ENGINE.detail.model },
+      } : {}),
     })
   }
 
