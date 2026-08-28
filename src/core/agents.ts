@@ -7,10 +7,15 @@ import type {
 } from './types'
 import { ANALYSIS_LANG_NAME, ITEM_EN, ITEM_KO, regionsOf, targetText } from './types'
 import { apiUrl } from './api'
+import { hostToken } from './account'
 
 async function post<T>(url: string, body: unknown): Promise<T> {
+  // 조사·이미지 경로는 서버에서 사용자를 확인한다. 토큰을 안 붙이면 전부 401 이다 —
+  // 실제로 문지기를 붙인 첫 배포에서 화면이 통째로 막혔다. 저장(runs)만 붙이고 있었다.
+  const tk = hostToken()
   const r = await fetch(apiUrl(url), {
-    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...(tk ? { 'X-Host-Token': tk } : {}) },
     body: JSON.stringify(body),
   })
   const j = await r.json()
